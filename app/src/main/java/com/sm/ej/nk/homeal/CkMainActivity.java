@@ -13,10 +13,7 @@ import com.sm.ej.nk.homeal.fragment.CkHomeFragment;
 import com.sm.ej.nk.homeal.fragment.CkReserveFragment;
 import com.sm.ej.nk.homeal.fragment.MyPageFragment;
 
-import butterknife.BindView;
-
 public class CkMainActivity extends AppCompatActivity {
-    @BindView(R.id.tablayout_ck_main)
     TabLayout tabLayout;
 
     Toolbar toolbar;
@@ -34,7 +31,7 @@ public class CkMainActivity extends AppCompatActivity {
             setupTabViewPager(viewPager);
         }
 
-//        tabLayout  = (TabLayout)findViewById(R.id.tablayout_ck_main);
+        tabLayout  = (TabLayout)findViewById(R.id.tablayout_ck_main);
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.setTabTextColors(Color.BLACK, Color.BLACK);
 
