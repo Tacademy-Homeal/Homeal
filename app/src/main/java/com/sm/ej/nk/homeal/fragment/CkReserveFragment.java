@@ -14,6 +14,12 @@ import com.sm.ej.nk.homeal.R;
  */
 public class CkReserveFragment extends Fragment {
 
+    public static CkReserveFragment createInstance(){
+        final CkReserveFragment pageFragment = new CkReserveFragment();
+        final Bundle bundle = new Bundle();
+        pageFragment.setArguments(bundle);
+        return pageFragment;
+    }
 
     public CkReserveFragment() {
         // Required empty public constructor

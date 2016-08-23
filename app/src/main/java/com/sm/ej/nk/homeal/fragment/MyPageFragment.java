@@ -14,6 +14,12 @@ import com.sm.ej.nk.homeal.R;
  */
 public class MyPageFragment extends Fragment {
 
+    public static MyPageFragment createInstance(){
+        final MyPageFragment pageFragment = new MyPageFragment();
+        final Bundle bundle = new Bundle();
+        pageFragment.setArguments(bundle);
+        return pageFragment;
+    }
 
     public MyPageFragment() {
         // Required empty public constructor

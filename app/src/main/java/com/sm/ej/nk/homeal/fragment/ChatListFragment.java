@@ -14,6 +14,12 @@ import com.sm.ej.nk.homeal.R;
  */
 public class ChatListFragment extends Fragment {
 
+    public static ChatListFragment createInstance(){
+        final ChatListFragment pageFragment = new ChatListFragment();
+        final Bundle bundle = new Bundle();
+        pageFragment.setArguments(bundle);
+        return pageFragment;
+    }
 
     public ChatListFragment() {
         // Required empty public constructor
