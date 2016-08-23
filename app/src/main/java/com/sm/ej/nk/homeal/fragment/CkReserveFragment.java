@@ -1,12 +1,15 @@
 package com.sm.ej.nk.homeal.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
+import com.sm.ej.nk.homeal.CkWriteReViewActivity;
 import com.sm.ej.nk.homeal.R;
 
 /**
@@ -30,7 +33,15 @@ public class CkReserveFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_ck_reserve, container, false);
+        View view = inflater.inflate(R.layout.fragment_ck_reserve, container, false);
+        Button btn = (Button)view.findViewById(R.id.btn_ck_reserve_next);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), CkWriteReViewActivity.class);
+                startActivity(intent);
+            }
+        });
+        return view;
     }
-
 }
