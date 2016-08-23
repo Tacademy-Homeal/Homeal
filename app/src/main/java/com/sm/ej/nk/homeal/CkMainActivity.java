@@ -19,7 +19,6 @@ public class CkMainActivity extends AppCompatActivity {
     @BindView(R.id.tablayout_ck_main)
     TabLayout tabLayout;
 
-
     Toolbar toolbar;
     ViewPager viewPager;
 
