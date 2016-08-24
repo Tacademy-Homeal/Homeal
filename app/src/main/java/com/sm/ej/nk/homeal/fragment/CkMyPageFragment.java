@@ -7,14 +7,13 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import com.sm.ej.nk.homeal.CkPersonalDataActivity;
 import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.SettingActivity;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,12 +31,6 @@ public class CkMyPageFragment extends Fragment {
         // Required empty public constructor
     }
 
-    @BindView(R.id.btn_mypage_personal)
-    Button btnPersonal;
-
-    @BindView(R.id.btn_mypage_setting)
-    Button btnSetting;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -45,22 +38,18 @@ public class CkMyPageFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_ck_my_page, container, false);
         ButterKnife.bind(this, view);
 
-        btnPersonal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), CkPersonalDataActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        btnSetting.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), SettingActivity.class);
-                startActivity(intent);
-            }
-        });
         return view;
+    }
+    @OnClick(R.id.btn_ck_mypage_personal)
+    public void onCkMypagePersonal(){
+        Intent intent = new Intent(getActivity(), CkPersonalDataActivity.class);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.btn_ck_mypage_setting)
+    public void onCkMypageSetting(){
+        Intent intent = new Intent(getActivity(), SettingActivity.class);
+        startActivity(intent);
     }
 
 }

@@ -10,7 +10,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class SettingActivity extends AppCompatActivity {
-    @BindView(R.id.btn_setting_advice)
+    @BindView(R.id.btn_ck_setting_advice)
     Button btnAdvice;
 
     @Override

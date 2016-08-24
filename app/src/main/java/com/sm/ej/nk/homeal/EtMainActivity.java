@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -51,6 +52,12 @@ public class EtMainActivity extends AppCompatActivity {
         pagerAdapter.addFragment(ChatListFragment.createInstance(), ET_CHAT);
         pagerAdapter.addFragment(EtReserveFragment.createInstance(), ET_RESERVE);
         pagerAdapter.addFragment(EtMyPageFragment.createInstance(), ET_MYPAGE);
+
+        ActionBar actionBar = getSupportActionBar();
+
+        actionBar.setDisplayShowCustomEnabled(true);
+        actionBar.setHomeAsUpIndicator(android.R.drawable.ic_search_category_default);
+
         v.setAdapter(pagerAdapter);
     }
 
