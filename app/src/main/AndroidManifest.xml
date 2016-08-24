@@ -33,7 +33,8 @@
         <activity android:name=".InfoCkDetailActivity" />
         <activity android:name=".MenuDetailActivity" />
         <activity android:name=".ReserveRequestActivity" />
-        <activity android:name=".EtMainActivity"></activity>
+        <activity android:name=".EtMainActivity"
+            android:exported="true"></activity>
     </application>
 
 </manifest>

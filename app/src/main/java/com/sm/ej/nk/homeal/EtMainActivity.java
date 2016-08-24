@@ -16,6 +16,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class EtMainActivity extends AppCompatActivity {
+
     @BindView(R.id.toolbar_et_toolbar)
     Toolbar toolbar;
 
@@ -52,4 +53,5 @@ public class EtMainActivity extends AppCompatActivity {
         pagerAdapter.addFragment(EtMyPageFragment.createInstance(), ET_MYPAGE);
         v.setAdapter(pagerAdapter);
     }
+
 }
