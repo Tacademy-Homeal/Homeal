@@ -32,6 +32,8 @@ public class LoginFragment extends Fragment {
         ok_btn = (Button)view.findViewById(R.id.lf_okbtn);
         ok_btn = (Button)view.findViewById(R.id.lf_backkey);
 
+        //df
+
         ok_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
