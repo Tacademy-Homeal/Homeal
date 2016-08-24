@@ -26,7 +26,7 @@ public class HomealApplication extends Application {
     }
 
     public static void changeEater(){
-        isCooker = false;
+        isCooker  = false;
     }
 
     public static Context getContext() {

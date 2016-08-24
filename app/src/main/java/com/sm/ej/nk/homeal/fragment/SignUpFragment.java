@@ -49,6 +49,5 @@ public class SignUpFragment extends Fragment {
 
     @OnClick(R.id.sf_cancle)
     public void onSingUpCancle(){
-
     }
 }
