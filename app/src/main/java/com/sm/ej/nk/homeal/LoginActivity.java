@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.sm.ej.nk.homeal.fragment.LoginFragment;
-import com.sm.ej.nk.homeal.fragment.SingUpFragment;
+import com.sm.ej.nk.homeal.fragment.SignUpFragment;
 import com.sm.ej.nk.homeal.fragment.TOSFragment;
 
 public class LoginActivity extends AppCompatActivity {
@@ -33,7 +33,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public void changeSingUp(){
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.container, new SingUpFragment())
+                .replace(R.id.container, new SignUpFragment())
                 .addToBackStack(null)
                 .commit();
     }
