@@ -13,7 +13,14 @@ public class ReserveRequestActivity extends AppCompatActivity {
     @OnClick(R.id.btn_reserve_request)
     public void onSenddialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("확인 버튼", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+
+        builder.setNegativeButton("최소 버튼", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.dismiss();
