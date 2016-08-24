@@ -1,6 +1,7 @@
 package com.sm.ej.nk.homeal.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -8,7 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.sm.ej.nk.homeal.EtPersonalDataActivity;
 import com.sm.ej.nk.homeal.R;
+import com.sm.ej.nk.homeal.SettingActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -49,12 +52,15 @@ public class EtMyPageFragment extends Fragment {
 
     @OnClick(R.id.btn_et_mypager_personal)
     public void changeEtPersonalDataActivity(){
+        Intent intent = new Intent(getActivity(), EtPersonalDataActivity.class);
+        startActivity(intent);
 
     }
 
     @OnClick(R.id.btn_et_setting)
     public void changeSettingActivity(){
-
+        Intent intent = new Intent(getActivity(), SettingActivity.class);
+        startActivity(intent);
     }
 
 
