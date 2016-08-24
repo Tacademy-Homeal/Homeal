@@ -12,6 +12,9 @@ import android.widget.Button;
 import com.sm.ej.nk.homeal.CkWriteReViewActivity;
 import com.sm.ej.nk.homeal.R;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -28,14 +31,17 @@ public class CkReserveFragment extends Fragment {
         // Required empty public constructor
     }
 
+@BindView(R.id.btn_ck_reserve_review)
+Button btnReview;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_ck_reserve, container, false);
-        Button btn = (Button)view.findViewById(R.id.btn_ck_reserve_next);
-        btn.setOnClickListener(new View.OnClickListener() {
+        ButterKnife.bind(this, view);
+
+        btnReview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), CkWriteReViewActivity.class);
