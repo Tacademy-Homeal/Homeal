@@ -51,6 +51,7 @@ public class TOSFragment extends Fragment {
 
     @OnClick(R.id.btn_tos_backey)
     public void onTosCancle(){
+        ((LoginActivity)getActivity()).changeLogin();
 
     }
 }

@@ -38,6 +38,13 @@ public class LoginActivity extends AppCompatActivity {
                 .commit();
     }
 
+    public void changeLogin(){
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.container, new LoginFragment())
+                .addToBackStack(null)
+                .commit();
+    }
+
     public void moveMainActivity(){
 
 
