@@ -18,7 +18,7 @@ import butterknife.OnClick;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SingUpFragment extends Fragment {
+public class SignUpFragment extends Fragment {
 
 
     @BindView(R.id.sf_ok)
@@ -27,7 +27,7 @@ public class SingUpFragment extends Fragment {
     @BindView(R.id.sf_cancle)
     Button sf_cancle;
 
-    public SingUpFragment() {
+    public SignUpFragment() {
         // Required empty public constructor
     }
 
@@ -36,7 +36,7 @@ public class SingUpFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_sing_up, container, false);
+        View view =  inflater.inflate(R.layout.fragment_sign_up, container, false);
         ButterKnife.bind(this, view);
 
         return view;

@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.sm.ej.nk.homeal.fragment.SingUpFragment">
+    tools:context=".fragment.SignUpFragment">
 
     <TextView
         android:layout_width="@dimen/info_text_width"
