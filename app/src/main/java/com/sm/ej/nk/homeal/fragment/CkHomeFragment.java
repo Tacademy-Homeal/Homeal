@@ -13,6 +13,7 @@ import com.sm.ej.nk.homeal.MapActivity;
 import com.sm.ej.nk.homeal.MenuAddActivity;
 import com.sm.ej.nk.homeal.R;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -20,12 +21,13 @@ import butterknife.ButterKnife;
  */
 public class CkHomeFragment extends Fragment {
 
+    @BindView(R.id.btn_ck_home_map)
     Button btnMap;
 
+    @BindView(R.id.btn_ck_home_menu)
     Button btnMenu;
 
     public CkHomeFragment() {
-        //dddddd
     }
 
 
@@ -36,8 +38,8 @@ public class CkHomeFragment extends Fragment {
         View v =  inflater.inflate(R.layout.fragment_ck_home, container, false);
         ButterKnife.bind(this, v);
 
-        btnMap = (Button)v.findViewById(R.id.btn_ck_home_map);
-        btnMenu = (Button)v.findViewById(R.id.btn_ck_home_menu);
+//        btnMap = (Button)v.findViewById(R.id.btn_ck_home_map);
+//        btnMenu = (Button)v.findViewById(R.id.btn_ck_home_menu);
         btnMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
