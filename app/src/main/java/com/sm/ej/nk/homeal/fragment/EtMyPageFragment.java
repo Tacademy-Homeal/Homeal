@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.sm.ej.nk.homeal.EtPersonalDataActivity;
+import com.sm.ej.nk.homeal.EtZzimActivity;
 import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.SettingActivity;
 
@@ -39,6 +40,9 @@ public class EtMyPageFragment extends Fragment {
     @BindView(R.id.btn_et_setting)
     Button btnSetting;
 
+    @BindView(R.id.btn_et_zzim)
+    Button btnzzim;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -63,5 +67,10 @@ public class EtMyPageFragment extends Fragment {
         startActivity(intent);
     }
 
+    @OnClick(R.id.btn_et_zzim)
+    public void changeZzimActivity(){
+        Intent intent = new Intent(getActivity(), EtZzimActivity.class);
+        startActivity(intent);
+    }
 
 }
