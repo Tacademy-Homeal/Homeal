@@ -58,6 +58,5 @@ public class EtMainActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this, ChattingActivity.class);
         startActivity(intent);
-        finish();
     }
 }

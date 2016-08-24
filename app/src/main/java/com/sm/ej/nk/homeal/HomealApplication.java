@@ -21,6 +21,14 @@ public class HomealApplication extends Application {
         return isCooker;
     }
 
+    public static void changeCooker(){
+        isCooker = true;
+    }
+
+    public static void changeEater(){
+        isCooker = false;
+    }
+
     public static Context getContext() {
         return context;
     }

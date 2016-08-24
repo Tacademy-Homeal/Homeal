@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RadioButton;
 
+import com.sm.ej.nk.homeal.HomealApplication;
 import com.sm.ej.nk.homeal.LoginActivity;
 import com.sm.ej.nk.homeal.R;
 
@@ -34,38 +35,37 @@ public class LoginFragment extends Fragment {
     @BindView(R.id.radiobtn_login_ft_eater)
     RadioButton radiobtn_eater;
 
-    private int modenum = -1;
 
     public LoginFragment() {
         // Required empty public constructor
     }
 
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_login, container, false);
-        ButterKnife.bind(this, view);
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                Bundle savedInstanceState) {
+            // Inflate the layout for this fragment
+            View view =  inflater.inflate(R.layout.fragment_login, container, false);
+            ButterKnife.bind(this, view);
 
         return view;
     }
 
     @OnClick(R.id.radiobtn_login_ft_ck)
     public void chageModeCooker(){
-        modenum = 0;
+        HomealApplication.changeCooker();
     }
 
     @OnClick(R.id.radiobtn_login_ft_eater)
     public void chageModeEater(){
-        modenum = 1;
+        HomealApplication.changeEater();
     }
 
 
     @OnClick(R.id.btn_login_ft_ok)
     public void onLoginOkBtn(){
 
-        ((LoginActivity)getActivity()).changeTos(modenum);
+        ((LoginActivity)getActivity()).changeTos();
 
     }
 

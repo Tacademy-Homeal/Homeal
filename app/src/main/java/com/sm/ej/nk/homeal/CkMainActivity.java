@@ -65,8 +65,6 @@ public class CkMainActivity extends AppCompatActivity {
     public void moveChattigActivity() {
 
         Intent intent = new Intent(this, ChattingActivity.class);
-
         startActivity(intent);
-        finish();
     }
 }

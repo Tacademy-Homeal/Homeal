@@ -10,6 +10,7 @@ import android.widget.Button;
 
 import com.sm.ej.nk.homeal.CkMainActivity;
 import com.sm.ej.nk.homeal.EtMainActivity;
+import com.sm.ej.nk.homeal.HomealApplication;
 import com.sm.ej.nk.homeal.R;
 
 import butterknife.BindView;
@@ -50,16 +51,13 @@ public class ChatListFragment extends Fragment {
 
     @OnClick(R.id.btn_chatlist)
     public void moveChattingActivity() {
+        if(HomealApplication.isCooker()){
 
+            ((CkMainActivity)getActivity()).moveChattigActivity();
 
-        switch (num){
-            case 0 :
-                ((CkMainActivity)getActivity()).moveChattigActivity();
-                break;
-            case 1:
-                ((EtMainActivity)getActivity()).moveChattigActivity();
-                break;
-
+        }else{
+            ((EtMainActivity)getActivity()).moveChattigActivity();
         }
+
     }
 }
