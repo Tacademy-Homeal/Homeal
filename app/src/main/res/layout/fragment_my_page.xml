@@ -10,15 +10,22 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="PersonalData"
-        android:id="@+id/btn_mypage_personal"
-        android:layout_gravity="left|top" />
+        android:id="@+id/btn_mypage_setting"
+        android:layout_gravity="left|center_vertical"
+        android:text="Setting" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/btn_mypage_setting"
-        android:layout_gravity="left|center_vertical"
-        android:text="Setting" />
+        android:text="PersonalData"
+        android:id="@+id/btn_mypage_personal"
+        android:layout_gravity="left|top" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mypage Fragment"
+        android:id="@+id/textView7"
+        android:layout_gravity="center" />
 
 </FrameLayout>
