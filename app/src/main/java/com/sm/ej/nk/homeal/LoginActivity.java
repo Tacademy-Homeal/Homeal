@@ -1,16 +1,9 @@
 package com.sm.ej.nk.homeal;
 
-import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-
-import com.sm.ej.nk.homeal.fragment.LoginFragment;
-import com.sm.ej.nk.homeal.fragment.SingUpFragment;
-import com.sm.ej.nk.homeal.fragment.TOSFragment;
+import android.os.Bundle;
 
 public class LoginActivity extends AppCompatActivity {
-
-    private int modenum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

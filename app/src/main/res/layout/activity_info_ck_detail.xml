@@ -9,4 +9,40 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.sm.ej.nk.homeal.InfoCkDetailActivity">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="InfoCkActivity"
+        android:id="@+id/textView8"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="채팅하기"
+        android:id="@+id/btn_info_ck_detail_chat"
+        android:layout_below="@+id/textView8"
+        android:layout_alignLeft="@+id/textView8"
+        android:layout_alignStart="@+id/textView8"
+        android:layout_marginTop="67dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="예약 요청하기"
+        android:id="@+id/btn_info_ck_detail_reserve"
+        android:layout_centerVertical="true"
+        android:layout_alignRight="@+id/textView8"
+        android:layout_alignEnd="@+id/textView8" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="메뉴 상세 페이지"
+        android:id="@+id/btn_info_ck_detail_menu"
+        android:layout_below="@+id/btn_info_ck_detail_reserve"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="86dp" />
 </RelativeLayout>
