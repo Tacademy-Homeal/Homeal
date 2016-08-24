@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import com.sm.ej.nk.homeal.HomealApplication;
 import com.sm.ej.nk.homeal.LoginActivity;
@@ -35,6 +36,9 @@ public class LoginFragment extends Fragment {
     @BindView(R.id.radiobtn_login_ft_eater)
     RadioButton radiobtn_eater;
 
+    @BindView(R.id.radio_group_login)
+    RadioGroup radioGroup;
+
 
     public LoginFragment() {
         // Required empty public constructor
@@ -48,8 +52,21 @@ public class LoginFragment extends Fragment {
             View view =  inflater.inflate(R.layout.fragment_login, container, false);
             ButterKnife.bind(this, view);
 
-        return view;
+
+            radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(RadioGroup radioGroup, int checkedid) {
+                    if (checkedid == R.id.radiobtn_login_ft_ck) {
+                        HomealApplication.changeCooker();
+                    }else if(checkedid == R.id.radiobtn_login_ft_eater){
+                        HomealApplication.changeEater();
+                    }
+                }
+            });
+
+            return view;
     }
+/*
 
     @OnClick(R.id.radiobtn_login_ft_ck)
     public void chageModeCooker(){
@@ -60,6 +77,7 @@ public class LoginFragment extends Fragment {
     public void chageModeEater(){
         HomealApplication.changeEater();
     }
+*/
 
 
     @OnClick(R.id.btn_login_ft_ok)
