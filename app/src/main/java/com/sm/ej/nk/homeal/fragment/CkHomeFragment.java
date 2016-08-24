@@ -4,7 +4,6 @@ package com.sm.ej.nk.homeal.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,7 +34,6 @@ public class CkHomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View v =  inflater.inflate(R.layout.fragment_ck_home, container, false);
         ButterKnife.bind(this, v);
-        Log.e("ssong","ddd");
 
         btnMap = (Button)v.findViewById(R.id.btn_ck_home_map);
         btnMenu = (Button)v.findViewById(R.id.btn_ck_home_menu);
