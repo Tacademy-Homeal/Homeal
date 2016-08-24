@@ -13,7 +13,6 @@ public class InfoCkDetailActivity extends AppCompatActivity {
     public void onSendChat(){
         Intent intent = new Intent(this, ChattingActivity.class);
         startActivity(intent);
-        finish();
     }
 
     @OnClick(R.id.btn_info_ck_detail_menu)
