@@ -7,8 +7,9 @@ import android.content.Context;
  * Created by Tacademy on 2016-08-24.
  */
 public class HomealApplication extends Application {
+
     private static Context context;
-    private static boolean isCooker =false;
+    private static Boolean isCooker =false;
 
     @Override
     public void onCreate() {
