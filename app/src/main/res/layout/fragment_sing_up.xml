@@ -4,10 +4,25 @@
     android:layout_height="match_parent"
     tools:context="com.sm.ej.nk.homeal.fragment.SingUpFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_width="@dimen/info_text_width"
+        android:layout_height="@dimen/info_text_height"
+        android:text="SingupFragment"
+        android:layout_gravity="center"
+        android:textSize="@dimen/info_text_size" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="OK"
+        android:id="@+id/sf_ok"
+        android:layout_gravity="left|center_vertical" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/back_string"
+        android:id="@+id/sf_cancle"
+        android:layout_gravity="right|center_vertical" />
 
 </FrameLayout>

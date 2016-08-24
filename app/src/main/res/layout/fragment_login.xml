@@ -6,8 +6,24 @@
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_width="@dimen/info_text_width"
+        android:layout_height="@dimen/info_text_height"
+        android:text="LoginFrament"
+        android:layout_gravity="center"
+        android:textSize="@dimen/info_text_size" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:id="@+id/lf_okbtn"
+        android:layout_gravity="left|center_vertical" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/back_string"
+        android:id="@+id/lf_backkey"
+        android:layout_gravity="right|center_vertical" />
 
 </FrameLayout>
