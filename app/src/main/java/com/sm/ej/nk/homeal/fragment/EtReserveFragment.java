@@ -14,6 +14,12 @@ import com.sm.ej.nk.homeal.R;
  */
 public class EtReserveFragment extends Fragment {
 
+    public static EtReserveFragment createInstance(){
+        final EtReserveFragment pageFragment = new EtReserveFragment();
+        final Bundle bundle = new Bundle();
+        pageFragment.setArguments(bundle);
+        return pageFragment;
+    }
 
     public EtReserveFragment() {
         // Required empty public constructor

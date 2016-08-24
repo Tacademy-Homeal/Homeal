@@ -10,11 +10,11 @@ import java.util.List;
 /**
  * Created by Tacademy on 2016-08-23.
  */
-public class CkViewPagerAdapter extends FragmentPagerAdapter {
+public class ViewPagerAdapter extends FragmentPagerAdapter {
     private final List<Fragment> fragmentList = new ArrayList<>();
     private final List<String> fragmentTitleList = new ArrayList<>();
 
-    public CkViewPagerAdapter(FragmentManager manager){
+    public ViewPagerAdapter(FragmentManager manager){
         super(manager);
     }
 

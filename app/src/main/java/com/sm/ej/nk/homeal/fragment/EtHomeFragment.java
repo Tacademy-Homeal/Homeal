@@ -14,6 +14,12 @@ import com.sm.ej.nk.homeal.R;
  */
 public class EtHomeFragment extends Fragment {
 
+    public static EtHomeFragment createInstance(){
+        final EtHomeFragment pageFragment = new EtHomeFragment();
+        final Bundle bundle = new Bundle();
+        pageFragment.setArguments(bundle);
+        return pageFragment;
+    }
 
     public EtHomeFragment() {
         // Required empty public constructor

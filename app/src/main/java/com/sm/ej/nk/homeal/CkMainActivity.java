@@ -7,13 +7,14 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
-import com.sm.ej.nk.homeal.adapter.CkViewPagerAdapter;
+import com.sm.ej.nk.homeal.adapter.ViewPagerAdapter;
 import com.sm.ej.nk.homeal.fragment.ChatListFragment;
 import com.sm.ej.nk.homeal.fragment.CkHomeFragment;
 import com.sm.ej.nk.homeal.fragment.CkReserveFragment;
 import com.sm.ej.nk.homeal.fragment.CkMyPageFragment;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class CkMainActivity extends AppCompatActivity {
     @BindView(R.id.tablayout_ck_main)
@@ -29,11 +30,11 @@ public class CkMainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ck_main);
+        ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);
 
-        viewPager = (ViewPager)findViewById(R.id.viewpager_ck_main);
-                if(viewPager!=null){
+        if(viewPager!=null){
             setupTabViewPager(viewPager);
         }
 
@@ -47,7 +48,7 @@ public class CkMainActivity extends AppCompatActivity {
     private static final String CK_MYPAGE = "내정보";
 
     private void setupTabViewPager(ViewPager v){
-        final CkViewPagerAdapter pagerAdapter = new CkViewPagerAdapter(getSupportFragmentManager());
+        final ViewPagerAdapter pagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         pagerAdapter.addFragment(CkHomeFragment.createInstance(),CK_HOME);
         pagerAdapter.addFragment(ChatListFragment.createInstance(), CK_CHAT_LIST);
         pagerAdapter.addFragment(CkReserveFragment.createInstance(), CK_RESERVE);

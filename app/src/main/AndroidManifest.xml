@@ -32,7 +32,8 @@
         <activity android:name=".EtZzimActivity" />
         <activity android:name=".InfoCkDetailActivity" />
         <activity android:name=".MenuDetailActivity" />
-        <activity android:name=".ReserveRequestActivity"></activity>
+        <activity android:name=".ReserveRequestActivity" />
+        <activity android:name=".EtMainActivity"></activity>
     </application>
 
 </manifest>
