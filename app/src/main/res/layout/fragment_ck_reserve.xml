@@ -11,6 +11,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="ReviweWrite"
-        android:id="@+id/btn_ck_reserve_next"
+        android:id="@+id/btn_ck_reserve_review"
         android:layout_gravity="left|top" />
 </FrameLayout>
