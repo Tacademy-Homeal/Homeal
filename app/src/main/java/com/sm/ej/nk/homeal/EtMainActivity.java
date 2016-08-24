@@ -5,8 +5,6 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 
 import com.sm.ej.nk.homeal.adapter.ViewPagerAdapter;
 import com.sm.ej.nk.homeal.fragment.ChatListFragment;
@@ -56,20 +54,23 @@ public class EtMainActivity extends AppCompatActivity {
         v.setAdapter(pagerAdapter);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.et_main_menu, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch(item.getItemId()){
-            case R.id.btn_et_main_search:
-
-            case R.id.btn_et_main_alarm:
-                //popupWindow 334p
-        }
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.et_main_menu, menu);
+//        return super.onCreateOptionsMenu(menu);
+//    }
+//
+//    AlarmPopupWindow popup;
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        switch(item.getItemId()){
+//            case R.id.btn_et_main_search:
+//
+//            case R.id.btn_et_main_alarm:
+//                //popupWindow 334p
+//                popup = new AlarmPopupWindow(this);
+//                popup.showAsDropDown(toolbar);
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
 }
