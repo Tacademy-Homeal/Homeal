@@ -11,7 +11,7 @@ import com.sm.ej.nk.homeal.adapter.CkViewPagerAdapter;
 import com.sm.ej.nk.homeal.fragment.ChatListFragment;
 import com.sm.ej.nk.homeal.fragment.CkHomeFragment;
 import com.sm.ej.nk.homeal.fragment.CkReserveFragment;
-import com.sm.ej.nk.homeal.fragment.MyPageFragment;
+import com.sm.ej.nk.homeal.fragment.CkMyPageFragment;
 
 import butterknife.BindView;
 
@@ -51,7 +51,7 @@ public class CkMainActivity extends AppCompatActivity {
         pagerAdapter.addFragment(CkHomeFragment.createInstance(),CK_HOME);
         pagerAdapter.addFragment(ChatListFragment.createInstance(), CK_CHAT_LIST);
         pagerAdapter.addFragment(CkReserveFragment.createInstance(), CK_RESERVE);
-        pagerAdapter.addFragment(MyPageFragment.createInstance(), CK_MYPAGE);
+        pagerAdapter.addFragment(CkMyPageFragment.createInstance(), CK_MYPAGE);
         v.setAdapter(pagerAdapter);
     }
 }

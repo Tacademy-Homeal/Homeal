@@ -9,23 +9,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.sm.ej.nk.homeal.PersonalDataActivity;
+import com.sm.ej.nk.homeal.CkPersonalDataActivity;
 import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.SettingActivity;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MyPageFragment extends Fragment {
+public class CkMyPageFragment extends Fragment {
 
-    public static MyPageFragment createInstance(){
-        final MyPageFragment pageFragment = new MyPageFragment();
+    public static CkMyPageFragment createInstance(){
+        final CkMyPageFragment pageFragment = new CkMyPageFragment();
         final Bundle bundle = new Bundle();
         pageFragment.setArguments(bundle);
         return pageFragment;
     }
 
-    public MyPageFragment() {
+    public CkMyPageFragment() {
         // Required empty public constructor
     }
 
@@ -34,12 +34,12 @@ public class MyPageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_my_page, container, false);
+        View view= inflater.inflate(R.layout.fragment_ck_my_page, container, false);
         Button btn = (Button)view.findViewById(R.id.btn_mypage_personal);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), PersonalDataActivity.class);
+                Intent intent = new Intent(getActivity(), CkPersonalDataActivity.class);
                 startActivity(intent);
             }
         });
