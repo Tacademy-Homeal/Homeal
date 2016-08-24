@@ -7,13 +7,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import com.sm.ej.nk.homeal.CkWriteReViewActivity;
 import com.sm.ej.nk.homeal.R;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -31,9 +30,6 @@ public class CkReserveFragment extends Fragment {
         // Required empty public constructor
     }
 
-@BindView(R.id.btn_ck_reserve_review)
-Button btnReview;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -41,13 +37,12 @@ Button btnReview;
         View view = inflater.inflate(R.layout.fragment_ck_reserve, container, false);
         ButterKnife.bind(this, view);
 
-        btnReview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), CkWriteReViewActivity.class);
-                startActivity(intent);
-            }
-        });
         return view;
     }
+    @OnClick(R.id.btn_ck_reserve_review)
+    public void onSettingadvice(){
+        Intent intent = new Intent(getActivity(), CkWriteReViewActivity.class);
+        startActivity(intent);
+    }
+
 }
