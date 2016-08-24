@@ -2,6 +2,7 @@ package com.sm.ej.nk.homeal;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 
 import com.sm.ej.nk.homeal.fragment.LoginFragment;
@@ -27,22 +28,24 @@ public class LoginActivity extends AppCompatActivity {
 
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.container, new TOSFragment())
-                .addToBackStack(null)
+                .addToBackStack("Tos")
                 .commit();
     }
 
     public void changeSingUp(){
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.container, new SignUpFragment())
-                .addToBackStack(null)
+                .addToBackStack("SingUp")
                 .commit();
     }
 
-    public void changeLogin(){
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.container, new LoginFragment())
-                .addToBackStack(null)
-                .commit();
+    public void backtoTos(){
+        getSupportFragmentManager()
+                .popBackStack("Tos", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+    }
+    public void backSingUp(){
+        getSupportFragmentManager()
+                .popBackStack("SingUp", FragmentManager.POP_BACK_STACK_INCLUSIVE);
     }
 
     public void moveMainActivity(){

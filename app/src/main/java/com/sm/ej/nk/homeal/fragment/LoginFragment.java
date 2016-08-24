@@ -66,18 +66,6 @@ public class LoginFragment extends Fragment {
 
             return view;
     }
-/*
-
-    @OnClick(R.id.radiobtn_login_ft_ck)
-    public void chageModeCooker(){
-        HomealApplication.changeCooker();
-    }
-
-    @OnClick(R.id.radiobtn_login_ft_eater)
-    public void chageModeEater(){
-        HomealApplication.changeEater();
-    }
-*/
 
 
     @OnClick(R.id.btn_login_ft_ok)

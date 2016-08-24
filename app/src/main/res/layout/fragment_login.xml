@@ -52,6 +52,14 @@
         android:layout_marginTop="64dp">
 
         <RadioButton
+            android:id="@+id/radiobtn_login_ft_eater"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:layout_alignParentRight="@+id/btn_login_ft_back"
+            android:text="Eater" />
+
+        <RadioButton
             android:id="@+id/radiobtn_login_ft_ck"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -61,14 +69,6 @@
             android:checked="false"
             android:text="Cooker"
             />
-
-        <RadioButton
-            android:id="@+id/radiobtn_login_ft_eater"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:layout_alignParentRight="@+id/btn_login_ft_back"
-            android:text="Eater" />
 
     </RadioGroup>
 
