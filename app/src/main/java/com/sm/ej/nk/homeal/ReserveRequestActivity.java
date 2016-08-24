@@ -4,7 +4,6 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -13,7 +12,6 @@ public class ReserveRequestActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_reserve_request)
     public void onSenddialog(){
-        Log.e("ssong", "ddd");
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
             @Override
