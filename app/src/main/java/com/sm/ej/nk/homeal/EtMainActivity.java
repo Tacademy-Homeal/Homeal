@@ -1,5 +1,6 @@
 package com.sm.ej.nk.homeal;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -51,5 +52,12 @@ public class EtMainActivity extends AppCompatActivity {
         pagerAdapter.addFragment(EtReserveFragment.createInstance(), ET_RESERVE);
         pagerAdapter.addFragment(EtMyPageFragment.createInstance(), ET_MYPAGE);
         v.setAdapter(pagerAdapter);
+    }
+
+    public void moveChattigActivity() {
+
+        Intent intent = new Intent(this, ChattingActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

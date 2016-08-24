@@ -1,5 +1,6 @@
 package com.sm.ej.nk.homeal;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -46,13 +47,26 @@ public class CkMainActivity extends AppCompatActivity {
     private static final String CK_CHAT_LIST = "채팅리스트";
     private static final String CK_RESERVE = "예약";
     private static final String CK_MYPAGE = "내정보";
+    private static final String CK_NUM = "쿠커";
 
     private void setupTabViewPager(ViewPager v){
+
         final ViewPagerAdapter pagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+        Bundle bundle = new Bundle();
+        bundle.putString("cooker",CK_NUM);
         pagerAdapter.addFragment(CkHomeFragment.createInstance(),CK_HOME);
         pagerAdapter.addFragment(ChatListFragment.createInstance(), CK_CHAT_LIST);
         pagerAdapter.addFragment(CkReserveFragment.createInstance(), CK_RESERVE);
         pagerAdapter.addFragment(CkMyPageFragment.createInstance(), CK_MYPAGE);
         v.setAdapter(pagerAdapter);
+
+    }
+
+    public void moveChattigActivity() {
+
+        Intent intent = new Intent(this, ChattingActivity.class);
+
+        startActivity(intent);
+        finish();
     }
 }

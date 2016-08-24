@@ -7,16 +7,34 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RadioButton;
 
+import com.sm.ej.nk.homeal.LoginActivity;
 import com.sm.ej.nk.homeal.R;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class LoginFragment extends Fragment {
 
-    Button ok_btn;
-    Button back_btn;
+
+    @BindView(R.id.btn_login_ft_ok)
+    Button btn_login_ft_ok;
+
+    @BindView(R.id.btn_login_ft_back)
+    Button btn_login_ft_back;
+
+    @BindView(R.id.radiobtn_login_ft_ck)
+    RadioButton radiobtn_cooker;
+
+    @BindView(R.id.radiobtn_login_ft_eater)
+    RadioButton radiobtn_eater;
+
+    private int modenum = -1;
 
     public LoginFragment() {
         // Required empty public constructor
@@ -28,33 +46,31 @@ public class LoginFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_login, container, false);
-
-        ok_btn = (Button)view.findViewById(R.id.lf_okbtn);
-        ok_btn = (Button)view.findViewById(R.id.lf_backkey);
-
-        //df
-
-        ok_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-
-        ok_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
+        ButterKnife.bind(this, view);
 
         return view;
     }
 
+    @OnClick(R.id.radiobtn_login_ft_ck)
+    public void chageModeCooker(){
+        modenum = 0;
+    }
+
+    @OnClick(R.id.radiobtn_login_ft_eater)
+    public void chageModeEater(){
+        modenum = 1;
+    }
 
 
+    @OnClick(R.id.btn_login_ft_ok)
+    public void onLoginOkBtn(){
 
+        ((LoginActivity)getActivity()).changeTos(modenum);
 
+    }
 
+    @OnClick(R.id.btn_login_ft_back)
+    public void onLoginBackkey(){
 
+    }
 }

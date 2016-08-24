@@ -8,14 +8,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.sm.ej.nk.homeal.LoginActivity;
 import com.sm.ej.nk.homeal.R;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class SingUpFragment extends Fragment {
 
+
+    @BindView(R.id.sf_ok)
     Button sf_ok;
+
+    @BindView(R.id.sf_cancle)
     Button sf_cancle;
 
     public SingUpFragment() {
@@ -28,12 +37,18 @@ public class SingUpFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_sing_up, container, false);
-
-        sf_ok = (Button)view.findViewById(R.id.sf_ok);
-
-        sf_cancle = (Button)view.findViewById(R.id.tf_cancle);
+        ButterKnife.bind(this, view);
 
         return view;
     }
 
+    @OnClick(R.id.sf_ok)
+    public void onSingUpOk(){
+        ((LoginActivity)getActivity()).moveMainActivity();
+    }
+
+    @OnClick(R.id.sf_cancle)
+    public void onSingUpCancle(){
+
+    }
 }

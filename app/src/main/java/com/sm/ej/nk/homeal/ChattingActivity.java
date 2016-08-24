@@ -1,7 +1,7 @@
 package com.sm.ej.nk.homeal;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 public class ChattingActivity extends AppCompatActivity {
 
@@ -10,4 +10,6 @@ public class ChattingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chatting);
     }
+
+
 }

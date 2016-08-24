@@ -6,13 +6,25 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
+import com.sm.ej.nk.homeal.CkMainActivity;
+import com.sm.ej.nk.homeal.EtMainActivity;
 import com.sm.ej.nk.homeal.R;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class ChatListFragment extends Fragment {
+
+    @BindView(R.id.btn_chatlist)
+    Button btn_chatlist;
+
+    private int num;
 
     public static ChatListFragment createInstance(){
         final ChatListFragment pageFragment = new ChatListFragment();
@@ -30,7 +42,24 @@ public class ChatListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_chat_list, container, false);
+        View view =  inflater.inflate(R.layout.fragment_chat_list, container, false);
+
+        ButterKnife.bind(this, view);
+        return view;
     }
 
+    @OnClick(R.id.btn_chatlist)
+    public void moveChattingActivity() {
+
+
+        switch (num){
+            case 0 :
+                ((CkMainActivity)getActivity()).moveChattigActivity();
+                break;
+            case 1:
+                ((EtMainActivity)getActivity()).moveChattigActivity();
+                break;
+
+        }
+    }
 }
