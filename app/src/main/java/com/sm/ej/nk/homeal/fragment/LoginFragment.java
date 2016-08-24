@@ -27,9 +27,6 @@ public class LoginFragment extends Fragment {
     @BindView(R.id.btn_login_ft_ok)
     Button btn_login_ft_ok;
 
-    @BindView(R.id.btn_login_ft_back)
-    Button btn_login_ft_back;
-
     @BindView(R.id.radiobtn_login_ft_ck)
     RadioButton radiobtn_cooker;
 
@@ -75,8 +72,5 @@ public class LoginFragment extends Fragment {
 
     }
 
-    @OnClick(R.id.btn_login_ft_back)
-    public void onLoginBackkey(){
 
-    }
 }
