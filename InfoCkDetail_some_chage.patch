@@ -1,0 +1,162 @@
+Index: app/src/main/res/layout/activity_info_ck_detail.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_info_ck_detail.xml	(revision c155455b6789a781a7236fe989aad08ef2185f1f)
++++ app/src/main/res/layout/activity_info_ck_detail.xml	(revision )
+@@ -19,30 +19,52 @@
+         android:layout_centerHorizontal="true" />
+ 
+     <Button
++        style="?android:attr/buttonStyleSmall"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+-        android:text="채팅하기"
+-        android:id="@+id/btn_info_ck_detail_chat"
+-        android:layout_below="@+id/textView8"
+-        android:layout_alignLeft="@+id/textView8"
+-        android:layout_alignStart="@+id/textView8"
+-        android:layout_marginTop="67dp" />
++        android:text="Chatting"
++        android:id="@+id/btn_info_ck_detail_chatting"
++        android:layout_alignParentBottom="true"
++        android:layout_alignParentRight="true"
++        android:layout_alignParentEnd="true" />
+ 
+     <Button
++        style="?android:attr/buttonStyleSmall"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+-        android:text="예약 요청하기"
+-        android:id="@+id/btn_info_ck_detail_reserve"
++        android:text="Inquire Reservation"
++        android:id="@+id/btn_info_ck_detail_inquire"
++        android:layout_alignParentBottom="true"
++        android:layout_alignParentLeft="true"
++        android:layout_alignParentStart="true" />
++
++    <Button
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:text="Food menu"
++        android:id="@+id/btn_info_ck_detai_menu"
++        android:layout_marginBottom="104dp"
++        android:layout_above="@+id/btn_info_ck_detail_inquire"
++        android:layout_centerHorizontal="true" />
++
++    <Button
++        style="?android:attr/buttonStyleSmall"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:text="Map"
++        android:id="@+id/btn_info_ck_detail_map"
+         android:layout_centerVertical="true"
+-        android:layout_alignRight="@+id/textView8"
+-        android:layout_alignEnd="@+id/textView8" />
++        android:layout_centerHorizontal="true" />
+ 
+     <Button
++        style="?android:attr/buttonStyleSmall"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+-        android:text="메뉴 상세 페이지"
+-        android:id="@+id/btn_info_ck_detail_menu"
+-        android:layout_below="@+id/btn_info_ck_detail_reserve"
+-        android:layout_centerHorizontal="true"
+-        android:layout_marginTop="86dp" />
++        android:text="Photo"
++        android:id="@+id/btn_info_ck_detail_photo"
++        android:layout_marginBottom="69dp"
++        android:layout_above="@+id/btn_info_ck_detail_map"
++        android:layout_centerHorizontal="true" />
++
++
+ </RelativeLayout>
+Index: app/src/main/java/com/sm/ej/nk/homeal/ChattingActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/sm/ej/nk/homeal/ChattingActivity.java	(revision c155455b6789a781a7236fe989aad08ef2185f1f)
++++ app/src/main/java/com/sm/ej/nk/homeal/ChattingActivity.java	(revision )
+@@ -5,6 +5,8 @@
+ 
+ public class ChattingActivity extends AppCompatActivity {
+ 
++
++
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+Index: app/src/main/java/com/sm/ej/nk/homeal/InfoCkDetailActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/sm/ej/nk/homeal/InfoCkDetailActivity.java	(revision c155455b6789a781a7236fe989aad08ef2185f1f)
++++ app/src/main/java/com/sm/ej/nk/homeal/InfoCkDetailActivity.java	(revision )
+@@ -3,36 +3,50 @@
+ import android.content.Intent;
+ import android.os.Bundle;
+ import android.support.v7.app.AppCompatActivity;
++import android.widget.Toast;
+ 
+ import butterknife.ButterKnife;
+ import butterknife.OnClick;
+ 
+ public class InfoCkDetailActivity extends AppCompatActivity {
+ 
+-    @OnClick(R.id.btn_info_ck_detail_chat)
+-    public void onSendChat(){
++
++
++    @Override
++    protected void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++        setContentView(R.layout.activity_info_ck_detail);
++        ButterKnife.bind(this);
++
++
++    }
++
++    @OnClick(R.id.btn_info_ck_detail_photo)
++    public void onClickPhoto(){
++        Toast.makeText(this,"Photo Click",Toast.LENGTH_LONG).show();
++    }
++
++    @OnClick(R.id.btn_info_ck_detail_chatting)
++    public void onClickChatting(){
+         Intent intent = new Intent(this, ChattingActivity.class);
+         startActivity(intent);
+     }
+-
+-    @OnClick(R.id.btn_info_ck_detail_menu)
+-    public void onSendMenuDetail(){
++    @OnClick(R.id.btn_info_ck_detai_menu)
++    public void onClickMenu(){
+         Intent intent = new Intent(this, MenuDetailActivity.class);
+         startActivity(intent);
+     }
++    @OnClick(R.id.btn_info_ck_detail_map)
++    public void onClickMap(){
++        Toast.makeText(this,"MAP Click",Toast.LENGTH_LONG).show();
+ 
+-    @OnClick(R.id.btn_info_ck_detail_reserve)
+-    public void onSendReserve(){
++    }
++    @OnClick(R.id.btn_info_ck_detail_inquire)
++    public void onClickInquire(){
+         Intent intent = new Intent(this, ReserveRequestActivity.class);
+         startActivity(intent);
+     }
+ 
+ 
+-    @Override
+-    protected void onCreate(Bundle savedInstanceState) {
+-        super.onCreate(savedInstanceState);
+-        setContentView(R.layout.activity_info_ck_detail);
+-        ButterKnife.bind(this);
+ 
+-    }
+ }
