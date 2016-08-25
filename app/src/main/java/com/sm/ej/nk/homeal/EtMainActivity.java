@@ -75,12 +75,12 @@ public class EtMainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.btn_et_main_alarm: {
-                alarmPopupWindow = new AlarmPopupWindow(this);
+                alarmPopupWindow = AlarmPopupWindow.getinstance(this);
                 alarmPopupWindow.showAsDropDown(toolbar);
                 break;
             }
             case R.id.btn_et_main_search: {
-                searchpopupWindow = new SearchPopupWindow(this);
+                searchpopupWindow = SearchPopupWindow.getInstance(this);
                 searchpopupWindow.setOnSearchPopupClickListener(new SearchPopupWindow.OnSearchPopupClickListener() {
                     @Override
                     public void onSearchPopupClick(View view) {
@@ -88,6 +88,7 @@ public class EtMainActivity extends AppCompatActivity {
                         tabLayout.setupWithViewPager(viewPager);
                     }
                 });
+
                 searchpopupWindow.showAsDropDown(toolbar);
                 break;
             }

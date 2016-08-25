@@ -14,12 +14,23 @@ import com.sm.ej.nk.homeal.R;
  */
 public class SearchPopupWindow extends PopupWindow {
     Context context;
+    private static SearchPopupWindow instance;
+    public static SearchPopupWindow getInstance(Context context){
+        if(instance==null){
+            instance = new SearchPopupWindow(context);
+        }
+        return instance;
+    }
+
     public SearchPopupWindow(Context context){
         super(context);
         this.context = context;
 
+
         setWidth(WindowManager.LayoutParams.MATCH_PARENT);
         setHeight(WindowManager.LayoutParams.WRAP_CONTENT);
+        setOutsideTouchable(true);
+        setFocusable(true);
 
         View view = LayoutInflater.from(context).inflate(R.layout.view_popup_search , null);
         setContentView(view);
@@ -35,6 +46,7 @@ public class SearchPopupWindow extends PopupWindow {
             }
         });
     }
+
 
     public interface OnSearchPopupClickListener{
         public void onSearchPopupClick(View view);
