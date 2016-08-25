@@ -80,6 +80,8 @@ public class CkMainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, SearchActivity.class);
             startActivity(intent);
         }
+
+        //
         return true;
     }
     @Override
