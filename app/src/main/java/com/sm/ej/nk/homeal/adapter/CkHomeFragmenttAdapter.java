@@ -3,7 +3,7 @@ package com.sm.ej.nk.homeal.adapter;
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
-import com.sm.ej.nk.homeal.ViewHolder.CkHomeFragmentViewHolder;
+import com.sm.ej.nk.homeal.viewHolder.CkHomeFragmentViewHolder;
 
 /**
  * Created by Tacademy on 2016-08-25.

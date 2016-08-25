@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.Toast;
 
 import butterknife.BindView;
@@ -23,9 +24,20 @@ public class InfoCkDetailActivity extends AppCompatActivity {
 
         //set Toolbar
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         toolbar.setNavigationIcon(R.drawable.ic_action_name);
 
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
     }
+
+
 
     @OnClick(R.id.btn_info_ck_detail_photo)
     public void onClickPhoto(){
@@ -52,6 +64,7 @@ public class InfoCkDetailActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ReserveRequestActivity.class);
         startActivity(intent);
     }
+
 
 
 
