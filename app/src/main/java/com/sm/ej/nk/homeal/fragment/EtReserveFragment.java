@@ -28,7 +28,6 @@ public class EtReserveFragment extends Fragment {
     RecyclerView EtReserveView;
     EtReserveAdapter mAdapter;
 
-
     public static EtReserveFragment createInstance() {
         final EtReserveFragment pageFragment = new EtReserveFragment();
         final Bundle bundle = new Bundle();
@@ -46,7 +45,7 @@ public class EtReserveFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_et_reserve, container, false);
-        ButterKnife.bind(this, view);
+        ButterKnife.bind(this, view);;
 
         LinearLayoutManager manager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
 

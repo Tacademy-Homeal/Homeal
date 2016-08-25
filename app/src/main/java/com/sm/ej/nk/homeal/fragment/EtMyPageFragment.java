@@ -32,15 +32,6 @@ public class EtMyPageFragment extends Fragment {
         // Required empty public constructor
     }
 
-//    @BindView(R.id.btn_et_mypager_personal)
-//    Button btnPersonal;
-//
-//    @BindView(R.id.btn_et_setting)
-//    Button btnSetting;
-//
-//    @BindView(R.id.btn_et_zzim)
-//    Button btnzzim;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
