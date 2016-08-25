@@ -10,5 +10,4 @@
         android:title="Alarm"
         android:icon="@drawable/btn_filter"
         app:showAsAction="always"/>
-
 </menu>

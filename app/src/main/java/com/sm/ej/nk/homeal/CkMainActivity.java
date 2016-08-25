@@ -7,8 +7,6 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 
 import com.sm.ej.nk.homeal.adapter.ViewPagerAdapter;
 import com.sm.ej.nk.homeal.fragment.ChatListFragment;
@@ -21,8 +19,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class CkMainActivity extends AppCompatActivity {
-    SearchPopupWindow popupWindow;
-
     @BindView(R.id.tablayout_ck_main)
     TabLayout tabLayout;
 
