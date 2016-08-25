@@ -14,15 +14,23 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="OK"
+        android:text="동의"
         android:id="@+id/btn_tos_ok"
         android:layout_gravity="left|center_vertical" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="backey"
+        android:text="비동의"
         android:id="@+id/btn_tos_backey"
         android:layout_gravity="right|center_vertical" />
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="동의"
+        android:id="@+id/radio_tos"
+        android:layout_gravity="left|bottom"
+        android:checked="false" />
 
 </FrameLayout>

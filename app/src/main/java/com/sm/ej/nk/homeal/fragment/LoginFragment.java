@@ -6,8 +6,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.sm.ej.nk.homeal.HomealApplication;
@@ -23,18 +21,6 @@ import butterknife.OnClick;
  */
 public class LoginFragment extends Fragment {
 
-
-    @BindView(R.id.btn_login_ft_ok)
-    Button btn_login_ft_ok;
-
-    @BindView(R.id.btn_login_ft_back)
-    Button btn_login_ft_back;
-
-    @BindView(R.id.radiobtn_login_ft_ck)
-    RadioButton radiobtn_cooker;
-
-    @BindView(R.id.radiobtn_login_ft_eater)
-    RadioButton radiobtn_eater;
 
     @BindView(R.id.radio_group_login)
     RadioGroup radioGroup;
@@ -66,29 +52,12 @@ public class LoginFragment extends Fragment {
 
             return view;
     }
-/*
-
-    @OnClick(R.id.radiobtn_login_ft_ck)
-    public void chageModeCooker(){
-        HomealApplication.changeCooker();
-    }
-
-    @OnClick(R.id.radiobtn_login_ft_eater)
-    public void chageModeEater(){
-        HomealApplication.changeEater();
-    }
-*/
 
 
     @OnClick(R.id.btn_login_ft_ok)
     public void onLoginOkBtn(){
-
         ((LoginActivity)getActivity()).changeTos();
 
     }
 
-    @OnClick(R.id.btn_login_ft_back)
-    public void onLoginBackkey(){
-
-    }
 }

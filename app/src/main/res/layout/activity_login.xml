@@ -17,5 +17,5 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:id="@+id/container"/>
+        android:id="@+id/login_container"/>
 </RelativeLayout>

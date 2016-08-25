@@ -7,17 +7,22 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.sm.ej.nk.homeal.adapter.ViewPagerAdapter;
 import com.sm.ej.nk.homeal.fragment.ChatListFragment;
 import com.sm.ej.nk.homeal.fragment.CkHomeFragment;
 import com.sm.ej.nk.homeal.fragment.CkReserveFragment;
 import com.sm.ej.nk.homeal.fragment.CkMyPageFragment;
+import com.sm.ej.nk.homeal.view.SearchPopupWindow;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class CkMainActivity extends AppCompatActivity {
+    SearchPopupWindow popupWindow;
+
     @BindView(R.id.tablayout_ck_main)
     TabLayout tabLayout;
 
@@ -66,5 +71,24 @@ public class CkMainActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this, ChattingActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.et_main_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.btn_et_main_alarm:
+                popupWindow = new SearchPopupWindow(this);
+                popupWindow.showAsDropDown(toolbar);
+            case R.id.btn_et_main_search:
+                popupWindow = new SearchPopupWindow(this);
+                popupWindow.showAsDropDown(toolbar);
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
