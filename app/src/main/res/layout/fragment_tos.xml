@@ -4,33 +4,39 @@
     android:layout_height="match_parent"
     tools:context="com.sm.ej.nk.homeal.fragment.TOSFragment">
 
-    <TextView
-        android:layout_width="@dimen/info_text_width"
-        android:layout_height="@dimen/info_text_height"
-        android:text="TOS Fragment"
-        android:layout_gravity="center"
-        android:textSize="@dimen/info_text_size" />
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="동의"
         android:id="@+id/btn_tos_ok"
-        android:layout_gravity="left|center_vertical" />
+        android:layout_gravity="left|bottom" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="비동의"
         android:id="@+id/btn_tos_backey"
-        android:layout_gravity="right|center_vertical" />
+        android:layout_gravity="right|bottom" />
 
-    <CheckBox
+    <ScrollView
+        android:layout_width="282dp"
+        android:layout_height="321dp"
+        android:id="@+id/scrollView"
+        android:layout_gravity="center" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/tos_info"
+            android:id="@+id/textView13" />
+    </ScrollView>
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="동의"
-        android:id="@+id/check_tos"
-        android:layout_gravity="left|bottom"
-        android:checked="false" />
+        android:text="이용 약관"
+        android:id="@+id/textView12"
+        android:layout_gravity="center_horizontal|top" />
 
 </FrameLayout>

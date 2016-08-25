@@ -38,16 +38,6 @@ public class LoginFragment extends Fragment {
             View view =  inflater.inflate(R.layout.fragment_login, container, false);
             ButterKnife.bind(this, view);
 
-            radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(RadioGroup radioGroup, int checkedid) {
-                    if (checkedid == R.id.radiobtn_login_ft_ck) {
-                        HomealApplication.changeCooker();
-                    }else if(checkedid == R.id.radiobtn_login_ft_eater){
-                        HomealApplication.changeEater();
-                    }
-                }
-            });
 
             return view;
     }
@@ -55,6 +45,14 @@ public class LoginFragment extends Fragment {
 
     @OnClick(R.id.btn_login_ft_ok)
     public void onLoginOkBtn(){
+        switch(radioGroup.getCheckedRadioButtonId()){
+            case R.id.radiobtn_login_ft_ck:
+                HomealApplication.changeCooker();
+                break;
+            case R.id.radiobtn_login_ft_eater:
+                HomealApplication.changeEater();
+                break;
+        }
         ((LoginActivity)getActivity()).changeTos();
     }
 

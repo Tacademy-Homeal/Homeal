@@ -75,8 +75,8 @@ public class EtMainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.btn_et_main_alarm: {
-                alarmPopupWindow = AlarmPopupWindow.getinstance(this);
-                alarmPopupWindow.showAsDropDown(toolbar);
+//                alarmPopupWindow = AlarmPopupWindow.getinstance(this);
+//                alarmPopupWindow.showAsDropDown(toolbar);
                 break;
             }
             case R.id.btn_et_main_search: {

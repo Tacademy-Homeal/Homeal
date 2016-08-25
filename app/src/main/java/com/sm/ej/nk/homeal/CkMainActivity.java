@@ -83,9 +83,8 @@ public class CkMainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.btn_et_main_alarm:
-                popupWindow = AlarmPopupWindow.getinstance(this);
-                popupWindow.setOutsideTouchable(false);
-                popupWindow.showAsDropDown(toolbar);
+//                popupWindow = AlarmPopupWindow.getinstance(this);
+//                popupWindow.showAsDropDown(toolbar);
                 break;
         }
         return super.onOptionsItemSelected(item);

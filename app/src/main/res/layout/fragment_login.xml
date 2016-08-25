@@ -5,19 +5,6 @@
     tools:context="com.sm.ej.nk.homeal.fragment.LoginFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="@dimen/info_text_width"
-        android:layout_height="@dimen/info_text_height"
-        android:layout_above="@+id/btn_login_ft_ok"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_gravity="center"
-        android:text="LoginFrament"
-        android:textSize="@dimen/info_text_size" />
 
     <Button
         android:id="@+id/btn_login_ft_ok"
@@ -25,9 +12,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="left|center_vertical"
         android:text="Login"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="71dp" />
 
 
     <RadioGroup
@@ -35,12 +22,9 @@
         android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/btn_login_ft_ok"
-        android:layout_marginTop="64dp">
+        android:layout_above="@+id/btn_login_ft_ok"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="62dp">
 
         <RadioButton
             android:id="@+id/radiobtn_login_ft_eater"
@@ -52,7 +36,7 @@
         <RadioButton
             android:id="@+id/radiobtn_login_ft_ck"
             android:layout_width="wrap_content"
-            android:layout_height="43dp"
+            android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/radio_group_login"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="@+id/btn_login_ft_ok"
@@ -61,5 +45,15 @@
             />
 
     </RadioGroup>
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LoginFrament"
+        android:textSize="@dimen/info_text_size"
+        android:layout_marginBottom="137dp"
+        android:layout_above="@+id/radio_group_login"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
