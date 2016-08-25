@@ -1,8 +1,10 @@
 package com.sm.ej.nk.homeal;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 
 import com.sm.ej.nk.homeal.fragment.LoginFragment;
@@ -16,25 +18,25 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        //create LoginFragment
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new LoginFragment())
+                    .add(R.id.login_container, new LoginFragment())
                     .commit();
         }
+
     }
 
     public void changeTos(){
 
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.container, new TOSFragment())
+                .replace(R.id.login_container, new TOSFragment())
                 .addToBackStack("Tos")
                 .commit();
     }
 
     public void changeSingUp(){
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.container, new SignUpFragment())
+                .replace(R.id.login_container, new SignUpFragment())
                 .addToBackStack("SingUp")
                 .commit();
     }
@@ -50,7 +52,6 @@ public class LoginActivity extends AppCompatActivity {
 
     public void moveMainActivity(){
 
-
         if(HomealApplication.isCooker())
         {
             Intent intent = new Intent(this, CkMainActivity.class);
@@ -63,6 +64,29 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    private void showDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                finish();
+            }
+        });
+
+        builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        builder.setMessage(getResources().getString(R.string.login_dialog));
+        builder.show();
+    }
+
+    @Override
+    public void onBackPressed() {
+        showDialog();
+    }
 }
 
 

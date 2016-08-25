@@ -11,6 +11,4 @@ public class ChattingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chatting);
 
     }
-
-
 }

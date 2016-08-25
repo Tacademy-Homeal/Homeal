@@ -6,17 +6,25 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 
 import com.sm.ej.nk.homeal.adapter.ViewPagerAdapter;
 import com.sm.ej.nk.homeal.fragment.ChatListFragment;
 import com.sm.ej.nk.homeal.fragment.EtHomeFragment;
 import com.sm.ej.nk.homeal.fragment.EtMyPageFragment;
 import com.sm.ej.nk.homeal.fragment.EtReserveFragment;
+import com.sm.ej.nk.homeal.view.AlarmPopupWindow;
+import com.sm.ej.nk.homeal.view.SearchPopupWindow;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class EtMainActivity extends AppCompatActivity {
+    SearchPopupWindow searchpopupWindow;
+    AlarmPopupWindow alarmPopupWindow;
+
     @BindView(R.id.toolbar_et_toolbar)
     Toolbar toolbar;
 
@@ -60,5 +68,37 @@ public class EtMainActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this, ChattingActivity.class);
         startActivity(intent);
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.btn_et_main_alarm: {
+                alarmPopupWindow = AlarmPopupWindow.getinstance(this);
+                alarmPopupWindow.showAsDropDown(toolbar);
+                break;
+            }
+            case R.id.btn_et_main_search: {
+                searchpopupWindow = SearchPopupWindow.getInstance(this);
+                searchpopupWindow.setOnSearchPopupClickListener(new SearchPopupWindow.OnSearchPopupClickListener() {
+                    @Override
+                    public void onSearchPopupClick(View view) {
+                        viewPager.setCurrentItem(0);
+                        tabLayout.setupWithViewPager(viewPager);
+                    }
+                });
+
+                searchpopupWindow.showAsDropDown(toolbar);
+                break;
+            }
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.et_main_menu, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 }
