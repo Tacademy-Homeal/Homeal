@@ -2,9 +2,11 @@ package com.sm.ej.nk.homeal;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import butterknife.BindView;
@@ -15,6 +17,15 @@ public class InfoCkDetailActivity extends AppCompatActivity {
 
     @BindView(R.id.toobar_et_detail)
     Toolbar toolbar;
+
+    @BindView(R.id.image_info_et_detail_photo)
+    ImageView mainFoodView;
+
+    @BindView(R.id.image_info_et_detail_map)
+    ImageView mapView;
+
+    @BindView(R.id.image_info_et_detai_menu)
+    ImageView detailFoodView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +38,6 @@ public class InfoCkDetailActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         toolbar.setNavigationIcon(R.drawable.ic_action_name);
-
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -35,11 +45,14 @@ public class InfoCkDetailActivity extends AppCompatActivity {
             }
         });
 
+        mainFoodView.setImageDrawable(ContextCompat.getDrawable(getBaseContext(), R.drawable.food2));
+        mapView.setImageDrawable(ContextCompat.getDrawable(getBaseContext(),R.drawable.googlemap));
+        detailFoodView.setImageDrawable(ContextCompat.getDrawable(getBaseContext(), R.drawable.food));
     }
 
 
 
-    @OnClick(R.id.btn_info_et_detail_photo)
+    @OnClick(R.id.image_info_et_detail_photo)
     public void onClickPhoto(){
         Toast.makeText(this,"Photo Click",Toast.LENGTH_LONG).show();
     }
@@ -49,15 +62,14 @@ public class InfoCkDetailActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ChattingActivity.class);
         startActivity(intent);
     }
-    @OnClick(R.id.btn_info_et_detai_menu)
+    @OnClick(R.id.image_info_et_detai_menu)
     public void onClickMenu(){
         Intent intent = new Intent(this, MenuDetailActivity.class);
         startActivity(intent);
     }
-    @OnClick(R.id.btn_info_et_detail_map)
+    @OnClick(R.id.image_info_et_detail_map)
     public void onClickMap(){
         Toast.makeText(this,"MAP Click",Toast.LENGTH_LONG).show();
-
     }
     @OnClick(R.id.btn_info_et_detail_inquire)
     public void onClickInquire(){

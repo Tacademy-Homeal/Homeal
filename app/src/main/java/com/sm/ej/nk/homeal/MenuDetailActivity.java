@@ -15,14 +15,10 @@ import butterknife.OnClick;
 public class MenuDetailActivity extends AppCompatActivity {
 
 
-
     @BindView(R.id.toolbar_menu_detail)
     Toolbar toolbar;
-
     @BindView(R.id.Detailimageview)
     ImageView imageView;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,17 +28,18 @@ public class MenuDetailActivity extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-
-        imageView.setImageDrawable(ContextCompat.getDrawable(getBaseContext(), R.drawable.food));
-
         toolbar.setNavigationIcon(R.drawable.ic_action_name);
-
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
+
+        imageView.setImageDrawable(ContextCompat.getDrawable(getBaseContext(), R.drawable.food));
+
+
+
     }
 
     @OnClick(R.id.Detailimageview)
