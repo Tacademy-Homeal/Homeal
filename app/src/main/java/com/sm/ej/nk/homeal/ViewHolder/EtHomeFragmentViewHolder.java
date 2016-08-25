@@ -1,4 +1,4 @@
-package com.sm.ej.nk.homeal.viewHolder;
+package com.sm.ej.nk.homeal.viewholder;
 
 /**
  * Created by Tacademy on 2016-08-25.
