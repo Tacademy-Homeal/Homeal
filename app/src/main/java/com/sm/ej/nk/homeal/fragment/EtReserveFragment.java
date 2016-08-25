@@ -67,6 +67,8 @@ public class EtReserveFragment extends Fragment {
             data.setCkname("ckname" + i);
             data.setReservestate("state" + i);
             data.setCkpicture(ContextCompat.getDrawable(getContext(), R.mipmap.ic_launcher));
+            if (i%2==0) data.setBtnname("후기 작성");
+            else data.setBtnname("예약 취소");
             mAdapter.add(data);
         }
 

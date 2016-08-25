@@ -2,6 +2,7 @@ package com.sm.ej.nk.homeal.viewholder;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -37,6 +38,9 @@ public class EtReserveViewHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.text_et_reserve_foodname)
     TextView foodnameView;
 
+    @BindView(R.id.btn_et_reserve_state)
+    Button stateView;
+
 
     //    @OnClick(R.id.btn_et_reserve_state)
 //    Button reservestate
@@ -54,6 +58,7 @@ public class EtReserveViewHolder extends RecyclerView.ViewHolder {
         cknameView.setText(etReserveData.getCkname());
         foodnameView.setText(etReserveData.getFooname());
         reservestateView.setText(etReserveData.getReservestate());
+        stateView.setText(etReserveData.getBtnname());
     }
 }
 

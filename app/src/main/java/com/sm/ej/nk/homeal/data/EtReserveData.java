@@ -12,6 +12,15 @@ public class EtReserveData {
     private String ckname;
     private String reservestate;
     private Drawable ckpicture;
+    private String btnname;
+
+    public String getBtnname() {
+        return btnname;
+    }
+
+    public void setBtnname(String btnname) {
+        this.btnname = btnname;
+    }
 
     public Drawable getCkpicture() {
         return ckpicture;
