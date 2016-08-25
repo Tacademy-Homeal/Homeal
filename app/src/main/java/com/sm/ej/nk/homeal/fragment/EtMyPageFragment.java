@@ -7,14 +7,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import com.sm.ej.nk.homeal.EtPersonalDataActivity;
 import com.sm.ej.nk.homeal.EtZzimActivity;
 import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.SettingActivity;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -34,14 +32,14 @@ public class EtMyPageFragment extends Fragment {
         // Required empty public constructor
     }
 
-    @BindView(R.id.btn_et_mypager_personal)
-    Button btnPersonal;
-
-    @BindView(R.id.btn_et_setting)
-    Button btnSetting;
-
-    @BindView(R.id.btn_et_zzim)
-    Button btnzzim;
+//    @BindView(R.id.btn_et_mypager_personal)
+//    Button btnPersonal;
+//
+//    @BindView(R.id.btn_et_setting)
+//    Button btnSetting;
+//
+//    @BindView(R.id.btn_et_zzim)
+//    Button btnzzim;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -54,20 +52,20 @@ public class EtMyPageFragment extends Fragment {
 
     }
 
-    @OnClick(R.id.btn_et_mypager_personal)
+    @OnClick(R.id.text_et_mypage_personal)
     public void changeEtPersonalDataActivity(){
         Intent intent = new Intent(getActivity(), EtPersonalDataActivity.class);
         startActivity(intent);
 
     }
 
-    @OnClick(R.id.btn_et_setting)
+    @OnClick(R.id.text_et_mypage_setting)
     public void changeSettingActivity(){
         Intent intent = new Intent(getActivity(), SettingActivity.class);
         startActivity(intent);
     }
 
-    @OnClick(R.id.btn_et_zzim)
+    @OnClick(R.id.text_et_mypage_zzim)
     public void changeZzimActivity(){
         Intent intent = new Intent(getActivity(), EtZzimActivity.class);
         startActivity(intent);

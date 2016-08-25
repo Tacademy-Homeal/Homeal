@@ -19,7 +19,6 @@ import butterknife.OnClick;
  * A simple {@link Fragment} subclass.
  */
 public class CkMyPageFragment extends Fragment {
-
     public static CkMyPageFragment createInstance() {
         final CkMyPageFragment pageFragment = new CkMyPageFragment();
         final Bundle bundle = new Bundle();
@@ -40,14 +39,15 @@ public class CkMyPageFragment extends Fragment {
 
         return view;
     }
-    @OnClick(R.id.btn_ck_mypage_personal)
-    public void onCkMypagePersonal(){
+
+    @OnClick(R.id.text_ck_mypage_personal)
+    public void onCkMypagePersonal() {
         Intent intent = new Intent(getActivity(), CkPersonalDataActivity.class);
         startActivity(intent);
     }
 
-    @OnClick(R.id.btn_ck_mypage_setting)
-    public void onCkMypageSetting(){
+    @OnClick(R.id.text_ck_mypage_setting)
+    public void onCkMypageSetting() {
         Intent intent = new Intent(getActivity(), SettingActivity.class);
         startActivity(intent);
     }
