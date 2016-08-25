@@ -8,7 +8,7 @@ import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RadioButton;
+import android.widget.CheckBox;
 
 import com.sm.ej.nk.homeal.LoginActivity;
 import com.sm.ej.nk.homeal.R;
@@ -27,8 +27,9 @@ public class TOSFragment extends Fragment {
         // Required empty public constructor
     }
 
-    @BindView(R.id.radio_tos)
-    RadioButton radioButton;
+
+    @BindView(R.id.check_tos)
+    CheckBox checkBox;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -43,7 +44,7 @@ public class TOSFragment extends Fragment {
 
     @OnClick(R.id.btn_tos_ok)
     public void onTosOk(){
-        if(radioButton.isChecked()){
+        if(checkBox.isChecked()){
             ((LoginActivity)getActivity()).changeSingUp();
         }else{
             showDialog();

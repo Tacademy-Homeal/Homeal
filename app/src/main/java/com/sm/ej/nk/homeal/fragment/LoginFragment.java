@@ -38,7 +38,6 @@ public class LoginFragment extends Fragment {
             View view =  inflater.inflate(R.layout.fragment_login, container, false);
             ButterKnife.bind(this, view);
 
-
             radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(RadioGroup radioGroup, int checkedid) {
@@ -57,7 +56,6 @@ public class LoginFragment extends Fragment {
     @OnClick(R.id.btn_login_ft_ok)
     public void onLoginOkBtn(){
         ((LoginActivity)getActivity()).changeTos();
-
     }
 
 }
