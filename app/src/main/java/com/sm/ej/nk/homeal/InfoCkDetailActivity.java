@@ -13,7 +13,7 @@ import butterknife.OnClick;
 
 public class InfoCkDetailActivity extends AppCompatActivity {
 
-    @BindView(R.id.toobar_ck_detail)
+    @BindView(R.id.toobar_et_detail)
     Toolbar toolbar;
 
     @Override
@@ -39,27 +39,27 @@ public class InfoCkDetailActivity extends AppCompatActivity {
 
 
 
-    @OnClick(R.id.btn_info_ck_detail_photo)
+    @OnClick(R.id.btn_info_et_detail_photo)
     public void onClickPhoto(){
         Toast.makeText(this,"Photo Click",Toast.LENGTH_LONG).show();
     }
 
-    @OnClick(R.id.btn_info_ck_detail_chatting)
+    @OnClick(R.id.btn_info_et_detail_chatting)
     public void onClickChatting(){
         Intent intent = new Intent(this, ChattingActivity.class);
         startActivity(intent);
     }
-    @OnClick(R.id.btn_info_ck_detai_menu)
+    @OnClick(R.id.btn_info_et_detai_menu)
     public void onClickMenu(){
         Intent intent = new Intent(this, MenuDetailActivity.class);
         startActivity(intent);
     }
-    @OnClick(R.id.btn_info_ck_detail_map)
+    @OnClick(R.id.btn_info_et_detail_map)
     public void onClickMap(){
         Toast.makeText(this,"MAP Click",Toast.LENGTH_LONG).show();
 
     }
-    @OnClick(R.id.btn_info_ck_detail_inquire)
+    @OnClick(R.id.btn_info_et_detail_inquire)
     public void onClickInquire(){
         Intent intent = new Intent(this, ReserveRequestActivity.class);
         startActivity(intent);

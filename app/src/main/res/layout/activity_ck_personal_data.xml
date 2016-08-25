@@ -82,7 +82,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView6"
         android:layout_toEndOf="@+id/textView6"
-        android:layout_toRightOf="@+id/textView6" />
+        android:layout_toRightOf="@+id/textView6"
+        android:spinnerMode="dropdown" />
 
     <Spinner
         android:id="@+id/spinner_ck_year"
