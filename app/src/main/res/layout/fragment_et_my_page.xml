@@ -5,39 +5,66 @@
     tools:context="com.sm.ej.nk.homeal.fragment.EtMyPageFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:text="@string/hello_blank_fragment"
-        android:textSize="30dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:id="@+id/textView5" />
-
-    <Button
+    <ImageView
+        android:id="@+id/image_picture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="mypager"
-        android:id="@+id/btn_et_mypager_personal"
-        android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:src="@mipmap/ic_launcher" />
 
-    <Button
+    <TextView
+        android:id="@+id/text_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="setting"
-        android:id="@+id/btn_et_setting"
-        android:layout_alignTop="@+id/btn_et_mypager_personal"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_below="@+id/appbar_et_main"
+        android:layout_toEndOf="@+id/image_picture"
+        android:layout_toRightOf="@+id/image_picture"
+        android:text="Large Text"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <Button
+    <TextView
+        android:id="@+id/text_role"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="zzim"
-        android:id="@+id/btn_et_zzim"
-        android:layout_alignTop="@+id/btn_et_mypager_personal"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/text_name"
+        android:layout_toEndOf="@+id/image_picture"
+        android:layout_toRightOf="@+id/image_picture"
+        android:text="Medium Text"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/text_et_mypage_personal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/image_picture"
+        android:layout_marginTop="61dp"
+        android:text="Personal Data"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/text_et_mypage_zzim"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/text_et_mypage_personal"
+        android:layout_marginTop="15dp"
+        android:text="Zzim"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/text_et_mypage_setting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/text_et_mypage_zzim"
+        android:layout_marginTop="15dp"
+        android:text="Setting"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </RelativeLayout>
