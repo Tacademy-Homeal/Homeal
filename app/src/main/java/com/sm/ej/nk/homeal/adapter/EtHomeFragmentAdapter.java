@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 import com.sm.ej.nk.homeal.InfoCkDetailActivity;
 import com.sm.ej.nk.homeal.R;
-import com.sm.ej.nk.homeal.ViewHolder.EtHomeFragmentViewHolder;
+import com.sm.ej.nk.homeal.viewholder.EtHomeFragmentViewHolder;
 
 import java.util.ArrayList;
 import java.util.List;

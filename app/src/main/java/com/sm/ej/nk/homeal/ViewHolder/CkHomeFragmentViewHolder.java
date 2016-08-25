@@ -1,4 +1,4 @@
-package com.sm.ej.nk.homeal.ViewHolder;
+package com.sm.ej.nk.homeal.viewholder;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
