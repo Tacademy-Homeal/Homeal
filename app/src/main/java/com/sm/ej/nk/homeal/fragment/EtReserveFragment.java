@@ -45,7 +45,7 @@ public class EtReserveFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_et_reserve, container, false);
-        ButterKnife.bind(this, view);;
+        ButterKnife.bind(this, view);
 
         LinearLayoutManager manager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
 

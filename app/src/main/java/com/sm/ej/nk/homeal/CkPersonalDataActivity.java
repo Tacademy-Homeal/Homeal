@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 
@@ -55,6 +56,9 @@ public class CkPersonalDataActivity extends AppCompatActivity {
     @BindView(R.id.btn_ck_changefinish)
     Button btnChangeFinish;
 
+    @BindView(R.id.image_ck_picture)
+    ImageButton ckpictureView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,5 +106,6 @@ public class CkPersonalDataActivity extends AppCompatActivity {
         countrySpinner.setEnabled(s);
         maleRadio.setEnabled(s);
         femaleRadio.setEnabled(s);
+        ckpictureView.setEnabled(s);
     }
 }
