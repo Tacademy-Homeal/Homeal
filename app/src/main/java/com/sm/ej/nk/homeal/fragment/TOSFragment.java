@@ -1,12 +1,14 @@
 package com.sm.ej.nk.homeal.fragment;
 
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.CheckBox;
 
 import com.sm.ej.nk.homeal.LoginActivity;
 import com.sm.ej.nk.homeal.R;
@@ -20,17 +22,14 @@ import butterknife.OnClick;
  */
 public class TOSFragment extends Fragment {
 
-    @BindView(R.id.btn_tos_ok)
-    Button btn_tos_ok;
-
-    @BindView(R.id.btn_tos_backey)
-    Button btn_tos_backey;
-
 
     public TOSFragment() {
         // Required empty public constructor
     }
 
+
+    @BindView(R.id.check_tos)
+    CheckBox checkBox;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -45,13 +44,28 @@ public class TOSFragment extends Fragment {
 
     @OnClick(R.id.btn_tos_ok)
     public void onTosOk(){
-        ((LoginActivity)getActivity()).changeSingUp();
+        if(checkBox.isChecked()){
+            ((LoginActivity)getActivity()).changeSingUp();
+        }else{
+            showDialog();
+        }
 
     }
 
     @OnClick(R.id.btn_tos_backey)
     public void onTosCancle(){
-        ((LoginActivity)getActivity()).backtoTos();
+        showDialog();
+    }
 
+    private void showDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        builder.setMessage(getResources().getString(R.string.tos_dialog));
+        builder.show();
     }
 }
