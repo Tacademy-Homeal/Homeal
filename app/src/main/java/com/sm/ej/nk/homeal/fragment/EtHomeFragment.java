@@ -4,6 +4,7 @@ package com.sm.ej.nk.homeal.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -28,6 +29,7 @@ public class EtHomeFragment extends Fragment {
     EtHomeFragmentAdapter mAdapter;
 
 
+
     public static EtHomeFragment createInstance(){
         final EtHomeFragment pageFragment = new EtHomeFragment();
         final Bundle bundle = new Bundle();
@@ -49,9 +51,12 @@ public class EtHomeFragment extends Fragment {
 
 
         layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
-        recyclerView.setLayoutManager(layoutManager);
 
         recyclerView.setAdapter(mAdapter);
+        recyclerView.setLayoutManager(layoutManager);
+
+        initData();
+
 
         return v;
     }
@@ -62,7 +67,11 @@ public class EtHomeFragment extends Fragment {
 
         mAdapter = new EtHomeFragmentAdapter();
 
+    }
 
-
+    private void initData() {
+        for (int i = 0; i < 10 ; i++) {
+            mAdapter.add(ContextCompat.getDrawable(getContext(), R.drawable.ic_launcher));
+        }
     }
 }
