@@ -2,30 +2,35 @@ package com.sm.ej.nk.homeal.fragment;
 
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import com.sm.ej.nk.homeal.CkMainActivity;
 import com.sm.ej.nk.homeal.EtMainActivity;
 import com.sm.ej.nk.homeal.HomealApplication;
 import com.sm.ej.nk.homeal.R;
+import com.sm.ej.nk.homeal.adapter.ChattingListAdapter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class ChatListFragment extends Fragment {
 
-    @BindView(R.id.btn_chatlist)
-    Button btn_chatlist;
+    @BindView(R.id.rv_chattinglist)
+    RecyclerView recyclerView;
 
-    private int num;
+    RecyclerView.LayoutManager layoutManager;
+    ChattingListAdapter mAdapter;
+
 
     public static ChatListFragment createInstance(){
         final ChatListFragment pageFragment = new ChatListFragment();
@@ -44,12 +49,24 @@ public class ChatListFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_chat_list, container, false);
-
         ButterKnife.bind(this, view);
+
+        layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        recyclerView.setAdapter(mAdapter);
+        recyclerView.setLayoutManager(layoutManager);
+
+        initData();
+
         return view;
     }
 
-    @OnClick(R.id.btn_chatlist)
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        mAdapter = new ChattingListAdapter();
+
+    }
     public void moveChattingActivity() {
         if(HomealApplication.isCooker()){
 
@@ -58,6 +75,11 @@ public class ChatListFragment extends Fragment {
         }else{
             ((EtMainActivity)getActivity()).moveChattigActivity();
         }
+    }
 
+    private void initData() {
+        for (int i = 0; i < 10 ; i++) {
+            mAdapter.add(ContextCompat.getDrawable(getContext(), R.drawable.ic_launcher));
+        }
     }
 }

@@ -31,7 +31,6 @@ public class EtHomeFragmentAdapter extends RecyclerView.Adapter<EtHomeFragmentVi
     }
 
 
-
     @Override
     public int getItemCount() {
         return items.size();
@@ -40,10 +39,8 @@ public class EtHomeFragmentAdapter extends RecyclerView.Adapter<EtHomeFragmentVi
     @Override
     public EtHomeFragmentViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_et_home_fragment, parent, false);
-
         context = parent.getContext();
         intent= new Intent(parent.getContext(), InfoCkDetailActivity.class);
-
         return new EtHomeFragmentViewHolder(view);
     }
 

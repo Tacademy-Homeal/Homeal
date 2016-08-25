@@ -5,19 +5,12 @@
     tools:context="com.sm.ej.nk.homeal.fragment.ChatListFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="CHATLIST"
-        android:textSize="60dp" />
-
-    <Button
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Chatting"
-        android:id="@+id/btn_chatlist"
+        android:id="@+id/rv_chattinglist"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="176dp" />
-
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>
