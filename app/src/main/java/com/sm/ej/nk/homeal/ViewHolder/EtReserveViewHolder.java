@@ -47,10 +47,19 @@ public class EtReserveViewHolder extends RecyclerView.ViewHolder {
     public EtReserveViewHolder(View itemView) {
         super(itemView);
         ButterKnife.bind(this, itemView);
+        stateView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (listener != null) {
+                    listener.onStateItemClick(v, etReserveData, getAdapterPosition());
+                }
+            }
+        });
     }
 
-    EtReserveData etReserveData;
-    public void setReserveData(EtReserveData etReserveData){
+        EtReserveData etReserveData;
+
+    public void setReserveData(EtReserveData etReserveData) {
         this.etReserveData = etReserveData;
         pictureView.setImageDrawable(etReserveData.getCkpicture());
         dateView.setText(etReserveData.getReservedate());
@@ -59,6 +68,18 @@ public class EtReserveViewHolder extends RecyclerView.ViewHolder {
         foodnameView.setText(etReserveData.getFooname());
         reservestateView.setText(etReserveData.getReservestate());
         stateView.setText(etReserveData.getBtnname());
+    }
+
+    public interface OnStateItemClickListener {
+        public void onPersonItemClick(View view, EtReserveData etReserveData, int position);
+
+        void onStateItemClick(View view, EtReserveData etReserveData, int position);
+    }
+
+    OnStateItemClickListener listener;
+
+    public void setOnPersonItemClickListener(OnStateItemClickListener listener) {
+        this.listener = listener;
     }
 }
 

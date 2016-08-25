@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.adapter.EtReserveAdapter;
@@ -54,6 +55,13 @@ public class EtReserveFragment extends Fragment {
 
         initData();
 
+        mAdapter.setOnAdapterItemClickListener(new EtReserveAdapter.OnAdapterItemClickLIstener() {
+                        @Override
+                        public void onAdapterItemClick(View view, EtReserveData etReserveData, int position) {
+                                Toast.makeText(view.getContext(), "예약이 거절되었습니다.", Toast.LENGTH_SHORT).show();
+                            }
+                    });
+
         return view;
     }
 
@@ -67,8 +75,8 @@ public class EtReserveFragment extends Fragment {
             data.setCkname("ckname" + i);
             data.setReservestate("state" + i);
             data.setCkpicture(ContextCompat.getDrawable(getContext(), R.mipmap.ic_launcher));
-            if (i%2==0) data.setBtnname("후기 작성");
-            else data.setBtnname("예약 취소");
+            if (i%2==0) data.setBtnname("예약 취소");
+            else data.setBtnname("후기 작성");
             mAdapter.add(data);
         }
 

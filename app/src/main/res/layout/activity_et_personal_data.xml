@@ -32,10 +32,10 @@
         android:id="@+id/image_et_picture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/appbar_et_main"
-        android:layout_alignStart="@+id/appbar_et_main"
-        android:layout_below="@+id/btn_personal_change"
-        android:src="@mipmap/ic_launcher" />
+        android:src="@mipmap/ic_launcher"
+        android:layout_alignTop="@+id/btn_personal_change"
+        android:layout_toLeftOf="@+id/spinner_et_month"
+        android:layout_toStartOf="@+id/spinner_et_month" />
 
     <EditText
         android:id="@+id/edit_et_name"
@@ -43,9 +43,9 @@
         android:layout_height="wrap_content"
         android:background="@null"
         android:hint="Name"
-        android:layout_alignTop="@+id/imageButton"
-        android:layout_toRightOf="@+id/imageButton"
-        android:layout_toEndOf="@+id/imageButton" />
+        android:layout_below="@+id/appbar_et_main"
+        android:layout_toRightOf="@+id/edit_et_introduce"
+        android:layout_toEndOf="@+id/edit_et_introduce" />
 
     <EditText
         android:id="@+id/edit_et_age"
@@ -53,9 +53,9 @@
         android:layout_height="wrap_content"
         android:background="@null"
         android:hint="Age"
-        android:layout_marginLeft="43dp"
-        android:layout_marginStart="43dp"
-        android:layout_below="@+id/btn_personal_change"
+        android:layout_marginLeft="37dp"
+        android:layout_marginStart="37dp"
+        android:layout_below="@+id/appbar_et_main"
         android:layout_toRightOf="@+id/spinner_et_day"
         android:layout_toEndOf="@+id/spinner_et_day" />
 
@@ -63,44 +63,46 @@
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/edit_et_name"
-        android:layout_toEndOf="@+id/imageButton"
-        android:layout_toRightOf="@+id/imageButton"
         android:text="Birthday"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_alignBaseline="@+id/btn_personal_change"
+        android:layout_alignBottom="@+id/btn_personal_change"
+        android:layout_alignLeft="@+id/spinner_et_month"
+        android:layout_alignStart="@+id/spinner_et_month" />
 
     <Spinner
         android:id="@+id/spinner_et_month"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/edit_et_name"
+        android:layout_below="@+id/btn_personal_change"
         android:layout_alignRight="@+id/edit_et_name"
-        android:layout_alignTop="@+id/spinner_et_day" />
+        android:layout_alignEnd="@+id/edit_et_name" />
 
     <Spinner
         android:id="@+id/spinner_et_day"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView6"
-        android:layout_toEndOf="@+id/textView6"
-        android:layout_toRightOf="@+id/textView6" />
+        android:layout_alignTop="@+id/spinner_et_year"
+        android:layout_toRightOf="@+id/textView6"
+        android:layout_toEndOf="@+id/textView6" />
 
     <Spinner
         android:id="@+id/spinner_et_year"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/edit_et_age"
-        android:layout_alignStart="@+id/edit_et_age"
-        android:layout_below="@+id/textView6" />
+        android:layout_alignTop="@+id/spinner_et_month"
+        android:layout_toRightOf="@+id/spinner_et_day"
+        android:layout_toEndOf="@+id/spinner_et_day" />
 
     <RadioGroup
         android:id="@+id/radioGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/spinner_et_month"
-        android:layout_toEndOf="@+id/imageButton"
-        android:layout_toRightOf="@+id/imageButton"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_below="@+id/image_et_picture"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="23dp">
 
         <RadioButton
             android:id="@+id/radio_et_male"
@@ -134,14 +136,12 @@
         android:id="@+id/edit_et_introduce"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/spinner_et_country"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="131dp"
         android:background="@null"
-        android:hint="Introduce" />
+        android:hint="Introduce"
+        android:layout_below="@+id/image_et_picture"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:id="@+id/edit_et_phone"
