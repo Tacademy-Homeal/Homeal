@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Chatting"
-        android:id="@+id/btn_info_ck_detail_chatting"
+        android:id="@+id/btn_info_et_detail_chatting"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
@@ -20,38 +20,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Inquire Reservation"
-        android:id="@+id/btn_info_ck_detail_inquire"
+        android:id="@+id/btn_info_et_detail_inquire"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Food menu"
-        android:id="@+id/btn_info_ck_detai_menu"
-        android:layout_marginBottom="104dp"
-        android:layout_above="@+id/btn_info_ck_detail_inquire"
-        android:layout_centerHorizontal="true" />
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Map"
-        android:id="@+id/btn_info_ck_detail_map"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Photo"
-        android:id="@+id/btn_info_ck_detail_photo"
-        android:layout_marginBottom="69dp"
-        android:layout_above="@+id/btn_info_ck_detail_map"
-        android:layout_centerHorizontal="true" />
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -59,12 +34,51 @@
         android:id="@+id/view">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/toobar_ck_detail"
+        android:id="@+id/toobar_et_detail"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         app:layout_scrollFlags="scroll|enterAlways" />
 
     </android.support.design.widget.AppBarLayout>
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/view"
+   >
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:id="@+id/image_info_et_detail_photo"
+            android:scaleType="centerCrop"
+            android:layout_above="@+id/image_info_et_detail_map"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:scaleType="centerCrop"
+            android:id="@+id/image_info_et_detail_map"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="Food menu"
+            android:scaleType="centerCrop"
+            android:id="@+id/image_info_et_detai_menu"
+            android:layout_marginBottom="104dp"
+            android:layout_above="@+id/btn_info_et_detail_inquire"
+            android:layout_centerHorizontal="true" />
+    </LinearLayout>
 
 
 </RelativeLayout>
