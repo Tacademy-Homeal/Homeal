@@ -7,6 +7,10 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.sm.ej.nk.homeal.adapter.ViewPagerAdapter;
 import com.sm.ej.nk.homeal.fragment.ChatListFragment;
@@ -67,4 +71,24 @@ public class CkMainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ChattingActivity.class);
         startActivity(intent);
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        Toast.makeText(this,"item click", Toast.LENGTH_LONG);
+        if (item.getItemId() == R.id.action_search) {
+            Intent intent = new Intent(this, SearchActivity.class);
+            startActivity(intent);
+        }
+        return true;
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_test, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+
 }
