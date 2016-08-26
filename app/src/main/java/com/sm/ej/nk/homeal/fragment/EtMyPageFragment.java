@@ -29,7 +29,7 @@ public class EtMyPageFragment extends Fragment {
     }
 
     public EtMyPageFragment() {
-        // Required empty public constructor
+
     }
 
     @Override
