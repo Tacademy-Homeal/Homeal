@@ -1,8 +1,7 @@
 package com.sm.ej.nk.homeal;
 
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -20,7 +19,6 @@ public class EtZzimActivity extends AppCompatActivity {
     RecyclerView recyclerView;
 
     RecyclerView.LayoutManager layoutManager;
-    EtHomeFragmentAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,10 +30,8 @@ public class EtZzimActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("찜 목 록");
 
-        mAdapter = new EtHomeFragmentAdapter();
         layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
 
-        recyclerView.setAdapter(mAdapter);
         recyclerView.setLayoutManager(layoutManager);
 
         initData();
@@ -52,8 +48,6 @@ public class EtZzimActivity extends AppCompatActivity {
     }
 
     private void initData() {
-        for (int i = 0; i < 10 ; i++) {
-            mAdapter.add(ContextCompat.getDrawable(this, R.drawable.ic_launcher));
-        }
+
     }
 }
