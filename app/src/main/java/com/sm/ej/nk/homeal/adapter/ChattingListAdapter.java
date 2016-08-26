@@ -36,7 +36,7 @@ public class ChattingListAdapter extends RecyclerView.Adapter<ChattingListViewHo
 
     @Override
     public void onBindViewHolder(ChattingListViewHolder holder, int position) {
-        holder.setChattingView(items.get(position));
+        holder.setImage(items.get(position));
 
         holder.getChattingListView().setOnClickListener(new View.OnClickListener(){
             @Override

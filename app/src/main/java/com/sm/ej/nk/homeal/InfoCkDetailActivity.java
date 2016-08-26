@@ -69,7 +69,8 @@ public class InfoCkDetailActivity extends AppCompatActivity {
     }
     @OnClick(R.id.image_info_et_detail_map)
     public void onClickMap(){
-        Toast.makeText(this,"MAP Click",Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(this, MapActivity.class);
+        startActivity(intent);
     }
     @OnClick(R.id.btn_info_et_detail_inquire)
     public void onClickInquire(){
