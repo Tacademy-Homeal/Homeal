@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.sm.ej.nk.homeal.EtWriteReviewActivity;
 import com.sm.ej.nk.homeal.R;
+import com.sm.ej.nk.homeal.adapter.EtReserveAdapter;
 import com.sm.ej.nk.homeal.data.EtReserveData;
 
 import java.util.Random;
@@ -25,6 +26,7 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
+//
 public class EtReserveFragment extends Fragment {
     @BindView(R.id.rv_et_reserve)
     RecyclerView EtReserveView;
