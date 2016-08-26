@@ -5,5 +5,10 @@
     <dimen name="info_text_size">34dp</dimen>
     <dimen name="info_text_height">344dp</dimen>
     <dimen name="info_text_width">215dp</dimen>
-    <dimen name="toolbar_elevation">100dp</dimen>
+    <dimen name="et_home_foodimageheight">200dp</dimen>
+    <dimen name="et_home_userimagesize">50dp</dimen>
+    <dimen name="et_home_userimage_leftmargin">15dp</dimen>
+    <dimen name="et_home_rating_height">30dp</dimen>
+    <dimen name="et_home_rating_width">120dp</dimen>
+    <dimen name="et_home_card_bottommargin">10dp</dimen>
 </resources>

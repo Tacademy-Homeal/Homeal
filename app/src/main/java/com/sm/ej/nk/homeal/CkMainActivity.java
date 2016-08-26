@@ -1,7 +1,9 @@
 package com.sm.ej.nk.homeal;
 
+import android.annotation.TargetApi;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -32,6 +34,7 @@ public class CkMainActivity extends AppCompatActivity {
 
     AlarmPopupWindow popupWindow;
 
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +49,6 @@ public class CkMainActivity extends AppCompatActivity {
 
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.setTabTextColors(Color.BLACK, Color.BLACK);
-
     }
     private static final String CK_HOME = "쿠커홈";
     private static final String CK_CHAT_LIST = "채팅리스트";
