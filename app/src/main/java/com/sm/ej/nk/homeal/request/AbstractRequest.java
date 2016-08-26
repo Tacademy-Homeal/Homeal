@@ -2,9 +2,6 @@ package com.sm.ej.nk.homeal.request;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.sm.ej.nk.homeal.data.NetworkResult;
-import com.sm.ej.nk.homeal.data.NetworkResultTemp;
-import com.sm.ej.nk.homeal.manager.NetworkRequest;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
