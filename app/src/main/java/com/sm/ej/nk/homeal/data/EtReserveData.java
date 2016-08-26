@@ -13,6 +13,15 @@ public class EtReserveData {
     private String reservestate;
     private Drawable ckpicture;
     private String btnname;
+    private String btnetreviewwrite;
+
+    public String getBtnetreviewwrite() {
+        return btnetreviewwrite;
+    }
+
+    public void setBtnetreviewwrite(String btnetreviewwrite) {
+        this.btnetreviewwrite = btnetreviewwrite;
+    }
 
     public String getBtnname() {
         return btnname;

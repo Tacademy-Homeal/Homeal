@@ -1,6 +1,7 @@
 package com.sm.ej.nk.homeal.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.sm.ej.nk.homeal.EtWriteReviewActivity;
 import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.adapter.EtReserveAdapter;
 import com.sm.ej.nk.homeal.data.EtReserveData;
@@ -56,11 +58,18 @@ public class EtReserveFragment extends Fragment {
         initData();
 
         mAdapter.setOnAdapterItemClickListener(new EtReserveAdapter.OnAdapterItemClickLIstener() {
-                        @Override
-                        public void onAdapterItemClick(View view, EtReserveData etReserveData, int position) {
-                                Toast.makeText(view.getContext(), "예약이 거절되었습니다.", Toast.LENGTH_SHORT).show();
-                            }
-                    });
+            @Override
+            public void onAdapterItemClick(View view, EtReserveData etReserveData, int position) {
+                Toast.makeText(view.getContext(), "예약이 취소되었습니다.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        mAdapter.setOnreviewAdapterItemClickListener(new EtReserveAdapter.OnreviewAdapterItemClickLIstener() {
+            @Override
+            public void onreviewAdapterItemClick(View view, EtReserveData etReserveData, int position) {
+                startActivity(new Intent(getContext(), EtWriteReviewActivity.class));
+            }
+        });
 
         return view;
     }
@@ -68,15 +77,15 @@ public class EtReserveFragment extends Fragment {
     private void initData() {
         Random r = new Random();
         for (int i = 0; i < 20; i++) {
-            EtReserveData data= new EtReserveData();
+            EtReserveData data = new EtReserveData();
             data.setFooname("foodname " + i);
             data.setReservedate("date" + i);
             data.setReserveperson("person" + i);
             data.setCkname("ckname" + i);
             data.setReservestate("state" + i);
             data.setCkpicture(ContextCompat.getDrawable(getContext(), R.mipmap.ic_launcher));
-            if (i%2==0) data.setBtnname("예약 취소");
-            else data.setBtnname("후기 작성");
+            data.setBtnname("예약 취소");
+            data.setBtnetreviewwrite("후기 작성");
             mAdapter.add(data);
         }
 

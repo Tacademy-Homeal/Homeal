@@ -15,6 +15,16 @@ public class CkReserveData {
     private String btndisagree;
     private String btnagree;
 
+    public String getBtnreviewwrite() {
+        return btnreviewwrite;
+    }
+
+    public void setBtnreviewwrite(String btnreviewwrite) {
+        this.btnreviewwrite = btnreviewwrite;
+    }
+
+    private String btnreviewwrite;
+
     public String getFoodname() {
         return foodname;
     }
