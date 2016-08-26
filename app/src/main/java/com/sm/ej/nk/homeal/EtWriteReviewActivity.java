@@ -33,8 +33,8 @@ public class EtWriteReviewActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @OnClick(R.id.btn_review_finish)
+    @OnClick(R.id.btn_et_review_finish)
     public void onReviewfinish() {
-       this.finish();
+        this.finish();
     }
 }

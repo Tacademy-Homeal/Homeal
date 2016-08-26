@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * Created by Tacademy on 2016-08-25.
  */
-public class CkReserveAdapter extends RecyclerView.Adapter<CkReserveViewHolder> implements CkReserveViewHolder.OnAgreeItemClickListener {
+public class CkReserveAdapter extends RecyclerView.Adapter<CkReserveViewHolder> implements CkReserveViewHolder.OnAgreeItemClickListener, CkReserveViewHolder.OnDisagreeItemClickListener, CkReserveViewHolder.OnReviewItemClickListener {
     List<CkReserveData> items = new ArrayList<>();
 
     public void add(CkReserveData data) {
@@ -28,6 +28,8 @@ public class CkReserveAdapter extends RecyclerView.Adapter<CkReserveViewHolder> 
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_ck_reserve_fragment, parent, false);
         CkReserveViewHolder holder = new CkReserveViewHolder(view);
         holder.setOnAgreeItemClickListener(this);
+        holder.setOnDisagreeItemClickListener(this);
+        holder.setOnReviewItemClickListener(this);
         return holder;
     }
 
@@ -60,4 +62,42 @@ public class CkReserveAdapter extends RecyclerView.Adapter<CkReserveViewHolder> 
             listener.onAdapterItemClick(view, data, position);
         }
     }
+
+    //----------------------------------------------------------------------------------------------------
+
+    public interface OndisAdapterItemClickLIstener {
+        public void ondisAdapterItemClick(View view, CkReserveData data, int position);
+    }
+
+    OndisAdapterItemClickLIstener dListener;
+
+    public void setOndisAdapterItemClickListener(OndisAdapterItemClickLIstener dListener) {
+        this.dListener = dListener;
+    }
+
+    @Override
+    public void onDisagreeItemClick(View view, CkReserveData data, int position) {
+        if (dListener != null) {
+            dListener.ondisAdapterItemClick(view, data, position);
+        }
+    }
+//------------------------------------------------------------------------------------------------------------------
+    public interface OnreviewAdapterItemClickLIstener {
+        public void onreviewAdapterItemClick(View view, CkReserveData data, int position);
+    }
+
+    OnreviewAdapterItemClickLIstener rListener;
+
+    public void setOnreviewAdapterItemClickListener(OnreviewAdapterItemClickLIstener rListener) {
+        this.rListener = rListener;
+    }
+
+    @Override
+    public void onReviewItemClick(View view, CkReserveData data, int position) {
+        if (rListener != null) {
+            rListener.onreviewAdapterItemClick(view, data, position);
+        }
+    }
+
+
 }

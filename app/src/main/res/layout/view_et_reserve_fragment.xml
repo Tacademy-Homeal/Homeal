@@ -85,6 +85,13 @@
                     android:id="@+id/btn_et_reserve_state"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
+
+                <Button
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="New Button"
+                    android:id="@+id/btn_et_review_write" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
