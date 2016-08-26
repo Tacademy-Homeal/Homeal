@@ -5,4 +5,5 @@
     <dimen name="info_text_size">34dp</dimen>
     <dimen name="info_text_height">344dp</dimen>
     <dimen name="info_text_width">215dp</dimen>
+    <dimen name="toolbar_elevation">100dp</dimen>
 </resources>
