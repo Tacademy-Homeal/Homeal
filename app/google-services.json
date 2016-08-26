@@ -1,0 +1,35 @@
+{
+  "project_info": {
+    "project_number": "136681481213",
+    "project_id": "homeal-141109"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:136681481213:android:4224e9ffce0d8263",
+        "android_client_info": {
+          "package_name": "com.sm.ej.nk.homeal"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_aKILZ6wfKY3JNdvD1Sjv-wZMlVUKJC0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
