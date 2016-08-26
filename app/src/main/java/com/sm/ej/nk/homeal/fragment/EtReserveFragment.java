@@ -26,6 +26,7 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
+//
 public class EtReserveFragment extends Fragment {
     @BindView(R.id.rv_et_reserve)
     RecyclerView EtReserveView;
