@@ -33,9 +33,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@mipmap/ic_launcher"
-        android:layout_alignTop="@+id/btn_personal_change"
-        android:layout_toLeftOf="@+id/spinner_et_month"
-        android:layout_toStartOf="@+id/spinner_et_month" />
+        android:layout_below="@+id/btn_personal_change"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:id="@+id/edit_et_name"
@@ -43,9 +43,9 @@
         android:layout_height="wrap_content"
         android:background="@null"
         android:hint="Name"
-        android:layout_below="@+id/appbar_et_main"
-        android:layout_toRightOf="@+id/edit_et_introduce"
-        android:layout_toEndOf="@+id/edit_et_introduce" />
+        android:layout_above="@+id/textView6"
+        android:layout_toRightOf="@+id/image_et_picture"
+        android:layout_toEndOf="@+id/image_et_picture" />
 
     <EditText
         android:id="@+id/edit_et_age"
@@ -53,11 +53,9 @@
         android:layout_height="wrap_content"
         android:background="@null"
         android:hint="Age"
-        android:layout_marginLeft="37dp"
-        android:layout_marginStart="37dp"
-        android:layout_below="@+id/appbar_et_main"
-        android:layout_toRightOf="@+id/spinner_et_day"
-        android:layout_toEndOf="@+id/spinner_et_day" />
+        android:layout_below="@+id/btn_personal_change"
+        android:layout_toRightOf="@+id/spinner_et_year"
+        android:layout_toEndOf="@+id/spinner_et_year" />
 
     <TextView
         android:id="@+id/textView6"
@@ -65,8 +63,7 @@
         android:layout_height="wrap_content"
         android:text="Birthday"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:layout_alignBaseline="@+id/btn_personal_change"
-        android:layout_alignBottom="@+id/btn_personal_change"
+        android:layout_above="@+id/spinner_et_month"
         android:layout_alignLeft="@+id/spinner_et_month"
         android:layout_alignStart="@+id/spinner_et_month" />
 
@@ -74,7 +71,7 @@
         android:id="@+id/spinner_et_month"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btn_personal_change"
+        android:layout_alignTop="@+id/spinner_et_day"
         android:layout_alignRight="@+id/edit_et_name"
         android:layout_alignEnd="@+id/edit_et_name" />
 
@@ -90,7 +87,7 @@
         android:id="@+id/spinner_et_year"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/spinner_et_month"
+        android:layout_above="@+id/radioGroup"
         android:layout_toRightOf="@+id/spinner_et_day"
         android:layout_toEndOf="@+id/spinner_et_day" />
 
