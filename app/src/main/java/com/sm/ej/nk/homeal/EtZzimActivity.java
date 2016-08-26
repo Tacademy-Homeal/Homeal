@@ -8,8 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-import com.sm.ej.nk.homeal.adapter.EtHomeFragmentAdapter;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 

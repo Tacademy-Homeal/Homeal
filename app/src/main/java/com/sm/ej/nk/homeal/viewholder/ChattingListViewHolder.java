@@ -12,7 +12,7 @@ import com.sm.ej.nk.homeal.R;
  * Created by Tacademy on 2016-08-25.
  */
 public class ChattingListViewHolder  extends RecyclerView.ViewHolder{
-
+//teset
     ImageView chattingListView;
     TextView lastConversation;
 

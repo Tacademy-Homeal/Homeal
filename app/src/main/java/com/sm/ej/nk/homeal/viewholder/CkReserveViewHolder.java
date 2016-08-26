@@ -20,7 +20,7 @@ import butterknife.OnClick;
 public class CkReserveViewHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.image_ck_reserve_picture)
     ImageView pictureView;
-
+//test
     @BindView(R.id.text_ck_reserve_date)
     TextView dateView;
 

@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.sm.ej.nk.homeal.R;
-import com.sm.ej.nk.homeal.adapter.EtHomeFragmentAdapter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
