@@ -11,9 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.sm.ej.nk.homeal.CkMainActivity;
-import com.sm.ej.nk.homeal.EtMainActivity;
-import com.sm.ej.nk.homeal.HomealApplication;
 import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.adapter.ChattingListAdapter;
 
@@ -37,6 +34,8 @@ public class ChatListFragment extends Fragment {
         final Bundle bundle = new Bundle();
         pageFragment.setArguments(bundle);
         return pageFragment;
+
+
     }
 
     public ChatListFragment() {
@@ -66,15 +65,6 @@ public class ChatListFragment extends Fragment {
 
         mAdapter = new ChattingListAdapter();
 
-    }
-    public void moveChattingActivity() {
-        if(HomealApplication.isCooker()){
-
-            ((CkMainActivity)getActivity()).moveChattigActivity();
-
-        }else{
-            ((EtMainActivity)getActivity()).moveChattigActivity();
-        }
     }
 
     private void initData() {

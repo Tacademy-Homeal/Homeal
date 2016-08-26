@@ -18,11 +18,11 @@ public class ChattingListViewHolder  extends RecyclerView.ViewHolder{
 
     public ChattingListViewHolder(View itemView) {
         super(itemView);
-        chattingListView = (ImageView)itemView.findViewById(R.id.image_chatting_list);
+        chattingListView = (ImageView)itemView.findViewById(R.id.image_chatting);
         lastConversation = (TextView)itemView.findViewById(R.id.text_chatting_list);
     }
 
-    public void setChattingView(Drawable testView){
+    public void setImage(Drawable testView){
         chattingListView.setImageDrawable(testView);
 
     }
@@ -38,7 +38,6 @@ public class ChattingListViewHolder  extends RecyclerView.ViewHolder{
     public TextView getLastConversation() {
         return lastConversation;
     }
-
     public void setLastConversation(TextView lastConversation) {
         this.lastConversation = lastConversation;
     }
