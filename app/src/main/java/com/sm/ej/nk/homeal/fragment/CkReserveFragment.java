@@ -61,12 +61,22 @@ public class CkReserveFragment extends Fragment {
         mAdapter.setOnAdapterItemClickListener(new CkReserveAdapter.OnAdapterItemClickLIstener() {
             @Override
             public void onAdapterItemClick(View view, CkReserveData ckReserveData, int position) {
-                if (getId() % 2 == 0) {
-                  //  showdialog();
-                    Toast.makeText(getContext(), "예약이 취소되었습니다.", Toast.LENGTH_SHORT).show();
-                } else {
-                    startActivity(new Intent(getActivity(), CkWriteReViewActivity.class));
-                }
+                //  showdialog();
+                Toast.makeText(getContext(), "예약이 승인되었습니다.", Toast.LENGTH_SHORT).show();
+            }
+
+        });
+        mAdapter.setOndisAdapterItemClickListener(new CkReserveAdapter.OndisAdapterItemClickLIstener() {
+            @Override
+            public void ondisAdapterItemClick(View view, CkReserveData data, int position) {
+                Toast.makeText(getContext(), "예약이 거절되었습니다.", Toast.LENGTH_SHORT).show();
+            }
+        });
+        mAdapter.setOnreviewAdapterItemClickListener(new CkReserveAdapter.OnreviewAdapterItemClickLIstener() {
+            @Override
+            public void onreviewAdapterItemClick(View view, CkReserveData data, int position) {
+                startActivity(new Intent(getContext(), CkWriteReViewActivity.class));
+
             }
         });
         return view;
@@ -97,29 +107,29 @@ public class CkReserveFragment extends Fragment {
 //}
 
 
-private void initData(){
-        Random r=new Random();
-        for(int i=0;i<20;i++){
-        CkReserveData data=new CkReserveData();
-        data.setFoodname("foodname "+i);
-        data.setReservedate("date"+i);
-        data.setReserveperson("person"+i);
-        data.setEtname("ckname"+i);
-        data.setReservestate("state"+i);
-        data.setEtpicture(ContextCompat.getDrawable(getContext(),R.mipmap.ic_launcher));
-        if(i%2==0)data.setBtnagree("승인");
-        else data.setBtnagree("후기 작성");
-        data.setBtndisagree("거절");
-        mAdapter.add(data);
+    private void initData() {
+        Random r = new Random();
+        for (int i = 0; i < 20; i++) {
+            CkReserveData data = new CkReserveData();
+            data.setFoodname("foodname " + i);
+            data.setReservedate("date" + i);
+            data.setReserveperson("person" + i);
+            data.setEtname("ckname" + i);
+            data.setReservestate("state" + i);
+            data.setEtpicture(ContextCompat.getDrawable(getContext(), R.mipmap.ic_launcher));
+            data.setBtnagree("승인");
+            data.setBtndisagree("거절");
+            data.setBtnreviewwrite("후기 작성");
+            mAdapter.add(data);
         }
 
-        }
+    }
 
-@Override
-public void onCreate(@Nullable Bundle savedInstanceState){
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mAdapter=new CkReserveAdapter();
-        }
+        mAdapter = new CkReserveAdapter();
+    }
 
-        }
+}

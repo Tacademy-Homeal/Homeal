@@ -45,6 +45,9 @@ public class CkReserveViewHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.btn_ck_reserve_state_agree)
     Button agreeView;
 
+    @BindView(R.id.btn_ck_review_write)
+    Button reviewwriteView;
+
     @OnClick(R.id.btn_ck_reserve_state_disagree)
     public void onDisagree() {
         showdialog();
@@ -79,14 +82,31 @@ public class CkReserveViewHolder extends RecyclerView.ViewHolder {
     public CkReserveViewHolder(View itemView) {
         super(itemView);
         ButterKnife.bind(this, itemView);
-      agreeView.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                                if (listener != null) {
-                                        listener.onAgreeItemClick(v, ckReserveData, getAdapterPosition());
-                                    }
-                            }
-                    });
+        agreeView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (aListener != null) {
+                    aListener.onAgreeItemClick(v, ckReserveData, getAdapterPosition());
+                }
+            }
+        });
+
+        disagreeView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (dListener != null) {
+                    dListener.onDisagreeItemClick(v, ckReserveData, getAdapterPosition());
+                }
+            }
+        });
+        reviewwriteView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (rListener != null) {
+                    rListener.onReviewItemClick(v, ckReserveData, getAdapterPosition());
+                }
+            }
+        });
     }
 
     public interface OnAgreeItemClickListener {
@@ -94,10 +114,31 @@ public class CkReserveViewHolder extends RecyclerView.ViewHolder {
         public void onAgreeItemClick(View view, CkReserveData ckReserveData, int position);
     }
 
-    OnAgreeItemClickListener listener;
+    OnAgreeItemClickListener aListener;
 
-    public void setOnAgreeItemClickListener(OnAgreeItemClickListener listener) {
-        this.listener = listener;
+    public void setOnAgreeItemClickListener(OnAgreeItemClickListener aListener) {
+        this.aListener = aListener;
+    }
+
+    public interface OnDisagreeItemClickListener {
+        public void onDisagreeItemClick(View view, CkReserveData ckReserveData, int position);
+    }
+
+    OnDisagreeItemClickListener dListener;
+
+    public void setOnDisagreeItemClickListener(OnDisagreeItemClickListener dListener) {
+        this.dListener = dListener;
+    }
+
+    public interface OnReviewItemClickListener {
+
+        public void onReviewItemClick(View view, CkReserveData ckReserveData, int position);
+    }
+
+    OnReviewItemClickListener rListener;
+
+    public void setOnReviewItemClickListener(OnReviewItemClickListener rListener) {
+        this.rListener = rListener;
     }
 
     CkReserveData ckReserveData;
@@ -112,5 +153,6 @@ public class CkReserveViewHolder extends RecyclerView.ViewHolder {
         reservestateView.setText(ckReserveData.getReservestate());
         disagreeView.setText(ckReserveData.getBtndisagree());
         agreeView.setText(ckReserveData.getBtnagree());
+        reviewwriteView.setText(ckReserveData.getBtnreviewwrite());
     }
 }

@@ -10,7 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.sm.ej.nk.homeal.adapter.ViewPagerAdapter;
+import com.sm.ej.nk.homeal.adapter.ViewPagerFragmentAdapter;
 import com.sm.ej.nk.homeal.fragment.ChatListFragment;
 import com.sm.ej.nk.homeal.fragment.EtHomeFragment;
 import com.sm.ej.nk.homeal.fragment.EtMyPageFragment;
@@ -54,7 +54,7 @@ public class EtMainActivity extends AppCompatActivity {
     public static final String ET_MYPAGE = "내정보";
 
     private void setupTabViewPager(ViewPager v){
-        final ViewPagerAdapter pagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+        final ViewPagerFragmentAdapter pagerAdapter = new ViewPagerFragmentAdapter(getSupportFragmentManager());
         pagerAdapter.addFragment(EtHomeFragment.createInstance(), ET_HOME);
         pagerAdapter.addFragment(ChatListFragment.createInstance(), ET_CHAT);
         pagerAdapter.addFragment(EtReserveFragment.createInstance(), ET_RESERVE);

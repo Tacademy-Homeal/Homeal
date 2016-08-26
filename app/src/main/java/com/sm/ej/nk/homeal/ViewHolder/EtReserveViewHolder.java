@@ -41,6 +41,9 @@ public class EtReserveViewHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.btn_et_reserve_state)
     Button stateView;
 
+    @BindView(R.id.btn_et_review_write)
+    Button reviewwriteView;
+
 
     //    @OnClick(R.id.btn_et_reserve_state)
 //    Button reservestate
@@ -50,8 +53,17 @@ public class EtReserveViewHolder extends RecyclerView.ViewHolder {
         stateView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (listener != null) {
-                    listener.onStateItemClick(v, etReserveData, getAdapterPosition());
+                if (cListener != null) {
+                    cListener.onCancleItemClick(v, etReserveData, getAdapterPosition());
+                }
+            }
+        });
+
+        reviewwriteView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (rListener != null) {
+                    rListener.onReviewItemClick(v, etReserveData, getAdapterPosition());
                 }
             }
         });
@@ -68,18 +80,27 @@ public class EtReserveViewHolder extends RecyclerView.ViewHolder {
         foodnameView.setText(etReserveData.getFooname());
         reservestateView.setText(etReserveData.getReservestate());
         stateView.setText(etReserveData.getBtnname());
+        reviewwriteView.setText(etReserveData.getBtnetreviewwrite());
     }
 
-    public interface OnStateItemClickListener {
-        public void onPersonItemClick(View view, EtReserveData etReserveData, int position);
-
-        void onStateItemClick(View view, EtReserveData etReserveData, int position);
+    public interface OnCancleItemClickListener {
+        public void onCancleItemClick(View view, EtReserveData etReserveData, int position);
     }
 
-    OnStateItemClickListener listener;
+    OnCancleItemClickListener cListener;
 
-    public void setOnPersonItemClickListener(OnStateItemClickListener listener) {
-        this.listener = listener;
+    public void setOnCancleItemClickListener(OnCancleItemClickListener cListener) {
+        this.cListener = cListener;
+    }
+
+    public interface OnReviewItemClickListener {
+        public void onReviewItemClick(View view, EtReserveData etReserveData, int position);
+    }
+
+    OnReviewItemClickListener rListener;
+
+    public void setOnReviewItemClickListener(OnReviewItemClickListener rListener) {
+        this.rListener = rListener;
     }
 }
 

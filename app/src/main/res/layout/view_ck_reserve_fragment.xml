@@ -80,14 +80,23 @@
                     android:text="reservestate" />
 
                 <Button
+                    style="?android:attr/buttonStyleSmall"
                     android:id="@+id/btn_ck_reserve_state_disagree"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
                 <Button
+                    style="?android:attr/buttonStyleSmall"
                     android:id="@+id/btn_ck_reserve_state_agree"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
+
+                <Button
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="New Button"
+                    android:id="@+id/btn_ck_review_write" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

@@ -10,7 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.sm.ej.nk.homeal.adapter.ViewPagerAdapter;
+import com.sm.ej.nk.homeal.adapter.ViewPagerFragmentAdapter;
 import com.sm.ej.nk.homeal.fragment.ChatListFragment;
 import com.sm.ej.nk.homeal.fragment.CkHomeFragment;
 import com.sm.ej.nk.homeal.fragment.CkMyPageFragment;
@@ -56,7 +56,7 @@ public class CkMainActivity extends AppCompatActivity {
 
     private void setupTabViewPager(ViewPager v){
 
-        final ViewPagerAdapter pagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+        final ViewPagerFragmentAdapter pagerAdapter = new ViewPagerFragmentAdapter(getSupportFragmentManager());
         Bundle bundle = new Bundle();
         bundle.putString("cooker",CK_NUM);
         pagerAdapter.addFragment(CkHomeFragment.createInstance(),CK_HOME);
