@@ -1,8 +1,11 @@
 package com.sm.ej.nk.homeal.viewholder;
 
 import android.support.v7.widget.RecyclerView;
+import android.view.DragEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -18,7 +21,7 @@ public class EtHomeViewHolder extends RecyclerView.ViewHolder {
     private ImageView userimage, foodimage, jjimimage;
     private TextView name, address, menu, jjimCount, reviewCount, price;
     private RatingView starCount;
-
+    private LinearLayout jjimLinear, reviewLinear;
 
     public EtHomeViewHolder(View view){
         super(view);
@@ -35,7 +38,81 @@ public class EtHomeViewHolder extends RecyclerView.ViewHolder {
         price = (TextView)view.findViewById(R.id.text_et_home_foodprice);
 
         starCount = (RatingView)view.findViewById(R.id.rating_et_home);
+        starCount.setOnDragListener(new View.OnDragListener() {
+            @Override
+            public boolean onDrag(View view, DragEvent dragEvent) {
+                return true;
+            }
+        });
+        starCount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        starCount.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                return true;
+            }
+        });
+
+        jjimLinear = (LinearLayout)view.findViewById(R.id.linear_et_home_jjim);
+        jjimLinear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(jjimClickListener!=null){
+                    jjimClickListener.onJjimClick(view);
+                }
+            }
+        });
+        reviewLinear = (LinearLayout)view.findViewById(R.id.linear_et_home_review);
+        reviewLinear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(reviewClickListener!=null){
+                    reviewClickListener.onReviewClick(view);
+                }
+            }
+        });
+
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(listener!=null){
+                    listener.onViewClick(view);
+                }
+            }
+        });
     }
+    public interface OnViewClickListener{
+        public void onViewClick(View view);
+    }
+    OnViewClickListener listener;
+    public void setOnViewClickListner(OnViewClickListener listener){
+        this.listener = listener;
+    }
+
+    public interface OnJjimClickListener{
+        public void onJjimClick(View view);
+    }
+
+    OnJjimClickListener jjimClickListener;
+
+    public void setOnJjimClickListener(OnJjimClickListener listener){
+        this.jjimClickListener = listener;
+    }
+
+    public interface OnReviewClickListener{
+        public void onReviewClick(View view);
+    }
+
+    OnReviewClickListener reviewClickListener;
+
+    public void setOnReviewClickListener(OnReviewClickListener listener){
+        this.reviewClickListener = listener;
+    }
+
     public void setData(EtHomeData data){
         Glide.with(userimage.getContext()).load(data.getUserImageUrl()).into(userimage);
         Glide.with(foodimage.getContext()).load(data.getFoodImageUrl()).into(foodimage);

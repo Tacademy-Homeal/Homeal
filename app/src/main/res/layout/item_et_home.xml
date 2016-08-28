@@ -95,7 +95,12 @@
                         android:layout_height="@dimen/et_home_rating_height"
                         android:id="@+id/rating_et_home"
                         app:orv_star_color="black"
-                        android:orientation="horizontal"></com.francescocervone.openratingview.RatingView>
+                        android:clickable="false"
+                        android:orientation="horizontal"
+                        android:background="#ff0000"
+                        android:contextClickable="false"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"></com.francescocervone.openratingview.RatingView>
                 </LinearLayout>
 
                 <LinearLayout
@@ -103,7 +108,8 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:id="@+id/linear_et_home_jjim">
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -122,7 +128,8 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:id="@+id/linear_et_home_review">
 
                     <ImageView
                         android:layout_width="wrap_content"

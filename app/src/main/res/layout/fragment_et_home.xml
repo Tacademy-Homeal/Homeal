@@ -2,7 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.sm.ej.nk.homeal.fragment.EtHomeFragment">
+    tools:context="com.sm.ej.nk.homeal.fragment.EtHomeFragment"
+    android:contextClickable="false">
 
     <!-- TODO: Update blank fragment layout -->
 
