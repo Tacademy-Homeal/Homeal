@@ -6,15 +6,17 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.sm.ej.nk.homeal.R;
+import com.sm.ej.nk.homeal.data.User;
 
 /**
  * Created by Tacademy on 2016-08-25.
  */
 public class ChattingListViewHolder  extends RecyclerView.ViewHolder{
-//teset
-    ImageView chattingListView;
-    TextView lastConversation;
+
+    private ImageView chattingListView;
+    private TextView lastConversation;
 
     public ChattingListViewHolder(View itemView) {
         super(itemView);
@@ -40,5 +42,12 @@ public class ChattingListViewHolder  extends RecyclerView.ViewHolder{
     }
     public void setLastConversation(TextView lastConversation) {
         this.lastConversation = lastConversation;
+    }
+
+    public void setData(User user){
+        Glide.with(chattingListView.getContext()).load(user.getUserImageUrl()).into(chattingListView);
+
+        //change lastConversation
+        lastConversation.setText(user.getUserName());
     }
 }

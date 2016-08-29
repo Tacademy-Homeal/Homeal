@@ -14,7 +14,7 @@ import com.sm.ej.nk.homeal.viewholder.ChattingSendViewHolder;
 /**
  * Created by Tacademy on 2016-08-29.
  */
-public class ChattingAdatper extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+public class ChattingAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     Cursor cursor;
 
@@ -32,13 +32,16 @@ public class ChattingAdatper extends RecyclerView.Adapter<RecyclerView.ViewHolde
     @Override
     public int getItemViewType(int position) {
         cursor.moveToPosition(position);
+
         int type = cursor.getInt(cursor.getColumnIndex(ChatContract.ChatMessage.COLUMN_TYPE));
+
         switch (type) {
             case ChatContract.ChatMessage.TYPE_SEND:
                 return VIEW_TYPE_SEND;
             case ChatContract.ChatMessage.TYPE_RECEIVE:
                 return VIEW_TYPE_RECEIVE;
         }
+
         throw new IllegalArgumentException("invalid type");
     }
 

@@ -14,7 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
 
-import com.sm.ej.nk.homeal.adapter.ChattingAdatper;
+import com.sm.ej.nk.homeal.adapter.ChattingAdapter;
 import com.sm.ej.nk.homeal.data.ChatContract;
 import com.sm.ej.nk.homeal.data.NetworkResult;
 import com.sm.ej.nk.homeal.data.User;
@@ -33,7 +33,7 @@ public class ChattingActivity extends AppCompatActivity {
     @BindView(R.id.rv_chattingactivity)
     RecyclerView rv_chatting;
 
-    ChattingAdatper mAdapter;
+    ChattingAdapter mAdapter;
 
     @BindView(R.id.input_edit)
     EditText inputView;
@@ -64,7 +64,7 @@ public class ChattingActivity extends AppCompatActivity {
 
         user = (User) getIntent().getSerializableExtra(EXTRA_USER);
 
-        mAdapter = new ChattingAdatper();
+        mAdapter = new ChattingAdapter();
         rv_chatting.setAdapter(mAdapter);
         rv_chatting.setLayoutManager(new LinearLayoutManager(this));
         mLBM = LocalBroadcastManager.getInstance(this);

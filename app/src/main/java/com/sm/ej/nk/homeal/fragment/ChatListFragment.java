@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SimpleCursorAdapter;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,8 +28,8 @@ import butterknife.OnItemClick;
  */
 public class ChatListFragment extends Fragment {
 
-    @BindView(R.id.chatting_listview)
-    ListView listView;
+    @BindView(R.id.rv_chattinglist)
+    RecyclerView rv_chattinglist;
 
     SimpleCursorAdapter mAdapter;
 
@@ -52,6 +53,8 @@ public class ChatListFragment extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_chat_list, container, false);
         ButterKnife.bind(this, view);
+
+
         listView.setAdapter(mAdapter);
         return view;
     }
@@ -60,9 +63,12 @@ public class ChatListFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //Chatting list setting
         String[] from = {ChatContract.ChatUser.COLUMN_NAME, ChatContract.ChatUser.COLUMN_EMAIL, ChatContract.ChatMessage.COLUMN_MESSAGE};
         int[] to = {R.id.text_chattlist_name, R.id.text_chattlist_email,R.id.text_chattlist_last_message};
         mAdapter = new SimpleCursorAdapter(getContext(),R.layout.view_chat_user,null,from,to,0);
+
+
     }
 
     @OnItemClick(R.id.chatting_listview)
@@ -89,7 +95,4 @@ public class ChatListFragment extends Fragment {
         super.onStop();
         mAdapter.changeCursor(null);
     }
-
-
-
 }
