@@ -49,7 +49,7 @@ public class CircleProgressBar extends View {
         this.progress = progress;
         invalidate();
     }
-
+//dddddd
     public int getMin() {
         return min;
     }
