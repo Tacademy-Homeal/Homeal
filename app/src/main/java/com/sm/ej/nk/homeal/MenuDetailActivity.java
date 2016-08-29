@@ -1,5 +1,6 @@
 package com.sm.ej.nk.homeal;
 
+import android.content.BroadcastReceiver;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -19,6 +20,10 @@ public class MenuDetailActivity extends AppCompatActivity {
     Toolbar toolbar;
     @BindView(R.id.Detailimageview)
     ImageView imageView;
+
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

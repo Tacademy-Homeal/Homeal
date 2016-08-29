@@ -3,6 +3,8 @@ package com.sm.ej.nk.homeal;
 import android.app.Application;
 import android.content.Context;
 
+import com.facebook.FacebookSdk;
+
 /**
  * Created by Tacademy on 2016-08-24.
  */
@@ -15,6 +17,8 @@ public class HomealApplication extends Application {
     public void onCreate() {
         super.onCreate();
         this.context = this;
+        FacebookSdk.sdkInitialize(getApplicationContext());
+
     }
 
     public static boolean isCooker(){

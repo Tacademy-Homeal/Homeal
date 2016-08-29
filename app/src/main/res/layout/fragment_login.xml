@@ -56,4 +56,14 @@
         android:layout_above="@+id/radio_group_login"
         android:layout_centerHorizontal="true" />
 
+    <ZoomControls
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/zoomControls"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="847dp"
+        android:layout_marginStart="847dp" />
+
 </RelativeLayout>
