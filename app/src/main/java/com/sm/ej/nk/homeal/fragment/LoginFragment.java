@@ -56,4 +56,6 @@ public class LoginFragment extends Fragment {
         ((LoginActivity)getActivity()).changeTos();
     }
 
+
+
 }
