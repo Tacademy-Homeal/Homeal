@@ -38,8 +38,6 @@ public class MenuDetailActivity extends AppCompatActivity {
 
         imageView.setImageDrawable(ContextCompat.getDrawable(getBaseContext(), R.drawable.food));
 
-
-
     }
 
     @OnClick(R.id.Detailimageview)
