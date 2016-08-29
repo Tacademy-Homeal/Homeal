@@ -9,17 +9,18 @@ import com.sm.ej.nk.homeal.HomealApplication;
 import com.sm.ej.nk.homeal.data.ChatContract;
 import com.sm.ej.nk.homeal.data.User;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * Created by Tacademy on 2016-08-29.
  */
-public class DBManager extends SQLiteOpenHelper {
-    private static DBManager instance;
-    public static DBManager getInstance(){
+public class ChattingDBManager extends SQLiteOpenHelper {
+    private static ChattingDBManager instance;
+    public static ChattingDBManager getInstance(){
         if(instance == null){
-            instance = new DBManager();
+            instance = new ChattingDBManager();
         }
         return instance;
     }
@@ -27,7 +28,7 @@ public class DBManager extends SQLiteOpenHelper {
     private static final String DB_NAME = "chat_db";
     private static final int DB_VERSION = 1;
 
-    public DBManager(){
+    public ChattingDBManager(){
         super(HomealApplication.getContext(),DB_NAME,null,DB_VERSION);
     }
 
@@ -54,6 +55,25 @@ public class DBManager extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 
+    }
+
+    public long getLastReceiveDate() {
+        SQLiteDatabase db = getReadableDatabase();
+        String[] columns = {ChatContract.ChatMessage.COLUMN_CREATED};
+        String selection = ChatContract.ChatMessage.COLUMN_TYPE + " = ?";
+        String[] args = {"" + ChatContract.ChatMessage.TYPE_RECEIVE};
+        String orderBy = ChatContract.ChatMessage.COLUMN_CREATED + " DESC";
+        String limit = "1";
+        Cursor c = db.query(ChatContract.ChatMessage.TABLE, columns, selection, args, null, null, orderBy, limit);
+        try {
+            if (c.moveToNext()) {
+                long time = c.getLong(c.getColumnIndex(ChatContract.ChatMessage.COLUMN_CREATED));
+                return time;
+            }
+        } finally {
+            c.close();
+        }
+        return 0;
     }
 
     public long getUserId(long serverId) {
@@ -88,6 +108,10 @@ public class DBManager extends SQLiteOpenHelper {
 
     Map<Long, Long> resolveUserId = new HashMap<>();
     public long addMessage(User user, int type, String message) {
+        return addMessage(user, type, message, new Date());
+    }
+
+    public long addMessage(User user, int type, String message, Date date)  {
         Long uid = resolveUserId.get(user.getId());
         if (uid == null) {
             long id = getUserId(user.getId());
@@ -160,4 +184,6 @@ public class DBManager extends SQLiteOpenHelper {
         SQLiteDatabase db = getReadableDatabase();
         return db.query(ChatContract.ChatMessage.TABLE, columns, selection, args, null, null, sort);
     }
+
+
 }
