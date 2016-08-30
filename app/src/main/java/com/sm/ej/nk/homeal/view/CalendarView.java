@@ -1,7 +1,9 @@
 package com.sm.ej.nk.homeal.view;
 
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Checkable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,7 +15,7 @@ import java.util.Calendar;
 /**
  * Created by Tacademy on 2016-08-26.
  */
-public class CalendarView extends RecyclerView.ViewHolder{
+public class CalendarView extends RecyclerView.ViewHolder implements Checkable{
     public View view;
     public TextView textView;
     public ImageView imageView;
@@ -41,7 +43,33 @@ public class CalendarView extends RecyclerView.ViewHolder{
             imageView.setVisibility(View.INVISIBLE);
         }
         textView.setText(""+item.dayOfMonth);
-        
+    }
+
+    boolean isChecked;
+    @Override
+    public void setChecked(boolean b) {
+        if(isChecked != b){
+            isChecked = b;
+            drawCheck();
+        }
+    }
+
+    private void drawCheck(){
+        if(isChecked){
+            textView.setBackgroundColor(Color.GRAY);
+        }else{
+            textView.setBackgroundColor(Color.WHITE);
+        }
+    }
+
+    @Override
+    public boolean isChecked() {
+        return isChecked;
+    }
+
+    @Override
+    public void toggle() {
+        setChecked(!isChecked);
     }
 
 }
