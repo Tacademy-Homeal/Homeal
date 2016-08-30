@@ -14,11 +14,13 @@ import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.adapter.CalendarAdapter;
 import com.sm.ej.nk.homeal.adapter.ViewPagerAdapter;
 import com.sm.ej.nk.homeal.data.CalendarData;
+import com.sm.ej.nk.homeal.data.CalendarItem;
 import com.sm.ej.nk.homeal.data.CalendarItemData;
 import com.sm.ej.nk.homeal.data.CkDetailData;
 import com.sm.ej.nk.homeal.manager.CalendarManager;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  * Created by Tacademy on 2016-08-29.
@@ -78,14 +80,34 @@ public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder {
         }
         GridLayoutManager manager = new GridLayoutManager(context, 7);
         calendar.setLayoutManager(manager);
-        CalendarData calendarData = CalendarManager.getInstance().getCalendarData();
-        calendarAdapter = new CalendarAdapter(context, calendarData);
-        calendar.setAdapter(calendarAdapter);
+        final CalendarData calendarData = CalendarManager.getInstance().getCalendarData();
 
+
+        calendarAdapter = new CalendarAdapter(context, calendarData);
+        calendarAdapter.setOnCalendarAdpaterClickListener(new CalendarAdapter.OnCalendarAdapterClickListener() {
+            @Override
+            public void onCalendarAdapterClick(View view, int position, CalendarItem data) {
+                calendarMonth.setText(data.month+"월"+data.dayOfMonth+"일");
+                calendarYear.setText(data.year);
+            }
+        });
+        calendar.setAdapter(calendarAdapter);
+        Calendar today = Calendar.getInstance();
+        calendarMonth.setText(today.get(Calendar.MONTH)+"월" +today.get(Calendar.DAY_OF_MONTH)+"일");
+        calendarYear.setText(today.get(Calendar.YEAR));
         progressTotal.setProgress(data.totalScore);
         progressTaste.setProgress(data.tasteScore);
         progressPrice.setProgress(data.priceScore);
         progressClean.setProgress(data.cleanScore);
         progresskind.setProgress(data.kindScore);
+    }
+
+    public interface OnCalendarHeaderViewClickListener{
+        public void onCalendarHeaderViewClickListener(View view, CalendarItem data, int position);
+    }
+
+    OnCalendarHeaderViewClickListener listener;
+    public void setOnCalendarHeaderViewClickListener(OnCalendarHeaderViewClickListener listener){
+        this.listener = listener;
     }
 }
