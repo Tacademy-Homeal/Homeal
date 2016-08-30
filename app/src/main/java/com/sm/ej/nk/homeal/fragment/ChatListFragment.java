@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 
 import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.adapter.ChattingListAdapter;
+import com.sm.ej.nk.homeal.data.User;
 import com.sm.ej.nk.homeal.manager.ChattingDBManager;
 
 import butterknife.BindView;
@@ -55,18 +56,22 @@ public class ChatListFragment extends Fragment {
         return view;
     }
 
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
 
+        User user = new User();
 
-        /*
-        //Chatting list setting
-        String[] from = {ChatContract.ChatUser.COLUMN_NAME, ChatContract.ChatUser.COLUMN_EMAIL, ChatContract.ChatMessage.COLUMN_MESSAGE};
-        int[] to = {R.id.text_chattlist_name, R.id.text_chattlist_email,R.id.text_chattlist_last_message};
-*/
+        user.setId(3);
+        user.setEmail("tompx@hanmail.net");
+        user.setUserImageUrl("https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTDiPYn1kBOVpGZti_ugTpEMzjHcT_KzBH1ULTX7Hv79SiDtCJ6gmDFE_Y");
+
+
+        ChattingDBManager.getInstance().addUser(user);
     }
+
 /*
 
     @OnItemClick(R.id.rv_chattinglist)
@@ -80,9 +85,12 @@ public class ChatListFragment extends Fragment {
         Intent intent = new Intent(getContext(),ChattingActivity.class);
         intent.putExtra(ChattingActivity.EXTRA_USER, user);
         startActivity(intent);*//*
+*/
+/*
 
     }
 */
+
     private void updateMessage() {
         Cursor c = ChattingDBManager.getInstance().getChatUser();
         mAdapter.changeCursor(c);

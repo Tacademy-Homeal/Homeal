@@ -102,6 +102,7 @@ public class ChattingDBManager extends SQLiteOpenHelper {
             values.put(ChatContract.ChatUser.COLUMN_SERVER_ID, user.getId());
             values.put(ChatContract.ChatUser.COLUMN_NAME, user.getUserName());
             values.put(ChatContract.ChatUser.COLUMN_EMAIL, user.getEmail());
+            values.put(ChatContract.ChatUser.COLUMN_IMAGE,user.getUserImageUrl());
             return db.insert(ChatContract.ChatUser.TABLE, null, values);
         }
         throw new IllegalArgumentException("aleady user added");
@@ -160,7 +161,6 @@ public class ChattingDBManager extends SQLiteOpenHelper {
         SQLiteDatabase db = getReadableDatabase();
         return db.query(table, columns, null, null, null, null, sort);
     }
-
 
     public Cursor getChatMessage(User user) {
         long userid = -1;
