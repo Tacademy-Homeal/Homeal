@@ -66,4 +66,28 @@
         android:layout_marginLeft="847dp"
         android:layout_marginStart="847dp" />
 
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:id="@+id/btn_login_facebook"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/btn_login_ft_ok"
+        android:layout_toStartOf="@+id/btn_login_ft_ok"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/round_button"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="F"
+        android:textColor="#fff"/>
+
+    <Button
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="G"
+        android:id="@+id/btn_login_google"
+        android:background="@drawable/round_button"
+        android:gravity="center_vertical|center_horizontal"
+        android:layout_alignTop="@+id/btn_login_facebook"
+        android:layout_toRightOf="@+id/btn_login_ft_ok"
+        android:layout_toEndOf="@+id/btn_login_ft_ok" />
+
 </RelativeLayout>
