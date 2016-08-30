@@ -61,15 +61,17 @@ public class ChatListFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-
         User user = new User();
-
         user.setId(3);
         user.setEmail("tompx@hanmail.net");
         user.setUserImageUrl("https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTDiPYn1kBOVpGZti_ugTpEMzjHcT_KzBH1ULTX7Hv79SiDtCJ6gmDFE_Y");
 
-
         ChattingDBManager.getInstance().addUser(user);
+      //  updateMessage();
+
+
+
+
     }
 
 /*
