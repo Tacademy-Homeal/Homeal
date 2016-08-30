@@ -47,7 +47,7 @@ public  class ChattingListAdapter extends RecyclerView.Adapter<ChattingListViewH
 
         cursor.moveToPosition(position);
 
-        String chatting = cursor.getString(cursor.getColumnIndex(ChatContract.ChatUser.COLUMN_SERVER_ID));
+        String chatting = cursor.getString(cursor.getColumnIndex(ChatContract.ChatUser.COLUMN_EMAIL));
         String serverId = cursor.getString(cursor.getColumnIndex(ChatContract.ChatUser.COLUMN_IMAGE));
 
         holder.setChattingListView(chatting);
