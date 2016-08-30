@@ -65,9 +65,10 @@ public class CkHomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if(position ==0){
             CkHomeHeaderViewHolder headerholder = (CkHomeHeaderViewHolder)holder;
-
+            headerholder.setData(headerData);
         }else{
-
+            CkHomeItemViewHolder itemholder = (CkHomeItemViewHolder)holder;
+            itemholder.setData(itemData.get(position-1));
         }
     }
 

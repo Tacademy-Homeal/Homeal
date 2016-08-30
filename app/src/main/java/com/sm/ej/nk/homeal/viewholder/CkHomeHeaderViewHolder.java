@@ -26,7 +26,7 @@ public class CkHomeHeaderViewHolder extends RecyclerView.ViewHolder{
         userName = (TextView)view.findViewById(R.id.text_ck_home_name);
         userAddress = (TextView)view.findViewById(R.id.text_ck_home_add);
         jjimCount = (TextView)view.findViewById(R.id.text_ck_home_jjimcount);
-        reviewCount = (TextView)view.findViewById(R.id.text_ck_home_jjimcount);
+        reviewCount = (TextView)view.findViewById(R.id.text_ck_home_reviewcount);
         progressTotal = (ProgressBar)view.findViewById(R.id.progress_ck_home_total);
         progressTaste = (ProgressBar)view.findViewById(R.id.progress_ck_home_taste);
         progressKind = (ProgressBar)view.findViewById(R.id.progress_ck_home_kind);

@@ -15,14 +15,14 @@ import com.sm.ej.nk.homeal.data.CkHomeItemData;
  */
 public class CkHomeItemViewHolder extends RecyclerView.ViewHolder {
     View view;
-    public ImageView foodImage, userimage;
+    public ImageView foodImage, userImage;
     public TextView userName, userAdd, foodPrice, foodName, foodInfo;
 
     public CkHomeItemViewHolder(View view){
         super(view);
         this.view = view;
         foodImage = (ImageView)view.findViewById(R.id.image_ck_home_item_food);
-        userimage = (ImageView)view.findViewById(R.id.image_ck_home_item_user);
+        userImage = (ImageView)view.findViewById(R.id.image_ck_home_item_user);
         userName = (TextView)view.findViewById(R.id.text_ck_home_item_username);
         userAdd = (TextView)view.findViewById(R.id.text_ck_home_item_useradd);
         foodPrice = (TextView)view.findViewById(R.id.text_ck_home_item_foodprice);
@@ -32,7 +32,7 @@ public class CkHomeItemViewHolder extends RecyclerView.ViewHolder {
 
     public void setData(CkHomeItemData data){
         Glide.with(HomealApplication.getContext()).load(data.foodimage).into(foodImage);
-        Glide.with(HomealApplication.getContext()).load(data.user.userImage).into(userimage);
+        Glide.with(HomealApplication.getContext()).load(data.user.userImage).into(userImage);
         userName.setText(data.user.userName);
         userAdd.setText(data.user.userAddress);
         foodPrice.setText(data.foodPrice);
