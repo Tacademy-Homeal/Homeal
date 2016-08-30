@@ -49,13 +49,13 @@ public class EtHomeAdapter extends RecyclerView.Adapter<EtHomeViewHolder> implem
 
 
     @Override
-    public void onViewClick(View view) {
+    public void onViewClick(View view, int position) {
         if(listener!=null){
-            listener.onViewClick(view);
+            listener.onViewClick(view, position);
         }
     }
     public interface OnViewClickListener{
-        public void onViewClick(View view);
+        public void onViewClick(View view, int position);
     }
     OnViewClickListener listener;
     public void setOnViewClickListener(OnViewClickListener listener){
@@ -63,13 +63,13 @@ public class EtHomeAdapter extends RecyclerView.Adapter<EtHomeViewHolder> implem
     }
 
     @Override
-    public void onJjimClick(View view) {
+    public void onJjimClick(View view, int position) {
         if(jjimitemClickListener!=null){
-            jjimitemClickListener.onJjimitemClick(view);
+            jjimitemClickListener.onJjimitemClick(view,position);
         }
     }
     public interface OnJjimitemClickListener{
-        public void onJjimitemClick(View view);
+        public void onJjimitemClick(View view, int position);
     }
 
     OnJjimitemClickListener jjimitemClickListener;
@@ -79,14 +79,14 @@ public class EtHomeAdapter extends RecyclerView.Adapter<EtHomeViewHolder> implem
 
 
     @Override
-    public void onReviewClick(View view) {
+    public void onReviewClick(View view, int position) {
         if(reviewitemClickListener!=null){
-            reviewitemClickListener.onReviewitemClick(view);
+            reviewitemClickListener.onReviewitemClick(view,position);
         }
     }
 
     public interface OnReviewitemClickListener{
-        public void onReviewitemClick(View view);
+        public void onReviewitemClick(View view, int position);
     }
 
     OnReviewitemClickListener reviewitemClickListener;

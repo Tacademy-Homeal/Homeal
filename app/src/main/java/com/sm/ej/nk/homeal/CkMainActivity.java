@@ -3,6 +3,7 @@ package com.sm.ej.nk.homeal;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -20,7 +21,7 @@ import com.sm.ej.nk.homeal.view.AlarmPopupWindow;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class CkMainActivity extends AppCompatActivity {
+public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener{
     @BindView(R.id.tablayout_ck_main)
     TabLayout tabLayout;
 
@@ -29,6 +30,9 @@ public class CkMainActivity extends AppCompatActivity {
 
     @BindView(R.id.viewpager_ck_main)
     ViewPager viewPager;
+
+    @BindView(R.id.floating_ck_home)
+    FloatingActionButton fab;
 
     AlarmPopupWindow popupWindow;
 
@@ -46,6 +50,7 @@ public class CkMainActivity extends AppCompatActivity {
 
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.setTabTextColors(Color.BLACK, Color.BLACK);
+        tabLayout.addOnTabSelectedListener(this);
     }
     private static final String CK_HOME = "쿠커홈";
     private static final String CK_CHAT_LIST = "채팅리스트";
@@ -89,4 +94,25 @@ public class CkMainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onTabSelected(TabLayout.Tab tab) {
+        switch(tab.getPosition()){
+            case 0:
+                fab.show();
+                break;
+            default:
+                fab.hide();
+                break;
+        }
+    }
+
+    @Override
+    public void onTabUnselected(TabLayout.Tab tab) {
+
+    }
+
+    @Override
+    public void onTabReselected(TabLayout.Tab tab) {
+
+    }
 }

@@ -62,7 +62,7 @@ public class EtHomeViewHolder extends RecyclerView.ViewHolder {
             @Override
             public void onClick(View view) {
                 if(jjimClickListener!=null){
-                    jjimClickListener.onJjimClick(view);
+                    jjimClickListener.onJjimClick(view, getAdapterPosition());
                 }
             }
         });
@@ -71,7 +71,7 @@ public class EtHomeViewHolder extends RecyclerView.ViewHolder {
             @Override
             public void onClick(View view) {
                 if(reviewClickListener!=null){
-                    reviewClickListener.onReviewClick(view);
+                    reviewClickListener.onReviewClick(view, getAdapterPosition());
                 }
             }
         });
@@ -80,13 +80,13 @@ public class EtHomeViewHolder extends RecyclerView.ViewHolder {
             @Override
             public void onClick(View view) {
                 if(listener!=null){
-                    listener.onViewClick(view);
+                    listener.onViewClick(view, getAdapterPosition());
                 }
             }
         });
     }
     public interface OnViewClickListener{
-        public void onViewClick(View view);
+        public void onViewClick(View view,int position);
     }
     OnViewClickListener listener;
     public void setOnViewClickListner(OnViewClickListener listener){
@@ -94,7 +94,7 @@ public class EtHomeViewHolder extends RecyclerView.ViewHolder {
     }
 
     public interface OnJjimClickListener{
-        public void onJjimClick(View view);
+        public void onJjimClick(View view, int position);
     }
 
     OnJjimClickListener jjimClickListener;
@@ -104,7 +104,7 @@ public class EtHomeViewHolder extends RecyclerView.ViewHolder {
     }
 
     public interface OnReviewClickListener{
-        public void onReviewClick(View view);
+        public void onReviewClick(View view, int position);
     }
 
     OnReviewClickListener reviewClickListener;

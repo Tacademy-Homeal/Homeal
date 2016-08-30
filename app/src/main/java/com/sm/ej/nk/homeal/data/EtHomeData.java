@@ -1,9 +1,11 @@
 package com.sm.ej.nk.homeal.data;
 
+import java.io.Serializable;
+
 /**
  * Created by Tacademy on 2016-08-26.
  */
-public class EtHomeData {
+public class EtHomeData implements Serializable {
     private String ckId;
     private String userImageUrl;
     private String foodImageUrl;

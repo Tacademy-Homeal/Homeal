@@ -19,6 +19,4 @@ public class CkDetailData {
     public int cleanScore;
     public String foodIntroduce;
     public String mapImage;
-    public ArrayList<String> deSelectCalendar;
-    public ArrayList<CkDetailMenuData> menuList;
 }

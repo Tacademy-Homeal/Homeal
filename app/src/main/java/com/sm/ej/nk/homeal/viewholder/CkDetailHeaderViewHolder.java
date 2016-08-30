@@ -87,14 +87,18 @@ public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder {
         calendarAdapter.setOnCalendarAdpaterClickListener(new CalendarAdapter.OnCalendarAdapterClickListener() {
             @Override
             public void onCalendarAdapterClick(View view, int position, CalendarItem data) {
-                calendarMonth.setText(data.month+"월"+data.dayOfMonth+"일");
-                calendarYear.setText(data.year);
+                calendarMonth.setText((data.month+1)+"월"+data.dayOfMonth+"일");
+                calendarYear.setText(""+data.year);
+
+                if(listener!=null){
+                    listener.onCalendarHeaderViewClickListener(view, data, position);
+                }
             }
         });
         calendar.setAdapter(calendarAdapter);
         Calendar today = Calendar.getInstance();
-        calendarMonth.setText(today.get(Calendar.MONTH)+"월" +today.get(Calendar.DAY_OF_MONTH)+"일");
-        calendarYear.setText(today.get(Calendar.YEAR));
+        calendarMonth.setText((today.get(Calendar.MONTH)+1)+"월" +today.get(Calendar.DAY_OF_MONTH)+"일");
+        calendarYear.setText(today.get(Calendar.YEAR)+"");
         progressTotal.setProgress(data.totalScore);
         progressTaste.setProgress(data.tasteScore);
         progressPrice.setProgress(data.priceScore);

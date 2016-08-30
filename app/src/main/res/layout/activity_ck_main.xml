@@ -35,5 +35,10 @@
         android:id="@+id/viewpager_ck_main"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
-
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/floating_ck_home"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="@dimen/ck_detail_floating_bottommargin"/>
 </android.support.design.widget.CoordinatorLayout>

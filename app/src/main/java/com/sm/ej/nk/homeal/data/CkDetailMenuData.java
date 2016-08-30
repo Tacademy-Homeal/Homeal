@@ -9,6 +9,8 @@ public class CkDetailMenuData {
     public String foodAddress;
     public String foodTime;
     public boolean isSoldOut;
+    public String numday;
+    public String day;
 
     public String getFoodImage() {
         return foodImage;

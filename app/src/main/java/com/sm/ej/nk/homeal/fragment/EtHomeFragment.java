@@ -33,6 +33,7 @@ public class EtHomeFragment extends Fragment implements EtHomeAdapter.OnReviewit
     RecyclerView.LayoutManager layoutManager;
 
     EtHomeAdapter mAdapter;
+    List<EtHomeData> datas;
 
     public static EtHomeFragment createInstance(){
         final EtHomeFragment pageFragment = new EtHomeFragment();
@@ -67,7 +68,7 @@ public class EtHomeFragment extends Fragment implements EtHomeAdapter.OnReviewit
 
 
     private void initData() {
-        List<EtHomeData> datas = new ArrayList<>();
+        datas = new ArrayList<>();
         for(int i=0; i<10; i++){
             EtHomeData data = new EtHomeData();
             data.setAddress("주소"+i);
@@ -83,22 +84,23 @@ public class EtHomeFragment extends Fragment implements EtHomeAdapter.OnReviewit
         mAdapter.addList(datas);
     }
 
-    public static final int INTENT_CK_ID = 0;
+    public static final String INTENT_CK_ID = "asd";
     @Override
-    public void onViewClick(View view) {
+    public void onViewClick(View view, int position) {
         Intent intent = new Intent(getActivity(), InfoCkDetailActivity.class);
 //        intent.putExtra(INTENT_CK_ID, );
+        intent.putExtra(INTENT_CK_ID, datas.get(position));
         startActivity(intent);
     }
 
     @Override
-    public void onJjimitemClick(View view) {
+    public void onJjimitemClick(View view, int position) {
         Snackbar.make(view,"이미지, 텍스트 변경", Snackbar.LENGTH_SHORT).show();
     }
 
     public static final int INTENT_SCROLL = 1;
     @Override
-    public void onReviewitemClick(View view) {
+    public void onReviewitemClick(View view, int position) {
         Intent intent = new Intent(getActivity(), InfoCkDetailActivity.class);
 //        intent.putExtra(INTENT_SCROLL, );
         startActivity(intent);

@@ -1,6 +1,7 @@
 package com.sm.ej.nk.homeal;
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -8,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.sm.ej.nk.homeal.adapter.CkDetailAdapter;
+import com.sm.ej.nk.homeal.data.CalendarItem;
 import com.sm.ej.nk.homeal.data.CkDetailData;
 import com.sm.ej.nk.homeal.data.CkDetailMenuData;
 
@@ -16,13 +18,16 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class InfoCkDetailActivity extends AppCompatActivity {
+public class InfoCkDetailActivity extends AppCompatActivity implements CkDetailAdapter.OnDetailAdapterClickListener{
 
     @BindView(R.id.toobar_ck_detail)
     Toolbar toolbar;
 
     @BindView(R.id.rv_ck_detail)
     RecyclerView rv;
+
+    @BindView(R.id.floating_ck_detail)
+    FloatingActionButton floatingActionButton;
 
     CkDetailAdapter mAdapter;
     @Override
@@ -43,10 +48,24 @@ public class InfoCkDetailActivity extends AppCompatActivity {
             }
         });
 
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
         LinearLayoutManager manager = new LinearLayoutManager(this);
         rv.setLayoutManager(manager);
         mAdapter = new CkDetailAdapter(init());
+        mAdapter.setOnDetailAdapterClickListener(this);
         rv.setAdapter(mAdapter);
+        initMenu();
+    }
+
+    @Override
+    public void onDetailAdapterClick(View view, CalendarItem data, int position) {
+
     }
 
     private CkDetailData init(){
@@ -69,6 +88,10 @@ public class InfoCkDetailActivity extends AppCompatActivity {
         }
         data.pagerImageList = dummylist;
 
+        return data;
+    }
+
+    public void initMenu(){
         ArrayList<CkDetailMenuData> dummy = new ArrayList<>();
         for(int i=0 ; i<5 ; i++){
             CkDetailMenuData menuData = new CkDetailMenuData();
@@ -78,7 +101,6 @@ public class InfoCkDetailActivity extends AppCompatActivity {
             menuData.foodTime = "시간"+i;
             dummy.add(menuData);
         }
-        data.menuList = dummy;
-        return data;
+        mAdapter.addMenuList(dummy);
     }
 }

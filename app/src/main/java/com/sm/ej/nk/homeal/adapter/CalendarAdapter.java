@@ -58,6 +58,11 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarView> {
                 }
             }
         });
+        if(mode == CHOICE_MODE_SINGLE){
+            holder.setChecked(checkedPosition == position);
+        }else{
+            holder.setChecked(itemSelected.get(position));
+        }
     }
 
     @Override

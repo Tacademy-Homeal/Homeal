@@ -28,6 +28,7 @@ public class CkDetailItemViewHolder extends RecyclerView.ViewHolder{
         time = (TextView)view.findViewById(R.id.text_item_ck_detail_time);
         image = (ImageView)view.findViewById(R.id.image_item_ck_detail);
         imageButton = (ImageView)view.findViewById(R.id.image_item_ck_detail_button);
+
     }
 
     public void setData(CkDetailMenuData datas){
