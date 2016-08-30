@@ -50,5 +50,7 @@ dependencies {
     compile 'com.google.firebase:firebase-ads:9.4.0'
     compile 'com.android.support:multidex:1.0.1'
 
+    compile files('libs/com.skp.Tmap_1.0.43.jar')
+    compile 'com.github.clans:fab:1.6.4'
 }
 apply plugin: 'com.google.gms.google-services'

@@ -3,7 +3,6 @@ package com.sm.ej.nk.homeal;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.github.clans.fab.FloatingActionMenu;
 import com.sm.ej.nk.homeal.adapter.ViewPagerFragmentAdapter;
 import com.sm.ej.nk.homeal.fragment.ChatListFragment;
 import com.sm.ej.nk.homeal.fragment.CkHomeFragment;
@@ -32,7 +32,7 @@ public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTab
     ViewPager viewPager;
 
     @BindView(R.id.floating_ck_home)
-    FloatingActionButton fab;
+    FloatingActionMenu fab;
 
     AlarmPopupWindow popupWindow;
 
@@ -98,10 +98,10 @@ public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTab
     public void onTabSelected(TabLayout.Tab tab) {
         switch(tab.getPosition()){
             case 0:
-                fab.show();
+                fab.showMenu(true);
                 break;
             default:
-                fab.hide();
+                fab.hideMenu(true);
                 break;
         }
     }
