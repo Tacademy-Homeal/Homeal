@@ -13,16 +13,16 @@ import com.sm.ej.nk.homeal.viewholder.ChattingListViewHolder;
 /**
  * Created by Tacademy on 2016-08-25.
  */
-public  class ChattingListAdapter extends RecyclerView.Adapter<ChattingListViewHolder>{
+public  class ChattingListAdapter extends RecyclerView.Adapter<ChattingListViewHolder> implements ChattingListViewHolder.OnItemClickListener{
 
     private Cursor cursor;
 
-
     public void changeCursor(Cursor cursor){
-        if(cursor != null){
-            cursor.close();
+        if(this.cursor != null){
+            this.cursor.close();
         }
         this.cursor = cursor;
+
         notifyDataSetChanged();
     }
 
@@ -32,7 +32,8 @@ public  class ChattingListAdapter extends RecyclerView.Adapter<ChattingListViewH
         return cursor.getCount();
     }
 
-    public Cursor getCursor(){
+    public Cursor getCursor(int position){
+        cursor.moveToPosition(position);
         return cursor;
     }
 
@@ -47,12 +48,26 @@ public  class ChattingListAdapter extends RecyclerView.Adapter<ChattingListViewH
 
         cursor.moveToPosition(position);
 
-        String chatting = cursor.getString(cursor.getColumnIndex(ChatContract.ChatUser.COLUMN_EMAIL));
-        String serverId = cursor.getString(cursor.getColumnIndex(ChatContract.ChatUser.COLUMN_IMAGE));
-
-        holder.setChattingListView(chatting);
-        holder.setServerId(serverId);
-
+        String chatting = cursor.getString(cursor.getColumnIndex(ChatContract.ChatUser.COLUMN_NAME));
+        String serverId = cursor.getString(cursor.getColumnIndex(ChatContract.ChatUser.COLUMN_EMAIL));
+        holder.setChattingListView(serverId);
+        holder.setServerId(chatting);
+        holder.setOnItemClickListener(this);
     }
 
+    //interface function
+    @Override
+    public void onItemClick(View view, int position) {
+        if(listener!=null){
+            listener.onViewClick(view,position);
+        }
+    }
+
+    public interface OnViewClickListener{
+        public void onViewClick(View view,int position);
+    }
+    OnViewClickListener listener;
+    public void setOnViewClickListener(OnViewClickListener listener){
+        this.listener = listener;
+    }
 }
