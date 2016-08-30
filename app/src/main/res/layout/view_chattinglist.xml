@@ -12,13 +12,12 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true" />
 
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="@dimen/et_home_userimagesize"
+        android:layout_height="@dimen/et_home_userimagesize"
         android:id="@+id/image_chatting_list"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignBottom="@+id/text_chatting_list" />
+        android:layout_marginLeft="@dimen/et_home_userimage_leftmargin" />
+
 
 </RelativeLayout>

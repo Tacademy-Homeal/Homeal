@@ -46,6 +46,7 @@ public class ChattingActivity extends AppCompatActivity {
 
     LocalBroadcastManager mLBM;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +69,7 @@ public class ChattingActivity extends AppCompatActivity {
         rv_chatting.setAdapter(mAdapter);
         rv_chatting.setLayoutManager(new LinearLayoutManager(this));
         mLBM = LocalBroadcastManager.getInstance(this);
+
     }
 
     @OnClick(R.id.btn_send)
@@ -122,5 +124,6 @@ public class ChattingActivity extends AppCompatActivity {
         mAdapter.changeCursor(null);
         mLBM.unregisterReceiver(mReceiver);
     }
+
 
 }

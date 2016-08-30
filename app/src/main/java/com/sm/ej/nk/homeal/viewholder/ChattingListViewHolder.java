@@ -11,13 +11,21 @@ import com.sm.ej.nk.homeal.R;
 /**
  * Created by Tacademy on 2016-08-25.
  */
-public class ChattingListViewHolder  extends RecyclerView.ViewHolder{
+public class ChattingListViewHolder  extends RecyclerView.ViewHolder {
 
     private ImageView chattingListView;
     private TextView serverIdView;
 
     public ChattingListViewHolder(View itemView) {
         super(itemView);
+        itemView.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                if(mClickListener != null){
+                    mClickListener.onItemClick(v,getAdapterPosition());
+                }
+            }
+        });
         chattingListView = (ImageView)itemView.findViewById(R.id.image_chatting_list);
         serverIdView = (TextView)itemView.findViewById(R.id.text_chatting_list);
     }
@@ -30,15 +38,17 @@ public class ChattingListViewHolder  extends RecyclerView.ViewHolder{
         serverIdView.setText(serverId);
     }
 
-    public ImageView getChattingListView() {
+    public ImageView getChattingListView() {return chattingListView;}
 
-        return chattingListView;
+    public void setChattingListView(String chattingList) {Glide.with(chattingListView.getContext()).load(chattingList).into(chattingListView);}
+
+    public interface OnItemClickListener{
+        public void onItemClick(View view, int position);
     }
 
-    public void setChattingListView(String chattingList) {
-
-
-        Glide.with(chattingListView.getContext()).load(chattingList).into(chattingListView);
-
+    OnItemClickListener mClickListener;
+    public void setOnItemClickListener(OnItemClickListener listener){
+        mClickListener = listener;
     }
+
 }
