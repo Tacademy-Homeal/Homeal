@@ -24,7 +24,7 @@
     <string name="login_dialog">앱을 종료하시겠습니까?</string>
     <string name="tos_info">용이용약관 내용 이용약관 내용 이용약관 내용 이용약관 내용이용약관 내용 ㅍ 이용약관 내용 ㅍ 이용약관 내용 이용약관 내용</string>
     <string name="infockdetail_name">상세페이지</string>
-    <string name="ck_detail_food" >Introduce My Food</string>
+    <string name="ck_detail_food">Introduce My Food</string>
     <string name="ck_detail_total">총점</string>
     <string name="ck_detail_taste">맛</string>
     <string name="ck_detail_price">가격</string>
