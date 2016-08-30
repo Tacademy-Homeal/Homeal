@@ -1,17 +1,21 @@
 package com.sm.ej.nk.homeal.fragment;
 
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.sm.ej.nk.homeal.ChattingActivity;
 import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.adapter.ChattingListAdapter;
+import com.sm.ej.nk.homeal.data.ChatContract;
 import com.sm.ej.nk.homeal.data.User;
 import com.sm.ej.nk.homeal.manager.ChattingDBManager;
 
@@ -21,14 +25,18 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ChatListFragment extends Fragment {
-
+public class ChatListFragment extends Fragment  implements ChattingListAdapter.OnViewClickListener{
+    public static final int TYPE_SEND = 0;
+    public static final int TYPE_RECEIVE = 1;
     @BindView(R.id.rv_chattinglist)
     RecyclerView rv_chattinglist;
 
     RecyclerView.LayoutManager layoutManager;
 
     ChattingListAdapter mAdapter;
+
+    public static final String EXTRA_USER = "user";
+
 
     public static ChatListFragment createInstance(){
         final ChatListFragment pageFragment = new ChatListFragment();
@@ -48,60 +56,25 @@ public class ChatListFragment extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_chat_list, container, false);
         ButterKnife.bind(this, view);
 
+        layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         mAdapter = new ChattingListAdapter();
-
-        rv_chattinglist.setLayoutManager(layoutManager);
         rv_chattinglist.setAdapter(mAdapter);
+        rv_chattinglist.setLayoutManager(layoutManager);
+        mAdapter.setOnViewClickListener(this);
 
         return view;
     }
 
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-        User user = new User();
-        user.setId(3);
-        user.setEmail("tompx@hanmail.net");
-        user.setUserImageUrl("https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTDiPYn1kBOVpGZti_ugTpEMzjHcT_KzBH1ULTX7Hv79SiDtCJ6gmDFE_Y");
-
-        ChattingDBManager.getInstance().addUser(user);
-      //  updateMessage();
-
-
-
-
-    }
-
-/*
-
-    @OnItemClick(R.id.rv_chattinglist)
-    public void onItemClick(int position, long id){
-
-       Cursor cursor = (Cursor)listView.getItemAtPosition(position);
-        User user = new User();
-        user.setId((cursor.getLong(cursor.getColumnIndex(ChatContract.ChatUser.COLUMN_SERVER_ID))));
-        user.setEmail(cursor.getString(cursor.getColumnIndex(ChatContract.ChatUser.COLUMN_EMAIL)));
-        user.setUserName(cursor.getString(cursor.getColumnIndex(ChatContract.ChatUser.COLUMN_NAME)));
-        Intent intent = new Intent(getContext(),ChattingActivity.class);
-        intent.putExtra(ChattingActivity.EXTRA_USER, user);
-        startActivity(intent);*//*
-*/
-/*
-
-    }
-*/
-
-    private void updateMessage() {
-        Cursor c = ChattingDBManager.getInstance().getChatUser();
-        mAdapter.changeCursor(c);
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        updateMessage();
+        Cursor c = ChattingDBManager.getInstance().getChatUser();
+        mAdapter.changeCursor(c);
     }
 
     @Override
@@ -109,4 +82,19 @@ public class ChatListFragment extends Fragment {
         super.onStop();
         mAdapter.changeCursor(null);
     }
+
+    @Override
+    public void onViewClick(View view,int position) {
+
+        Cursor cursor = mAdapter.getCursor(position);
+        User user = new User();
+        user.setId(cursor.getLong(cursor.getColumnIndex(ChatContract.ChatUser.COLUMN_SERVER_ID)));
+        user.setEmail(cursor.getString(cursor.getColumnIndex(ChatContract.ChatUser.COLUMN_EMAIL)));
+        user.setUserName(cursor.getString(cursor.getColumnIndex(ChatContract.ChatUser.COLUMN_NAME)));
+        Intent intent = new Intent(getContext(),ChattingActivity.class);
+        intent.putExtra(ChattingActivity.EXTRA_USER, user);
+        startActivity(intent);
+
+    }
+
 }

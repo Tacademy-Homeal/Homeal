@@ -39,8 +39,7 @@ public class ChattingDBManager extends SQLiteOpenHelper {
                 ChatContract.ChatUser.COLUMN_SERVER_ID + " INTEGER," +
                 ChatContract.ChatUser.COLUMN_NAME + " TEXT," +
                 ChatContract.ChatUser.COLUMN_EMAIL + " TEXT NOT NULL," +
-                ChatContract.ChatUser.COLUMN_LAST_MESSAGE_ID + " INTEGER" +
-                ChatContract.ChatUser.COLUMN_IMAGE + " TEXT NOT NULL);";
+                ChatContract.ChatUser.COLUMN_LAST_MESSAGE_ID + " INTEGER);";
         db.execSQL(sql);
 
         sql = "CREATE TABLE " + ChatContract.ChatMessage.TABLE + "(" +
@@ -102,7 +101,6 @@ public class ChattingDBManager extends SQLiteOpenHelper {
             values.put(ChatContract.ChatUser.COLUMN_SERVER_ID, user.getId());
             values.put(ChatContract.ChatUser.COLUMN_NAME, user.getUserName());
             values.put(ChatContract.ChatUser.COLUMN_EMAIL, user.getEmail());
-            values.put(ChatContract.ChatUser.COLUMN_IMAGE,user.getUserImageUrl());
             return db.insert(ChatContract.ChatUser.TABLE, null, values);
         }
         throw new IllegalArgumentException("aleady user added");

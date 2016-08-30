@@ -10,15 +10,15 @@ public class User implements Serializable {
     public String userName;
     public String email;
     public String facebookId;
-    public String userImageUrl;
+  //  public String userImageUrl;
 
-    public String getUserImageUrl() {
+/*    public String getUserImageUrl() {
         return userImageUrl;
     }
 
     public void setUserImageUrl(String userImageUrl) {
         this.userImageUrl = userImageUrl;
-    }
+    }*/
 
     public String getEmail() {
         return email;

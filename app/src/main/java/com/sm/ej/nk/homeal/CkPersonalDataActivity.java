@@ -1,5 +1,6 @@
 package com.sm.ej.nk.homeal;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -59,6 +60,11 @@ public class CkPersonalDataActivity extends AppCompatActivity {
     @BindView(R.id.image_ck_picture)
     ImageButton ckpictureView;
 
+    @OnClick(R.id.edit_ck_address)
+    public void onAddressEdit(){
+        startActivity(new Intent(CkPersonalDataActivity.this, AddressEditActivity.class));
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +76,10 @@ public class CkPersonalDataActivity extends AppCompatActivity {
 
         isPersonalData(false);
         btnChangeFinish.setVisibility(View.GONE);
+
+        Intent intent = getIntent();
+        String address = intent.getStringExtra("address");
+        addressEdit.setText(address);
     }
 
     @OnClick(R.id.btn_personal_change)
