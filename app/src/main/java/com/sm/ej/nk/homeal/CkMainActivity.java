@@ -1,9 +1,7 @@
 package com.sm.ej.nk.homeal;
 
-import android.annotation.TargetApi;
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -34,7 +32,6 @@ public class CkMainActivity extends AppCompatActivity {
 
     AlarmPopupWindow popupWindow;
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
