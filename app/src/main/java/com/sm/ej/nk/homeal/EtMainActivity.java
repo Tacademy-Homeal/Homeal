@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.sm.ej.nk.homeal.adapter.ViewPagerFragmentAdapter;
+import com.sm.ej.nk.homeal.fragment.ChatListFragment;
 import com.sm.ej.nk.homeal.fragment.EtHomeFragment;
 import com.sm.ej.nk.homeal.fragment.EtMyPageFragment;
 import com.sm.ej.nk.homeal.fragment.EtReserveFragment;
