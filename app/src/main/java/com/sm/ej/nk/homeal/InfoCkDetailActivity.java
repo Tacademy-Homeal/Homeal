@@ -62,7 +62,7 @@ public class InfoCkDetailActivity extends AppCompatActivity implements CkDetailA
         rv.setAdapter(mAdapter);
         initMenu();
     }
-
+    //ddddddd
     @Override
     public void onDetailAdapterClick(View view, CalendarItem data, int position) {
 
