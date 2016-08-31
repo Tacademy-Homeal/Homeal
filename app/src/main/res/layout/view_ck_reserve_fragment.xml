@@ -7,7 +7,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/image_ck_reserve_picture"
             android:layout_width="70dp"
             android:layout_height="100dp" />
@@ -83,19 +83,21 @@
                     style="?android:attr/buttonStyleSmall"
                     android:id="@+id/btn_ck_reserve_state_disagree"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_btn_ck_reserve_disagree" />
 
                 <Button
                     style="?android:attr/buttonStyleSmall"
                     android:id="@+id/btn_ck_reserve_state_agree"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_btn_ck_reserve_request" />
 
                 <Button
                     style="?android:attr/buttonStyleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="New Button"
+                    android:text="@string/text_ck_reserve_write"
                     android:id="@+id/btn_ck_review_write" />
             </LinearLayout>
         </LinearLayout>
