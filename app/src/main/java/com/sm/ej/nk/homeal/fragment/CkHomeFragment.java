@@ -37,7 +37,7 @@ public class CkHomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        // Inflate the layout for this fragmentasasfasfaf
         View view=  inflater.inflate(R.layout.fragment_ck_home, container, false);
         ButterKnife.bind(this, view);
         rv = (RecyclerView)view.findViewById(R.id.rv_ck_home);
