@@ -22,7 +22,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
 
-                    <ImageView
+                    <de.hdodenhof.circleimageview.CircleImageView
                         android:layout_width="@dimen/et_home_userimagesize"
                         android:layout_height="@dimen/et_home_userimagesize"
                         android:id="@+id/image_et_home_user"
