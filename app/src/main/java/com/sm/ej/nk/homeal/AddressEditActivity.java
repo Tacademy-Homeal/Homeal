@@ -52,7 +52,7 @@ import java.util.Map;
 
 public class AddressEditActivity extends AppCompatActivity implements
         OnMapReadyCallback, GoogleMap.OnCameraMoveListener, GoogleMap.OnInfoWindowClickListener{
-
+//dd
     GoogleMap map;
     LocationManager mLM;
     String mProvider = LocationManager.NETWORK_PROVIDER;
@@ -125,14 +125,14 @@ public class AddressEditActivity extends AppCompatActivity implements
         });
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                final Poi poi = (Poi) listView.getItemAtPosition(position);
-                animateMap(poi.getLatitude(), poi.getLongitude(), new Runnable() {
-                    @Override
-                    public void run() {
-                        Marker m = markerResolver.get(poi);
-                        m.showInfoWindow();
+                            @Override
+                            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                                final Poi poi = (Poi) listView.getItemAtPosition(position);
+                                animateMap(poi.getLatitude(), poi.getLongitude(), new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Marker m = markerResolver.get(poi);
+                                        m.showInfoWindow();
                     }
                 });
                 map.clear();
@@ -228,9 +228,9 @@ public class AddressEditActivity extends AppCompatActivity implements
                     .target(latLng)
                     .bearing(30)
                     .tilt(45)
-                    .zoom(17)
+                    .zoom(16)
                     .build();
-            CameraUpdate update = CameraUpdateFactory.newLatLngZoom(latLng, 17);
+            CameraUpdate update = CameraUpdateFactory.newLatLngZoom(latLng, 16);
             map.moveCamera(update);
         }
     }

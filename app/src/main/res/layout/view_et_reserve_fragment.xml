@@ -62,7 +62,11 @@
                     android:text="cookername" />
 
                 <RatingBar
+                    android:theme="@style/RatingBar"
                     android:id="@+id/rating_et_reserve_ck"
+                    android:rating="3.5"
+                    android:stepSize="0.5"
+                    android:numStars="5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>
@@ -71,7 +75,8 @@
                 android:id="@+id/linear_reserve_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:weightSum="1">
 
                 <TextView
                     android:id="@+id/text_et_reserve_state"
@@ -82,16 +87,13 @@
                     android:text="reservestate" />
 
                 <Button
-                    android:id="@+id/btn_et_reserve_state"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                <Button
                     style="?android:attr/buttonStyleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="New Button"
-                    android:id="@+id/btn_et_review_write" />
+                    android:layout_marginLeft="100dp"
+                    android:text="@string/et_reservation_cancle"
+                    android:id="@+id/btn_et_review_write"
+                    android:layout_weight="0.53" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

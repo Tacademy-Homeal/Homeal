@@ -1,7 +1,6 @@
 package com.sm.ej.nk.homeal.fragment;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.sm.ej.nk.homeal.EtWriteReviewActivity;
 import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.adapter.EtReserveAdapter;
 import com.sm.ej.nk.homeal.data.EtReserveData;
@@ -40,9 +38,7 @@ public class EtReserveFragment extends Fragment {
     }
 
     public EtReserveFragment() {
-        // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -58,22 +54,22 @@ public class EtReserveFragment extends Fragment {
 
         initData();
 
-        mAdapter.setOnAdapterItemClickListener(new EtReserveAdapter.OnAdapterItemClickLIstener() {
-            @Override
-            public void onAdapterItemClick(View view, EtReserveData etReserveData, int position) {
-                Toast.makeText(view.getContext(), "예약이 취소되었습니다.", Toast.LENGTH_SHORT).show();
-            }
-        });
+       mAdapter.setOnReviewItemClickListener(new EtReserveAdapter.OnReserveAdapterClick() {
 
-        mAdapter.setOnreviewAdapterItemClickListener(new EtReserveAdapter.OnreviewAdapterItemClickLIstener() {
-            @Override
-            public void onreviewAdapterItemClick(View view, EtReserveData etReserveData, int position) {
-                startActivity(new Intent(getContext(), EtWriteReviewActivity.class));
-            }
+           @Override
+           public void onReserveAdapterClick(View view, EtReserveData etReserveData, int position) {
+               Toast.makeText(view.getContext(), "예약이 취소되었습니다.", Toast.LENGTH_SHORT).show();
+           }
         });
-
         return view;
     }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mAdapter = new EtReserveAdapter();
+    }
+
 
     private void initData() {
         Random r = new Random();
@@ -89,19 +85,6 @@ public class EtReserveFragment extends Fragment {
             data.setBtnetreviewwrite("후기 작성");
             mAdapter.add(data);
         }
-
     }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        mAdapter = new EtReserveAdapter();
-    }
-//    @OnClick(R.id.btn_et_reserve_write)
-//    public void moveReserveWrite(){
-//        Intent intent = new Intent(getActivity(), EtWriteReviewActivity.class);
-//        startActivity(intent);
-//    }
 
 }
