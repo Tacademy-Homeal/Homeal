@@ -38,4 +38,9 @@
     <string name="et_reservation_write">후기쓰기</string>
     <string name="et_reservation_end">종료</string>
     <string name="ck_home_fabschedule">일정변경</string>
+    <string name="et_text_reservation_request">예약진행중</string>
+    <string name="et_text_reservation_complete">예약성공</string>
+    <string name="et_text_reservation_end">식사종료</string>
+    <string name="ck_home_fabedit">편집</string>
+    <string name="ck_home_fabinsert">추가</string>
 </resources>

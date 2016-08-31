@@ -34,6 +34,10 @@
         android:layout_gravity="center_vertical"/>
 
     <RatingBar
+        android:theme="@style/RatingBar"
+        android:rating="3.5"
+        android:stepSize="0.5"
+        android:numStars="5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/rating_taste"/>
@@ -55,6 +59,10 @@
             android:layout_gravity="center_vertical"/>
 
         <RatingBar
+            android:theme="@style/RatingBar"
+            android:rating="3.5"
+            android:stepSize="0.5"
+            android:numStars="5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/rating_price"/>
@@ -76,6 +84,10 @@
             android:layout_gravity="center_vertical"/>
 
         <RatingBar
+            android:theme="@style/RatingBar"
+            android:rating="3.5"
+            android:stepSize="0.5"
+            android:numStars="5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/rating_clean"/>
@@ -97,6 +109,10 @@
             android:layout_gravity="center_vertical"/>
 
         <RatingBar
+            android:theme="@style/RatingBar"
+            android:rating="3.5"
+            android:stepSize="0.5"
+            android:numStars="5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/rating_kindness"/>
@@ -118,6 +134,10 @@
             android:layout_gravity="center_vertical"/>
 
         <RatingBar
+            android:theme="@style/RatingBar"
+            android:rating="3.5"
+            android:stepSize="0.5"
+            android:numStars="5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/rating_total"/>
@@ -143,6 +163,7 @@
 
     </LinearLayout>
     <Button
+        android:theme="@style/ReserveButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/btn_et_review_finish"
