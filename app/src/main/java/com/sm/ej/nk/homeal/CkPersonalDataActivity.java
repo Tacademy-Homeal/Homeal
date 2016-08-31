@@ -65,7 +65,6 @@ public class CkPersonalDataActivity extends AppCompatActivity {
     ImageButton ckpictureView;
 
     ArrayAdapter<String> countryAdapter;
-    ArrayAdapter<String> monthAdapter;
 
     static final int ADDRESS_SEARCH = 1;
 
@@ -115,7 +114,7 @@ public class CkPersonalDataActivity extends AppCompatActivity {
         daySpinner.setAdapter(dayAdatper);
 
         ArrayList<String> yearList = new ArrayList<>();
-        for (int year = 1930; year < 2030; year++) {
+        for (int year = 1930; year < 2031; year++) {
             yearList.add(String.valueOf(year));
         }
         ArrayAdapter<String> yearAdatper = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, yearList);

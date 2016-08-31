@@ -40,4 +40,7 @@
     <string name="et_text_reservation_end">식사종료</string>
     <string name="ck_home_fabedit">편집</string>
     <string name="ck_home_fabinsert">추가</string>
+    <string name="personal_data">개인정보</string>
+    <string name="zzim_list">찜목록</string>
+    <string name="setting">환경설정</string>
 </resources>

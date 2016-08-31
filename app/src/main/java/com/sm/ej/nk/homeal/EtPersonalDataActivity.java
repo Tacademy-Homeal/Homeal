@@ -5,11 +5,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.Spinner;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -55,6 +58,7 @@ public class EtPersonalDataActivity extends AppCompatActivity {
     @BindView(R.id.image_et_picture)
     ImageButton etpictureView;
 
+    ArrayAdapter<String> countryAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +68,31 @@ public class EtPersonalDataActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("개 인 정 보");
+
+        countryAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.country));
+        countryAdapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
+        countrySpinner.setAdapter(countryAdapter);
+
+        ArrayList<String> monthList = new ArrayList<>();
+        for (int month = 1; month < 13; month++) {
+            monthList.add(String.valueOf(month));
+        }
+        ArrayAdapter<String> monthAdatper = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, monthList);
+        monthSpinner.setAdapter(monthAdatper);
+
+        ArrayList<String> dayList = new ArrayList<>();
+        for (int day = 1; day < 32; day++) {
+            dayList.add(String.valueOf(day));
+        }
+        ArrayAdapter<String> dayAdatper = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, dayList);
+        daySpinner.setAdapter(dayAdatper);
+
+        ArrayList<String> yearList = new ArrayList<>();
+        for (int year = 1930; year < 2031; year++) {
+            yearList.add(String.valueOf(year));
+        }
+        ArrayAdapter<String> yearAdatper = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, yearList);
+        yearSpinner.setAdapter(yearAdatper);
 
         isPersonalData(false);
         btnChangeFinish.setVisibility(View.GONE);

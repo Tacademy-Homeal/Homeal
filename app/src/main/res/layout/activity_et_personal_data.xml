@@ -120,15 +120,33 @@
     </RadioGroup>
 
 
-    <Spinner
-        android:id="@+id/spinner_et_country"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/linear_phone"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:layout_below="@+id/radioGroup"
-        android:layout_marginTop="32dp" />
+        android:orientation="horizontal"
+        android:weightSum="1">
 
+        <Spinner
+            android:id="@+id/spinner_et_country"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/radioGroup"
+            android:layout_weight="0.5" />
+
+        <EditText
+            android:id="@+id/edit_et_phone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:background="@null"
+            android:ems="10"
+            android:hint="Phone"
+            android:inputType="phone" />
+    </LinearLayout>
     <EditText
         android:id="@+id/edit_et_introduce"
         android:layout_width="wrap_content"
@@ -139,18 +157,6 @@
         android:layout_below="@+id/image_et_picture"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
-
-    <EditText
-        android:id="@+id/edit_et_phone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/spinner_et_day"
-        android:layout_alignStart="@+id/spinner_et_day"
-        android:layout_alignTop="@+id/spinner_et_country"
-        android:background="@null"
-        android:ems="10"
-        android:hint="Phone"
-        android:inputType="phone" />
 
     <Button
         android:id="@+id/btn_et_changefinish"

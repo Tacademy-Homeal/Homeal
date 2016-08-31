@@ -10,7 +10,43 @@ public class User implements Serializable {
     public String userName;
     public String email;
     public String facebookId;
-  //  public String userImageUrl;
+    public String type;
+    public String PictureUrl;
+    public int totalScore;
+    public int etPoint;
+
+    public int getEtPoint() {
+        return etPoint;
+    }
+
+    public void setEtPoint(int etPoint) {
+        this.etPoint = etPoint;
+    }
+
+    public int getTotalScore() {
+        return totalScore;
+    }
+
+    public void setTotalScore(int totalScore) {
+        this.totalScore = totalScore;
+    }
+
+    public String getPictureUrl() {
+        return PictureUrl;
+    }
+
+    public void setPictureUrl(String pictureUrl) {
+        PictureUrl = pictureUrl;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+    //  public String userImageUrl;
 
 /*    public String getUserImageUrl() {
         return userImageUrl;
