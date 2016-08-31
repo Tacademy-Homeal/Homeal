@@ -52,7 +52,7 @@ import java.util.Map;
 
 public class AddressEditActivity extends AppCompatActivity implements
         OnMapReadyCallback, GoogleMap.OnCameraMoveListener, GoogleMap.OnInfoWindowClickListener{
-
+//dd
     GoogleMap map;
     LocationManager mLM;
     String mProvider = LocationManager.NETWORK_PROVIDER;
