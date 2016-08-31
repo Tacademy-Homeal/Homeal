@@ -37,7 +37,7 @@ public class CkHomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        // Inflate the layout for this fragmentasasfasfaf
         View view=  inflater.inflate(R.layout.fragment_ck_home, container, false);
         ButterKnife.bind(this, view);
         rv = (RecyclerView)view.findViewById(R.id.rv_ck_home);
@@ -80,7 +80,7 @@ public class CkHomeFragment extends Fragment {
         data.tasteScore=5;
         data.totalScore=5;
         PersonData user = new PersonData();
-        user.userImage = "http://cfs5.tistory.com/upload_control/download.blog?fhandle=YmxvZzIyNzA2QGZzNS50aXN0b3J5LmNvbTovYXR0YWNoLzkvOTExLmpwZw==";
+        user.userImage = "https://pbs.twimg.com/profile_images/740493838318329859/4zzw7Ywa_400x400.jpg";
         user.userAddress="우리집";
         user.userName="이름213";
         data.user =user;
@@ -95,7 +95,7 @@ public class CkHomeFragment extends Fragment {
             data.foodName="음식이름"+i;
             data.foodPrice="15";
             PersonData user = new PersonData();
-            user.userImage = "http://cfs5.tistory.com/upload_control/download.blog?fhandle=YmxvZzIyNzA2QGZzNS50aXN0b3J5LmNvbTovYXR0YWNoLzkvOTExLmpwZw==";
+            user.userImage = "https://pbs.twimg.com/profile_images/740493838318329859/4zzw7Ywa_400x400.jpg";
             user.userAddress="우리집";
             user.userName="이름213";
             data.user = user;

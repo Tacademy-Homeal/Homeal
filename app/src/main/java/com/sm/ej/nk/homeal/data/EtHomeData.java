@@ -13,7 +13,7 @@ public class EtHomeData implements Serializable {
     private String address;
     private String foodName;
     private String foodPrice;
-    private int ratingCount;
+    private int grade;
     private String jjimCount;
     private String reviewCount;
 
@@ -73,12 +73,12 @@ public class EtHomeData implements Serializable {
         this.foodPrice = foodPrice;
     }
 
-    public int getRatingCount() {
-        return ratingCount;
+    public int getGrade() {
+        return grade;
     }
 
-    public void setRatingCount(int ratingCount) {
-        this.ratingCount = ratingCount;
+    public void setGrade(int grade) {
+        this.grade = grade;
     }
 
     public String getJjimCount() {
