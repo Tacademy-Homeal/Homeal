@@ -88,9 +88,10 @@
             android:max="5"/>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="55dp"
             android:layout_height="wrap_content"
             android:text="@string/ck_detail_total"
-            android:id="@+id/textView19" />
+            android:id="@+id/textView19"
+            android:gravity="center_horizontal" />
     </LinearLayout>
 </RelativeLayout>

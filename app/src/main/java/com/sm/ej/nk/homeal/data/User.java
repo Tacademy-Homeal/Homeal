@@ -23,14 +23,6 @@ public class User implements Serializable {
         this.etPoint = etPoint;
     }
 
-    public int getTotalScore() {
-        return totalScore;
-    }
-
-    public void setTotalScore(int totalScore) {
-        this.totalScore = totalScore;
-    }
-
     public String getPictureUrl() {
         return PictureUrl;
     }
