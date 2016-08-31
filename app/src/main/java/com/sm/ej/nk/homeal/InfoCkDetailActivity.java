@@ -1,5 +1,6 @@
 package com.sm.ej.nk.homeal;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +13,8 @@ import com.sm.ej.nk.homeal.adapter.CkDetailAdapter;
 import com.sm.ej.nk.homeal.data.CalendarItem;
 import com.sm.ej.nk.homeal.data.CkDetailData;
 import com.sm.ej.nk.homeal.data.CkDetailMenuData;
+import com.sm.ej.nk.homeal.data.EtHomeData;
+import com.sm.ej.nk.homeal.fragment.EtHomeFragment;
 
 import java.util.ArrayList;
 
@@ -29,12 +32,17 @@ public class InfoCkDetailActivity extends AppCompatActivity implements CkDetailA
     @BindView(R.id.floating_ck_detail)
     FloatingActionButton floatingActionButton;
 
+    EtHomeData etHomeData;
+
     CkDetailAdapter mAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info_ck_detail);
         ButterKnife.bind(this);
+
+        Intent intent = getIntent();
+        etHomeData = (EtHomeData)intent.getSerializableExtra(EtHomeFragment.INTENT_CK_ID);
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);

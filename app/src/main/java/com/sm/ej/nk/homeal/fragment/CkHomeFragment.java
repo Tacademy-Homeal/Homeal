@@ -80,7 +80,7 @@ public class CkHomeFragment extends Fragment {
         data.tasteScore=5;
         data.totalScore=5;
         PersonData user = new PersonData();
-        user.userImage = "http://cfs5.tistory.com/upload_control/download.blog?fhandle=YmxvZzIyNzA2QGZzNS50aXN0b3J5LmNvbTovYXR0YWNoLzkvOTExLmpwZw==";
+        user.userImage = "https://pbs.twimg.com/profile_images/740493838318329859/4zzw7Ywa_400x400.jpg";
         user.userAddress="우리집";
         user.userName="이름213";
         data.user =user;
@@ -95,7 +95,7 @@ public class CkHomeFragment extends Fragment {
             data.foodName="음식이름"+i;
             data.foodPrice="15";
             PersonData user = new PersonData();
-            user.userImage = "http://cfs5.tistory.com/upload_control/download.blog?fhandle=YmxvZzIyNzA2QGZzNS50aXN0b3J5LmNvbTovYXR0YWNoLzkvOTExLmpwZw==";
+            user.userImage = "https://pbs.twimg.com/profile_images/740493838318329859/4zzw7Ywa_400x400.jpg";
             user.userAddress="우리집";
             user.userName="이름213";
             data.user = user;
