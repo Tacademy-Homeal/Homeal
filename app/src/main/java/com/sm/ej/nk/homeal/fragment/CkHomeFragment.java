@@ -25,11 +25,12 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CkHomeFragment extends Fragment {
+public class CkHomeFragment extends Fragment implements CkMainActivity.OnFabClickListener{
     @BindView(R.id.rv_ck_home)
     RecyclerView rv;
 
     CkHomeAdapter mAdapter;
+    CkMainActivity parentActivity;
 
     public CkHomeFragment() {
     }
@@ -40,25 +41,18 @@ public class CkHomeFragment extends Fragment {
         // Inflate the layout for this fragmentasasfasfaf
         View view=  inflater.inflate(R.layout.fragment_ck_home, container, false);
         ButterKnife.bind(this, view);
+
         rv = (RecyclerView)view.findViewById(R.id.rv_ck_home);
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         rv.setLayoutManager(manager);
-        mAdapter = new CkHomeAdapter();
+        mAdapter = new CkHomeAdapter(getContext());
         mAdapter.setHeader(init());
         rv.setAdapter(mAdapter);
         mAdapter.additem(initItem());
 
-        final CkMainActivity parentActivity = (CkMainActivity)getActivity();
-        parentActivity.setOnFabClickListener(new CkMainActivity.OnFabClickListener() {
-            @Override
-            public void onFabClick(View view, int mode) {
-                if(mode == parentActivity.MODE_EDIT){
-                    mAdapter.setvisivle();
-                }else if(mode == parentActivity.MODE_OK){
-                    mAdapter.setinvisible();
-                }
-            }
-        });
+
+        parentActivity = (CkMainActivity)getActivity();
+        parentActivity.setOnFabClickListener(this);
 
         return view;
     }
@@ -80,7 +74,7 @@ public class CkHomeFragment extends Fragment {
         data.tasteScore=5;
         data.totalScore=5;
         PersonData user = new PersonData();
-        user.userImage = "https://pbs.twimg.com/profile_images/740493838318329859/4zzw7Ywa_400x400.jpg";
+        user.userImage = "http://cfile223.uf.daum.net/image/112889584D19C77A0BA345";
         user.userAddress="우리집";
         user.userName="이름213";
         data.user =user;
@@ -90,17 +84,26 @@ public class CkHomeFragment extends Fragment {
         List<CkHomeItemData> list = new ArrayList<>();
         for(int i=0; i<10; i++){
             CkHomeItemData data = new CkHomeItemData();
-            data.foodimage = "http://img1.ruliweb.com/img/cmu_yu02/689/688024_1.jpg";
+            data.foodimage = "https://i.ytimg.com/vi/4U0xCOuwK_Y/maxresdefault.jpg";
             data.foodInfo="dkmgmsdfsdfksdofksodpkfposdkfopskdofksdopfksopdkfposkdfopsdkfopskdopfksdpofksdopfksopdfkopsdkfpsdkfposdkfopsdkfopsfk";
             data.foodName="음식이름"+i;
             data.foodPrice="15";
             PersonData user = new PersonData();
-            user.userImage = "https://pbs.twimg.com/profile_images/740493838318329859/4zzw7Ywa_400x400.jpg";
+            user.userImage = "http://cfile223.uf.daum.net/image/112889584D19C77A0BA345";
             user.userAddress="우리집";
             user.userName="이름213";
             data.user = user;
             list.add(data);
         }
         return list;
+    }
+
+    @Override
+    public void onFabClick(View view, int mode) {
+        if(mode == parentActivity.MODE_EDIT){
+            mAdapter.setvisivle();
+        }else if(mode == parentActivity.MODE_OK){
+            mAdapter.setinvisible();
+        }
     }
 }

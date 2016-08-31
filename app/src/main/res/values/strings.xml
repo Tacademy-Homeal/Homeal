@@ -41,6 +41,5 @@
     <string name="et_text_reservation_request">예약진행중</string>
     <string name="et_text_reservation_complete">예약성공</string>
     <string name="et_text_reservation_end">식사종료</string>
-    <string name="ck_home_fabedit">편집</string>
-    <string name="ck_home_fabinsert">추가</string>
+    <string name="ck_home_dialog">매뉴를 삭제하겠습니까?</string>
 </resources>

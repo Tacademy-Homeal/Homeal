@@ -63,6 +63,7 @@ public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTab
             setupTabViewPager(viewPager);
         }
 
+        fab.getMenuIconView().setImageResource(R.drawable.fab_add);
         fab.setClosedOnTouchOutside(true);
         fab.setOnMenuButtonClickListener(new View.OnClickListener() {
             @Override
