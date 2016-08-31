@@ -1,6 +1,8 @@
 package com.sm.ej.nk.homeal.fragment;
 
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,7 +12,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.sm.ej.nk.homeal.CkWriteReViewActivity;
 import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.adapter.CkReserveAdapter;
 import com.sm.ej.nk.homeal.data.CkReserveData;
@@ -55,13 +59,60 @@ public class CkReserveFragment extends Fragment {
 
         CkReserveView.setAdapter(mAdapter);
         CkReserveView.setLayoutManager(manager);
-
-
         AlertDialog dialog;
-
+        setCookerButton();
         initData();
         return view;
     }
+    private void setCookerButton(){
+        mAdapter.setOnAgreeButtonClickListener(new CkReserveAdapter.OnAagreeButtonClickLIstener() {
+            @Override
+            public void onAagreeButtonClick(View view, CkReserveData data, int position) {
+                Toast.makeText(getContext(),"승인되었습니다",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        mAdapter.setOnDisagreeButtonClickLIstener(new CkReserveAdapter.OnDisagreeButtonClickLIstener() {
+            @Override
+            public void onDisagreeButtonClick(View view, CkReserveData data, int position) {
+                Toast.makeText(getContext(),"거절 되었습니다",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        mAdapter.setOnreviewAdapterItemClickListener(new CkReserveAdapter.OnreviewButtonClickLIstener() {
+            @Override
+            public void onreviewAdapterItemClick(View view, CkReserveData data, int position) {
+               switch (data.getReserveState()){
+                   case TYPE_QUEST_COMPLETE:
+                       showDialog();
+                       break;
+                   case TYPE_EAT_END:
+                       Intent intent = new Intent(getActivity(), CkWriteReViewActivity.class);
+                       startActivity(intent);
+                       break;
+               }
+            }
+        });
+    }
+
+    private void showDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        builder.setNegativeButton("취소",new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        builder.setMessage(getResources().getString(R.string.et_reservation_cancle));
+        builder.show();
+    }
+
 
     private void initData() {
         Random r = new Random();
@@ -72,11 +123,11 @@ public class CkReserveFragment extends Fragment {
             data.setEtName("Lee");
             data.setReserveDate("2010.10.5");
 
-            if(i < 10) {
+            if(i < 5) {
                 data.setReserveState(TYPE_QUEST);
-            }else if(i < 13 || i < 10){
+            }else if(i < 10 && i > 5){
                 data.setReserveState(TYPE_QUEST_COMPLETE);
-            }else if(i< 17 || i > 13){
+            }else if(i< 15 && i > 10){
                 data.setReserveState(TYPE_EAT_END);
             }else{
                 data.setReserveState(TYPE_END);

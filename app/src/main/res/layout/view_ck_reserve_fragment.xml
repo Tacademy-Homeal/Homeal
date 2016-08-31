@@ -80,25 +80,26 @@
                     android:text="reservestate" />
 
                 <Button
-                    style="?android:attr/buttonStyleSmall"
+                    android:theme="@style/ReserveButton"
                     android:id="@+id/btn_ck_reserve_state_disagree"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/text_btn_ck_reserve_disagree" />
 
                 <Button
-                    style="?android:attr/buttonStyleSmall"
+                    android:theme="@style/ReserveButton"
                     android:id="@+id/btn_ck_reserve_state_agree"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/text_btn_ck_reserve_request" />
 
                 <Button
-                    style="?android:attr/buttonStyleSmall"
+                    android:theme="@style/ReserveButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/text_ck_reserve_write"
-                    android:id="@+id/btn_ck_review_write" />
+                    android:id="@+id/btn_ck_review_write"
+                    android:layout_gravity="right"/>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

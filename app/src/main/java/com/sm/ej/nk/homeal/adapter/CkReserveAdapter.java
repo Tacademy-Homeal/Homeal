@@ -48,8 +48,8 @@ public class CkReserveAdapter extends RecyclerView.Adapter<CkReserveViewHolder> 
     //Observer
     @Override
     public void onAgreeButtonClick(View view, CkReserveData ckReserveData, int position) {
-        if (dListener != null) {
-            dListener.onDisagreeButtonClick(view, ckReserveData, position);
+        if (listener != null) {
+            listener.onAagreeButtonClick(view, ckReserveData, position);
         }
     }
 

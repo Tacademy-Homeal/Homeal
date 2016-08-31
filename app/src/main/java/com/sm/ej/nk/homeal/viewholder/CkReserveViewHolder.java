@@ -62,6 +62,11 @@ public class CkReserveViewHolder extends RecyclerView.ViewHolder {
         //Unealbe rating state
         ckRatingView.setEnabled(false);
 
+        buttonSst();
+    }
+
+    //Button set
+    public void buttonSst(){
         btn_reserve_agree.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,6 +93,45 @@ public class CkReserveViewHolder extends RecyclerView.ViewHolder {
             }
         });
     }
+
+
+    //set Data
+    public void setReserveData(CkReserveData ckReserveData) {
+        this.ckReserveData = ckReserveData;
+        Glide.with(pictureView.getContext()).load(ckReserveData.getEtPictureUrl()).into(pictureView);
+        dateView.setText(ckReserveData.getReserveDate());
+        reservePersonView.setText(ckReserveData.getReservePerson());
+        ckNameView.setText(ckReserveData.getEtName());
+        foodNameView.setText(ckReserveData.getFoodName());
+
+        btn_reserve_agree.setVisibility(View.INVISIBLE);
+        btn_reserve_disagree.setVisibility(View.INVISIBLE);
+        btn_reserve_write.setVisibility(View.INVISIBLE);
+
+        switch (ckReserveData.getReserveState()){
+            case TYPE_QUEST :
+                btn_reserve_agree.setVisibility(View.VISIBLE);
+                btn_reserve_disagree.setVisibility(View.VISIBLE);
+                reserveStateView.setText(R.string.text_ck_reserve_request);
+                break;
+            case TYPE_QUEST_COMPLETE :
+                btn_reserve_write.setVisibility(View.VISIBLE);
+                reserveStateView.setText(R.string.text_ck_reserve_request_complete);
+                break;
+            case TYPE_EAT_END :
+                btn_reserve_write.setVisibility(View.VISIBLE);
+                reserveStateView.setText(R.string.text_ck_reserve_eat_end);
+                break;
+            case TYPE_END :
+                reserveStateView.setText("");
+                break;
+        }
+
+        //Depend on status
+        btn_reserve_agree.setText(ckReserveData.getBtn_agree());
+        btn_reserve_disagree.setText(ckReserveData.getBtn_disagree());
+    }
+
 
     //Agree Button
     public interface OnAgreeButtonClickListener {
@@ -123,46 +167,5 @@ public class CkReserveViewHolder extends RecyclerView.ViewHolder {
 
     public void setOnReviewButtonClickListener(OnReviewButtonClickListener rListener) {
         this.rListener = rListener;
-    }
-
-    //set Data
-    public void setReserveData(CkReserveData ckReserveData) {
-        this.ckReserveData = ckReserveData;
-        Glide.with(pictureView.getContext()).load(ckReserveData.getEtPictureUrl()).into(pictureView);
-        dateView.setText(ckReserveData.getReserveDate());
-        reservePersonView.setText(ckReserveData.getReservePerson());
-        ckNameView.setText(ckReserveData.getEtName());
-        foodNameView.setText(ckReserveData.getFoodName());
-
-        btn_reserve_agree.setVisibility(View.VISIBLE);
-        btn_reserve_disagree.setVisibility(View.VISIBLE);
-        btn_reserve_write.setVisibility(View.VISIBLE);
-
-        switch (ckReserveData.getReserveState()){
-            case TYPE_QUEST :
-                btn_reserve_write.setVisibility(View.INVISIBLE);
-                reserveStateView.setText(R.string.text_ck_reserve_request);
-                break;
-            case TYPE_QUEST_COMPLETE :
-                btn_reserve_agree.setVisibility(View.INVISIBLE);
-                btn_reserve_disagree.setVisibility(View.INVISIBLE);
-                reserveStateView.setText(R.string.text_ck_reserve_request_complete);
-                break;
-            case TYPE_EAT_END :
-                btn_reserve_agree.setVisibility(View.INVISIBLE);
-                btn_reserve_disagree.setVisibility(View.INVISIBLE);
-                reserveStateView.setText(R.string.text_ck_reserve_eat_end);
-                break;
-            case TYPE_END :
-                btn_reserve_agree.setVisibility(View.INVISIBLE);
-                btn_reserve_disagree.setVisibility(View.INVISIBLE);
-                btn_reserve_write.setVisibility(View.INVISIBLE);
-                reserveStateView.setText("");
-                break;
-        }
-
-        //Depend on status
-        btn_reserve_agree.setText(ckReserveData.getBtn_agree());
-        btn_reserve_disagree.setText(ckReserveData.getBtn_disagree());
     }
 }
