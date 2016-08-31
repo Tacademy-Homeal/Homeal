@@ -2,6 +2,7 @@
 <android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -36,8 +37,8 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
     <com.github.clans.fab.FloatingActionMenu
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:id="@+id/floating_ck_home"
         android:layout_gravity="end|bottom"
         android:layout_margin="@dimen/ck_detail_floating_bottommargin">
@@ -45,12 +46,15 @@
         <com.github.clans.fab.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/fab_insert"/>
+            android:id="@+id/fab_insert"
+            fab:fab_label="@string/ck_home_fabinsert"
+            fab:menu_labels_style="@style/MenuLabelsStyle"/>
 
         <com.github.clans.fab.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/fab_edit"/>
+            android:id="@+id/fab_edit"
+            fab:fab_label="@string/ck_home_fabedit"/>
 
     </com.github.clans.fab.FloatingActionMenu>
 </android.support.design.widget.CoordinatorLayout>

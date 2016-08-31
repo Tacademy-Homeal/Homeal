@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.data.EtReserveData;
 
@@ -19,51 +20,45 @@ import butterknife.ButterKnife;
 public class EtReserveViewHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.image_et_reserve_picture)
     ImageView pictureView;
+
     //testdsd
     @BindView(R.id.text_et_reserve_date)
     TextView dateView;
 
     @BindView(R.id.text_et_reserve_person)
-    TextView reservepersonView;
+    TextView reservePersonView;
 
     @BindView(R.id.text_et_reserve_ckname)
-    TextView cknameView;
+    TextView ckNameView;
 
     @BindView(R.id.rating_et_reserve_ck)
-    RatingBar ckratingView;
+    RatingBar ckRatingView;
 
     @BindView(R.id.text_et_reserve_state)
-    TextView reservestateView;
+    TextView reserveStateView;
 
     @BindView(R.id.text_et_reserve_foodname)
-    TextView foodnameView;
-
-    @BindView(R.id.btn_et_reserve_state)
-    Button stateView;
+    TextView foodNameView;
 
     @BindView(R.id.btn_et_review_write)
-    Button reviewwriteView;
+    Button btn_reserve;
 
 
+    private static final int TYPE_REQUEST = 0;
+    private static final int TYPE_REQUEST_COMPLETE = 1;
+    private static final int TYPE_DISH_COMPLETE = 2;
+    private static final int TYPE_END = 4;
     //    @OnClick(R.id.btn_et_reserve_state)
 //    Button reservestate
     public EtReserveViewHolder(View itemView) {
         super(itemView);
         ButterKnife.bind(this, itemView);
-        stateView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (cListener != null) {
-                    cListener.onCancleItemClick(v, etReserveData, getAdapterPosition());
-                }
-            }
-        });
 
-        reviewwriteView.setOnClickListener(new View.OnClickListener() {
+        btn_reserve.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                if (rListener != null) {
-                    rListener.onReviewItemClick(v, etReserveData, getAdapterPosition());
+            public void onClick(View view) {
+                if(cListener != null){
+                    cListener.onReserveButtonClick(view,etReserveData,getAdapterPosition());
                 }
             }
         });
@@ -73,35 +68,49 @@ public class EtReserveViewHolder extends RecyclerView.ViewHolder {
 
     public void setReserveData(EtReserveData etReserveData) {
         this.etReserveData = etReserveData;
-        pictureView.setImageDrawable(etReserveData.getCkpicture());
-        dateView.setText(etReserveData.getReservedate());
-        reservepersonView.setText(etReserveData.getReserveperson());
-        cknameView.setText(etReserveData.getCkname());
-        foodnameView.setText(etReserveData.getFooname());
-        reservestateView.setText(etReserveData.getReservestate());
-        stateView.setText(etReserveData.getBtnname());
-        reviewwriteView.setText(etReserveData.getBtnetreviewwrite());
+
+        //Url to image
+        Glide.with(pictureView.getContext()).load(etReserveData.getCkPictureUrl()).into(pictureView);
+        ckNameView.setText(etReserveData.getCkName());
+        foodNameView.setText(etReserveData.getFoodName());
+        reservePersonView.setText(etReserveData.getReservePerson());
+        dateView.setText(etReserveData.getReserveDate());
+        ckRatingView.setEnabled(false);
+
+        //btn setting
+        switch (etReserveData.getReserverState()){
+            case TYPE_REQUEST :
+                btn_reserve.setText(R.string.et_reservation_cancle);
+                reserveStateView.setText(R.string.et_text_reservation_request);
+                break;
+            case TYPE_REQUEST_COMPLETE :
+                btn_reserve.setText(R.string.et_reservation_cancle);
+                reserveStateView.setText(R.string.et_text_reservation_complete);
+                break;
+            case TYPE_DISH_COMPLETE :
+                btn_reserve.setText(R.string.et_reservation_write);
+                reserveStateView.setText(R.string.et_text_reservation_end);
+                break;
+            case TYPE_END :
+                btn_reserve.setText(R.string.et_reservation_end);
+                reserveStateView.setText("");
+                break;
+        }
     }
 
-    public interface OnCancleItemClickListener {
-        public void onCancleItemClick(View view, EtReserveData etReserveData, int position);
+
+    //Observer Button
+    public interface OnReserveButtonClick {
+        public void onReserveButtonClick(View view, EtReserveData etReserveData, int position);
     }
 
-    OnCancleItemClickListener cListener;
+    OnReserveButtonClick cListener;
 
-    public void setOnCancleItemClickListener(OnCancleItemClickListener cListener) {
+    public void setOnResrveButtonClick(OnReserveButtonClick cListener) {
         this.cListener = cListener;
     }
 
-    public interface OnReviewItemClickListener {
-        public void onReviewItemClick(View view, EtReserveData etReserveData, int position);
-    }
 
-    OnReviewItemClickListener rListener;
-
-    public void setOnReviewItemClickListener(OnReviewItemClickListener rListener) {
-        this.rListener = rListener;
-    }
 }
 
 

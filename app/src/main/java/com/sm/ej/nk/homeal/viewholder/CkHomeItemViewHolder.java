@@ -15,7 +15,7 @@ import com.sm.ej.nk.homeal.data.CkHomeItemData;
  */
 public class CkHomeItemViewHolder extends RecyclerView.ViewHolder {
     View view;
-    public ImageView foodImage, userImage;
+    public ImageView foodImage, userImage, editImage, deleteImage;
     public TextView userName, userAdd, foodPrice, foodName, foodInfo;
 
     public CkHomeItemViewHolder(View view){
@@ -28,6 +28,18 @@ public class CkHomeItemViewHolder extends RecyclerView.ViewHolder {
         foodPrice = (TextView)view.findViewById(R.id.text_ck_home_item_foodprice);
         foodName = (TextView)view.findViewById(R.id.text_ck_home_item_foodname);
         foodInfo = (TextView)view.findViewById(R.id.text_ck_home_item_foodinfo);
+        editImage = (ImageView)view.findViewById(R.id.image_ck_home_edit);
+        deleteImage = (ImageView)view.findViewById(R.id.image_ck_home_delete);
+    }
+
+    public void visibleImage(){
+        editImage.setVisibility(View.VISIBLE);
+        deleteImage.setVisibility(View.VISIBLE);
+    }
+
+    public void invisibleImage(){
+        editImage.setVisibility(View.INVISIBLE);
+        deleteImage.setVisibility(View.INVISIBLE);
     }
 
     public void setData(CkHomeItemData data){

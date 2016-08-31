@@ -1,17 +1,17 @@
 package com.sm.ej.nk.homeal.fragment;
 
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.sm.ej.nk.homeal.EtWriteReviewActivity;
 import com.sm.ej.nk.homeal.R;
@@ -32,6 +32,13 @@ public class EtReserveFragment extends Fragment {
     RecyclerView EtReserveView;
     EtReserveAdapter mAdapter;
 
+    private static final int TYPE_REQUEST = 0;
+    private static final int TYPE_REQUEST_COMPLETE = 1;
+    private static final int TYPE_DISH_COMPLETE = 2;
+    private static final int TYPE_END = 4;
+
+
+
     public static EtReserveFragment createInstance() {
         final EtReserveFragment pageFragment = new EtReserveFragment();
         final Bundle bundle = new Bundle();
@@ -40,9 +47,7 @@ public class EtReserveFragment extends Fragment {
     }
 
     public EtReserveFragment() {
-        // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -58,50 +63,74 @@ public class EtReserveFragment extends Fragment {
 
         initData();
 
-        mAdapter.setOnAdapterItemClickListener(new EtReserveAdapter.OnAdapterItemClickLIstener() {
-            @Override
-            public void onAdapterItemClick(View view, EtReserveData etReserveData, int position) {
-                Toast.makeText(view.getContext(), "예약이 취소되었습니다.", Toast.LENGTH_SHORT).show();
-            }
-        });
+       mAdapter.setOnReviewItemClickListener(new EtReserveAdapter.OnReserveAdapterClick() {
 
-        mAdapter.setOnreviewAdapterItemClickListener(new EtReserveAdapter.OnreviewAdapterItemClickLIstener() {
-            @Override
-            public void onreviewAdapterItemClick(View view, EtReserveData etReserveData, int position) {
-                startActivity(new Intent(getContext(), EtWriteReviewActivity.class));
-            }
+           @Override
+           public void onReserveAdapterClick(View view, EtReserveData etReserveData, int position) {
+               switch (etReserveData.getReserverState()){
+                   case TYPE_REQUEST :
+                       showDialog();
+                       break;
+                   case TYPE_REQUEST_COMPLETE :
+                       showDialog();
+                       break;
+                   case TYPE_DISH_COMPLETE :
+                       Intent intent = new Intent(getActivity(),EtWriteReviewActivity.class);
+                       startActivity(intent);
+                       break;
+                   case TYPE_END :
+                       break;
+               }
+           }
         });
-
         return view;
     }
+
+    private void showDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        builder.setNegativeButton("취소",new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        builder.setMessage(getResources().getString(R.string.et_reservation_cancle));
+        builder.show();
+    }
+
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mAdapter = new EtReserveAdapter();
+    }
+
 
     private void initData() {
         Random r = new Random();
         for (int i = 0; i < 20; i++) {
             EtReserveData data = new EtReserveData();
-            data.setFooname("foodname " + i);
-            data.setReservedate("date" + i);
-            data.setReserveperson("person" + i);
-            data.setCkname("ckname" + i);
-            data.setReservestate("state" + i);
-            data.setCkpicture(ContextCompat.getDrawable(getContext(), R.mipmap.ic_launcher));
-            data.setBtnname("예약 취소");
-            data.setBtnetreviewwrite("후기 작성");
+            data.setFoodName("kimch");
+            data.setReserveDate("date" + i);
+            data.setReservePerson(" Lee sung");
+            data.setCkName("Kim nam gil");
+
+            if(i > 0 && i < 12) {
+                data.setReserverState(TYPE_REQUEST);
+            }else if(i < 15){
+                data.setReserverState(TYPE_REQUEST_COMPLETE);
+            }else{
+                data.setReserverState(TYPE_DISH_COMPLETE);
+            }
+            data.setCkPictureUrl("https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTACDX3BGsb6q0XNgMjYnyIEHxalWJ2JAC2xwEev-gsonJGBi5GassamzA");
             mAdapter.add(data);
         }
-
     }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        mAdapter = new EtReserveAdapter();
-    }
-//    @OnClick(R.id.btn_et_reserve_write)
-//    public void moveReserveWrite(){
-//        Intent intent = new Intent(getActivity(), EtWriteReviewActivity.class);
-//        startActivity(intent);
-//    }
 
 }
