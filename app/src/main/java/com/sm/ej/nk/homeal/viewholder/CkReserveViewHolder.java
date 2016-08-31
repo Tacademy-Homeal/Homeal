@@ -7,12 +7,12 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.data.CkReserveData;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 /**
  * Created by Tacademy on 2016-08-25.
@@ -20,139 +20,152 @@ import butterknife.OnClick;
 public class CkReserveViewHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.image_ck_reserve_picture)
     ImageView pictureView;
-//test
+
     @BindView(R.id.text_ck_reserve_date)
     TextView dateView;
 
     @BindView(R.id.text_ck_reserve_person)
-    TextView reservepersonView;
+    TextView reservePersonView;
 
     @BindView(R.id.text_ck_reserve_etname)
-    TextView cknameView;
+    TextView ckNameView;
 
     @BindView(R.id.rating_ck_reserve_et)
-    RatingBar ckratingView;
+    RatingBar ckRatingView;
 
     @BindView(R.id.text_ck_reserve_state)
-    TextView reservestateView;
+    TextView reserveStateView;
 
     @BindView(R.id.text_ck_reserve_foodname)
-    TextView foodnameView;
+    TextView foodNameView;
 
     @BindView(R.id.btn_ck_reserve_state_disagree)
-    Button disagreeView;
+    Button btn_reserve_disagree;
 
     @BindView(R.id.btn_ck_reserve_state_agree)
-    Button agreeView;
+    Button btn_reserve_agree;
 
     @BindView(R.id.btn_ck_review_write)
-    Button reviewwriteView;
+    Button btn_reserve_write;
 
-    @OnClick(R.id.btn_ck_reserve_state_disagree)
-    public void onDisagree() {
-        showdialog();
-    }
+    CkReserveData ckReserveData;
 
-    private void showdialog() {
+    private static final int TYPE_QUEST = 0;
+    private static final int TYPE_QUEST_COMPLETE = 1;
+    private static final int TYPE_EAT_END = 2;
+    private static final int TYPE_END = 3;
 
-//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//        builder.setIcon(android.R.drawable.ic_dialog_alert);
-//        builder.setTitle("Alert Dialog");
-//        builder.setMessage("Dialog Message");
-//        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialogInterface, int i) {
-//                Toast.makeText(MainActivity.this, "Yes click", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-////        builder.setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
-////            @Override
-////            public void onClick(DialogInterface dialogInterface, int i) {
-////                Toast.makeText(MainActivity.this, "Cancel click", Toast.LENGTH_SHORT).show();
-////            }
-////        });
-//        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialogInterface, int i) {
-//                Toast.makeText(MainActivity.this, "No click", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-    }
 
     public CkReserveViewHolder(View itemView) {
         super(itemView);
         ButterKnife.bind(this, itemView);
-        agreeView.setOnClickListener(new View.OnClickListener() {
+        //Unealbe rating state
+        ckRatingView.setEnabled(false);
+
+        buttonSst();
+    }
+
+    //Button set
+    public void buttonSst(){
+        btn_reserve_agree.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (aListener != null) {
-                    aListener.onAgreeItemClick(v, ckReserveData, getAdapterPosition());
+                    aListener.onAgreeButtonClick(v, ckReserveData, getAdapterPosition());
                 }
             }
         });
 
-        disagreeView.setOnClickListener(new View.OnClickListener() {
+        btn_reserve_disagree.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (dListener != null) {
-                    dListener.onDisagreeItemClick(v, ckReserveData, getAdapterPosition());
+                    dListener.onDisagreeButtonClick(v, ckReserveData, getAdapterPosition());
                 }
             }
         });
-        reviewwriteView.setOnClickListener(new View.OnClickListener() {
+        btn_reserve_write.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (rListener != null) {
-                    rListener.onReviewItemClick(v, ckReserveData, getAdapterPosition());
+                    rListener.onReviewButtonClick(v, ckReserveData, getAdapterPosition());
                 }
             }
         });
     }
 
-    public interface OnAgreeItemClickListener {
 
-        public void onAgreeItemClick(View view, CkReserveData ckReserveData, int position);
+    //set Data
+    public void setReserveData(CkReserveData ckReserveData) {
+        this.ckReserveData = ckReserveData;
+        Glide.with(pictureView.getContext()).load(ckReserveData.getEtPictureUrl()).into(pictureView);
+        dateView.setText(ckReserveData.getReserveDate());
+        reservePersonView.setText(ckReserveData.getReservePerson());
+        ckNameView.setText(ckReserveData.getEtName());
+        foodNameView.setText(ckReserveData.getFoodName());
+
+        btn_reserve_agree.setVisibility(View.INVISIBLE);
+        btn_reserve_disagree.setVisibility(View.INVISIBLE);
+        btn_reserve_write.setVisibility(View.INVISIBLE);
+
+        switch (ckReserveData.getReserveState()){
+            case TYPE_QUEST :
+                btn_reserve_agree.setVisibility(View.VISIBLE);
+                btn_reserve_disagree.setVisibility(View.VISIBLE);
+                reserveStateView.setText(R.string.text_ck_reserve_request);
+                break;
+            case TYPE_QUEST_COMPLETE :
+                btn_reserve_write.setVisibility(View.VISIBLE);
+                reserveStateView.setText(R.string.text_ck_reserve_request_complete);
+                break;
+            case TYPE_EAT_END :
+                btn_reserve_write.setVisibility(View.VISIBLE);
+                reserveStateView.setText(R.string.text_ck_reserve_eat_end);
+                break;
+            case TYPE_END :
+                reserveStateView.setText("");
+                break;
+        }
+
+        //Depend on status
+        btn_reserve_agree.setText(ckReserveData.getBtn_agree());
+        btn_reserve_disagree.setText(ckReserveData.getBtn_disagree());
     }
 
-    OnAgreeItemClickListener aListener;
 
-    public void setOnAgreeItemClickListener(OnAgreeItemClickListener aListener) {
+    //Agree Button
+    public interface OnAgreeButtonClickListener {
+
+        public void onAgreeButtonClick(View view, CkReserveData ckReserveData, int position);
+    }
+
+    OnAgreeButtonClickListener aListener;
+
+    public void setOnAgreeButtonClickListener(OnAgreeButtonClickListener aListener) {
         this.aListener = aListener;
     }
 
-    public interface OnDisagreeItemClickListener {
-        public void onDisagreeItemClick(View view, CkReserveData ckReserveData, int position);
+    //DisAgreen Button
+    public interface OnDisagreeButtonClickListener {
+        public void onDisagreeButtonClick(View view, CkReserveData ckReserveData, int position);
     }
 
-    OnDisagreeItemClickListener dListener;
+    OnDisagreeButtonClickListener dListener;
 
-    public void setOnDisagreeItemClickListener(OnDisagreeItemClickListener dListener) {
+    public void setOnDisagreeButtonClickListener(OnDisagreeButtonClickListener dListener) {
         this.dListener = dListener;
     }
 
-    public interface OnReviewItemClickListener {
 
-        public void onReviewItemClick(View view, CkReserveData ckReserveData, int position);
+    //Review Button
+    public interface OnReviewButtonClickListener {
+
+        public void onReviewButtonClick(View view, CkReserveData ckReserveData, int position);
     }
 
-    OnReviewItemClickListener rListener;
+    OnReviewButtonClickListener rListener;
 
-    public void setOnReviewItemClickListener(OnReviewItemClickListener rListener) {
+    public void setOnReviewButtonClickListener(OnReviewButtonClickListener rListener) {
         this.rListener = rListener;
-    }
-
-    CkReserveData ckReserveData;
-
-    public void setReserveData(CkReserveData ckReserveData) {
-        this.ckReserveData = ckReserveData;
-        pictureView.setImageDrawable(ckReserveData.getEtpicture());
-        dateView.setText(ckReserveData.getReservedate());
-        reservepersonView.setText(ckReserveData.getReserveperson());
-        cknameView.setText(ckReserveData.getEtname());
-        foodnameView.setText(ckReserveData.getFoodname());
-        reservestateView.setText(ckReserveData.getReservestate());
-        disagreeView.setText(ckReserveData.getBtndisagree());
-        agreeView.setText(ckReserveData.getBtnagree());
-        reviewwriteView.setText(ckReserveData.getBtnreviewwrite());
     }
 }

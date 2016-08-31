@@ -41,5 +41,11 @@
     <string name="et_text_reservation_request">예약진행중</string>
     <string name="et_text_reservation_complete">예약성공</string>
     <string name="et_text_reservation_end">식사종료</string>
+    <string name="text_ck_reserve_request">예약요청</string>
+    <string name="text_ck_reserve_request_complete">예약완료</string>
+    <string name="text_btn_ck_reserve_request">승인</string>
+    <string name="text_btn_ck_reserve_disagree">거절</string>
+    <string name="text_ck_reserve_cancle">예약취소</string>
+    <string name="text_ck_reserve_write">후기쓰기</string>
     <string name="ck_home_dialog">매뉴를 삭제하겠습니까?</string>
 </resources>
