@@ -75,6 +75,7 @@ public class EtReserveViewHolder extends RecyclerView.ViewHolder {
         foodNameView.setText(etReserveData.getFoodName());
         reservePersonView.setText(etReserveData.getReservePerson());
         dateView.setText(etReserveData.getReserveDate());
+        ckRatingView.setEnabled(false);
 
         //btn setting
         switch (etReserveData.getReserverState()){
