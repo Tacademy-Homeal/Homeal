@@ -46,6 +46,17 @@ public class CkHomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         }
     }
 
+    private boolean isVisible=false;
+    public void setvisivle(){
+        isVisible=true;
+        notifyDataSetChanged();
+    }
+
+    public void setinvisible(){
+        isVisible = false;
+        notifyDataSetChanged();
+    }
+
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         switch(viewType){
@@ -68,6 +79,11 @@ public class CkHomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             headerholder.setData(headerData);
         }else{
             CkHomeItemViewHolder itemholder = (CkHomeItemViewHolder)holder;
+            if(isVisible){
+                itemholder.visibleImage();
+            }else{
+                itemholder.invisibleImage();
+            }
             itemholder.setData(itemData.get(position-1));
         }
     }

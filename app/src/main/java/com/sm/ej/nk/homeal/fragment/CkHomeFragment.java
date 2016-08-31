@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.sm.ej.nk.homeal.CkMainActivity;
 import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.adapter.CkHomeAdapter;
 import com.sm.ej.nk.homeal.data.CkHomeData;
@@ -46,6 +47,19 @@ public class CkHomeFragment extends Fragment {
         mAdapter.setHeader(init());
         rv.setAdapter(mAdapter);
         mAdapter.additem(initItem());
+
+        final CkMainActivity parentActivity = (CkMainActivity)getActivity();
+        parentActivity.setOnFabClickListener(new CkMainActivity.OnFabClickListener() {
+            @Override
+            public void onFabClick(View view, int mode) {
+                if(mode == parentActivity.MODE_EDIT){
+                    mAdapter.setvisivle();
+                }else if(mode == parentActivity.MODE_OK){
+                    mAdapter.setinvisible();
+                }
+            }
+        });
+
         return view;
     }
 
@@ -55,6 +69,7 @@ public class CkHomeFragment extends Fragment {
         pageFragment.setArguments(bundle);
         return pageFragment;
     }
+
     private CkHomeData init(){
         CkHomeData data = new CkHomeData();
         data.jjimCount = "15";

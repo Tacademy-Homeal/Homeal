@@ -31,6 +31,8 @@
     <string name="ck_detail_kind">친절</string>
     <string name="ck_detail_clean">청결</string>
     <string name="facebook_app_id">134191500364156</string>
+    <string name="ck_home_fabedit">편집</string>
+    <string name="ck_home_fabinsert">추가</string>
     <string name="title_activity_maps">Map</string>
     <string name="et_reservation_cancle">예약취소</string>
     <string name="et_reservation_write">후기쓰기</string>
