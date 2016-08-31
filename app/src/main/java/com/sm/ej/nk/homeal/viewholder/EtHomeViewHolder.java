@@ -29,7 +29,6 @@ public class EtHomeViewHolder extends RecyclerView.ViewHolder {
         userimage = (ImageView)view.findViewById(R.id.image_et_home_user);
         foodimage = (ImageView)view.findViewById(R.id.image_et_home_food);
         jjimimage = (ImageView)view.findViewById(R.id.image_et_home_jjim);
-
         name = (TextView)view.findViewById(R.id.text_et_home_name);
         address = (TextView)view.findViewById(R.id.text_et_home_address);
         menu = (TextView)view.findViewById(R.id.text_et_home_foodname);
@@ -50,6 +49,8 @@ public class EtHomeViewHolder extends RecyclerView.ViewHolder {
 
             }
         });
+
+
         starCount.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -124,6 +125,6 @@ public class EtHomeViewHolder extends RecyclerView.ViewHolder {
         reviewCount.setText(data.getReviewCount());
         price.setText(data.getFoodPrice());
 
-        starCount.setRating(data.getRatingCount());
+        starCount.setRating(data.getGrade());
     }
 }

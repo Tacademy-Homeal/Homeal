@@ -1,10 +1,13 @@
 package com.sm.ej.nk.homeal.adapter;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.sm.ej.nk.homeal.MenuAddActivity;
 import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.data.CkHomeData;
 import com.sm.ej.nk.homeal.data.CkHomeItemData;
@@ -22,6 +25,9 @@ public class CkHomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     private static final int TYPE_ITEM=1;
     private CkHomeData headerData;
     private List<CkHomeItemData> itemData;
+    private Context context;
+
+    public static final String INTENT_ITEM_ADD = "ssongmsgnsognsogn";
 
     public void setHeader(CkHomeData data){
         headerData = data;
@@ -57,6 +63,10 @@ public class CkHomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         notifyDataSetChanged();
     }
 
+    public CkHomeAdapter(Context context){
+        this.context = context;
+    }
+
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         switch(viewType){
@@ -66,19 +76,27 @@ public class CkHomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             }
             case TYPE_ITEM:{
                 View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_ck_home_item, parent, false);
-                return new CkHomeItemViewHolder(view);
+                return new CkHomeItemViewHolder(view, context);
             }
         }
         return null;
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder,final int position) {
         if(position ==0){
             CkHomeHeaderViewHolder headerholder = (CkHomeHeaderViewHolder)holder;
             headerholder.setData(headerData);
         }else{
             CkHomeItemViewHolder itemholder = (CkHomeItemViewHolder)holder;
+            itemholder.editImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(context, MenuAddActivity.class);
+                    intent.putExtra(INTENT_ITEM_ADD, itemData.get(position-1));
+                    context.startActivity(intent);
+                }
+            });
             if(isVisible){
                 itemholder.visibleImage();
             }else{

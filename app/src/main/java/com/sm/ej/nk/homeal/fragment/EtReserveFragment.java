@@ -37,8 +37,6 @@ public class EtReserveFragment extends Fragment {
     private static final int TYPE_DISH_COMPLETE = 2;
     private static final int TYPE_END = 4;
 
-
-
     public static EtReserveFragment createInstance() {
         final EtReserveFragment pageFragment = new EtReserveFragment();
         final Bundle bundle = new Bundle();

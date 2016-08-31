@@ -1,91 +1,79 @@
 package com.sm.ej.nk.homeal.data;
 
-import android.graphics.drawable.Drawable;
-
 /**
  * Created by Tacademy on 2016-08-25.
  */
 public class CkReserveData {
-    private String foodname;
-    private String reservedate;
-    private String reserveperson;
-    private String etname;
-    private String reservestate;
-    private Drawable etpicture;
-    private String btndisagree;
-    private String btnagree;
+    private String foodName;
+    private String reserveDate;
+    private String reservePerson;
+    private String etName;
+    private int reserveState;
+    private String etPictureUrl;
+    private String btn_disagree;
+    private String btn_agree;
 
-    public String getBtnreviewwrite() {
-        return btnreviewwrite;
+    public String getBtn_agree() {
+        return btn_agree;
     }
 
-    public void setBtnreviewwrite(String btnreviewwrite) {
-        this.btnreviewwrite = btnreviewwrite;
+    public void setBtn_agree(String btn_agree) {
+        this.btn_agree = btn_agree;
     }
 
-    private String btnreviewwrite;
-
-    public String getFoodname() {
-        return foodname;
+    public String getBtn_disagree() {
+        return btn_disagree;
     }
 
-    public void setFoodname(String foodname) {
-        this.foodname = foodname;
+    public void setBtn_disagree(String btn_disagree) {
+        this.btn_disagree = btn_disagree;
     }
 
-    public String getReservedate() {
-        return reservedate;
+    public String getEtName() {
+        return etName;
     }
 
-    public void setReservedate(String reservedate) {
-        this.reservedate = reservedate;
+    public void setEtName(String etName) {
+        this.etName = etName;
     }
 
-    public String getReserveperson() {
-        return reserveperson;
+    public String getEtPictureUrl() {
+        return etPictureUrl;
     }
 
-    public void setReserveperson(String reserveperson) {
-        this.reserveperson = reserveperson;
+    public void setEtPictureUrl(String etPictureUrl) {
+        this.etPictureUrl = etPictureUrl;
     }
 
-    public String getEtname() {
-        return etname;
+    public String getFoodName() {
+        return foodName;
     }
 
-    public void setEtname(String etname) {
-        this.etname = etname;
+    public void setFoodName(String foodName) {
+        this.foodName = foodName;
     }
 
-    public String getReservestate() {
-        return reservestate;
+    public String getReserveDate() {
+        return reserveDate;
     }
 
-    public void setReservestate(String reservestate) {
-        this.reservestate = reservestate;
+    public void setReserveDate(String reserveDate) {
+        this.reserveDate = reserveDate;
     }
 
-    public Drawable getEtpicture() {
-        return etpicture;
+    public String getReservePerson() {
+        return reservePerson;
     }
 
-    public void setEtpicture(Drawable etpicture) {
-        this.etpicture = etpicture;
+    public void setReservePerson(String reservePerson) {
+        this.reservePerson = reservePerson;
     }
 
-    public String getBtndisagree() {
-        return btndisagree;
+    public int getReserveState() {
+        return reserveState;
     }
 
-    public void setBtndisagree(String btndisagree) {
-        this.btndisagree = btndisagree;
-    }
-
-    public String getBtnagree() {
-        return btnagree;
-    }
-
-    public void setBtnagree(String btnagree) {
-        this.btnagree = btnagree;
+    public void setReserveState(int reserveState) {
+        this.reserveState = reserveState;
     }
 }

@@ -1,11 +1,11 @@
 package com.sm.ej.nk.homeal.fragment;
 
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -32,6 +32,11 @@ public class CkReserveFragment extends Fragment {
     RecyclerView CkReserveView;
     CkReserveAdapter mAdapter;
 
+    private static final int TYPE_QUEST = 0;
+    private static final int TYPE_QUEST_COMPLETE = 1;
+    private static final int TYPE_EAT_END = 2;
+    private static final int TYPE_END = 3;
+
     public static CkReserveFragment createInstance() {
         final CkReserveFragment pageFragment = new CkReserveFragment();
         final Bundle bundle = new Bundle();
@@ -55,71 +60,80 @@ public class CkReserveFragment extends Fragment {
         CkReserveView.setAdapter(mAdapter);
         CkReserveView.setLayoutManager(manager);
         AlertDialog dialog;
-
+        setCookerButton();
         initData();
-
-        mAdapter.setOnAdapterItemClickListener(new CkReserveAdapter.OnAdapterItemClickLIstener() {
-            @Override
-            public void onAdapterItemClick(View view, CkReserveData ckReserveData, int position) {
-                //  showdialog();
-                Toast.makeText(getContext(), "예약이 승인되었습니다.", Toast.LENGTH_SHORT).show();
-            }
-
-        });
-        mAdapter.setOndisAdapterItemClickListener(new CkReserveAdapter.OndisAdapterItemClickLIstener() {
-            @Override
-            public void ondisAdapterItemClick(View view, CkReserveData data, int position) {
-                Toast.makeText(getContext(), "예약이 거절되었습니다.", Toast.LENGTH_SHORT).show();
-            }
-        });
-        mAdapter.setOnreviewAdapterItemClickListener(new CkReserveAdapter.OnreviewAdapterItemClickLIstener() {
-            @Override
-            public void onreviewAdapterItemClick(View view, CkReserveData data, int position) {
-                startActivity(new Intent(getContext(), CkWriteReViewActivity.class));
-
-            }
-        });
         return view;
     }
+    private void setCookerButton(){
+        mAdapter.setOnAgreeButtonClickListener(new CkReserveAdapter.OnAagreeButtonClickLIstener() {
+            @Override
+            public void onAagreeButtonClick(View view, CkReserveData data, int position) {
+                Toast.makeText(getContext(),"승인되었습니다",Toast.LENGTH_SHORT).show();
+            }
+        });
 
-//    private void showdialog() {
-//        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-//        builder.setIcon(android.R.drawable.ic_dialog_alert);
-//        selectedPosition = 2;
-//        builder.setSingleChoiceItems(items, 2, new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialogInterface, int i) {
-//                selectedPosition = i;
-//            }
-//        });
-//        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialogInterface, int i) {
-//                if (selectedPosition != -1) {
-//                    Toast.makeText(MainActivity.this, "selected : " + items[selectedPosition], Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        });
-//
-//        builder.create().show();
-//    }
+        mAdapter.setOnDisagreeButtonClickLIstener(new CkReserveAdapter.OnDisagreeButtonClickLIstener() {
+            @Override
+            public void onDisagreeButtonClick(View view, CkReserveData data, int position) {
+                Toast.makeText(getContext(),"거절 되었습니다",Toast.LENGTH_SHORT).show();
+            }
+        });
 
-//}
+        mAdapter.setOnreviewAdapterItemClickListener(new CkReserveAdapter.OnreviewButtonClickLIstener() {
+            @Override
+            public void onreviewAdapterItemClick(View view, CkReserveData data, int position) {
+               switch (data.getReserveState()){
+                   case TYPE_QUEST_COMPLETE:
+                       showDialog();
+                       break;
+                   case TYPE_EAT_END:
+                       Intent intent = new Intent(getActivity(), CkWriteReViewActivity.class);
+                       startActivity(intent);
+                       break;
+               }
+            }
+        });
+    }
+
+    private void showDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        builder.setNegativeButton("취소",new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        builder.setMessage(getResources().getString(R.string.et_reservation_cancle));
+        builder.show();
+    }
 
 
     private void initData() {
         Random r = new Random();
         for (int i = 0; i < 20; i++) {
             CkReserveData data = new CkReserveData();
-            data.setFoodname("foodname " + i);
-            data.setReservedate("date" + i);
-            data.setReserveperson("person" + i);
-            data.setEtname("ckname" + i);
-            data.setReservestate("state" + i);
-            data.setEtpicture(ContextCompat.getDrawable(getContext(), R.mipmap.ic_launcher));
-            data.setBtnagree("승인");
-            data.setBtndisagree("거절");
-            data.setBtnreviewwrite("후기 작성");
+            data.setFoodName("Noodle");
+            data.setReservePerson("Namgil");
+            data.setEtName("Lee");
+            data.setReserveDate("2010.10.5");
+
+            if(i < 5) {
+                data.setReserveState(TYPE_QUEST);
+            }else if(i < 10 && i > 5){
+                data.setReserveState(TYPE_QUEST_COMPLETE);
+            }else if(i< 15 && i > 10){
+                data.setReserveState(TYPE_EAT_END);
+            }else{
+                data.setReserveState(TYPE_END);
+            }
+
+            data.setEtPictureUrl("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDLcDeVw9X8oxxP6EpKmgcBi5iG9SWnxThw0WHhg2DevUyEOk9");
             mAdapter.add(data);
         }
 

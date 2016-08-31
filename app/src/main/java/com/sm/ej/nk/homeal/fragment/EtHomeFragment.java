@@ -61,8 +61,21 @@ public class EtHomeFragment extends Fragment implements EtHomeAdapter.OnReviewit
 
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(mAdapter);
-
         initData();
+//        CkPageListRequest request = new CkPageListRequest(getActivity(), 1, 10);
+//        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<EtHomeResult>() {
+//            @Override
+//            public void onSuccess(NetworkRequest<EtHomeResult> request, EtHomeResult result) {
+//                List<EtHomeData> data = new ArrayList<EtHomeData>();
+//                data.toArray(result.getResult());
+//
+//                mAdapter.addList(data);
+//            }
+//            @Override
+//            public void onFail(NetworkRequest<EtHomeResult> request, int errorCode, String errorMessage, Throwable e) {
+//
+//            }
+//        });
         return v;
     }
 
@@ -76,7 +89,7 @@ public class EtHomeFragment extends Fragment implements EtHomeAdapter.OnReviewit
             data.setUserImageUrl("https://pixabay.com/static/uploads/photo/2014/12/17/14/20/summer-anemone-571531_960_720.jpg");
             data.setFoodName("음식이름"+i);
             data.setJjimCount(""+i);
-            data.setRatingCount(i%5+1);
+            data.setGrade(i%5+1);
             data.setReviewCount(""+i);
             data.setName("이름"+i);
             datas.add(data);
@@ -90,6 +103,7 @@ public class EtHomeFragment extends Fragment implements EtHomeAdapter.OnReviewit
         Intent intent = new Intent(getActivity(), InfoCkDetailActivity.class);
 //        intent.putExtra(INTENT_CK_ID, );
         intent.putExtra(INTENT_CK_ID, datas.get(position));
+
         startActivity(intent);
     }
 
@@ -103,6 +117,7 @@ public class EtHomeFragment extends Fragment implements EtHomeAdapter.OnReviewit
     public void onReviewitemClick(View view, int position) {
         Intent intent = new Intent(getActivity(), InfoCkDetailActivity.class);
 //        intent.putExtra(INTENT_SCROLL, );
+
         startActivity(intent);
     }
 }

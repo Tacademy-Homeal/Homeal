@@ -42,8 +42,14 @@ public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTab
     @BindView(R.id.fab_insert)
     FloatingActionButton fabInsert;
 
+    @BindView(R.id.fab_schedule)
+    FloatingActionButton fabSchedule;
+
     AlarmPopupWindow popupWindow;
+
     public static int INTENT_ADD=0;
+    public static int INTENT_SCHEDULE = 1;
+
     private static boolean isEditMode = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +63,7 @@ public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTab
             setupTabViewPager(viewPager);
         }
 
+        fab.getMenuIconView().setImageResource(R.drawable.fab_add);
         fab.setClosedOnTouchOutside(true);
         fab.setOnMenuButtonClickListener(new View.OnClickListener() {
             @Override
@@ -68,7 +75,11 @@ public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTab
                     }
                     isEditMode = false;
                 }else{
-                    fab.open(true);
+                    if(fab.isOpened()){
+                        fab.close(true);
+                    }else{
+                        fab.open(true);
+                    }
                 }
             }
         });
@@ -90,6 +101,15 @@ public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTab
             public void onClick(View view) {
                 Intent intent = new Intent(CkMainActivity.this, MenuAddActivity.class);
                 startActivityForResult(intent, INTENT_ADD);
+                fab.close(true);
+            }
+        });
+
+        fabSchedule.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CkMainActivity.this, ScheduleEditActivity.class);
+                startActivityForResult(intent ,INTENT_SCHEDULE);
                 fab.close(true);
             }
         });

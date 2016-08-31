@@ -15,7 +15,8 @@ import java.util.List;
 /**
  * Created by Tacademy on 2016-08-25.
  */
-public class CkReserveAdapter extends RecyclerView.Adapter<CkReserveViewHolder> implements CkReserveViewHolder.OnAgreeItemClickListener, CkReserveViewHolder.OnDisagreeItemClickListener, CkReserveViewHolder.OnReviewItemClickListener {
+public class CkReserveAdapter extends RecyclerView.Adapter<CkReserveViewHolder> implements CkReserveViewHolder.OnAgreeButtonClickListener,
+        CkReserveViewHolder.OnDisagreeButtonClickListener, CkReserveViewHolder.OnReviewButtonClickListener {
     List<CkReserveData> items = new ArrayList<>();
 
     public void add(CkReserveData data) {
@@ -27,9 +28,9 @@ public class CkReserveAdapter extends RecyclerView.Adapter<CkReserveViewHolder> 
     public CkReserveViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_ck_reserve_fragment, parent, false);
         CkReserveViewHolder holder = new CkReserveViewHolder(view);
-        holder.setOnAgreeItemClickListener(this);
-        holder.setOnDisagreeItemClickListener(this);
-        holder.setOnReviewItemClickListener(this);
+        holder.setOnAgreeButtonClickListener(this);
+        holder.setOnDisagreeButtonClickListener(this);
+        holder.setOnReviewButtonClickListener(this);
         return holder;
     }
 
@@ -44,60 +45,63 @@ public class CkReserveAdapter extends RecyclerView.Adapter<CkReserveViewHolder> 
         return items.size();
     }
 
-
-
-    public interface OnAdapterItemClickLIstener {
-        public void onAdapterItemClick(View view, CkReserveData data, int position);
+    //Observer
+    @Override
+    public void onAgreeButtonClick(View view, CkReserveData ckReserveData, int position) {
+        if (listener != null) {
+            listener.onAagreeButtonClick(view, ckReserveData, position);
+        }
     }
 
-    OnAdapterItemClickLIstener listener;
+    @Override
+    public void onDisagreeButtonClick(View view, CkReserveData ckReserveData, int position) {
+        if (dListener != null) {
+            dListener.onDisagreeButtonClick(view, ckReserveData, position);
+        }
+    }
 
-    public void setOnAdapterItemClickListener(OnAdapterItemClickLIstener listener) {
+    @Override
+    public void onReviewButtonClick(View view, CkReserveData ckReserveData, int position) {
+        if (rListener != null) {
+            rListener.onreviewAdapterItemClick(view, ckReserveData, position);
+        }
+    }
+
+    //Agree button
+    public interface OnAagreeButtonClickLIstener {
+        public void onAagreeButtonClick(View view, CkReserveData data, int position);
+    }
+
+    OnAagreeButtonClickLIstener listener;
+
+    public void setOnAgreeButtonClickListener(OnAagreeButtonClickLIstener listener) {
         this.listener = listener;
     }
 
-    @Override
-    public void onAgreeItemClick(View view, CkReserveData data, int position) {
-        if (listener != null) {
-            listener.onAdapterItemClick(view, data, position);
-        }
+    //DisAgree button
+    public interface OnDisagreeButtonClickLIstener {
+        public void onDisagreeButtonClick(View view, CkReserveData data, int position);
     }
 
-    //----------------------------------------------------------------------------------------------------
+    OnDisagreeButtonClickLIstener dListener;
 
-    public interface OndisAdapterItemClickLIstener {
-        public void ondisAdapterItemClick(View view, CkReserveData data, int position);
-    }
-
-    OndisAdapterItemClickLIstener dListener;
-
-    public void setOndisAdapterItemClickListener(OndisAdapterItemClickLIstener dListener) {
+    public void setOnDisagreeButtonClickLIstener(OnDisagreeButtonClickLIstener dListener) {
         this.dListener = dListener;
     }
 
-    @Override
-    public void onDisagreeItemClick(View view, CkReserveData data, int position) {
-        if (dListener != null) {
-            dListener.ondisAdapterItemClick(view, data, position);
-        }
-    }
-//------------------------------------------------------------------------------------------------------------------
-    public interface OnreviewAdapterItemClickLIstener {
+
+    //Write button
+    public interface OnreviewButtonClickLIstener {
         public void onreviewAdapterItemClick(View view, CkReserveData data, int position);
     }
 
-    OnreviewAdapterItemClickLIstener rListener;
+    OnreviewButtonClickLIstener rListener;
 
-    public void setOnreviewAdapterItemClickListener(OnreviewAdapterItemClickLIstener rListener) {
+    public void setOnreviewAdapterItemClickListener(OnreviewButtonClickLIstener rListener) {
         this.rListener = rListener;
     }
 
-    @Override
-    public void onReviewItemClick(View view, CkReserveData data, int position) {
-        if (rListener != null) {
-            rListener.onreviewAdapterItemClick(view, data, position);
-        }
-    }
+
 
 
 }
