@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.data.EtReserveData;
 
@@ -43,6 +44,10 @@ public class EtReserveViewHolder extends RecyclerView.ViewHolder {
     Button btn_reserve;
 
 
+    private static final int TYPE_REQUEST = 0;
+    private static final int TYPE_REQUEST_COMPLETE = 1;
+    private static final int TYPE_DISH_COMPLETE = 2;
+    private static final int TYPE_END = 4;
     //    @OnClick(R.id.btn_et_reserve_state)
 //    Button reservestate
     public EtReserveViewHolder(View itemView) {
@@ -63,13 +68,33 @@ public class EtReserveViewHolder extends RecyclerView.ViewHolder {
 
     public void setReserveData(EtReserveData etReserveData) {
         this.etReserveData = etReserveData;
-        pictureView.setImageDrawable(etReserveData.getCkpicture());
-        dateView.setText(etReserveData.getReservedate());
-        reservePersonView.setText(etReserveData.getReserveperson());
-        ckNameView.setText(etReserveData.getCkname());
-        foodNameView.setText(etReserveData.getFooname());
-        reserveStateView.setText(etReserveData.getReservestate());
-        btn_reserve.setText(etReserveData.getBtnetreviewwrite());
+
+        //Url to image
+        Glide.with(pictureView.getContext()).load(etReserveData.getCkPictureUrl()).into(pictureView);
+        ckNameView.setText(etReserveData.getCkName());
+        foodNameView.setText(etReserveData.getFoodName());
+        reservePersonView.setText(etReserveData.getReservePerson());
+        dateView.setText(etReserveData.getReserveDate());
+
+        //btn setting
+        switch (etReserveData.getReserverState()){
+            case TYPE_REQUEST :
+                btn_reserve.setText(R.string.et_reservation_cancle);
+                reserveStateView.setText(R.string.et_text_reservation_request);
+                break;
+            case TYPE_REQUEST_COMPLETE :
+                btn_reserve.setText(R.string.et_reservation_cancle);
+                reserveStateView.setText(R.string.et_text_reservation_complete);
+                break;
+            case TYPE_DISH_COMPLETE :
+                btn_reserve.setText(R.string.et_reservation_write);
+                reserveStateView.setText(R.string.et_text_reservation_end);
+                break;
+            case TYPE_END :
+                btn_reserve.setText(R.string.et_reservation_end);
+                reserveStateView.setText("");
+                break;
+        }
     }
 
 

@@ -1,92 +1,79 @@
 package com.sm.ej.nk.homeal.data;
 
-import android.graphics.drawable.Drawable;
-
 /**
  * Created by Tacademy on 2016-08-25.
  */
 public class EtReserveData {
-    private String fooname;
-    private String reservedate;
-    private String reserveperson;
-    private String ckname;
-    private String reservestate;
-    private Drawable ckpicture;
-    private String btnname;
-    private String btnetreviewwrite;
 
-    public String getBtnetreviewwrite() {
-        return btnetreviewwrite;
+    private String foodName;
+    private String reserveDate;
+    private String reservePerson;
+    private String ckName;
+    private int reserverState;
+    private String ckPictureUrl;
+    private String btnName;
+
+    public String getBtnName() {
+        return btnName;
     }
 
-    public void setBtnetreviewwrite(String btnetreviewwrite) {
-        this.btnetreviewwrite = btnetreviewwrite;
+    public void setBtnName(String btnName) {
+        this.btnName = btnName;
     }
 
-    public String getBtnname() {
-        return btnname;
+    public String getCkName() {
+        return ckName;
     }
 
-    public void setBtnname(String btnname) {
-        this.btnname = btnname;
+    public void setCkName(String ckName) {
+        this.ckName = ckName;
     }
 
-    public Drawable getCkpicture() {
-        return ckpicture;
+    public String getCkPicture() {
+        return ckPictureUrl;
     }
 
-    public void setCkpicture(Drawable ckpicture) {
-        this.ckpicture = ckpicture;
+    public void setCkPicture(String ckPicture) {
+        this.ckPictureUrl = ckPicture;
     }
 
-    public EtReserveData() {
+    public String getFoodName() {
+        return foodName;
     }
 
-    public EtReserveData(String fooname, String reservedate, String reserveperson, String ckname, String reservestate) {
-        this.fooname = fooname;
-        this.reservedate = reservedate;
-        this.reserveperson = reserveperson;
-        this.ckname = ckname;
-        this.reservestate = reservestate;
+    public void setFoodName(String foodName) {
+        this.foodName = foodName;
     }
 
-    public String getFooname() {
-        return fooname;
+    public String getReserveDate() {
+        return reserveDate;
     }
 
-    public void setFooname(String fooname) {
-        this.fooname = fooname;
+    public void setReserveDate(String reserveDate) {
+        this.reserveDate = reserveDate;
     }
 
-    public String getReservedate() {
-        return reservedate;
+    public String getReservePerson() {
+        return reservePerson;
     }
 
-    public void setReservedate(String reservedate) {
-        this.reservedate = reservedate;
+    public void setReservePerson(String reservePerson) {
+        this.reservePerson = reservePerson;
     }
 
-    public String getReserveperson() {
-        return reserveperson;
+    public int getReserverState() {
+        return reserverState;
     }
 
-    public void setReserveperson(String reserveperson) {
-        this.reserveperson = reserveperson;
+    public void setReserverState(int reserverState) {
+        this.reserverState = reserverState;
     }
 
-    public String getCkname() {
-        return ckname;
+    public String getCkPictureUrl() {
+        return ckPictureUrl;
     }
 
-    public void setCkname(String ckname) {
-        this.ckname = ckname;
-    }
-
-    public String getReservestate() {
-        return reservestate;
-    }
-
-    public void setReservestate(String reservestate) {
-        this.reservestate = reservestate;
+    public void setCkPictureUrl(String ckPictureUrl) {
+        this.ckPictureUrl = ckPictureUrl;
     }
 }
