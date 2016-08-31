@@ -41,11 +41,11 @@
         android:id="@+id/edit_ck_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@null"
-        android:hint="Name"
         android:layout_alignTop="@+id/image_ck_picture"
+        android:layout_toEndOf="@+id/image_ck_picture"
         android:layout_toRightOf="@+id/image_ck_picture"
-        android:layout_toEndOf="@+id/image_ck_picture" />
+        android:background="@null"
+        android:hint="Name" />
 
     <EditText
         android:id="@+id/edit_ck_age"
@@ -63,44 +63,59 @@
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Birthday"
-        android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_below="@+id/edit_ck_name"
+        android:layout_toEndOf="@+id/image_ck_picture"
         android:layout_toRightOf="@+id/image_ck_picture"
-        android:layout_toEndOf="@+id/image_ck_picture" />
+        android:text="Birthday"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
 
-    <Spinner
-        android:id="@+id/spinner_ck_month"
+    <LinearLayout
+        android:id="@+id/linear_birth"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/edit_ck_name"
-        android:layout_alignRight="@+id/edit_ck_name"
-        android:layout_alignTop="@+id/spinner_ck_day" />
-
-    <Spinner
-        android:id="@+id/spinner_ck_day"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1"
         android:layout_below="@+id/textView6"
-        android:layout_toEndOf="@+id/textView6"
-        android:layout_toRightOf="@+id/textView6"
-        android:spinnerMode="dropdown" />
+        android:layout_toRightOf="@+id/image_ck_picture"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true">
 
-    <Spinner
-        android:id="@+id/spinner_ck_year"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/edit_ck_age"
-        android:layout_alignStart="@+id/edit_ck_age"
-        android:layout_below="@+id/textView6" />
+        <Spinner
+            android:id="@+id/spinner_ck_month"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/edit_ck_name"
+            android:layout_alignRight="@+id/edit_ck_name"
+            android:layout_alignTop="@+id/spinner_ck_day"
+            android:layout_weight="0.25" />
+
+        <Spinner
+            android:id="@+id/spinner_ck_day"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView6"
+            android:layout_toEndOf="@+id/textView6"
+            android:layout_toRightOf="@+id/textView6"
+            android:layout_weight="0.25"
+            android:spinnerMode="dropdown" />
+
+        <Spinner
+            android:id="@+id/spinner_ck_year"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/edit_ck_age"
+            android:layout_alignStart="@+id/edit_ck_age"
+            android:layout_below="@+id/textView6"
+            android:layout_weight="0.5" />
+    </LinearLayout>
 
     <RadioGroup
         android:id="@+id/radioGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/spinner_ck_month"
-        android:layout_toEndOf="@+id/imageButton"
-        android:layout_toRightOf="@+id/imageButton"
+        android:layout_below="@+id/linear_birth"
+        android:layout_toEndOf="@+id/image_ck_picture"
+        android:layout_toRightOf="@+id/image_ck_picture"
         android:orientation="horizontal">
 
         <RadioButton
@@ -121,53 +136,57 @@
 
     </RadioGroup>
 
-
-    <Spinner
-        android:id="@+id/spinner_ck_country"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/linear_phone"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:layout_below="@+id/radioGroup"
-        android:layout_marginTop="32dp" />
+        android:orientation="horizontal"
+        android:weightSum="1">
 
-    <EditText
-        android:id="@+id/edit_ck_address"
+        <Spinner
+            android:id="@+id/spinner_ck_country"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/radioGroup"
+            android:layout_weight="0.5" />
+
+        <EditText
+            android:id="@+id/edit_ck_phone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:background="@null"
+            android:ems="10"
+            android:hint="Phone"
+            android:inputType="phone" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/text_ck_address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/spinner_ck_country"
-        android:layout_marginTop="48dp"
-        android:background="@null"
-        android:hint="Address" />
+        android:layout_below="@+id/linear_phone"
+        android:layout_marginTop="45dp"
+        android:text="Address" />
 
     <EditText
         android:id="@+id/edit_ck_introduce"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/edit_ck_address"
+        android:layout_alignLeft="@+id/text_ck_address"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_alignStart="@+id/edit_ck_address"
-        android:layout_below="@+id/edit_ck_address"
+        android:layout_alignStart="@+id/text_ck_address"
+        android:layout_below="@+id/text_ck_address"
         android:layout_marginTop="37dp"
         android:background="@null"
         android:hint="Introduce" />
 
-    <EditText
-        android:id="@+id/edit_ck_phone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/spinner_ck_day"
-        android:layout_alignStart="@+id/spinner_ck_day"
-        android:layout_alignTop="@+id/spinner_ck_country"
-        android:background="@null"
-        android:ems="10"
-        android:hint="Phone"
-        android:inputType="phone" />
 
     <Button
         android:id="@+id/btn_ck_changefinish"

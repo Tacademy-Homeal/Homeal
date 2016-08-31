@@ -6,11 +6,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.Spinner;
+import android.widget.TextView;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,8 +31,8 @@ public class CkPersonalDataActivity extends AppCompatActivity {
     @BindView(R.id.edit_ck_age)
     EditText ageEdit;
 
-    @BindView(R.id.edit_ck_address)
-    EditText addressEdit;
+    @BindView(R.id.text_ck_address)
+    TextView addressText;
 
     @BindView(R.id.edit_ck_introduce)
     EditText introduceEdit;
@@ -60,9 +64,27 @@ public class CkPersonalDataActivity extends AppCompatActivity {
     @BindView(R.id.image_ck_picture)
     ImageButton ckpictureView;
 
-    @OnClick(R.id.edit_ck_address)
-    public void onAddressEdit(){
-        startActivity(new Intent(CkPersonalDataActivity.this, AddressEditActivity.class));
+    ArrayAdapter<String> countryAdapter;
+    ArrayAdapter<String> monthAdapter;
+
+    static final int ADDRESS_SEARCH = 1;
+
+    @OnClick(R.id.text_ck_address)
+    public void onAddressEdit() {
+        Intent intent = new Intent(CkPersonalDataActivity.this, AddressEditActivity.class);
+        startActivityForResult(intent, ADDRESS_SEARCH);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+        if (requestCode == ADDRESS_SEARCH) {
+            if (resultCode == RESULT_OK) {
+                String address = intent.getStringExtra("address");
+                addressText.setText(address);
+            }
+        }
+
     }
 
     @Override
@@ -74,12 +96,33 @@ public class CkPersonalDataActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("개 인 정 보");
 
+        countryAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.country));
+        countryAdapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
+        countrySpinner.setAdapter(countryAdapter);
+
+        ArrayList<String> monthList = new ArrayList<>();
+        for (int month = 1; month < 13; month++) {
+            monthList.add(String.valueOf(month));
+        }
+        ArrayAdapter<String> monthAdatper = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, monthList);
+        monthSpinner.setAdapter(monthAdatper);
+
+        ArrayList<String> dayList = new ArrayList<>();
+        for (int day = 1; day < 32; day++) {
+            dayList.add(String.valueOf(day));
+        }
+        ArrayAdapter<String> dayAdatper = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, dayList);
+        daySpinner.setAdapter(dayAdatper);
+
+        ArrayList<String> yearList = new ArrayList<>();
+        for (int year = 1930; year < 2030; year++) {
+            yearList.add(String.valueOf(year));
+        }
+        ArrayAdapter<String> yearAdatper = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, yearList);
+        yearSpinner.setAdapter(yearAdatper);
+
         isPersonalData(false);
         btnChangeFinish.setVisibility(View.GONE);
-
-        Intent intent = getIntent();
-        String address = intent.getStringExtra("address");
-        addressEdit.setText(address);
     }
 
     @OnClick(R.id.btn_personal_change)
@@ -96,7 +139,7 @@ public class CkPersonalDataActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case android.R.id.home:
                 this.finish();
                 return true;
@@ -107,7 +150,7 @@ public class CkPersonalDataActivity extends AppCompatActivity {
     public void isPersonalData(boolean s) {
         nameEdit.setEnabled(s);
         ageEdit.setEnabled(s);
-        addressEdit.setEnabled(s);
+        addressText.setEnabled(s);
         introduceEdit.setEnabled(s);
         phoneEdit.setEnabled(s);
         monthSpinner.setEnabled(s);
