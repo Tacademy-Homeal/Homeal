@@ -83,6 +83,7 @@
                     android:theme="@style/ReserveButton"
                     android:id="@+id/btn_ck_reserve_state_disagree"
                     android:layout_width="wrap_content"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="@string/text_btn_ck_reserve_disagree" />
 
@@ -90,12 +91,14 @@
                     android:theme="@style/ReserveButton"
                     android:id="@+id/btn_ck_reserve_state_agree"
                     android:layout_width="wrap_content"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="@string/text_btn_ck_reserve_request" />
 
                 <Button
                     android:theme="@style/ReserveButton"
                     android:layout_width="wrap_content"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="@string/text_ck_reserve_write"
                     android:id="@+id/btn_ck_review_write"
