@@ -9,7 +9,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
+import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 import com.sm.ej.nk.homeal.adapter.ViewPagerFragmentAdapter;
 import com.sm.ej.nk.homeal.fragment.ChatListFragment;
@@ -34,8 +36,15 @@ public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTab
     @BindView(R.id.floating_ck_home)
     FloatingActionMenu fab;
 
-    AlarmPopupWindow popupWindow;
+    @BindView(R.id.fab_edit)
+    FloatingActionButton fabEdit;
 
+    @BindView(R.id.fab_insert)
+    FloatingActionButton fabInsert;
+
+    AlarmPopupWindow popupWindow;
+    public static int INTENT_ADD=0;
+    private static boolean isEditMode = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +56,43 @@ public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTab
         if(viewPager!=null){
             setupTabViewPager(viewPager);
         }
+
+        fab.setClosedOnTouchOutside(true);
+        fab.setOnMenuButtonClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(isEditMode){
+                    fab.getMenuIconView().setImageResource(R.drawable.fab_add);
+                    if(listener!=null){
+                        listener.onFabClick(view, MODE_OK);
+                    }
+                    isEditMode = false;
+                }else{
+                    fab.open(true);
+                }
+            }
+        });
+
+        fabEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(listener!=null){
+                    listener.onFabClick(view, MODE_EDIT);
+                }
+                fab.getMenuIconView().setImageResource(R.drawable.ic_star);
+                isEditMode = true;
+                fab.close(true);
+            }
+        });
+
+        fabInsert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CkMainActivity.this, MenuAddActivity.class);
+                startActivityForResult(intent, INTENT_ADD);
+                fab.close(true);
+            }
+        });
 
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.setTabTextColors(Color.BLACK, Color.BLACK);
@@ -114,5 +160,17 @@ public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTab
     @Override
     public void onTabReselected(TabLayout.Tab tab) {
 
+    }
+
+    public static final int MODE_EDIT = 0;
+    public static final int MODE_OK = 1;
+
+    public interface OnFabClickListener{
+        public void onFabClick(View view, int mode);
+    }
+    OnFabClickListener listener;
+
+    public void setOnFabClickListener(OnFabClickListener listener){
+        this.listener = listener;
     }
 }
