@@ -101,9 +101,4 @@ public class LoginFragment extends Fragment {
 
         mLoginManager.logInWithReadPermissions(this, Arrays.asList("email"));
     }
-
-    @OnClick(R.id.btn_login_google)
-    public void onClickGoogle(){
-
-    }
 }

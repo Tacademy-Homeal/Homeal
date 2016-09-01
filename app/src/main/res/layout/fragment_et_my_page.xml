@@ -6,66 +6,84 @@
     tools:context="com.sm.ej.nk.homeal.fragment.EtMyPageFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <ImageView
-        android:id="@+id/image_picture"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/ic_launcher"
-        android:layout_below="@+id/appbar_et_main"
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/image_et_picture"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp" />
 
     <TextView
-        android:id="@+id/text_name"
+        android:id="@+id/text_et_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/appbar_et_main"
-        android:layout_toEndOf="@+id/image_picture"
-        android:layout_toRightOf="@+id/image_picture"
+        android:layout_marginTop="30dp"
+        android:layout_toEndOf="@+id/image_et_picture"
+        android:layout_toRightOf="@+id/image_et_picture"
         android:text="Large Text"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:gravity="center_horizontal" />
 
     <TextView
-        android:id="@+id/text_role"
+        android:id="@+id/text_et_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/text_name"
-        android:layout_toEndOf="@+id/image_picture"
-        android:layout_toRightOf="@+id/image_picture"
         android:text="Medium Text"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_below="@+id/text_et_name"
+        android:layout_alignRight="@+id/text_et_name"
+        android:layout_alignEnd="@+id/text_et_name"
+        android:gravity="center_horizontal" />
 
     <TextView
         android:id="@+id/text_et_mypage_personal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:text="Personal Data"
+        android:text="@string/personal_data"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_below="@+id/image_picture"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_below="@+id/image_et_picture"
+        android:layout_marginTop="38dp"
+        android:gravity="center_horizontal" />
 
     <TextView
         android:id="@+id/text_et_mypage_zzim"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="71dp"
+        android:text="@string/zzim_list"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_below="@+id/text_et_mypage_personal"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/text_et_mypage_personal"
-        android:layout_marginTop="15dp"
-        android:text="Zzim"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:gravity="center_horizontal" />
 
     <TextView
         android:id="@+id/text_et_mypage_setting"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="89dp"
+        android:text="@string/setting"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_below="@+id/text_et_mypage_zzim"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/text_et_mypage_zzim"
-        android:layout_marginTop="15dp"
-        android:text="Setting"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Large Text"
+        android:id="@+id/text_et_point"
+        android:layout_alignTop="@+id/text_et_name"
+        android:layout_toRightOf="@+id/text_et_name"
+        android:layout_toEndOf="@+id/text_et_name"
+        android:layout_marginLeft="37dp"
+        android:layout_marginStart="37dp"
+        android:gravity="center_horizontal" />
 
 </RelativeLayout>

@@ -49,6 +49,9 @@
     <string name="text_ck_reserve_cancle">예약취소</string>
     <string name="text_ck_reserve_write">후기쓰기</string>
     <string name="ck_home_dialog">매뉴를 삭제하겠습니까?</string>
+    <string name="personal_data">개인정보</string>
+    <string name="zzim_list">찜목록</string>
+    <string name="setting">환경설정</string>
     <string name="menu_add_foodname">음식이름</string>
     <string name="menu_add_foodPrice">가격</string>
     <string name="menu_add_foodIntro">음식설명</string>

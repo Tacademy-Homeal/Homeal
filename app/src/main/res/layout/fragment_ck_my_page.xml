@@ -8,11 +8,12 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/image_picture"
-        android:src="@mipmap/ic_launcher"
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/image_ck_picture"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -22,41 +23,75 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Large Text"
-        android:id="@+id/text_name"
+        android:id="@+id/text_ck_name"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="30dp"
         android:layout_below="@+id/appbar_ck_main"
-        android:layout_toRightOf="@+id/image_picture"
-        android:layout_toEndOf="@+id/image_picture" />
+        android:layout_toRightOf="@+id/image_ck_picture"
+        android:layout_toEndOf="@+id/image_ck_picture" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Medium Text"
-        android:id="@+id/text_role"
-        android:layout_below="@+id/text_name"
-        android:layout_toRightOf="@+id/image_picture"
-        android:layout_toEndOf="@+id/image_picture" />
+        android:id="@+id/text_ck_type"
+        android:layout_below="@+id/text_ck_name"
+        android:layout_toRightOf="@+id/image_ck_picture"
+        android:layout_toEndOf="@+id/image_ck_picture" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Personal Data"
+        android:text="@string/personal_data"
         android:id="@+id/text_ck_mypage_personal"
-        android:layout_below="@+id/image_picture"
+        android:layout_below="@+id/image_ck_picture"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="61dp" />
+        android:layout_marginTop="61dp"
+        android:gravity="center_horizontal" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Setting"
+        android:text="@string/setting"
         android:id="@+id/text_ck_mypage_setting"
         android:layout_below="@+id/text_ck_mypage_personal"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="77dp" />
+        android:layout_marginTop="77dp"
+        android:gravity="center_horizontal" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_toRightOf="@+id/text_ck_name"
+        android:layout_marginLeft="61dp"
+        android:layout_marginStart="61dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/text_ck_name"
+        android:layout_alignBottom="@+id/image_ck_picture">
 
+        <ProgressBar
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/progress_ck_mypage_total"
+            android:indeterminate="false"
+            android:progressDrawable="@drawable/circular_progress_bar"
+            android:background="@drawable/circle_shape"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:max="5"/>
+
+        <TextView
+            android:layout_width="55dp"
+            android:layout_height="wrap_content"
+            android:text="@string/ck_detail_total"
+            android:id="@+id/textView19"
+            android:gravity="center_horizontal" />
+    </LinearLayout>
 </RelativeLayout>
