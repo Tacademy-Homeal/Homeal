@@ -129,6 +129,9 @@ public class CkHomeFragment extends Fragment implements CkMainActivity.OnFabClic
     }
 
     public interface  OnHomeViewClickLIstener{
-//        public void onHomeViewClick()
+        public void onHomeViewClick(View view, int position, CkHomeItemData data);
+    }
+    public void setOnHomeViewClickListener(OnHomeViewClickLIstener listener){
+
     }
 }
