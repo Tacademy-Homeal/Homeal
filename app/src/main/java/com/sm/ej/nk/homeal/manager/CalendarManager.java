@@ -26,6 +26,7 @@ public class CalendarManager {
     }
 
     private static CalendarManager instance;
+    private List<CalendarItem> item;
 
     private Calendar mCalendar;
 
@@ -71,12 +72,21 @@ public class CalendarManager {
 
     public CalendarData getLastMonthCalendarData(){
         mCalendar.add(Calendar.MONTH, -1);
-        return getCalendarData();
+        if(item.isEmpty() || item == null){
+            return getCalendarData();
+        }else{
+            return getSelectCalendarData(item);
+        }
     }
 
     public CalendarData getNextMonthCalendarData(){
         mCalendar.add(Calendar.MONTH, 1);
-        return getCalendarData();
+        if(item.isEmpty() || item == null){
+            return getCalendarData();
+        }else{
+            return getSelectCalendarData(item);
+        }
+
     }
 
     public CalendarData getCalendarData(){
@@ -153,6 +163,7 @@ public class CalendarManager {
     }
 
     public CalendarData getSelectCalendarData(List<CalendarItem> item){
+        this.item = item;
         CalendarData data = getCalendarData();
         for(int i=0; i<data.days.size(); i++){
             for(int j=0; j<item.size(); j++){

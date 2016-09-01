@@ -58,8 +58,8 @@ public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder implements
         progressTaste = (ProgressBar)view.findViewById(R.id.progress_taste);
         progresskind = (ProgressBar)view.findViewById(R.id.progress_kind);
         progressClean = (ProgressBar)view.findViewById(R.id.progress_clean);
-        backImage = (ImageView)view.findViewById(R.id.image_ck_home_back);
-        nextImage = (ImageView)view.findViewById(R.id.image_ck_home_next);
+        backImage = (ImageView)view.findViewById(R.id.image_ck_detail_back);
+        nextImage = (ImageView)view.findViewById(R.id.image_ck_detail_next);
     }
 
     public void setData(CkDetailData data){
@@ -72,6 +72,8 @@ public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder implements
         userAddress.setText(data.address);
         foodPrice.setText(data.foodPrice);
         foodName.setText(data.foodName);
+        backImage.setOnClickListener(this);
+        nextImage.setOnClickListener(this);
 
         cm = CalendarManager.getInstance();
         try {
