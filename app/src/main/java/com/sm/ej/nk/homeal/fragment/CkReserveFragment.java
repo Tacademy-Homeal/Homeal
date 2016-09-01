@@ -32,10 +32,13 @@ public class CkReserveFragment extends Fragment {
     RecyclerView CkReserveView;
     CkReserveAdapter mAdapter;
 
-    private static final int TYPE_QUEST = 0;
-    private static final int TYPE_QUEST_COMPLETE = 1;
-    private static final int TYPE_EAT_END = 2;
-    private static final int TYPE_END = 3;
+    private static final int TYPE_REQUEST = 1;
+    private static final int TYPE_REQUEST_COMPLETE = 2;
+    private static final int TYPE_REQUEST_REJECT = 3;
+    private static final int TYPE_COOKER_CANCLE = 4;
+    private static final int TYPE_EATER_CANCLE = 5;
+    private static final int TYPE_EAT_COMPLETE = 6;
+    private static final int TYPE_END = 7;
 
     public static CkReserveFragment createInstance() {
         final CkReserveFragment pageFragment = new CkReserveFragment();
@@ -83,10 +86,10 @@ public class CkReserveFragment extends Fragment {
             @Override
             public void onreviewAdapterItemClick(View view, CkReserveData data, int position) {
                switch (data.getReserveState()){
-                   case TYPE_QUEST_COMPLETE:
+                   case TYPE_REQUEST_COMPLETE:
                        showDialog();
                        break;
-                   case TYPE_EAT_END:
+                   case TYPE_EAT_COMPLETE:
                        Intent intent = new Intent(getActivity(), CkWriteReViewActivity.class);
                        startActivity(intent);
                        break;
@@ -124,11 +127,11 @@ public class CkReserveFragment extends Fragment {
             data.setReserveDate("2010.10.5");
 
             if(i < 5) {
-                data.setReserveState(TYPE_QUEST);
+                data.setReserveState(TYPE_REQUEST);
             }else if(i < 10 && i > 5){
-                data.setReserveState(TYPE_QUEST_COMPLETE);
+                data.setReserveState(TYPE_REQUEST_COMPLETE);
             }else if(i< 15 && i > 10){
-                data.setReserveState(TYPE_EAT_END);
+                data.setReserveState(TYPE_EAT_COMPLETE);
             }else{
                 data.setReserveState(TYPE_END);
             }

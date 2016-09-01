@@ -32,10 +32,15 @@ public class EtReserveFragment extends Fragment {
     RecyclerView EtReserveView;
     EtReserveAdapter mAdapter;
 
-    private static final int TYPE_REQUEST = 0;
-    private static final int TYPE_REQUEST_COMPLETE = 1;
-    private static final int TYPE_DISH_COMPLETE = 2;
-    private static final int TYPE_END = 4;
+    private static final int TYPE_REQUEST = 1;
+    private static final int TYPE_REQUEST_COMPLETE = 2;
+    private static final int TYPE_REQUEST_REJECT = 3;
+    private static final int TYPE_COOKER_CANCLE = 4;
+    private static final int TYPE_EATER_CANCLE = 5;
+    private static final int TYPE_EAT_COMPLETE = 6;
+    private static final int TYPE_END = 7;
+
+
 
     public static EtReserveFragment createInstance() {
         final EtReserveFragment pageFragment = new EtReserveFragment();
@@ -72,7 +77,7 @@ public class EtReserveFragment extends Fragment {
                    case TYPE_REQUEST_COMPLETE :
                        showDialog();
                        break;
-                   case TYPE_DISH_COMPLETE :
+                   case TYPE_EAT_COMPLETE :
                        Intent intent = new Intent(getActivity(),EtWriteReviewActivity.class);
                        startActivity(intent);
                        break;
@@ -124,7 +129,7 @@ public class EtReserveFragment extends Fragment {
             }else if(i < 15){
                 data.setReserverState(TYPE_REQUEST_COMPLETE);
             }else{
-                data.setReserverState(TYPE_DISH_COMPLETE);
+                data.setReserverState(TYPE_EAT_COMPLETE);
             }
             data.setCkPictureUrl("https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTACDX3BGsb6q0XNgMjYnyIEHxalWJ2JAC2xwEev-gsonJGBi5GassamzA");
             mAdapter.add(data);
