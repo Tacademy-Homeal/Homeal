@@ -64,7 +64,7 @@ public class ScheduleEditActivity extends AppCompatActivity {
         mAdapter.setOnCalendarAdpaterClickListener(new CalendarAdapter.OnCalendarAdapterClickListener() {
             @Override
             public void onCalendarAdapterClick(View view, int position, CalendarItem data) {
-                textCalendar.setText(""+data.month+"월" +data.dayOfMonth+"일");
+                textCalendar.setText(""+(data.month+1)+"월" +data.dayOfMonth+"일");
             }
         });
 

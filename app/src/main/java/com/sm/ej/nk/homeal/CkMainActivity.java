@@ -135,7 +135,7 @@ public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTab
 
         ckHomeFragment.setOnHomeFragmentClickListner(new CkHomeFragment.OnHomeFragmentClickListener() {
             @Override
-            public void onHomeFragmentClickLIstner(View view, int position, CkHomeItemData data) {
+            public void onHomeFragmentClick(View view, int position, CkHomeItemData data) {
                 Intent intent = new Intent(CkMainActivity.this, MenuAddActivity.class);
                 intent.putExtra(INTENT_MODE, MODE_MENU_EDIT);
                 intent.putExtra(INTENT_MENU_DATA, data);
