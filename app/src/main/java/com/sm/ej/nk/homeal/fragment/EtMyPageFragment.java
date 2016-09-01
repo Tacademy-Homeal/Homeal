@@ -37,6 +37,7 @@ public class EtMyPageFragment extends Fragment {
 
     @BindView(R.id.text_et_point)
     TextView etpointView;
+    //
 
 
     public static EtMyPageFragment createInstance() {
