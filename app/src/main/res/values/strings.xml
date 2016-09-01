@@ -22,7 +22,7 @@
     <string name="tos_dialog">약관에 동의하셔야 서비스를 이용 할 수 있습니다.</string>
     <string name="sign_up">내용을 입력해주세요.</string>
     <string name="login_dialog">앱을 종료하시겠습니까?</string>
-    <string name="tos_info">용이용약관 내용 이용약관 내용 이용약관 내용 이용약관 내용이용약관 내용 ㅍ 이용약관 내용 ㅍ 이용약관 내용 이용약관 내용</string>
+    <string name="tos_info">이 내용은 다음과 같습니다...</string>
     <string name="infockdetail_name">상세페이지</string>
     <string name="ck_detail_food">Introduce My Food</string>
     <string name="ck_detail_total">총점</string>
@@ -32,7 +32,7 @@
     <string name="ck_detail_clean">청결</string>
     <string name="facebook_app_id">134191500364156</string>
     <string name="ck_home_fabedit">매뉴편집</string>
-    <string name="ck_home_fabinsert">추가</string>
+    <string name="ck_home_fabinsert">메뉴추가</string>
     <string name="title_activity_maps">Map</string>
     <string name="et_reservation_cancle">예약취소</string>
     <string name="et_reservation_write">후기쓰기</string>
@@ -52,6 +52,18 @@
     <string name="personal_data">개인정보</string>
     <string name="zzim_list">찜목록</string>
     <string name="setting">환경설정</string>
+    <string name="text_homeal_welcome">Welcome Homeal</string>
+    <string name="text_homeal_main">여행은 먹어보는거야</string>
+    <string name="menu_add_foodname">음식이름</string>
+    <string name="menu_add_foodPrice">가격</string>
+    <string name="menu_add_foodIntro">음식설명</string>
+    <string name="menu_add_hint">입력해주세요.</string>
+    <string name="ck_home_fabscheduleinsert">일정추가</string>
+    <string name="ck_home_mornig">아침</string>
+    <string name="ck_home_launch">점심</string>
+    <string name="ck_home_dinner">저녁</string>
+    <string name="ck_home_reservecount">예약인원</string>
+
     <string name="change">수정</string>
     <string name="change_finish">수정완료</string>
     <string name="leavemembership_dialog">회원탈퇴 하시겠습니까?</string>

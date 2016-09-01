@@ -48,18 +48,29 @@
             android:layout_height="wrap_content"
             android:id="@+id/fab_insert"
             fab:fab_label="@string/ck_home_fabinsert"
-            fab:menu_labels_style="@style/MenuLabelsStyle"/>
+            fab:menu_labels_style="@style/MenuLabelsStyle"
+            fab:fab_size="mini"/>
 
         <com.github.clans.fab.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/fab_edit"
-            fab:fab_label="@string/ck_home_fabedit"/>
+            fab:fab_label="@string/ck_home_fabedit"
+            fab:fab_size="mini"/>
 
         <com.github.clans.fab.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/fab_schedule"
-            fab:fab_label="@string/ck_home_fabschedule"/>
+            android:id="@+id/fab_schedulinsert"
+            fab:fab_label="@string/ck_home_fabscheduleinsert"
+            fab:fab_size="mini"/>
+
+        <com.github.clans.fab.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/fab_scheduleedit"
+            fab:fab_label="@string/ck_home_fabschedule"
+            fab:fab_size="mini"/>
+
     </com.github.clans.fab.FloatingActionMenu>
 </android.support.design.widget.CoordinatorLayout>

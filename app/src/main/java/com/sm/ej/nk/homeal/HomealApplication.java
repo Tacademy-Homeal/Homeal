@@ -18,7 +18,6 @@ public class HomealApplication extends Application {
         super.onCreate();
         this.context = this;
         FacebookSdk.sdkInitialize(getApplicationContext());
-
     }
 
     public static boolean isCooker(){

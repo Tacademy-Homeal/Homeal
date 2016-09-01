@@ -70,10 +70,10 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Medium Text"
-                android:id="@+id/text_ck_home_item_foodinfo" />
+                android:id="@+id/text_ck_home_item_foodinfo"
+                android:singleLine="true" />
         </LinearLayout>
+
     </LinearLayout>
 
     <ImageView
@@ -93,4 +93,5 @@
         android:layout_alignParentRight="true"
         android:src="@drawable/btn_before"
         android:visibility="invisible" />
+
 </RelativeLayout>

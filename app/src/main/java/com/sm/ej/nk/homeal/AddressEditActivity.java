@@ -182,6 +182,8 @@ public class AddressEditActivity extends AppCompatActivity implements
         poiResolver.put(marker, poi);
     }
 
+
+
     @Override
     protected void onStart() {
         super.onStart();

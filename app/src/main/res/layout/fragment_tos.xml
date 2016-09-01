@@ -4,39 +4,59 @@
     android:layout_height="match_parent"
     tools:context="com.sm.ej.nk.homeal.fragment.TOSFragment">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="이용 약관"
+        android:textSize="24dp"
+        android:id="@+id/text_tos_main"
+        android:layout_gravity="center_horizontal|top"
+        android:layout_above="@+id/textView13"
+        android:layout_alignRight="@+id/scrollView"
+        android:layout_alignEnd="@+id/scrollView" />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="동의"
         android:id="@+id/btn_tos_ok"
-        android:layout_gravity="left|bottom" />
+        android:layout_gravity="left|bottom"
+        android:layout_alignTop="@+id/btn_tos_backey"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="비동의"
         android:id="@+id/btn_tos_backey"
-        android:layout_gravity="right|bottom" />
+        android:layout_gravity="right|bottom"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <ScrollView
         android:layout_width="282dp"
         android:layout_height="321dp"
         android:id="@+id/scrollView"
-        android:layout_gravity="center" >
+        android:layout_gravity="left|center_vertical"
+        android:layout_above="@+id/btn_tos_backey"
+        android:layout_toLeftOf="@+id/btn_tos_ok"
+        android:layout_toStartOf="@+id/btn_tos_ok">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/tos_info"
-            android:id="@+id/textView13" />
     </ScrollView>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="이용 약관"
-        android:id="@+id/textView12"
-        android:layout_gravity="center_horizontal|top" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/tos_info"
+        android:id="@+id/textView13"
+        android:layout_gravity="left|top"
+        android:layout_above="@+id/scrollView" />
 
+    </RelativeLayout>
 </FrameLayout>

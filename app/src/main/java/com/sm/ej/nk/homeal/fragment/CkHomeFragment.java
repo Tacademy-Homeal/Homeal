@@ -49,8 +49,21 @@ public class CkHomeFragment extends Fragment implements CkMainActivity.OnFabClic
         mAdapter.setHeader(init());
         rv.setAdapter(mAdapter);
         mAdapter.additem(initItem());
+        mAdapter.setOnHomeAdapterClickListner(new CkHomeAdapter.OnHomeAdapterClickListener() {
+            @Override
+            public void onHomeAdapterClick(View view, int position, CkHomeItemData data) {
+                if(listener !=null){
+                    listener.onHomeFragmentClick(view, position, data);
+                }
+            }
+        });
 
+        mAdapter.setOnHomeViewClick(new CkHomeAdapter.OnHomeViewClickListener() {
+            @Override
+            public void onHomeViewClick(View view, int position, CkHomeItemData data) {
 
+            }
+        });
         parentActivity = (CkMainActivity)getActivity();
         parentActivity.setOnFabClickListener(this);
 
@@ -105,5 +118,20 @@ public class CkHomeFragment extends Fragment implements CkMainActivity.OnFabClic
         }else if(mode == parentActivity.MODE_OK){
             mAdapter.setinvisible();
         }
+    }
+
+    public interface OnHomeFragmentClickListener{
+        public void onHomeFragmentClick(View view, int position, CkHomeItemData data);
+    }
+    OnHomeFragmentClickListener listener;
+    public void setOnHomeFragmentClickListner(OnHomeFragmentClickListener listener){
+        this.listener = listener;
+    }
+
+    public interface  OnHomeViewClickLIstener{
+        public void onHomeViewClick(View view, int position, CkHomeItemData data);
+    }
+    public void setOnHomeViewClickListener(OnHomeViewClickLIstener listener){
+
     }
 }
