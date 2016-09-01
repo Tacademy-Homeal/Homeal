@@ -17,7 +17,7 @@ import com.sm.ej.nk.homeal.data.CkHomeItemData;
  * Created by Tacademy on 2016-08-30.
  */
 public class CkHomeItemViewHolder extends RecyclerView.ViewHolder  implements View.OnClickListener{
-    View view;
+    public View view;
     Context context;
     public ImageView foodImage, userImage, editImage, deleteImage;
     public TextView userName, userAdd, foodPrice, foodName, foodInfo;

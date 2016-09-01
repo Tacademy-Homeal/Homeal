@@ -87,6 +87,14 @@ public class CkHomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             headerholder.setData(headerData);
         }else{
             CkHomeItemViewHolder itemholder = (CkHomeItemViewHolder)holder;
+            itemholder.view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(viewListener!=null){
+                        viewListener.onHomeViewClick(view, position, itemData.get(position-1));
+                    }
+                }
+            });
             itemholder.editImage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -117,5 +125,13 @@ public class CkHomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     OnHomeAdapterClickListener listener;
     public void setOnHomeAdapterClickListner(OnHomeAdapterClickListener listener){
         this.listener = listener;
+    }
+
+    public interface  OnHomeViewClickListener{
+        public void onHomeViewClick(View view, int position, CkHomeItemData data);
+    }
+    OnHomeViewClickListener viewListener;
+    public void setOnHomeViewClick(OnHomeViewClickListener listener){
+        viewListener = listener;
     }
 }
