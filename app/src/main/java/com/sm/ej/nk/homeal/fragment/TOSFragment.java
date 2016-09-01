@@ -2,16 +2,21 @@ package com.sm.ej.nk.homeal.fragment;
 
 
 import android.content.DialogInterface;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.sm.ej.nk.homeal.LoginActivity;
 import com.sm.ej.nk.homeal.R;
+import com.sm.ej.nk.homeal.data.FontData;
+import com.sm.ej.nk.homeal.manager.FontManager;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -20,6 +25,9 @@ import butterknife.OnClick;
  */
 public class TOSFragment extends Fragment {
 
+
+    @BindView(R.id.text_tos_main)
+    TextView text_tos;
 
     public TOSFragment() {
         // Required empty public constructor
@@ -31,6 +39,10 @@ public class TOSFragment extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_tos, container, false);
         ButterKnife.bind(this, view);
+
+        Typeface typeface = FontManager.getInstance().getTypeface(getActivity(), FontData.NOTO_M);
+        text_tos.setTypeface(typeface);
+
         return view;
     }
 

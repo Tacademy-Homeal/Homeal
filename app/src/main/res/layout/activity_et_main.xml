@@ -3,12 +3,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/appbar_et_main">
+        android:id="@+id/appbar_et_main"
+        >
 
         <android.support.v7.widget.Toolbar
             android:layout_width="match_parent"
@@ -17,7 +19,6 @@
             app:layout_scrollFlags="scroll|enterAlways"
             android:layout_marginBottom="5dp"
             android:background="@color/color_homeal_toolbar"
-
             />
 
         <android.support.design.widget.TabLayout
