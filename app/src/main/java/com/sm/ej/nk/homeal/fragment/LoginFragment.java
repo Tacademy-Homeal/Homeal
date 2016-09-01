@@ -66,7 +66,6 @@ public class LoginFragment extends Fragment {
         imageSet();
 
 
-
         return view;
     }
     private void imageSet(){

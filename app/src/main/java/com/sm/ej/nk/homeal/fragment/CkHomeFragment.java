@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,7 +50,16 @@ public class CkHomeFragment extends Fragment implements CkMainActivity.OnFabClic
         mAdapter.setHeader(init());
         rv.setAdapter(mAdapter);
         mAdapter.additem(initItem());
-
+        mAdapter.setOnHomeAdapterClickListner(new CkHomeAdapter.OnHomeAdapterClickListener() {
+            @Override
+            public void onHomeAdapterClick(View view, int position, CkHomeItemData data) {
+                Log.e("ssong", "1111");
+                if(listener !=null){
+                    Log.e("ssong", "2222");
+                    listener.onHomeFragmentClickLIstner(view, position, data);
+                }
+            }
+        });
 
         parentActivity = (CkMainActivity)getActivity();
         parentActivity.setOnFabClickListener(this);
@@ -105,5 +115,13 @@ public class CkHomeFragment extends Fragment implements CkMainActivity.OnFabClic
         }else if(mode == parentActivity.MODE_OK){
             mAdapter.setinvisible();
         }
+    }
+
+    public interface OnHomeFragmentClickListener{
+        public void onHomeFragmentClickLIstner(View view, int position, CkHomeItemData data);
+    }
+    OnHomeFragmentClickListener listener;
+    public void setOnHomeFragmentClickListner(OnHomeFragmentClickListener listener){
+        this.listener = listener;
     }
 }
