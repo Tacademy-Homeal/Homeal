@@ -73,11 +73,23 @@
                         android:id="@+id/textView30" />
 
                     <EditText
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:background="@null"
                         android:id="@+id/edit_menu_add_foodprice"
-                        android:hint="@string/menu_add_hint" />
+                        android:hint="@string/menu_add_hint"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:id="@+id/text_menu_add_money" />
+
+                    <Spinner
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/spinner_menu_add" />
                 </LinearLayout>
 
                 <ImageView
@@ -113,5 +125,6 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_margin="@dimen/ck_detail_floating_bottommargin" />
+        android:layout_margin="@dimen/ck_detail_floating_bottommargin"
+        android:id="@+id/fab_menu_add_ok" />
 </RelativeLayout>
