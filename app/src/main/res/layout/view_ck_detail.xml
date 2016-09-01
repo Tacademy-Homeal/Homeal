@@ -187,30 +187,6 @@
         android:id="@+id/imageView"
         android:background="#a7a7a7" />
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="@string/ck_detail_food"
-            android:id="@+id/textView24" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/text_ck_detail_introduce" />
-    </LinearLayout>
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:id="@+id/imageView2"
-        android:background="#a7a7a7" />
-
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -227,18 +203,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView2"
+            android:src="@drawable/icon_back" />
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:id="@+id/text_ck_detail_month"
+            android:id="@+id/text_ck_detail_date"
             android:layout_weight="1" />
 
-        <TextView
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:id="@+id/text_ck_detail_year" />
+            android:id="@+id/imageView11"
+            android:src="@drawable/icon_next" />
+
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView

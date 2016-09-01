@@ -65,12 +65,15 @@ public class MenuAddActivity extends AppCompatActivity {
         MODE = intent.getIntExtra(CkMainActivity.INTENT_MODE,-1);
         if(MODE == CkMainActivity.MODE_MENU_EDIT){
             data = (CkHomeItemData)intent.getSerializableExtra(CkMainActivity.INTENT_MENU_DATA);
-            Glide.with(this).load(data.foodimage).into(image);
-            editFoodInfo.setText(data.foodInfo);
-            editFoodName.setText(data.foodName);
-            editFoodPrice.setText(data.foodPrice);
+            setMenuData(data);
         }else if(MODE == CkMainActivity.MODE_MENU_INSERT){
 
+        }else if(MODE == CkMainActivity.MODE_MENU_SHOW){
+            data = (CkHomeItemData)intent.getSerializableExtra(CkMainActivity.INTENT_MENU_DATA);
+            setMenuData(data);
+            editFoodName.setEnabled(false);
+            editFoodPrice.setEnabled(false);
+            editFoodInfo.setEnabled(false);
         }
 
         image.setOnClickListener(new View.OnClickListener() {
@@ -104,5 +107,12 @@ public class MenuAddActivity extends AppCompatActivity {
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    private void setMenuData(CkHomeItemData data){
+        Glide.with(this).load(data.foodimage).into(image);
+        editFoodInfo.setText(data.foodInfo);
+        editFoodName.setText(data.foodName);
+        editFoodPrice.setText(data.foodPrice);
     }
 }

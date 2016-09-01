@@ -9,7 +9,7 @@ public class CkDetailData {
     public ArrayList<String> pagerImageList;
     public String userImage;
     public String userName;
-    public String userAddress;
+    public String address;
     public String foodPrice;
     public String foodName;
     public int totalScore;

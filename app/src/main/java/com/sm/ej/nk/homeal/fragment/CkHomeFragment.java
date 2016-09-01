@@ -61,7 +61,9 @@ public class CkHomeFragment extends Fragment implements CkMainActivity.OnFabClic
         mAdapter.setOnHomeViewClick(new CkHomeAdapter.OnHomeViewClickListener() {
             @Override
             public void onHomeViewClick(View view, int position, CkHomeItemData data) {
-
+                if(viewListener!=null){
+                    viewListener.onHomeViewClick(view, position, data);
+                }
             }
         });
         parentActivity = (CkMainActivity)getActivity();
@@ -131,7 +133,8 @@ public class CkHomeFragment extends Fragment implements CkMainActivity.OnFabClic
     public interface  OnHomeViewClickLIstener{
         public void onHomeViewClick(View view, int position, CkHomeItemData data);
     }
+    OnHomeViewClickLIstener viewListener;
     public void setOnHomeViewClickListener(OnHomeViewClickLIstener listener){
-
+        viewListener = listener;
     }
 }

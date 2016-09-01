@@ -16,9 +16,10 @@ import com.sm.ej.nk.homeal.data.CkHomeData;
  */
 public class CkHomeHeaderViewHolder extends RecyclerView.ViewHolder{
     public View view;
-    public ImageView userImage;
-    public TextView userName, userAddress, jjimCount, reviewCount;
+    public ImageView userImage, nextCalendar, backCalendar, userMap;
+    public TextView userName, userAddress, jjimCount, reviewCount, textDate;
     public ProgressBar progressTotal, progressTaste, progressKind, progressClean, progressPrice;
+    public RecyclerView rvCalendar;
 
     public CkHomeHeaderViewHolder(View view){
         super(view);
@@ -32,6 +33,11 @@ public class CkHomeHeaderViewHolder extends RecyclerView.ViewHolder{
         progressKind = (ProgressBar)view.findViewById(R.id.progress_ck_home_kind);
         progressClean = (ProgressBar)view.findViewById(R.id.progress_ck_home_clean);
         progressPrice = (ProgressBar)view.findViewById(R.id.progress_ck_home_price);
+        nextCalendar = (ImageView)view.findViewById(R.id.image_ck_home_next);
+        backCalendar = (ImageView)view.findViewById(R.id.image_ck_home_back);
+        userMap = (ImageView)view.findViewById(R.id.image_ck_home_map);
+        textDate = (TextView)view.findViewById(R.id.text_ck_home_calendar);
+        rvCalendar = (RecyclerView)view.findViewById(R.id.rv_ck_home_calendar);
     }
 
     public void setData(CkHomeData data){

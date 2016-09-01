@@ -44,6 +44,7 @@ public class InfoCkDetailActivity extends AppCompatActivity implements CkDetailA
         Intent intent = getIntent();
         etHomeData = (EtHomeData)intent.getSerializableExtra(EtHomeFragment.INTENT_CK_ID);
 
+
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle(getResources().getString(R.string.infockdetail_name));
@@ -82,7 +83,7 @@ public class InfoCkDetailActivity extends AppCompatActivity implements CkDetailA
         data.foodName = "음식이름";
         data.foodPrice = "음식 가격";
         data.mapImage = "https://pixabay.com/static/uploads/photo/2012/03/02/14/45/flowers-21322_960_720.jpg";
-        data.userAddress = "주소오오옹오";
+        data.address = "주소오오옹오";
         data.userImage = "http://img.lifestyler.co.kr/uploads/program/cheditor/2015/03/E3XVIPNDDBU1K9CPHLIA.jpg";
         data.userName = "이름응ㅁ음으";
         data.totalScore=4;
@@ -104,8 +105,8 @@ public class InfoCkDetailActivity extends AppCompatActivity implements CkDetailA
         for(int i=0 ; i<5 ; i++){
             CkDetailMenuData menuData = new CkDetailMenuData();
             menuData.foodAddress = "주소오오"+i;
-            menuData.foodImage = "http://cfile28.uf.tistory.com/image/1366E3464E05C7021C1EB6";
-            menuData.foodName = "음식 이름"+i;
+            menuData.image = "http://cfile28.uf.tistory.com/image/1366E3464E05C7021C1EB6";
+            menuData.name = "음식 이름"+i;
             menuData.foodTime = "시간"+i;
             dummy.add(menuData);
         }

@@ -143,6 +143,18 @@ public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTab
             }
         });
 
+        ckHomeFragment.setOnHomeViewClickListener(new CkHomeFragment.OnHomeViewClickLIstener() {
+            @Override
+            public void onHomeViewClick(View view, int position, CkHomeItemData data) {
+                if(!isEditMode){
+                    Intent intent = new Intent(CkMainActivity.this, MenuAddActivity.class);
+                    intent.putExtra(INTENT_MODE, MODE_MENU_SHOW);
+                    intent.putExtra(INTENT_MENU_DATA, data);
+                    startActivity(intent);
+                }
+            }
+        });
+
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.setTabTextColors(Color.BLACK, Color.BLACK);
         tabLayout.addOnTabSelectedListener(this);
@@ -221,6 +233,7 @@ public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTab
 
     public static final int MODE_MENU_EDIT = 9;
     public static final int MODE_MENU_INSERT=10;
+    public static final int MODE_MENU_SHOW=11;
 
     public interface OnFabClickListener{
         public void onFabClick(View view, int mode);
