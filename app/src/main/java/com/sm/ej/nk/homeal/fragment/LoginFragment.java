@@ -67,7 +67,6 @@ public class LoginFragment extends Fragment {
         Typeface typeface = FontManager.getInstance().getTypeface(getActivity(), FontData.NOTO_D);
         loginSelectView.setTypeface(typeface);
 
-
         return view;
     }
 

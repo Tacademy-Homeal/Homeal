@@ -20,8 +20,8 @@ public class HomealGlideModel implements GlideModule {
         int defaultMemotyCacheSize = calculator.getMemoryCacheSize();
         int defaultBitmapPoolSize = calculator.getBitmapPoolSize();
 
-        int customMemoryCacheSize = (int)(1.2 * defaultMemotyCacheSize);
-        int customBitmapPoolSize = (int)(1.2 * defaultBitmapPoolSize);
+        int customMemoryCacheSize = (int)(1.1 * defaultMemotyCacheSize);
+        int customBitmapPoolSize = (int)(1.1 * defaultBitmapPoolSize);
 
         builder.setMemoryCache(new LruResourceCache(customMemoryCacheSize));
         builder.setBitmapPool(new LruBitmapPool(customBitmapPoolSize));
