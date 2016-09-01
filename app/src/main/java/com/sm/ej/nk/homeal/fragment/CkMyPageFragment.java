@@ -65,7 +65,7 @@ public class CkMyPageFragment extends Fragment {
         user.setPictureUrl("http://img.etnews.com/news/article/2016/02/18/cms_temp_article_18165253593992.jpg");
         user.setUserName("Eunji");
         user.setType("Cooker");
-        user.totalScore =3;
+        user.setTotalScore(3);
     }
 
     User user;
@@ -75,6 +75,7 @@ public class CkMyPageFragment extends Fragment {
         Glide.with(ckpictureView.getContext()).load(user.getPictureUrl()).into(ckpictureView);
         cknameView.setText(user.getUserName());
         cktypeView.setText(user.getType());
+        cktotalView.setProgress(user.getTotalScore());
     }
 
     @OnClick(R.id.text_ck_mypage_personal)

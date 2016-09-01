@@ -26,12 +26,12 @@
         android:layout_alignEnd="@+id/appbar_ck_main"
         android:layout_alignRight="@+id/appbar_ck_main"
         android:layout_below="@+id/appbar_ck_main"
-        android:text="Change" />
+        android:text="@string/change" />
 
-    <ImageButton
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/image_ck_picture"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_alignLeft="@+id/appbar_ck_main"
         android:layout_alignStart="@+id/appbar_ck_main"
         android:layout_below="@+id/btn_personal_change"
@@ -41,11 +41,11 @@
         android:id="@+id/edit_ck_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/image_ck_picture"
-        android:layout_toEndOf="@+id/image_ck_picture"
-        android:layout_toRightOf="@+id/image_ck_picture"
         android:background="@null"
-        android:hint="Name" />
+        android:hint="Name"
+        android:layout_above="@+id/textView6"
+        android:layout_toRightOf="@+id/image_ck_picture"
+        android:layout_toEndOf="@+id/image_ck_picture" />
 
     <EditText
         android:id="@+id/edit_ck_age"
@@ -63,11 +63,11 @@
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/edit_ck_name"
-        android:layout_toEndOf="@+id/image_ck_picture"
-        android:layout_toRightOf="@+id/image_ck_picture"
         android:text="Birthday"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_above="@+id/linear_birth"
+        android:layout_alignRight="@+id/edit_ck_name"
+        android:layout_alignEnd="@+id/edit_ck_name" />
 
     <LinearLayout
         android:id="@+id/linear_birth"
@@ -75,10 +75,10 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:weightSum="1"
-        android:layout_below="@+id/textView6"
+        android:layout_above="@+id/radioGroup"
         android:layout_toRightOf="@+id/image_ck_picture"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true">
+        android:layout_alignRight="@+id/radioGroup"
+        android:layout_alignEnd="@+id/radioGroup">
 
         <Spinner
             android:id="@+id/spinner_ck_month"
@@ -113,10 +113,10 @@
         android:id="@+id/radioGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/linear_birth"
-        android:layout_toEndOf="@+id/image_ck_picture"
+        android:orientation="horizontal"
+        android:layout_alignBottom="@+id/image_ck_picture"
         android:layout_toRightOf="@+id/image_ck_picture"
-        android:orientation="horizontal">
+        android:layout_toEndOf="@+id/image_ck_picture">
 
         <RadioButton
             android:id="@+id/radio_ck_male"
@@ -140,9 +140,11 @@
         android:id="@+id/linear_phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/radioGroup"
         android:orientation="horizontal"
-        android:weightSum="1">
+        android:weightSum="1"
+        android:layout_below="@+id/radioGroup"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <Spinner
             android:id="@+id/spinner_ck_country"
@@ -196,7 +198,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignStart="@+id/edit_ck_introduce"
         android:layout_marginBottom="31dp"
-        android:text="change finish" />
+        android:text="@string/change_finish" />
 
 
 </RelativeLayout>
