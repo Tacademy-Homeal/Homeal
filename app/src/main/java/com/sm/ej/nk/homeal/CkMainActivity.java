@@ -14,6 +14,7 @@ import android.view.View;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 import com.sm.ej.nk.homeal.adapter.ViewPagerFragmentAdapter;
+import com.sm.ej.nk.homeal.data.CkHomeItemData;
 import com.sm.ej.nk.homeal.fragment.ChatListFragment;
 import com.sm.ej.nk.homeal.fragment.CkHomeFragment;
 import com.sm.ej.nk.homeal.fragment.CkMyPageFragment;
@@ -42,12 +43,17 @@ public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTab
     @BindView(R.id.fab_insert)
     FloatingActionButton fabInsert;
 
-    @BindView(R.id.fab_schedule)
-    FloatingActionButton fabSchedule;
+    @BindView(R.id.fab_schedulinsert)
+    FloatingActionButton fabScheduleInsert;
+
+    @BindView(R.id.fab_scheduleedit)
+    FloatingActionButton fabSchedulrEdit;
+
+    CkHomeFragment ckHomeFragment;
 
     AlarmPopupWindow popupWindow;
 
-    public static int INTENT_ADD=0;
+    public static int INTENT_MENU =0;
     public static int INTENT_SCHEDULE = 1;
 
     private static boolean isEditMode = false;
@@ -58,6 +64,8 @@ public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTab
         ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);
+
+        ckHomeFragment = CkHomeFragment.createInstance();
 
         if(viewPager!=null){
             setupTabViewPager(viewPager);
@@ -100,17 +108,38 @@ public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTab
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(CkMainActivity.this, MenuAddActivity.class);
-                startActivityForResult(intent, INTENT_ADD);
+                intent.putExtra(INTENT_MODE, MODE_MENU_INSERT);
+                startActivityForResult(intent, INTENT_MENU);
                 fab.close(true);
             }
         });
 
-        fabSchedule.setOnClickListener(new View.OnClickListener() {
+        fabScheduleInsert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(CkMainActivity.this, ScheduleEditActivity.class);
+                intent.putExtra(INTENT_MODE, MODE_SCHEDULE_INSERT);
                 startActivityForResult(intent ,INTENT_SCHEDULE);
                 fab.close(true);
+            }
+        });
+
+        fabSchedulrEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CkMainActivity.this, ScheduleEditActivity.class);
+                intent.putExtra(INTENT_MODE, MODE_SCHEDULR_EDIT);
+                startActivityForResult(intent, INTENT_SCHEDULE);
+            }
+        });
+
+        ckHomeFragment.setOnHomeFragmentClickListner(new CkHomeFragment.OnHomeFragmentClickListener() {
+            @Override
+            public void onHomeFragmentClickLIstner(View view, int position, CkHomeItemData data) {
+                Intent intent = new Intent(CkMainActivity.this, MenuAddActivity.class);
+                intent.putExtra(INTENT_MODE, MODE_MENU_EDIT);
+                intent.putExtra(INTENT_MENU_DATA, data);
+                startActivityForResult(intent, INTENT_MENU);
             }
         });
 
@@ -129,7 +158,7 @@ public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTab
         final ViewPagerFragmentAdapter pagerAdapter = new ViewPagerFragmentAdapter(getSupportFragmentManager());
         Bundle bundle = new Bundle();
         bundle.putString("cooker",CK_NUM);
-        pagerAdapter.addFragment(CkHomeFragment.createInstance(),CK_HOME);
+        pagerAdapter.addFragment(ckHomeFragment,CK_HOME);
         pagerAdapter.addFragment(ChatListFragment.createInstance(), CK_CHAT_LIST);
         pagerAdapter.addFragment(CkReserveFragment.createInstance(), CK_RESERVE);
         pagerAdapter.addFragment(CkMyPageFragment.createInstance(), CK_MYPAGE);
@@ -182,8 +211,16 @@ public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTab
 
     }
 
+    public static final String INTENT_MENU_DATA = "asdasd";
+    public static final String INTENT_MODE = "SchedulrMode";
+    public static final int MODE_SCHEDULE_INSERT=2;
+    public static final int MODE_SCHEDULR_EDIT = 3;
+
     public static final int MODE_EDIT = 0;
     public static final int MODE_OK = 1;
+
+    public static final int MODE_MENU_EDIT = 9;
+    public static final int MODE_MENU_INSERT=10;
 
     public interface OnFabClickListener{
         public void onFabClick(View view, int mode);
@@ -193,4 +230,6 @@ public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTab
     public void setOnFabClickListener(OnFabClickListener listener){
         this.listener = listener;
     }
+
+
 }

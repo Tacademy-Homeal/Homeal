@@ -1,6 +1,5 @@
 package com.sm.ej.nk.homeal;
 
-import android.content.BroadcastReceiver;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -42,14 +41,11 @@ public class MenuDetailActivity extends AppCompatActivity {
         });
 
         imageView.setImageDrawable(ContextCompat.getDrawable(getBaseContext(), R.drawable.food));
-
     }
 
     @OnClick(R.id.Detailimageview)
     public void onDetailClick(){
         Toast.makeText(this,"Photo click",Toast.LENGTH_LONG).show();
     }
-
-
 
 }
