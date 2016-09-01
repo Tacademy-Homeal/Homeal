@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimary">#e76c29</color>
+    <color name="colorPrimaryDark">#e76c29</color>
     <color name="colorAccent">#FF4081</color>
     <color name="indigo">#4B0082</color>
     <color name="pink">#FFC0CB</color>
+    <color name="color_homeal_toolbar">#FFFF4500</color>
+    <color name="color_homeal_background">#e76c29</color>
+    <color name="color_homeal_main">#FFFFFFFF</color>
+    <color name="color_loginframent_sub">#FFFAF0</color>
 </resources>
