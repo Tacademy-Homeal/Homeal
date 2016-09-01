@@ -15,9 +15,32 @@
         android:textSize="24dp"
         android:id="@+id/text_tos_main"
         android:layout_gravity="center_horizontal|top"
-        android:layout_above="@+id/textView13"
-        android:layout_alignRight="@+id/scrollView"
-        android:layout_alignEnd="@+id/scrollView" />
+        android:layout_above="@+id/scrollView"
+        android:layout_alignLeft="@+id/scrollView"
+        android:layout_alignStart="@+id/scrollView" />
+
+        <ScrollView
+            android:layout_width="282dp"
+            android:layout_height="321dp"
+            android:id="@+id/scrollView"
+            android:layout_gravity="left|center_vertical"
+            android:layout_above="@+id/btn_tos_backey"
+            android:layout_marginLeft="16dp"
+            android:layout_toLeftOf="@+id/btn_tos_ok"
+            android:layout_toStartOf="@+id/btn_tos_ok">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/tos_info"
+                android:id="@+id/textView13"
+                android:layout_gravity="left|top"
+                android:layout_above="@+id/scrollView" />
+
+        </ScrollView>
+
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -26,7 +49,9 @@
         android:layout_gravity="left|bottom"
         android:layout_alignTop="@+id/btn_tos_backey"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="80dp"
+        android:layout_marginEnd="80dp" />
 
     <Button
         android:layout_width="wrap_content"
@@ -35,28 +60,11 @@
         android:id="@+id/btn_tos_backey"
         android:layout_gravity="right|bottom"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_toRightOf="@+id/text_tos_main"
+        android:layout_toEndOf="@+id/text_tos_main" />
 
-    <ScrollView
-        android:layout_width="282dp"
-        android:layout_height="321dp"
-        android:id="@+id/scrollView"
-        android:layout_gravity="left|center_vertical"
-        android:layout_above="@+id/btn_tos_backey"
-        android:layout_toLeftOf="@+id/btn_tos_ok"
-        android:layout_toStartOf="@+id/btn_tos_ok">
 
-    </ScrollView>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/tos_info"
-        android:id="@+id/textView13"
-        android:layout_gravity="left|top"
-        android:layout_above="@+id/scrollView" />
 
     </RelativeLayout>
 </FrameLayout>
