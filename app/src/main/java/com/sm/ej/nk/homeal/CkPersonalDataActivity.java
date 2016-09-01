@@ -1,7 +1,10 @@
 package com.sm.ej.nk.homeal;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -9,7 +12,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -21,6 +24,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class CkPersonalDataActivity extends AppCompatActivity {
+
+    ArrayAdapter<String> countryAdapter;
 
     @BindView(R.id.toolbar_ck_toolbar)
     Toolbar toolbar;
@@ -62,9 +67,16 @@ public class CkPersonalDataActivity extends AppCompatActivity {
     Button btnChangeFinish;
 
     @BindView(R.id.image_ck_picture)
-    ImageButton ckpictureView;
+    ImageView ckpictureView;
 
-    ArrayAdapter<String> countryAdapter;
+    private int GET_IMAGE = 2;
+
+    @OnClick(R.id.image_ck_picture)
+    public void onckGallery() {
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        intent.setType("image/*");
+        startActivityForResult(intent, GET_IMAGE);
+    }
 
     static final int ADDRESS_SEARCH = 1;
 
@@ -81,6 +93,12 @@ public class CkPersonalDataActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 String address = intent.getStringExtra("address");
                 addressText.setText(address);
+            }
+        }
+        if (requestCode == GET_IMAGE) {
+            if (resultCode == Activity.RESULT_OK) {
+                Uri uri = intent.getData();
+                ckpictureView.setImageURI(uri);
             }
         }
 

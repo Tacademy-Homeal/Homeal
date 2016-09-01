@@ -12,6 +12,15 @@ public class User implements Serializable {
     public String facebookId;
     public String type;
     public String PictureUrl;
+
+    public int getTotalScore() {
+        return totalScore;
+    }
+
+    public void setTotalScore(int totalScore) {
+        this.totalScore = totalScore;
+    }
+
     public int totalScore;
     public int etPoint;
 

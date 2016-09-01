@@ -40,8 +40,6 @@ public class CkHomeHeaderViewHolder extends RecyclerView.ViewHolder{
         userAddress.setText(data.user.userAddress);
         jjimCount.setText(data.jjimCount);
         reviewCount.setText(data.reviewCount);
-        progressTotal.setProgress(data.totalScore);
-        progressPrice.setProgress(data.priceScore);
         progressKind.setProgress(data.kindScore);
         progressClean.setProgress(data.cleanScore);
         progressTaste.setProgress(data.tasteScore);
