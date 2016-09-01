@@ -15,7 +15,7 @@
     <dimen name="ck_detail_floating_rightmargin">15dp</dimen>
     <dimen name="ck_detail_floating_bottommargin">15dp</dimen>
     <dimen name="calendar_text_size">20sp</dimen>
-    <dimen name="size_homeal_toolbar">80dp</dimen>
+    <dimen name="size_homeal_toolbar">50dp</dimen>
     <dimen name="size_homeal_login_second">12dp</dimen>
     <dimen name="et_zzim_card_bottommargin">10dp</dimen>
     <dimen name="et_zzim_userimagesize">50dp</dimen>

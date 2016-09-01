@@ -4,28 +4,32 @@ package com.sm.ej.nk.homeal.data;
  * Created by Tacademy on 2016-08-29.
  */
 public class CkDetailMenuData {
-    public String foodImage;
-    public String foodName;
+    public String image;
+    public String name;
     public String foodAddress;
     public String foodTime;
     public boolean isSoldOut;
+    public String id;
     public String numday;
     public String day;
+    public int activation;
+    public int currency;
+    public int price;
 
-    public String getFoodImage() {
-        return foodImage;
+    public String getImage() {
+        return image;
     }
 
-    public void setFoodImage(String foodImage) {
-        this.foodImage = foodImage;
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getFoodName() {
-        return foodName;
+        return name;
     }
 
     public void setFoodName(String foodName) {
-        this.foodName = foodName;
+        this.name = foodName;
     }
 
     public String getFoodAddress() {

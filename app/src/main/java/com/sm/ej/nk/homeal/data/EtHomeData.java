@@ -6,8 +6,8 @@ import java.io.Serializable;
  * Created by Tacademy on 2016-08-26.
  */
 public class EtHomeData implements Serializable {
-    private String ckId;
-    private String userImageUrl;
+    private String cooker_user_id;
+    private String image;
     private String foodImageUrl;
     private String name;
     private String address;
@@ -16,21 +16,30 @@ public class EtHomeData implements Serializable {
     private int grade;
     private String jjimCount;
     private String reviewCount;
+    private String introduce;
 
-    public String getCkId() {
-        return ckId;
+    public String getImage() {
+        return image;
     }
 
-    public void setCkId(String ckId) {
-        this.ckId = ckId;
+    public void setImage(String image) {
+        this.image = image;
     }
 
-    public String getUserImageUrl() {
-        return userImageUrl;
+    public String getIntroduce() {
+        return introduce;
     }
 
-    public void setUserImageUrl(String userImageUrl) {
-        this.userImageUrl = userImageUrl;
+    public void setIntroduce(String introduce) {
+        this.introduce = introduce;
+    }
+
+    public String getCooker_user_id() {
+        return cooker_user_id;
+    }
+
+    public void setCooker_user_id(String cooker_user_id) {
+        this.cooker_user_id = cooker_user_id;
     }
 
     public String getFoodImageUrl() {

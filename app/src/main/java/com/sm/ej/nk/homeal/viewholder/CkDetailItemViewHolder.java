@@ -36,7 +36,7 @@ public class CkDetailItemViewHolder extends RecyclerView.ViewHolder{
         foodname.setText(datas.getFoodName());
         foodadd.setText(datas.getFoodAddress());
         time.setText(datas.getFoodTime());
-        Glide.with(HomealApplication.getContext()).load(datas.foodImage).into(image);
+        Glide.with(HomealApplication.getContext()).load(datas.image).into(image);
 
     }
 }

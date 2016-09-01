@@ -216,7 +216,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/imageView11"
+            android:id="@+id/image_ck_home_back"
             android:src="@drawable/icon_back" />
 
         <TextView
@@ -229,7 +229,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/imageView12"
+            android:id="@+id/image_ck_home_next"
             android:src="@drawable/icon_next" />
     </LinearLayout>
 
