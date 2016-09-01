@@ -1,6 +1,7 @@
 package com.sm.ej.nk.homeal;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -26,4 +27,6 @@ public class SplashActivity extends AppCompatActivity {
             }
         }, 2000);
     }
+
+
 }

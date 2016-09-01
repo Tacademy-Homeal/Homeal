@@ -52,4 +52,6 @@
     <string name="personal_data">개인정보</string>
     <string name="zzim_list">찜목록</string>
     <string name="setting">환경설정</string>
+    <string name="text_homeal_welcome">Welcome Homeal</string>
+    <string name="text_homeal_main">여행은 먹어보는거야</string>
 </resources>

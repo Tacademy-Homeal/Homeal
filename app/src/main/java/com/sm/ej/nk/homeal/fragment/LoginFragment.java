@@ -1,6 +1,7 @@
 package com.sm.ej.nk.homeal.fragment;
 
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.CallbackManager;
@@ -20,6 +22,8 @@ import com.facebook.login.LoginResult;
 import com.sm.ej.nk.homeal.HomealApplication;
 import com.sm.ej.nk.homeal.LoginActivity;
 import com.sm.ej.nk.homeal.R;
+import com.sm.ej.nk.homeal.data.FontData;
+import com.sm.ej.nk.homeal.manager.FontManager;
 
 import java.util.Arrays;
 
@@ -42,6 +46,9 @@ public class LoginFragment extends Fragment {
     CallbackManager callbackManager;
     LoginManager mLoginManager;
 
+    @BindView(R.id.textview_login_select)
+    TextView loginSelectView;
+
 
     public LoginFragment() {
         // Required empty public constructor
@@ -54,9 +61,12 @@ public class LoginFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_login, container, false);
         ButterKnife.bind(this, view);
-
         callbackManager = CallbackManager.Factory.create();
         mLoginManager = LoginManager.getInstance();
+
+        Typeface typeface = FontManager.getInstance().getTypeface(getActivity(), FontData.NOTO_D);
+        loginSelectView.setTypeface(typeface);
+
 
         return view;
     }
@@ -101,4 +111,5 @@ public class LoginFragment extends Fragment {
 
         mLoginManager.logInWithReadPermissions(this, Arrays.asList("email"));
     }
+
 }

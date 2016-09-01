@@ -1,83 +1,101 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/color_homeal_background"
     tools:context="com.sm.ej.nk.homeal.fragment.LoginFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-
-    <Button
-        android:id="@+id/btn_login_ft_ok"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="left|center_vertical"
-        android:text="Login"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="71dp" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <!-- TODO: Update blank fragment layout -->
 
 
-    <RadioGroup
-        android:id="@+id/radio_group_login"
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/btn_login_ft_ok"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="62dp">
-
-        <RadioButton
-            android:id="@+id/radiobtn_login_ft_eater"
+        <TextView
+            android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="Eater" />
-
-        <RadioButton
-            android:id="@+id/radiobtn_login_ft_ck"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/radio_group_login"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="@+id/btn_login_ft_ok"
-            android:checked="false"
-            android:text="Cooker"
+            android:layout_above="@+id/radio_group_login"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="137dp"
+            android:text="LoginFrament"
+            android:textColor="@color/color_homeal_main"
+            android:textSize="@dimen/info_text_size"
             />
 
-    </RadioGroup>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textview_login_select"
+            android:layout_above="@+id/radio_group_login"
+            android:layout_centerHorizontal="true"
+            android:text="Guest Host를 선택해주세요"
+            android:textSize="@dimen/size_homeal_login_second"
+            android:textColor="@color/color_loginframent_sub"/>
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="LoginFrament"
-        android:textSize="@dimen/info_text_size"
-        android:layout_marginBottom="137dp"
-        android:layout_above="@+id/radio_group_login"
-        android:layout_centerHorizontal="true" />
+        <RadioGroup
+            android:id="@+id/radio_group_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/btn_login_ft_ok"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="62dp"
+            android:orientation="horizontal">
 
-    <ZoomControls
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/zoomControls"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="847dp"
-        android:layout_marginStart="847dp" />
+            <RadioButton
+                android:id="@+id/radiobtn_login_ft_eater"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="Eater" />
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:id="@+id/btn_login_facebook"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:background="@drawable/round_button"
-        android:gravity="center_vertical|center_horizontal"
-        android:text="F"
-        android:textColor="#fff"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+            <RadioButton
+                android:id="@+id/radiobtn_login_ft_ck"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/radio_group_login"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="@+id/btn_login_ft_ok"
+                android:checked="false"
+                android:text="Cooker" />
+
+        </RadioGroup>
 
 
+        <ZoomControls
+            android:id="@+id/zoomControls"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="847dp"
+            android:layout_marginStart="847dp" />
 
-</RelativeLayout>
+        <Button
+            android:id="@+id/btn_login_facebook"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_above="@+id/btn_login_ft_ok"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/round_button"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="F"
+            android:textColor="#fff" />
+
+
+        <Button
+            android:id="@+id/btn_login_ft_ok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="left|center_vertical"
+            android:layout_marginBottom="71dp"
+            android:text="Login" />
+
+    </RelativeLayout>
+
+</FrameLayout>
