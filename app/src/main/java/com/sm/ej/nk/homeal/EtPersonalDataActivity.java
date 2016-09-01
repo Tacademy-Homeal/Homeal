@@ -1,6 +1,10 @@
 package com.sm.ej.nk.homeal;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -8,7 +12,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 
@@ -56,9 +60,28 @@ public class EtPersonalDataActivity extends AppCompatActivity {
     Button btnChangeFinish;
 
     @BindView(R.id.image_et_picture)
-    ImageButton etpictureView;
+    ImageView etpictureView;
 
     ArrayAdapter<String> countryAdapter;
+
+    private int GET_IMAGE=2;
+    @OnClick(R.id.image_et_picture)
+    public void onetGallery(){
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        intent.setType("image/*");
+        startActivityForResult(intent, GET_IMAGE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+        if (requestCode == GET_IMAGE) {
+            if (resultCode == Activity.RESULT_OK) {
+                Uri uri = intent.getData();
+                etpictureView.setImageURI(uri);
+            }
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

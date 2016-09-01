@@ -1,7 +1,9 @@
 package com.sm.ej.nk.homeal;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -52,8 +54,7 @@ public class SettingActivity extends AppCompatActivity {
 
     @OnClick(R.id.linear_bottom)
     public void onLeavemembership() {
-        Intent intent = new Intent(SettingActivity.this, LoginActivity.class);
-        startActivity(intent);
+        showDialog();
     }
 
     @OnClick(R.id.btn_ck_logout)
@@ -64,11 +65,30 @@ public class SettingActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case android.R.id.home:
                 this.finish();
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void showDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Intent intent = new Intent(SettingActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
+        builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        builder.setMessage(getResources().getString(R.string.leavemembership_dialog));
+        builder.show();
     }
 }

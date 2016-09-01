@@ -52,4 +52,7 @@
     <string name="personal_data">개인정보</string>
     <string name="zzim_list">찜목록</string>
     <string name="setting">환경설정</string>
+    <string name="change">수정</string>
+    <string name="change_finish">수정완료</string>
+    <string name="leavemembership_dialog">회원탈퇴 하시겠습니까?</string>
 </resources>
