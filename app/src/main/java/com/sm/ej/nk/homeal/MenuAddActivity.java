@@ -42,7 +42,7 @@ public class MenuAddActivity extends AppCompatActivity {
 
     @BindView(R.id.text_menu_add_money)
     TextView textView;
-
+//sdsd
     @BindView(R.id.fab_menu_add_ok)
     android.support.design.widget.FloatingActionButton fab;
 
