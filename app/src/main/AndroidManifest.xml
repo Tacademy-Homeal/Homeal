@@ -66,7 +66,8 @@
         <activity
             android:name=".EtPersonalDataActivity"
             android:exported="true" />
-        <activity android:name=".EtZzimActivity" />
+        <activity android:name=".EtZzimActivity"
+            android:exported="true"/>
         <activity android:name=".InfoCkDetailActivity" />
         <activity android:name=".MenuDetailActivity" />
         <activity android:name=".ReserveRequestActivity" />
