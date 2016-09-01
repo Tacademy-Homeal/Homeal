@@ -115,7 +115,7 @@ public class EtHomeViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void setData(EtHomeData data){
-        Glide.with(userimage.getContext()).load(data.getUserImageUrl()).into(userimage);
+        Glide.with(userimage.getContext()).load(data.getImage()).into(userimage);
         Glide.with(foodimage.getContext()).load(data.getFoodImageUrl()).into(foodimage);
 
         name.setText(data.getName());

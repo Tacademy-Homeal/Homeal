@@ -70,7 +70,7 @@ public class CkHomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         switch(viewType){
             case TYPE_HEADER:{
                 View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_ck_home_header, parent, false);
-                return new CkHomeHeaderViewHolder(view);
+                return new CkHomeHeaderViewHolder(context,view);
             }
             case TYPE_ITEM:{
                 View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_ck_home_item, parent, false);

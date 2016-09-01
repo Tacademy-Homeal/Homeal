@@ -28,9 +28,17 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarView> {
 
     private int mode = CHOICE_MODE_SINGLE;
 
-    public CalendarAdapter(Context context, CalendarData data){
+    private boolean SELECT_MODE;
+
+    public CalendarAdapter(Context context, CalendarData data, boolean selectmode){
         this.context = context;
         this.data = data;
+        SELECT_MODE = selectmode;
+    }
+
+    public void setCalendarData(CalendarData data){
+        this.data = data;
+        notifyDataSetChanged();
     }
 
     @Override
@@ -41,13 +49,23 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarView> {
 
     @Override
     public void onBindViewHolder(CalendarView holder, int position) {
-        holder.setData(data.days.get(position));
+        if(SELECT_MODE){
+            holder.setSelcetData(data.days.get(position));
+        }else{
+            holder.setData(data.days.get(position));
+        }
         final int finalposition = position;
-        holder.view.setOnClickListener(new View.OnClickListener() {
+        holder.setOnCalendarClickLIstener(new CalendarView.OnCalenderClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onCalendarClick(View view, CalendarItem calendarItem) {
                 if(mode == CHOICE_MODE_SINGLE){
-                    setItemChecked(finalposition, true);
+                    if(SELECT_MODE){
+                        if(calendarItem.isSelect){
+                            setItemChecked(finalposition, true);
+                        }
+                    }else{
+                        setItemChecked(finalposition, true);
+                    }
                 }else{
                     boolean checked = itemSelected.get(finalposition);
                     setItemChecked(finalposition, !checked);

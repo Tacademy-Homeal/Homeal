@@ -25,6 +25,14 @@ public class CalendarView extends RecyclerView.ViewHolder implements Checkable{
     public CalendarView(View view){
         super(view);
         this.view = view;
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(listener!=null){
+                    listener.onCalendarClick(view, item);
+                }
+            }
+        });
         textView = (TextView)view.findViewById(R.id.text_calendar_day);
         imageView = (ImageView)view.findViewById(R.id.image_calendar_check);
     }
@@ -45,9 +53,26 @@ public class CalendarView extends RecyclerView.ViewHolder implements Checkable{
         textView.setText(""+item.dayOfMonth);
     }
 
+    public void setSelcetData(CalendarItem item){
+        this.item = item;
+        if(!item.inMonth){
+            textView.setVisibility(View.INVISIBLE);
+        }else{
+            textView.setVisibility(View.VISIBLE);
+            if(item.isSelect){
+                textView.setTextColor(Color.GREEN);
+            }
+        }
+        textView.setText(""+item.dayOfMonth);
+    }
+
     boolean isChecked;
     @Override
     public void setChecked(boolean b) {
+            if(isChecked != b){
+                isChecked = b;
+                drawCheck();
+            }
         if(isChecked != b){
             isChecked = b;
             drawCheck();
@@ -72,4 +97,11 @@ public class CalendarView extends RecyclerView.ViewHolder implements Checkable{
         setChecked(!isChecked);
     }
 
+    public interface OnCalenderClickListener{
+        public void onCalendarClick(View view, CalendarItem calendarItem);
+    }
+    OnCalenderClickListener listener;
+    public void setOnCalendarClickLIstener(OnCalenderClickListener listener){
+        this.listener = listener;
+    }
 }

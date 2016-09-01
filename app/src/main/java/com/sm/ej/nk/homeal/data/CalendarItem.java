@@ -11,5 +11,6 @@ public class CalendarItem {
     public int dayOfMonth;
     public int dayOfWeek;
     public boolean inMonth;
+    public boolean isSelect = false;
     public ArrayList items = new ArrayList();
 }

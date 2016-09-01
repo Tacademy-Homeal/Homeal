@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 /**
  * Created by Tacademy on 2016-08-26.
@@ -85,7 +86,7 @@ public class CalendarManager {
 
         mCalendar.set(Calendar.DAY_OF_MONTH, 1);
         int datOfWeek = mCalendar.get(Calendar.DAY_OF_WEEK);
-        int thisMonthLastDay = mCalendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+        int thisMonthLastDay = mCalendar.getActualMaximum(Calendar.DAY_OF_MONTH); // 마지막 일31일
 
         mCalendar.add(Calendar.MONTH, -1);
         int lastMonthLastDay = mCalendar.getActualMaximum(Calendar.DAY_OF_MONTH);
@@ -146,6 +147,18 @@ public class CalendarManager {
             }else{
                 item.items.add(cc);
                 dataIndex++;
+            }
+        }
+        return data;
+    }
+
+    public CalendarData getSelectCalendarData(List<CalendarItem> item){
+        CalendarData data = getCalendarData();
+        for(int i=0; i<data.days.size(); i++){
+            for(int j=0; j<item.size(); j++){
+                if(data.days.get(i).year == item.get(j).year && data.days.get(i).month == item.get(j).month && data.days.get(i).dayOfMonth == item.get(j).dayOfMonth){
+                    data.days.get(i).isSelect = true;
+                }
             }
         }
         return data;

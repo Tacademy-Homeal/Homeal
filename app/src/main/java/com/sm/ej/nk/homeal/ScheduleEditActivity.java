@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.sm.ej.nk.homeal.adapter.CalendarAdapter;
@@ -44,6 +45,12 @@ public class ScheduleEditActivity extends AppCompatActivity {
     @BindView(R.id.toolbar_schedule_edit)
     Toolbar toolbar;
 
+    @BindView(R.id.image_schedule_edit_back)
+    ImageView backImage;
+
+    @BindView(R.id.image_schedule_edit_next)
+    ImageView nextImage;
+
     CalendarAdapter mAdapter;
     ArrayList<CalendarItemData> mItemdata = new ArrayList<>();
 
@@ -60,11 +67,30 @@ public class ScheduleEditActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         CalendarData calendarData = CalendarManager.getInstance().getCalendarData();
-        mAdapter = new CalendarAdapter(this, calendarData);
+        textCalendar.setText(calendarData.year+"년 "+(calendarData.month+1)+"월");
+        mAdapter = new CalendarAdapter(this, calendarData, false);
         mAdapter.setOnCalendarAdpaterClickListener(new CalendarAdapter.OnCalendarAdapterClickListener() {
             @Override
             public void onCalendarAdapterClick(View view, int position, CalendarItem data) {
                 textCalendar.setText(""+(data.month+1)+"월" +data.dayOfMonth+"일");
+            }
+        });
+
+        backImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CalendarData data = CalendarManager.getInstance().getLastMonthCalendarData();
+                textCalendar.setText(data.year+"년 "+(data.month+1)+"월");
+                mAdapter.setCalendarData(data);
+            }
+        });
+
+        nextImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CalendarData data = CalendarManager.getInstance().getNextMonthCalendarData();
+                textCalendar.setText(data.year+"년 "+(data.month+1)+"월");
+                mAdapter.setCalendarData(data);
             }
         });
 

@@ -20,16 +20,16 @@ import com.sm.ej.nk.homeal.data.CkDetailData;
 import com.sm.ej.nk.homeal.manager.CalendarManager;
 
 import java.util.ArrayList;
-import java.util.Calendar;
+import java.util.List;
 
 /**
  * Created by Tacademy on 2016-08-29.
  */
-public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder {
+public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
     View view;
     ViewPager viewPager;
     ImageView userImage, mapImage, backImage, nextImage;
-    TextView userName, userAddress, foodPrice, foodName, foodIntroduce, calendarDate;
+    TextView userName, userAddress, foodPrice, foodName, calendarDate;
     RecyclerView calendar;
     CkDetailData data;
     ViewPagerAdapter pagerAdapter;
@@ -38,6 +38,7 @@ public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder {
     ArrayList<CalendarItemData> mItemData = new ArrayList<>();
     ProgressBar progressPrice, progressTaste, progresskind, progressClean;
     ProgressBar progressTotal;
+    CalendarManager cm;
 
     public CkDetailHeaderViewHolder(Context context,View view){
         super(view);
@@ -50,7 +51,6 @@ public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder {
         userAddress = (TextView)view.findViewById(R.id.text_ck_detail_address);
         foodPrice = (TextView)view.findViewById(R.id.text_ck_detail_price);
         foodName = (TextView)view.findViewById(R.id.text_ck_detail_foodname);
-        foodIntroduce = (TextView)view.findViewById(R.id.text_ck_detail_introduce);
         calendar = (RecyclerView)view.findViewById(R.id.rv_ck_detail_calendar);
         calendarDate = (TextView)view.findViewById(R.id.text_ck_detail_date);
         progressTotal = (ProgressBar) view.findViewById(R.id.progress_total);
@@ -72,22 +72,35 @@ public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder {
         userAddress.setText(data.address);
         foodPrice.setText(data.foodPrice);
         foodName.setText(data.foodName);
-        foodIntroduce.setText(data.foodIntroduce);
 
+        cm = CalendarManager.getInstance();
         try {
-            CalendarManager.getInstance().setDataObject(mItemData);
+            cm.setDataObject(mItemData);
         } catch (CalendarManager.NoComparableObjectException e) {
             e.printStackTrace();
         }
         GridLayoutManager manager = new GridLayoutManager(context, 7);
         calendar.setLayoutManager(manager);
-        final CalendarData calendarData = CalendarManager.getInstance().getCalendarData();
 
-        calendarAdapter = new CalendarAdapter(context, calendarData);
+        List<CalendarItem> items = new ArrayList<>();
+        for(int i=4; i<10; i++){
+            CalendarItem item = new CalendarItem();
+            item.dayOfMonth=i;
+            item.isSelect = true;
+            item.year = 2016;
+            item.month = 8;
+            items.add(item);
+        }
+        final CalendarData calendarData = cm.getSelectCalendarData(items);
+
+
+        calendarAdapter = new CalendarAdapter(context, calendarData, true);
         calendarAdapter.setOnCalendarAdpaterClickListener(new CalendarAdapter.OnCalendarAdapterClickListener() {
             @Override
             public void onCalendarAdapterClick(View view, int position, CalendarItem data) {
-                calendarDate.setText((data.month+1)+"월"+data.dayOfMonth+"일");
+                if(data.isSelect){
+                    calendarDate.setText((data.month+1)+"월"+data.dayOfMonth+"일");
+                }
 
                 if(listener!=null){
                     listener.onCalendarHeaderViewClickListener(view, data, position);
@@ -95,8 +108,7 @@ public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder {
             }
         });
         calendar.setAdapter(calendarAdapter);
-        Calendar today = Calendar.getInstance();
-        calendarDate.setText((today.get(Calendar.MONTH)+1)+"월" +today.get(Calendar.DAY_OF_MONTH)+"일");
+        calendarDate.setText(calendarData.year+"년 "+(calendarData.month+1)+"월");
         progressTotal.setProgress(data.totalScore);
         progressTaste.setProgress(data.tasteScore);
         progressPrice.setProgress(data.priceScore);
@@ -111,5 +123,23 @@ public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder {
     OnCalendarHeaderViewClickListener listener;
     public void setOnCalendarHeaderViewClickListener(OnCalendarHeaderViewClickListener listener){
         this.listener = listener;
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.image_ck_detail_back:{
+                CalendarData data = CalendarManager.getInstance().getLastMonthCalendarData();
+                calendarDate.setText(data.year+"년 "+(data.month+1)+"월");
+                calendarAdapter.setCalendarData(data);
+                break;
+            }
+            case R.id.image_ck_detail_next:{
+                CalendarData data = CalendarManager.getInstance().getNextMonthCalendarData();
+                calendarDate.setText(data.year+"년 "+(data.month+1)+"월");
+                calendarAdapter.setCalendarData(data);
+                break;
+            }
+        }
     }
 }

@@ -214,21 +214,22 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:id="@+id/image_ck_home_back"
             android:src="@drawable/icon_back" />
 
         <TextView
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceLarge"
             android:id="@+id/text_ck_home_calendar"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:gravity="center_vertical|center_horizontal" />
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:id="@+id/image_ck_home_next"
             android:src="@drawable/icon_next" />
     </LinearLayout>

@@ -86,7 +86,7 @@ public class EtHomeFragment extends Fragment implements EtHomeAdapter.OnReviewit
             EtHomeData data = new EtHomeData();
             data.setAddress("주소"+i);
             data.setFoodImageUrl("http://blog.jinbo.net/attach/615/200937431.jpg");
-            data.setUserImageUrl("https://pixabay.com/static/uploads/photo/2014/12/17/14/20/summer-anemone-571531_960_720.jpg");
+            data.setImage("https://pixabay.com/static/uploads/photo/2014/12/17/14/20/summer-anemone-571531_960_720.jpg");
             data.setFoodName("음식이름"+i);
             data.setJjimCount(""+i);
             data.setGrade(i%5+1);
