@@ -27,7 +27,7 @@ import butterknife.ButterKnife;
  */
 public class EtHomeFragment extends Fragment implements EtHomeAdapter.OnReviewitemClickListener, EtHomeAdapter.OnJjimitemClickListener, EtHomeAdapter.OnViewClickListener{
 
-    @BindView(R.id.rv_et_home_ft)
+    @BindView(R.id.rv_et_zzim)
     RecyclerView recyclerView;
 
     RecyclerView.LayoutManager layoutManager;

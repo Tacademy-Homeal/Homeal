@@ -17,5 +17,10 @@
     <dimen name="calendar_text_size">20sp</dimen>
     <dimen name="size_homeal_toolbar">80dp</dimen>
     <dimen name="size_homeal_login_second">12dp</dimen>
-
+    <dimen name="et_zzim_card_bottommargin">10dp</dimen>
+    <dimen name="et_zzim_userimagesize">50dp</dimen>
+    <dimen name="et_zzim_userimage_leftmargin">15dp</dimen>
+    <dimen name="et_zzim_foodimageheight">200dp</dimen>
+    <dimen name="et_zzim_rating_width">120dp</dimen>
+    <dimen name="et_zzim_rating_height">30dp</dimen>
 </resources>
