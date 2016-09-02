@@ -99,7 +99,6 @@ public class AddressEditActivity extends AppCompatActivity implements
                 .findFragmentById(R.id.map_fragment);
         fragment.getMapAsync(this);
 
-
         addressSearchView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {

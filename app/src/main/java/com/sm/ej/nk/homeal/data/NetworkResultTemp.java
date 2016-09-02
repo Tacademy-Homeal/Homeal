@@ -5,6 +5,11 @@ package com.sm.ej.nk.homeal.data;
  */
 public class NetworkResultTemp {
     private int code;
+    private String message;
+
+    public String getMessage() {
+        return message;
+    }
 
     public int getCode() {
         return code;
