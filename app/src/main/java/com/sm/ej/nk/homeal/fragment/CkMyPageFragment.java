@@ -61,12 +61,12 @@ public class CkMyPageFragment extends Fragment {
         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<CookerData>>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<CookerData>> request, NetworkResult<CookerData> result) {
-
+                Toast.makeText(getContext(), "success", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onFail(NetworkRequest<NetworkResult<CookerData>> request, int errorCode, String errorMessage, Throwable e) {
-                Toast.makeText(getContext(), ""+errorCode, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "" + errorCode, Toast.LENGTH_SHORT).show();
             }
         });
 

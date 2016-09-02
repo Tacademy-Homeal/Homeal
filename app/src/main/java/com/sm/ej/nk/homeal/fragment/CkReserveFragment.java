@@ -9,7 +9,6 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,10 +18,6 @@ import com.sm.ej.nk.homeal.CkWriteReViewActivity;
 import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.adapter.CkReserveAdapter;
 import com.sm.ej.nk.homeal.data.CkReserveData;
-import com.sm.ej.nk.homeal.data.NetworkResult;
-import com.sm.ej.nk.homeal.manager.NetworkManager;
-import com.sm.ej.nk.homeal.manager.NetworkRequest;
-import com.sm.ej.nk.homeal.request.CkReserveRequest;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -67,20 +62,20 @@ public class CkReserveFragment extends Fragment {
         CkReserveView.setAdapter(mAdapter);
         CkReserveView.setLayoutManager(manager);
 
-        CkReserveRequest request = new CkReserveRequest(getContext());
-
-        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<CkReserveData>>() {
-            @Override
-            public void onSuccess(NetworkRequest<NetworkResult<CkReserveData>> request, NetworkResult<CkReserveData> result) {
-                Log.d("sucess","sucess");
-                mAdapter.add(result.getResult());
-            }
-
-            @Override
-            public void onFail(NetworkRequest<NetworkResult<CkReserveData>> request, int errorCode, String errorMessage, Throwable e) {
-
-            }
-        });
+//        CkReserveRequest request = new CkReserveRequest(getContext());
+//
+//        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<CkReserveData>>() {
+//            @Override
+//            public void onSuccess(NetworkRequest<NetworkResult<CkReserveData>> request, NetworkResult<CkReserveData> result) {
+//                Log.d("sucess","sucess");
+//                mAdapter.add(result.getResult());
+//            }
+//
+//            @Override
+//            public void onFail(NetworkRequest<NetworkResult<CkReserveData>> request, int errorCode, String errorMessage, Throwable e) {
+//
+//            }
+//        });
 
         setCookerButton();
         return view;
