@@ -94,6 +94,7 @@ public class EtMyPageFragment extends Fragment {
     public void changeSettingActivity() {
         Intent intent = new Intent(getActivity(), SettingActivity.class);
         startActivity(intent);
+        getActivity().finish();
     }
 
     @OnClick(R.id.text_et_mypage_zzim)

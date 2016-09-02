@@ -1,13 +1,16 @@
 package com.sm.ej.nk.homeal.data;
 
-public class EaterDataResult {
-    private EaterData result;
+/**
+ * CrAd by Tacademy on 2016-09-02.
+ */
+public class CookerDataResult {
+    private CookerData[] result;
     private String message;
 
-    public EaterData getResult() {
+    public CookerData[] getResult() {
         return this.result;
     }
-    public void setResult(EaterData result) {
+    public void setResult(CookerData[] result) {
         this.result = result;
     }
 

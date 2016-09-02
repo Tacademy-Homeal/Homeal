@@ -25,7 +25,7 @@
             android:layout_height="321dp"
             android:id="@+id/scrollView"
             android:layout_gravity="left|center_vertical"
-            android:layout_above="@+id/btn_tos_ok"
+            android:layout_centerVertical="true"
             android:layout_centerHorizontal="true">
 
             <TextView
@@ -42,12 +42,14 @@
     <ImageButton
         android:src="@drawable/agree_btn"
         android:background="@color/color_homeal_background"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/tos_btn_width"
+        android:layout_height="@dimen/tos_btn_height"
         android:textColor="@color/color_homeal_main"
         android:text="동의"
         android:id="@+id/btn_tos_ok"
         android:layout_gravity="left|bottom"
+        android:layout_marginBottom="@dimen/tos_btn_margin_bottom"
+        android:layout_marginLeft="@dimen/tos_btn_margin_left"
         android:layout_alignParentBottom="true"
         android:layout_alignRight="@+id/scrollView"
         android:layout_alignEnd="@+id/scrollView" />
@@ -56,12 +58,14 @@
 
         android:src="@drawable/notagree_btn"
         android:background="@color/color_homeal_background"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/tos_btn_width"
+        android:layout_height="@dimen/tos_btn_height"
         android:textColor="@color/color_homeal_main"
         android:text="비동의"
         android:id="@+id/btn_tos_backey"
-        android:layout_below="@+id/scrollView"
+        android:layout_toRightOf="@+id/btn_tos_ok"
+        android:layout_marginBottom="@dimen/tos_btn_margin_bottom"
+        android:layout_alignParentBottom="true"
         android:layout_alignLeft="@+id/scrollView"
         android:layout_alignStart="@+id/scrollView" />
 

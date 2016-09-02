@@ -23,4 +23,9 @@
     <dimen name="et_zzim_foodimageheight">200dp</dimen>
     <dimen name="et_zzim_rating_width">120dp</dimen>
     <dimen name="et_zzim_rating_height">30dp</dimen>
+    <dimen name="ck_personaldata_left">16dp</dimen>
+    <dimen name="tos_btn_width">102dp</dimen>
+    <dimen name="tos_btn_height">36dp</dimen>
+    <dimen name="tos_btn_margin_left">56dp</dimen>
+    <dimen name="tos_btn_margin_bottom">54dp</dimen>
 </resources>
