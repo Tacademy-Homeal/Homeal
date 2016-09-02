@@ -1,28 +1,15 @@
 package com.sm.ej.nk.homeal.request;
 
-import android.content.Context;
-
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.data.NetworkResult;
 import com.sm.ej.nk.homeal.data.NetworkResultTemp;
 import com.sm.ej.nk.homeal.manager.NetworkRequest;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.lang.reflect.Type;
-import java.security.KeyStore;
-import java.security.cert.Certificate;
-import java.security.cert.CertificateFactory;
-
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLSession;
-import javax.net.ssl.TrustManagerFactory;
 
 import okhttp3.HttpUrl;
-import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
 
 /**
@@ -32,7 +19,7 @@ public abstract class AbstractRequest<T> extends NetworkRequest<T> {
     private static final String HTTP_URL = "ec2-52-78-131-245.ap-northeast-2.compute.amazonaws.com:80";
     private static final String HTTPS_URL =  "ec2-52-78-131-245.ap-northeast-2.compute.amazonaws.com:443";
 
-    protected HttpUrl.Builder getBaseHttpsUrlBuilder(Context context) {
+    protected HttpUrl.Builder getBaseHttpsUrlBuilder() {
         HttpUrl.Builder builder = new HttpUrl.Builder();
         builder.scheme("https");
         builder.host(HTTPS_URL);
