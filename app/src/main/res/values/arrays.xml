@@ -260,4 +260,40 @@
         <item>USD</item>
         <item>JPY</item>
     </string-array>
+
+    <string-array name="country_phonenum">
+        <item>+1</item>
+        <item>+7</item>
+        <item>+31</item>
+        <item>+33</item>
+        <item>+34</item>
+        <item>+39</item>
+        <item>+41</item>
+        <item>+44</item>
+        <item>+46</item>
+        <item>+49</item>
+        <item>+52</item>
+        <item>+55</item>
+        <item>+60</item>
+        <item>+61</item>
+        <item>+63</item>
+        <item>+64</item>
+        <item>+65</item>
+        <item>+66</item>
+        <item>+81</item>
+        <item>+82</item>
+        <item>+84</item>
+        <item>+86</item>
+        <item>+90</item>
+        <item>+98</item>
+        <item>+233</item>
+        <item>+234</item>
+        <item>+358</item>
+        <item>+420</item>
+        <item>+852</item>
+        <item>+855</item>
+        <item>+886</item>
+        <item>+976</item>
+        <item>+977</item>
+    </string-array>
 </resources>

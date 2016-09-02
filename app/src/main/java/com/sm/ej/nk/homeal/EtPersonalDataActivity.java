@@ -16,6 +16,8 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 
+import com.sm.ej.nk.homeal.request.CkInfoRequest;
+
 import java.util.ArrayList;
 
 import butterknife.BindView;
@@ -63,10 +65,12 @@ public class EtPersonalDataActivity extends AppCompatActivity {
     ImageView etpictureView;
 
     ArrayAdapter<String> countryAdapter;
+    CkInfoRequest request;
 
-    private int GET_IMAGE=2;
+    private int GET_IMAGE = 2;
+
     @OnClick(R.id.image_et_picture)
-    public void onetGallery(){
+    public void onetGallery() {
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         intent.setType("image/*");
         startActivityForResult(intent, GET_IMAGE);
@@ -135,7 +139,7 @@ public class EtPersonalDataActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case android.R.id.home:
                 this.finish();
                 return true;

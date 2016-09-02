@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#e76c29</color>
     <color name="colorPrimaryDark">#d05a39</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#ffffff</color>
     <color name="indigo">#4B0082</color>
     <color name="pink">#FFC0CB</color>
     <color name="color_homeal_toolbar">#d05a39</color>

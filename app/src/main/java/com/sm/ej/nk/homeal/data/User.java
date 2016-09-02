@@ -7,11 +7,75 @@ import java.io.Serializable;
  */
 public class User implements Serializable {
     public long id;
-    public String userName;
+    public String name;
     public String email;
-    public String facebookId;
+    public String facebook_id;
     public String type;
-    public String PictureUrl;
+    public String image;
+    public String gender;
+    public String birth;
+    public String country;
+    public String introduce;
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getBirth() {
+        return birth;
+    }
+
+    public void setBirth(String birth) {
+        this.birth = birth;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getIntroduce() {
+        return introduce;
+    }
+
+    public void setIntroduce(String introduce) {
+        this.introduce = introduce;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+    public String phone;
+    public String address;
+    public String age;
 
     public int getTotalScore() {
         return totalScore;
@@ -32,12 +96,12 @@ public class User implements Serializable {
         this.etPoint = etPoint;
     }
 
-    public String getPictureUrl() {
-        return PictureUrl;
+    public String getImage() {
+        return image;
     }
 
-    public void setPictureUrl(String pictureUrl) {
-        PictureUrl = pictureUrl;
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getType() {
@@ -47,15 +111,6 @@ public class User implements Serializable {
     public void setType(String type) {
         this.type = type;
     }
-    //  public String userImageUrl;
-
-/*    public String getUserImageUrl() {
-        return userImageUrl;
-    }
-
-    public void setUserImageUrl(String userImageUrl) {
-        this.userImageUrl = userImageUrl;
-    }*/
 
     public String getEmail() {
         return email;
@@ -65,12 +120,12 @@ public class User implements Serializable {
         this.email = email;
     }
 
-    public String getFacebookId() {
-        return facebookId;
+    public String getFacebook_id() {
+        return facebook_id;
     }
 
-    public void setFacebookId(String facebookId) {
-        this.facebookId = facebookId;
+    public void setFacebook_id(String facebook_id) {
+        this.facebook_id = facebook_id;
     }
 
     public long getId() {
@@ -81,11 +136,11 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getName() {
+        return name;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setName(String name) {
+        this.name = name;
     }
 }
