@@ -9,4 +9,7 @@
     <color name="color_homeal_background">#e76c29</color>
     <color name="color_homeal_main">#FFFFFFFF</color>
     <color name="color_loginframent_sub">#FFFAF0</color>
+    <color name="dialog_fg_bg">#fbdac6</color>
+    <color name="white">#FFFFFFFF</color>
+
 </resources>
