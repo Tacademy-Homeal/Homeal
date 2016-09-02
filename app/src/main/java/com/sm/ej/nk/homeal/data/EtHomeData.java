@@ -6,24 +6,24 @@ import java.io.Serializable;
  * Created by Tacademy on 2016-08-26.
  */
 public class EtHomeData implements Serializable {
-    private String cooker_user_id;
+    private String id;
+    private String thumbnail;
     private String image;
-    private String foodImageUrl;
     private String name;
     private String address;
     private String foodName;
     private String foodPrice;
-    private int grade;
-    private String jjimCount;
-    private String reviewCount;
+    private String grade;
+    private String bookmarkCnt;
+    private String reviewCnt;
     private String introduce;
 
     public String getImage() {
-        return image;
+        return thumbnail;
     }
 
     public void setImage(String image) {
-        this.image = image;
+        this.thumbnail = image;
     }
 
     public String getIntroduce() {
@@ -34,20 +34,20 @@ public class EtHomeData implements Serializable {
         this.introduce = introduce;
     }
 
-    public String getCooker_user_id() {
-        return cooker_user_id;
+    public String getId() {
+        return id;
     }
 
-    public void setCooker_user_id(String cooker_user_id) {
-        this.cooker_user_id = cooker_user_id;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getFoodImageUrl() {
-        return foodImageUrl;
+        return image;
     }
 
     public void setFoodImageUrl(String foodImageUrl) {
-        this.foodImageUrl = foodImageUrl;
+        this.image = foodImageUrl;
     }
 
     public String getName() {
@@ -82,27 +82,27 @@ public class EtHomeData implements Serializable {
         this.foodPrice = foodPrice;
     }
 
-    public int getGrade() {
+    public String getGrade() {
         return grade;
     }
 
-    public void setGrade(int grade) {
+    public void setGrade(String grade) {
         this.grade = grade;
     }
 
-    public String getJjimCount() {
-        return jjimCount;
+    public String getBookmarkCnt() {
+        return bookmarkCnt;
     }
 
-    public void setJjimCount(String jjimCount) {
-        this.jjimCount = jjimCount;
+    public void setBookmarkCnt(String bookmarkCnt) {
+        this.bookmarkCnt = bookmarkCnt;
     }
 
-    public String getReviewCount() {
-        return reviewCount;
+    public String getReviewCnt() {
+        return reviewCnt;
     }
 
-    public void setReviewCount(String reviewCount) {
-        this.reviewCount = reviewCount;
+    public void setReviewCnt(String reviewCnt) {
+        this.reviewCnt = reviewCnt;
     }
 }

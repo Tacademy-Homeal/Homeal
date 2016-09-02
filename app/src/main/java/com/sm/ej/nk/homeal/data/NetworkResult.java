@@ -6,11 +6,16 @@ package com.sm.ej.nk.homeal.data;
 public class NetworkResult<T> {
     private T result;
     private int code;
+    private String message;
 
     public T getResult() {
         return this.result;
     }
     public int getCode() {
         return this.code;
+    }
+
+    public String getMessage() {
+        return message;
     }
 }

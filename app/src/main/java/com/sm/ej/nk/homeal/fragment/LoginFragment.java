@@ -19,6 +19,7 @@ import com.sm.ej.nk.homeal.LoginActivity;
 import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.data.FontData;
 import com.sm.ej.nk.homeal.manager.FontManager;
+import com.sm.ej.nk.homeal.request.TestRequest;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -84,13 +85,18 @@ public class LoginFragment extends Fragment {
     public void onClickFacebook() {
 
         switch (radioGroup.getCheckedRadioButtonId()) {
-            case R.id.radiobtn_login_ft_ck:
+            case R.id.radiobtn_login_ft_ck:{
                 HomealApplication.changeCooker();
+                TestRequest request = new TestRequest(getContext(), "cooker");
                 break;
-            case R.id.radiobtn_login_ft_eater:
+            }
+            case R.id.radiobtn_login_ft_eater:{
                 HomealApplication.changeEater();
+                TestRequest request = new TestRequest(getContext(), "eater");
                 break;
+            }
         }
+
         ((LoginActivity) getActivity()).changeTos();;
     }
 /*

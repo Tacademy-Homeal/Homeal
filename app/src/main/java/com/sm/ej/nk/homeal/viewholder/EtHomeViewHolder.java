@@ -121,10 +121,10 @@ public class EtHomeViewHolder extends RecyclerView.ViewHolder {
         name.setText(data.getName());
         address.setText(data.getAddress());
         menu.setText(data.getFoodName());
-        jjimCount.setText(data.getJjimCount());
-        reviewCount.setText(data.getReviewCount());
+        jjimCount.setText(data.getBookmarkCnt());
+        reviewCount.setText(data.getReviewCnt());
         price.setText(data.getFoodPrice());
 
-        starCount.setRating(data.getGrade());
+        starCount.setRating(Integer.parseInt(data.getGrade()));
     }
 }

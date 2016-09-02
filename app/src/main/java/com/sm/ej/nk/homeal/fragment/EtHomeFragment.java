@@ -15,6 +15,10 @@ import com.sm.ej.nk.homeal.InfoCkDetailActivity;
 import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.adapter.EtHomeAdapter;
 import com.sm.ej.nk.homeal.data.EtHomeData;
+import com.sm.ej.nk.homeal.data.NetworkResult;
+import com.sm.ej.nk.homeal.manager.NetworkManager;
+import com.sm.ej.nk.homeal.manager.NetworkRequest;
+import com.sm.ej.nk.homeal.request.CkPageListRequest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,20 +66,22 @@ public class EtHomeFragment extends Fragment implements EtHomeAdapter.OnReviewit
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(mAdapter);
         initData();
-//        CkPageListRequest request = new CkPageListRequest(getActivity(), 1, 10);
-//        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<EtHomeResult>() {
-//            @Override
-//            public void onSuccess(NetworkRequest<EtHomeResult> request, EtHomeResult result) {
-//                List<EtHomeData> data = new ArrayList<EtHomeData>();
-//                data.toArray(result.getResult());
-//
-//                mAdapter.addList(data);
-//            }
-//            @Override
-//            public void onFail(NetworkRequest<EtHomeResult> request, int errorCode, String errorMessage, Throwable e) {
-//
-//            }
-//        });
+        String pageno = "1";
+        String rowCount = "10";
+        CkPageListRequest request = new CkPageListRequest(getContext() ,pageno, rowCount);
+        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<EtHomeData>>() {
+            @Override
+            public void onSuccess(NetworkRequest<NetworkResult<EtHomeData>> request, NetworkResult<EtHomeData> result) {
+                EtHomeData list = result.getResult();
+                mAdapter.clear();
+                mAdapter.add(list);
+            }
+
+            @Override
+            public void onFail(NetworkRequest<NetworkResult<EtHomeData>> request, int errorCode, String errorMessage, Throwable e) {
+
+            }
+        });
         return v;
     }
 
@@ -88,9 +94,9 @@ public class EtHomeFragment extends Fragment implements EtHomeAdapter.OnReviewit
             data.setFoodImageUrl("http://blog.jinbo.net/attach/615/200937431.jpg");
             data.setImage("https://pixabay.com/static/uploads/photo/2014/12/17/14/20/summer-anemone-571531_960_720.jpg");
             data.setFoodName("음식이름"+i);
-            data.setJjimCount(""+i);
-            data.setGrade(i%5+1);
-            data.setReviewCount(""+i);
+            data.setBookmarkCnt(""+i);
+            data.setGrade(""+i%5+1);
+            data.setReviewCnt(""+i);
             data.setName("이름"+i);
             datas.add(data);
         }

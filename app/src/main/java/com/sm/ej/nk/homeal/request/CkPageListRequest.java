@@ -2,31 +2,29 @@ package com.sm.ej.nk.homeal.request;
 
 import android.content.Context;
 
-import com.google.gson.Gson;
-import com.sm.ej.nk.homeal.data.EtHomeResult;
+import com.google.gson.reflect.TypeToken;
+import com.sm.ej.nk.homeal.data.EtHomeData;
+import com.sm.ej.nk.homeal.data.NetworkResult;
 import com.sm.ej.nk.homeal.manager.NetworkRequest;
 
-import java.io.IOException;
+import java.lang.reflect.Type;
 
 import okhttp3.HttpUrl;
 import okhttp3.Request;
-import okhttp3.ResponseBody;
 
 /**
  * Created by Tacademy on 2016-08-31.
  */
 
-public class CkPageListRequest extends NetworkRequest<EtHomeResult>{
+public class CkPageListRequest extends AbstractRequest<NetworkResult<EtHomeData>>{
     Context context;
     Request request;
 
-    public CkPageListRequest(Context context, int pageNo, int rowCount){
-        HttpUrl url = new HttpUrl.Builder()
-                .scheme("http")
-                .host("ec2-52-78-131-245.ap-northeast-2.compute.amazonaws.com:8080")
+    public CkPageListRequest(Context context, String pageNo, String rowCount){
+        HttpUrl url = getBaseHttpsUrlBuilder()
                 .addPathSegment("cookers")
-                .addQueryParameter("pageNo",""+pageNo)
-                .addQueryParameter("rowCount", ""+rowCount)
+                .addQueryParameter("pageNo", pageNo)
+                .addQueryParameter("rowCount", rowCount)
                 .build();
 
         request = new Request.Builder()
@@ -36,11 +34,8 @@ public class CkPageListRequest extends NetworkRequest<EtHomeResult>{
     }
 
     @Override
-    protected EtHomeResult parse(ResponseBody body) throws IOException {
-        Gson gson = new Gson();
-        EtHomeResult result = gson.fromJson(body.charStream(), EtHomeResult.class);
-
-        return result;
+    protected Type getType() {
+        return new TypeToken<NetworkRequest<EtHomeData>>(){}.getType();
     }
 
     @Override

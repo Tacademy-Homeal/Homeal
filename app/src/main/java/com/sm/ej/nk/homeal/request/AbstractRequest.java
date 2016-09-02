@@ -1,7 +1,8 @@
 package com.sm.ej.nk.homeal.request;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
-import com.sm.ej.nk.homeal.data.NetworkResultTemp;
 import com.sm.ej.nk.homeal.manager.NetworkRequest;
 
 import java.io.IOException;
@@ -39,8 +40,9 @@ public abstract class AbstractRequest<T> extends NetworkRequest<T> {
     protected T parse(ResponseBody body) throws IOException {
         String text = body.string();
         Gson gson = new Gson();
-        NetworkResultTemp temp = gson.fromJson(text, NetworkResultTemp.class);
+//        NetworkResultTemp temp = gson.fromJson(text, NetworkResultTemp.class);
 
+        Log.e("ssong", text);
         T result = gson.fromJson(text, getType());
         return result;
 //        if (temp.getCode() == 1) {
