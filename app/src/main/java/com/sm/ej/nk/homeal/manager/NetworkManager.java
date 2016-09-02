@@ -10,11 +10,21 @@ import com.franmontiel.persistentcookiejar.PersistentCookieJar;
 import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
 import com.sm.ej.nk.homeal.HomealApplication;
+import com.sm.ej.nk.homeal.R;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.security.KeyStore;
+import java.security.cert.Certificate;
+import java.security.cert.CertificateFactory;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.TrustManagerFactory;
 
 import okhttp3.Cache;
 import okhttp3.Call;
@@ -56,6 +66,7 @@ public class NetworkManager {
         builder.readTimeout(10, TimeUnit.SECONDS);
         builder.writeTimeout(10, TimeUnit.SECONDS);
 
+        disableCertificateValidation(context, builder);
         client = builder.build();
     }
 
@@ -126,5 +137,39 @@ public class NetworkManager {
             }
         }
     }
+    static void disableCertificateValidation(Context context, OkHttpClient.Builder builder){
+        try{
+            CertificateFactory cf = CertificateFactory.getInstance("X.509");
+            InputStream caInput = context.getResources().openRawResource(R.raw.site);
+            Certificate ca;
+            try {
+                ca = cf.generateCertificate(caInput);
+            }finally {
+                caInput.close();
+            }
+            String keyStoreType = KeyStore.getDefaultType();
+            KeyStore keyStore = KeyStore.getInstance(keyStoreType);
+            keyStore.load(null, null);
+            keyStore.setCertificateEntry("ca", ca);
+            String tmfAlgorith = TrustManagerFactory.getDefaultAlgorithm();
+            TrustManagerFactory tmf = TrustManagerFactory.getInstance(tmfAlgorith);
+            tmf.init(keyStore);
+
+            SSLContext sc = SSLContext.getInstance("TLS");
+            sc.init(null, tmf.getTrustManagers(), null);
+            HostnameVerifier hv = new HostnameVerifier() {
+                @Override
+                public boolean verify(String s, SSLSession sslSession) {
+                    return true;
+                }
+            };
+            sc.init(null, tmf.getTrustManagers(), null);
+            builder.sslSocketFactory(sc.getSocketFactory());
+            builder.hostnameVerifier(hv);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
 }
 
