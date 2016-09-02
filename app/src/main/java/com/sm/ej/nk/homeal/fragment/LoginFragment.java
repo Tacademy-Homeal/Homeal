@@ -4,6 +4,7 @@ package com.sm.ej.nk.homeal.fragment;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,7 +50,7 @@ public class LoginFragment extends Fragment {
     @BindView(R.id.textview_login_select)
     TextView loginSelectView;
 
-
+    TestRequest request;
     public LoginFragment() {
         // Required empty public constructor
     }
@@ -85,19 +86,35 @@ public class LoginFragment extends Fragment {
     public void onClickFacebook() {
 
         switch (radioGroup.getCheckedRadioButtonId()) {
+
             case R.id.radiobtn_login_ft_ck:{
                 HomealApplication.changeCooker();
-                TestRequest request = new TestRequest(getContext(), "cooker");
+                request = new TestRequest(getContext(), "cooker");
                 break;
             }
             case R.id.radiobtn_login_ft_eater:{
                 HomealApplication.changeEater();
-                TestRequest request = new TestRequest(getContext(), "eater");
+                request = new TestRequest(getContext(), "eater");
                 break;
             }
         }
-
-        ((LoginActivity) getActivity()).changeTos();;
+        ((LoginActivity) getActivity()).changeTos();
+        Log.e("ssong", "asdasd");
+//        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
+//            @Override
+//            public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
+//                ((LoginActivity) getActivity()).changeTos();
+//                Log.e("ssong", "asdasd");
+//            }
+//
+//            @Override
+//            public void onFail(NetworkRequest<NetworkResultTemp> request, int errorCode, String errorMessage, Throwable e) {
+//
+//                Log.e("ssong", request.getRequest()+"");
+//                e.printStackTrace();
+//
+//            }
+//        });
     }
 /*
     private void loginFacebook() {

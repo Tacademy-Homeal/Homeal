@@ -2,6 +2,7 @@ package com.sm.ej.nk.homeal.request;
 
 import android.content.Context;
 
+import com.google.gson.reflect.TypeToken;
 import com.sm.ej.nk.homeal.data.NetworkResultTemp;
 
 import java.lang.reflect.Type;
@@ -36,7 +37,7 @@ public class TestRequest extends AbstractRequest<NetworkResultTemp> {
 
     @Override
     protected Type getType() {
-        return null;
+        return new TypeToken<NetworkResultTemp>(){}.getType();
     }
 
     @Override

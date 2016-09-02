@@ -5,7 +5,6 @@ import android.content.Context;
 import com.google.gson.reflect.TypeToken;
 import com.sm.ej.nk.homeal.data.EtHomeData;
 import com.sm.ej.nk.homeal.data.NetworkResult;
-import com.sm.ej.nk.homeal.manager.NetworkRequest;
 
 import java.lang.reflect.Type;
 
@@ -35,7 +34,7 @@ public class CkPageListRequest extends AbstractRequest<NetworkResult<EtHomeData>
 
     @Override
     protected Type getType() {
-        return new TypeToken<NetworkRequest<EtHomeData>>(){}.getType();
+        return new TypeToken<NetworkResult<EtHomeData>>(){}.getType();
     }
 
     @Override
