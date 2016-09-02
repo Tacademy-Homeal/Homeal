@@ -4,12 +4,20 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ck_detail_viewpager_height">
+        <android.support.v4.view.ViewPager
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/ck_detail_viewpager_height"
+            android:id="@+id/viewpager_ck_detail" />
 
-    <android.support.v4.view.ViewPager
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/ck_detail_viewpager_height"
-        android:id="@+id/viewpager_ck_detail" />
-
+        <com.viewpagerindicator.CirclePageIndicator
+            android:id="@+id/indicator_ck_detail"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_gravity="center_horizontal|bottom" />
+    </FrameLayout>
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"

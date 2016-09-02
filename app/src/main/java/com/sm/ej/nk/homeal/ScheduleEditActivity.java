@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ScheduleEditActivity extends AppCompatActivity {
+public class ScheduleEditActivity extends AppCompatActivity implements View.OnClickListener{
 
     @BindView(R.id.rv_schedule_edit_calendar)
     RecyclerView rv;
@@ -51,6 +51,10 @@ public class ScheduleEditActivity extends AppCompatActivity {
     @BindView(R.id.image_schedule_edit_next)
     ImageView nextImage;
 
+    @BindView(R.id.image_schedule_edit_share)
+    ImageView shareImage;
+
+
     CalendarAdapter mAdapter;
     ArrayList<CalendarItemData> mItemdata = new ArrayList<>();
 
@@ -76,26 +80,14 @@ public class ScheduleEditActivity extends AppCompatActivity {
             }
         });
 
-        backImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                CalendarData data = CalendarManager.getInstance().getLastMonthCalendarData();
-                textCalendar.setText(data.year+"년 "+(data.month+1)+"월");
-                mAdapter.setCalendarData(data);
-            }
-        });
-
-        nextImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                CalendarData data = CalendarManager.getInstance().getNextMonthCalendarData();
-                textCalendar.setText(data.year+"년 "+(data.month+1)+"월");
-                mAdapter.setCalendarData(data);
-            }
-        });
+        backImage.setOnClickListener(this);
+        nextImage.setOnClickListener(this);
+        textMornig.setOnClickListener(this);
+        textLaunch.setOnClickListener(this);
+        textDinner.setOnClickListener(this);
+        shareImage.setOnClickListener(this);
 
         setSupportActionBar(toolbar);
-
 
         Intent intent = getIntent();
         MODE = intent.getIntExtra(CkMainActivity.INTENT_MODE, -1);
@@ -104,6 +96,39 @@ public class ScheduleEditActivity extends AppCompatActivity {
         }else if(MODE == CkMainActivity.MODE_SCHEDULE_INSERT){
             rv.setLayoutManager(new GridLayoutManager(this, 7));
             rv.setAdapter(mAdapter);
+
+        }
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch(view.getId()){
+            case R.id.image_schedule_edit_back:{
+                CalendarData data = CalendarManager.getInstance().getLastMonthCalendarData();
+                textCalendar.setText(data.year+"년 "+(data.month+1)+"월");
+                mAdapter.setCalendarData(data);
+                mAdapter.cleanChecked();
+                break;
+            }
+            case R.id.image_schedule_edit_next:{
+                CalendarData data = CalendarManager.getInstance().getNextMonthCalendarData();
+                textCalendar.setText(data.year+"년 "+(data.month+1)+"월");
+                mAdapter.setCalendarData(data);
+                mAdapter.cleanChecked();
+                break;
+            }
+            case R.id.text_schedule_edit_mornig:{
+
+            }
+            case R.id.text_schedule_edit_launch:{
+
+            }
+            case R.id.text_schedule_edit_dinner:{
+
+            }
+            case R.id.image_schedule_edit_share:{
+
+            }
         }
     }
 }

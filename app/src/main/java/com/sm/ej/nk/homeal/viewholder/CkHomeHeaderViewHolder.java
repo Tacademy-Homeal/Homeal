@@ -82,12 +82,14 @@ public class CkHomeHeaderViewHolder extends RecyclerView.ViewHolder implements V
                 CalendarData data = CalendarManager.getInstance().getLastMonthCalendarData();
                 textDate.setText(data.year+"년 "+(data.month+1)+"월");
                 mAdapter.setCalendarData(data);
+                mAdapter.cleanChecked();
                 break;
             }
             case R.id.image_ck_home_next:{
                 CalendarData data = CalendarManager.getInstance().getNextMonthCalendarData();
                 textDate.setText(data.year+"년 "+(data.month+1)+"월");
                 mAdapter.setCalendarData(data);
+                mAdapter.cleanChecked();
                 break;
             }
         }
