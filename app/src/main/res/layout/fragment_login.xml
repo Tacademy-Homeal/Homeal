@@ -13,19 +13,6 @@
 
 
         <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/radio_group_login"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="137dp"
-            android:text="Homeal"
-            android:textColor="@color/color_homeal_main"
-            android:textSize="@dimen/info_text_size"
-            android:layout_marginTop="128dp"
-            />
-
-        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textview_login_select"
@@ -82,8 +69,8 @@
             android:id="@+id/btn_login_facebook"
             android:src="@drawable/facebook_icon"
             style="?android:attr/buttonStyleSmall"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_marginBottom="83dp"
             android:background="@null"
             android:gravity="center_vertical|center_horizontal"
@@ -93,6 +80,14 @@
             android:layout_centerHorizontal="true"
             />
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView2"
+            android:src="@drawable/hoemal_icon"
+            android:layout_above="@+id/textview_login_select"
+            android:layout_alignRight="@+id/radio_group_login"
+            android:layout_alignEnd="@+id/radio_group_login" />
 
 
     </RelativeLayout>

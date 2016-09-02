@@ -18,6 +18,7 @@ import com.sm.ej.nk.homeal.data.CalendarItem;
 import com.sm.ej.nk.homeal.data.CalendarItemData;
 import com.sm.ej.nk.homeal.data.CkDetailData;
 import com.sm.ej.nk.homeal.manager.CalendarManager;
+import com.viewpagerindicator.CirclePageIndicator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +40,7 @@ public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder implements
     ProgressBar progressPrice, progressTaste, progresskind, progressClean;
     ProgressBar progressTotal;
     CalendarManager cm;
+    CirclePageIndicator circleIndicator;
 
     public CkDetailHeaderViewHolder(Context context,View view){
         super(view);
@@ -60,12 +62,14 @@ public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder implements
         progressClean = (ProgressBar)view.findViewById(R.id.progress_clean);
         backImage = (ImageView)view.findViewById(R.id.image_ck_detail_back);
         nextImage = (ImageView)view.findViewById(R.id.image_ck_detail_next);
+        circleIndicator = (CirclePageIndicator)view.findViewById(R.id.indicator_ck_detail);
     }
 
     public void setData(CkDetailData data){
         this.data = data;
         pagerAdapter = new ViewPagerAdapter(context, data.pagerImageList);
         viewPager.setAdapter(pagerAdapter);
+//        circleIndicator.setViewPager(viewPager);
         Glide.with(context).load(data.userImage).into(userImage);
         Glide.with(context).load(data.mapImage).into(mapImage);
         userName.setText(data.userName);
@@ -134,12 +138,14 @@ public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder implements
                 CalendarData data = CalendarManager.getInstance().getLastMonthCalendarData();
                 calendarDate.setText(data.year+"년 "+(data.month+1)+"월");
                 calendarAdapter.setCalendarData(data);
+                calendarAdapter.cleanChecked();
                 break;
             }
             case R.id.image_ck_detail_next:{
                 CalendarData data = CalendarManager.getInstance().getNextMonthCalendarData();
                 calendarDate.setText(data.year+"년 "+(data.month+1)+"월");
                 calendarAdapter.setCalendarData(data);
+                calendarAdapter.cleanChecked();
                 break;
             }
         }

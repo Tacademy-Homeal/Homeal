@@ -121,4 +121,9 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarView> {
             }
         }
     }
+
+    public void cleanChecked(){
+        checkedPosition = INVALID_POSITION;
+        notifyDataSetChanged();
+    }
 }
