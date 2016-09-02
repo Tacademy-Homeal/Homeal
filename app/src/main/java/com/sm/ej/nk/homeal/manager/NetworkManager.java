@@ -10,6 +10,9 @@ import com.franmontiel.persistentcookiejar.PersistentCookieJar;
 import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
 import com.sm.ej.nk.homeal.HomealApplication;
+import com.sm.ej.nk.homeal.data.EaterData;
+import com.sm.ej.nk.homeal.data.EaterDataResult;
+import com.sm.ej.nk.homeal.data.NetworkResult;
 
 import java.io.File;
 import java.io.IOException;
@@ -98,7 +101,7 @@ public class NetworkManager {
         mHandler.sendMessage(msg);
     }
 
-    public <T> void getNetworkData(NetworkRequest<T> request, OnResultListener<T> listener) {
+    public <T> void getNetworkData(NetworkRequest<EaterDataResult> request, OnResultListener<NetworkResult<EaterData>> listener) {
         request.setOnResultListener(listener);
         request.process(client);
     }
