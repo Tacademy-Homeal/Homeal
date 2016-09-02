@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.google.gson.reflect.TypeToken;
+import com.sm.ej.nk.homeal.data.CkReserveData;
 import com.sm.ej.nk.homeal.data.EaterData;
 import com.sm.ej.nk.homeal.data.NetworkResult;
 
@@ -15,16 +16,13 @@ import okhttp3.Request;
 /**
  * Created by Tacademy on 2016-09-02.
  */
-public class EaterInfoRequest extends AbstractRequest<NetworkResult<EaterData>> {
+public class CkReserveRequest extends AbstractRequest<NetworkResult<CkReserveData>>{
     Request mRequest;
-
-
-    public EaterInfoRequest(Context context) {
+    public CkReserveRequest(Context context) {
 
         //URL Setting
-        HttpUrl url = getBaseHttpsUrlBuilder()
-                .addPathSegment("eaters")
-                .addPathSegment("me")
+        HttpUrl url = getBaseHttpUrlBuilder()
+                .addPathSegment("reservations")
                 .build();
 
         mRequest = new Request.Builder()
@@ -42,8 +40,6 @@ public class EaterInfoRequest extends AbstractRequest<NetworkResult<EaterData>> 
                 .post(body)
                 .tag(context)
                 .build();*/
-
-
         Log.i("uri",""+url);
     }
 
