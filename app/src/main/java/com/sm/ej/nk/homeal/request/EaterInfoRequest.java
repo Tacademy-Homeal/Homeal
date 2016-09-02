@@ -31,8 +31,6 @@ public class EaterInfoRequest extends AbstractRequest<EaterDataResult> {
                 .tag(context)
                 .build();
 
-        Log.i("log",""+url);
-
 /*      In post
         RequestBody body = new FormBody.Builder()
                .add("키","벨류")
@@ -44,6 +42,8 @@ public class EaterInfoRequest extends AbstractRequest<EaterDataResult> {
                 .tag(context)
                 .build();*/
 
+
+        Log.i("uri",""+url);
     }
 
     @Override
