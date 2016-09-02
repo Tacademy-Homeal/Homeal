@@ -19,14 +19,15 @@ public class TestRequest extends AbstractRequest<NetworkResultTemp> {
     Request request;
     public TestRequest(Context context, String type){
         HttpUrl url = getBaseHttpsUrlBuilder()
-                .addPathSegment("auth/local/login")
+                .addPathSegment("auth")
+                .addPathSegment("local")
+                .addPathSegment("login")
                 .build();
 
         RequestBody body = new FormBody.Builder()
                 .add("email", type)
                 .add("password", "1234")
                 .build();
-
 
         request = new Request.Builder()
                 .url(url)

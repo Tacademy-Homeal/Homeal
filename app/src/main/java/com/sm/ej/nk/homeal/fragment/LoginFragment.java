@@ -4,7 +4,6 @@ package com.sm.ej.nk.homeal.fragment;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +18,10 @@ import com.sm.ej.nk.homeal.HomealApplication;
 import com.sm.ej.nk.homeal.LoginActivity;
 import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.data.FontData;
+import com.sm.ej.nk.homeal.data.NetworkResultTemp;
 import com.sm.ej.nk.homeal.manager.FontManager;
+import com.sm.ej.nk.homeal.manager.NetworkManager;
+import com.sm.ej.nk.homeal.manager.NetworkRequest;
 import com.sm.ej.nk.homeal.request.TestRequest;
 
 import butterknife.BindView;
@@ -51,6 +53,7 @@ public class LoginFragment extends Fragment {
     TextView loginSelectView;
 
     TestRequest request;
+
     public LoginFragment() {
         // Required empty public constructor
     }
@@ -89,32 +92,27 @@ public class LoginFragment extends Fragment {
 
             case R.id.radiobtn_login_ft_ck:{
                 HomealApplication.changeCooker();
-                request = new TestRequest(getContext(), "cooker");
+                request = new TestRequest(HomealApplication.getContext(), "cooker");
                 break;
             }
             case R.id.radiobtn_login_ft_eater:{
                 HomealApplication.changeEater();
-                request = new TestRequest(getContext(), "eater");
+                request = new TestRequest(HomealApplication.getContext(), "cooker");
                 break;
             }
         }
-        ((LoginActivity) getActivity()).changeTos();
-        Log.e("ssong", "asdasd");
-//        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
-//            @Override
-//            public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
-//                ((LoginActivity) getActivity()).changeTos();
-//                Log.e("ssong", "asdasd");
-//            }
-//
-//            @Override
-//            public void onFail(NetworkRequest<NetworkResultTemp> request, int errorCode, String errorMessage, Throwable e) {
-//
-//                Log.e("ssong", request.getRequest()+"");
-//                e.printStackTrace();
-//
-//            }
-//        });
+        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
+            @Override
+            public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
+                ((LoginActivity) getActivity()).changeTos();
+            }
+
+            @Override
+            public void onFail(NetworkRequest<NetworkResultTemp> request, int errorCode, String errorMessage, Throwable e) {
+                e.printStackTrace();
+            }
+        });
+
     }
 /*
     private void loginFacebook() {
