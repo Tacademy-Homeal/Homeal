@@ -31,7 +31,6 @@ dependencies {
     testCompile 'junit:junit:4.12'
     apt 'com.jakewharton:butterknife-compiler:8.0.1'
     compile files('libs/com.skp.Tmap_1.0.43.jar')
-
     compile 'com.android.support:appcompat-v7:24.2.0'
     compile 'com.android.support:support-v4:24.2.0'
     compile 'com.android.support:design:24.2.0'
@@ -50,9 +49,8 @@ dependencies {
     compile 'com.google.firebase:firebase-ads:9.4.0'
     compile 'com.android.support:multidex:1.0.1'
     compile 'com.tsengvn:Typekit:1.0.0'
-
-
     compile files('libs/com.skp.Tmap_1.0.43.jar')
     compile 'com.github.clans:fab:1.6.4'
+    compile project(':viewPagerIndicator')
 }
 apply plugin: 'com.google.gms.google-services'

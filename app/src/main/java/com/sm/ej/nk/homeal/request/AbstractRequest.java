@@ -18,6 +18,7 @@ import okhttp3.ResponseBody;
 public abstract class AbstractRequest<T> extends NetworkRequest<T> {
     private static final String DUMMY_URL = "ec2-52-78-131-245.ap-northeast-2.compute.amazonaws.com:8080";
 
+
     protected HttpUrl.Builder getBaseHttpsUrlBuilder() {
         HttpUrl.Builder builder = new HttpUrl.Builder();
         builder.scheme("https");
