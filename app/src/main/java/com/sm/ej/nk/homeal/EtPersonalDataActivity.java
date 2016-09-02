@@ -16,7 +16,7 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 
-import com.sm.ej.nk.homeal.data.EaterData;
+import com.sm.ej.nk.homeal.data.EaterDataResult;
 import com.sm.ej.nk.homeal.data.NetworkResult;
 import com.sm.ej.nk.homeal.manager.NetworkManager;
 import com.sm.ej.nk.homeal.manager.NetworkRequest;
@@ -103,18 +103,17 @@ public class EtPersonalDataActivity extends AppCompatActivity {
 
         EaterInfoRequest request = new EaterInfoRequest(this);
 
-        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<EaterDataResult>() {
+        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<EaterDataResult>>() {
             @Override
-            public void onSuccess(NetworkRequest<EaterDataResult> request, EaterDataResult result) {
+            public void onSuccess(NetworkRequest<NetworkResult<EaterDataResult>> request, NetworkResult<EaterDataResult> result) {
 
             }
 
             @Override
-            public void onFail(NetworkRequest<EaterDataResult> request, int errorCode, String errorMessage, Throwable e) {
+            public void onFail(NetworkRequest<NetworkResult<EaterDataResult>> request, int errorCode, String errorMessage, Throwable e) {
 
             }
         });
-
 
     }
 
