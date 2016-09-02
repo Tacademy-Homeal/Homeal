@@ -1,13 +1,13 @@
 package com.sm.ej.nk.homeal.data;
 
 public class EaterDataResult {
-    private EaterData[] result;
+    private EaterData result;
     private String message;
 
-    public EaterData[] getResult() {
+    public EaterData getResult() {
         return this.result;
     }
-    public void setResult(EaterData[] result) {
+    public void setResult(EaterData result) {
         this.result = result;
     }
 

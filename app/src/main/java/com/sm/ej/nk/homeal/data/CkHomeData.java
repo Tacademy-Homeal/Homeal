@@ -1,9 +1,11 @@
 package com.sm.ej.nk.homeal.data;
 
+import java.io.Serializable;
+
 /**
  * Created by Tacademy on 2016-08-30.
  */
-public class CkHomeData {
+public class CkHomeData implements Serializable{
     public PersonData user;
     public String jjimCount;
     public String reviewCount;

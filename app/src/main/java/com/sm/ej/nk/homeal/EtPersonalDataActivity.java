@@ -17,6 +17,7 @@ import android.widget.RadioButton;
 import android.widget.Spinner;
 
 import com.sm.ej.nk.homeal.data.EaterDataResult;
+import com.sm.ej.nk.homeal.data.NetworkResult;
 import com.sm.ej.nk.homeal.manager.NetworkManager;
 import com.sm.ej.nk.homeal.manager.NetworkRequest;
 import com.sm.ej.nk.homeal.request.EaterInfoRequest;
@@ -69,10 +70,10 @@ public class EtPersonalDataActivity extends AppCompatActivity {
 
     ArrayAdapter<String> countryAdapter;
 
-    private int GET_IMAGE = 2;
+    private int GET_IMAGE=2;
 
     @OnClick(R.id.image_et_picture)
-    public void onetGallery() {
+    public void onetGallery(){
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         intent.setType("image/*");
         startActivityForResult(intent, GET_IMAGE);
@@ -102,22 +103,23 @@ public class EtPersonalDataActivity extends AppCompatActivity {
 
         EaterInfoRequest request = new EaterInfoRequest(this);
 
-        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<EaterDataResult>() {
-
+        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<EaterDataResult>>() {
             @Override
-            public void onSuccess(NetworkRequest<EaterDataResult> request, EaterDataResult result) {
+            public void onSuccess(NetworkRequest<NetworkResult<EaterDataResult>> request, NetworkResult<EaterDataResult> result) {
 
             }
 
             @Override
-            public void onFail(NetworkRequest<EaterDataResult> request, int errorCode, String errorMessage, Throwable e) {
+            public void onFail(NetworkRequest<NetworkResult<EaterDataResult>> request, int errorCode, String errorMessage, Throwable e) {
 
             }
         });
+
     }
 
+
     //setting
-    private void settingCalendar() {
+    private void settingCalendar(){
         countryAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.country));
         countryAdapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
         countrySpinner.setAdapter(countryAdapter);
@@ -162,7 +164,7 @@ public class EtPersonalDataActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
+        switch (item.getItemId()){
             case android.R.id.home:
                 this.finish();
                 return true;
