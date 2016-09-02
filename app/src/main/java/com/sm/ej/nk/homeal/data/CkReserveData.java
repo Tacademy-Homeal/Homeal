@@ -4,76 +4,68 @@ package com.sm.ej.nk.homeal.data;
  * Created by Tacademy on 2016-08-25.
  */
 public class CkReserveData {
-    private String foodName;
-    private String reserveDate;
-    private String reservePerson;
-    private String etName;
-    private int reserveState;
-    private String etPictureUrl;
-    private String btn_disagree;
-    private String btn_agree;
+    private String date;
+    private String image;
+    private String grade;
+    private String name;
+    private String id;
+    private String menu;
+    private String status;
 
-    public String getBtn_agree() {
-        return btn_agree;
+
+    public String getDate() {
+        return this.date;
     }
 
-    public void setBtn_agree(String btn_agree) {
-        this.btn_agree = btn_agree;
+    public void setDate(String date) {
+        this.date = date;
     }
 
-    public String getBtn_disagree() {
-        return btn_disagree;
+    public String getImage() {
+        return this.image;
     }
 
-    public void setBtn_disagree(String btn_disagree) {
-        this.btn_disagree = btn_disagree;
+    public void setImage(String image) {
+        this.image = image;
     }
 
-    public String getEtName() {
-        return etName;
+    public String getGrade() {
+        return this.grade;
     }
 
-    public void setEtName(String etName) {
-        this.etName = etName;
+    public void setGrade(String grade) {
+        this.grade = grade;
     }
 
-    public String getEtPictureUrl() {
-        return etPictureUrl;
+    public String getName() {
+        return this.name;
     }
 
-    public void setEtPictureUrl(String etPictureUrl) {
-        this.etPictureUrl = etPictureUrl;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getFoodName() {
-        return foodName;
+    public String getId() {
+        return this.id;
     }
 
-    public void setFoodName(String foodName) {
-        this.foodName = foodName;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getReserveDate() {
-        return reserveDate;
+    public String getMenu() {
+        return this.menu;
     }
 
-    public void setReserveDate(String reserveDate) {
-        this.reserveDate = reserveDate;
+    public void setMenu(String menu) {
+        this.menu = menu;
     }
 
-    public String getReservePerson() {
-        return reservePerson;
+    public String getStatus() {
+        return this.status;
     }
 
-    public void setReservePerson(String reservePerson) {
-        this.reservePerson = reservePerson;
-    }
-
-    public int getReserveState() {
-        return reserveState;
-    }
-
-    public void setReserveState(int reserveState) {
-        this.reserveState = reserveState;
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

@@ -64,12 +64,12 @@ public class InfoCkDetailActivity extends AppCompatActivity implements CkDetailA
             }
         });
 
-
         LinearLayoutManager manager = new LinearLayoutManager(this);
         rv.setLayoutManager(manager);
         mAdapter = new CkDetailAdapter(init());
         mAdapter.setOnDetailAdapterClickListener(this);
         rv.setAdapter(mAdapter);
+
         initMenu();
     }
     @Override
@@ -98,7 +98,7 @@ public class InfoCkDetailActivity extends AppCompatActivity implements CkDetailA
         data.pagerImageList = dummylist;
 
         return data;
-    }//sdsdsd
+    }
 
     public void initMenu(){
         ArrayList<CkDetailMenuData> dummy = new ArrayList<>();

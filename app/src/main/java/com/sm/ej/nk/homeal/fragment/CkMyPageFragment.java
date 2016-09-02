@@ -80,6 +80,7 @@ public class CkMyPageFragment extends Fragment {
         user.setName("Eunji");
         user.setType("Cooker");
         user.setTotalScore(3);
+
     }
 
     User user;
