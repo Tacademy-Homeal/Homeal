@@ -90,7 +90,7 @@ public class ChatListFragment extends Fragment  implements ChattingListAdapter.O
         User user = new User();
         user.setId(cursor.getLong(cursor.getColumnIndex(ChatContract.ChatUser.COLUMN_SERVER_ID)));
         user.setEmail(cursor.getString(cursor.getColumnIndex(ChatContract.ChatUser.COLUMN_EMAIL)));
-        user.setUserName(cursor.getString(cursor.getColumnIndex(ChatContract.ChatUser.COLUMN_NAME)));
+        user.setName(cursor.getString(cursor.getColumnIndex(ChatContract.ChatUser.COLUMN_NAME)));
         Intent intent = new Intent(getContext(),ChattingActivity.class);
         intent.putExtra(ChattingActivity.EXTRA_USER, user);
         startActivity(intent);
