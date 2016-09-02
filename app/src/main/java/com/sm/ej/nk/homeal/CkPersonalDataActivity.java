@@ -16,10 +16,8 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.sm.ej.nk.homeal.data.NetworkResult;
-import com.sm.ej.nk.homeal.data.User;
+import com.sm.ej.nk.homeal.data.CookerData;
 import com.sm.ej.nk.homeal.manager.NetworkManager;
 import com.sm.ej.nk.homeal.manager.NetworkRequest;
 import com.sm.ej.nk.homeal.request.CkInfoRequest;
@@ -75,8 +73,6 @@ public class CkPersonalDataActivity extends AppCompatActivity {
 
     @BindView(R.id.image_ck_picture)
     ImageView ckpictureView;
-
-    CkInfoRequest request;
 
     private int GET_IMAGE = 2;
 
@@ -150,16 +146,15 @@ public class CkPersonalDataActivity extends AppCompatActivity {
         isPersonalData(false);
         btnChangeFinish.setVisibility(View.GONE);
 
-        request = new CkInfoRequest(this);
-        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<User>>(){
-
+       CkInfoRequest request = new CkInfoRequest(this);
+        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<CookerData>() {
             @Override
-            public void onSuccess(NetworkRequest<NetworkResult<User>> request, NetworkResult<User> result) {
-                Toast.makeText(CkPersonalDataActivity.this, result.getCode(), Toast.LENGTH_SHORT).show();
+            public void onSuccess(NetworkRequest<CookerData> request, CookerData result) {
+
             }
 
             @Override
-            public void onFail(NetworkRequest<NetworkResult<User>> request, int errorCode, String errorMessage, Throwable e) {
+            public void onFail(NetworkRequest<CookerData> request, int errorCode, String errorMessage, Throwable e) {
 
             }
         });

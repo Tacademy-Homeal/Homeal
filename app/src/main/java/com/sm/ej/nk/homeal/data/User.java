@@ -16,6 +16,9 @@ public class User implements Serializable {
     public String birth;
     public String country;
     public String introduce;
+    public String phone;
+    public String address;
+    public String age;
 
     public String getGender() {
         return gender;
@@ -72,10 +75,6 @@ public class User implements Serializable {
     public void setAge(String age) {
         this.age = age;
     }
-
-    public String phone;
-    public String address;
-    public String age;
 
     public int getTotalScore() {
         return totalScore;

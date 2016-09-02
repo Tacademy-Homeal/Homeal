@@ -15,7 +15,11 @@ import com.bumptech.glide.Glide;
 import com.sm.ej.nk.homeal.CkPersonalDataActivity;
 import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.SettingActivity;
+import com.sm.ej.nk.homeal.data.CookerData;
 import com.sm.ej.nk.homeal.data.User;
+import com.sm.ej.nk.homeal.manager.NetworkManager;
+import com.sm.ej.nk.homeal.manager.NetworkRequest;
+import com.sm.ej.nk.homeal.request.CkInfoRequest;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -34,7 +38,6 @@ public class CkMyPageFragment extends Fragment {
     @BindView(R.id.progress_ck_mypage_total)
     ProgressBar cktotalView;
 
-//    Request CkInfoRequest;
 
     public static CkMyPageFragment createInstance() {
         final CkMyPageFragment pageFragment = new CkMyPageFragment();
@@ -51,19 +54,19 @@ public class CkMyPageFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_ck_my_page, container, false);
         ButterKnife.bind(this, view);
-//        CkInfoRequest request = new CkInfoRequest(getContext());
-//        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<User>>() {
-//
-//            @Override
-//            public void onSuccess(NetworkRequest<NetworkResult<User>> request, NetworkResult<User> result) {
-//                Toast.makeText(getContext(), result.getCode(), Toast.LENGTH_SHORT).show();
-//            }
-//
-//            @Override
-//            public void onFail(NetworkRequest<NetworkResult<User>> request, int errorCode, String errorMessage, Throwable e) {
-//
-//            }
-//        });
+
+        CkInfoRequest request = new CkInfoRequest(getContext());
+        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<CookerData>() {
+            @Override
+            public void onSuccess(NetworkRequest<CookerData> request, CookerData result) {
+
+            }
+
+            @Override
+            public void onFail(NetworkRequest<CookerData> request, int errorCode, String errorMessage, Throwable e) {
+
+            }
+        });
         initData();
         setUser();
         return view;
