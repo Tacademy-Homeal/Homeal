@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.sm.ej.nk.homeal.CkPersonalDataActivity;
@@ -65,7 +66,7 @@ public class CkMyPageFragment extends Fragment {
 
             @Override
             public void onFail(NetworkRequest<NetworkResult<CookerData>> request, int errorCode, String errorMessage, Throwable e) {
-
+                Toast.makeText(getContext(), ""+errorCode, Toast.LENGTH_SHORT).show();
             }
         });
 

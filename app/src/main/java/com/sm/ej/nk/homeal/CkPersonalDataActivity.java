@@ -151,7 +151,6 @@ public class CkPersonalDataActivity extends AppCompatActivity {
         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<CookerData>>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<CookerData>> request, NetworkResult<CookerData> result) {
-
             }
 
             @Override
