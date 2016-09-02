@@ -16,7 +16,8 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 
-import com.sm.ej.nk.homeal.data.EaterDataResult;
+import com.sm.ej.nk.homeal.data.EaterData;
+import com.sm.ej.nk.homeal.data.NetworkResult;
 import com.sm.ej.nk.homeal.manager.NetworkManager;
 import com.sm.ej.nk.homeal.manager.NetworkRequest;
 import com.sm.ej.nk.homeal.request.EaterInfoRequest;
@@ -113,6 +114,7 @@ public class EtPersonalDataActivity extends AppCompatActivity {
 
             }
         });
+
 
     }
 

@@ -68,16 +68,16 @@ public class EtMyPageFragment extends Fragment {
 
     public void setUser() {
 
-        Glide.with(etpictureView.getContext()).load(user.getPictureUrl()).into(etpictureView);
-        etnameView.setText(user.getUserName());
+        Glide.with(etpictureView.getContext()).load(user.getImage()).into(etpictureView);
+        etnameView.setText(user.getName());
         ettypeView.setText(user.getType());
         etpointView.setText(""+user.getEtPoint()+"P");
     }
 
     private void initData() {
         user = new User();
-        user.setPictureUrl("http://cfile22.uf.tistory.com/image/264785445579217E20ADEE");
-        user.setUserName("Eunji");
+        user.setImage("http://cfile22.uf.tistory.com/image/264785445579217E20ADEE");
+        user.setName("Eunji");
         user.setType("Eater");
         user.setEtPoint(1300);
     }

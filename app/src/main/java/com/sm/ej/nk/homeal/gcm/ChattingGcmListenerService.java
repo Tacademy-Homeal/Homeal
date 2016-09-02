@@ -98,7 +98,7 @@ public class ChattingGcmListenerService extends GcmListenerService{
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setTicker("Chat Message")
-                .setContentTitle(m.getSender().getUserName())
+                .setContentTitle(m.getSender().getName())
                 .setContentText(m.getMessage())
                 .setAutoCancel(true)
                 .setDefaults(NotificationCompat.DEFAULT_ALL)

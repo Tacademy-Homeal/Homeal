@@ -21,9 +21,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class CkMyPageFragment extends Fragment {
     @BindView(R.id.image_ck_picture)
     ImageView ckpictureView;
@@ -37,6 +34,8 @@ public class CkMyPageFragment extends Fragment {
     @BindView(R.id.progress_ck_mypage_total)
     ProgressBar cktotalView;
 
+//    Request CkInfoRequest;
+
     public static CkMyPageFragment createInstance() {
         final CkMyPageFragment pageFragment = new CkMyPageFragment();
         final Bundle bundle = new Bundle();
@@ -45,16 +44,26 @@ public class CkMyPageFragment extends Fragment {
     }
 
     public CkMyPageFragment() {
-        // Required empty public constructor
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_ck_my_page, container, false);
         ButterKnife.bind(this, view);
-
+//        CkInfoRequest request = new CkInfoRequest(getContext());
+//        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<User>>() {
+//
+//            @Override
+//            public void onSuccess(NetworkRequest<NetworkResult<User>> request, NetworkResult<User> result) {
+//                Toast.makeText(getContext(), result.getCode(), Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onFail(NetworkRequest<NetworkResult<User>> request, int errorCode, String errorMessage, Throwable e) {
+//
+//            }
+//        });
         initData();
         setUser();
         return view;
@@ -62,8 +71,8 @@ public class CkMyPageFragment extends Fragment {
 
     private void initData() {
         user = new User();
-        user.setPictureUrl("http://img.etnews.com/news/article/2016/02/18/cms_temp_article_18165253593992.jpg");
-        user.setUserName("Eunji");
+        user.setImage("http://img.etnews.com/news/article/2016/02/18/cms_temp_article_18165253593992.jpg");
+        user.setName("Eunji");
         user.setType("Cooker");
         user.setTotalScore(3);
     }
@@ -72,8 +81,8 @@ public class CkMyPageFragment extends Fragment {
 
     public void setUser() {
 
-        Glide.with(ckpictureView.getContext()).load(user.getPictureUrl()).into(ckpictureView);
-        cknameView.setText(user.getUserName());
+        Glide.with(ckpictureView.getContext()).load(user.getImage()).into(ckpictureView);
+        cknameView.setText(user.getName());
         cktypeView.setText(user.getType());
         cktotalView.setProgress(user.getTotalScore());
     }
