@@ -29,19 +29,20 @@ import okhttp3.ResponseBody;
  * Created by Tacademy on 2016-08-26.
  */
 public abstract class AbstractRequest<T> extends NetworkRequest<T> {
-    private static final String DUMMY_URL = "ec2-52-78-131-245.ap-northeast-2.compute.amazonaws.com:8080";
+    private static final String HTTP_URL = "ec2-52-78-131-245.ap-northeast-2.compute.amazonaws.com:80";
+    private static final String HTTPS_URL =  "ec2-52-78-131-245.ap-northeast-2.compute.amazonaws.com:443";
 
     protected HttpUrl.Builder getBaseHttpsUrlBuilder(Context context) {
         HttpUrl.Builder builder = new HttpUrl.Builder();
         builder.scheme("https");
-        builder.host(DUMMY_URL);
+        builder.host(HTTPS_URL);
         return builder;
     }
 
     protected HttpUrl.Builder getBaseHttpUrlBuilder() {
         HttpUrl.Builder builder = new HttpUrl.Builder();
         builder.scheme("http");
-        builder.host(DUMMY_URL);
+        builder.host(HTTP_URL);
         return builder;
     }
 
