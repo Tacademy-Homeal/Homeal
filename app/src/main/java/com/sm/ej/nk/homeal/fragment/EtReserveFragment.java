@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -72,13 +73,12 @@ public class EtReserveFragment extends Fragment {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<EtReserveData>> request, NetworkResult<EtReserveData> result) {
 
-                EtReserveData data = result.getResult();
-
+                Log.d("sucess","sucess");
             }
-
 
             @Override
             public void onFail(NetworkRequest<NetworkResult<EtReserveData>> request, int errorCode, String errorMessage, Throwable e) {
+                Log.d("fail","czdadfaaafd");
 
             }
         });

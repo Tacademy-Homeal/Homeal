@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,6 +61,7 @@ public class CkReserveFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_ck_reserve, container, false);
         ButterKnife.bind(this, view);
 
+
         LinearLayoutManager manager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
 
         CkReserveView.setAdapter(mAdapter);
@@ -70,7 +72,8 @@ public class CkReserveFragment extends Fragment {
         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<CkReserveData>>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<CkReserveData>> request, NetworkResult<CkReserveData> result) {
-                    mAdapter.add(result.getResult());
+                Log.d("sucess","sucess");
+                mAdapter.add(result.getResult());
             }
 
             @Override
