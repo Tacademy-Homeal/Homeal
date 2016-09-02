@@ -20,14 +20,14 @@ public class MessageListRequest extends AbstractRequest<NetworkResult<List<ChatM
     Request mRequest;
     public MessageListRequest(Context context, Date date) {
         String dateString = com.sm.ej.nk.homeal.Utils.convertTimeToString(date);
+
         HttpUrl url = getBaseHttpUrlBuilder()
                 .addPathSegment("messagelist")
                 .addQueryParameter("lastDate",dateString)
                 .build();
-        mRequest = new Request.Builder()
-                .url(url)
-                .tag(context)
-                .build();
+
+
+
     }
     @Override
     protected Type getType() {

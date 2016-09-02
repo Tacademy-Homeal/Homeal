@@ -141,5 +141,7 @@
     <string name="advice24_1" formatted="false">만났던 쿠커에 대한 평가를 남길 시, 이터는 지불했던 금액의 5%를 호메알 포인트로 얻게 됩니다.</string>
     <string name="advice25" formatted="false">만났던 Cooker(쿠커)에 대해 평가하는 항목은 무엇인가요?</string>
     <string name="advice25_1" formatted="false">만났던 쿠커에 대한 평가 기준은 총6가지 항목입니다.</string>
+    <string name="ck_home_fabchat">채팅</string>
+    <string name="ck_home_fabsend">예약요청</string>
 
 </resources>

@@ -16,7 +16,11 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 
-import com.sm.ej.nk.homeal.request.CkInfoRequest;
+import com.sm.ej.nk.homeal.data.EaterData;
+import com.sm.ej.nk.homeal.data.NetworkResult;
+import com.sm.ej.nk.homeal.manager.NetworkManager;
+import com.sm.ej.nk.homeal.manager.NetworkRequest;
+import com.sm.ej.nk.homeal.request.EaterInfoRequest;
 
 import java.util.ArrayList;
 
@@ -65,12 +69,11 @@ public class EtPersonalDataActivity extends AppCompatActivity {
     ImageView etpictureView;
 
     ArrayAdapter<String> countryAdapter;
-    CkInfoRequest request;
 
-    private int GET_IMAGE = 2;
+    private int GET_IMAGE=2;
 
     @OnClick(R.id.image_et_picture)
-    public void onetGallery() {
+    public void onetGallery(){
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         intent.setType("image/*");
         startActivityForResult(intent, GET_IMAGE);
@@ -96,6 +99,29 @@ public class EtPersonalDataActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("개 인 정 보");
 
+        settingCalendar();
+
+        EaterInfoRequest request = new EaterInfoRequest(this);
+
+        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<EaterData>>(){
+            @Override
+            public void onSuccess(NetworkRequest<NetworkResult<EaterData>> request, NetworkResult<EaterData> result) {
+                    EaterData eater = result.getResult();
+                    nameEdit.setText(eater.getName());
+            }
+
+            @Override
+            public void onFail(NetworkRequest<NetworkResult<EaterData>> request, int errorCode, String errorMessage, Throwable e) {
+
+            }
+        });
+
+
+    }
+
+
+    //setting
+    private void settingCalendar(){
         countryAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.country));
         countryAdapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
         countrySpinner.setAdapter(countryAdapter);
@@ -104,7 +130,7 @@ public class EtPersonalDataActivity extends AppCompatActivity {
         for (int month = 1; month < 13; month++) {
             monthList.add(String.valueOf(month));
         }
-        ArrayAdapter<String> monthAdatper = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, monthList);
+        final ArrayAdapter<String> monthAdatper = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, monthList);
         monthSpinner.setAdapter(monthAdatper);
 
         ArrayList<String> dayList = new ArrayList<>();
@@ -137,9 +163,10 @@ public class EtPersonalDataActivity extends AppCompatActivity {
         btnChangeFinish.setVisibility(View.GONE);
     }
 
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
+        switch (item.getItemId()){
             case android.R.id.home:
                 this.finish();
                 return true;
@@ -160,4 +187,5 @@ public class EtPersonalDataActivity extends AppCompatActivity {
         femaleRadio.setEnabled(s);
         etpictureView.setEnabled(s);
     }
+
 }

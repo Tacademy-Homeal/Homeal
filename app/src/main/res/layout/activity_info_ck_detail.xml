@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fab="http://schemas.android.com/tools">
     <android.support.design.widget.AppBarLayout
         android:id="@+id/aopbar_ck_detail"
         android:layout_width="match_parent"
@@ -22,15 +23,29 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <com.github.clans.fab.FloatingActionMenu
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:id="@+id/floating_ck_detail"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginBottom="@dimen/ck_detail_floating_bottommargin"
-        android:layout_marginRight="@dimen/ck_detail_floating_rightmargin" />
+        android:layout_margin="@dimen/ck_detail_floating_bottommargin">
 
+        <com.github.clans.fab.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/fab_chat"
+            fab:fab_label="@string/ck_home_fabchat"
+            fab:menu_labels_style="@style/MenuLabelsStyle"
+            fab:fab_size="mini"/>
 
+        <com.github.clans.fab.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/fab_send"
+            fab:fab_label="@string/ck_home_fabsend"
+            fab:fab_size="mini"/>
+
+    </com.github.clans.fab.FloatingActionMenu>
 </RelativeLayout>

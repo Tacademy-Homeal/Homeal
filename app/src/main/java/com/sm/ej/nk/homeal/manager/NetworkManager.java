@@ -56,6 +56,7 @@ public class NetworkManager {
         builder.readTimeout(10, TimeUnit.SECONDS);
         builder.writeTimeout(10, TimeUnit.SECONDS);
 
+        disableCertificateValidation(context, builder);
         client = builder.build();
     }
 
@@ -126,5 +127,39 @@ public class NetworkManager {
             }
         }
     }
+    static void disableCertificateValidation(Context context, OkHttpClient.Builder builder){
+        try{
+            CertificateFactory cf = CertificateFactory.getInstance("X.509");
+            InputStream caInput = context.getResources().openRawResource(R.raw.site);
+            Certificate ca;
+            try {
+                ca = cf.generateCertificate(caInput);
+            }finally {
+                caInput.close();
+            }
+            String keyStoreType = KeyStore.getDefaultType();
+            KeyStore keyStore = KeyStore.getInstance(keyStoreType);
+            keyStore.load(null, null);
+            keyStore.setCertificateEntry("ca", ca);
+            String tmfAlgorith = TrustManagerFactory.getDefaultAlgorithm();
+            TrustManagerFactory tmf = TrustManagerFactory.getInstance(tmfAlgorith);
+            tmf.init(keyStore);
+
+            SSLContext sc = SSLContext.getInstance("TLS");
+            sc.init(null, tmf.getTrustManagers(), null);
+            HostnameVerifier hv = new HostnameVerifier() {
+                @Override
+                public boolean verify(String s, SSLSession sslSession) {
+                    return true;
+                }
+            };
+            sc.init(null, tmf.getTrustManagers(), null);
+            builder.sslSocketFactory(sc.getSocketFactory());
+            builder.hostnameVerifier(hv);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
 }
 

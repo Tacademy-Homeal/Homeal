@@ -2,13 +2,14 @@ package com.sm.ej.nk.homeal;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.github.clans.fab.FloatingActionButton;
+import com.github.clans.fab.FloatingActionMenu;
 import com.sm.ej.nk.homeal.adapter.CkDetailAdapter;
 import com.sm.ej.nk.homeal.data.CalendarItem;
 import com.sm.ej.nk.homeal.data.CkDetailData;
@@ -30,7 +31,13 @@ public class InfoCkDetailActivity extends AppCompatActivity implements CkDetailA
     RecyclerView rv;
 
     @BindView(R.id.floating_ck_detail)
-    FloatingActionButton floatingActionButton;
+    FloatingActionMenu fab;
+
+    @BindView(R.id.fab_chat)
+    FloatingActionButton fabChat;
+
+    @BindView(R.id.fab_send)
+    FloatingActionButton fabSend;
 
     EtHomeData etHomeData;
 
@@ -57,12 +64,6 @@ public class InfoCkDetailActivity extends AppCompatActivity implements CkDetailA
             }
         });
 
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
 
         LinearLayoutManager manager = new LinearLayoutManager(this);
         rv.setLayoutManager(manager);
@@ -71,7 +72,6 @@ public class InfoCkDetailActivity extends AppCompatActivity implements CkDetailA
         rv.setAdapter(mAdapter);
         initMenu();
     }
-    //ddddddd
     @Override
     public void onDetailAdapterClick(View view, CalendarItem data, int position) {
 
@@ -98,7 +98,7 @@ public class InfoCkDetailActivity extends AppCompatActivity implements CkDetailA
         data.pagerImageList = dummylist;
 
         return data;
-    }
+    }//sdsdsd
 
     public void initMenu(){
         ArrayList<CkDetailMenuData> dummy = new ArrayList<>();
