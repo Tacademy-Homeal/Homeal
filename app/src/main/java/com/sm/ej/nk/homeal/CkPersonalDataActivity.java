@@ -17,7 +17,8 @@ import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.sm.ej.nk.homeal.data.CookerData;
+import com.sm.ej.nk.homeal.data.CookerDataResult;
+import com.sm.ej.nk.homeal.data.NetworkResult;
 import com.sm.ej.nk.homeal.manager.NetworkManager;
 import com.sm.ej.nk.homeal.manager.NetworkRequest;
 import com.sm.ej.nk.homeal.request.CkInfoRequest;
@@ -147,14 +148,14 @@ public class CkPersonalDataActivity extends AppCompatActivity {
         btnChangeFinish.setVisibility(View.GONE);
 
        CkInfoRequest request = new CkInfoRequest(this);
-        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<CookerData>() {
+        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<CookerDataResult>>() {
             @Override
-            public void onSuccess(NetworkRequest<CookerData> request, CookerData result) {
+            public void onSuccess(NetworkRequest<NetworkResult<CookerDataResult>> request, NetworkResult<CookerDataResult> result) {
 
             }
 
             @Override
-            public void onFail(NetworkRequest<CookerData> request, int errorCode, String errorMessage, Throwable e) {
+            public void onFail(NetworkRequest<NetworkResult<CookerDataResult>> request, int errorCode, String errorMessage, Throwable e) {
 
             }
         });
