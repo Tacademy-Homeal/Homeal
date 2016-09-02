@@ -30,8 +30,9 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/image_ck_picture"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="53dp"
+        android:layout_height="53dp"
+        android:layout_marginLeft="@dimen/ck_personaldata_left"
         android:layout_alignLeft="@+id/appbar_ck_main"
         android:layout_alignStart="@+id/appbar_ck_main"
         android:layout_below="@+id/btn_personal_change"
@@ -65,9 +66,9 @@
         android:layout_height="wrap_content"
         android:text="Birthday"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:layout_above="@+id/linear_birth"
-        android:layout_alignRight="@+id/edit_ck_name"
-        android:layout_alignEnd="@+id/edit_ck_name" />
+        android:layout_below="@+id/btn_personal_change"
+        android:layout_alignLeft="@+id/linear_birth"
+        android:layout_alignStart="@+id/linear_birth" />
 
     <LinearLayout
         android:id="@+id/linear_birth"

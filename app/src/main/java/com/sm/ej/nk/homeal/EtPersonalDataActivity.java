@@ -114,10 +114,7 @@ public class EtPersonalDataActivity extends AppCompatActivity {
 
             }
         });
-
-
     }
-
 
     //setting
     private void settingCalendar() {

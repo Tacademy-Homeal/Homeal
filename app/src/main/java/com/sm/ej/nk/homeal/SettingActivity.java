@@ -61,6 +61,7 @@ public class SettingActivity extends AppCompatActivity {
     public void onLogout() {
         Intent intent = new Intent(SettingActivity.this, LoginActivity.class);
         startActivity(intent);
+        finish();
     }
 
     @Override

@@ -45,7 +45,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity" />
+        <activity android:name=".LoginActivity"
+            android:exported="true"/>
         <activity android:name=".MapActivity" />
         <activity android:name=".ChattingActivity" />
         <activity android:name=".CkWriteReViewActivity" />
