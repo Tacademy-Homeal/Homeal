@@ -1,11 +1,13 @@
 package com.sm.ej.nk.homeal.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.sm.ej.nk.homeal.MapActivity;
 import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.data.CkHomeData;
 import com.sm.ej.nk.homeal.data.CkHomeItemData;
@@ -85,6 +87,15 @@ public class CkHomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         if(position ==0){
             CkHomeHeaderViewHolder headerholder = (CkHomeHeaderViewHolder)holder;
             headerholder.setData(headerData);
+            headerholder.userMap.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(context, MapActivity.class);
+                    intent.putExtra(MapActivity.INTENT_MAP, headerData);
+
+                    context.startActivity(intent);
+                }
+            });
         }else{
             CkHomeItemViewHolder itemholder = (CkHomeItemViewHolder)holder;
             itemholder.view.setOnClickListener(new View.OnClickListener() {
