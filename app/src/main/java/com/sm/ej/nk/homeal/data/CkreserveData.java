@@ -1,8 +1,10 @@
 package com.sm.ej.nk.homeal.data;
 
-import java.io.Serializable;
+/**
+ * Created by Tacademy on 2016-09-05.
+ */
+public class CkReserveData {
 
-public class CkreserveData implements Serializable {
     private int rpax;
     private int rstatus;
     private int uid;
