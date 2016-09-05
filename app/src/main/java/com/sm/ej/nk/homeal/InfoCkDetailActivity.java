@@ -77,9 +77,10 @@ public class InfoCkDetailActivity extends AppCompatActivity implements CkDetailA
         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<CkInfoResult>() {
             @Override
             public void onSuccess(NetworkRequest<CkInfoResult> request, CkInfoResult result) {
-                mAdapter.addHeader(result.getCooker_info());
-                mAdapter.addMenu(result.getCooker_menu());
-                List<CkScheduleData> list =  result.getCooker_schedule();
+                mAdapter.addThumbnails(result.getCooker_thumbnail().getThumbnails());
+                mAdapter.addHeader(result.getCooker_info().getInfo().get(0));
+                mAdapter.addMenu(result.getCooker_menu().getMenus());
+                List<CkScheduleData> list =  result.getCooker_schedule().getSchedules();
                 mAdapter.addSchedule(list);
                 mAdapter.setOnDetailAdapterClickListener(InfoCkDetailActivity.this);
                 rv.setAdapter(mAdapter);
