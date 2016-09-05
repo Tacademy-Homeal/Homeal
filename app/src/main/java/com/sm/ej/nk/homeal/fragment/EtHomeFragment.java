@@ -7,6 +7,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,11 +17,11 @@ import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.adapter.EtHomeAdapter;
 import com.sm.ej.nk.homeal.data.EtHomeData;
 import com.sm.ej.nk.homeal.data.NetworkResult;
+import com.sm.ej.nk.homeal.data.StoreListResult;
 import com.sm.ej.nk.homeal.manager.NetworkManager;
 import com.sm.ej.nk.homeal.manager.NetworkRequest;
 import com.sm.ej.nk.homeal.request.CkPageListRequest;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -65,43 +66,44 @@ public class EtHomeFragment extends Fragment implements EtHomeAdapter.OnReviewit
 
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(mAdapter);
-        initData();
         String pageno = "1";
         String rowCount = "10";
         CkPageListRequest request = new CkPageListRequest(getContext() ,pageno, rowCount);
-        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<EtHomeData>>() {
-            @Override
-            public void onSuccess(NetworkRequest<NetworkResult<EtHomeData>> request, NetworkResult<EtHomeData> result) {
-                EtHomeData list = result.getResult();
-                mAdapter.clear();
-                mAdapter.add(list);
-            }
+        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<StoreListResult>>() {
+                    @Override
+                    public void onSuccess(NetworkRequest<NetworkResult<StoreListResult>> request, NetworkResult<StoreListResult> result) {
+                        datas = result.getResult().getStoreList();
+                        mAdapter.clear();
+                        mAdapter.addList(datas);
+                    }
 
-            @Override
-            public void onFail(NetworkRequest<NetworkResult<EtHomeData>> request, int errorCode, String errorMessage, Throwable e) {
+                    @Override
+                    public void onFail(NetworkRequest<NetworkResult<StoreListResult>> request, int errorCode, String errorMessage, Throwable e) {
 
-            }
-        });
+                    }
+                });
+
+
         return v;
     }
 
 
-    private void initData() {
-        datas = new ArrayList<>();
-        for(int i=0; i<10; i++){
-            EtHomeData data = new EtHomeData();
-            data.setAddress("주소"+i);
-            data.setFoodImageUrl("http://blog.jinbo.net/attach/615/200937431.jpg");
-            data.setImage("https://pixabay.com/static/uploads/photo/2014/12/17/14/20/summer-anemone-571531_960_720.jpg");
-            data.setFoodName("음식이름"+i);
-            data.setBookmarkCnt(""+i);
-            data.setGrade(""+i%5+1);
-            data.setReviewCnt(""+i);
-            data.setName("이름"+i);
-            datas.add(data);
-        }
-        mAdapter.addList(datas);
-    }
+//    private void initData() {
+//        datas = new ArrayList<>();
+//        for(int i=0; i<10; i++){
+//            EtHomeData data = new EtHomeData();
+//            data.setAddress("주소"+i);
+//            data.setFoodImageUrl("http://blog.jinbo.net/attach/615/200937431.jpg");
+//            data.setImage("https://pixabay.com/static/uploads/photo/2014/12/17/14/20/summer-anemone-571531_960_720.jpg");
+//            data.setFoodName("음식이름"+i);
+//            data.setBookmarkCnt(""+i);
+//            data.setGrade(""+i%5+1);
+//            data.setReviewCnt(""+i);
+//            data.setName("이름"+i);
+//            datas.add(data);
+//        }
+//        mAdapter.addList(datas);
+//    }
 
     public static final String INTENT_CK_ID = "asd";
     @Override
@@ -109,7 +111,7 @@ public class EtHomeFragment extends Fragment implements EtHomeAdapter.OnReviewit
         Intent intent = new Intent(getActivity(), InfoCkDetailActivity.class);
 //        intent.putExtra(INTENT_CK_ID, );
         intent.putExtra(INTENT_CK_ID, datas.get(position));
-
+        Log.e("ssong", datas.get(position).getId());
         startActivity(intent);
     }
 
