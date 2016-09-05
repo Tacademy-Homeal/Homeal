@@ -15,9 +15,11 @@ import com.sm.ej.nk.homeal.adapter.CalendarAdapter;
 import com.sm.ej.nk.homeal.data.CalendarData;
 import com.sm.ej.nk.homeal.data.CalendarItem;
 import com.sm.ej.nk.homeal.data.CalendarItemData;
+import com.sm.ej.nk.homeal.data.CkScheduleData;
 import com.sm.ej.nk.homeal.manager.CalendarManager;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -54,7 +56,8 @@ public class ScheduleEditActivity extends AppCompatActivity implements View.OnCl
     @BindView(R.id.image_schedule_edit_share)
     ImageView shareImage;
 
-
+    List<CkScheduleData> scheduleList;
+    List<CalendarItem> calendarItems;
     CalendarAdapter mAdapter;
     ArrayList<CalendarItemData> mItemdata = new ArrayList<>();
 
@@ -70,15 +73,7 @@ public class ScheduleEditActivity extends AppCompatActivity implements View.OnCl
         }catch(Exception e){
             e.printStackTrace();
         }
-        CalendarData calendarData = CalendarManager.getInstance().getCalendarData();
-        textCalendar.setText(calendarData.year+"년 "+(calendarData.month+1)+"월");
-        mAdapter = new CalendarAdapter(this, calendarData, false);
-        mAdapter.setOnCalendarAdpaterClickListener(new CalendarAdapter.OnCalendarAdapterClickListener() {
-            @Override
-            public void onCalendarAdapterClick(View view, int position, CalendarItem data) {
-                textCalendar.setText(""+(data.month+1)+"월" +data.dayOfMonth+"일");
-            }
-        });
+        CalendarManager.clearInstance();
 
         backImage.setOnClickListener(this);
         nextImage.setOnClickListener(this);
@@ -92,11 +87,40 @@ public class ScheduleEditActivity extends AppCompatActivity implements View.OnCl
         Intent intent = getIntent();
         MODE = intent.getIntExtra(CkMainActivity.INTENT_MODE, -1);
         if(MODE  == CkMainActivity.MODE_SCHEDULR_EDIT){
+            scheduleList = CkMainActivity.getHomeFragment().getCkSchedule();
+            changeCalendarScheduleData(scheduleList);
+            CalendarData calendarData = CalendarManager.getInstance().getSelectCalendarData(calendarItems);
 
+            mAdapter = new CalendarAdapter(this, calendarData, true);
+            mAdapter.setOnCalendarAdpaterClickListener(new CalendarAdapter.OnCalendarAdapterClickListener() {
+                @Override
+                public void onCalendarAdapterClick(View view, int position, CalendarItem data) {
+                    if(data.isSelect){
+                        textCalendar.setText(""+(data.month+1)+"월" +data.dayOfMonth+"일");
+                    }
+                }
+            });
         }else if(MODE == CkMainActivity.MODE_SCHEDULE_INSERT){
-            rv.setLayoutManager(new GridLayoutManager(this, 7));
-            rv.setAdapter(mAdapter);
+            CalendarData calendarData = CalendarManager.getInstance().getCalendarData();
+            textCalendar.setText(calendarData.year+"년 "+(calendarData.month+1)+"월");
+            mAdapter = new CalendarAdapter(this, calendarData, false);
+            mAdapter.setOnCalendarAdpaterClickListener(new CalendarAdapter.OnCalendarAdapterClickListener() {
+                @Override
+                public void onCalendarAdapterClick(View view, int position, CalendarItem data) {
+                    textCalendar.setText(""+(data.month+1)+"월" +data.dayOfMonth+"일");
+                }
+            });
+        }
+        rv.setLayoutManager(new GridLayoutManager(this, 7));
+        rv.setAdapter(mAdapter);
+    }
 
+    public void changeCalendarScheduleData(List<CkScheduleData> list){
+        calendarItems = new ArrayList<>();
+        if(!list.isEmpty()){
+            for(int i=0; i<list.size(); i++){
+                calendarItems.add(list.get(i).getCalendar());
+            }
         }
     }
 

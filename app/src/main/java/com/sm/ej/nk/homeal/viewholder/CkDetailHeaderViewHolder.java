@@ -144,8 +144,10 @@ public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder implements
 
     public void changeCalendarScheduleData(List<CkScheduleData> list){
         calendarItems = new ArrayList<>();
-        for(int i=0; i<list.size(); i++){
-            calendarItems.add(list.get(i).getCalendar());
+        if(!list.isEmpty()){
+            for(int i=0; i<list.size(); i++){
+                calendarItems.add(list.get(i).getCalendar());
+            }
         }
     }
 

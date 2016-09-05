@@ -13,9 +13,9 @@ public class EtHomeData implements Serializable {
     private String address;
     private String foodName;
     private String foodPrice;
-    private String grade = "1";
-    private String bookmarkCnt;
-    private String reviewCnt;
+    private int grade;
+    private int bookmarkCnt;
+    private int reviewCnt;
     private String introduce;
 
     public String getImage() {
@@ -82,27 +82,27 @@ public class EtHomeData implements Serializable {
         this.foodPrice = foodPrice;
     }
 
-    public String getGrade() {
+    public int getGrade() {
         return grade;
     }
 
-    public void setGrade(String grade) {
+    public void setGrade(int grade) {
         this.grade = grade;
     }
 
-    public String getBookmarkCnt() {
+    public int getBookmarkCnt() {
         return bookmarkCnt;
     }
 
-    public void setBookmarkCnt(String bookmarkCnt) {
+    public void setBookmarkCnt(int bookmarkCnt) {
         this.bookmarkCnt = bookmarkCnt;
     }
 
-    public String getReviewCnt() {
+    public int getReviewCnt() {
         return reviewCnt;
     }
 
-    public void setReviewCnt(String reviewCnt) {
+    public void setReviewCnt(int reviewCnt) {
         this.reviewCnt = reviewCnt;
     }
 }

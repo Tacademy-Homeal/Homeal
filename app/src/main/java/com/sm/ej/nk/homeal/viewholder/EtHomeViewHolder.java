@@ -115,16 +115,16 @@ public class EtHomeViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void setData(EtHomeData data){
-        Glide.with(userimage.getContext()).load(data.getImage()).into(userimage);
-        Glide.with(foodimage.getContext()).load(data.getFoodImageUrl()).into(foodimage);
+        Glide.with(userimage.getContext()).load(data.getFoodImageUrl()).into(userimage);
+        Glide.with(foodimage.getContext()).load(data.getImage()).into(foodimage);
 
         name.setText(data.getName());
         address.setText(data.getAddress());
         menu.setText(data.getFoodName());
-        jjimCount.setText(data.getBookmarkCnt());
-        reviewCount.setText(data.getReviewCnt());
+        jjimCount.setText(""+data.getBookmarkCnt());
+        reviewCount.setText(""+data.getReviewCnt());
         price.setText(data.getFoodPrice());
 
-        starCount.setRating(Integer.parseInt(data.getGrade()));
+        starCount.setRating(data.getGrade());
     }
 }

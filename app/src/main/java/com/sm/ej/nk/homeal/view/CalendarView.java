@@ -18,7 +18,7 @@ import java.util.Calendar;
 public class CalendarView extends RecyclerView.ViewHolder implements Checkable{
     public View view;
     public TextView textView;
-    public ImageView imageView;
+    public ImageView imageView, reserveImage;
     CalendarItem item;
     Calendar calendar;
 
@@ -35,6 +35,7 @@ public class CalendarView extends RecyclerView.ViewHolder implements Checkable{
         });
         textView = (TextView)view.findViewById(R.id.text_calendar_day);
         imageView = (ImageView)view.findViewById(R.id.image_calendar_check);
+        reserveImage = (ImageView)view.findViewById(R.id.image_calendar_reservecheck);
     }
 
     public void setData(CalendarItem item){
@@ -45,10 +46,12 @@ public class CalendarView extends RecyclerView.ViewHolder implements Checkable{
             textView.setVisibility(View.VISIBLE);
         }
         calendar = Calendar.getInstance();
-        if(item.dayOfMonth==calendar.get(Calendar.DAY_OF_MONTH)){
-            imageView.setVisibility(View.VISIBLE);
-        }else{
-            imageView.setVisibility(View.INVISIBLE);
+        if(item.inMonth){
+            if(item.dayOfMonth==calendar.get(Calendar.DAY_OF_MONTH) && item.month==calendar.get(Calendar.MONTH)&& item.year == calendar.get(Calendar.YEAR)){
+                imageView.setVisibility(View.VISIBLE);
+            }else{
+                imageView.setVisibility(View.INVISIBLE);
+            }
         }
         textView.setText(""+item.dayOfMonth);
     }
@@ -60,7 +63,15 @@ public class CalendarView extends RecyclerView.ViewHolder implements Checkable{
         }else{
             textView.setVisibility(View.VISIBLE);
             if(item.isSelect){
-                textView.setTextColor(Color.GREEN);
+                reserveImage.setVisibility(View.VISIBLE);
+            }
+        }
+        calendar = Calendar.getInstance();
+        if(item.inMonth){
+            if(item.dayOfMonth==calendar.get(Calendar.DAY_OF_MONTH) && item.month==calendar.get(Calendar.MONTH)&& item.year == calendar.get(Calendar.YEAR)){
+                imageView.setVisibility(View.VISIBLE);
+            }else{
+                imageView.setVisibility(View.INVISIBLE);
             }
         }
         textView.setText(""+item.dayOfMonth);

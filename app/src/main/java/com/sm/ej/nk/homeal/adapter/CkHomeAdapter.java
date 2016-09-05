@@ -92,7 +92,6 @@ public class CkHomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                 public void onClick(View view) {
                     Intent intent = new Intent(context, MapActivity.class);
                     intent.putExtra(MapActivity.INTENT_MAP, headerData);
-
                     context.startActivity(intent);
                 }
             });

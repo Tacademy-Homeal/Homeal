@@ -6,6 +6,8 @@ import android.os.Handler;
 import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 
+import com.sm.ej.nk.homeal.manager.CalendarManager;
+
 public class SplashActivity extends AppCompatActivity {
 
     @Override
@@ -26,7 +28,7 @@ public class SplashActivity extends AppCompatActivity {
 //
 //            }
 //        });
-
+        CalendarManager.clearInstance();
         moveLoginActivity();
     }
 

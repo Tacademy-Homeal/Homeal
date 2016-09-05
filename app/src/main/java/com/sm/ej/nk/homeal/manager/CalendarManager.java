@@ -14,6 +14,7 @@ import java.util.List;
  */
 public class CalendarManager {
 
+
     public interface  CalendarComparable<T>{
         public int compareData(int year, int month, int day);
         public int compareToUsingCalendar(T another);
@@ -28,7 +29,7 @@ public class CalendarManager {
     private static CalendarManager instance;
     private List<CalendarItem> item;
 
-    private Calendar mCalendar;
+    private static Calendar mCalendar;
 
     private ArrayList mData = new ArrayList();
 
@@ -37,6 +38,9 @@ public class CalendarManager {
             instance = new CalendarManager();
         }
         return instance;
+    }
+    public static void clearInstance(){
+        instance = null;
     }
 
     private CalendarManager(){

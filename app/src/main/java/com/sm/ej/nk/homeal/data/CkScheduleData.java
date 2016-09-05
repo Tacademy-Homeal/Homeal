@@ -1,9 +1,11 @@
 package com.sm.ej.nk.homeal.data;
 
+import java.io.Serializable;
+
 /**
  * Created by Tacademy on 2016-09-01.
  */
-public class CkScheduleData {
+public class CkScheduleData implements Serializable{
     private String id;
     private String cooker_user_id;
     private String date;

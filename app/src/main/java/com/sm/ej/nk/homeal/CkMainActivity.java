@@ -49,7 +49,7 @@ public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTab
     @BindView(R.id.fab_scheduleedit)
     FloatingActionButton fabSchedulrEdit;
 
-    CkHomeFragment ckHomeFragment;
+    private static CkHomeFragment ckHomeFragment;
 
     AlarmPopupWindow popupWindow;
 
@@ -122,6 +122,7 @@ public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTab
             public void onClick(View view) {
                 Intent intent = new Intent(CkMainActivity.this, ScheduleEditActivity.class);
                 intent.putExtra(INTENT_MODE, MODE_SCHEDULE_INSERT);
+//                intent.putExtra(INTENT_SCHEDULE_DATA, (Serializable)ckHomeFragment.getCkSchedule());
                 startActivityForResult(intent ,INTENT_SCHEDULE);
                 fab.close(true);
             }
@@ -233,6 +234,7 @@ public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTab
     }
 
     public static final String INTENT_MENU_DATA = "asdasd";
+    public static final String INTENT_SCHEDULE_DATA = "qqqq";
     public static final String INTENT_MODE = "SchedulrMode";
     public static final int MODE_SCHEDULE_INSERT=2;
     public static final int MODE_SCHEDULR_EDIT = 3;
@@ -253,5 +255,7 @@ public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTab
         this.listener = listener;
     }
 
-
+    public static CkHomeFragment getHomeFragment(){
+        return ckHomeFragment;
+    }
 }

@@ -13,7 +13,6 @@ import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 import com.sm.ej.nk.homeal.adapter.CkDetailAdapter;
 import com.sm.ej.nk.homeal.data.CalendarItem;
-import com.sm.ej.nk.homeal.data.CkDetailMenuData;
 import com.sm.ej.nk.homeal.data.CkInfoResult;
 import com.sm.ej.nk.homeal.data.CkScheduleData;
 import com.sm.ej.nk.homeal.data.EtHomeData;
@@ -22,7 +21,6 @@ import com.sm.ej.nk.homeal.manager.NetworkManager;
 import com.sm.ej.nk.homeal.manager.NetworkRequest;
 import com.sm.ej.nk.homeal.request.CkPageCheckRequest;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -98,36 +96,4 @@ public class InfoCkDetailActivity extends AppCompatActivity implements CkDetailA
 
     }
 
-//    private CkDetailData init(){
-//        CkDetailData data = new CkDetailData();
-//        data.mapImage = "https://pixabay.com/static/uploads/photo/2012/03/02/14/45/flowers-21322_960_720.jpg";
-//        data.address = "주소오오옹오";
-//        data.image = "http://img.lifestyler.co.kr/uploads/program/cheditor/2015/03/E3XVIPNDDBU1K9CPHLIA.jpg";
-//        data.name = "이름응ㅁ음으";
-//        data.taste="4";
-//        data.grade =4;
-//        data.priceScore="4";
-//        data.kind="4";
-//        data.clean="4";
-//        ArrayList<String> dummylist = new ArrayList<>();
-//        for(int i=0 ; i<5 ; i++){
-//            dummylist.add("http://myunchaeban.co.kr/wp/wp-content/uploads/2014/02/%EA%B0%88%EB%B9%84%ED%83%95%EC%9D%B4%EB%AF%B8%EC%A7%802-470x313.jpg");
-//        }
-//        data.thumbnail = dummylist;
-//
-//        return data;
-//    }
-
-    public void initMenu(){
-        ArrayList<CkDetailMenuData> dummy = new ArrayList<>();
-        for(int i=0 ; i<5 ; i++){
-            CkDetailMenuData menuData = new CkDetailMenuData();
-            menuData.foodAddress = "주소오오"+i;
-            menuData.image = "http://cfile28.uf.tistory.com/image/1366E3464E05C7021C1EB6";
-            menuData.name = "음식 이름"+i;
-            menuData.foodTime = "시간"+i;
-            dummy.add(menuData);
-        }
-        mAdapter.addMenuList(dummy);
-    }
 }

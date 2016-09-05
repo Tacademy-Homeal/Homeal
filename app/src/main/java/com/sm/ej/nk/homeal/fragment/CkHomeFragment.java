@@ -14,6 +14,7 @@ import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.adapter.CkHomeAdapter;
 import com.sm.ej.nk.homeal.data.CkHomeData;
 import com.sm.ej.nk.homeal.data.CkHomeItemData;
+import com.sm.ej.nk.homeal.data.CkScheduleData;
 import com.sm.ej.nk.homeal.data.PersonData;
 
 import java.util.ArrayList;
@@ -31,16 +32,20 @@ public class CkHomeFragment extends Fragment implements CkMainActivity.OnFabClic
 
     CkHomeAdapter mAdapter;
     CkMainActivity parentActivity;
+    List<CkScheduleData> list;
 
+    public List<CkScheduleData> getCkSchedule(){
+        return this.list;
+}
     public CkHomeFragment() {
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragmentasasfasfaf
         View view=  inflater.inflate(R.layout.fragment_ck_home, container, false);
         ButterKnife.bind(this, view);
+        list = new ArrayList<>();
 
         rv = (RecyclerView)view.findViewById(R.id.rv_ck_home);
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
