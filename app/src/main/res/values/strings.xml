@@ -62,7 +62,7 @@
     <string name="ck_home_mornig">아침</string>
     <string name="ck_home_launch">점심</string>
     <string name="ck_home_dinner">저녁</string>
-    <string name="ck_home_reservecount">예약인원</string>
+    <string name="ck_home_reservecount">예약가능인원</string>
 
     <string name="change">수정</string>
     <string name="change_finish">수정완료</string>
