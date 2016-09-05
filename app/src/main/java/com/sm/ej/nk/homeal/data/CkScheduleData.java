@@ -1,7 +1,5 @@
 package com.sm.ej.nk.homeal.data;
 
-import com.sm.ej.nk.homeal.HomealApplication;
-
 /**
  * Created by Tacademy on 2016-09-01.
  */
@@ -19,23 +17,25 @@ public class CkScheduleData {
         item.year = Integer.parseInt(calendar2[0]);
         item.dayOfMonth = Integer.parseInt(calendar2[1]);
         item.month = Integer.parseInt(calendar2[2]);
-        item.isSelect = true;//dddd
+        String time = calendar[1].split(":")[0];
+        item.isSelect = true;
+        item.id = this.id;
+        item.pax = this.pax;
+        item.sharing = this.sharing;
+        switch(time){
+            case "09":
+                item.isMorning = true;
+                break;
+            case "12":
+                item.isLaunch = true;
+                break;
+            case "06":
+                item.isDinner = true;
+                break;
+        }
         return item;
     }
 
-    public int getScheduleTime(){
-        String[] calendar = date.split("T");
-        String[] calendar2 = calendar[0].split(":");
-        switch (calendar2[0]){
-            case "9":
-                return HomealApplication.MORNING;
-            case "12":
-                return HomealApplication.LAUNCH;
-            case "18":
-                return HomealApplication.DINNER;
-        }
-        return -1;
-    }
     public String getCooker_user_id() {
         return cooker_user_id;
     }

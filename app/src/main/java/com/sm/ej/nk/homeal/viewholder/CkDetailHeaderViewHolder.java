@@ -1,6 +1,7 @@
 package com.sm.ej.nk.homeal.viewholder;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -29,8 +30,8 @@ import java.util.List;
 public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
     View view;
     ViewPager viewPager;
-    ImageView userImage, mapImage, backImage, nextImage;
-    TextView userName, userAddress, foodPrice, foodName, calendarDate;
+    ImageView userImage, mapImage, backImage, nextImage, sharingImage;
+    TextView userName, userAddress, foodPrice, foodName, calendarDate, morning, launch, dinner, pax;
     RecyclerView calendar;
     CkDetailData data;
     ViewPagerAdapter pagerAdapter;
@@ -64,6 +65,34 @@ public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder implements
         backImage = (ImageView)view.findViewById(R.id.image_ck_detail_back);
         nextImage = (ImageView)view.findViewById(R.id.image_ck_detail_next);
         circleIndicator = (CirclePageIndicator)view.findViewById(R.id.indicator_ck_detail);
+
+        sharingImage = (ImageView)view.findViewById(R.id.image_ck_detail_share);
+        morning = (TextView)view.findViewById(R.id.text_ck_detail_morning);
+        launch = (TextView)view.findViewById(R.id.text_ck_detail_launch);
+        dinner = (TextView)view.findViewById(R.id.text_ck_detail_dinner);
+        pax = (TextView)view.findViewById(R.id.text_ck_detail_reservecount);
+    }
+
+    public void showSchedule(CalendarItem item){
+        if(item.sharing.equals("1")){
+            sharingImage.setBackgroundColor(Color.BLUE);
+        }else{
+            sharingImage.setBackgroundColor(Color.RED);
+        }
+
+        if(item.isMorning){
+            morning.setBackgroundColor(Color.RED);
+        }
+
+        if(item.isLaunch){
+            launch.setBackgroundColor(Color.RED);
+        }
+
+        if(item.isDinner){
+            launch.setBackgroundColor(Color.RED);
+        }
+
+        pax.setText(item.pax);
     }
 
     public void setData(CkDetailData data){
@@ -82,6 +111,8 @@ public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder implements
         cm = CalendarManager.getInstance();
         GridLayoutManager manager = new GridLayoutManager(context, 7);
         calendar.setLayoutManager(manager);
+
+
 
         final CalendarData calendarData = cm.getSelectCalendarData(calendarItems);
 
@@ -108,15 +139,14 @@ public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder implements
 
     public void setSchedule(List<CkScheduleData> list){
         this.list = list;
-        changeCalendarItem(list);
+        changeCalendarScheduleData(list);
     }
 
-    public void changeCalendarItem(List<CkScheduleData> list){
+    public void changeCalendarScheduleData(List<CkScheduleData> list){
         calendarItems = new ArrayList<>();
         for(int i=0; i<list.size(); i++){
             calendarItems.add(list.get(i).getCalendar());
         }
-
     }
 
     public interface OnCalendarHeaderViewClickListener{

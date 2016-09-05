@@ -13,7 +13,7 @@ public class EtHomeData implements Serializable {
     private String address;
     private String foodName;
     private String foodPrice;
-    private String grade;
+    private String grade = "1";
     private String bookmarkCnt;
     private String reviewCnt;
     private String introduce;

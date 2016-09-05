@@ -22,6 +22,7 @@ import java.util.List;
 public class CkDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements CkDetailHeaderViewHolder.OnCalendarHeaderViewClickListener{
     CkDetailData datas;
     CkDetailItemViewHolder menuholder;
+    CkDetailHeaderViewHolder headerholder;
     List<CkDetailMenuData> menuList;
     List<CkScheduleData> scheduleList;
 
@@ -68,8 +69,7 @@ public class CkDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             case HEADER_VIEW: {
                 View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_ck_detail, parent, false);
                 CkDetailHeaderViewHolder holder = new CkDetailHeaderViewHolder(parent.getContext(), view);
-                holder.setSchedule(scheduleList);
-                holder.setOnCalendarHeaderViewClickListener(this);
+
                 return holder;
             }
             case MENU_VIEW:{
@@ -83,8 +83,10 @@ public class CkDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if(position ==0){
-            CkDetailHeaderViewHolder headerholder = (CkDetailHeaderViewHolder)holder;
+            headerholder = (CkDetailHeaderViewHolder)holder;
             headerholder.setData(datas);
+            headerholder.setSchedule(scheduleList);
+            headerholder.setOnCalendarHeaderViewClickListener(this);
         }else{
             menuholder = (CkDetailItemViewHolder)holder;
             menuholder.setData(menuList.get(position-1));
@@ -109,6 +111,7 @@ public class CkDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         if(listener!=null){
             listener.onDetailAdapterClick(view, data, position);
         }
+        headerholder.showSchedule(data);
     }
 
     public interface OnDetailAdapterClickListener{
