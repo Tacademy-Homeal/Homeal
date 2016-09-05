@@ -57,6 +57,9 @@ public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTab
     public static int INTENT_SCHEDULE = 1;
 
     private static boolean isEditMode = false;
+
+    private static int[] icon = {R.drawable.ic_home_white_48dp, R.drawable.ic_chat_white_48dp,
+                                R.drawable.ic_access_time_white_48dp, R.drawable.ic_person_white_48dp};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -158,6 +161,11 @@ public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTab
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.setTabTextColors(Color.BLACK, Color.BLACK);
         tabLayout.addOnTabSelectedListener(this);
+
+        //image set
+        for(int i = 0; i < 4; i++){
+            tabLayout.getTabAt(i).setIcon(icon[i]);
+        }
     }
     private static final String CK_HOME = "쿠커홈";
     private static final String CK_CHAT_LIST = "채팅리스트";
@@ -166,6 +174,7 @@ public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTab
     private static final String CK_NUM = "쿠커";
 
     private void setupTabViewPager(ViewPager v){
+
 
         final ViewPagerFragmentAdapter pagerAdapter = new ViewPagerFragmentAdapter(getSupportFragmentManager());
         Bundle bundle = new Bundle();
