@@ -9,6 +9,7 @@ import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.data.CalendarItem;
 import com.sm.ej.nk.homeal.data.CkDetailData;
 import com.sm.ej.nk.homeal.data.CkDetailMenuData;
+import com.sm.ej.nk.homeal.data.CkInfoResult;
 import com.sm.ej.nk.homeal.data.CkScheduleData;
 import com.sm.ej.nk.homeal.data.ThumbnailsData;
 import com.sm.ej.nk.homeal.viewholder.CkDetailHeaderViewHolder;
@@ -29,7 +30,16 @@ public class CkDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     List<ThumbnailsData> thumbnailsDatas;
 
     public CkDetailAdapter(){
+
     }
+    public void setResult(CkInfoResult result){
+        this.menuList = result.getCooker_menu().getMenus();
+        this.scheduleList = result.getCooker_schedule().getSchedules();
+        this.thumbnailsDatas = result.getCooker_thumbnail().getThumbnails();
+        this.datas = result.getCooker_info();
+        notifyDataSetChanged();
+    }
+
     public void addThumbnails(List<ThumbnailsData> data){
         this.thumbnailsDatas = data;
         notifyDataSetChanged();
@@ -116,7 +126,9 @@ public class CkDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         if(listener!=null){
             listener.onDetailAdapterClick(view, data, position);
         }
-        headerholder.showSchedule(data);
+        if(data.isSelect){
+            headerholder.showSchedule(data);
+        }
     }
 
     public interface OnDetailAdapterClickListener{

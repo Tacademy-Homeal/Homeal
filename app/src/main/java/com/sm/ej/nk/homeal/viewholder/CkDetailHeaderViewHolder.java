@@ -75,7 +75,7 @@ public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder implements
     }
 
     public void showSchedule(CalendarItem item){
-        if(item.sharing.equals("1")){
+        if(item.sharing==1){
             sharingImage.setBackgroundColor(Color.BLUE);
         }else{
             sharingImage.setBackgroundColor(Color.RED);
@@ -83,16 +83,21 @@ public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder implements
 
         if(item.isMorning){
             morning.setBackgroundColor(Color.RED);
+        }else{
+            morning.setBackgroundColor(Color.WHITE);
         }
 
         if(item.isLaunch){
             launch.setBackgroundColor(Color.RED);
+        }else{
+            launch.setBackgroundColor(Color.WHITE);
         }
 
         if(item.isDinner){
-            launch.setBackgroundColor(Color.RED);
+            dinner.setBackgroundColor(Color.RED);
+        }else{
+            dinner.setBackgroundColor(Color.WHITE);
         }
-
         pax.setText(item.pax);
     }
 
@@ -111,12 +116,20 @@ public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder implements
         backImage.setOnClickListener(this);
         nextImage.setOnClickListener(this);
 
+
+        progressTotal.setProgress(data.grade);
+//        progressTaste.setProgress(Integer.parseInt(data.taste));
+        progressPrice.setProgress(Integer.parseInt(data.price));
+        progressClean.setProgress(Integer.parseInt(data.cleanliness));
+        progresskind.setProgress(Integer.parseInt(data.kindness));
+    }
+
+    public void setSchedule(List<CkScheduleData> list){
+        this.list = list;
+        changeCalendarScheduleData(list);
         cm = CalendarManager.getInstance();
         GridLayoutManager manager = new GridLayoutManager(context, 7);
         calendar.setLayoutManager(manager);
-
-
-
         final CalendarData calendarData = cm.getSelectCalendarData(calendarItems);
 
         calendarAdapter = new CalendarAdapter(context, calendarData, true);
@@ -133,16 +146,6 @@ public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder implements
         });
         calendar.setAdapter(calendarAdapter);
         calendarDate.setText(calendarData.year+"년 "+(calendarData.month+1)+"월");
-        progressTotal.setProgress(Integer.parseInt(data.taste));
-        progressTaste.setProgress(data.grade);
-        progressPrice.setProgress(Integer.parseInt(data.price));
-        progressClean.setProgress(Integer.parseInt(data.cleanliness));
-        progresskind.setProgress(Integer.parseInt(data.kindness));
-    }
-
-    public void setSchedule(List<CkScheduleData> list){
-        this.list = list;
-        changeCalendarScheduleData(list);
     }
 
     public void changeCalendarScheduleData(List<CkScheduleData> list){
@@ -171,6 +174,11 @@ public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder implements
                 calendarDate.setText(data.year+"년 "+(data.month+1)+"월");
                 calendarAdapter.setCalendarData(data);
                 calendarAdapter.cleanChecked();
+                morning.setBackgroundColor(Color.WHITE);
+                launch.setBackgroundColor(Color.WHITE);
+                dinner.setBackgroundColor(Color.WHITE);
+                sharingImage.setBackgroundColor(Color.WHITE);
+                pax.setText("");
                 break;
             }
             case R.id.image_ck_detail_next:{
@@ -178,6 +186,11 @@ public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder implements
                 calendarDate.setText(data.year+"년 "+(data.month+1)+"월");
                 calendarAdapter.setCalendarData(data);
                 calendarAdapter.cleanChecked();
+                morning.setBackgroundColor(Color.WHITE);
+                launch.setBackgroundColor(Color.WHITE);
+                dinner.setBackgroundColor(Color.WHITE);
+                sharingImage.setBackgroundColor(Color.WHITE);
+                pax.setText("");
                 break;
             }
         }
