@@ -19,119 +19,174 @@
             app:layout_scrollFlags="scroll|enterAlways" />
     </android.support.design.widget.AppBarLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/appbar_ck_main"
-        android:orientation="vertical"
+        android:layout_below="@+id/appbar_ck_main"
+        android:layout_marginLeft="@dimen/setting_box_margin_left"
+        android:layout_marginTop="40dp"
+        android:text="Settings"
+        android:textSize="24dp" />
+
+    <LinearLayout
         android:id="@+id/linear_top"
-        android:layout_marginTop="15dp">
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/setting_box_height"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView2"
+        android:layout_marginLeft="@dimen/setting_box_margin_left"
+        android:layout_marginRight="@dimen/setting_box_margin_left"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/edge"
+        android:orientation="vertical"
+        android:gravity="center_vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/FAQ" />
+            android:layout_marginLeft="@dimen/setting_box_text_margin"
+            android:text="@string/FAQ"
+            android:textSize="@dimen/setting_box_ko_text" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="FAQ" />
+            android:layout_marginLeft="@dimen/setting_box_text_margin"
+            android:text="FAQ"
+            android:textColor="#d9d9d9"
+            android:textSize="@dimen/setting_box_eng_text" />
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linear_two"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/setting_box_height"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/linear_top"
+        android:layout_marginLeft="@dimen/setting_box_margin_left"
+        android:layout_marginRight="@dimen/setting_box_margin_left"
+        android:layout_marginTop="@dimen/setting_box_margin_top"
+        android:background="@drawable/edge"
         android:orientation="horizontal"
-        android:layout_below="@id/linear_top"
-        android:layout_marginTop="15dp"
-        android:id="@+id/linear_two">
+        android:gravity="center_vertical">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_weight="0.5">
+            android:layout_weight="0.5"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="@dimen/setting_box_ko_text"
+                android:layout_marginLeft="@dimen/setting_box_text_margin"
                 android:text="@string/Currency_Setting" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/setting_box_text_margin"
+                android:textSize="@dimen/setting_box_eng_text"
+                android:textColor="#d9d9d9"
                 android:text="Currency Setting" />
         </LinearLayout>
-    <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/spinner_currecy_setting"
-        android:layout_alignBottom="@+id/linear_two"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+
+        <Spinner
+            android:id="@+id/spinner_currecy_setting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/linear_two"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true" />
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linear_three"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/setting_box_height"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/linear_two"
+        android:layout_marginLeft="@dimen/setting_box_margin_left"
+        android:layout_marginRight="@dimen/setting_box_margin_left"
+        android:layout_marginTop="@dimen/setting_box_margin_top"
+        android:background="@drawable/edge"
         android:orientation="horizontal"
-        android:layout_below="@id/linear_two"
-        android:layout_marginTop="15dp"
-        android:id="@+id/linear_three">
+        android:gravity="center_vertical">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_weight="0.5">
+            android:layout_weight="0.5"
+
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/setting_box_text_margin"
+                android:textSize="@dimen/setting_box_ko_text"
                 android:text="@string/Language_Setting" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="#d9d9d9"
+                android:textSize="@dimen/setting_box_eng_text"
+                android:layout_marginLeft="@dimen/setting_box_text_margin"
                 android:text="Language Setting" />
         </LinearLayout>
+
         <Spinner
+            android:id="@+id/spinner_language_setting"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/spinner_language_setting"
             android:layout_alignBottom="@+id/linear_three"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true" />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/linear_three"
-        android:orientation="vertical"
         android:id="@+id/linear_bottom"
-        android:layout_marginTop="15dp">
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/setting_box_height"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/linear_three"
+        android:layout_marginLeft="@dimen/setting_box_margin_left"
+        android:layout_marginRight="@dimen/setting_box_margin_left"
+        android:layout_marginTop="@dimen/setting_box_margin_top"
+        android:background="@drawable/edge"
+        android:orientation="vertical"
+        android:gravity="center_vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="@dimen/setting_box_ko_text"
+            android:layout_marginLeft="@dimen/setting_box_text_margin"
             android:text="@string/Leave_Membership" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="@dimen/setting_box_eng_text"
+            android:layout_marginLeft="@dimen/setting_box_text_margin"
+            android:textColor="#d9d9d9"
             android:text="Leave Membership" />
     </LinearLayout>
 
     <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/Logout"
         android:id="@+id/btn_ck_logout"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="32dp" />
+        android:layout_width="330dp"
+        android:layout_height="44dp"
+        android:textColor="#5c5f61"
+        android:text="@string/Logout"
+        android:layout_below="@+id/linear_bottom"
+        android:background="#d9d9d9"
+        android:layout_marginTop="72dp"
+        android:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>
