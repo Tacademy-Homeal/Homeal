@@ -19,8 +19,6 @@ import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.adapter.CkReserveAdapter;
 import com.sm.ej.nk.homeal.data.CkReserveData;
 
-import java.util.Random;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -58,13 +56,28 @@ public class CkReserveFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_ck_reserve, container, false);
         ButterKnife.bind(this, view);
 
+
         LinearLayoutManager manager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
 
         CkReserveView.setAdapter(mAdapter);
         CkReserveView.setLayoutManager(manager);
-        AlertDialog dialog;
+
+//        CkReserveRequest request = new CkReserveRequest(getContext());
+//
+//        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<CkReserveData>>() {
+//            @Override
+//            public void onSuccess(NetworkRequest<NetworkResult<CkReserveData>> request, NetworkResult<CkReserveData> result) {
+//                Log.d("sucess","sucess");
+//                mAdapter.add(result.getResult());
+//            }
+//
+//            @Override
+//            public void onFail(NetworkRequest<NetworkResult<CkReserveData>> request, int errorCode, String errorMessage, Throwable e) {
+//
+//            }
+//        });
+
         setCookerButton();
-        initData();
         return view;
     }
     private void setCookerButton(){
@@ -83,17 +96,20 @@ public class CkReserveFragment extends Fragment {
         });
 
         mAdapter.setOnreviewAdapterItemClickListener(new CkReserveAdapter.OnreviewButtonClickLIstener() {
+
             @Override
             public void onreviewAdapterItemClick(View view, CkReserveData data, int position) {
-               switch (data.getReserveState()){
-                   case TYPE_REQUEST_COMPLETE:
-                       showDialog();
-                       break;
-                   case TYPE_EAT_COMPLETE:
-                       Intent intent = new Intent(getActivity(), CkWriteReViewActivity.class);
-                       startActivity(intent);
-                       break;
-               }
+
+                int staus = Integer.parseInt(data.getStatus());
+                switch (staus) {
+                    case TYPE_REQUEST_COMPLETE:
+                        showDialog();
+                        break;
+                    case TYPE_EAT_COMPLETE:
+                        Intent intent = new Intent(getActivity(), CkWriteReViewActivity.class);
+                        startActivity(intent);
+                        break;
+                }
             }
         });
     }
@@ -116,31 +132,6 @@ public class CkReserveFragment extends Fragment {
         builder.show();
     }
 
-
-    private void initData() {
-        Random r = new Random();
-        for (int i = 0; i < 20; i++) {
-            CkReserveData data = new CkReserveData();
-            data.setFoodName("Noodle");
-            data.setReservePerson("Namgil");
-            data.setEtName("Lee");
-            data.setReserveDate("2010.10.5");
-
-            if(i < 5) {
-                data.setReserveState(TYPE_REQUEST);
-            }else if(i < 10 && i > 5){
-                data.setReserveState(TYPE_REQUEST_COMPLETE);
-            }else if(i< 15 && i > 10){
-                data.setReserveState(TYPE_EAT_COMPLETE);
-            }else{
-                data.setReserveState(TYPE_END);
-            }
-
-            data.setEtPictureUrl("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDLcDeVw9X8oxxP6EpKmgcBi5iG9SWnxThw0WHhg2DevUyEOk9");
-            mAdapter.add(data);
-        }
-
-    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

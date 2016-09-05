@@ -16,6 +16,12 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 
+import com.sm.ej.nk.homeal.data.EaterData;
+import com.sm.ej.nk.homeal.data.NetworkResult;
+import com.sm.ej.nk.homeal.manager.NetworkManager;
+import com.sm.ej.nk.homeal.manager.NetworkRequest;
+import com.sm.ej.nk.homeal.request.EaterInfoRequest;
+
 import java.util.ArrayList;
 
 import butterknife.BindView;
@@ -95,7 +101,19 @@ public class EtPersonalDataActivity extends AppCompatActivity {
 
         settingCalendar();
 
+        EaterInfoRequest request = new EaterInfoRequest(this);
 
+        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<EaterData>>() {
+            @Override
+            public void onSuccess(NetworkRequest<NetworkResult<EaterData>> request, NetworkResult<EaterData> result) {
+
+            }
+
+            @Override
+            public void onFail(NetworkRequest<NetworkResult<EaterData>> request, int errorCode, String errorMessage, Throwable e) {
+
+            }
+        });
 
     }
 

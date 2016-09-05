@@ -70,14 +70,14 @@ public class EtReserveViewHolder extends RecyclerView.ViewHolder {
         this.etReserveData = etReserveData;
 
         //Url to image
-        Glide.with(pictureView.getContext()).load(etReserveData.getCkPictureUrl()).into(pictureView);
-        ckNameView.setText(etReserveData.getCkName());
-        foodNameView.setText(etReserveData.getFoodName());
-        reservePersonView.setText(etReserveData.getReservePerson());
-        dateView.setText(etReserveData.getReserveDate());
+        Glide.with(pictureView.getContext()).load(etReserveData.getImage()).into(pictureView);
+        ckNameView.setText(etReserveData.getName());
+        foodNameView.setText(etReserveData.getName());
+        reservePersonView.setText(etReserveData.getName());
+        dateView.setText(etReserveData.getDate());
 
         //btn setting
-        switch (etReserveData.getReserverState()){
+        switch (0){
             case TYPE_REQUEST :
                 btn_reserve.setText(R.string.et_reservation_cancle);
                 reserveStateView.setText(R.string.et_text_reservation_request);

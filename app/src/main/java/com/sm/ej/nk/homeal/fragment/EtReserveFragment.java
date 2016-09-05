@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,8 +18,10 @@ import com.sm.ej.nk.homeal.EtWriteReviewActivity;
 import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.adapter.EtReserveAdapter;
 import com.sm.ej.nk.homeal.data.EtReserveData;
-
-import java.util.Random;
+import com.sm.ej.nk.homeal.data.NetworkResult;
+import com.sm.ej.nk.homeal.manager.NetworkManager;
+import com.sm.ej.nk.homeal.manager.NetworkRequest;
+import com.sm.ej.nk.homeal.request.EtReserveRequest;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -64,13 +67,29 @@ public class EtReserveFragment extends Fragment {
         EtReserveView.setAdapter(mAdapter);
         EtReserveView.setLayoutManager(manager);
 
-        initData();
+        EtReserveRequest request = new EtReserveRequest(getContext());
 
-       mAdapter.setOnReviewItemClickListener(new EtReserveAdapter.OnReserveAdapterClick() {
+        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<EtReserveData>>() {
+            @Override
+            public void onSuccess(NetworkRequest<NetworkResult<EtReserveData>> request, NetworkResult<EtReserveData> result) {
 
+                Log.d("sucess","sucess");
+            }
+
+            @Override
+            public void onFail(NetworkRequest<NetworkResult<EtReserveData>> request, int errorCode, String errorMessage, Throwable e) {
+                Log.d("fail","czdadfaaafd");
+
+            }
+        });
+
+        mAdapter.setOnReviewItemClickListener(new EtReserveAdapter.OnReserveAdapterClick() {
            @Override
            public void onReserveAdapterClick(View view, EtReserveData etReserveData, int position) {
-               switch (etReserveData.getReserverState()){
+
+               int stauts = Integer.parseInt(etReserveData.getStatus());
+
+               switch (stauts){
                    case TYPE_REQUEST :
                        showDialog();
                        break;
@@ -112,28 +131,6 @@ public class EtReserveFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mAdapter = new EtReserveAdapter();
-    }
-
-
-    private void initData() {
-        Random r = new Random();
-        for (int i = 0; i < 20; i++) {
-            EtReserveData data = new EtReserveData();
-            data.setFoodName("kimch");
-            data.setReserveDate("date" + i);
-            data.setReservePerson(" Lee sung");
-            data.setCkName("Kim nam gil");
-
-            if(i > 0 && i < 12) {
-                data.setReserverState(TYPE_REQUEST);
-            }else if(i < 15){
-                data.setReserverState(TYPE_REQUEST_COMPLETE);
-            }else{
-                data.setReserverState(TYPE_EAT_COMPLETE);
-            }
-            data.setCkPictureUrl("https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTACDX3BGsb6q0XNgMjYnyIEHxalWJ2JAC2xwEev-gsonJGBi5GassamzA");
-            mAdapter.add(data);
-        }
     }
 
 }
