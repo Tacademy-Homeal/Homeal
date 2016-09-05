@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 
 import com.sm.ej.nk.homeal.LoginActivity;
@@ -46,6 +47,9 @@ public class SignUpFragment extends Fragment {
     @BindView(R.id.singUp_spinner_ck_day)
     Spinner spinner_day;
 
+    @BindView(R.id.image_sign_up_person)
+    ImageView personView;
+
 
 
     public SignUpFragment() {
@@ -59,8 +63,6 @@ public class SignUpFragment extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_sign_up, container, false);
         ButterKnife.bind(this, view);
-
-
 
         ArrayList<String> monthList = new ArrayList<>();
         for (int month = 1; month < 13; month++) {
