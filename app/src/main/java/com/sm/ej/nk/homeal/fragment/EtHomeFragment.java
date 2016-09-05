@@ -88,23 +88,6 @@ public class EtHomeFragment extends Fragment implements EtHomeAdapter.OnReviewit
     }
 
 
-//    private void initData() {
-//        datas = new ArrayList<>();
-//        for(int i=0; i<10; i++){
-//            EtHomeData data = new EtHomeData();
-//            data.setAddress("주소"+i);
-//            data.setFoodImageUrl("http://blog.jinbo.net/attach/615/200937431.jpg");
-//            data.setImage("https://pixabay.com/static/uploads/photo/2014/12/17/14/20/summer-anemone-571531_960_720.jpg");
-//            data.setFoodName("음식이름"+i);
-//            data.setBookmarkCnt(""+i);
-//            data.setGrade(""+i%5+1);
-//            data.setReviewCnt(""+i);
-//            data.setName("이름"+i);
-//            datas.add(data);
-//        }
-//        mAdapter.addList(datas);
-//    }
-
     public static final String INTENT_CK_ID = "asd";
     @Override
     public void onViewClick(View view, int position) {

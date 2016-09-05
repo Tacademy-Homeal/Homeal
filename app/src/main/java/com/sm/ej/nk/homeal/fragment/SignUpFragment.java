@@ -50,6 +50,9 @@ public class SignUpFragment extends Fragment {
     @BindView(R.id.image_sign_up_person)
     ImageView personView;
 
+    @BindView(R.id.edit_singup_content)
+    EditText edit_content;
+
 
 
     public SignUpFragment() {
