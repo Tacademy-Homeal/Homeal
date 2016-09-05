@@ -169,7 +169,20 @@ public class CalendarManager {
         for(int i=0; i<data.days.size(); i++){
             for(int j=0; j<item.size(); j++){
                 if(data.days.get(i).year == item.get(j).year && data.days.get(i).month == item.get(j).month && data.days.get(i).dayOfMonth == item.get(j).dayOfMonth){
+                    if(item.get(j).isDinner){
+                        data.days.get(i).isDinner = true;
+                    }
+                    if(item.get(j).isMorning){
+                        data.days.get(i).isMorning = true;
+                    }
+                    if(item.get(j).isLaunch){
+                        data.days.get(i).isLaunch = true;
+                    }
+
                     data.days.get(i).isSelect = true;
+                    data.days.get(i).sharing = item.get(j).sharing;
+                    data.days.get(i).id = item.get(j).id;
+                    data.days.get(i).pax = item.get(j).pax;
                 }
             }
         }
