@@ -2,42 +2,131 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.SignUpFragment"
-    >
+    tools:context=".fragment.SignUpFragment">
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_gravity="center">
 
 
         <Button
+            android:id="@+id/sf_ok"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="OK"
-            android:id="@+id/sf_ok"
-            android:layout_gravity="center_horizontal|bottom"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="94dp" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/edit_sign_up"
-            android:layout_gravity="left|center_vertical"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="161dp" />
+            android:layout_gravity="center_horizontal|bottom"
+            android:layout_marginBottom="94dp"
+            android:text="OK" />
 
         <ImageView
+            android:id="@+id/image_sign_up"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/image_sign_up"
-            android:src="@drawable/ic_launcher"
-            android:layout_alignBottom="@+id/edit_sign_up"
-            android:layout_alignRight="@+id/sf_ok"
-            android:layout_alignEnd="@+id/sf_ok"
-            android:layout_marginBottom="61dp" />
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="86dp"
+            android:src="@drawable/singup_logo_xxhdpi" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/image_sign_up"
+            android:text="@string/text_sing_up"
+            android:textColor="@color/white"
+            android:textSize="50dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/image_sign_up"
+                android:layout_marginTop="81dp"
+                android:orientation="horizontal">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/image_sign_up_person"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp" />
+
+                <EditText
+                    android:id="@+id/edit_frist_name"
+                    android:layout_width="84dp"
+                    android:layout_height="24dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginRight="11dp"
+                    android:inputType="textPersonName"
+                    android:text="frist_name"
+                    android:textColor="@color/white"
+                    android:textSize="20dp" />
+
+                <EditText
+                    android:id="@+id/edit_second_name"
+                    android:layout_width="84dp"
+                    android:layout_height="24dp"
+                    android:layout_centerHorizontal="true"
+                    android:inputType="textPersonName"
+                    android:text="second_name"
+                    android:textColor="@color/white"
+                    android:textSize="20dp" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/linearLayout_brithday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/singUp_spinner_ck_year"
+                    android:layout_width="84dp"
+                    android:layout_height="24dp"
+                    android:layout_alignEnd="@+id/edit_ck_name"
+                    android:layout_alignRight="@+id/edit_ck_name"
+                    android:layout_alignTop="@+id/spinner_ck_day"
+                    android:layout_marginRight="11dp" />
+
+                <Spinner
+                    android:id="@+id/singUp_spinner_ck_month"
+                    android:layout_width="84dp"
+                    android:layout_height="24dp"
+                    android:layout_below="@+id/textView6"
+                    android:layout_marginRight="11dp"
+                    android:layout_toEndOf="@+id/textView6"
+                    android:layout_toRightOf="@+id/textView6"
+                    android:spinnerMode="dropdown" />
+
+                <Spinner
+                    android:id="@+id/singUp_spinner_ck_day"
+                    android:layout_width="84dp"
+                    android:layout_height="24dp"
+                    android:layout_alignLeft="@+id/edit_ck_age"
+                    android:layout_alignStart="@+id/edit_ck_age"
+                    android:layout_below="@+id/textView6"
+                    android:layout_marginRight="11dp" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
     </RelativeLayout>
 
 </FrameLayout>

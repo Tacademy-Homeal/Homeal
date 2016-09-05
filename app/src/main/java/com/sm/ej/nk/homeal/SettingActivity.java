@@ -60,8 +60,9 @@ public class SettingActivity extends AppCompatActivity {
     @OnClick(R.id.btn_ck_logout)
     public void onLogout() {
         Intent intent = new Intent(SettingActivity.this, LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
-        finish();
     }
 
     @Override
