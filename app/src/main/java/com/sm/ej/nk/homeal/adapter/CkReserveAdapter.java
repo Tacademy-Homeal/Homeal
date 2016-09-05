@@ -24,6 +24,15 @@ public class CkReserveAdapter extends RecyclerView.Adapter<CkReserveViewHolder> 
         notifyDataSetChanged();
     }
 
+    public void clear(){
+        items.clear();
+        notifyDataSetChanged();
+    }
+
+    public void addAll(CkReserveData[] data){
+
+    }
+
     @Override
     public CkReserveViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_ck_reserve_fragment, parent, false);
@@ -37,7 +46,7 @@ public class CkReserveAdapter extends RecyclerView.Adapter<CkReserveViewHolder> 
     @Override
     public void onBindViewHolder(CkReserveViewHolder holder, int position) {
         CkReserveViewHolder crvh = (CkReserveViewHolder) holder;
-        holder.setReserveData(items.get(position));
+     //   holder.setReserveData(items.get(position));
     }
 
     @Override

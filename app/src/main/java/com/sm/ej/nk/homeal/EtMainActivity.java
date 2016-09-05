@@ -34,6 +34,9 @@ public class EtMainActivity extends AppCompatActivity {
     @BindView(R.id.viewpager_et_main)
     ViewPager viewPager;
 
+    private static int[] icon = {R.drawable.ic_home_white_48dp, R.drawable.ic_chat_white_48dp,
+            R.drawable.ic_access_time_white_48dp, R.drawable.ic_person_white_48dp};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +49,12 @@ public class EtMainActivity extends AppCompatActivity {
             setupTabViewPager(viewPager);
         }
         tabLayout.setupWithViewPager(viewPager);
+
+        //image set
+        for(int i = 0; i < 4; i++){
+            tabLayout.getTabAt(i).setIcon(icon[i]);
+        }
+
     }
 
     public static final String ET_HOME = "이터홈";
@@ -62,6 +71,8 @@ public class EtMainActivity extends AppCompatActivity {
 
 
         v.setAdapter(pagerAdapter);
+
+
     }
 
     public void moveChattigActivity() {

@@ -20,7 +20,7 @@ public class ViewPagerFragmentAdapter extends FragmentPagerAdapter {
 
     public void addFragment(Fragment fragment, String title){
         fragmentList.add(fragment);
-        fragmentTitleList.add(title);
+       // fragmentTitleList.add(title);
     }
 
     @Override
@@ -33,8 +33,5 @@ public class ViewPagerFragmentAdapter extends FragmentPagerAdapter {
         return fragmentList.size();
     }
 
-    @Override
-    public CharSequence getPageTitle(int position) {
-        return fragmentTitleList.get(position);
-    }
+
 }
