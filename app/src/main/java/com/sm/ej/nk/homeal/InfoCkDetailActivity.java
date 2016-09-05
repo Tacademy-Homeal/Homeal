@@ -14,14 +14,11 @@ import com.github.clans.fab.FloatingActionMenu;
 import com.sm.ej.nk.homeal.adapter.CkDetailAdapter;
 import com.sm.ej.nk.homeal.data.CalendarItem;
 import com.sm.ej.nk.homeal.data.CkInfoResult;
-import com.sm.ej.nk.homeal.data.CkScheduleData;
 import com.sm.ej.nk.homeal.data.EtHomeData;
 import com.sm.ej.nk.homeal.fragment.EtHomeFragment;
 import com.sm.ej.nk.homeal.manager.NetworkManager;
 import com.sm.ej.nk.homeal.manager.NetworkRequest;
 import com.sm.ej.nk.homeal.request.CkPageCheckRequest;
-
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -54,7 +51,7 @@ public class InfoCkDetailActivity extends AppCompatActivity implements CkDetailA
 
         Intent intent = getIntent();
         etHomeData = (EtHomeData)intent.getSerializableExtra(EtHomeFragment.INTENT_CK_ID);
-        Log.e("ssong", etHomeData.getId());
+        Log.e("ssong ID", etHomeData.getId());
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -77,11 +74,7 @@ public class InfoCkDetailActivity extends AppCompatActivity implements CkDetailA
         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<CkInfoResult>() {
             @Override
             public void onSuccess(NetworkRequest<CkInfoResult> request, CkInfoResult result) {
-                mAdapter.addThumbnails(result.getCooker_thumbnail().getThumbnails());
-                mAdapter.addHeader(result.getCooker_info().getInfo().get(0));
-                mAdapter.addMenu(result.getCooker_menu().getMenus());
-                List<CkScheduleData> list =  result.getCooker_schedule().getSchedules();
-                mAdapter.addSchedule(list);
+                mAdapter.setResult(result);
                 mAdapter.setOnDetailAdapterClickListener(InfoCkDetailActivity.this);
                 rv.setAdapter(mAdapter);
             }

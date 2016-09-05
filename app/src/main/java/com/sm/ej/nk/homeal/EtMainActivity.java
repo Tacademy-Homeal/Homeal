@@ -51,7 +51,7 @@ public class EtMainActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
 
         //image set
-        for(int i = 0; i < 4; i++){
+        for(int i = 0; i < icon.length; i++){
             tabLayout.getTabAt(i).setIcon(icon[i]);
         }
 
@@ -97,6 +97,9 @@ public class EtMainActivity extends AppCompatActivity {
                     public void onSearchPopupClick(View view) {
                         viewPager.setCurrentItem(0);
                         tabLayout.setupWithViewPager(viewPager);
+                        for(int i = 0; i < icon.length; i++){
+                            tabLayout.getTabAt(i).setIcon(icon[i]);
+                        }
                     }
                 });
 

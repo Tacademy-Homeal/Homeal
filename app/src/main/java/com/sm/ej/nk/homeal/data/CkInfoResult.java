@@ -5,7 +5,7 @@ package com.sm.ej.nk.homeal.data;
  */
 public class CkInfoResult {
     private String code;
-    private InfoResult cooker_info;
+    private CkDetailData cooker_info;
     private CkMenuResult cooker_menu;
     private SchedulesResult cooker_schedule;
     private CkthumbnailResult cooker_thumbnail;
@@ -14,7 +14,7 @@ public class CkInfoResult {
         return code;
     }
 
-    public InfoResult getCooker_info() {
+    public CkDetailData getCooker_info() {
         return cooker_info;
     }
 

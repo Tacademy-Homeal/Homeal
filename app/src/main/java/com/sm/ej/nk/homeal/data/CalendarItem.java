@@ -16,7 +16,7 @@ public class CalendarItem {
     public boolean isMorning;
     public boolean isDinner;
     public String pax;
-    public String sharing;
+    public int sharing;
     public String id;
 
     public CalendarItem(){

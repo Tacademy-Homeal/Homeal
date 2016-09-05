@@ -91,7 +91,6 @@ public class CalendarManager {
         }else{
             return getSelectCalendarData(item);
         }
-
     }
 
     public CalendarData getCalendarData(){
