@@ -19,7 +19,7 @@ public class CkScheduleData {
         item.year = Integer.parseInt(calendar2[0]);
         item.dayOfMonth = Integer.parseInt(calendar2[1]);
         item.month = Integer.parseInt(calendar2[2]);
-        item.isSelect = true;
+        item.isSelect = true;//dddd
         return item;
     }
 
