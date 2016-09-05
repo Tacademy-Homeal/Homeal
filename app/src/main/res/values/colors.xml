@@ -11,5 +11,6 @@
     <color name="color_loginframent_sub">#FFFAF0</color>
     <color name="dialog_fg_bg">#fbdac6</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="color_singup">#5E6062</color>
 
 </resources>
