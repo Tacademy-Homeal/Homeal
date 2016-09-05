@@ -2,7 +2,6 @@ package com.sm.ej.nk.homeal.fragment;
 
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,10 +13,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.sm.ej.nk.homeal.CkWriteReViewActivity;
 import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.adapter.CkReserveAdapter;
 import com.sm.ej.nk.homeal.data.CkReserveData;
+import com.sm.ej.nk.homeal.data.NetworkResult;
+import com.sm.ej.nk.homeal.manager.NetworkManager;
+import com.sm.ej.nk.homeal.manager.NetworkRequest;
+import com.sm.ej.nk.homeal.request.CkReserveRequest;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -62,20 +64,21 @@ public class CkReserveFragment extends Fragment {
         CkReserveView.setAdapter(mAdapter);
         CkReserveView.setLayoutManager(manager);
 
-//        CkReserveRequest request = new CkReserveRequest(getContext());
-//
-//        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<CkReserveData>>() {
-//            @Override
-//            public void onSuccess(NetworkRequest<NetworkResult<CkReserveData>> request, NetworkResult<CkReserveData> result) {
-//                Log.d("sucess","sucess");
-//                mAdapter.add(result.getResult());
-//            }
-//
-//            @Override
-//            public void onFail(NetworkRequest<NetworkResult<CkReserveData>> request, int errorCode, String errorMessage, Throwable e) {
-//
-//            }
-//        });
+       CkReserveRequest request = new CkReserveRequest(getContext());
+
+        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<CkReserveData>>() {
+            @Override
+            public void onSuccess(NetworkRequest<NetworkResult<CkReserveData>> request, NetworkResult<CkReserveData> result) {
+                mAdapter.clear();
+            //    mAdapter.add(result.getResult());
+            }
+
+            @Override
+
+            public void onFail(NetworkRequest<NetworkResult<CkReserveData>> request, int errorCode, String errorMessage, Throwable e) {
+
+            }
+        });
 
         setCookerButton();
         return view;
@@ -94,24 +97,24 @@ public class CkReserveFragment extends Fragment {
                 Toast.makeText(getContext(),"거절 되었습니다",Toast.LENGTH_SHORT).show();
             }
         });
-
-        mAdapter.setOnreviewAdapterItemClickListener(new CkReserveAdapter.OnreviewButtonClickLIstener() {
-
-            @Override
-            public void onreviewAdapterItemClick(View view, CkReserveData data, int position) {
-
-                int staus = Integer.parseInt(data.getStatus());
-                switch (staus) {
-                    case TYPE_REQUEST_COMPLETE:
-                        showDialog();
-                        break;
-                    case TYPE_EAT_COMPLETE:
-                        Intent intent = new Intent(getActivity(), CkWriteReViewActivity.class);
-                        startActivity(intent);
-                        break;
-                }
-            }
-        });
+//
+//        mAdapter.setOnreviewAdapterItemClickListener(new CkReserveAdapter.OnreviewButtonClickLIstener() {
+//
+//            @Override
+//            public void onreviewAdapterItemClick(View view, CkReserveData data, int position) {
+//
+//                int staus = Integer.parseInt(data.getStatus());
+//                switch (staus) {
+//                    case TYPE_REQUEST_COMPLETE:
+//                        showDialog();
+//                        break;
+//                    case TYPE_EAT_COMPLETE:
+//                        Intent intent = new Intent(getActivity(), CkWriteReViewActivity.class);
+//                        startActivity(intent);
+//                        break;
+//                }
+//            }
+//        });
     }
 
     private void showDialog(){
