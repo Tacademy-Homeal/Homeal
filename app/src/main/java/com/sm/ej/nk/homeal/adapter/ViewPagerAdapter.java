@@ -9,22 +9,25 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.sm.ej.nk.homeal.R;
+import com.sm.ej.nk.homeal.data.ThumbnailsData;
+
+import java.util.List;
 
 /**
  * Created by Tacademy on 2016-08-26.
  */
 public class ViewPagerAdapter extends PagerAdapter {
-    String[] datas;
+    List<ThumbnailsData> datas;
     Context context;
     ImageView imageView;
 
-    public ViewPagerAdapter(Context context,String[] data){
+    public ViewPagerAdapter(Context context,List<ThumbnailsData> data){
         this.context = context;
         this.datas = data;
     }
     @Override
     public int getCount() {
-        return datas.length;
+        return datas.size();
     }
 
     @Override
@@ -37,7 +40,7 @@ public class ViewPagerAdapter extends PagerAdapter {
         View view = null;
         view = LayoutInflater.from(container.getContext()).inflate(R.layout.item_info_ck_detail_viewpager, container, false);
         imageView = (ImageView)view.findViewById(R.id.image_ck_detail_viewpager);
-        Glide.with(container.getContext()).load(datas[position]).into(imageView);
+        Glide.with(container.getContext()).load(datas.get(position)).into(imageView);
         container.addView(view);
 
         return view;

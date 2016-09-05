@@ -18,6 +18,7 @@ import com.sm.ej.nk.homeal.data.CalendarData;
 import com.sm.ej.nk.homeal.data.CalendarItem;
 import com.sm.ej.nk.homeal.data.CkDetailData;
 import com.sm.ej.nk.homeal.data.CkScheduleData;
+import com.sm.ej.nk.homeal.data.ThumbnailsData;
 import com.sm.ej.nk.homeal.manager.CalendarManager;
 import com.viewpagerindicator.CirclePageIndicator;
 
@@ -95,11 +96,13 @@ public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder implements
         pax.setText(item.pax);
     }
 
+    public void setThumbnails(List<ThumbnailsData> data){
+        pagerAdapter = new ViewPagerAdapter(context, data);
+        viewPager.setAdapter(pagerAdapter);
+    }
     public void setData(CkDetailData data){
         this.data = data;
 
-        pagerAdapter = new ViewPagerAdapter(context, data.thumbnail);
-        viewPager.setAdapter(pagerAdapter);
 //        circleIndicator.setViewPager(viewPager);
         Glide.with(context).load(data.image).into(userImage);
         Glide.with(context).load(data.mapImage).into(mapImage);
@@ -133,8 +136,8 @@ public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder implements
         progressTotal.setProgress(Integer.parseInt(data.taste));
         progressTaste.setProgress(data.grade);
         progressPrice.setProgress(Integer.parseInt(data.price));
-        progressClean.setProgress(Integer.parseInt(data.clean));
-        progresskind.setProgress(Integer.parseInt(data.kind));
+        progressClean.setProgress(Integer.parseInt(data.cleanliness));
+        progresskind.setProgress(Integer.parseInt(data.kindness));
     }
 
     public void setSchedule(List<CkScheduleData> list){
