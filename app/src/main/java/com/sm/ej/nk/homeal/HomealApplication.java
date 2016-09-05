@@ -13,6 +13,10 @@ public class HomealApplication extends Application {
     private static Context context;
     private static Boolean isCooker =false;
 
+    public static final int MORNING = 1;
+    public static final int LAUNCH= 2;
+    public static final int DINNER = 3;
+
     @Override
     public void onCreate() {
         super.onCreate();

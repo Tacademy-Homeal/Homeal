@@ -9,9 +9,11 @@ import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.data.CalendarItem;
 import com.sm.ej.nk.homeal.data.CkDetailData;
 import com.sm.ej.nk.homeal.data.CkDetailMenuData;
+import com.sm.ej.nk.homeal.data.CkScheduleData;
 import com.sm.ej.nk.homeal.viewholder.CkDetailHeaderViewHolder;
 import com.sm.ej.nk.homeal.viewholder.CkDetailItemViewHolder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,10 +23,20 @@ public class CkDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     CkDetailData datas;
     CkDetailItemViewHolder menuholder;
     List<CkDetailMenuData> menuList;
+    List<CkScheduleData> scheduleList;
 
-    public List<CkDetailMenuData> menuDatas;
-    public CkDetailAdapter(CkDetailData datas){
-        this.datas = datas;
+    public CkDetailAdapter(){
+    }
+
+
+    public void addSchedule(List<CkScheduleData> data){
+        scheduleList = data;
+        notifyDataSetChanged();
+    }
+
+    public void addHeader(CkDetailData data){
+        this.datas = data;
+        notifyDataSetChanged();
     }
 
     private static final int HEADER_VIEW = 1;
@@ -32,6 +44,12 @@ public class CkDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     public void addMenuList(List<CkDetailMenuData> list){
         menuList = list;
+        notifyDataSetChanged();
+    }
+
+    public void addMenu(CkDetailMenuData data){
+        menuList = new ArrayList<>();
+        menuList.add(data);
         notifyDataSetChanged();
     }
 
@@ -50,6 +68,7 @@ public class CkDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             case HEADER_VIEW: {
                 View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_ck_detail, parent, false);
                 CkDetailHeaderViewHolder holder = new CkDetailHeaderViewHolder(parent.getContext(), view);
+                holder.setSchedule(scheduleList);
                 holder.setOnCalendarHeaderViewClickListener(this);
                 return holder;
             }

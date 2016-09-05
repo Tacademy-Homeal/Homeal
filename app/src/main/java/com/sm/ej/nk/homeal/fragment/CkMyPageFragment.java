@@ -15,12 +15,7 @@ import com.bumptech.glide.Glide;
 import com.sm.ej.nk.homeal.CkPersonalDataActivity;
 import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.SettingActivity;
-import com.sm.ej.nk.homeal.data.CookerDataResult;
-import com.sm.ej.nk.homeal.data.NetworkResult;
 import com.sm.ej.nk.homeal.data.User;
-import com.sm.ej.nk.homeal.manager.NetworkManager;
-import com.sm.ej.nk.homeal.manager.NetworkRequest;
-import com.sm.ej.nk.homeal.request.CkInfoRequest;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -56,18 +51,6 @@ public class CkMyPageFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_ck_my_page, container, false);
         ButterKnife.bind(this, view);
 
-        CkInfoRequest request = new CkInfoRequest(getContext());
-        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<CookerDataResult>>() {
-            @Override
-            public void onSuccess(NetworkRequest<NetworkResult<CookerDataResult>> request, NetworkResult<CookerDataResult> result) {
-
-            }
-
-            @Override
-            public void onFail(NetworkRequest<NetworkResult<CookerDataResult>> request, int errorCode, String errorMessage, Throwable e) {
-
-            }
-        });
 
         initData();
         setUser();

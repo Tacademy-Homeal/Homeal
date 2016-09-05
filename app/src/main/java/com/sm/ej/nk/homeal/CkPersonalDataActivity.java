@@ -17,12 +17,6 @@ import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.sm.ej.nk.homeal.data.CookerDataResult;
-import com.sm.ej.nk.homeal.data.NetworkResult;
-import com.sm.ej.nk.homeal.manager.NetworkManager;
-import com.sm.ej.nk.homeal.manager.NetworkRequest;
-import com.sm.ej.nk.homeal.request.CkInfoRequest;
-
 import java.util.ArrayList;
 
 import butterknife.BindView;
@@ -147,18 +141,7 @@ public class CkPersonalDataActivity extends AppCompatActivity {
         isPersonalData(false);
         btnChangeFinish.setVisibility(View.GONE);
 
-       CkInfoRequest request = new CkInfoRequest(this);
-        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<CookerDataResult>>() {
-            @Override
-            public void onSuccess(NetworkRequest<NetworkResult<CookerDataResult>> request, NetworkResult<CookerDataResult> result) {
 
-            }
-
-            @Override
-            public void onFail(NetworkRequest<NetworkResult<CookerDataResult>> request, int errorCode, String errorMessage, Throwable e) {
-
-            }
-        });
     }
 
     @OnClick(R.id.btn_personal_change)

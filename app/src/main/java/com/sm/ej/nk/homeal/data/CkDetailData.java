@@ -1,22 +1,18 @@
 package com.sm.ej.nk.homeal.data;
 
-import java.util.ArrayList;
-
 /**
  * Created by Tacademy on 2016-08-29.
  */
 public class CkDetailData {
-    public ArrayList<String> pagerImageList;
-    public String userImage;
-    public String userName;
+    public String[] thumbnail;
+    public String image;
+    public String name;
     public String address;
-    public String foodPrice;
-    public String foodName;
-    public int totalScore;
-    public int tasteScore;
-    public int priceScore;
-    public int kindScore;
-    public int cleanScore;
-    public String foodIntroduce;
+    public String taste;
+    public String review;
+    public int grade;
+    public String price="1";
+    public String kind;
+    public String clean;
     public String mapImage;
 }

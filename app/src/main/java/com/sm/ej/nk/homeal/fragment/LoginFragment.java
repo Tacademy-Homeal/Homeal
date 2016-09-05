@@ -97,7 +97,7 @@ public class LoginFragment extends Fragment {
             }
             case R.id.radiobtn_login_ft_eater:{
                 HomealApplication.changeEater();
-                request = new TestRequest(HomealApplication.getContext(), "cooker");
+                request = new TestRequest(HomealApplication.getContext(), "eater");
                 break;
             }
         }

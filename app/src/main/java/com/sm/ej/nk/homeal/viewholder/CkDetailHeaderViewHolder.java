@@ -15,8 +15,8 @@ import com.sm.ej.nk.homeal.adapter.CalendarAdapter;
 import com.sm.ej.nk.homeal.adapter.ViewPagerAdapter;
 import com.sm.ej.nk.homeal.data.CalendarData;
 import com.sm.ej.nk.homeal.data.CalendarItem;
-import com.sm.ej.nk.homeal.data.CalendarItemData;
 import com.sm.ej.nk.homeal.data.CkDetailData;
+import com.sm.ej.nk.homeal.data.CkScheduleData;
 import com.sm.ej.nk.homeal.manager.CalendarManager;
 import com.viewpagerindicator.CirclePageIndicator;
 
@@ -36,11 +36,12 @@ public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder implements
     ViewPagerAdapter pagerAdapter;
     CalendarAdapter calendarAdapter;
     Context context;
-    ArrayList<CalendarItemData> mItemData = new ArrayList<>();
     ProgressBar progressPrice, progressTaste, progresskind, progressClean;
     ProgressBar progressTotal;
     CalendarManager cm;
     CirclePageIndicator circleIndicator;
+    List<CkScheduleData> list;
+    List<CalendarItem> calendarItems;
 
     public CkDetailHeaderViewHolder(Context context,View view){
         super(view);
@@ -67,38 +68,22 @@ public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder implements
 
     public void setData(CkDetailData data){
         this.data = data;
-        pagerAdapter = new ViewPagerAdapter(context, data.pagerImageList);
+
+        pagerAdapter = new ViewPagerAdapter(context, data.thumbnail);
         viewPager.setAdapter(pagerAdapter);
 //        circleIndicator.setViewPager(viewPager);
-        Glide.with(context).load(data.userImage).into(userImage);
+        Glide.with(context).load(data.image).into(userImage);
         Glide.with(context).load(data.mapImage).into(mapImage);
-        userName.setText(data.userName);
+        userName.setText(data.name);
         userAddress.setText(data.address);
-        foodPrice.setText(data.foodPrice);
-        foodName.setText(data.foodName);
         backImage.setOnClickListener(this);
         nextImage.setOnClickListener(this);
 
         cm = CalendarManager.getInstance();
-        try {
-            cm.setDataObject(mItemData);
-        } catch (CalendarManager.NoComparableObjectException e) {
-            e.printStackTrace();
-        }
         GridLayoutManager manager = new GridLayoutManager(context, 7);
         calendar.setLayoutManager(manager);
 
-        List<CalendarItem> items = new ArrayList<>();
-        for(int i=4; i<10; i++){
-            CalendarItem item = new CalendarItem();
-            item.dayOfMonth=i;
-            item.isSelect = true;
-            item.year = 2016;
-            item.month = 8;
-            items.add(item);
-        }
-        final CalendarData calendarData = cm.getSelectCalendarData(items);
-
+        final CalendarData calendarData = cm.getSelectCalendarData(calendarItems);
 
         calendarAdapter = new CalendarAdapter(context, calendarData, true);
         calendarAdapter.setOnCalendarAdpaterClickListener(new CalendarAdapter.OnCalendarAdapterClickListener() {
@@ -107,7 +92,6 @@ public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder implements
                 if(data.isSelect){
                     calendarDate.setText((data.month+1)+"월"+data.dayOfMonth+"일");
                 }
-
                 if(listener!=null){
                     listener.onCalendarHeaderViewClickListener(view, data, position);
                 }
@@ -115,11 +99,24 @@ public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder implements
         });
         calendar.setAdapter(calendarAdapter);
         calendarDate.setText(calendarData.year+"년 "+(calendarData.month+1)+"월");
-        progressTotal.setProgress(data.totalScore);
-        progressTaste.setProgress(data.tasteScore);
-        progressPrice.setProgress(data.priceScore);
-        progressClean.setProgress(data.cleanScore);
-        progresskind.setProgress(data.kindScore);
+        progressTotal.setProgress(Integer.parseInt(data.taste));
+        progressTaste.setProgress(data.grade);
+        progressPrice.setProgress(Integer.parseInt(data.price));
+        progressClean.setProgress(Integer.parseInt(data.clean));
+        progresskind.setProgress(Integer.parseInt(data.kind));
+    }
+
+    public void setSchedule(List<CkScheduleData> list){
+        this.list = list;
+        changeCalendarItem(list);
+    }
+
+    public void changeCalendarItem(List<CkScheduleData> list){
+        calendarItems = new ArrayList<>();
+        for(int i=0; i<list.size(); i++){
+            calendarItems.add(list.get(i).getCalendar());
+        }
+
     }
 
     public interface OnCalendarHeaderViewClickListener{
@@ -150,4 +147,5 @@ public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder implements
             }
         }
     }
+
 }
