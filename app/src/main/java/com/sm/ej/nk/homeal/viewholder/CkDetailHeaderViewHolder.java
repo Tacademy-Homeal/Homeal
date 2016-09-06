@@ -44,7 +44,7 @@ public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder implements
     CirclePageIndicator circleIndicator;
     List<CkScheduleData> list;
     List<CalendarItem> calendarItems;
-//hhhhhhhh
+
     public CkDetailHeaderViewHolder(Context context,View view){
         super(view);
         this.context = context;

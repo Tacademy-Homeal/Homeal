@@ -3,6 +3,8 @@ package com.sm.ej.nk.homeal.request;
 import android.util.Log;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.sm.ej.nk.homeal.data.NetworkResult;
 import com.sm.ej.nk.homeal.data.NetworkResultTemp;
 import com.sm.ej.nk.homeal.manager.NetworkRequest;
 
@@ -44,19 +46,18 @@ public abstract class AbstractRequest<T> extends NetworkRequest<T> {
         NetworkResultTemp temp = gson.fromJson(text, NetworkResultTemp.class);
 
         Log.e("ssong", text);
-        T result = gson.fromJson(text, getType());
-        return result;
-//        if (temp.getCode() == 1) {
-//            T result = gson.fromJson(text, getType());
-//            return result;
-//        } else if (temp.getCode() == 2) {
-//            Type type = new TypeToken<NetworkResult<String>>(){}.getType();
-//            NetworkResult<String> result = gson.fromJson(text, type);
-//            throw new IOException(result.getResults());
-//        } else {
-//            T result = gson.fromJson(text, getType(temp.getCode()));
-//            return result;
-//        }
+
+        if (temp.getCode() == 1) {
+            T result = gson.fromJson(text, getType());
+            return result;
+        } else if (temp.getCode() == 0) {
+            Type type = new TypeToken<NetworkResult<String>>(){}.getType();
+            NetworkResult<String> result = gson.fromJson(text, type);
+            throw new IOException(result.getMessage());
+        } else {
+            T result = gson.fromJson(text, getType(temp.getCode()));
+            return result;
+        }
 
     }
 

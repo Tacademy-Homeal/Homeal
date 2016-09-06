@@ -33,9 +33,9 @@ public class CkDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     }
     public void setResult(CkInfoResult result){
-        this.menuList = result.getCooker_menu().getMenus();
-        this.scheduleList = result.getCooker_schedule().getSchedules();
-        this.thumbnailsDatas = result.getCooker_thumbnail().getThumbnails();
+        this.menuList = result.getCooker_menu();
+        this.scheduleList = result.getCooker_schedule();
+        this.thumbnailsDatas = result.getCooker_thumbnail();
         this.datas = result.getCooker_info();
         notifyDataSetChanged();
     }

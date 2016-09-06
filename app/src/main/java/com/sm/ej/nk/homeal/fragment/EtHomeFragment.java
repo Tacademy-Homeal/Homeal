@@ -17,7 +17,6 @@ import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.adapter.EtHomeAdapter;
 import com.sm.ej.nk.homeal.data.EtHomeData;
 import com.sm.ej.nk.homeal.data.NetworkResult;
-import com.sm.ej.nk.homeal.data.StoreListResult;
 import com.sm.ej.nk.homeal.manager.NetworkManager;
 import com.sm.ej.nk.homeal.manager.NetworkRequest;
 import com.sm.ej.nk.homeal.request.CkPageListRequest;
@@ -69,20 +68,19 @@ public class EtHomeFragment extends Fragment implements EtHomeAdapter.OnReviewit
         String pageno = "1";
         String rowCount = "10";
         CkPageListRequest request = new CkPageListRequest(getContext() ,pageno, rowCount);
-        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<StoreListResult>>() {
+        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<List<EtHomeData>>>() {
                     @Override
-                    public void onSuccess(NetworkRequest<NetworkResult<StoreListResult>> request, NetworkResult<StoreListResult> result) {
-                        datas = result.getResult().getStoreThumbnails();
+                    public void onSuccess(NetworkRequest<NetworkResult<List<EtHomeData>>> request, NetworkResult<List<EtHomeData>> result) {
+                        datas = result.getResult();
                         mAdapter.clear();
                         mAdapter.addList(datas);
                     }
 
                     @Override
-                    public void onFail(NetworkRequest<NetworkResult<StoreListResult>> request, int errorCode, String errorMessage, Throwable e) {
+                    public void onFail(NetworkRequest<NetworkResult<List<EtHomeData>>> request, int errorCode, String errorMessage, Throwable e) {
 
                     }
                 });
-
 
         return v;
     }

@@ -20,5 +20,4 @@ public class CkDetailData implements Serializable{
     public int price;
     public String jjimCnt;
     public String reviewCnt;
-
 }

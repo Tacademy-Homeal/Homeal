@@ -34,8 +34,8 @@ public class CkHomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
     public void setResult(CkInfoResult result){
         this.headerData = result.getCooker_info();
-        this.menuList = result.getCooker_menu().getMenus();
-        this.scheduleList = result.getCooker_schedule().getSchedules();
+        this.menuList = result.getCooker_menu();
+        this.scheduleList = result.getCooker_schedule();
     }
 
     public void setHeader(CkDetailData data){
