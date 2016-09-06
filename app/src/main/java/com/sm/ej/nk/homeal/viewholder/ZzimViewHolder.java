@@ -82,45 +82,50 @@ public class ZzimViewHolder extends RecyclerView.ViewHolder {
             }
         });
     }
-    public interface OnViewClickListener{
-        public void onViewClick(View view,int position);
+
+    public interface OnViewClickListener {
+        public void onViewClick(View view, int position);
     }
+
     OnViewClickListener listener;
-    public void setOnViewClickListner(OnViewClickListener listener){
+
+    public void setOnViewClickListner(OnViewClickListener listener) {
         this.listener = listener;
     }
 
-    public interface OnZzimClickListener{
+    public interface OnZzimClickListener {
         public void onZzimClick(View view, int position);
     }
 
     OnZzimClickListener zzimClickListener;
 
-    public void setOnZzimClickListener(OnZzimClickListener listener){
+    public void setOnZzimClickListener(OnZzimClickListener listener) {
         this.zzimClickListener = listener;
     }
 
-    public interface OnReviewClickListener{
+    public interface OnReviewClickListener {
         public void onReviewClick(View view, int position);
     }
 
     OnReviewClickListener zzimreviewClickListener;
 
-    public void setOnReviewClickListener(OnReviewClickListener listener){
+    public void setOnReviewClickListener(OnReviewClickListener listener) {
         this.zzimreviewClickListener = listener;
     }
 
-    public void setData(ZzimData data){
+    public void setData(ZzimData data) {
         Glide.with(zzimuserImage.getContext()).load(data.getImage()).into(zzimuserImage);
         Glide.with(zzimfoodImage.getContext()).load(data.getThumbnail()).into(zzimfoodImage);
 
         zzimName.setText(data.getName());
         zzimAddress.setText(data.getAddress());
-        zzimMenu.setText(data.getFoodName());
-        zzimjjimCount.setText(data.getBookmarkCnt());
-        zzimreviewCount.setText(data.getReviewCnt());
-        zzimPrice.setText(data.getFoodPrice());
-
+        zzimjjimCount.setText(""+data.getBookmarkCnt());
+        zzimreviewCount.setText(""+data.getReviewCnt());
         zzimstarCount.setRating(data.getGrade());
+        if(data.getIsBookmark()==0){
+            zzimjjimImage.setImageResource(R.drawable.homeal_heart);
+        }else{
+            zzimjjimImage.setImageResource(R.drawable.homeal_heart_fill);
+        }
     }
 }
