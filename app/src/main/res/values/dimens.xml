@@ -36,4 +36,9 @@
     <dimen name="setting_box_margin_left">12dp</dimen>
     <dimen name="ck_mypage_box_height">112dp</dimen>
     <dimen name="ck_mypage_box_margintop">56dp</dimen>
+    <dimen name="et_personal_marginleft">16dp</dimen>
+    <dimen name="et_personal_between_margin">11dp</dimen>
+    <dimen name="et_personal_box_width">84dp</dimen>
+    <dimen name="et_personal_box_height">42dp</dimen>
+    <dimen name="et_personal_spinner_width">80dp</dimen>
 </resources>
