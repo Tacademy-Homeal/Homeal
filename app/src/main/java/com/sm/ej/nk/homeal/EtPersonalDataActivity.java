@@ -16,11 +16,8 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 
-import com.sm.ej.nk.homeal.data.EaterData;
-import com.sm.ej.nk.homeal.data.NetworkResult;
-import com.sm.ej.nk.homeal.manager.NetworkManager;
-import com.sm.ej.nk.homeal.manager.NetworkRequest;
-import com.sm.ej.nk.homeal.request.EaterInfoRequest;
+import com.sm.ej.nk.homeal.data.PersonalData;
+import com.sm.ej.nk.homeal.fragment.EtMyPageFragment;
 
 import java.util.ArrayList;
 
@@ -98,27 +95,16 @@ public class EtPersonalDataActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_et_personal_data);
+
+        Intent intent = getIntent();
+        PersonalData etData = (PersonalData) intent.getSerializableExtra(EtMyPageFragment.ET_DATA);
+
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("개 인 정 보");
 
         settingCalendar();
-
-        EaterInfoRequest request = new EaterInfoRequest(this);
-
-        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<EaterData>>() {
-            @Override
-            public void onSuccess(NetworkRequest<NetworkResult<EaterData>> request, NetworkResult<EaterData> result) {
-
-            }
-
-            @Override
-            public void onFail(NetworkRequest<NetworkResult<EaterData>> request, int errorCode, String errorMessage, Throwable e) {
-
-            }
-        });
-
     }
 
 
@@ -168,7 +154,6 @@ public class EtPersonalDataActivity extends AppCompatActivity {
         isPersonalData(false);
         btnChangeFinish.setVisibility(View.GONE);
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

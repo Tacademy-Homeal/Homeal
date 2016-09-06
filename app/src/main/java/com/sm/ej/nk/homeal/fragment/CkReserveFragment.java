@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.sm.ej.nk.homeal.DividerItemDecoration;
 import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.adapter.CkReserveAdapter;
 import com.sm.ej.nk.homeal.data.NetworkResult;
@@ -60,10 +61,8 @@ public class CkReserveFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_ck_reserve, container, false);
         ButterKnife.bind(this, view);
-
-
         LinearLayoutManager manager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
-
+        CkReserveView.addItemDecoration(new DividerItemDecoration(getActivity()));
         CkReserveView.setAdapter(mAdapter);
         CkReserveView.setLayoutManager(manager);
 

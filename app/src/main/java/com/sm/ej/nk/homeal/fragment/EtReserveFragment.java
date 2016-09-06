@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.sm.ej.nk.homeal.DividerItemDecoration;
 import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.adapter.EtReserveAdapter;
 import com.sm.ej.nk.homeal.data.NetworkResult;
@@ -63,24 +64,13 @@ public class EtReserveFragment extends Fragment {
         ButterKnife.bind(this, view);
 
         LinearLayoutManager manager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+        //add ItemDecoration
+        EtReserveView.addItemDecoration(new DividerItemDecoration(getActivity()));
 
         EtReserveView.setAdapter(mAdapter);
         EtReserveView.setLayoutManager(manager);
 
-        EtReserveRequest request = new EtReserveRequest(getContext());
-       NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<List<ReserveData>>>() {
-           @Override
-           public void onSuccess(NetworkRequest<NetworkResult<List<ReserveData>>> request, NetworkResult<List<ReserveData>> result) {
-               datas = result.getResult();
-               mAdapter.clear();
-               mAdapter.addAll(datas);
-           }
 
-           @Override
-           public void onFail(NetworkRequest<NetworkResult<List<ReserveData>>> request, int errorCode, String errorMessage, Throwable e) {
-
-           }
-       });
 //
 //                mAdapter.setOnReviewItemClickListener(new EtReserveAdapter.OnReserveAdapterClick() {
 //                    @Override
@@ -104,6 +94,27 @@ public class EtReserveFragment extends Fragment {
 //                    }
 //                });
         return view;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        EtReserveRequest request = new EtReserveRequest(getContext());
+        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<List<ReserveData>>>() {
+            @Override
+            public void onSuccess(NetworkRequest<NetworkResult<List<ReserveData>>> request, NetworkResult<List<ReserveData>> result) {
+                datas = result.getResult();
+                mAdapter.clear();
+                mAdapter.addAll(datas);
+            }
+
+            @Override
+            public void onFail(NetworkRequest<NetworkResult<List<ReserveData>>> request, int errorCode, String errorMessage, Throwable e) {
+
+            }
+        });
+
     }
 
     private void showDialog(){
