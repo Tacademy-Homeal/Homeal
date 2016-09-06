@@ -46,7 +46,7 @@
         android:layout_below="@+id/text_profile"
         android:layout_marginLeft="@dimen/et_personal_marginleft"
         android:layout_marginTop="@dimen/et_personal_marginleft"
-        android:src="@mipmap/ic_launcher" />
+        android:src="@drawable/basic_person" />
 
     <LinearLayout
         android:id="@+id/linear_et_name_age"
@@ -142,7 +142,7 @@
     </RadioGroup>
 
     <LinearLayout
-        android:id="@+id/linear_phone"
+        android:id="@+id/linear_phone_country"
         android:layout_width="match_parent"
         android:layout_height="@dimen/et_personal_box_height"
         android:layout_alignParentLeft="true"
@@ -153,26 +153,43 @@
         android:orientation="horizontal"
         android:weightSum="1">
 
-        <EditText
-            android:id="@+id/edit_et_phone"
+        <LinearLayout
+            android:id="@+id/linear_phone"
             android:layout_width="0dp"
-            android:layout_height="@dimen/et_personal_box_height"
-            android:layout_weight="0.5"
+            android:layout_height="42dp"
             android:background="@drawable/edge"
-            android:ems="10"
-            android:hint=" Phone"
-            android:inputType="phone" />
+            android:layout_weight="0.5"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="42dp"
+                android:text=" Tel:"/>
+
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="42dp"
+                android:id="@+id/spinner_et_country_phone"/>
+
+            <EditText
+                android:id="@+id/edit_et_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/et_personal_box_height"
+                android:background="@null"
+                android:ems="10"
+                android:inputType="phone" />
+        </LinearLayout>
 
         <Spinner
             android:id="@+id/spinner_et_country"
             android:layout_width="0dp"
             android:layout_height="@dimen/et_personal_box_height"
-            android:background="@drawable/edge"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/radioGroup"
             android:layout_marginLeft="@dimen/et_personal_between_margin"
-            android:layout_weight="0.5" />
+            android:layout_weight="0.5"
+            android:background="@drawable/edge" />
     </LinearLayout>
 
     <EditText
@@ -181,7 +198,7 @@
         android:layout_height="128dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/linear_phone"
+        android:layout_below="@+id/linear_phone_country"
         android:layout_marginLeft="@dimen/et_personal_marginleft"
         android:layout_marginTop="@dimen/et_personal_between_margin"
         android:background="@drawable/edge"
@@ -191,8 +208,8 @@
         android:id="@+id/btn_et_changefinish"
         android:layout_width="312dp"
         android:layout_height="45dp"
-        android:layout_marginLeft="@dimen/et_personal_marginleft"
         android:layout_below="@+id/edit_et_introduce"
+        android:layout_marginLeft="@dimen/et_personal_marginleft"
         android:layout_marginTop="@dimen/et_personal_marginleft"
         android:background="#E0E0E0"
         android:text="@string/change_finish" />

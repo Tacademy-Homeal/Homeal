@@ -15,9 +15,8 @@ import android.widget.Toast;
 
 import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.adapter.CkReserveAdapter;
-import com.sm.ej.nk.homeal.data.ReserveData;
 import com.sm.ej.nk.homeal.data.NetworkResult;
-import com.sm.ej.nk.homeal.data.ReserveResult;
+import com.sm.ej.nk.homeal.data.ReserveData;
 import com.sm.ej.nk.homeal.manager.NetworkManager;
 import com.sm.ej.nk.homeal.manager.NetworkRequest;
 import com.sm.ej.nk.homeal.request.CkReserveRequest;
@@ -110,16 +109,17 @@ public class CkReserveFragment extends Fragment {
         super.onStart();
 
         CkReserveRequest request = new CkReserveRequest(getContext());
-        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<ReserveResult>>() {
+        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<List<ReserveData>>>() {
             @Override
-            public void onSuccess(NetworkRequest<NetworkResult<ReserveResult>> request, NetworkResult<ReserveResult> result) {
-                datas = result.getResult().getReserve();
+            public void onSuccess(NetworkRequest<NetworkResult<List<ReserveData>>> request, NetworkResult<List<ReserveData>> result) {
+                datas = result.getResult();
                 mAdapter.clear();
                 mAdapter.addAll(datas);
             }
+
             @Override
-            public void onFail(NetworkRequest<NetworkResult<ReserveResult>> request, int errorCode, String errorMessage, Throwable e) {
-                Toast.makeText(getContext(),"Network fail",Toast.LENGTH_SHORT);
+            public void onFail(NetworkRequest<NetworkResult<List<ReserveData>>> request, int errorCode, String errorMessage, Throwable e) {
+
             }
         });
 

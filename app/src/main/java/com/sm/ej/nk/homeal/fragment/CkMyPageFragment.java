@@ -16,7 +16,6 @@ import com.sm.ej.nk.homeal.CkPersonalDataActivity;
 import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.SettingActivity;
 import com.sm.ej.nk.homeal.data.CkPersonalData;
-import com.sm.ej.nk.homeal.data.InfoResult;
 import com.sm.ej.nk.homeal.data.NetworkResult;
 import com.sm.ej.nk.homeal.data.User;
 import com.sm.ej.nk.homeal.manager.NetworkManager;
@@ -58,15 +57,14 @@ public class CkMyPageFragment extends Fragment {
         ButterKnife.bind(this, view);
 
         CkInfoRequest request = new CkInfoRequest(getContext());
-        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<InfoResult>>() {
+        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<CkPersonalData>>() {
             @Override
-            public void onSuccess(NetworkRequest<NetworkResult<InfoResult>> request, NetworkResult<InfoResult> result) {
-                CkPersonalData data = result.getResult().getInfo();
+            public void onSuccess(NetworkRequest<NetworkResult<CkPersonalData>> request, NetworkResult<CkPersonalData> result) {
 
             }
 
             @Override
-            public void onFail(NetworkRequest<NetworkResult<InfoResult>> request, int errorCode, String errorMessage, Throwable e) {
+            public void onFail(NetworkRequest<NetworkResult<CkPersonalData>> request, int errorCode, String errorMessage, Throwable e) {
 
             }
         });

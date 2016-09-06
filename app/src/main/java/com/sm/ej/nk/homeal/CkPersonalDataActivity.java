@@ -17,7 +17,7 @@ import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.sm.ej.nk.homeal.data.InfoResult;
+import com.sm.ej.nk.homeal.data.CkPersonalData;
 import com.sm.ej.nk.homeal.data.NetworkResult;
 import com.sm.ej.nk.homeal.manager.NetworkManager;
 import com.sm.ej.nk.homeal.manager.NetworkRequest;
@@ -32,6 +32,7 @@ import butterknife.OnClick;
 public class CkPersonalDataActivity extends AppCompatActivity {
 
     ArrayAdapter<String> countryAdapter;
+    ArrayAdapter<String> countryphoneAdapter;
 
     @BindView(R.id.toolbar_ck_toolbar)
     Toolbar toolbar;
@@ -47,6 +48,9 @@ public class CkPersonalDataActivity extends AppCompatActivity {
 
     @BindView(R.id.edit_ck_introduce)
     EditText introduceEdit;
+
+    @BindView(R.id.spinner_ck_country_phone)
+    Spinner countryphoneSpinner;
 
     @BindView(R.id.edit_ck_phone)
     EditText phoneEdit;
@@ -123,6 +127,11 @@ public class CkPersonalDataActivity extends AppCompatActivity {
         countryAdapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
         countrySpinner.setAdapter(countryAdapter);
 
+        countryphoneAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.country_phonenum));
+        countryphoneAdapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
+        countryphoneSpinner.setAdapter(countryphoneAdapter);
+
+
         ArrayList<String> monthList = new ArrayList<>();
         for (int month = 1; month < 13; month++) {
             monthList.add(String.valueOf(month));
@@ -148,14 +157,14 @@ public class CkPersonalDataActivity extends AppCompatActivity {
         btnChangeFinish.setVisibility(View.GONE);
 
         CkInfoRequest request = new CkInfoRequest(this);
-        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<InfoResult>>() {
+        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<CkPersonalData>>() {
             @Override
-            public void onSuccess(NetworkRequest<NetworkResult<InfoResult>> request, NetworkResult<InfoResult> result) {
+            public void onSuccess(NetworkRequest<NetworkResult<CkPersonalData>> request, NetworkResult<CkPersonalData> result) {
 
             }
 
             @Override
-            public void onFail(NetworkRequest<NetworkResult<InfoResult>> request, int errorCode, String errorMessage, Throwable e) {
+            public void onFail(NetworkRequest<NetworkResult<CkPersonalData>> request, int errorCode, String errorMessage, Throwable e) {
 
             }
         });
