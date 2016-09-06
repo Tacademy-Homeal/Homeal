@@ -111,16 +111,16 @@ public class ZzimViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void setData(ZzimData data){
-        Glide.with(zzimuserImage.getContext()).load(data.getZzimuserImageUrl()).into(zzimuserImage);
-        Glide.with(zzimfoodImage.getContext()).load(data.getZzimfoodImageUrl()).into(zzimfoodImage);
+        Glide.with(zzimuserImage.getContext()).load(data.getImage()).into(zzimuserImage);
+        Glide.with(zzimfoodImage.getContext()).load(data.getThumbnail()).into(zzimfoodImage);
 
-        zzimName.setText(data.getZzimname());
-        zzimAddress.setText(data.getZzimaddress());
-        zzimMenu.setText(data.getZzimfoodName());
-        zzimjjimCount.setText(data.getZzimjjimCount());
-        zzimreviewCount.setText(data.getZzimreviewCount());
-        zzimPrice.setText(data.getZzimfoodPrice());
+        zzimName.setText(data.getName());
+        zzimAddress.setText(data.getAddress());
+        zzimMenu.setText(data.getFoodName());
+        zzimjjimCount.setText(data.getBookmarkCnt());
+        zzimreviewCount.setText(data.getReviewCnt());
+        zzimPrice.setText(data.getFoodPrice());
 
-        zzimstarCount.setRating(data.getZzimgrade());
+        zzimstarCount.setRating(data.getGrade());
     }
 }

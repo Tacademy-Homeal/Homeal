@@ -14,11 +14,7 @@ import android.view.ViewGroup;
 
 import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.adapter.EtReserveAdapter;
-import com.sm.ej.nk.homeal.data.NetworkResult;
 import com.sm.ej.nk.homeal.data.ReserveData;
-import com.sm.ej.nk.homeal.data.ReserveResult;
-import com.sm.ej.nk.homeal.manager.NetworkManager;
-import com.sm.ej.nk.homeal.manager.NetworkRequest;
 import com.sm.ej.nk.homeal.request.EtReserveRequest;
 
 import java.util.List;
@@ -69,19 +65,19 @@ public class EtReserveFragment extends Fragment {
         EtReserveView.setLayoutManager(manager);
 
         EtReserveRequest request = new EtReserveRequest(getContext());
-       NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<ReserveResult>>() {
-           @Override
-           public void onSuccess(NetworkRequest<NetworkResult<ReserveResult>> request, NetworkResult<ReserveResult> result) {
-               datas = result.getResult().getReserve();
-               mAdapter.clear();
-               mAdapter.addAll(datas);
-           }
-
-           @Override
-           public void onFail(NetworkRequest<NetworkResult<ReserveResult>> request, int errorCode, String errorMessage, Throwable e) {
-
-           }
-       });
+//       NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<ReserveResult>>() {
+//           @Override
+//           public void onSuccess(NetworkRequest<NetworkResult<ReserveResult>> request, NetworkResult<ReserveResult> result) {
+//               datas = result.getResult().getReserve();
+//               mAdapter.clear();
+//               mAdapter.addAll(datas);
+//           }
+//
+//           @Override
+//           public void onFail(NetworkRequest<NetworkResult<ReserveResult>> request, int errorCode, String errorMessage, Throwable e) {
+//
+//           }
+//       });
 //
 //                mAdapter.setOnReviewItemClickListener(new EtReserveAdapter.OnReserveAdapterClick() {
 //                    @Override
