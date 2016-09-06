@@ -1,76 +1,85 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.sm.ej.nk.homeal.fragment.TOSFragment">
 
-    <RelativeLayout
+
+    <ImageView
+        android:id="@+id/tos_main_logo"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center">
-    <TextView
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="이용 약관"
-        android:textSize="24dp"
-        android:textColor="@color/color_homeal_main"
-        android:id="@+id/text_tos_main"
-        android:layout_gravity="center_horizontal|top"
-        android:layout_above="@+id/scrollView"
-        android:layout_alignLeft="@+id/scrollView"
-        android:layout_alignStart="@+id/scrollView" />
+        android:layout_marginTop="70dp"
+        android:src="@drawable/tos_logo_xxhdpi" />
+
+    <LinearLayout
+        android:id="@+id/linear_tos_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="165dp"
+        android:orientation="vertical"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp">
+
+        <TextView
+            android:id="@+id/text_tos_main"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="이용약관"
+            android:textColor="@color/color_homeal_main"
+            android:textSize="20dp" />
 
         <ScrollView
-            android:layout_width="282dp"
-            android:layout_height="321dp"
             android:id="@+id/scrollView"
-            android:layout_gravity="left|center_vertical"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true">
+            android:layout_width="match_parent"
+            android:layout_height="280dp"
+            android:layout_above="@+id/linear_tos_btn"
+            android:layout_alignLeft="@+id/text_tos_main"
+            android:layout_alignStart="@+id/text_tos_main"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/edittext_bg">
 
             <TextView
+                android:id="@+id/textView13"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="@string/tos_info"
-                android:id="@+id/textView13"
+                android:layout_above="@+id/scrollView"
                 android:layout_gravity="left|top"
-                android:layout_above="@+id/scrollView" />
-
+                android:text="@string/tos_info"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
         </ScrollView>
+    </LinearLayout>
 
-    <ImageButton
-        android:src="@drawable/agree_btn"
-        android:background="@color/color_homeal_background"
-        android:layout_width="@dimen/tos_btn_width"
-        android:layout_height="@dimen/tos_btn_height"
-        android:textColor="@color/color_homeal_main"
-        android:text="동의"
-        android:id="@+id/btn_tos_ok"
-        android:layout_gravity="left|bottom"
-        android:layout_marginBottom="@dimen/tos_btn_margin_bottom"
-        android:layout_marginLeft="@dimen/tos_btn_margin_left"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/scrollView"
-        android:layout_alignEnd="@+id/scrollView" />
+    <LinearLayout
+        android:id="@+id/linear_tos_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linear_tos_top"
+        android:layout_marginLeft="43dp"
+        android:layout_marginRight="43dp"
+        android:layout_marginBottom="44dp"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal">
 
-    <ImageButton
+        <ImageButton
+            android:id="@+id/btn_tos_backey"
+            android:layout_width="@dimen/tos_btn_width"
+            android:layout_height="@dimen/tos_btn_height"
+            android:layout_toRightOf="@+id/btn_tos_ok"
+            android:background="@drawable/edittext_bg"
+            android:src="@drawable/tos_disagree_btn"
+            android:text="비동의"
+            android:textColor="@color/color_homeal_main" />
 
-        android:src="@drawable/notagree_btn"
-        android:background="@color/color_homeal_background"
-        android:layout_width="@dimen/tos_btn_width"
-        android:layout_height="@dimen/tos_btn_height"
-        android:textColor="@color/color_homeal_main"
-        android:text="비동의"
-        android:id="@+id/btn_tos_backey"
-        android:layout_toRightOf="@+id/btn_tos_ok"
-        android:layout_marginBottom="@dimen/tos_btn_margin_bottom"
-        android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@+id/scrollView"
-        android:layout_alignStart="@+id/scrollView" />
+        <ImageButton
+            android:id="@+id/btn_tos_ok"
+            android:layout_width="@dimen/tos_btn_width"
+            android:layout_height="@dimen/tos_btn_height"
+            android:layout_marginLeft="37dp"
+            android:background="@drawable/edittext_bg"
+            android:src="@drawable/tos_agree_btn_"
+            android:text="동의"
+            android:textColor="@color/color_homeal_main" />
+    </LinearLayout>
 
-
-
-
-    </RelativeLayout>
-</FrameLayout>
+</RelativeLayout>

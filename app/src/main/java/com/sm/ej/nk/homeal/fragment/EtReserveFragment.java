@@ -124,7 +124,6 @@ public class EtReserveFragment extends Fragment {
         builder.show();
     }
 
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

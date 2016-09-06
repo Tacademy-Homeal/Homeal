@@ -4,9 +4,10 @@ import android.content.Context;
 
 import com.google.gson.reflect.TypeToken;
 import com.sm.ej.nk.homeal.data.NetworkResult;
-import com.sm.ej.nk.homeal.data.Bookmarks;
+import com.sm.ej.nk.homeal.data.ZzimData;
 
 import java.lang.reflect.Type;
+import java.util.List;
 
 import okhttp3.HttpUrl;
 import okhttp3.Request;
@@ -14,7 +15,7 @@ import okhttp3.Request;
 /**
  * Created by Tacademy on 2016-09-05.
  */
-public class ZzimListRequest extends AbstractRequest<NetworkResult<Bookmarks>> {
+public class ZzimListRequest extends AbstractRequest<NetworkResult<List<ZzimData>>> {
 
     Context context;
     Request request;
@@ -32,7 +33,8 @@ public class ZzimListRequest extends AbstractRequest<NetworkResult<Bookmarks>> {
 
     @Override
     protected Type getType() {
-        return new TypeToken<NetworkResult<Bookmarks>>(){}.getType();
+        return new TypeToken<NetworkResult<List<ZzimData>>>() {
+        }.getType();
     }
 
     @Override

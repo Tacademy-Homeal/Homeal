@@ -14,7 +14,6 @@ import android.widget.Toast;
 import com.sm.ej.nk.homeal.adapter.ZzimAdapter;
 import com.sm.ej.nk.homeal.data.NetworkResult;
 import com.sm.ej.nk.homeal.data.ZzimData;
-import com.sm.ej.nk.homeal.data.Bookmarks;
 import com.sm.ej.nk.homeal.manager.NetworkManager;
 import com.sm.ej.nk.homeal.manager.NetworkRequest;
 import com.sm.ej.nk.homeal.request.ZzimListRequest;
@@ -63,18 +62,18 @@ public class EtZzimActivity extends AppCompatActivity implements ZzimAdapter.OnZ
 //        initData();
 
         ZzimListRequest request = new ZzimListRequest(this);
-        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<Bookmarks>>() {
+        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<List<ZzimData>>>() {
 
             @Override
-            public void onSuccess(NetworkRequest<NetworkResult<Bookmarks>> request, NetworkResult<Bookmarks> result) {
+            public void onSuccess(NetworkRequest<NetworkResult<List<ZzimData>>> request, NetworkResult<List<ZzimData>> result) {
                 Toast.makeText(EtZzimActivity.this, "hi", Toast.LENGTH_SHORT).show();
-                datas = result.getResult().getBookmarks();
+                datas = result.getResult();
                 mAdapter.clear();
                 mAdapter.addList(datas);
             }
 
             @Override
-            public void onFail(NetworkRequest<NetworkResult<Bookmarks>> request, int errorCode, String errorMessage, Throwable e) {
+            public void onFail(NetworkRequest<NetworkResult<List<ZzimData>>> request, int errorCode, String errorMessage, Throwable e) {
                 Toast.makeText(EtZzimActivity.this, "" + errorMessage, Toast.LENGTH_SHORT).show();
             }
         });

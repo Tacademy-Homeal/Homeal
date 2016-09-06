@@ -1,6 +1,8 @@
 package com.sm.ej.nk.homeal.data;
 
-public class CkPersonalData {
+import java.io.Serializable;
+
+public class CkPersonalData implements Serializable {
     private String image;
     private String country;
     private String address;
@@ -11,6 +13,7 @@ public class CkPersonalData {
     private String name;
     private String birth;
     private String type;
+
 
     public String getImage() {
         return this.image;

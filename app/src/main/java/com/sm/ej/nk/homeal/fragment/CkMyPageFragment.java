@@ -17,7 +17,6 @@ import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.SettingActivity;
 import com.sm.ej.nk.homeal.data.CkPersonalData;
 import com.sm.ej.nk.homeal.data.NetworkResult;
-import com.sm.ej.nk.homeal.data.User;
 import com.sm.ej.nk.homeal.manager.NetworkManager;
 import com.sm.ej.nk.homeal.manager.NetworkRequest;
 import com.sm.ej.nk.homeal.request.CkInfoRequest;
@@ -39,7 +38,8 @@ public class CkMyPageFragment extends Fragment {
     @BindView(R.id.progress_ck_mypage_total)
     ProgressBar cktotalView;
 
-
+    CkPersonalData data;
+    public static final String CK_DATA = "Ck_data";
     public static CkMyPageFragment createInstance() {
         final CkMyPageFragment pageFragment = new CkMyPageFragment();
         final Bundle bundle = new Bundle();
@@ -57,9 +57,15 @@ public class CkMyPageFragment extends Fragment {
         ButterKnife.bind(this, view);
 
         CkInfoRequest request = new CkInfoRequest(getContext());
+
         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<CkPersonalData>>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<CkPersonalData>> request, NetworkResult<CkPersonalData> result) {
+                    data = result.getResult();
+                    cknameView.setText(data.getName());
+                    cktypeView.setText(data.getType());
+                    cktotalView.setProgress(data.getGrade());
+                    Glide.with(ckpictureView.getContext()).load(data.getImage()).into(ckpictureView);
 
             }
 
@@ -68,34 +74,13 @@ public class CkMyPageFragment extends Fragment {
 
             }
         });
-
-        initData();
-        setUser();
         return view;
-    }
-
-    private void initData() {
-        user = new User();
-        user.setImage("http://img.etnews.com/news/article/2016/02/18/cms_temp_article_18165253593992.jpg");
-        user.setName("Eunji");
-        user.setType("Cooker");
-        user.setTotalScore(3);
-
-    }
-
-    User user;
-
-    public void setUser() {
-
-        Glide.with(ckpictureView.getContext()).load(user.getImage()).into(ckpictureView);
-        cknameView.setText(user.getName());
-        cktypeView.setText(user.getType());
-        cktotalView.setProgress(user.getTotalScore());
     }
 
     @OnClick(R.id.text_ck_mypage_personal)
     public void onCkMypagePersonal() {
         Intent intent = new Intent(getActivity(), CkPersonalDataActivity.class);
+        intent.putExtra(CK_DATA,data);
         startActivity(intent);
     }
 
