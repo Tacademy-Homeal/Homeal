@@ -3,7 +3,7 @@ package com.sm.ej.nk.homeal.data;
 import java.io.Serializable;
 
 /**
- * Created by Tacademy on 2016-09-01.
+ * Created by Tacademy on 2016-09-06.
  */
 public class ZzimData implements Serializable {
     private String id;

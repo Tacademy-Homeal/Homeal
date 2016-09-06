@@ -12,9 +12,9 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.sm.ej.nk.homeal.adapter.ZzimAdapter;
+import com.sm.ej.nk.homeal.data.Bookmarks;
 import com.sm.ej.nk.homeal.data.NetworkResult;
 import com.sm.ej.nk.homeal.data.ZzimData;
-import com.sm.ej.nk.homeal.data.Bookmarks;
 import com.sm.ej.nk.homeal.manager.NetworkManager;
 import com.sm.ej.nk.homeal.manager.NetworkRequest;
 import com.sm.ej.nk.homeal.request.ZzimListRequest;
