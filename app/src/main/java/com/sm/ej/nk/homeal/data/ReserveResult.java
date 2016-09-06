@@ -7,7 +7,6 @@ import java.util.List;
  */
 public class ReserveResult {
 
-    //reservation 부분이 reserVation ??
 
     private List<CkReserveData> reservations;
 

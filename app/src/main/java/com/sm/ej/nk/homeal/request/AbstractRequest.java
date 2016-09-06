@@ -52,7 +52,7 @@ public abstract class AbstractRequest<T> extends NetworkRequest<T> {
 //        } else if (temp.getCode() == 2) {
 //            Type type = new TypeToken<NetworkResult<String>>(){}.getType();
 //            NetworkResult<String> result = gson.fromJson(text, type);
-//            throw new IOException(result.getResult());
+//            throw new IOException(result.getResults());
 //        } else {
 //            T result = gson.fromJson(text, getType(temp.getCode()));
 //            return result;

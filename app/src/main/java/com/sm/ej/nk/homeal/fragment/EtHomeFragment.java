@@ -72,7 +72,7 @@ public class EtHomeFragment extends Fragment implements EtHomeAdapter.OnReviewit
         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<StoreListResult>>() {
                     @Override
                     public void onSuccess(NetworkRequest<NetworkResult<StoreListResult>> request, NetworkResult<StoreListResult> result) {
-                        datas = result.getResult().getStoreList();
+                        datas = result.getResults().getStoreList();
                         mAdapter.clear();
                         mAdapter.addList(datas);
                     }
