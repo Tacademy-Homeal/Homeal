@@ -5,9 +5,10 @@ import android.util.Log;
 
 import com.google.gson.reflect.TypeToken;
 import com.sm.ej.nk.homeal.data.NetworkResult;
-import com.sm.ej.nk.homeal.data.ReserveResult;
+import com.sm.ej.nk.homeal.data.ReserveData;
 
 import java.lang.reflect.Type;
+import java.util.List;
 
 import okhttp3.HttpUrl;
 import okhttp3.Request;
@@ -15,7 +16,7 @@ import okhttp3.Request;
 /**
  * Created by Tacademy on 2016-09-02.
  */
-public class EtReserveRequest extends AbstractRequest<NetworkResult<ReserveResult>>{
+public class EtReserveRequest extends AbstractRequest<NetworkResult<List<ReserveData>>>{
 
     Request mRequest;
     public EtReserveRequest(Context context) {
@@ -45,7 +46,7 @@ public class EtReserveRequest extends AbstractRequest<NetworkResult<ReserveResul
 
     @Override
     protected Type getType() {
-        return new TypeToken<NetworkResult<ReserveResult>>(){}.getType();
+        return new TypeToken<NetworkResult<List<ReserveData>>>(){}.getType();
     }
 
     @Override
