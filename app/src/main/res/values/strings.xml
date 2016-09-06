@@ -144,5 +144,7 @@
     <string name="ck_home_fabchat">채팅</string>
     <string name="ck_home_fabsend">예약요청</string>
     <string name="text_sing_up">Sign Up</string>
-
+    <string name="reserve_date">날짜</string>
+    <string name="reserve_count" >예약인원</string>
+    <string name="reserve_time">시간</string>
 </resources>

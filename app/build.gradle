@@ -52,5 +52,6 @@ dependencies {
     compile files('libs/com.skp.Tmap_1.0.43.jar')
     compile 'com.github.clans:fab:1.6.4'
     compile project(':viewPagerIndicator')
+    compile 'com.daimajia.swipelayout:library:1.2.0@aar'
 }
 apply plugin: 'com.google.gms.google-services'

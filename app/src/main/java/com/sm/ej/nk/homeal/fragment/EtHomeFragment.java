@@ -34,7 +34,10 @@ public class EtHomeFragment extends Fragment implements EtHomeAdapter.OnReviewit
     @BindView(R.id.rv_et_home_ft)
     RecyclerView recyclerView;
 
-    RecyclerView.LayoutManager layoutManager;
+    LinearLayoutManager manager;
+    boolean isLastItem;
+    private static int PAGENO=1;
+    private static String ROWCOUNT="7";
 
     EtHomeAdapter mAdapter;
     List<EtHomeData> datas;
@@ -47,7 +50,6 @@ public class EtHomeFragment extends Fragment implements EtHomeAdapter.OnReviewit
     }
 
     public EtHomeFragment() {
-        // Required empty public constructor
     }
 
     @Override
@@ -56,35 +58,56 @@ public class EtHomeFragment extends Fragment implements EtHomeAdapter.OnReviewit
         // Inflate the layout for this fragment
         View v =  inflater.inflate(R.layout.fragment_et_home, container, false);
         ButterKnife.bind(this, v);
-        layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
-
+        manager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         mAdapter = new EtHomeAdapter();
         mAdapter.setOnJjimitemClickListener(this);
         mAdapter.setOnReciewClickListener(this);
         mAdapter.setOnViewClickListener(this);
-
-        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(mAdapter);
-        String pageno = "1";
-        String rowCount = "10";
-        CkPageListRequest request = new CkPageListRequest(getContext() ,pageno, rowCount);
-        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<List<EtHomeData>>>() {
-                    @Override
-                    public void onSuccess(NetworkRequest<NetworkResult<List<EtHomeData>>> request, NetworkResult<List<EtHomeData>> result) {
-                        datas = result.getResult();
-                        mAdapter.clear();
-                        mAdapter.addList(datas);
-                    }
 
-                    @Override
-                    public void onFail(NetworkRequest<NetworkResult<List<EtHomeData>>> request, int errorCode, String errorMessage, Throwable e) {
+        addItem(""+PAGENO, ROWCOUNT);
 
-                    }
-                });
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if(isLastItem && newState == RecyclerView.SCROLL_STATE_IDLE){
+                    addItem(""+PAGENO, ROWCOUNT);
+                }
+            }
 
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                int totalItemCount = manager.getItemCount();
+                int lastVisibleItemPosition = manager.findLastCompletelyVisibleItemPosition();
+                if(totalItemCount >0 && lastVisibleItemPosition != RecyclerView.NO_POSITION && (totalItemCount -1 <= lastVisibleItemPosition)){
+                    isLastItem = true;
+                }else{
+                    isLastItem = false;
+                }
+            }
+        });
         return v;
     }
 
+    private void addItem(final String pageNo, String rowCount){
+        CkPageListRequest request = new CkPageListRequest(getContext() ,pageNo, rowCount);
+        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<List<EtHomeData>>>() {
+            @Override
+            public void onSuccess(NetworkRequest<NetworkResult<List<EtHomeData>>> request, NetworkResult<List<EtHomeData>> result) {
+                datas = result.getResult();
+                mAdapter.addList(datas);
+                PAGENO+=1;
+            }
+
+            @Override
+            public void onFail(NetworkRequest<NetworkResult<List<EtHomeData>>> request, int errorCode, String errorMessage, Throwable e) {
+
+            }
+        });
+    }
 
     public static final String INTENT_CK_ID = "asd";
     public static final String INTENT_ZZIM_ID = "asdf";

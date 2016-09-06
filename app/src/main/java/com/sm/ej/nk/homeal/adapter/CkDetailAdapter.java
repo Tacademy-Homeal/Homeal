@@ -28,6 +28,7 @@ public class CkDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     List<CkDetailMenuData> menuList;
     List<CkScheduleData> scheduleList;
     List<ThumbnailsData> thumbnailsDatas;
+    CalendarItem calendarItem;
 
     public CkDetailAdapter(){
 
@@ -80,13 +81,13 @@ public class CkDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        switch (viewType){
+        switch (viewType) {
             case HEADER_VIEW: {
                 View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_ck_detail, parent, false);
                 CkDetailHeaderViewHolder holder = new CkDetailHeaderViewHolder(parent.getContext(), view);
                 return holder;
             }
-            case MENU_VIEW:{
+            case MENU_VIEW: {
                 View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_ck_detail_menu, parent, false);
                 return new CkDetailItemViewHolder(view);
             }
@@ -128,7 +129,15 @@ public class CkDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
         if(data.isSelect){
             headerholder.showSchedule(data);
+            calendarItem = data;
         }
+    }
+
+    public CalendarItem getSelectCalendarItem(){
+        if(calendarItem!=null){
+            return calendarItem;
+        }
+        return null;
     }
 
     public interface OnDetailAdapterClickListener{

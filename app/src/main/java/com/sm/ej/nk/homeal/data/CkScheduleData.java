@@ -9,6 +9,11 @@ public class CkScheduleData implements Serializable{
     private String date;
     private String pax;
     private int sharing;
+    private String id;
+
+    public String getId() {
+        return id;
+    }
 
     public CalendarItem getCalendar(){
         String[] calendar = date.split(" ");

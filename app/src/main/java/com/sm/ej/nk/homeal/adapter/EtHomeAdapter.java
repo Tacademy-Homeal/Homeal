@@ -23,13 +23,12 @@ public class EtHomeAdapter extends RecyclerView.Adapter<EtHomeViewHolder> implem
         notifyDataSetChanged();
     }
 
-    public void add(EtHomeData data){
-        this.list.add(data);
-        notifyDataSetChanged();
-    }
-
     public void addList(List<EtHomeData> list){
-      this.list.addAll(list);
+        if(this.list==null){
+            this.list = list;
+        }else{
+            this.list.addAll(list);
+        }
         notifyDataSetChanged();
     }
 

@@ -8,17 +8,21 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 import com.sm.ej.nk.homeal.adapter.CkDetailAdapter;
 import com.sm.ej.nk.homeal.data.CalendarItem;
+import com.sm.ej.nk.homeal.data.CkDetailMenuData;
 import com.sm.ej.nk.homeal.data.CkInfoResult;
 import com.sm.ej.nk.homeal.data.EtHomeData;
 import com.sm.ej.nk.homeal.fragment.EtHomeFragment;
 import com.sm.ej.nk.homeal.manager.NetworkManager;
 import com.sm.ej.nk.homeal.manager.NetworkRequest;
 import com.sm.ej.nk.homeal.request.CkPageCheckRequest;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -40,9 +44,14 @@ public class InfoCkDetailActivity extends AppCompatActivity implements CkDetailA
     @BindView(R.id.fab_send)
     FloatingActionButton fabSend;
 
+
     EtHomeData etHomeData;
+    CalendarItem calendarItem;
 
     CkDetailAdapter mAdapter;
+    CkInfoResult resultDara;
+    List<CkDetailMenuData> selectMenuList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,6 +83,7 @@ public class InfoCkDetailActivity extends AppCompatActivity implements CkDetailA
         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<CkInfoResult>() {
             @Override
             public void onSuccess(NetworkRequest<CkInfoResult> request, CkInfoResult result) {
+                resultDara = result;
                 mAdapter.setResult(result);
                 mAdapter.setOnDetailAdapterClickListener(InfoCkDetailActivity.this);
                 rv.setAdapter(mAdapter);
@@ -83,7 +93,31 @@ public class InfoCkDetailActivity extends AppCompatActivity implements CkDetailA
                 e.printStackTrace();
             }
         });
+
+        fabChat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        fabSend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(mAdapter.getSelectCalendarItem()==null){
+                    Toast.makeText(InfoCkDetailActivity.this, "날짜를 선택해주세요", Toast.LENGTH_SHORT).show();
+                }else{
+                    Intent intent = new Intent(InfoCkDetailActivity.this, ReserveRequestActivity.class);
+//                    intent.putExtra(INTENT_RESERVE_MENU, );
+                    intent.putExtra(INTENT_RESERVE_CALENDAR, mAdapter.getSelectCalendarItem());
+                    startActivity(intent);
+                }
+                }
+        });
     }
+
+    public static final String INTENT_RESERVE_MENU = "rrrr";
+    public static final String INTENT_RESERVE_CALENDAR= "www";
 
     @Override
     public void onDetailAdapterClick(View view, CalendarItem data, int position) {

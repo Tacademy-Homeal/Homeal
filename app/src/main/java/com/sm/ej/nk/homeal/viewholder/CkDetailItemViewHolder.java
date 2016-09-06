@@ -6,6 +6,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.daimajia.swipe.SwipeLayout;
 import com.sm.ej.nk.homeal.HomealApplication;
 import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.data.CkDetailMenuData;
@@ -15,27 +16,29 @@ import com.sm.ej.nk.homeal.data.CkDetailMenuData;
  */
 public class CkDetailItemViewHolder extends RecyclerView.ViewHolder{
     public View view;
-    public TextView daynum, day, foodname, foodadd, time;
-    public ImageView image, imageButton;
+    public TextView daynum, day, foodname, foodadd, time, foodintro, foodprice;
+    public ImageView image, imageButton, swipeImage;
     public CkDetailMenuData datas;
+    public SwipeLayout swipeLayout;
 
     public CkDetailItemViewHolder(View view){
         super(view);
-        daynum = (TextView)view.findViewById(R.id.text_item_ck_detail_numday);
-        day = (TextView)view.findViewById(R.id.text_item_ck_detail_day);
         foodname = (TextView)view.findViewById(R.id.text_item_ck_detail_food);
-        foodadd = (TextView)view.findViewById(R.id.text_item_ck_detail_add);
-        time = (TextView)view.findViewById(R.id.text_item_ck_detail_time);
         image = (ImageView)view.findViewById(R.id.image_item_ck_detail);
-        imageButton = (ImageView)view.findViewById(R.id.image_item_ck_detail_button);
+        foodintro = (TextView)view.findViewById(R.id.text_item_ck_detail_intro);
+        foodprice = (TextView)view.findViewById(R.id.text_item_ck_detail_price);
+        swipeLayout = (SwipeLayout)view.findViewById(R.id.swipe_ck_detail);
+        swipeLayout.setShowMode(SwipeLayout.ShowMode.PullOut);
+        swipeImage =(ImageView)swipeLayout.findViewById(R.id.image_ck_detail_swipe);
+        swipeLayout.addDrag(SwipeLayout.DragEdge.Right, swipeLayout.findViewById(R.id.right_ck_detail));
 
     }
 
     public void setData(CkDetailMenuData datas){
         this.datas = datas;
         foodname.setText(datas.getFoodName());
-        foodadd.setText(datas.getFoodAddress());
-        time.setText(datas.getFoodTime());
+        foodintro.setText(datas.introduce);
+        foodprice.setText(datas.price);
         Glide.with(HomealApplication.getContext()).load(datas.image).into(image);
 
     }

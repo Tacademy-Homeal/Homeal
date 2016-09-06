@@ -129,6 +129,6 @@ public class EtHomeViewHolder extends RecyclerView.ViewHolder {
         }else{
             jjimimage.setImageResource(R.drawable.homeal_heart_fill);
         }
-        starCount.setRating(data.getGrade());
+        starCount.setRating((int)data.getGrade());
     }
 }

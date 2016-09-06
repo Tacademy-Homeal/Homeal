@@ -1,11 +1,12 @@
 package com.sm.ej.nk.homeal.data;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by Tacademy on 2016-08-26.
  */
-public class CalendarItem {
+public class CalendarItem implements Serializable{
     public int year;
     public int month;
     public int dayOfMonth;

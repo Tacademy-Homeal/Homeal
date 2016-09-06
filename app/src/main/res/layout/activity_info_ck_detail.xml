@@ -30,6 +30,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
+        fab:menu_labels_style="@style/MenuLabelsStyle"
         android:layout_margin="@dimen/ck_detail_floating_bottommargin">
 
         <com.github.clans.fab.FloatingActionButton
@@ -37,7 +38,6 @@
             android:layout_height="wrap_content"
             android:id="@+id/fab_chat"
             fab:fab_label="@string/ck_home_fabchat"
-            fab:menu_labels_style="@style/MenuLabelsStyle"
             fab:fab_size="mini"/>
 
         <com.github.clans.fab.FloatingActionButton

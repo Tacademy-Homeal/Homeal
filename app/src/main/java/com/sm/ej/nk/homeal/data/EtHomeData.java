@@ -13,7 +13,7 @@ public class EtHomeData implements Serializable {
     private String address;
     private String foodName;
     private String foodPrice;
-    private int grade;
+    private float grade;
     private int bookmarkCnt;
     private int reviewCnt;
     private int isBookmark;
@@ -92,7 +92,7 @@ public class EtHomeData implements Serializable {
         this.foodPrice = foodPrice;
     }
 
-    public int getGrade() {
+    public float getGrade() {
         return grade;
     }
 

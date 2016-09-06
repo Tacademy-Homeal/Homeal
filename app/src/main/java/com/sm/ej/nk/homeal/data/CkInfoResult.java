@@ -1,11 +1,12 @@
 package com.sm.ej.nk.homeal.data;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Tacademy on 2016-09-02.
  */
-public class CkInfoResult {
+public class CkInfoResult implements Serializable{
     private String code;
     private CkDetailData cooker_info;
     private List<CkDetailMenuData> cooker_menu;
