@@ -8,9 +8,9 @@ import java.util.List;
 public class ReserveResult {
 
 
-    private List<CkReserveData> reservations;
+    private List<ReserveData> reservations;
 
-    public List<CkReserveData> getReserve() {
+    public List<ReserveData> getReserve() {
         return reservations;
     }
 }

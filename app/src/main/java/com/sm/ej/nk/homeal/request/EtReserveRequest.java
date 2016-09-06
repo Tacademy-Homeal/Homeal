@@ -5,8 +5,8 @@ import android.util.Log;
 
 import com.google.gson.reflect.TypeToken;
 import com.sm.ej.nk.homeal.data.EaterData;
-import com.sm.ej.nk.homeal.data.EtReserveData;
 import com.sm.ej.nk.homeal.data.NetworkResult;
+import com.sm.ej.nk.homeal.data.ReserveResult;
 
 import java.lang.reflect.Type;
 
@@ -16,7 +16,7 @@ import okhttp3.Request;
 /**
  * Created by Tacademy on 2016-09-02.
  */
-public class EtReserveRequest extends AbstractRequest<NetworkResult<EtReserveData>>{
+public class EtReserveRequest extends AbstractRequest<NetworkResult<ReserveResult>>{
 
     Request mRequest;
     public EtReserveRequest(Context context) {

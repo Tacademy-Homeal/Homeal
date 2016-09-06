@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.adapter.CkReserveAdapter;
-import com.sm.ej.nk.homeal.data.CkReserveData;
+import com.sm.ej.nk.homeal.data.ReserveData;
 import com.sm.ej.nk.homeal.data.NetworkResult;
 import com.sm.ej.nk.homeal.data.ReserveResult;
 import com.sm.ej.nk.homeal.manager.NetworkManager;
@@ -43,7 +43,7 @@ public class CkReserveFragment extends Fragment {
     private static final int TYPE_EAT_COMPLETE = 6;
     private static final int TYPE_END = 7;
 
-    List<CkReserveData> datas;
+    List<ReserveData> datas;
     public static CkReserveFragment createInstance() {
         final CkReserveFragment pageFragment = new CkReserveFragment();
         final Bundle bundle = new Bundle();
@@ -74,14 +74,14 @@ public class CkReserveFragment extends Fragment {
     private void setCookerButton(){
         mAdapter.setOnAgreeButtonClickListener(new CkReserveAdapter.OnAagreeButtonClickLIstener() {
             @Override
-            public void onAagreeButtonClick(View view, CkReserveData data, int position) {
+            public void onAagreeButtonClick(View view, ReserveData data, int position) {
                 Toast.makeText(getContext(),"승인되었습니다",Toast.LENGTH_SHORT).show();
             }
         });
 
         mAdapter.setOnDisagreeButtonClickLIstener(new CkReserveAdapter.OnDisagreeButtonClickLIstener() {
             @Override
-            public void onDisagreeButtonClick(View view, CkReserveData data, int position) {
+            public void onDisagreeButtonClick(View view, ReserveData data, int position) {
                 Toast.makeText(getContext(),"거절 되었습니다",Toast.LENGTH_SHORT).show();
             }
         });
@@ -89,7 +89,7 @@ public class CkReserveFragment extends Fragment {
 //        mAdapter.setOnreviewAdapterItemClickListener(new CkReserveAdapter.OnreviewButtonClickLIstener() {
 //
 //            @Override
-//            public void onreviewAdapterItemClick(View view, CkReserveData data, int position) {
+//            public void onreviewAdapterItemClick(View view, ReserveData data, int position) {
 //
 //                int staus = Integer.parseInt(data.getStatus());
 //                switch (staus) {

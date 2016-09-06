@@ -2,26 +2,26 @@ package com.sm.ej.nk.homeal.fragment;
 
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.sm.ej.nk.homeal.EtWriteReviewActivity;
 import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.adapter.EtReserveAdapter;
-import com.sm.ej.nk.homeal.data.EtReserveData;
 import com.sm.ej.nk.homeal.data.NetworkResult;
+import com.sm.ej.nk.homeal.data.ReserveData;
+import com.sm.ej.nk.homeal.data.ReserveResult;
 import com.sm.ej.nk.homeal.manager.NetworkManager;
 import com.sm.ej.nk.homeal.manager.NetworkRequest;
 import com.sm.ej.nk.homeal.request.EtReserveRequest;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -34,6 +34,7 @@ public class EtReserveFragment extends Fragment {
     @BindView(R.id.rv_et_reserve)
     RecyclerView EtReserveView;
     EtReserveAdapter mAdapter;
+    List<ReserveData> datas;
 
     private static final int TYPE_REQUEST = 1;
     private static final int TYPE_REQUEST_COMPLETE = 2;
@@ -68,43 +69,41 @@ public class EtReserveFragment extends Fragment {
         EtReserveView.setLayoutManager(manager);
 
         EtReserveRequest request = new EtReserveRequest(getContext());
-
-        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<EtReserveData>>() {
-            @Override
-            public void onSuccess(NetworkRequest<NetworkResult<EtReserveData>> request, NetworkResult<EtReserveData> result) {
-
-                Log.d("sucess","sucess");
-            }
-
-            @Override
-            public void onFail(NetworkRequest<NetworkResult<EtReserveData>> request, int errorCode, String errorMessage, Throwable e) {
-                Log.d("fail","czdadfaaafd");
-
-            }
-        });
-
-        mAdapter.setOnReviewItemClickListener(new EtReserveAdapter.OnReserveAdapterClick() {
+       NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<ReserveResult>>() {
            @Override
-           public void onReserveAdapterClick(View view, EtReserveData etReserveData, int position) {
-
-               int stauts = Integer.parseInt(etReserveData.getStatus());
-
-               switch (stauts){
-                   case TYPE_REQUEST :
-                       showDialog();
-                       break;
-                   case TYPE_REQUEST_COMPLETE :
-                       showDialog();
-                       break;
-                   case TYPE_EAT_COMPLETE :
-                       Intent intent = new Intent(getActivity(),EtWriteReviewActivity.class);
-                       startActivity(intent);
-                       break;
-                   case TYPE_END :
-                       break;
-               }
+           public void onSuccess(NetworkRequest<NetworkResult<ReserveResult>> request, NetworkResult<ReserveResult> result) {
+               datas = result.getResult().getReserve();
+               mAdapter.clear();
+               mAdapter.addAll(datas);
            }
-        });
+
+           @Override
+           public void onFail(NetworkRequest<NetworkResult<ReserveResult>> request, int errorCode, String errorMessage, Throwable e) {
+
+           }
+       });
+//
+//                mAdapter.setOnReviewItemClickListener(new EtReserveAdapter.OnReserveAdapterClick() {
+//                    @Override
+//                    public void onReserveAdapterClick(View view, EtReserveData etReserveData, int position) {
+//
+//
+//                        switch (0) {
+//                            case TYPE_REQUEST:
+//                                showDialog();
+//                                break;
+//                            case TYPE_REQUEST_COMPLETE:
+//                                showDialog();
+//                                break;
+//                            case TYPE_EAT_COMPLETE:
+//                                Intent intent = new Intent(getActivity(), EtWriteReviewActivity.class);
+//                                startActivity(intent);
+//                                break;
+//                            case TYPE_END:
+//                                break;
+//                        }
+//                    }
+//                });
         return view;
     }
 

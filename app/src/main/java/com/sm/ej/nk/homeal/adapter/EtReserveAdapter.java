@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.sm.ej.nk.homeal.R;
-import com.sm.ej.nk.homeal.data.EtReserveData;
+import com.sm.ej.nk.homeal.data.ReserveData;
 import com.sm.ej.nk.homeal.viewholder.EtReserveViewHolder;
 
 import java.util.ArrayList;
@@ -16,13 +16,23 @@ import java.util.List;
  * Created by Tacademy on 2016-08-26.
  */
 public class EtReserveAdapter extends RecyclerView.Adapter<EtReserveViewHolder> implements EtReserveViewHolder.OnReserveButtonClick{
-    List<EtReserveData> items = new ArrayList<>();
+    List<ReserveData> items = new ArrayList<>();
 
-    public void add(EtReserveData data) {
+
+    public void add(ReserveData data) {
         items.add(data);
         notifyDataSetChanged();
     }
 
+    public void clear(){
+        items.clear();
+        notifyDataSetChanged();
+    }
+
+    public void addAll(List<ReserveData> items) {
+        this.items.addAll(items);
+        notifyDataSetChanged();
+    }
     @Override
     public EtReserveViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_et_reserve_fragment, parent, false);
@@ -46,7 +56,7 @@ public class EtReserveAdapter extends RecyclerView.Adapter<EtReserveViewHolder> 
     //Review Button click evnet & cancle button
 
     public interface OnReserveAdapterClick {
-        public void onReserveAdapterClick(View view, EtReserveData etReserveData, int position);
+        public void onReserveAdapterClick(View view, ReserveData etReserveData, int position);
     }
 
     OnReserveAdapterClick rListener;
@@ -56,7 +66,7 @@ public class EtReserveAdapter extends RecyclerView.Adapter<EtReserveViewHolder> 
     }
 
     @Override
-    public void onReserveButtonClick(View view, EtReserveData etReserveData, int position) {
+    public void onReserveButtonClick(View view, ReserveData etReserveData, int position) {
         if (rListener != null) {
             rListener.onReserveAdapterClick(view, etReserveData, position);
         }

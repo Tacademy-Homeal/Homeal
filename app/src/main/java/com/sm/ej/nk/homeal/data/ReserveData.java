@@ -3,7 +3,7 @@ package com.sm.ej.nk.homeal.data;
 /**
  * Created by Tacademy on 2016-09-05.
  */
-public class CkReserveData {
+public class ReserveData {
 
     private int rpax;
     private int rstatus;

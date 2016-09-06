@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.sm.ej.nk.homeal.R;
-import com.sm.ej.nk.homeal.data.CkReserveData;
+import com.sm.ej.nk.homeal.data.ReserveData;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -48,7 +48,7 @@ public class CkReserveViewHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.btn_ck_review_write)
     Button btn_reserve_write;
 
-    CkReserveData ckReserveData;
+    ReserveData reserveData;
 
     private static final int TYPE_QUEST = 0;
     private static final int TYPE_QUEST_COMPLETE = 1;
@@ -71,7 +71,7 @@ public class CkReserveViewHolder extends RecyclerView.ViewHolder {
             @Override
             public void onClick(View v) {
                 if (aListener != null) {
-                    aListener.onAgreeButtonClick(v, ckReserveData, getAdapterPosition());
+                    aListener.onAgreeButtonClick(v, reserveData, getAdapterPosition());
                 }
             }
         });
@@ -80,7 +80,7 @@ public class CkReserveViewHolder extends RecyclerView.ViewHolder {
             @Override
             public void onClick(View v) {
                 if (dListener != null) {
-                    dListener.onDisagreeButtonClick(v, ckReserveData, getAdapterPosition());
+                    dListener.onDisagreeButtonClick(v, reserveData, getAdapterPosition());
                 }
             }
         });
@@ -88,7 +88,7 @@ public class CkReserveViewHolder extends RecyclerView.ViewHolder {
             @Override
             public void onClick(View v) {
                 if (rListener != null) {
-                    rListener.onReviewButtonClick(v, ckReserveData, getAdapterPosition());
+                    rListener.onReviewButtonClick(v, reserveData, getAdapterPosition());
                 }
             }
         });
@@ -96,20 +96,23 @@ public class CkReserveViewHolder extends RecyclerView.ViewHolder {
 
 
     //set Data
-    public void setReserveData(CkReserveData ckReserveData) {
-        this.ckReserveData = ckReserveData;
-        Glide.with(pictureView.getContext()).load(ckReserveData.getUimage()).into(pictureView);
-        dateView.setText(ckReserveData.getSdate());
-       // reservePersonView.setText(ckReserveData.get());
-        ckNameView.setText(ckReserveData.getUname());
-        foodNameView.setText(ckReserveData.getMname());
+    public void setReserveData(ReserveData reserveData) {
+        this.reserveData = reserveData;
 
+
+        Glide.with(pictureView.getContext()).load(reserveData.getUimage()).into(pictureView);
+        dateView.setText(reserveData.getSdate());
+        ckNameView.setText(reserveData.getUname());
+        foodNameView.setText(reserveData.getMname());
+
+
+        //btn
         btn_reserve_agree.setVisibility(View.INVISIBLE);
         btn_reserve_disagree.setVisibility(View.INVISIBLE);
         btn_reserve_write.setVisibility(View.INVISIBLE);
 
 
-        switch (ckReserveData.getRstatus()){
+        switch (reserveData.getRstatus()){
             case TYPE_QUEST :
                 btn_reserve_agree.setVisibility(View.VISIBLE);
                 btn_reserve_disagree.setVisibility(View.VISIBLE);
@@ -133,7 +136,7 @@ public class CkReserveViewHolder extends RecyclerView.ViewHolder {
     //Agree Button
     public interface OnAgreeButtonClickListener {
 
-        public void onAgreeButtonClick(View view, CkReserveData ckReserveData, int position);
+        public void onAgreeButtonClick(View view, ReserveData reserveData, int position);
     }
 
     OnAgreeButtonClickListener aListener;
@@ -144,7 +147,7 @@ public class CkReserveViewHolder extends RecyclerView.ViewHolder {
 
     //DisAgreen Button
     public interface OnDisagreeButtonClickListener {
-        public void onDisagreeButtonClick(View view, CkReserveData ckReserveData, int position);
+        public void onDisagreeButtonClick(View view, ReserveData reserveData, int position);
     }
 
     OnDisagreeButtonClickListener dListener;
@@ -157,7 +160,7 @@ public class CkReserveViewHolder extends RecyclerView.ViewHolder {
     //Review Button
     public interface OnReviewButtonClickListener {
 
-        public void onReviewButtonClick(View view, CkReserveData ckReserveData, int position);
+        public void onReviewButtonClick(View view, ReserveData reserveData, int position);
     }
 
     OnReviewButtonClickListener rListener;
