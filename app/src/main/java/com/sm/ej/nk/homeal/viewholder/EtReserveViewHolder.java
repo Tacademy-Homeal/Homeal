@@ -77,7 +77,7 @@ public class EtReserveViewHolder extends RecyclerView.ViewHolder {
         dateView.setText(etReserveData.getSdate());
 
         //btn setting
-        switch (0){
+        switch (etReserveData.getRstatus()){
             case TYPE_REQUEST :
                 btn_reserve.setText(R.string.et_reservation_cancle);
                 reserveStateView.setText(R.string.et_text_reservation_request);
