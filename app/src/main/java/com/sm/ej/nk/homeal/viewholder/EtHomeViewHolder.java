@@ -124,7 +124,11 @@ public class EtHomeViewHolder extends RecyclerView.ViewHolder {
         jjimCount.setText(""+data.getBookmarkCnt());
         reviewCount.setText(""+data.getReviewCnt());
         price.setText(data.getFoodPrice());
-
+        if(data.getIsBookmark()==0){
+            jjimimage.setImageResource(R.drawable.homeal_heart);
+        }else{
+            jjimimage.setImageResource(R.drawable.homeal_heart_fill);
+        }
         starCount.setRating(data.getGrade());
     }
 }

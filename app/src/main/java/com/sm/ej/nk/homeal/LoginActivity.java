@@ -57,7 +57,12 @@ public class LoginActivity extends AppCompatActivity {
     private void showDialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-
+        builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                finish();
+            }
+        });
 
         builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
             @Override

@@ -44,7 +44,7 @@ public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder implements
     CirclePageIndicator circleIndicator;
     List<CkScheduleData> list;
     List<CalendarItem> calendarItems;
-
+//hhhhhhhh
     public CkDetailHeaderViewHolder(Context context,View view){
         super(view);
         this.context = context;
@@ -119,9 +119,9 @@ public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder implements
 
         progressTotal.setProgress(data.grade);
 //        progressTaste.setProgress(Integer.parseInt(data.taste));
-        progressPrice.setProgress(Integer.parseInt(data.price));
-        progressClean.setProgress(Integer.parseInt(data.cleanliness));
-        progresskind.setProgress(Integer.parseInt(data.kindness));
+        progressPrice.setProgress(data.price);
+        progressClean.setProgress(data.cleanliness);
+        progresskind.setProgress(data.kindness);
     }
 
     public void setSchedule(List<CkScheduleData> list){

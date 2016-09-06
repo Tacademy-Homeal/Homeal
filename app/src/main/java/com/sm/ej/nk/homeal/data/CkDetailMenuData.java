@@ -1,9 +1,11 @@
 package com.sm.ej.nk.homeal.data;
 
+import java.io.Serializable;
+
 /**
  * Created by Tacademy on 2016-08-29.
  */
-public class CkDetailMenuData {
+public class CkDetailMenuData implements Serializable{
     public String image;
     public String name;
     public String foodAddress;
@@ -15,6 +17,7 @@ public class CkDetailMenuData {
     public int activation;
     public int currency;
     public int price;
+    public String introduce;
 
     public String getImage() {
         return image;

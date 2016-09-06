@@ -110,7 +110,6 @@ public class CkReserveFragment extends Fragment {
         super.onStart();
 
         CkReserveRequest request = new CkReserveRequest(getContext());
-
         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<ReserveResult>>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<ReserveResult>> request, NetworkResult<ReserveResult> result) {
@@ -120,7 +119,7 @@ public class CkReserveFragment extends Fragment {
             }
             @Override
             public void onFail(NetworkRequest<NetworkResult<ReserveResult>> request, int errorCode, String errorMessage, Throwable e) {
-
+                Toast.makeText(getContext(),"Network fail",Toast.LENGTH_SHORT);
             }
         });
 

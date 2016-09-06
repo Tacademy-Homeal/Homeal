@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.sm.ej.nk.homeal.HomealApplication;
 import com.sm.ej.nk.homeal.R;
-import com.sm.ej.nk.homeal.data.CkHomeItemData;
+import com.sm.ej.nk.homeal.data.CkDetailMenuData;
 
 /**
  * Created by Tacademy on 2016-08-30.
@@ -21,16 +21,16 @@ public class CkHomeItemViewHolder extends RecyclerView.ViewHolder  implements Vi
     Context context;
     public ImageView foodImage, userImage, editImage, deleteImage;
     public TextView userName, userAdd, foodPrice, foodName, foodInfo;
-    private CkHomeItemData data;
+    private CkDetailMenuData data;
 
     public CkHomeItemViewHolder(View view, Context context){
         super(view);
         this.view = view;
         this.context = context;
         foodImage = (ImageView)view.findViewById(R.id.image_ck_home_item_food);
-        userImage = (ImageView)view.findViewById(R.id.image_ck_home_item_user);
-        userName = (TextView)view.findViewById(R.id.text_ck_home_item_username);
-        userAdd = (TextView)view.findViewById(R.id.text_ck_home_item_useradd);
+//        userImage = (ImageView)view.findViewById(R.id.image_ck_home_item_user);
+//        userName = (TextView)view.findViewById(R.id.text_ck_home_item_username);
+//        userAdd = (TextView)view.findViewById(R.id.text_ck_home_item_useradd);
         foodPrice = (TextView)view.findViewById(R.id.text_ck_home_item_foodprice);
         foodName = (TextView)view.findViewById(R.id.text_ck_home_item_foodname);
         foodInfo = (TextView)view.findViewById(R.id.text_ck_home_item_foodinfo);
@@ -50,15 +50,12 @@ public class CkHomeItemViewHolder extends RecyclerView.ViewHolder  implements Vi
         deleteImage.setVisibility(View.INVISIBLE);
     }
 
-    public void setData(CkHomeItemData data){
+    public void setData(CkDetailMenuData data){
         this.data = data;
-        Glide.with(HomealApplication.getContext()).load(data.foodimage).into(foodImage);
-        Glide.with(HomealApplication.getContext()).load(data.user.userImage).into(userImage);
-        userName.setText(data.user.userName);
-        userAdd.setText(data.user.userAddress);
-        foodPrice.setText(data.foodPrice);
-        foodName.setText(data.foodName);
-        foodInfo.setText(data.foodInfo);
+        Glide.with(HomealApplication.getContext()).load(data.getImage()).into(foodImage);
+        foodPrice.setText(""+data.price);
+        foodName.setText(data.name);
+        foodInfo.setText(data.introduce);
     }
 
     @Override

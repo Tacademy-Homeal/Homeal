@@ -6,9 +6,9 @@ import java.util.List;
  * Created by Tacademy on 2016-09-05.
  */
 public class StoreListResult {
-    private List<EtHomeData> storeList;
+    private List<EtHomeData> storeThumbnails;
 
-    public List<EtHomeData> getStoreList() {
-        return storeList;
+    public List<EtHomeData> getStoreThumbnails() {
+        return storeThumbnails;
     }
 }

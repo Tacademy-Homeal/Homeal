@@ -1,8 +1,8 @@
 package com.sm.ej.nk.homeal.data;
 
-
-
-
+/**
+ * Created by Tacademy on 2016-09-06.
+ */
 public class ThumbnailsData {
     private String user_id;
     private String image;
@@ -15,5 +15,4 @@ public class ThumbnailsData {
         return image;
     }
 }
-
 

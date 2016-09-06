@@ -1,16 +1,16 @@
 package com.sm.ej.nk.homeal.data;
 
-public class CookerData {
+public class CkPersonalData {
     private String image;
     private String country;
+    private String address;
     private String gender;
     private String phone;
     private String introduce;
+    private int grade;
     private String name;
-    private int birth;
-    private int id;
-    private String email;
-    private String facebook_id;
+    private String birth;
+    private String type;
 
     public String getImage() {
         return this.image;
@@ -26,6 +26,14 @@ public class CookerData {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public String getAddress() {
+        return this.address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getGender() {
@@ -52,6 +60,14 @@ public class CookerData {
         this.introduce = introduce;
     }
 
+    public int getGrade() {
+        return this.grade;
+    }
+
+    public void setGrade(int grade) {
+        this.grade = grade;
+    }
+
     public String getName() {
         return this.name;
     }
@@ -60,35 +76,19 @@ public class CookerData {
         this.name = name;
     }
 
-    public int getBirth() {
+    public String getBirth() {
         return this.birth;
     }
 
-    public void setBirth(int birth) {
+    public void setBirth(String birth) {
         this.birth = birth;
     }
 
-    public int getId() {
-        return this.id;
+    public String getType() {
+        return this.type;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getEmail() {
-        return this.email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getFacebook_id() {
-        return this.facebook_id;
-    }
-
-    public void setFacebook_id(String facebook_id) {
-        this.facebook_id = facebook_id;
+    public void setType(String type) {
+        this.type = type;
     }
 }

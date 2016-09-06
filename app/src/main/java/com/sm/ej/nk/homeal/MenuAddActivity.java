@@ -15,7 +15,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.sm.ej.nk.homeal.data.CkHomeItemData;
+import com.sm.ej.nk.homeal.data.CkDetailMenuData;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -42,14 +42,14 @@ public class MenuAddActivity extends AppCompatActivity {
 
     @BindView(R.id.text_menu_add_money)
     TextView textView;
-//sdsd
+
     @BindView(R.id.fab_menu_add_ok)
     android.support.design.widget.FloatingActionButton fab;
 
     ArrayAdapter<String> mAdapter;
 
     private static int MODE;
-    private CkHomeItemData data;
+    private CkDetailMenuData data;
 
     private static final int GET_IMAGE = 35;
 
@@ -64,12 +64,16 @@ public class MenuAddActivity extends AppCompatActivity {
         Intent intent = getIntent();
         MODE = intent.getIntExtra(CkMainActivity.INTENT_MODE,-1);
         if(MODE == CkMainActivity.MODE_MENU_EDIT){
-            data = (CkHomeItemData)intent.getSerializableExtra(CkMainActivity.INTENT_MENU_DATA);
+            fab.show();
+            data = (CkDetailMenuData)intent.getSerializableExtra(CkMainActivity.INTENT_MENU_DATA);
             setMenuData(data);
         }else if(MODE == CkMainActivity.MODE_MENU_INSERT){
+            fab.show();
+
 
         }else if(MODE == CkMainActivity.MODE_MENU_SHOW){
-            data = (CkHomeItemData)intent.getSerializableExtra(CkMainActivity.INTENT_MENU_DATA);
+            fab.hide();
+            data = (CkDetailMenuData)intent.getSerializableExtra(CkMainActivity.INTENT_MENU_DATA);
             setMenuData(data);
             editFoodName.setEnabled(false);
             editFoodPrice.setEnabled(false);
@@ -79,9 +83,11 @@ public class MenuAddActivity extends AppCompatActivity {
         image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                intent.setType("image/*");
-                startActivityForResult(intent, GET_IMAGE);
+                if(MODE == CkMainActivity.MODE_MENU_INSERT || MODE == CkMainActivity.MODE_MENU_EDIT){
+                    Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    intent.setType("image/*");
+                    startActivityForResult(intent, GET_IMAGE);
+                }
             }
         });
 
@@ -109,10 +115,10 @@ public class MenuAddActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-    private void setMenuData(CkHomeItemData data){
-        Glide.with(this).load(data.foodimage).into(image);
-        editFoodInfo.setText(data.foodInfo);
-        editFoodName.setText(data.foodName);
-        editFoodPrice.setText(data.foodPrice);
+    private void setMenuData(CkDetailMenuData data){
+        Glide.with(this).load(data.getImage()).into(image);
+        editFoodInfo.setText(data.introduce);
+        editFoodName.setText(data.name);
+        editFoodPrice.setText(""+data.price);
     }
 }

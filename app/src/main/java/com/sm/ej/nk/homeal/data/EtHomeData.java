@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Created by Tacademy on 2016-08-26.
  */
 public class EtHomeData implements Serializable {
-    private String id;
+    private String cid;
     private String thumbnail;
     private String image;
     private String name;
@@ -16,6 +16,16 @@ public class EtHomeData implements Serializable {
     private int grade;
     private int bookmarkCnt;
     private int reviewCnt;
+    private int isBookmark;
+
+    public int getIsBookmark() {
+        return isBookmark;
+    }
+
+    public void setIsBookmark(int isBookmark) {
+        this.isBookmark = isBookmark;
+    }
+
     private String introduce;
 
     public String getImage() {
@@ -35,11 +45,11 @@ public class EtHomeData implements Serializable {
     }
 
     public String getId() {
-        return id;
+        return cid;
     }
 
     public void setId(String id) {
-        this.id = id;
+        this.cid = id;
     }
 
     public String getFoodImageUrl() {

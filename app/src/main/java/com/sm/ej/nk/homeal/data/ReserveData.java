@@ -5,14 +5,14 @@ package com.sm.ej.nk.homeal.data;
  */
 public class ReserveData {
 
-    private int rpax;
-    private int rstatus;
-    private int uid;
-    private String sdate;
-    private String uname;
-    private String uimage;
-    private String mname;
-    private int sid;
+    private int rpax; //reserve person number
+    private int rstatus; //reserve stauts
+    private int uid;// eater id
+    private String sdate;//resserve date
+    private String uname;//eater name
+    private String uimage;//eater image
+    private String mname;// memu name
+    private int sid;// cooker id
 
     public int getRpax() {
         return this.rpax;

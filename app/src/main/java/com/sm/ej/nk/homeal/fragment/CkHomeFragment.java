@@ -12,10 +12,12 @@ import android.view.ViewGroup;
 import com.sm.ej.nk.homeal.CkMainActivity;
 import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.adapter.CkHomeAdapter;
-import com.sm.ej.nk.homeal.data.CkHomeData;
-import com.sm.ej.nk.homeal.data.CkHomeItemData;
+import com.sm.ej.nk.homeal.data.CkDetailMenuData;
+import com.sm.ej.nk.homeal.data.CkInfoResult;
 import com.sm.ej.nk.homeal.data.CkScheduleData;
-import com.sm.ej.nk.homeal.data.PersonData;
+import com.sm.ej.nk.homeal.manager.NetworkManager;
+import com.sm.ej.nk.homeal.manager.NetworkRequest;
+import com.sm.ej.nk.homeal.request.CkPageCheckRequest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,12 +53,23 @@ public class CkHomeFragment extends Fragment implements CkMainActivity.OnFabClic
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         rv.setLayoutManager(manager);
         mAdapter = new CkHomeAdapter(getContext());
-        mAdapter.setHeader(init());
-        rv.setAdapter(mAdapter);
-        mAdapter.additem(initItem());
+
+        CkPageCheckRequest request = new CkPageCheckRequest(getContext(), "2");
+        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<CkInfoResult>() {
+            @Override
+            public void onSuccess(NetworkRequest<CkInfoResult> request, CkInfoResult result) {
+                mAdapter.setResult(result);
+                rv.setAdapter(mAdapter);
+            }
+
+            @Override
+            public void onFail(NetworkRequest<CkInfoResult> request, int errorCode, String errorMessage, Throwable e) {
+
+            }
+        });
         mAdapter.setOnHomeAdapterClickListner(new CkHomeAdapter.OnHomeAdapterClickListener() {
             @Override
-            public void onHomeAdapterClick(View view, int position, CkHomeItemData data) {
+            public void onHomeAdapterClick(View view, int position, CkDetailMenuData data) {
                 if(listener !=null){
                     listener.onHomeFragmentClick(view, position, data);
                 }
@@ -65,7 +78,7 @@ public class CkHomeFragment extends Fragment implements CkMainActivity.OnFabClic
 
         mAdapter.setOnHomeViewClick(new CkHomeAdapter.OnHomeViewClickListener() {
             @Override
-            public void onHomeViewClick(View view, int position, CkHomeItemData data) {
+            public void onHomeViewClick(View view, int position, CkDetailMenuData data) {
                 if(viewListener!=null){
                     viewListener.onHomeViewClick(view, position, data);
                 }
@@ -84,40 +97,6 @@ public class CkHomeFragment extends Fragment implements CkMainActivity.OnFabClic
         return pageFragment;
     }
 
-    private CkHomeData init(){
-        CkHomeData data = new CkHomeData();
-        data.jjimCount = "15";
-        data.cleanScore=4;
-        data.kindScore=4;
-        data.priceScore=4;
-        data.reviewCount="14";
-        data.tasteScore=5;
-        data.totalScore=5;
-        PersonData user = new PersonData();
-        user.userImage = "http://cfile223.uf.daum.net/image/112889584D19C77A0BA345";
-        user.userAddress="우리집";
-        user.userName="이름213";
-        data.user =user;
-        return data;
-    }
-    private List<CkHomeItemData> initItem(){
-        List<CkHomeItemData> list = new ArrayList<>();
-        for(int i=0; i<10; i++){
-            CkHomeItemData data = new CkHomeItemData();
-            data.foodimage = "https://i.ytimg.com/vi/4U0xCOuwK_Y/maxresdefault.jpg";
-            data.foodInfo="dkmgmsdfsdfksdofksodpkfposdkfopskdofksdopfksopdkfposkdfopsdkfopskdopfksdpofksdopfksopdfkopsdkfpsdkfposdkfopsdkfopsfk";
-            data.foodName="음식이름"+i;
-            data.foodPrice="15";
-            PersonData user = new PersonData();
-            user.userImage = "http://cfile223.uf.daum.net/image/112889584D19C77A0BA345";
-            user.userAddress="우리집";
-            user.userName="이름213";
-            data.user = user;
-            list.add(data);
-        }
-        return list;
-    }
-
     @Override
     public void onFabClick(View view, int mode) {
         if(mode == parentActivity.MODE_EDIT){
@@ -128,7 +107,7 @@ public class CkHomeFragment extends Fragment implements CkMainActivity.OnFabClic
     }
 
     public interface OnHomeFragmentClickListener{
-        public void onHomeFragmentClick(View view, int position, CkHomeItemData data);
+        public void onHomeFragmentClick(View view, int position, CkDetailMenuData data);
     }
     OnHomeFragmentClickListener listener;
     public void setOnHomeFragmentClickListner(OnHomeFragmentClickListener listener){
@@ -136,7 +115,7 @@ public class CkHomeFragment extends Fragment implements CkMainActivity.OnFabClic
     }
 
     public interface  OnHomeViewClickLIstener{
-        public void onHomeViewClick(View view, int position, CkHomeItemData data);
+        public void onHomeViewClick(View view, int position, CkDetailMenuData data);
     }
     OnHomeViewClickLIstener viewListener;
     public void setOnHomeViewClickListener(OnHomeViewClickLIstener listener){

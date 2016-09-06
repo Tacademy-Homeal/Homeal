@@ -45,7 +45,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:id="@+id/text_et_home_address" />
+                        android:id="@+id/text_et_home_address"
+                        android:singleLine="true"/>
 
                 </LinearLayout>
 
@@ -112,9 +113,10 @@
                     android:id="@+id/linear_et_home_jjim">
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/image_et_home_jjim" />
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:id="@+id/image_et_home_jjim"
+                        android:src="@drawable/homeal_heart" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -132,9 +134,10 @@
                     android:id="@+id/linear_et_home_review">
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/image_et_home_review" />
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:id="@+id/image_et_home_review"
+                        android:src="@drawable/homeal_review"/>
 
                     <TextView
                         android:layout_width="wrap_content"
