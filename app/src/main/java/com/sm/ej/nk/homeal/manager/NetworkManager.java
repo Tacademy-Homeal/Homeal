@@ -35,6 +35,10 @@ import okhttp3.OkHttpClient;
  * Created by Tacademy on 2016-08-26.
  */
 public class NetworkManager {
+
+    public static final int NETWORK_SECURE = 0;
+    public static final int NETWORK_NOMAL = 1;
+
     private static NetworkManager instance;
     public static NetworkManager getInstance() {
         if (instance == null) {
@@ -43,10 +47,36 @@ public class NetworkManager {
         return instance;
     }
 
-    OkHttpClient client;
+    OkHttpClient client, clientSecure, clientNomal;
 
     private NetworkManager() {
+        nomalNetworkManager();
+        SecureNetworkManager();
+    }
 
+    public void nomalNetworkManager(){
+        OkHttpClient.Builder builder = new OkHttpClient.Builder();
+        Context context = HomealApplication.getContext();
+        ClearableCookieJar cookieJar =
+                new PersistentCookieJar(new SetCookieCache(), new SharedPrefsCookiePersistor(context));
+        builder.cookieJar(cookieJar);
+        builder.followRedirects(true);
+        builder.addInterceptor(new RedirectInterceptor());
+
+        File cacheDir = new File(context.getCacheDir(), "network");
+        if (!cacheDir.exists()) {
+            cacheDir.mkdirs();
+        }
+        Cache cache = new Cache(cacheDir, 10 * 1024 * 1024);
+        builder.cache(cache);
+
+        builder.connectTimeout(30, TimeUnit.SECONDS);
+        builder.readTimeout(10, TimeUnit.SECONDS);
+        builder.writeTimeout(10, TimeUnit.SECONDS);
+
+        clientNomal = builder.build();
+    }
+    public void SecureNetworkManager(){
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         Context context = HomealApplication.getContext();
         ClearableCookieJar cookieJar =
@@ -67,7 +97,7 @@ public class NetworkManager {
         builder.writeTimeout(10, TimeUnit.SECONDS);
 
         disableCertificateValidation(context, builder);
-        client = builder.build();
+        clientSecure = builder.build();
     }
 
     public OkHttpClient getClient() {
@@ -110,11 +140,24 @@ public class NetworkManager {
     }
 
     public <T> void getNetworkData(NetworkRequest<T> request, OnResultListener<T> listener) {
+
+        client = clientSecure;
         request.setOnResultListener(listener);
         request.process(client);
     }
 
-    public <T> T getNetworkDataSync(NetworkRequest<T> request) throws IOException {
+    public <T> void getPOINetworkData(NetworkRequest<T> request, OnResultListener<T> listener) {
+        client = clientNomal;
+        request.setOnResultListener(listener);
+        request.process(client);
+    }
+
+    public <T> T getNetworkDataSync(int type, NetworkRequest<T> request) throws IOException {
+        if (type == NETWORK_NOMAL){
+            client = clientNomal;
+        }else if (type == NETWORK_SECURE){
+            client = clientSecure;
+        }
         return request.processSync(client);
     }
 
@@ -137,6 +180,7 @@ public class NetworkManager {
             }
         }
     }
+
     static void disableCertificateValidation(Context context, OkHttpClient.Builder builder){
         try{
             CertificateFactory cf = CertificateFactory.getInstance("X.509");

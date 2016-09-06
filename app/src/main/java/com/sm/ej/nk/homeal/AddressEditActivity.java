@@ -18,6 +18,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -49,22 +50,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
 public class AddressEditActivity extends AppCompatActivity implements
         OnMapReadyCallback, GoogleMap.OnCameraMoveListener, GoogleMap.OnInfoWindowClickListener {
 
     GoogleMap map;
     LocationManager mLM;
     String mProvider = LocationManager.NETWORK_PROVIDER;
-
-    @BindView(R.id.edit_keyword)
+    ListView addressSearchView;
     EditText keywordView;
 
-    @BindView(R.id.list_address_search)
-    ListView addressSearchView;
+//    @BindView(R.id.edit_keyword)
+//    EditText keywordView;
 
     ArrayAdapter<Poi> mAdapter;
 
@@ -89,39 +85,24 @@ public class AddressEditActivity extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_address_edit);
-        ButterKnife.bind(this);
-
+//        ButterKnife.bind(this);
+        addressSearchView = (ListView)findViewById(R.id.list_address);
         mAdapter = new ArrayAdapter<Poi>(this, android.R.layout.simple_list_item_1);
-//        addressSearchView = (ListView)findViewById(R.id.list_address_search);
         addressSearchView.setAdapter(mAdapter);
+        keywordView = (EditText)findViewById(R.id.edit_keyword);
         mLM = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         SupportMapFragment fragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map_fragment);
         fragment.getMapAsync(this);
 
-        addressSearchView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        Button btn = (Button)findViewById(R.id.btn_address_search);
+        btn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                final Poi poi = (Poi) addressSearchView.getItemAtPosition(position);
-                animateMap(poi.getLatitude(), poi.getLongitude(), new Runnable() {
-                    @Override
-                    public void run() {
-                        Marker m = markerResolver.get(poi);
-                        m.showInfoWindow();
-                    }
-                });
-                map.clear();
-                addMarker(poi);
-            }
-        });
-    }
-
-    @OnClick(R.id.btn_address_search)
-    public void onAddressSearch() {
-        String keyword = keywordView.getText().toString();
+            public void onClick(View view) {
+                String keyword = keywordView.getText().toString();
         if (!TextUtils.isEmpty(keyword)) {
             POISearchRequest request = new POISearchRequest(AddressEditActivity.this, keyword);
-            NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<POIResult>() {
+            NetworkManager.getInstance().getPOINetworkData(request, new NetworkManager.OnResultListener<POIResult>() {
                 @Override
                 public void onSuccess(NetworkRequest<POIResult> request, POIResult result) {
 
@@ -141,10 +122,59 @@ public class AddressEditActivity extends AppCompatActivity implements
 
                 @Override
                 public void onFail(NetworkRequest<POIResult> request, int errorCode, String errorMessage, Throwable e) {
+                    Toast.makeText(AddressEditActivity.this, "검색 실패 :" +errorMessage, Toast.LENGTH_SHORT).show();
                 }
             });
-        }
+            }
+            }
+        });
+
+        addressSearchView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                final Poi poi = (Poi) addressSearchView.getItemAtPosition(position);
+                animateMap(poi.getLatitude(), poi.getLongitude(), new Runnable() {
+                    @Override
+                    public void run() {
+                        Marker m = markerResolver.get(poi);
+                        m.showInfoWindow();
+                    }
+                });
+                map.clear();
+                addMarker(poi);
+            }
+        });
     }
+//
+//    @OnClick(R.id.btn_address_search)
+//    public void onAddressSearch() {
+//        String keyword = keywordView.getText().toString();
+//        if (!TextUtils.isEmpty(keyword)) {
+//            POISearchRequest request = new POISearchRequest(AddressEditActivity.this, keyword);
+//            NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<POIResult>() {
+//                @Override
+//                public void onSuccess(NetworkRequest<POIResult> request, POIResult result) {
+//
+//                    clear();
+//                    try {
+//                        mAdapter.addAll(result.getSearchPoiInfo().getPois().getPoi());
+//                        for (Poi poi : result.getSearchPoiInfo().getPois().getPoi()) {
+//                        }
+//                        if (result.getSearchPoiInfo().getPois().getPoi().length > 0) {
+//                            Poi poi = result.getSearchPoiInfo().getPois().getPoi()[0];
+//                            moveMap(poi.getLatitude(), poi.getLongitude());
+//                        }
+//                    } catch (NullPointerException e) {
+//                        Toast.makeText(AddressEditActivity.this, "검색결과 존재하지않습니다.", Toast.LENGTH_SHORT).show();
+//                    }
+//                }
+//
+//                @Override
+//                public void onFail(NetworkRequest<POIResult> request, int errorCode, String errorMessage, Throwable e) {
+//                }
+//            });
+//        }
+//    }
 
     private void clear() {
         for (int i = 0; i < mAdapter.getCount(); i++) {
