@@ -1,8 +1,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.sm.ej.nk.homeal.fragment.EtMyPageFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -10,9 +10,9 @@
         android:id="@+id/image_et_picture"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="15dp" />
 
@@ -24,66 +24,96 @@
         android:layout_marginTop="30dp"
         android:layout_toEndOf="@+id/image_et_picture"
         android:layout_toRightOf="@+id/image_et_picture"
+        android:gravity="center_horizontal"
         android:text="Large Text"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:gravity="center_horizontal" />
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
         android:id="@+id/text_et_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Medium Text"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_below="@+id/text_et_name"
-        android:layout_alignRight="@+id/text_et_name"
         android:layout_alignEnd="@+id/text_et_name"
-        android:gravity="center_horizontal" />
+        android:layout_alignRight="@+id/text_et_name"
+        android:layout_below="@+id/text_et_name"
+        android:gravity="center_horizontal"
+        android:text="Medium Text"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <TextView
-        android:id="@+id/text_et_mypage_personal"
+    <LinearLayout
+        android:id="@+id/linear_et_mapage_top"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/personal_data"
-        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_height="48dp"
+        android:layout_marginLeft="@dimen/setting_box_margin_left"
+        android:layout_marginRight="@dimen/setting_box_margin_left"
         android:layout_below="@+id/image_et_picture"
-        android:layout_marginTop="38dp"
-        android:gravity="center_horizontal" />
+        android:layout_marginTop="16dp"
+        android:background="@drawable/edge">
 
-    <TextView
-        android:id="@+id/text_et_mypage_zzim"
+        <TextView
+            android:id="@+id/text_et_mypage_personal"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginLeft="@dimen/setting_box_text_margin"
+            android:gravity="center_vertical"
+            android:text="Profile"
+            android:textSize="12dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_et_mapage_middle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="71dp"
-        android:text="@string/zzim_list"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_below="@+id/text_et_mypage_personal"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:gravity="center_horizontal" />
+        android:layout_height="48dp"
+        android:layout_marginLeft="@dimen/setting_box_margin_left"
+        android:layout_marginRight="@dimen/setting_box_margin_left"
+        android:layout_below="@+id/linear_et_mapage_top"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/edge">
 
-    <TextView
-        android:id="@+id/text_et_mypage_setting"
+        <TextView
+            android:id="@+id/text_et_mypage_zzim"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="@dimen/setting_box_text_margin"
+            android:gravity="center_vertical"
+            android:text="Bookmark"
+            android:textSize="12dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_et_mapage_bottom"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="89dp"
-        android:text="@string/setting"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_below="@+id/text_et_mypage_zzim"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:gravity="center_horizontal" />
+        android:layout_height="48dp"
+        android:layout_marginLeft="@dimen/setting_box_margin_left"
+        android:layout_marginRight="@dimen/setting_box_margin_left"
+        android:layout_below="@+id/linear_et_mapage_middle"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/edge">
+
+        <TextView
+            android:id="@+id/text_et_mypage_setting"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="@dimen/setting_box_text_margin"
+            android:gravity="center_vertical"
+            android:text="Settings"
+            android:textSize="12dp" />
+    </LinearLayout>
 
     <TextView
+        android:id="@+id/text_et_point"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
-        android:id="@+id/text_et_point"
         android:layout_alignTop="@+id/text_et_name"
-        android:layout_toRightOf="@+id/text_et_name"
-        android:layout_toEndOf="@+id/text_et_name"
         android:layout_marginLeft="37dp"
         android:layout_marginStart="37dp"
-        android:gravity="center_horizontal" />
+        android:layout_toEndOf="@+id/text_et_name"
+        android:layout_toRightOf="@+id/text_et_name"
+        android:gravity="center_horizontal"
+        android:text="Large Text"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </RelativeLayout>
