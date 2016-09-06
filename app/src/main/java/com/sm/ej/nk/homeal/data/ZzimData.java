@@ -6,33 +6,24 @@ import java.io.Serializable;
  * Created by Tacademy on 2016-09-06.
  */
 public class ZzimData implements Serializable {
-    private String id;
+    private String cid;
     private String image;
     private String thumbnail;
     private String name;
     private String address;
-    private String foodName;
-    private String foodPrice;
+    private int accumulation;
     private int grade;
     private String bookmarkCnt;
     private String reviewCnt;
     private String introduce;
+    private int isBookmark;
 
-    public String getIntroduce() {
-        return introduce;
+    public String getCid() {
+        return cid;
     }
 
-    public void setIntroduce(String introduce) {
-        this.introduce = introduce;
-    }
-
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
+    public void setCid(String cid) {
+        this.cid = cid;
     }
 
     public String getImage() {
@@ -67,20 +58,12 @@ public class ZzimData implements Serializable {
         this.address = address;
     }
 
-    public String getFoodName() {
-        return foodName;
+    public int getAccumulation() {
+        return accumulation;
     }
 
-    public void setFoodName(String foodName) {
-        this.foodName = foodName;
-    }
-
-    public String getFoodPrice() {
-        return foodPrice;
-    }
-
-    public void setFoodPrice(String foodPrice) {
-        this.foodPrice = foodPrice;
+    public void setAccumulation(int accumulation) {
+        this.accumulation = accumulation;
     }
 
     public int getGrade() {
@@ -105,5 +88,21 @@ public class ZzimData implements Serializable {
 
     public void setReviewCnt(String reviewCnt) {
         this.reviewCnt = reviewCnt;
+    }
+
+    public String getIntroduce() {
+        return introduce;
+    }
+
+    public void setIntroduce(String introduce) {
+        this.introduce = introduce;
+    }
+
+    public int getIsBookmark() {
+        return isBookmark;
+    }
+
+    public void setIsBookmark(int isBookmark) {
+        this.isBookmark = isBookmark;
     }
 }
