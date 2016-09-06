@@ -14,14 +14,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.sm.ej.nk.homeal.data.CkPersonalData;
-import com.sm.ej.nk.homeal.data.NetworkResult;
-import com.sm.ej.nk.homeal.manager.NetworkManager;
-import com.sm.ej.nk.homeal.manager.NetworkRequest;
-import com.sm.ej.nk.homeal.request.CkInfoRequest;
+import com.sm.ej.nk.homeal.fragment.CkMyPageFragment;
 
 import java.util.ArrayList;
 
@@ -33,6 +32,9 @@ public class CkPersonalDataActivity extends AppCompatActivity {
 
     ArrayAdapter<String> countryAdapter;
     ArrayAdapter<String> countryphoneAdapter;
+
+    @BindView(R.id.radioGroup)
+    RadioGroup radioGroup;
 
     @BindView(R.id.toolbar_ck_toolbar)
     Toolbar toolbar;
@@ -119,6 +121,12 @@ public class CkPersonalDataActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ck_personal_data);
         ButterKnife.bind(this);
+
+        Intent intent = getIntent();
+        CkPersonalData ckdata = (CkPersonalData) intent.getSerializableExtra(CkMyPageFragment.CK_DATA);
+
+        setUserImage(ckdata);
+
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("개 인 정 보");
@@ -156,18 +164,30 @@ public class CkPersonalDataActivity extends AppCompatActivity {
         isPersonalData(false);
         btnChangeFinish.setVisibility(View.GONE);
 
-        CkInfoRequest request = new CkInfoRequest(this);
-        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<CkPersonalData>>() {
-            @Override
-            public void onSuccess(NetworkRequest<NetworkResult<CkPersonalData>> request, NetworkResult<CkPersonalData> result) {
 
-            }
+    }
 
-            @Override
-            public void onFail(NetworkRequest<NetworkResult<CkPersonalData>> request, int errorCode, String errorMessage, Throwable e) {
+    public void setUserImage(CkPersonalData ckdata){
+        nameEdit.setText(ckdata.getName());
+        addressText.setText(ckdata.getAddress());
+        introduceEdit.setText(ckdata.getIntroduce());
+        phoneEdit.setText(ckdata.getPhone());
 
-            }
-        });
+        if(ckdata.getGender().equals("male")){
+            radioGroup.check(R.id.radio_ck_male);
+        }else{
+            radioGroup.check(R.id.radio_ck_female);
+        }
+
+        Glide.with(ckpictureView.getContext()).load(ckdata.getImage()).into(ckpictureView);
+
+
+//        ageEdit.setEnabled(s);
+//        monthSpinner.setEnabled(s);
+//        daySpinner.setEnabled(s);
+//        yearSpinner.setEnabled(s);
+//        countrySpinner.setEnabled(s);
+//        ckpictureView.setEnabled(s);
     }
 
     @OnClick(R.id.btn_personal_change)

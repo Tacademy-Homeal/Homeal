@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.sm.ej.nk.homeal.CkPersonalDataActivity;
 import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.SettingActivity;
@@ -37,7 +38,8 @@ public class CkMyPageFragment extends Fragment {
     @BindView(R.id.progress_ck_mypage_total)
     ProgressBar cktotalView;
 
-
+    CkPersonalData data;
+    public static final String CK_DATA = "Ck_data";
     public static CkMyPageFragment createInstance() {
         final CkMyPageFragment pageFragment = new CkMyPageFragment();
         final Bundle bundle = new Bundle();
@@ -59,6 +61,11 @@ public class CkMyPageFragment extends Fragment {
         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<CkPersonalData>>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<CkPersonalData>> request, NetworkResult<CkPersonalData> result) {
+                    data = result.getResult();
+                    cknameView.setText(data.getName());
+                    cktypeView.setText(data.getType());
+                    cktotalView.setProgress(data.getGrade());
+                    Glide.with(ckpictureView.getContext()).load(data.getImage()).into(ckpictureView);
 
             }
 
@@ -73,6 +80,7 @@ public class CkMyPageFragment extends Fragment {
     @OnClick(R.id.text_ck_mypage_personal)
     public void onCkMypagePersonal() {
         Intent intent = new Intent(getActivity(), CkPersonalDataActivity.class);
+        intent.putExtra(CK_DATA,data);
         startActivity(intent);
     }
 
