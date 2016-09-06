@@ -15,7 +15,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.sm.ej.nk.homeal.data.CkHomeItemData;
+import com.sm.ej.nk.homeal.data.CkDetailMenuData;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -49,7 +49,7 @@ public class MenuAddActivity extends AppCompatActivity {
     ArrayAdapter<String> mAdapter;
 
     private static int MODE;
-    private CkHomeItemData data;
+    private CkDetailMenuData data;
 
     private static final int GET_IMAGE = 35;
 
@@ -64,12 +64,12 @@ public class MenuAddActivity extends AppCompatActivity {
         Intent intent = getIntent();
         MODE = intent.getIntExtra(CkMainActivity.INTENT_MODE,-1);
         if(MODE == CkMainActivity.MODE_MENU_EDIT){
-            data = (CkHomeItemData)intent.getSerializableExtra(CkMainActivity.INTENT_MENU_DATA);
+            data = (CkDetailMenuData)intent.getSerializableExtra(CkMainActivity.INTENT_MENU_DATA);
             setMenuData(data);
         }else if(MODE == CkMainActivity.MODE_MENU_INSERT){
 
         }else if(MODE == CkMainActivity.MODE_MENU_SHOW){
-            data = (CkHomeItemData)intent.getSerializableExtra(CkMainActivity.INTENT_MENU_DATA);
+            data = (CkDetailMenuData)intent.getSerializableExtra(CkMainActivity.INTENT_MENU_DATA);
             setMenuData(data);
             editFoodName.setEnabled(false);
             editFoodPrice.setEnabled(false);
@@ -109,10 +109,10 @@ public class MenuAddActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-    private void setMenuData(CkHomeItemData data){
-        Glide.with(this).load(data.foodimage).into(image);
-        editFoodInfo.setText(data.foodInfo);
-        editFoodName.setText(data.foodName);
-        editFoodPrice.setText(data.foodPrice);
+    private void setMenuData(CkDetailMenuData data){
+        Glide.with(this).load(data.getImage()).into(image);
+        editFoodInfo.setText(data.introduce);
+        editFoodName.setText(data.name);
+        editFoodPrice.setText(""+data.price);
     }
 }

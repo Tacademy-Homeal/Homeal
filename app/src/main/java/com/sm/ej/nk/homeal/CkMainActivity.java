@@ -14,7 +14,7 @@ import android.view.View;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 import com.sm.ej.nk.homeal.adapter.ViewPagerFragmentAdapter;
-import com.sm.ej.nk.homeal.data.CkHomeItemData;
+import com.sm.ej.nk.homeal.data.CkDetailMenuData;
 import com.sm.ej.nk.homeal.fragment.ChatListFragment;
 import com.sm.ej.nk.homeal.fragment.CkHomeFragment;
 import com.sm.ej.nk.homeal.fragment.CkMyPageFragment;
@@ -139,7 +139,7 @@ public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTab
 
         ckHomeFragment.setOnHomeFragmentClickListner(new CkHomeFragment.OnHomeFragmentClickListener() {
             @Override
-            public void onHomeFragmentClick(View view, int position, CkHomeItemData data) {
+            public void onHomeFragmentClick(View view, int position, CkDetailMenuData data) {
                 Intent intent = new Intent(CkMainActivity.this, MenuAddActivity.class);
                 intent.putExtra(INTENT_MODE, MODE_MENU_EDIT);
                 intent.putExtra(INTENT_MENU_DATA, data);
@@ -149,7 +149,7 @@ public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTab
 
         ckHomeFragment.setOnHomeViewClickListener(new CkHomeFragment.OnHomeViewClickLIstener() {
             @Override
-            public void onHomeViewClick(View view, int position, CkHomeItemData data) {
+            public void onHomeViewClick(View view, int position, CkDetailMenuData data) {
                 if(!isEditMode){
                     Intent intent = new Intent(CkMainActivity.this, MenuAddActivity.class);
                     intent.putExtra(INTENT_MODE, MODE_MENU_SHOW);

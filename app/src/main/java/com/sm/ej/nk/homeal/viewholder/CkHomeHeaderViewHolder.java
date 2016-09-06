@@ -14,7 +14,8 @@ import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.adapter.CalendarAdapter;
 import com.sm.ej.nk.homeal.data.CalendarData;
 import com.sm.ej.nk.homeal.data.CalendarItem;
-import com.sm.ej.nk.homeal.data.CkHomeData;
+import com.sm.ej.nk.homeal.data.CkDetailData;
+import com.sm.ej.nk.homeal.data.CkScheduleData;
 import com.sm.ej.nk.homeal.manager.CalendarManager;
 
 import java.util.ArrayList;
@@ -31,6 +32,7 @@ public class CkHomeHeaderViewHolder extends RecyclerView.ViewHolder implements V
     public RecyclerView rvCalendar;
     Context context;
     CalendarAdapter mAdapter;
+    List<CalendarItem> calendarItems;
 
     public CkHomeHeaderViewHolder(Context context, View view){
         super(view);
@@ -52,27 +54,48 @@ public class CkHomeHeaderViewHolder extends RecyclerView.ViewHolder implements V
         rvCalendar = (RecyclerView)view.findViewById(R.id.rv_ck_home_calendar);
     }
 
-    public void setData(CkHomeData data){
-        Glide.with(HomealApplication.getContext()).load(data.user.userImage).into(userImage);
-        userName.setText(data.user.userName);
-        userAddress.setText(data.user.userAddress);
-        jjimCount.setText(data.jjimCount);
-        reviewCount.setText(data.reviewCount);
-        progressKind.setProgress(data.kindScore);
-        progressClean.setProgress(data.cleanScore);
-        progressTaste.setProgress(data.tasteScore);
-
-        GridLayoutManager manager = new GridLayoutManager(context, 7);
-        rvCalendar.setLayoutManager(manager);
-
-        List<CalendarItem> list = new ArrayList<>();
-        CalendarData calendarData = CalendarManager.getInstance().getSelectCalendarData(list);
-        mAdapter = new CalendarAdapter(context, calendarData, true);
-        rvCalendar.setAdapter(mAdapter);
+    public void setData(CkDetailData data){
+        Glide.with(HomealApplication.getContext()).load(data.image).into(userImage);
+        userName.setText(data.name);
+        userAddress.setText(data.address);
+        jjimCount.setText(data.jjimCnt);
+        reviewCount.setText(data.reviewCnt);
+        progressKind.setProgress(data.kindness);
+        progressClean.setProgress(data.cleanliness);
+//        progressTaste.setProgress(data.taste);
+        progressPrice.setProgress(data.price);
+        progressTotal.setProgress(data.grade);
         nextCalendar.setOnClickListener(this);
         backCalendar.setOnClickListener(this);
         Glide.with(HomealApplication.getContext()).load("http://fimg2.pann.com/new/download.jsp?FileID=28115067").into(userMap);
+    }
+
+    public void setCalendar(List<CkScheduleData> items){
+        changeCalendarScheduleData(items);
+        GridLayoutManager manager = new GridLayoutManager(context, 7);
+        rvCalendar.setLayoutManager(manager);
+
+        CalendarData calendarData = CalendarManager.getInstance().getSelectCalendarData(calendarItems);
+        mAdapter = new CalendarAdapter(context, calendarData, true);
+        mAdapter.setOnCalendarAdpaterClickListener(new CalendarAdapter.OnCalendarAdapterClickListener() {
+            @Override
+            public void onCalendarAdapterClick(View view, int position, CalendarItem data) {
+                if(data.isSelect){
+                    textDate.setText((data.month+1)+"월"+data.dayOfMonth+"일");
+                }
+            }
+        });
+        rvCalendar.setAdapter(mAdapter);
         textDate.setText(calendarData.year+"년 "+(calendarData.month+1)+"월");
+    }
+
+    public void changeCalendarScheduleData(List<CkScheduleData> list){
+        calendarItems = new ArrayList<>();
+        if(!list.isEmpty()){
+            for(int i=0; i<list.size(); i++){
+                calendarItems.add(list.get(i).getCalendar());
+            }
+        }
     }
 
     @Override

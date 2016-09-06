@@ -9,8 +9,10 @@ import android.view.ViewGroup;
 
 import com.sm.ej.nk.homeal.MapActivity;
 import com.sm.ej.nk.homeal.R;
-import com.sm.ej.nk.homeal.data.CkHomeData;
-import com.sm.ej.nk.homeal.data.CkHomeItemData;
+import com.sm.ej.nk.homeal.data.CkDetailData;
+import com.sm.ej.nk.homeal.data.CkDetailMenuData;
+import com.sm.ej.nk.homeal.data.CkInfoResult;
+import com.sm.ej.nk.homeal.data.CkScheduleData;
 import com.sm.ej.nk.homeal.viewholder.CkHomeHeaderViewHolder;
 import com.sm.ej.nk.homeal.viewholder.CkHomeItemViewHolder;
 
@@ -23,22 +25,27 @@ public class CkHomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
     private static final int TYPE_HEADER=0;
     private static final int TYPE_ITEM=1;
-    private CkHomeData headerData;
-    private List<CkHomeItemData> itemData;
+    private CkDetailData headerData;
     private Context context;
+    private List<CkDetailMenuData> menuList;
+    private List<CkScheduleData> scheduleList;
 
+    public void setResult(CkInfoResult result){
+        this.headerData = result.getCooker_info();
+        this.menuList = result.getCooker_menu().getMenus();
+        this.scheduleList = result.getCooker_schedule().getSchedules();
+    }
 
-
-    public void setHeader(CkHomeData data){
+    public void setHeader(CkDetailData data){
         headerData = data;
         notifyDataSetChanged();
     }
 
-    public void additem(List<CkHomeItemData> itemData){
-        if(this.itemData==null){
-            this.itemData = itemData;
+    public void additem(List<CkDetailMenuData> itemData){
+        if(this.menuList==null){
+            this.menuList = itemData;
         }else{
-            this.itemData.addAll(itemData);
+            this.menuList.addAll(itemData);
         }
         notifyDataSetChanged();
     }
@@ -87,6 +94,7 @@ public class CkHomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         if(position ==0){
             CkHomeHeaderViewHolder headerholder = (CkHomeHeaderViewHolder)holder;
             headerholder.setData(headerData);
+            headerholder.setCalendar(scheduleList);
             headerholder.userMap.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -101,7 +109,7 @@ public class CkHomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                 @Override
                 public void onClick(View view) {
                     if(viewListener!=null){
-                        viewListener.onHomeViewClick(view, position, itemData.get(position-1));
+                        viewListener.onHomeViewClick(view, position, menuList.get(position-1));
                     }
                 }
             });
@@ -109,7 +117,7 @@ public class CkHomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                 @Override
                 public void onClick(View view) {
                     if(listener!=null){
-                        listener.onHomeAdapterClick(view, position, itemData.get(position-1));
+                        listener.onHomeAdapterClick(view, position, menuList.get(position-1));
                     }
                 }
             });
@@ -118,19 +126,19 @@ public class CkHomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             }else{
                 itemholder.invisibleImage();
             }
-            itemholder.setData(itemData.get(position-1));
+            itemholder.setData(menuList.get(position-1));
         }
     }
 
     @Override
     public int getItemCount() {
         int size=0;
-        size=itemData.size()+1;
+        size=menuList.size()+1;
         return size;
     }
 
     public interface OnHomeAdapterClickListener{
-        public void onHomeAdapterClick(View view, int position, CkHomeItemData data);
+        public void onHomeAdapterClick(View view, int position, CkDetailMenuData data);
     }
     OnHomeAdapterClickListener listener;
     public void setOnHomeAdapterClickListner(OnHomeAdapterClickListener listener){
@@ -138,7 +146,7 @@ public class CkHomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
 
     public interface  OnHomeViewClickListener{
-        public void onHomeViewClick(View view, int position, CkHomeItemData data);
+        public void onHomeViewClick(View view, int position, CkDetailMenuData data);
     }
     OnHomeViewClickListener viewListener;
     public void setOnHomeViewClick(OnHomeViewClickListener listener){
