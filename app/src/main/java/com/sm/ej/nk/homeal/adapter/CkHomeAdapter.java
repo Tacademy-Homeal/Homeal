@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import com.sm.ej.nk.homeal.MapActivity;
 import com.sm.ej.nk.homeal.R;
+import com.sm.ej.nk.homeal.data.CalendarItem;
 import com.sm.ej.nk.homeal.data.CkDetailData;
 import com.sm.ej.nk.homeal.data.CkDetailMenuData;
 import com.sm.ej.nk.homeal.data.CkInfoResult;
@@ -21,7 +22,7 @@ import java.util.List;
 /**
  * Created by Tacademy on 2016-08-30.
  */
-public class CkHomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+public class CkHomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements CkHomeHeaderViewHolder.OnCalendarClickLIsener{
 
     private static final int TYPE_HEADER=0;
     private static final int TYPE_ITEM=1;
@@ -29,6 +30,7 @@ public class CkHomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     private Context context;
     private List<CkDetailMenuData> menuList;
     private List<CkScheduleData> scheduleList;
+    private CkHomeHeaderViewHolder headerholder;
 
     public void setResult(CkInfoResult result){
         this.headerData = result.getCooker_info();
@@ -92,9 +94,10 @@ public class CkHomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder,final int position) {
         if(position ==0){
-            CkHomeHeaderViewHolder headerholder = (CkHomeHeaderViewHolder)holder;
+            headerholder = (CkHomeHeaderViewHolder)holder;
             headerholder.setData(headerData);
             headerholder.setCalendar(scheduleList);
+            headerholder.setOnCalendarCickListener(this);
             headerholder.userMap.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -151,5 +154,12 @@ public class CkHomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     OnHomeViewClickListener viewListener;
     public void setOnHomeViewClick(OnHomeViewClickListener listener){
         viewListener = listener;
+    }
+
+    @Override
+    public void onCalendarClick(View view, CalendarItem data, int position) {
+        if(data.isSelect){
+            headerholder.showSchedule(data);
+        }
     }
 }

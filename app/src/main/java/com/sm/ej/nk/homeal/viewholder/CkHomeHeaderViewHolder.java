@@ -1,6 +1,7 @@
 package com.sm.ej.nk.homeal.viewholder;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -26,8 +27,8 @@ import java.util.List;
  */
 public class CkHomeHeaderViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
     public View view;
-    public ImageView userImage, nextCalendar, backCalendar, userMap;
-    public TextView userName, userAddress, jjimCount, reviewCount, textDate;
+    public ImageView userImage, nextCalendar, backCalendar, userMap, imageShare;
+    public TextView userName, userAddress, jjimCount, reviewCount, textDate, textMorning, textLaunch, textDinner, textPax;
     public ProgressBar progressTotal, progressTaste, progressKind, progressClean, progressPrice;
     public RecyclerView rvCalendar;
     Context context;
@@ -52,6 +53,11 @@ public class CkHomeHeaderViewHolder extends RecyclerView.ViewHolder implements V
         userMap = (ImageView)view.findViewById(R.id.image_ck_home_map);
         textDate = (TextView)view.findViewById(R.id.text_ck_home_calendar);
         rvCalendar = (RecyclerView)view.findViewById(R.id.rv_ck_home_calendar);
+        imageShare = (ImageView)view.findViewById(R.id.image_ck_home_share);
+        textMorning = (TextView)view.findViewById(R.id.text_ck_home_mornig);
+        textLaunch = (TextView)view.findViewById(R.id.text_ck_home_launch);
+        textDinner = (TextView)view.findViewById(R.id.text_ck_home_dinner);
+        textPax = (TextView)view.findViewById(R.id.text_ck_home_reservecount);
     }
 
     public void setData(CkDetailData data){
@@ -83,6 +89,9 @@ public class CkHomeHeaderViewHolder extends RecyclerView.ViewHolder implements V
                 if(data.isSelect){
                     textDate.setText((data.month+1)+"월"+data.dayOfMonth+"일");
                 }
+                if(listener!=null){
+                    listener.onCalendarClick(view, data, position);
+                }
             }
         });
         rvCalendar.setAdapter(mAdapter);
@@ -106,6 +115,11 @@ public class CkHomeHeaderViewHolder extends RecyclerView.ViewHolder implements V
                 textDate.setText(data.year+"년 "+(data.month+1)+"월");
                 mAdapter.setCalendarData(data);
                 mAdapter.cleanChecked();
+                textMorning.setBackgroundColor(Color.WHITE);
+                textLaunch.setBackgroundColor(Color.WHITE);
+                textDinner.setBackgroundColor(Color.WHITE);
+                imageShare.setBackgroundColor(Color.WHITE);
+                textPax.setText("");
                 break;
             }
             case R.id.image_ck_home_next:{
@@ -113,8 +127,48 @@ public class CkHomeHeaderViewHolder extends RecyclerView.ViewHolder implements V
                 textDate.setText(data.year+"년 "+(data.month+1)+"월");
                 mAdapter.setCalendarData(data);
                 mAdapter.cleanChecked();
+                textMorning.setBackgroundColor(Color.WHITE);
+                textLaunch.setBackgroundColor(Color.WHITE);
+                textDinner.setBackgroundColor(Color.WHITE);
+                imageShare.setBackgroundColor(Color.WHITE);
+                textPax.setText("");
                 break;
             }
         }
+    }
+
+    public void showSchedule(CalendarItem item){
+        if(item.sharing==1){
+            imageShare.setBackgroundColor(Color.BLUE);
+        }else{
+            imageShare.setBackgroundColor(Color.RED);
+        }
+
+        if(item.isMorning){
+            textMorning.setBackgroundColor(Color.RED);
+        }else{
+            textMorning.setBackgroundColor(Color.WHITE);
+        }
+
+        if(item.isLaunch){
+            textLaunch.setBackgroundColor(Color.RED);
+        }else{
+            textLaunch.setBackgroundColor(Color.WHITE);
+        }
+
+        if(item.isDinner){
+            textDinner.setBackgroundColor(Color.RED);
+        }else{
+            textDinner.setBackgroundColor(Color.WHITE);
+        }
+        textPax.setText(item.pax);
+    }
+
+    public interface OnCalendarClickLIsener{
+        public void onCalendarClick(View view, CalendarItem data, int position);
+    }
+    OnCalendarClickLIsener listener;
+    public void setOnCalendarCickListener(OnCalendarClickLIsener listener){
+        this.listener  = listener;
     }
 }

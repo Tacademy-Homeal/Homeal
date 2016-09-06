@@ -42,7 +42,7 @@ public class MenuAddActivity extends AppCompatActivity {
 
     @BindView(R.id.text_menu_add_money)
     TextView textView;
-//sdsd
+
     @BindView(R.id.fab_menu_add_ok)
     android.support.design.widget.FloatingActionButton fab;
 
@@ -64,11 +64,15 @@ public class MenuAddActivity extends AppCompatActivity {
         Intent intent = getIntent();
         MODE = intent.getIntExtra(CkMainActivity.INTENT_MODE,-1);
         if(MODE == CkMainActivity.MODE_MENU_EDIT){
+            fab.show();
             data = (CkDetailMenuData)intent.getSerializableExtra(CkMainActivity.INTENT_MENU_DATA);
             setMenuData(data);
         }else if(MODE == CkMainActivity.MODE_MENU_INSERT){
+            fab.show();
+
 
         }else if(MODE == CkMainActivity.MODE_MENU_SHOW){
+            fab.hide();
             data = (CkDetailMenuData)intent.getSerializableExtra(CkMainActivity.INTENT_MENU_DATA);
             setMenuData(data);
             editFoodName.setEnabled(false);
@@ -79,9 +83,11 @@ public class MenuAddActivity extends AppCompatActivity {
         image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                intent.setType("image/*");
-                startActivityForResult(intent, GET_IMAGE);
+                if(MODE == CkMainActivity.MODE_MENU_INSERT || MODE == CkMainActivity.MODE_MENU_EDIT){
+                    Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    intent.setType("image/*");
+                    startActivityForResult(intent, GET_IMAGE);
+                }
             }
         });
 

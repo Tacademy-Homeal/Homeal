@@ -78,13 +78,13 @@ public class InfoCkDetailActivity extends AppCompatActivity implements CkDetailA
                 mAdapter.setOnDetailAdapterClickListener(InfoCkDetailActivity.this);
                 rv.setAdapter(mAdapter);
             }
-
             @Override
             public void onFail(NetworkRequest<CkInfoResult> request, int errorCode, String errorMessage, Throwable e) {
                 e.printStackTrace();
             }
         });
     }
+
     @Override
     public void onDetailAdapterClick(View view, CalendarItem data, int position) {
 

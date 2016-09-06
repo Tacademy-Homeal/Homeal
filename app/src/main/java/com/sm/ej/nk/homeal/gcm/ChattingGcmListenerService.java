@@ -62,7 +62,7 @@ public class ChattingGcmListenerService extends GcmListenerService{
             MessageListRequest request = new MessageListRequest(this, date);
             try {
                 NetworkResult<List<ChatMessage>> result = NetworkManager.getInstance().getNetworkDataSync(request);
-                List<ChatMessage> list = result.getResults();
+                List<ChatMessage> list = result.getResult();
                 for (ChatMessage m : list) {
 
                     try {
