@@ -66,7 +66,7 @@ public class EtZzimActivity extends AppCompatActivity implements ZzimAdapter.OnZ
 
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<List<ZzimData>>> request, NetworkResult<List<ZzimData>> result) {
-                Toast.makeText(EtZzimActivity.this, "hi", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(EtZzimActivity.this, "hi", Toast.LENGTH_SHORT).show();
                 datas = result.getResult();
                 mAdapter.clear();
                 mAdapter.addList(datas);
