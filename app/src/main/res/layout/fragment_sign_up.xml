@@ -16,6 +16,7 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
+            android:background="@color/color_homeal_background"
             android:src="@drawable/singup_logo_xxhdpi" />
 
         <TextView
@@ -135,6 +136,7 @@
                         android:textColor="@color/color_loginframent_sub"
                         android:buttonTint="@color/color_loginframent_sub"
                         android:textSize="10dp"
+                        android:checked="true"
                         android:layout_marginRight="11dp"
                         android:text="male"
                         />
@@ -175,8 +177,11 @@
 
             <EditText
                 android:layout_marginTop="8dp"
+                android:gravity="left|top"
                 android:layout_width="312dp"
                 android:layout_centerHorizontal="true"
+                android:id="@+id/edit_singup_content"
+                android:textColor="@color/white"
                 android:layout_gravity="center_horizontal|bottom"
                 android:layout_height="200dp"
                 android:background="@drawable/edittext_bg"/>
@@ -191,8 +196,5 @@
                 android:layout_gravity="center_horizontal|bottom"
                 android:text="OK" />
         </LinearLayout>
-
-
     </RelativeLayout>
-
 </FrameLayout>

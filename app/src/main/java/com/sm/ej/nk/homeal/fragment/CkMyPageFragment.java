@@ -104,7 +104,6 @@ public class CkMyPageFragment extends Fragment {
     public void onCkMypageSetting() {
         Intent intent = new Intent(getActivity(), SettingActivity.class);
         startActivity(intent);
-        getActivity().finish();
     }
 
 }

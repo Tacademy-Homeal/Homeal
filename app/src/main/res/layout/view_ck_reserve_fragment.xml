@@ -2,15 +2,27 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content">
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/image_ck_reserve_picture"
-            android:layout_width="70dp"
-            android:layout_height="100dp" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/text_ck_reserve_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/image_ck_reserve_picture"
+                android:layout_width="70dp"
+                android:layout_height="82dp" />
+        </LinearLayout>
 
 
         <LinearLayout
@@ -80,29 +92,29 @@
                     android:text="reservestate" />
 
                 <Button
-                    android:theme="@style/ReserveButton"
                     android:id="@+id/btn_ck_reserve_state_disagree"
                     android:layout_width="wrap_content"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:text="@string/text_btn_ck_reserve_disagree" />
+                    android:layout_weight="1"
+                    android:text="@string/text_btn_ck_reserve_disagree"
+                    android:theme="@style/ReserveButton" />
 
                 <Button
-                    android:theme="@style/ReserveButton"
                     android:id="@+id/btn_ck_reserve_state_agree"
                     android:layout_width="wrap_content"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:text="@string/text_btn_ck_reserve_request" />
+                    android:layout_weight="1"
+                    android:text="@string/text_btn_ck_reserve_request"
+                    android:theme="@style/ReserveButton" />
 
                 <Button
-                    android:theme="@style/ReserveButton"
-                    android:layout_width="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="@string/text_ck_reserve_write"
                     android:id="@+id/btn_ck_review_write"
-                    android:layout_gravity="right"/>
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_weight="1"
+                    android:text="@string/text_ck_reserve_write"
+                    android:theme="@style/ReserveButton" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

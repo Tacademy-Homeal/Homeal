@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.sm.ej.nk.homeal.R;
-import com.sm.ej.nk.homeal.data.CkReserveData;
+import com.sm.ej.nk.homeal.data.ReserveData;
 import com.sm.ej.nk.homeal.viewholder.CkReserveViewHolder;
 
 import java.util.ArrayList;
@@ -17,9 +17,9 @@ import java.util.List;
  */
 public class CkReserveAdapter extends RecyclerView.Adapter<CkReserveViewHolder> implements CkReserveViewHolder.OnAgreeButtonClickListener,
         CkReserveViewHolder.OnDisagreeButtonClickListener, CkReserveViewHolder.OnReviewButtonClickListener {
-    List<CkReserveData> items = new ArrayList<>();
+    List<ReserveData> items = new ArrayList<>();
 
-    public void add(CkReserveData data) {
+    public void add(ReserveData data) {
         items.add(data);
         notifyDataSetChanged();
     }
@@ -29,10 +29,10 @@ public class CkReserveAdapter extends RecyclerView.Adapter<CkReserveViewHolder> 
         notifyDataSetChanged();
     }
 
-    public void addAll(CkReserveData[] data){
-
+    public void addAll(List<ReserveData> items) {
+        this.items.addAll(items);
+        notifyDataSetChanged();
     }
-
     @Override
     public CkReserveViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_ck_reserve_fragment, parent, false);
@@ -46,7 +46,7 @@ public class CkReserveAdapter extends RecyclerView.Adapter<CkReserveViewHolder> 
     @Override
     public void onBindViewHolder(CkReserveViewHolder holder, int position) {
         CkReserveViewHolder crvh = (CkReserveViewHolder) holder;
-     //   holder.setReserveData(items.get(position));
+        holder.setReserveData(items.get(position));
     }
 
     @Override
@@ -56,29 +56,29 @@ public class CkReserveAdapter extends RecyclerView.Adapter<CkReserveViewHolder> 
 
     //Observer
     @Override
-    public void onAgreeButtonClick(View view, CkReserveData ckReserveData, int position) {
+    public void onAgreeButtonClick(View view, ReserveData reserveData, int position) {
         if (listener != null) {
-            listener.onAagreeButtonClick(view, ckReserveData, position);
+            listener.onAagreeButtonClick(view, reserveData, position);
         }
     }
 
     @Override
-    public void onDisagreeButtonClick(View view, CkReserveData ckReserveData, int position) {
+    public void onDisagreeButtonClick(View view, ReserveData reserveData, int position) {
         if (dListener != null) {
-            dListener.onDisagreeButtonClick(view, ckReserveData, position);
+            dListener.onDisagreeButtonClick(view, reserveData, position);
         }
     }
 
     @Override
-    public void onReviewButtonClick(View view, CkReserveData ckReserveData, int position) {
+    public void onReviewButtonClick(View view, ReserveData reserveData, int position) {
         if (rListener != null) {
-            rListener.onreviewAdapterItemClick(view, ckReserveData, position);
+            rListener.onreviewAdapterItemClick(view, reserveData, position);
         }
     }
 
     //Agree button
     public interface OnAagreeButtonClickLIstener {
-        public void onAagreeButtonClick(View view, CkReserveData data, int position);
+        public void onAagreeButtonClick(View view, ReserveData data, int position);
     }
 
     OnAagreeButtonClickLIstener listener;
@@ -89,7 +89,7 @@ public class CkReserveAdapter extends RecyclerView.Adapter<CkReserveViewHolder> 
 
     //DisAgree button
     public interface OnDisagreeButtonClickLIstener {
-        public void onDisagreeButtonClick(View view, CkReserveData data, int position);
+        public void onDisagreeButtonClick(View view, ReserveData data, int position);
     }
 
     OnDisagreeButtonClickLIstener dListener;
@@ -101,7 +101,7 @@ public class CkReserveAdapter extends RecyclerView.Adapter<CkReserveViewHolder> 
 
     //Write button
     public interface OnreviewButtonClickLIstener {
-        public void onreviewAdapterItemClick(View view, CkReserveData data, int position);
+        public void onreviewAdapterItemClick(View view, ReserveData data, int position);
     }
 
     OnreviewButtonClickLIstener rListener;

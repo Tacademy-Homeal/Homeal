@@ -23,6 +23,11 @@ public class ZzimAdapter extends RecyclerView.Adapter<ZzimViewHolder> implements
         notifyDataSetChanged();
     }
 
+    public void add(ZzimData data){
+        this.list.add(data);
+        notifyDataSetChanged();
+    }
+
     public void addList(List<ZzimData> list) {
         this.list.addAll(list);
         notifyDataSetChanged();

@@ -72,7 +72,7 @@ public class EtHomeFragment extends Fragment implements EtHomeAdapter.OnReviewit
         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<StoreListResult>>() {
                     @Override
                     public void onSuccess(NetworkRequest<NetworkResult<StoreListResult>> request, NetworkResult<StoreListResult> result) {
-                        datas = result.getResult().getStoreList();
+                        datas = result.getResults().getStoreList();
                         mAdapter.clear();
                         mAdapter.addList(datas);
                     }
@@ -88,30 +88,16 @@ public class EtHomeFragment extends Fragment implements EtHomeAdapter.OnReviewit
     }
 
 
-//    private void initData() {
-//        datas = new ArrayList<>();
-//        for(int i=0; i<10; i++){
-//            EtHomeData data = new EtHomeData();
-//            data.setAddress("주소"+i);
-//            data.setFoodImageUrl("http://blog.jinbo.net/attach/615/200937431.jpg");
-//            data.setImage("https://pixabay.com/static/uploads/photo/2014/12/17/14/20/summer-anemone-571531_960_720.jpg");
-//            data.setFoodName("음식이름"+i);
-//            data.setBookmarkCnt(""+i);
-//            data.setGrade(""+i%5+1);
-//            data.setReviewCnt(""+i);
-//            data.setName("이름"+i);
-//            datas.add(data);
-//        }
-//        mAdapter.addList(datas);
-//    }
-
     public static final String INTENT_CK_ID = "asd";
+    public static final String INTENT_ZZIM_ID = "asdf";
     @Override
     public void onViewClick(View view, int position) {
         Intent intent = new Intent(getActivity(), InfoCkDetailActivity.class);
 //        intent.putExtra(INTENT_CK_ID, );
         intent.putExtra(INTENT_CK_ID, datas.get(position));
         Log.e("ssong", datas.get(position).getId());
+        intent.putExtra(INTENT_ZZIM_ID, datas.get(position));
+        Log.e("eun", datas.get(position).getId());
         startActivity(intent);
     }
 

@@ -9,17 +9,22 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.sm.ej.nk.homeal.adapter.ZzimAdapter;
+import com.sm.ej.nk.homeal.data.NetworkResult;
 import com.sm.ej.nk.homeal.data.ZzimData;
+import com.sm.ej.nk.homeal.data.Bookmarks;
+import com.sm.ej.nk.homeal.manager.NetworkManager;
+import com.sm.ej.nk.homeal.manager.NetworkRequest;
+import com.sm.ej.nk.homeal.request.ZzimListRequest;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class EtZzimActivity extends AppCompatActivity implements ZzimAdapter.OnReviewitemClickListener, ZzimAdapter.OnViewClickListener, ZzimAdapter.OnZzimitemClickListener{
+public class EtZzimActivity extends AppCompatActivity implements ZzimAdapter.OnZzimitemClickListener, ZzimAdapter.OnViewClickListener, ZzimAdapter.OnReviewitemClickListener {
 
     @BindView(R.id.toolbar_et_toolbar)
     Toolbar toolbar;
@@ -29,6 +34,7 @@ public class EtZzimActivity extends AppCompatActivity implements ZzimAdapter.OnR
 
     RecyclerView.LayoutManager layoutManager;
 
+  //  EtHomeAdapter mAdapter;
     ZzimAdapter mAdapter;
     List<ZzimData> datas;
 
@@ -47,11 +53,31 @@ public class EtZzimActivity extends AppCompatActivity implements ZzimAdapter.OnR
         mAdapter = new ZzimAdapter();
         mAdapter.setOnReviewClickListener(this);
         mAdapter.setOnViewClickListener(this);
+//        mAdapter.setOnViewClickListener(this);
+//        mAdapter.setOnReciewClickListener(this);
+//        mAdapter.setOnJjimitemClickListener(this);
         mAdapter.setOnZzimitemClickListener(this);
 
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(mAdapter);
-        initData();
+//        initData();
+
+        ZzimListRequest request = new ZzimListRequest(this);
+        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<Bookmarks>>() {
+
+            @Override
+            public void onSuccess(NetworkRequest<NetworkResult<Bookmarks>> request, NetworkResult<Bookmarks> result) {
+                Toast.makeText(EtZzimActivity.this, "hi", Toast.LENGTH_SHORT).show();
+                datas = result.getResult().getBookmarks();
+                mAdapter.clear();
+                mAdapter.addList(datas);
+            }
+
+            @Override
+            public void onFail(NetworkRequest<NetworkResult<Bookmarks>> request, int errorCode, String errorMessage, Throwable e) {
+                Toast.makeText(EtZzimActivity.this, "" + errorMessage, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
@@ -64,41 +90,69 @@ public class EtZzimActivity extends AppCompatActivity implements ZzimAdapter.OnR
         return super.onOptionsItemSelected(item);
     }
 
-    private void initData() {
-        datas = new ArrayList<>();
-        for(int i=0; i<10; i++){
-            ZzimData data = new ZzimData();
-            data.setZzimaddress("주소"+i);
-            data.setZzimfoodImageUrl("http://blog.jinbo.net/attach/615/200937431.jpg");
-            data.setZzimuserImageUrl("https://pixabay.com/static/uploads/photo/2014/12/17/14/20/summer-anemone-571531_960_720.jpg");
-            data.setZzimfoodName("음식이름"+i);
-            data.setZzimjjimCount(""+i);
-            data.setZzimgrade(i%5+1);
-            data.setZzimreviewCount(""+i);
-            data.setZzimname("이름"+i);
-            datas.add(data);
-        }
-        mAdapter.addList(datas);
-    }
+//    private void initData() {
+//        datas = new ArrayList<>();
+//        for (int i = 0; i < 10; i++) {
+//            ZzimData data = new ZzimData();
+//            data.setAddress("주소" + i);
+//            data.setThumbnail("http://blog.jinbo.net/attach/615/200937431.jpg");
+//            data.setImage("https://pixabay.com/static/uploads/photo/2014/12/17/14/20/summer-anemone-571531_960_720.jpg");
+//            data.setFoodName("음식이름" + i);
+//            data.setBookmarkCnt("" + i);
+//            data.setGrade(i % 5 + 1);
+//            data.setReviewCnt("" + i);
+//            data.setName("이름" + i);
+//            datas.add(data);
+//        }
+//        mAdapter.addList(datas);
+//    }
 
 
     public static final int INTENT_SCROLL = 1;
+    public static final String INTENT_CK_ID = "asd";
+
+
+//    @Override
+//    public void onJjimitemClick(View view, int position) {
+//        Snackbar.make(view, "이미지, 텍스트 변경", Snackbar.LENGTH_SHORT).show();
+//    }
+
     @Override
     public void onReviewitemClick(View view, int position) {
         Intent intent = new Intent(this, InfoCkDetailActivity.class);
         startActivity(intent);
     }
 
-    public static final String INTENT_CK_ID = "asd";
     @Override
     public void onViewClick(View view, int position) {
         Intent intent = new Intent(this, InfoCkDetailActivity.class);
-//        intent.putExtra(INTENT_CK_ID, datas.get(position));
+        intent.putExtra(INTENT_CK_ID, datas.get(position));
         startActivity(intent);
     }
 
     @Override
     public void onZzimitemClick(View view, int position) {
-        Snackbar.make(view,"이미지, 텍스트 변경", Snackbar.LENGTH_SHORT).show();
+        Snackbar.make(view, "이미지, 텍스트 변경", Snackbar.LENGTH_SHORT).show();
     }
+
+//    @Override
+//    public void onReviewitemClick(View view, int position) {
+//        Intent intent = new Intent(this, InfoCkDetailActivity.class);
+//        startActivity(intent);
+//    }
+//
+////    public static final String INTENT_CK_ID = "asd";
+//    public static final String INTENT_ZZIM_ID="asdf";
+//
+//    @Override
+//    public void onViewClick(View view, int position) {
+//        Intent intent = new Intent(this, InfoCkDetailActivity.class);
+//        intent.putExtra(INTENT_ZZIM_ID, datas.get(position));
+//        startActivity(intent);
+//    }
+//
+//    @Override
+//    public void onZzimitemClick(View view, int position) {
+//        Snackbar.make(view, "이미지, 텍스트 변경", Snackbar.LENGTH_SHORT).show();
+//    }
 }

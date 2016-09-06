@@ -4,9 +4,8 @@ import android.content.Context;
 import android.util.Log;
 
 import com.google.gson.reflect.TypeToken;
-import com.sm.ej.nk.homeal.data.CkReserveData;
-import com.sm.ej.nk.homeal.data.EaterData;
 import com.sm.ej.nk.homeal.data.NetworkResult;
+import com.sm.ej.nk.homeal.data.ReserveResult;
 
 import java.lang.reflect.Type;
 
@@ -16,7 +15,7 @@ import okhttp3.Request;
 /**
  * Created by Tacademy on 2016-09-02.
  */
-public class CkReserveRequest extends AbstractRequest<NetworkResult<CkReserveData>>{
+public class CkReserveRequest extends AbstractRequest<NetworkResult<ReserveResult>>{
     Request mRequest;
     public CkReserveRequest(Context context) {
 
@@ -45,7 +44,7 @@ public class CkReserveRequest extends AbstractRequest<NetworkResult<CkReserveDat
 
     @Override
     protected Type getType() {
-        return new TypeToken<NetworkResult<EaterData>>(){}.getType();
+        return new TypeToken<NetworkResult<ReserveResult>>(){}.getType();
     }
 
     @Override

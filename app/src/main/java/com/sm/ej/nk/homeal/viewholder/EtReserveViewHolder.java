@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.sm.ej.nk.homeal.R;
-import com.sm.ej.nk.homeal.data.EtReserveData;
+import com.sm.ej.nk.homeal.data.ReserveData;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -64,17 +64,17 @@ public class EtReserveViewHolder extends RecyclerView.ViewHolder {
         });
     }
 
-    EtReserveData etReserveData;
+    ReserveData etReserveData;
 
-    public void setReserveData(EtReserveData etReserveData) {
+    public void setReserveData(ReserveData etReserveData) {
         this.etReserveData = etReserveData;
 
         //Url to image
-        Glide.with(pictureView.getContext()).load(etReserveData.getImage()).into(pictureView);
-        ckNameView.setText(etReserveData.getName());
-        foodNameView.setText(etReserveData.getName());
-        reservePersonView.setText(etReserveData.getName());
-        dateView.setText(etReserveData.getDate());
+        Glide.with(pictureView.getContext()).load(etReserveData.getUimage()).into(pictureView);
+        ckNameView.setText(etReserveData.getUname());
+        foodNameView.setText(etReserveData.getMname());
+        reservePersonView.setText(etReserveData.getUname());
+        dateView.setText(etReserveData.getSdate());
 
         //btn setting
         switch (0){
@@ -100,7 +100,7 @@ public class EtReserveViewHolder extends RecyclerView.ViewHolder {
 
     //Observer Button
     public interface OnReserveButtonClick {
-        public void onReserveButtonClick(View view, EtReserveData etReserveData, int position);
+        public void onReserveButtonClick(View view, ReserveData etReserveData, int position);
     }
 
     OnReserveButtonClick cListener;
