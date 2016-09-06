@@ -15,20 +15,8 @@ import com.google.android.gms.gcm.GcmListenerService;
 import com.sm.ej.nk.homeal.ChattingActivity;
 import com.sm.ej.nk.homeal.CkMainActivity;
 import com.sm.ej.nk.homeal.R;
-import com.sm.ej.nk.homeal.Utils;
-
 import com.sm.ej.nk.homeal.SplashActivity;
-import com.sm.ej.nk.homeal.data.ChatContract;
 import com.sm.ej.nk.homeal.data.ChatMessage;
-import com.sm.ej.nk.homeal.data.NetworkResult;
-import com.sm.ej.nk.homeal.manager.ChattingDBManager;
-import com.sm.ej.nk.homeal.manager.NetworkManager;
-import com.sm.ej.nk.homeal.request.MessageListRequest;
-
-import java.io.IOException;
-import java.text.ParseException;
-import java.util.Date;
-import java.util.List;
 
 
 /**
@@ -55,37 +43,37 @@ public class ChattingGcmListenerService extends GcmListenerService{
         Log.d(TAG, "Message: " + message);
 
 
-        if (from.startsWith("/topics/")) {
-        } else {
-            long lastTime = ChattingDBManager.getInstance().getLastReceiveDate();
-            Date date = new Date(lastTime);
-            MessageListRequest request = new MessageListRequest(this, date);
-            try {
-                NetworkResult<List<ChatMessage>> result = NetworkManager.getInstance().getNetworkDataSync(request);
-                List<ChatMessage> list = result.getResults();
-                for (ChatMessage m : list) {
-
-                    try {
-                        ChattingDBManager.getInstance().addMessage(m.getSender(), ChatContract.ChatMessage.TYPE_RECEIVE, m.getMessage(),
-                            Utils.convertStringToTime(m.getDate()));
-                        Intent i = new Intent(ACTION_CHAT);
-                        i.putExtra(EXTRA_CHAT_USER,m.getSender());
-                        mLBM.sendBroadcastSync(i);
-                        boolean processed = i.getBooleanExtra(EXTRA_RESULT, false);
-                        if (!processed) {
-                            sendNotification(m);
-                        }
-
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
-
-
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+//        if (from.startsWith("/topics/")) {
+//        } else {
+//            long lastTime = ChattingDBManager.getInstance().getLastReceiveDate();
+//            Date date = new Date(lastTime);
+//            MessageListRequest request = new MessageListRequest(this, date);
+//            try {
+//                NetworkResult<List<ChatMessage>> result = NetworkManager.getInstance().getNetworkDataSync(request);
+//                List<ChatMessage> list = result.getResults();
+//                for (ChatMessage m : list) {
+//
+//                    try {
+//                        ChattingDBManager.getInstance().addMessage(m.getSender(), ChatContract.ChatMessage.TYPE_RECEIVE, m.getMessage(),
+//                            Utils.convertStringToTime(m.getDate()));
+//                        Intent i = new Intent(ACTION_CHAT);
+//                        i.putExtra(EXTRA_CHAT_USER,m.getSender());
+//                        mLBM.sendBroadcastSync(i);
+//                        boolean processed = i.getBooleanExtra(EXTRA_RESULT, false);
+//                        if (!processed) {
+//                            sendNotification(m);
+//                        }
+//
+//                    } catch (ParseException e) {
+//                        e.printStackTrace();
+//                    }
+//
+//
+//                }
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        }
 
 //        sendNotification(message);
     }
