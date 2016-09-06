@@ -4,7 +4,6 @@ import android.content.Context;
 import android.util.Log;
 
 import com.google.gson.reflect.TypeToken;
-import com.sm.ej.nk.homeal.data.EaterData;
 import com.sm.ej.nk.homeal.data.NetworkResult;
 import com.sm.ej.nk.homeal.data.ReserveResult;
 
@@ -46,7 +45,7 @@ public class EtReserveRequest extends AbstractRequest<NetworkResult<ReserveResul
 
     @Override
     protected Type getType() {
-        return new TypeToken<NetworkResult<EaterData>>(){}.getType();
+        return new TypeToken<NetworkResult<ReserveResult>>(){}.getType();
     }
 
     @Override

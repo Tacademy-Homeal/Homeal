@@ -18,7 +18,6 @@ import java.util.List;
 public class EtReserveAdapter extends RecyclerView.Adapter<EtReserveViewHolder> implements EtReserveViewHolder.OnReserveButtonClick{
     List<ReserveData> items = new ArrayList<>();
 
-
     public void add(ReserveData data) {
         items.add(data);
         notifyDataSetChanged();
@@ -33,6 +32,7 @@ public class EtReserveAdapter extends RecyclerView.Adapter<EtReserveViewHolder> 
         this.items.addAll(items);
         notifyDataSetChanged();
     }
+
     @Override
     public EtReserveViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_et_reserve_fragment, parent, false);
