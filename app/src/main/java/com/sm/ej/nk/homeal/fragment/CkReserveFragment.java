@@ -17,9 +17,12 @@ import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.adapter.CkReserveAdapter;
 import com.sm.ej.nk.homeal.data.CkReserveData;
 import com.sm.ej.nk.homeal.data.NetworkResult;
+import com.sm.ej.nk.homeal.data.ReserveResult;
 import com.sm.ej.nk.homeal.manager.NetworkManager;
 import com.sm.ej.nk.homeal.manager.NetworkRequest;
 import com.sm.ej.nk.homeal.request.CkReserveRequest;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -40,6 +43,7 @@ public class CkReserveFragment extends Fragment {
     private static final int TYPE_EAT_COMPLETE = 6;
     private static final int TYPE_END = 7;
 
+    List<CkReserveData> datas;
     public static CkReserveFragment createInstance() {
         final CkReserveFragment pageFragment = new CkReserveFragment();
         final Bundle bundle = new Bundle();
@@ -63,22 +67,6 @@ public class CkReserveFragment extends Fragment {
 
         CkReserveView.setAdapter(mAdapter);
         CkReserveView.setLayoutManager(manager);
-
-       CkReserveRequest request = new CkReserveRequest(getContext());
-
-        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<CkReserveData>>() {
-            @Override
-            public void onSuccess(NetworkRequest<NetworkResult<CkReserveData>> request, NetworkResult<CkReserveData> result) {
-                mAdapter.clear();
-            //    mAdapter.add(result.getResult());
-            }
-
-            @Override
-
-            public void onFail(NetworkRequest<NetworkResult<CkReserveData>> request, int errorCode, String errorMessage, Throwable e) {
-
-            }
-        });
 
         setCookerButton();
         return view;
@@ -115,6 +103,27 @@ public class CkReserveFragment extends Fragment {
 //                }
 //            }
 //        });
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        CkReserveRequest request = new CkReserveRequest(getContext());
+
+        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<ReserveResult>>() {
+            @Override
+            public void onSuccess(NetworkRequest<NetworkResult<ReserveResult>> request, NetworkResult<ReserveResult> result) {
+                datas = result.getResult().getReserve();
+                mAdapter.clear();
+                mAdapter.addAll(datas);
+            }
+            @Override
+            public void onFail(NetworkRequest<NetworkResult<ReserveResult>> request, int errorCode, String errorMessage, Throwable e) {
+
+            }
+        });
+
     }
 
     private void showDialog(){

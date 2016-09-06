@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.data.CkReserveData;
 
@@ -94,40 +95,40 @@ public class CkReserveViewHolder extends RecyclerView.ViewHolder {
     }
 
 
-//    //set Data
-//    public void setReserveData(CkReserveData ckReserveData) {
-//        this.ckReserveData = ckReserveData;
-//        Glide.with(pictureView.getContext()).load(ckReserveData.get()).into(pictureView);
-//        dateView.setText(ckReserveData.getDate());
-//       // reservePersonView.setText(ckReserveData.get());
-//        ckNameView.setText(ckReserveData.getName());
-//        foodNameView.setText(ckReserveData.getMenu());
-//
-//        btn_reserve_agree.setVisibility(View.INVISIBLE);
-//        btn_reserve_disagree.setVisibility(View.INVISIBLE);
-//        btn_reserve_write.setVisibility(View.INVISIBLE);
-//
-//        int status = Integer.getInteger(ckReserveData.getStatus());
-//        switch (status){
-//            case TYPE_QUEST :
-//                btn_reserve_agree.setVisibility(View.VISIBLE);
-//                btn_reserve_disagree.setVisibility(View.VISIBLE);
-//                reserveStateView.setText(R.string.text_ck_reserve_request);
-//                break;
-//            case TYPE_QUEST_COMPLETE :
-//                btn_reserve_write.setVisibility(View.VISIBLE);
-//                reserveStateView.setText(R.string.text_ck_reserve_request_complete);
-//                break;
-//            case TYPE_EAT_END :
-//                btn_reserve_write.setVisibility(View.VISIBLE);
-//                reserveStateView.setText(R.string.text_ck_reserve_eat_end);
-//                break;
-//            case TYPE_END :
-//                reserveStateView.setText("");
-//                break;
-//        }
-//    }
-    //
+    //set Data
+    public void setReserveData(CkReserveData ckReserveData) {
+        this.ckReserveData = ckReserveData;
+        Glide.with(pictureView.getContext()).load(ckReserveData.getUimage()).into(pictureView);
+        dateView.setText(ckReserveData.getSdate());
+       // reservePersonView.setText(ckReserveData.get());
+        ckNameView.setText(ckReserveData.getUname());
+        foodNameView.setText(ckReserveData.getMname());
+
+        btn_reserve_agree.setVisibility(View.INVISIBLE);
+        btn_reserve_disagree.setVisibility(View.INVISIBLE);
+        btn_reserve_write.setVisibility(View.INVISIBLE);
+
+
+        switch (ckReserveData.getRstatus()){
+            case TYPE_QUEST :
+                btn_reserve_agree.setVisibility(View.VISIBLE);
+                btn_reserve_disagree.setVisibility(View.VISIBLE);
+                reserveStateView.setText(R.string.text_ck_reserve_request);
+                break;
+            case TYPE_QUEST_COMPLETE :
+                btn_reserve_write.setVisibility(View.VISIBLE);
+                reserveStateView.setText(R.string.text_ck_reserve_request_complete);
+                break;
+            case TYPE_EAT_END :
+                btn_reserve_write.setVisibility(View.VISIBLE);
+                reserveStateView.setText(R.string.text_ck_reserve_eat_end);
+                break;
+            case TYPE_END :
+                reserveStateView.setText("");
+                break;
+        }
+    }
+
 
     //Agree Button
     public interface OnAgreeButtonClickListener {
