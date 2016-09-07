@@ -18,6 +18,7 @@ import com.sm.ej.nk.homeal.data.CkDetailMenuData;
 import com.sm.ej.nk.homeal.data.CkInfoResult;
 import com.sm.ej.nk.homeal.data.EtHomeData;
 import com.sm.ej.nk.homeal.fragment.EtHomeFragment;
+import com.sm.ej.nk.homeal.manager.CalendarManager;
 import com.sm.ej.nk.homeal.manager.NetworkManager;
 import com.sm.ej.nk.homeal.manager.NetworkRequest;
 import com.sm.ej.nk.homeal.request.CkPageCheckRequest;
@@ -95,6 +96,7 @@ public class InfoCkDetailActivity extends AppCompatActivity implements CkDetailA
             @Override
             public void onSuccess(NetworkRequest<CkInfoResult> request, CkInfoResult result) {
                 resultDara = result;
+                CalendarManager.clearInstance();
                 mAdapter.setResult(result);
                 mAdapter.setOnDetailAdapterClickListener(InfoCkDetailActivity.this);
                 rv.setAdapter(mAdapter);

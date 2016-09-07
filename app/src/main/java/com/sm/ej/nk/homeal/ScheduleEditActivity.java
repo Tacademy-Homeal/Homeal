@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -87,7 +88,10 @@ public class ScheduleEditActivity extends AppCompatActivity implements View.OnCl
         Intent intent = getIntent();
         MODE = intent.getIntExtra(CkMainActivity.INTENT_MODE, -1);
         if(MODE  == CkMainActivity.MODE_SCHEDULR_EDIT){
-            scheduleList = CkMainActivity.getHomeFragment().getCkSchedule();
+            scheduleList = (List<CkScheduleData>)intent.getSerializableExtra(CkMainActivity.INTENT_SCHEDULE_DATA);
+            if(scheduleList==null){
+                Log.e("ssong", "okokokokokok");
+            }
             changeCalendarScheduleData(scheduleList);
             CalendarData calendarData = CalendarManager.getInstance().getSelectCalendarData(calendarItems);
 

@@ -24,18 +24,18 @@ public class ReserveSendRequest extends AbstractRequest<NetworkResultTemp>{
                 .addPathSegment("reservations")
                 .build();
 
-        FormBody.Builder body = new FormBody.Builder();
-        body.add("cooker", cookerid)
+        FormBody.Builder builder = new FormBody.Builder();
+        builder.add("cooker", cookerid)
                 .add("schedule", scheduleid)
                 .add("pax", pax);
         for(int i=0; i<menus.size(); i++){
-            body.add("menu",menus.get(i).id);
+            builder.add("menu",menus.get(i).id);
         }
-        RequestBody requestBody = body.build();
+        RequestBody body = builder.build();
 
         request = new Request.Builder()
                 .url(url)
-                .post(requestBody)
+                .post(body)
                 .tag(context)
                 .build();
     }

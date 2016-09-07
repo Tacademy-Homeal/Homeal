@@ -112,6 +112,11 @@
                     android:id="@+id/edit_menu_add_foodinfo"
                     android:hint="@string/menu_add_hint"
                     android:gravity="top|left" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/image_menu_add_activation" />
             </LinearLayout>
 
         </android.support.v4.widget.NestedScrollView>
