@@ -46,10 +46,10 @@
         android:layout_below="@+id/text_profile"
         android:layout_marginLeft="@dimen/ck_personaldata_left"
         android:layout_marginTop="@dimen/ck_personaldata_left"
-        android:src="@drawable/basic_person" />
+        android:src="@drawable/base_person_icon" />
 
     <LinearLayout
-        android:id="@+id/linear_ck_name_age"
+        android:id="@+id/linear_ck_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/text_profile"
@@ -57,33 +57,33 @@
         android:layout_toRightOf="@+id/image_ck_picture">
 
         <EditText
-            android:id="@+id/edit_ck_name"
+            android:id="@+id/edit_ck_name_last"
             android:layout_width="84dp"
             android:layout_height="42dp"
             android:layout_above="@+id/textView6"
-            android:layout_alignTop="@+id/edit_ck_age"
+            android:layout_alignTop="@+id/edit_ck_name_first"
             android:layout_marginLeft="11dp"
             android:layout_toRightOf="@+id/image_ck_picture"
             android:background="@drawable/edge"
             android:hint=" Name" />
 
         <EditText
-            android:id="@+id/edit_ck_age"
+            android:id="@+id/edit_ck_name_first"
             android:layout_width="84dp"
             android:layout_height="42dp"
-            android:layout_alignTop="@+id/edit_ck_name"
+            android:layout_alignTop="@+id/edit_ck_name_last"
             android:layout_marginLeft="11dp"
             android:background="@drawable/edge"
-            android:hint=" Age" />
+            android:hint=" Name" />
     </LinearLayout>
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/linear_ck_name_age"
-        android:layout_alignStart="@+id/linear_ck_name_age"
-        android:layout_below="@+id/linear_ck_name_age"
+        android:layout_alignLeft="@+id/linear_ck_name"
+        android:layout_alignStart="@+id/linear_ck_name"
+        android:layout_below="@+id/linear_ck_name"
         android:layout_marginLeft="11dp"
         android:layout_marginTop="11dp"
         android:text="Birthday"
@@ -166,11 +166,6 @@
             android:layout_weight="0.5"
             android:background="@drawable/edge"
             android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="42dp"
-                android:text=" Tel:"/>
 
             <Spinner
                 android:layout_width="wrap_content"

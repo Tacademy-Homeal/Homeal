@@ -1,6 +1,7 @@
 package com.sm.ej.nk.homeal;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.sm.ej.nk.homeal.data.PersonalData;
 import com.sm.ej.nk.homeal.fragment.CkMyPageFragment;
+import com.sm.ej.nk.homeal.manager.TranslateManager;
 
 import java.util.ArrayList;
 
@@ -32,6 +34,7 @@ public class CkPersonalDataActivity extends AppCompatActivity {
 
     ArrayAdapter<String> countryAdapter;
     ArrayAdapter<String> countryphoneAdapter;
+   public static Context mContext;
 
     @BindView(R.id.radioGroup)
     RadioGroup radioGroup;
@@ -39,10 +42,10 @@ public class CkPersonalDataActivity extends AppCompatActivity {
     @BindView(R.id.toolbar_ck_toolbar)
     Toolbar toolbar;
 
-    @BindView(R.id.edit_ck_name)
+    @BindView(R.id.edit_ck_name_last)
     EditText nameEdit;
 
-    @BindView(R.id.edit_ck_age)
+    @BindView(R.id.edit_ck_name_first)
     EditText ageEdit;
 
     @BindView(R.id.text_ck_address)
@@ -104,7 +107,8 @@ public class CkPersonalDataActivity extends AppCompatActivity {
         if (requestCode == ADDRESS_SEARCH) {
             if (resultCode == RESULT_OK) {
                 String address = intent.getStringExtra("address");
-                addressText.setText(address);
+                TranslateManager.getInstance().translateKoreantoEng(address);
+//                addressText.setText(address);
             }
         }
         if (requestCode == GET_IMAGE) {
@@ -114,6 +118,10 @@ public class CkPersonalDataActivity extends AppCompatActivity {
             }
         }
 
+    }
+
+    public void setTranslate(String translate){
+        addressText.setText(translate);
     }
 
     @Override
@@ -164,18 +172,18 @@ public class CkPersonalDataActivity extends AppCompatActivity {
         isPersonalData(false);
         btnChangeFinish.setVisibility(View.GONE);
 
-
+        mContext = this;
     }
 
-    public void setUserImage(PersonalData ckdata){
+    public void setUserImage(PersonalData ckdata) {
         nameEdit.setText(ckdata.getName());
         addressText.setText(ckdata.getAddress());
         introduceEdit.setText(ckdata.getIntroduce());
         phoneEdit.setText(ckdata.getPhone());
 
-        if(ckdata.getGender().equals("male")){
+        if (ckdata.getGender().equals("male")) {
             radioGroup.check(R.id.radio_ck_male);
-        }else{
+        } else {
             radioGroup.check(R.id.radio_ck_female);
         }
 
@@ -225,5 +233,6 @@ public class CkPersonalDataActivity extends AppCompatActivity {
         maleRadio.setEnabled(s);
         femaleRadio.setEnabled(s);
         ckpictureView.setEnabled(s);
+        countryphoneSpinner.setEnabled(s);
     }
 }

@@ -100,40 +100,6 @@ public class AddressEditActivity extends AppCompatActivity implements
                 .findFragmentById(R.id.map_fragment);
         fragment.getMapAsync(this);
 
-//        Button btn = (Button)findViewById(R.id.btn_address_search);
-//        btn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                String keyword = keywordView.getText().toString();
-//        if (!TextUtils.isEmpty(keyword)) {
-//            POISearchRequest request = new POISearchRequest(AddressEditActivity.this, keyword);
-//            NetworkManager.getInstance().getPOINetworkData(request, new NetworkManager.OnResultListener<POIResult>() {
-//                @Override
-//                public void onSuccess(NetworkRequest<POIResult> request, POIResult result) {
-//
-//                    clear();
-//                    try {
-//                        mAdapter.addAll(result.getSearchPoiInfo().getPois().getPoi());
-//                        for (Poi poi : result.getSearchPoiInfo().getPois().getPoi()) {
-//                        }
-//                        if (result.getSearchPoiInfo().getPois().getPoi().length > 0) {
-//                            Poi poi = result.getSearchPoiInfo().getPois().getPoi()[0];
-//                            moveMap(poi.getLatitude(), poi.getLongitude());
-//                        }
-//                    } catch (NullPointerException e) {
-//                        Toast.makeText(AddressEditActivity.this, "검색결과 존재하지않습니다.", Toast.LENGTH_SHORT).show();
-//                    }
-//                }
-//
-//                @Override
-//                public void onFail(NetworkRequest<POIResult> request, int errorCode, String errorMessage, Throwable e) {
-//                    Toast.makeText(AddressEditActivity.this, "검색 실패 :" +errorMessage, Toast.LENGTH_SHORT).show();
-//                }
-//            });
-//            }
-//            }
-//        });
-
         addressSearchView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
