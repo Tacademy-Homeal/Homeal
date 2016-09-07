@@ -4,8 +4,8 @@ import android.content.Context;
 import android.util.Log;
 
 import com.google.gson.reflect.TypeToken;
-import com.sm.ej.nk.homeal.data.EaterData;
 import com.sm.ej.nk.homeal.data.NetworkResult;
+import com.sm.ej.nk.homeal.data.PersonalData;
 
 import java.lang.reflect.Type;
 
@@ -15,7 +15,7 @@ import okhttp3.Request;
 /**
  * Created by Tacademy on 2016-09-02.
  */
-public class EaterInfoRequest extends AbstractRequest<NetworkResult<EaterData>> {
+public class EaterInfoRequest extends AbstractRequest<NetworkResult<PersonalData>> {
     Request mRequest;
 
 
@@ -49,7 +49,7 @@ public class EaterInfoRequest extends AbstractRequest<NetworkResult<EaterData>> 
 
     @Override
     protected Type getType() {
-        return new TypeToken<NetworkResult<EaterData>>(){}.getType();
+        return new TypeToken<NetworkResult<PersonalData>>(){}.getType();
     }
 
     @Override

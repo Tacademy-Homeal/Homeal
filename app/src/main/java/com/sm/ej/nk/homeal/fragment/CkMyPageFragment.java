@@ -15,7 +15,7 @@ import com.bumptech.glide.Glide;
 import com.sm.ej.nk.homeal.CkPersonalDataActivity;
 import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.SettingActivity;
-import com.sm.ej.nk.homeal.data.CkPersonalData;
+import com.sm.ej.nk.homeal.data.PersonalData;
 import com.sm.ej.nk.homeal.data.NetworkResult;
 import com.sm.ej.nk.homeal.manager.NetworkManager;
 import com.sm.ej.nk.homeal.manager.NetworkRequest;
@@ -38,7 +38,7 @@ public class CkMyPageFragment extends Fragment {
     @BindView(R.id.progress_ck_mypage_total)
     ProgressBar cktotalView;
 
-    CkPersonalData data;
+    PersonalData data;
     public static final String CK_DATA = "Ck_data";
     public static CkMyPageFragment createInstance() {
         final CkMyPageFragment pageFragment = new CkMyPageFragment();
@@ -58,9 +58,9 @@ public class CkMyPageFragment extends Fragment {
 
         CkInfoRequest request = new CkInfoRequest(getContext());
 
-        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<CkPersonalData>>() {
+        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<PersonalData>>() {
             @Override
-            public void onSuccess(NetworkRequest<NetworkResult<CkPersonalData>> request, NetworkResult<CkPersonalData> result) {
+            public void onSuccess(NetworkRequest<NetworkResult<PersonalData>> request, NetworkResult<PersonalData> result) {
                     data = result.getResult();
                     cknameView.setText(data.getName());
                     cktypeView.setText(data.getType());
@@ -70,7 +70,7 @@ public class CkMyPageFragment extends Fragment {
             }
 
             @Override
-            public void onFail(NetworkRequest<NetworkResult<CkPersonalData>> request, int errorCode, String errorMessage, Throwable e) {
+            public void onFail(NetworkRequest<NetworkResult<PersonalData>> request, int errorCode, String errorMessage, Throwable e) {
 
             }
         });

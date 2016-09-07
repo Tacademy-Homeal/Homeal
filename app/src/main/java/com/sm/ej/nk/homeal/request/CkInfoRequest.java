@@ -3,7 +3,7 @@ package com.sm.ej.nk.homeal.request;
 import android.content.Context;
 
 import com.google.gson.reflect.TypeToken;
-import com.sm.ej.nk.homeal.data.CkPersonalData;
+import com.sm.ej.nk.homeal.data.PersonalData;
 import com.sm.ej.nk.homeal.data.NetworkResult;
 
 import java.lang.reflect.Type;
@@ -14,7 +14,7 @@ import okhttp3.Request;
 /**
  * Created by Tacademy on 2016-09-02.
  */
-public class CkInfoRequest extends AbstractRequest<NetworkResult<CkPersonalData>>  {
+public class CkInfoRequest extends AbstractRequest<NetworkResult<PersonalData>>  {
 
     Request request;
 
@@ -32,7 +32,7 @@ public class CkInfoRequest extends AbstractRequest<NetworkResult<CkPersonalData>
 
     @Override
     protected Type getType() {
-        return new TypeToken<NetworkResult<CkPersonalData>>(){}.getType();
+        return new TypeToken<NetworkResult<PersonalData>>(){}.getType();
     }
 
     @Override

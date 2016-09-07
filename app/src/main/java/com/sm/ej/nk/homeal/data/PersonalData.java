@@ -2,7 +2,7 @@ package com.sm.ej.nk.homeal.data;
 
 import java.io.Serializable;
 
-public class CkPersonalData implements Serializable {
+public class PersonalData implements Serializable {
     private String image;
     private String country;
     private String address;

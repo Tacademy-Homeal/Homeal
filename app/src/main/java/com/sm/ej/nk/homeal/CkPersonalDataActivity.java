@@ -19,7 +19,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.sm.ej.nk.homeal.data.CkPersonalData;
+import com.sm.ej.nk.homeal.data.PersonalData;
 import com.sm.ej.nk.homeal.fragment.CkMyPageFragment;
 
 import java.util.ArrayList;
@@ -123,7 +123,7 @@ public class CkPersonalDataActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         Intent intent = getIntent();
-        CkPersonalData ckdata = (CkPersonalData) intent.getSerializableExtra(CkMyPageFragment.CK_DATA);
+        PersonalData ckdata = (PersonalData) intent.getSerializableExtra(CkMyPageFragment.CK_DATA);
 
         setUserImage(ckdata);
 
@@ -167,7 +167,7 @@ public class CkPersonalDataActivity extends AppCompatActivity {
 
     }
 
-    public void setUserImage(CkPersonalData ckdata){
+    public void setUserImage(PersonalData ckdata){
         nameEdit.setText(ckdata.getName());
         addressText.setText(ckdata.getAddress());
         introduceEdit.setText(ckdata.getIntroduce());

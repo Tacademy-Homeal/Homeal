@@ -15,7 +15,11 @@ import com.sm.ej.nk.homeal.EtPersonalDataActivity;
 import com.sm.ej.nk.homeal.EtZzimActivity;
 import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.SettingActivity;
-import com.sm.ej.nk.homeal.data.User;
+import com.sm.ej.nk.homeal.data.NetworkResult;
+import com.sm.ej.nk.homeal.data.PersonalData;
+import com.sm.ej.nk.homeal.manager.NetworkManager;
+import com.sm.ej.nk.homeal.manager.NetworkRequest;
+import com.sm.ej.nk.homeal.request.EaterInfoRequest;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -37,8 +41,10 @@ public class EtMyPageFragment extends Fragment {
 
     @BindView(R.id.text_et_point)
     TextView etpointView;
-    //
 
+
+    PersonalData data;
+    public static final String ET_DATA = "eater_data";
 
     public static EtMyPageFragment createInstance() {
         final EtMyPageFragment pageFragment = new EtMyPageFragment();
@@ -58,34 +64,33 @@ public class EtMyPageFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_et_my_page, container, false);
         ButterKnife.bind(this, view);
 
-        initData();
-        setUser();
+        EaterInfoRequest request = new EaterInfoRequest(getContext());
+
+        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<PersonalData>>() {
+            @Override
+            public void onSuccess(NetworkRequest<NetworkResult<PersonalData>> request, NetworkResult<PersonalData> result) {
+                data = result.getResult();
+                etnameView.setText(data.getName());
+                ettypeView.setText(data.getType());
+               // etpointView.setProgress(data.getGrade());
+                Glide.with(etpictureView.getContext()).load(data.getImage()).into(etpictureView);
+
+            }
+
+            @Override
+            public void onFail(NetworkRequest<NetworkResult<PersonalData>> request, int errorCode, String errorMessage, Throwable e) {
+
+            }
+        });
+
         return view;
 
     }
 
-    User user;
-
-    public void setUser() {
-
-        Glide.with(etpictureView.getContext()).load(user.getImage()).into(etpictureView);
-        etnameView.setText(user.getName());
-        ettypeView.setText(user.getType());
-        etpointView.setText(""+user.getEtPoint()+"P");
-    }
-
-    private void initData() {
-        user = new User();
-        user.setImage("http://cfile22.uf.tistory.com/image/264785445579217E20ADEE");
-        user.setName("Eunji");
-        user.setType("Eater");
-        user.setEtPoint(1300);
-    }
-
-
     @OnClick(R.id.text_et_mypage_personal)
     public void changeEtPersonalDataActivity() {
         Intent intent = new Intent(getActivity(), EtPersonalDataActivity.class);
+        intent.putExtra(ET_DATA,data);
         startActivity(intent);
 
     }

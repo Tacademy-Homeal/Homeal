@@ -6,9 +6,9 @@ package com.sm.ej.nk.homeal.data;
 public class InfoResult {
 
 
-    private CkPersonalData info;
+    private PersonalData info;
 
-    public CkPersonalData getInfo() {
+    public PersonalData getInfo() {
         return info;
     }
 }

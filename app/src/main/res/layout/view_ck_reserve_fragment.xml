@@ -73,6 +73,7 @@
 
                 <RatingBar
                     android:id="@+id/rating_ck_reserve_et"
+                    style="@style/styleRatingBar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>
