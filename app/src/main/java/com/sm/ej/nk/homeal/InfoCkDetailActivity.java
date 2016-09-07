@@ -18,10 +18,12 @@ import com.sm.ej.nk.homeal.data.CkDetailMenuData;
 import com.sm.ej.nk.homeal.data.CkInfoResult;
 import com.sm.ej.nk.homeal.data.EtHomeData;
 import com.sm.ej.nk.homeal.fragment.EtHomeFragment;
+import com.sm.ej.nk.homeal.manager.CalendarManager;
 import com.sm.ej.nk.homeal.manager.NetworkManager;
 import com.sm.ej.nk.homeal.manager.NetworkRequest;
 import com.sm.ej.nk.homeal.request.CkPageCheckRequest;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -46,11 +48,10 @@ public class InfoCkDetailActivity extends AppCompatActivity implements CkDetailA
 
 
     EtHomeData etHomeData;
-    CalendarItem calendarItem;
 
     CkDetailAdapter mAdapter;
     CkInfoResult resultDara;
-    List<CkDetailMenuData> selectMenuList;
+    static List<CkDetailMenuData> selectMenuList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +62,7 @@ public class InfoCkDetailActivity extends AppCompatActivity implements CkDetailA
         Intent intent = getIntent();
         etHomeData = (EtHomeData)intent.getSerializableExtra(EtHomeFragment.INTENT_CK_ID);
         Log.e("ssong ID", etHomeData.getId());
+        selectMenuList = new ArrayList<>();
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -77,13 +79,24 @@ public class InfoCkDetailActivity extends AppCompatActivity implements CkDetailA
         LinearLayoutManager manager = new LinearLayoutManager(this);
         rv.setLayoutManager(manager);
         mAdapter = new CkDetailAdapter();
+        mAdapter.setOnMEnuSwipeClickListener(new CkDetailAdapter.OnMenuSwipeClickListener() {
+            @Override
+            public void onMenuSwipeClick(View view, CkDetailMenuData data, int position, boolean select) {
+               if(select){
+                   selectMenuList.add(data);
+               }else{
+                   selectMenuList.remove(data);
+               }
 
+            }
+        });
 
         CkPageCheckRequest request = new CkPageCheckRequest(this, etHomeData.getId());
         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<CkInfoResult>() {
             @Override
             public void onSuccess(NetworkRequest<CkInfoResult> request, CkInfoResult result) {
                 resultDara = result;
+                CalendarManager.clearInstance();
                 mAdapter.setResult(result);
                 mAdapter.setOnDetailAdapterClickListener(InfoCkDetailActivity.this);
                 rv.setAdapter(mAdapter);
@@ -108,16 +121,20 @@ public class InfoCkDetailActivity extends AppCompatActivity implements CkDetailA
                     Toast.makeText(InfoCkDetailActivity.this, "날짜를 선택해주세요", Toast.LENGTH_SHORT).show();
                 }else{
                     Intent intent = new Intent(InfoCkDetailActivity.this, ReserveRequestActivity.class);
-//                    intent.putExtra(INTENT_RESERVE_MENU, );
                     intent.putExtra(INTENT_RESERVE_CALENDAR, mAdapter.getSelectCalendarItem());
+                    intent.putExtra(INTENT_RESERVE_CKID, resultDara.getCooker_info().uid);
                     startActivity(intent);
                 }
-                }
+            }
         });
+    }
+    public static List<CkDetailMenuData> getSelectMenu(){
+        return selectMenuList;
     }
 
     public static final String INTENT_RESERVE_MENU = "rrrr";
     public static final String INTENT_RESERVE_CALENDAR= "www";
+    public static final String INTENT_RESERVE_CKID = "eeee";
 
     @Override
     public void onDetailAdapterClick(View view, CalendarItem data, int position) {

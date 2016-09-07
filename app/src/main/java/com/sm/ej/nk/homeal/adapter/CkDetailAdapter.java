@@ -1,6 +1,7 @@
 package com.sm.ej.nk.homeal.adapter;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +22,7 @@ import java.util.List;
 /**
  * Created by Tacademy on 2016-08-29.
  */
-public class CkDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements CkDetailHeaderViewHolder.OnCalendarHeaderViewClickListener{
+public class CkDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements CkDetailHeaderViewHolder.OnCalendarHeaderViewClickListener, CkDetailItemViewHolder.OnMenuSwipeClickLIstener{
     CkDetailData datas;
     CkDetailItemViewHolder menuholder;
     CkDetailHeaderViewHolder headerholder;
@@ -106,10 +107,7 @@ public class CkDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }else{
             menuholder = (CkDetailItemViewHolder)holder;
             menuholder.setData(menuList.get(position-1));
-            if(position!=1){
-                menuholder.day.setVisibility(View.INVISIBLE);
-                menuholder.daynum.setVisibility(View.INVISIBLE);
-            }
+            menuholder.setOnMEnuSwipeClickListener(this);
         }
     }
 
@@ -130,6 +128,7 @@ public class CkDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         if(data.isSelect){
             headerholder.showSchedule(data);
             calendarItem = data;
+            Log.e("ssong", calendarItem.id);
         }
     }
 
@@ -140,11 +139,27 @@ public class CkDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         return null;
     }
 
+    @Override
+    public void onMenuSwipeClick(View view, CkDetailMenuData data, int position, boolean select) {
+        if(menuListener!=null){
+            menuListener.onMenuSwipeClick(view, data, position, select);
+        }
+    }
+
     public interface OnDetailAdapterClickListener{
         public void onDetailAdapterClick(View view, CalendarItem data, int position);
     }
     OnDetailAdapterClickListener listener;
     public void setOnDetailAdapterClickListener(OnDetailAdapterClickListener listener){
         this.listener = listener;
+    }
+
+    public interface OnMenuSwipeClickListener{
+        public void onMenuSwipeClick(View view, CkDetailMenuData data, int position, boolean select);
+    }
+
+    OnMenuSwipeClickListener menuListener;
+    public void setOnMEnuSwipeClickListener(OnMenuSwipeClickListener listener){
+        menuListener = listener;
     }
 }

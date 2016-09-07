@@ -69,6 +69,14 @@ public class CalendarView extends RecyclerView.ViewHolder implements Checkable{
                 reserveImage.setVisibility(View.INVISIBLE);
             }
         }
+        calendar = Calendar.getInstance();
+        if(item.inMonth){
+            if(item.dayOfMonth==calendar.get(Calendar.DAY_OF_MONTH) && item.month==calendar.get(Calendar.MONTH)&& item.year == calendar.get(Calendar.YEAR)){
+                imageView.setVisibility(View.VISIBLE);
+            }else{
+                imageView.setVisibility(View.INVISIBLE);
+            }
+        }
         textView.setText(""+item.dayOfMonth);
     }
 

@@ -109,7 +109,7 @@ public class EtHomeViewHolder extends RecyclerView.ViewHolder {
     }
 
     OnReviewClickListener reviewClickListener;
-
+//fffff
     public void setOnReviewClickListener(OnReviewClickListener listener){
         this.reviewClickListener = listener;
     }

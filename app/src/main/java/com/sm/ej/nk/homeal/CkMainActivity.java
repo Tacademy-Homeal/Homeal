@@ -15,11 +15,15 @@ import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 import com.sm.ej.nk.homeal.adapter.ViewPagerFragmentAdapter;
 import com.sm.ej.nk.homeal.data.CkDetailMenuData;
+import com.sm.ej.nk.homeal.data.CkScheduleData;
 import com.sm.ej.nk.homeal.fragment.ChatListFragment;
 import com.sm.ej.nk.homeal.fragment.CkHomeFragment;
 import com.sm.ej.nk.homeal.fragment.CkMyPageFragment;
 import com.sm.ej.nk.homeal.fragment.CkReserveFragment;
 import com.sm.ej.nk.homeal.view.AlarmPopupWindow;
+
+import java.io.Serializable;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -49,16 +53,17 @@ public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTab
     @BindView(R.id.fab_scheduleedit)
     FloatingActionButton fabSchedulrEdit;
 
-    private static CkHomeFragment ckHomeFragment;
+    private CkHomeFragment ckHomeFragment;
 
     AlarmPopupWindow popupWindow;
+    List<CkScheduleData> scheduleDatas;
 
     public static int INTENT_MENU =0;
     public static int INTENT_SCHEDULE = 1;
 
     private static boolean isEditMode = false;
 
-    private static int[] icon = {R.drawable.ic_home_white_48dp, R.drawable.ic_chat_white_48dp,
+    private int[] icon = {R.drawable.ic_home_white_48dp, R.drawable.ic_chat_white_48dp,
                                 R.drawable.ic_access_time_white_48dp, R.drawable.ic_person_white_48dp};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +74,6 @@ public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTab
         setSupportActionBar(toolbar);
 
         ckHomeFragment = CkHomeFragment.createInstance();
-
         if(viewPager!=null){
             setupTabViewPager(viewPager);
         }
@@ -133,6 +137,8 @@ public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTab
             public void onClick(View view) {
                 Intent intent = new Intent(CkMainActivity.this, ScheduleEditActivity.class);
                 intent.putExtra(INTENT_MODE, MODE_SCHEDULR_EDIT);
+                scheduleDatas = ckHomeFragment.getCkSchedule();
+                intent.putExtra(INTENT_SCHEDULE_DATA, (Serializable)scheduleDatas);
                 startActivityForResult(intent, INTENT_SCHEDULE);
             }
         });
@@ -186,12 +192,6 @@ public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTab
         pagerAdapter.addFragment(CkMyPageFragment.createInstance(), CK_MYPAGE);
         v.setAdapter(pagerAdapter);
 
-    }
-
-    public void moveChattigActivity() {
-
-        Intent intent = new Intent(this, ChattingActivity.class);
-        startActivity(intent);
     }
 
     @Override
@@ -255,7 +255,4 @@ public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTab
         this.listener = listener;
     }
 
-    public static CkHomeFragment getHomeFragment(){
-        return ckHomeFragment;
-    }
 }

@@ -70,7 +70,7 @@ public class CkHomeHeaderViewHolder extends RecyclerView.ViewHolder implements V
         progressClean.setProgress(data.cleanliness);
 //        progressTaste.setProgress(data.taste);
         progressPrice.setProgress(data.price);
-        progressTotal.setProgress(data.grade);
+        progressTotal.setProgress((int)data.grade);
         nextCalendar.setOnClickListener(this);
         backCalendar.setOnClickListener(this);
         Glide.with(HomealApplication.getContext()).load("http://fimg2.pann.com/new/download.jsp?FileID=28115067").into(userMap);
