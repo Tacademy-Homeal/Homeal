@@ -11,7 +11,7 @@ public class CkDetailData implements Serializable{
     public String address;
     public String taste;
     public String review;
-    public int grade;
+    public double grade;
     public int kindness;
     public int cleanliness;
     public String mapImage;
@@ -20,4 +20,5 @@ public class CkDetailData implements Serializable{
     public int price;
     public String jjimCnt;
     public String reviewCnt;
+    public String uid;
 }

@@ -26,6 +26,7 @@ public class CkScheduleData implements Serializable{
         item.isSelect = true;
         item.pax = this.pax;
         item.sharing = this.sharing;
+        item.id = this.id;
         switch(time){
             case "09":
                 item.isMorning = true;
@@ -39,7 +40,6 @@ public class CkScheduleData implements Serializable{
         }
         return item;
     }
-
 
     public String getDate() {
         return date;

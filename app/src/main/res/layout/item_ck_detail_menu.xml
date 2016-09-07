@@ -9,14 +9,13 @@
     <LinearLayout
         android:id="@+id/right_ck_detail"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
-        <ImageView
-            android:id="@+id/image_ck_detail_swipe"
-            android:src="@drawable/imgres"
-            android:scaleType="fitXY"
-            android:layout_width="70dp"
-            android:layout_height="match_parent"
+        <Button
+            android:id="@+id/btn_ck_detail_swipe"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/imgres2"
             android:paddingLeft="25dp"
             android:paddingRight="25dp"/>
     </LinearLayout>
@@ -30,43 +29,56 @@
             android:layout_height="100dp"
             android:id="@+id/image_item_ck_detail" />
 
-        <LinearLayout
-            android:orientation="vertical"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:layout_height="match_parent">
 
             <LinearLayout
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/text_item_ck_detail_food" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:id="@+id/textView3"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/text_item_ck_detail_price" />
+                </LinearLayout>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/text_item_ck_detail_food" />
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:id="@+id/text_item_ck_detail_intro"
+                    android:layout_marginTop="10dp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:id="@+id/textView3"
-                    android:layout_weight="1" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/text_item_ck_detail_price" />
             </LinearLayout>
 
-            <TextView
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:id="@+id/text_item_ck_detail_intro"
-                android:layout_marginTop="10dp" />
-
-        </LinearLayout>
+                android:id="@+id/imageView11"
+                android:baselineAlignBottom="false"
+                android:layout_gravity="center_vertical|right"
+                android:src="@drawable/homeal_menu_swipe" />
+        </FrameLayout>
 
     </LinearLayout>
 </com.daimajia.swipe.SwipeLayout>
