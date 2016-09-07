@@ -45,7 +45,7 @@ public class EtZzimActivity extends AppCompatActivity implements ZzimAdapter.OnZ
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("찜 목 록");
+        getSupportActionBar().setTitle(getResources().getString(R.string.EtZzimActivity_appbar));
 
         layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
 

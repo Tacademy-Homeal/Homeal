@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Homeal</string>
+    <string name="Currency_Setting" translatable="false">Currency Setting</string>
+    <string name="FAQ" translatable="false">FAQ</string>
+    <string name="Language_Setting" translatable="false">Language Setting</string>
+    <string name="Leave_Membership">Leave Membership</string>
+    <string name="SettingActivity_appbar">Settings</string>
+    <string name="PersonaldataActivity_appbar">Personal Data</string>
+    <string name="EtZzimActivity_appbar">Like List</string>
+    <string name="Logout">Logout</string>
+    <string name="action_search"></string>
+    <string name="attitude">Attitude</string>
+    <string name="back_string"></string>
+    <string name="change_finish">Finished update</string>
+    <string name="ck_detail_clean">Clean</string>
+    <string name="ck_detail_food">Introduce My Food</string>
+    <string name="ck_detail_kind">Kindness</string>
+    <string name="ck_detail_price">Price</string>
+    <string name="ck_detail_taste">Taste</string>
+    <string name="ck_detail_total">Total Grage</string>
+    <string name="ck_home_dinner">Dinner</string>
+    <string name="ck_home_fabchat">Chatting</string>
+    <string name="ck_home_fabedit">Edit menu</string>
+    <string name="ck_home_fabinsert">Add menu</string>
+    <string name="kindness">Kindness</string>
+    <string name="et_text_reservation_end">Finished</string>
+    <string name="et_text_reservation_complete">Reservation Success</string>
+    <string name="ck_home_dialog">Are you sure you want to delete the menu ?</string>
+    <string name="ck_home_fabschedule">Change schedule</string>
+    <string name="ck_home_fabscheduleinsert">Add schedule</string>
+    <string name="ck_home_fabsend">Request reservation</string>
+    <string name="ck_home_launch">Lunch</string>
+    <string name="ck_home_mornig">Breakfast</string>
+    <string name="ck_home_reservecount">Availability person for reservation</string>
+    <string name="leavemembership_dialog">Are you sure you want to leave membership?</string>
+    <string name="login_dialog">Are you sure you want to quit the app?</string>
+    <string name="tos_dialog">You can also use the service you agree to our Terms and Conditions .</string>
+    <string name="change">Update</string>
+    <string name="text_homeal_main">Travel \'re looking to eat</string>
+    <string name="sign_up">Please enter your details.</string>
+    <string name="menu_add_hint">Please enter your details.</string>
+    <string name="price">Price</string>
+    <string name="personal_data">Personal Data</string>
+    <string name="menu_add_foodname">Food Name</string>
+    <string name="menu_add_foodPrice">Price</string>
+    <string name="menu_add_foodIntro">Explain Food</string>
+    <string name="infockdetail_name">Detail Page</string>
+    <string name="clean">Clean</string>
+    <string name="et_reservation_cancle">Cancel reservation</string>
+    <string name="et_reservation_end">Finish</string>
+    <string name="et_reservation_write">Write review</string>
+    <string name="reserve_date">Date</string>
+    <string name="reserve_time">Time</string>
+    <string name="review">Review</string>
+    <string name="review_finish">Finished Review</string>
+    <string name="reserve_count">person for reservation</string>
+    <string name="setting">Setting</string>
+    <string name="taste">Taste</string>
+    <string name="text_btn_ck_reserve_disagree">Reject</string>
+    <string name="text_btn_ck_reserve_request">Accept</string>
+    <string name="text_ck_reserve_cancle">Cancel Reservation</string>
+    <string name="text_ck_reserve_eat_end">Finished meal</string>
+    <string name="text_ck_reserve_request">Request reservation</string>
+    <string name="text_ck_reserve_request_complete">Complete Reservation</string>
+    <string name="text_ck_reserve_write">Write review</string>
+    <string name="time">Time</string>
+    <string name="total">Total Grade</string>
+    <string name="zzim_list">Like List</string>
+</resources>

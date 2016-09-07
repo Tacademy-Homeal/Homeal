@@ -102,7 +102,7 @@ public class EtPersonalDataActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("개 인 정 보");
+        getSupportActionBar().setTitle(getResources().getString(R.string.PersonaldataActivity_appbar));
 
         settingCalendar();
     }

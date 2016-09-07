@@ -137,7 +137,7 @@ public class CkPersonalDataActivity extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("개 인 정 보");
+        getSupportActionBar().setTitle(getResources().getString(R.string.PersonaldataActivity_appbar));
 
         countryAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.country));
         countryAdapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
@@ -180,6 +180,8 @@ public class CkPersonalDataActivity extends AppCompatActivity {
         addressText.setText(ckdata.getAddress());
         introduceEdit.setText(ckdata.getIntroduce());
         phoneEdit.setText(ckdata.getPhone());
+        countrySpinner.getSelectedItem();
+
 
         if (ckdata.getGender().equals("male")) {
             radioGroup.check(R.id.radio_ck_male);

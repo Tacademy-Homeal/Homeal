@@ -31,7 +31,7 @@ public class AdviceActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("도 움 말");
+        getSupportActionBar().setTitle(getResources().getString(R.string.FAQ));
 
         createGroupList();
         createCollection();
