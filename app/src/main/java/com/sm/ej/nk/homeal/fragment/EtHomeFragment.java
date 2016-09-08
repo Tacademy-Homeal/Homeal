@@ -98,6 +98,7 @@ public class EtHomeFragment extends Fragment implements EtHomeAdapter.OnReviewit
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<List<EtHomeData>>> request, NetworkResult<List<EtHomeData>> result) {
                 datas = result.getResult();
+
                 mAdapter.addList(datas);
                 PAGENO+=1;
             }
@@ -115,10 +116,8 @@ public class EtHomeFragment extends Fragment implements EtHomeAdapter.OnReviewit
     public void onViewClick(View view, int position) {
         Intent intent = new Intent(getActivity(), InfoCkDetailActivity.class);
 //        intent.putExtra(INTENT_CK_ID, );
-        intent.putExtra(INTENT_CK_ID, datas.get(position));
-        Log.e("ssong", datas.get(position).getId());
-        intent.putExtra(INTENT_ZZIM_ID, datas.get(position));
-        Log.e("eun", datas.get(position).getId());
+        intent.putExtra(INTENT_CK_ID, mAdapter.getDataList().get(position));
+        Log.e("ssong", mAdapter.getDataList().get(position).getId());
         startActivity(intent);
     }
 

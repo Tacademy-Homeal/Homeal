@@ -31,7 +31,9 @@ public class EtHomeAdapter extends RecyclerView.Adapter<EtHomeViewHolder> implem
         }
         notifyDataSetChanged();
     }
-
+    public List<EtHomeData> getDataList(){
+        return list;
+    }
     @Override
     public EtHomeViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_et_home, parent, false);

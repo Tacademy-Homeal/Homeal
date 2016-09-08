@@ -160,6 +160,7 @@ public class CkPersonalDataActivity extends AppCompatActivity {
             dayList.add(String.valueOf(day));
         }
         ArrayAdapter<String> dayAdatper = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, dayList);
+
         daySpinner.setAdapter(dayAdatper);
 
         ArrayList<String> yearList = new ArrayList<>();

@@ -214,10 +214,12 @@ public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTab
     public void onTabSelected(TabLayout.Tab tab) {
         switch(tab.getPosition()){
             case 0:
+                fab.getMenuIconView().setImageResource(R.drawable.fab_add);
                 fab.showMenu(true);
                 break;
             default:
                 fab.hideMenu(true);
+                isEditMode=false;
                 break;
         }
     }

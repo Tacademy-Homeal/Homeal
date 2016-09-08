@@ -27,7 +27,7 @@
         android:theme="@style/AppTheme">
         <meta-data
             android:name="com.sm.ej.nk.homeal.HomealGlideModel"
-            android:value="GlideModule"/>
+            android:value="GlideModule" />
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
@@ -45,8 +45,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity"
-            android:exported="true"/>
+        <activity
+            android:name=".LoginActivity"
+            android:exported="true" />
         <activity android:name=".MapActivity" />
         <activity android:name=".ChattingActivity" />
         <activity android:name=".CkWriteReViewActivity" />
@@ -67,8 +68,9 @@
         <activity
             android:name=".EtPersonalDataActivity"
             android:exported="true" />
-        <activity android:name=".EtZzimActivity"
-            android:exported="true"/>
+        <activity
+            android:name=".EtZzimActivity"
+            android:exported="true" />
         <activity android:name=".InfoCkDetailActivity" />
         <activity android:name=".MenuDetailActivity" />
         <activity android:name=".ReserveRequestActivity" />
@@ -101,7 +103,8 @@
         <activity
             android:name=".AddressEditActivity"
             android:exported="true" />
-        <activity android:name=".ScheduleEditActivity"></activity>
+        <activity android:name=".ScheduleEditActivity" />
+        <activity android:name=".GalleryActivity"></activity>
     </application>
 
 </manifest>

@@ -59,14 +59,18 @@ public class CkHomeItemViewHolder extends RecyclerView.ViewHolder  implements Vi
     }
 
     @Override
-    public void onClick(View view) {
+    public void onClick(final View view) {
         switch(view.getId()){
             case R.id.image_ck_home_delete:
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.dismiss();
+                        if(listener!=null){
+                            listener.onMenuDeleteClick(view, data);
+                        }
                     }
                 });
 
@@ -80,5 +84,14 @@ public class CkHomeItemViewHolder extends RecyclerView.ViewHolder  implements Vi
                 builder.show();
                 break;
         }
+    }
+
+    public interface OnMenuDeleteClickListener{
+        public void onMenuDeleteClick(View view, CkDetailMenuData menuData);
+    }
+
+    OnMenuDeleteClickListener listener;
+    public void setOnMenuDeleteClickLIstener(OnMenuDeleteClickListener listener){
+        this.listener = listener;
     }
 }
