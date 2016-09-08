@@ -48,6 +48,19 @@
         <com.github.clans.fab.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/fab_thumbnail_edit"
+            fab:fab_label="@string/fab_thumbnail_edit"
+            fab:fab_size="mini"/>
+        <com.github.clans.fab.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/fab_thumbnail_insert"
+            fab:fab_label="@string/fab_thumbnail_insert"
+            fab:fab_size="mini"/>
+
+        <com.github.clans.fab.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:id="@+id/fab_insert"
             fab:fab_label="@string/ck_home_fabinsert"
             fab:menu_labels_style="@style/MenuLabelsStyle"

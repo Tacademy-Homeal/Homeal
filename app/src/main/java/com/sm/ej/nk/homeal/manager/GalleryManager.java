@@ -16,7 +16,7 @@ import java.util.List;
 public class GalleryManager {
     private Context context;
     private static GalleryManager instance;
-    String sort = MediaStore.Images.Media.DATE_ADDED +"DESC";
+    String sort = MediaStore.Images.Media.DATE_ADDED +" DESC";
 
     public static GalleryManager getInstance(Context context){
         if(instance == null){

@@ -17,6 +17,7 @@ import com.sm.ej.nk.homeal.data.CkDetailMenuData;
 import com.sm.ej.nk.homeal.data.CkInfoResult;
 import com.sm.ej.nk.homeal.data.CkScheduleData;
 import com.sm.ej.nk.homeal.data.NetworkResultTemp;
+import com.sm.ej.nk.homeal.data.ThumbnailsData;
 import com.sm.ej.nk.homeal.manager.CalendarManager;
 import com.sm.ej.nk.homeal.manager.NetworkManager;
 import com.sm.ej.nk.homeal.manager.NetworkRequest;
@@ -38,10 +39,14 @@ public class CkHomeFragment extends Fragment implements CkMainActivity.OnFabClic
     CkHomeAdapter mAdapter;
     CkMainActivity parentActivity;
     List<CkScheduleData> list;
+    List<ThumbnailsData> thumbnailsDatas;
 
     public List<CkScheduleData> getCkSchedule(){
         return this.list;
 }
+    public List<ThumbnailsData> getThumbnailsDatas() {
+        return this.thumbnailsDatas;
+    }
     public CkHomeFragment() {
     }
 
@@ -62,6 +67,7 @@ public class CkHomeFragment extends Fragment implements CkMainActivity.OnFabClic
             public void onSuccess(NetworkRequest<CkInfoResult> request, CkInfoResult result) {
                 CalendarManager.clearInstance();
                 list = result.getCooker_schedule();
+                thumbnailsDatas = result.getCooker_thumbnail();
                 mAdapter.setResult(result);
                 rv.setAdapter(mAdapter);
             }

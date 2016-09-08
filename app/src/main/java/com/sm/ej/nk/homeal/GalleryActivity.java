@@ -32,7 +32,7 @@ public class GalleryActivity extends AppCompatActivity implements GalleryAdapter
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gallery);
         ButterKnife.bind(this);
-//dddd
+
         imagePathList = new ArrayList<>();
         mAadapter = new GalleryAdapter(GalleryActivity.this, GalleryManager.getInstance(GalleryActivity.this).getAllPhotoPathList());
         mAadapter.setOnPhotoClickListener(this);
