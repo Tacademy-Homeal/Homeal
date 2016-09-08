@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class PersonalData implements Serializable {
     private String image;
-    private String country;
+    private int country;
     private String address;
     private String gender;
     private String phone;
@@ -23,11 +23,20 @@ public class PersonalData implements Serializable {
         this.image = image;
     }
 
-    public String getCountry() {
-        return this.country;
+//    public String getCountry() {
+//        return this.country;
+//    }
+//
+//    public void setCountry(String country) {
+//        this.country = country;
+//    }
+
+
+    public int getCountry() {
+        return country;
     }
 
-    public void setCountry(String country) {
+    public void setCountry(int country) {
         this.country = country;
     }
 

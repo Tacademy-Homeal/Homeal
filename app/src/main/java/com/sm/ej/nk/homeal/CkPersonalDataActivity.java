@@ -18,6 +18,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.sm.ej.nk.homeal.data.PersonalData;
@@ -181,7 +182,8 @@ public class CkPersonalDataActivity extends AppCompatActivity {
         addressText.setText(ckdata.getAddress());
         introduceEdit.setText(ckdata.getIntroduce());
         phoneEdit.setText(ckdata.getPhone());
-        countrySpinner.getSelectedItem();
+        countrySpinner.setSelection(11);
+        Toast.makeText(CkPersonalDataActivity.this, ""+ckdata.getCountry(), Toast.LENGTH_SHORT).show();
 
 
         if (ckdata.getGender().equals("male")) {

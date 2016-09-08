@@ -53,6 +53,9 @@
     <string name="reserve_date">Date</string>
     <string name="reserve_time">Time</string>
     <string name="review">Review</string>
+    <string name="cancel">Cancel</string>
+    <string name="OK">OK</string>
+    <string name="tos">Agreement of utilization</string>
     <string name="review_finish">Finished Review</string>
     <string name="reserve_count">person for reservation</string>
     <string name="setting">Setting</string>
@@ -67,4 +70,62 @@
     <string name="time">Time</string>
     <string name="total">Total Grade</string>
     <string name="zzim_list">Like List</string>
+    <string name="advice1" formatted="false">What is Homeal?</string>
+    <string name="advice10" formatted="false">When will I get paid for the meal I hosted?</string>
+    <string name="advice10_1" formatted="false"> Your payment will be sent to your bank account the day after the meal. \n That’s why we ask for your bank details.</string>
+    <string name="advice11" formatted="false">Do I have to accept every booking request?</string>
+    <string name="advice11_1" formatted="false"> At Homeal, you’re free to accept or deny any booking request-no questions asked.</string>
+    <string name="advice12" formatted="false">What if I have to cancel a meal I planned?</string>
+    <string name="advice12_1" formatted="false"> Homeal understands that sometimes things come up and you may be required to cancel your event. \n But you can only cancel before 7days from the reservation date. \n Also, you have to refund 100% and pay more 5% of price.  </string>
+    <string name="advice13" formatted="false">Why I evaluate about eaters?</string>
+    <string name="advice13_1" formatted="false"> Homeal is not a restaurant. \n Cookers invite strangers to their home, safety is most important thing of our service. \n So you can help other cookers can refer to your reviews when they accept the request and eaters be more polite. </string>
+    <string name="advice14" formatted="false">What can I receive when I write reviews?</string>
+    <string name="advice14_1" formatted="false"> You can receive point of reliability.  </string>
+    <string name="advice15" formatted="false">What is evaluation items about Eaters?</string>
+    <string name="advice15_1" formatted="false"> There are 4 evaluation items. \n - Time : Eater followed visit time and meal time \n - Manners : Eater observed the rules of table manners or other things cookers proposed. \n - Total : the opinion of the eaters at large
+        \n - Review : Cookers write their thinking about eaters. </string>
+    <string name="advice16" formatted="false">How do I know that the cooker is a good cook?</string>
+    <string name="advice16_1" formatted="false"> There are several ways for you to evaluate the quality of our cookers. \n Firstly, you’re welcome to take a look at the pictures our cookers post at the cooker page. That’s always a great way to determine their cooking style, and the overall quality of their meal.
+        \n We also recommend reading the reviews posted by other Homeal eaters on our app. Our community of cookers and eaters are encouraged to provide feedback on their dining experiences. \n Plus, you can always use the instant message system on app. The message button on the cooker page is great for doing this. Remember, it’s all about the experience here at Homeal. Our community of food fans gets to share so much more than a meal – it’s an unforgettable Homeal experience! </string>
+    <string name="advice17" formatted="false">How long will it take the cooker to confirm my booking?</string>
+    <string name="advice17_1" formatted="false"> We make notice to cookers about all information of reservation. But if you expect cooker to check your request directly, you can contact with message system on app. We heartily encourage communication between cookers and eaters.If you don’t hear back from your host, the reservation will automatically be cancelled.</string>
+    <string name="advice18" formatted="false">How do I know who the cooker is?</string>
+    <string name="advice18_1" formatted="false"> There is plenty of information available about your cookers. \n This info is provided during the registration process, so you’ll know exactly what their hobbies are and why they love hosting Eaters. \nIf you’d like more info, you’re welcome to contact them via our internal messaging system. To do this, simply click on the message button on the cooker page.
+        \n You will be able to see pictures of your cooker, including their home, surroundings, meals, and much more. These pictures set the scene so that you’ll have a pretty good idea of what to expect when you arrive. We encourage you to read the reviews posted by other Eaters on their cooker page.
+        \n Eaters reviews are a great resource as they provide greater insight into the experience you can expect. \n Remember, you’re eating with your Cookers – so the food is always good! Meals are prepared with care and attention as if you’re one of the family. \nIf you’d like to bring some information to our attention about a specific cooker, please feel free to contact us at the following email address: \nhomealcookers@google.com  Should a problem be found with a host, you will receive a full refund and we will remove the host from the Homeal community. </string>
+    <string name="advice19" formatted="false">When will I receive my booking details and the exact location of my meal?</string>
+    <string name="advice19_1" formatted="false"> At Homeal, getting things done quickly and efficiently is one of our top priorities. \n That’s why the moment that your cooker confirms your booking, you’ll automatically receive all the details that you need, like his/her address and contact details. \nIf you’ve made a booking request and don’t receive any follow up information from your cooker, you need to wait for him/her to respond to your reservation. We ask all of our cooker s to reply within 48 hours; after this time, your reservation will be automatically cancelled. \nDon’t forget that you can’t exchange contact details in Homeal private messages. </string>
+    <string name="advice1_1" formatted="false"> Homeal is a global community of people who share great meals and unforgettable moments. We connect cookers(hosts) and eaters(guests) from all over the world to experience new flavors and meet new people, whether you’re visiting a foreign country or if you’re a local looking to get off the beaten path. \nIf you’re looking to enjoy a new cuisine, perhaps even a new culture and all the associated dishes, then Homeal is for you.</string>
+    <string name="advice2" formatted="false">Is it free to sign up on Homeal?</string>
+    <string name="advice20" formatted="false">What if I have to cancel my reservation?</string>
+    <string name="advice20_1" formatted="false"> We understand that sometimes things come up, sometimes you have to reschedule and you may wish to cancel a Homeal reservation. \n To make it easy for you, we’ve outlined our guidelines for cancellations as follows: \n 1. Cancellations at least 7 days before the event qualify for a total refund \n 2. Cancellations 5 days before the event qualify for a half refund. \n 3. Cancellations within 3 days of an event are not eligible for a refund If you would like to cancel your reservation, please tell the reason to your cooker. </string>
+    <string name="advice21" formatted="false">Do I get refund if the host cancels the meal?</string>
+    <string name="advice21_1" formatted="false"> Yes you will. \n If the host encounters a problem, or is unable to prepare the meal, you will be refunded. \n Or, if you prefer, we’ll do our best to find you an alternative cooker.</string>
+    <string name="advice22" formatted="false">Does Homeal take a commission on the price that I pay for my meal?</string>
+    <string name="advice22_1" formatted="false"> If you want to reserve a meal at the home of one of our Homeal cookers, you must pay the rate the cooker has determined. \n Homeal takes a commission on top of the fixed price, that will show up when you’re about to pay for your reservation. So the question we often hear is: why bother going through us? \n At Homeal, our passion is finding lovely cookers around the world and pairing them up with open-minded travellers. The result is a unique experience, one that gives you peace of mind because it’s facilitated by a relationship based on trust.
+        \n When you book a meal through Homeal, you’re covered by our free guarantee that insures eaters and cookers for up to 100,000 dollars. That’s why we charge a commission. \n For example, if you want to reserve a brunch in Paris that costs 25 dollars, you’ll pay a total of 28 dollars and 75 cents. </string>
+    <string name="advice23" formatted="false">Why I evaluate about eaters?</string>
+    <string name="advice23_1" formatted="false"> Homeal is a customer to customer service. \n Eaters pay for cooker’s home meals. So eaters expect cookers and their service must be nice. You can help other eaters can refer to your reviews when they make a reservation. </string>
+    <string name="advice24" formatted="false">What can I receive when I write reviews?</string>
+    <string name="advice24_1" formatted="false"> You can receive 5% Homeal point(credit). </string>
+    <string name="advice25" formatted="false">What is evaluation items about Cookers?</string>
+    <string name="advice25_1" formatted="false"> There are 6 evaluation items. \n - Tasty : how great the cooker’s meals \n - Price : reasonability of the cooker’s meals price \n - Friendly : the cooker’s are friendly when meet at first and eat together  \n - Clean : cleanliness of ingredients, place setting etc.. \n - Total : the opinion of the cookers at large \n - Review : Eaters write their thinking about cookers. </string>
+    <string name="advice2_1" formatted="false"> Good news: the best things in life are free! \n Signing up on Homeal is totally free of charge, whether you register as a Cooker(host) or as a Eater(guest).
+        \n If you want to host people at your home, all you need is a little bit of time and a dash of imagination to post your unique meal app once you’ve signed up. \n If you’d rather be welcomed by one of our hosts, then it only takes a few clicks for you to find a mouthwatering menu that’ll make your first Homeal experience unforgettable! </string>
+    <string name="advice3" formatted="false">How can I become a cooker?</string>
+    <string name="advice3_1" formatted="false"> At first, sign up as a Cooker. n\You’ll soon receive a confirmation of your account and then you can go ahead and create your profile.
+        \n Next step, suggest a meal to be hosted on Homeal and wait for your first guests to make a booking request. \n And the best part: it’s 100% free to post your meals and be a cooker on Homeal. </string>
+    <string name="advice4" formatted="false">Does Homeal take a commission on the price of my meal when I host one?</string>
+    <string name="advice4_1" formatted="false"> As a cooker, you’re free to determine the price of your meal. \n This amount should include the cost of your ingredients, as well as the amount that you’d like to receive for your hospitality. \n Homeal takes a 20% commission on top of the rate that you’ve set-meaning it’s the guest who will have to pay this extra amount.</string>
+    <string name="advice5" formatted="false">Do I have to define a date for my meal?</string>
+    <string name="advice5_1" formatted="false"> To facilitate your the management of your events, you’re welcome to create an event with no date listed. \n This way, guests who would like to know more about your event will be able to contact you directly to inquire about your availability.</string>
+    <string name="advice6" formatted="false">Do I have to define my menu precisely in the description of the meal?</string>
+    <string name="advice6_1" formatted="false"> Not at all, you can provide a title and story for your meal; prepare a few words about your meal.</string>
+    <string name="advice7" formatted="false">How can I define a fair price for my meal?</string>
+    <string name="advice7_1" formatted="false"> Here’s a great tip: a fair price is dependent on the ingredients in your meal. \n There are also other ways for you to evaluate a fair price: the time spent preparing the meal, similar experiences in local restaurants, the complexity of the meal, and what other hosts are charging for similar meals on Homeal.</string>
+    <string name="advice8" formatted="false">How long can I take before answering a booking request?</string>
+    <string name="advice8_1" formatted="false"> There no period you are required to response, \n but you’d better response fast as well as you can. </string>
+    <string name="advice9" formatted="false">Can I set rules for my home?</string>
+    <string name="advice9_1" formatted="false"> You’re welcome to set the rules for your home. You can specify your rules in the General Amenities section. \n For example, you can easily define rules such as no smoking indoors, attire and so forth.
+        \nYou can also add rules by including them in the description of your meal.</string>
 </resources>
