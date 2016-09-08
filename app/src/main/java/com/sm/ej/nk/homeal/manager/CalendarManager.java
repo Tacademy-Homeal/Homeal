@@ -77,7 +77,7 @@ public class CalendarManager {
     public CalendarData getLastMonthCalendarData(){
         mCalendar.add(Calendar.MONTH, -1);
 
-        if(item.isEmpty() || item == null){
+        if(item == null){
             return getCalendarData();
         }else{
             return getSelectCalendarData(item);
@@ -86,7 +86,7 @@ public class CalendarManager {
 
     public CalendarData getNextMonthCalendarData(){
         mCalendar.add(Calendar.MONTH, 1);
-        if(item.isEmpty() || item == null){
+        if(item == null){
             return getCalendarData();
         }else{
             return getSelectCalendarData(item);

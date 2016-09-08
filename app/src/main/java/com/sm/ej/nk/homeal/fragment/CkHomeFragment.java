@@ -20,7 +20,6 @@ import com.sm.ej.nk.homeal.manager.NetworkManager;
 import com.sm.ej.nk.homeal.manager.NetworkRequest;
 import com.sm.ej.nk.homeal.request.CkPageCheckRequest;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -48,14 +47,13 @@ public class CkHomeFragment extends Fragment implements CkMainActivity.OnFabClic
                              Bundle savedInstanceState) {
         View view=  inflater.inflate(R.layout.fragment_ck_home, container, false);
         ButterKnife.bind(this, view);
-        list = new ArrayList<>();
 
         rv = (RecyclerView)view.findViewById(R.id.rv_ck_home);
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         rv.setLayoutManager(manager);
         mAdapter = new CkHomeAdapter(getContext());
 
-        CkPageCheckRequest request = new CkPageCheckRequest(getContext(), "2");
+        CkPageCheckRequest request = new CkPageCheckRequest(getContext(), "35");
         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<CkInfoResult>() {
             @Override
             public void onSuccess(NetworkRequest<CkInfoResult> request, CkInfoResult result) {

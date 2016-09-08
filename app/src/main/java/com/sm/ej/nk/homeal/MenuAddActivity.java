@@ -60,12 +60,16 @@ public class MenuAddActivity extends AppCompatActivity implements View.OnClickLi
     ArrayAdapter<String> mAdapter;
 
     private static int MODE;
-    private CkDetailMenuData data;
 
     private static final int GET_IMAGE = 35;
 
-    private String currency;
-    private String activation;
+    private CkDetailMenuData data;
+    private String currency =null;
+    private String activation= null;
+    private String foodName= null;
+    private String foodPrice= null;
+    private String foodInfo= null;
+    private File imageFile = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,7 +117,6 @@ public class MenuAddActivity extends AppCompatActivity implements View.OnClickLi
 
     }
 
-    File imageFile = null;
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == GET_IMAGE){
@@ -141,7 +144,7 @@ public class MenuAddActivity extends AppCompatActivity implements View.OnClickLi
     public void onClick(View view) {
         if(MODE==CkMainActivity.MODE_MENU_INSERT){
             if(valueCheck()){
-                CkMenuInsertRequest request = new CkMenuInsertRequest(MenuAddActivity.this, editFoodName.getText().toString(), imageFile, editFoodPrice.getText().toString(), editFoodInfo.getText().toString(), "1", "1");
+                CkMenuInsertRequest request = new CkMenuInsertRequest(MenuAddActivity.this, foodName, imageFile, foodPrice, foodInfo, currency, activation);
                 NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
                     @Override
                     public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
@@ -157,8 +160,8 @@ public class MenuAddActivity extends AppCompatActivity implements View.OnClickLi
             }
         }
         if(MODE==CkMainActivity.MODE_MENU_EDIT){
-            if(valueCheck()){
-                CkMenuEditRequest request = new CkMenuEditRequest(MenuAddActivity.this, data.id, editFoodName.getText().toString(), imageFile, editFoodPrice.getText().toString(), editFoodInfo.getText().toString(), "1", "1");
+            if(valueDifCheck()){
+                CkMenuEditRequest request = new CkMenuEditRequest(MenuAddActivity.this, data.id, foodName, imageFile, foodPrice, foodInfo, currency, activation);
                 NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
                     @Override
                     public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
@@ -168,11 +171,15 @@ public class MenuAddActivity extends AppCompatActivity implements View.OnClickLi
 
                     @Override
                     public void onFail(NetworkRequest<NetworkResultTemp> request, int errorCode, String errorMessage, Throwable e) {
-
+                        Toast.makeText(MenuAddActivity.this, "매뉴 편집 실패", Toast.LENGTH_SHORT).show();
+                        Log.e("ssong", "error", e);
+                        Log.e("ssong", errorMessage);
+                        Log.e("ssong", errorCode+"");
                     }
                 });
+            }else{
+                finish();
             }
-
         }
     }
 
@@ -180,15 +187,24 @@ public class MenuAddActivity extends AppCompatActivity implements View.OnClickLi
         if(TextUtils.isEmpty(editFoodName.getText().toString())){
             Toast.makeText(MenuAddActivity.this, "음식 이름을 입력해주세요", Toast.LENGTH_SHORT).show();
             return false;
+        }else{
+            foodName = editFoodName.getText().toString();
         }
         if(TextUtils.isEmpty(editFoodInfo.getText().toString())){
             Toast.makeText(MenuAddActivity.this, "음식 설명을 입력해주세요", Toast.LENGTH_SHORT).show();
             return false;
+        }else{
+            foodInfo = editFoodInfo.getText().toString();
         }
         if(TextUtils.isEmpty(editFoodPrice.getText().toString())){
             Toast.makeText(MenuAddActivity.this, "음식 가격을 입력해주세요", Toast.LENGTH_SHORT).show();
             return false;
+        }else{
+            foodPrice = editFoodPrice.getText().toString();
         }
+        currency = "1";
+        activation = "1";
+
         if(imageFile==null){
             Toast.makeText(MenuAddActivity.this, "사진을 업로드해주세요", Toast.LENGTH_SHORT).show();
             return false;
@@ -196,4 +212,51 @@ public class MenuAddActivity extends AppCompatActivity implements View.OnClickLi
         return true;
     }
 
+    private boolean valueDifCheck(){
+        boolean isChange=false;
+        if(TextUtils.isEmpty(editFoodName.getText().toString())){
+            Toast.makeText(MenuAddActivity.this, "음식 이름을 입력해주세요", Toast.LENGTH_SHORT).show();
+        }else{
+            foodName = editFoodName.getText().toString();
+        }
+        if(TextUtils.isEmpty(editFoodInfo.getText().toString())){
+            Toast.makeText(MenuAddActivity.this, "음식 설명을 입력해주세요", Toast.LENGTH_SHORT).show();
+        }else{
+            foodInfo = editFoodInfo.getText().toString();
+        }
+        if(TextUtils.isEmpty(editFoodPrice.getText().toString())){
+            Toast.makeText(MenuAddActivity.this, "음식 가격을 입력해주세요", Toast.LENGTH_SHORT).show();
+        }else{
+            foodPrice = editFoodPrice.getText().toString();
+        }
+        currency = "1";
+        activation = "1";
+
+        if(data.getFoodName().equals(foodName)){
+            foodName = null;
+            isChange = true;
+        }
+
+        if(data.introduce.equals(foodInfo)){
+            foodInfo = null;
+            isChange = true;
+        }
+
+        if(data.price.equals(foodPrice)){
+            foodPrice = null;
+            isChange = true;
+        }
+
+        if(data.activation == Integer.parseInt(activation)){
+            activation = null;
+            isChange = true;
+        }
+
+        if(data.currency == Integer.parseInt(currency)){
+            currency = null;
+            isChange = true;
+        }
+
+        return isChange;
+    }
 }

@@ -126,7 +126,6 @@ public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTab
             public void onClick(View view) {
                 Intent intent = new Intent(CkMainActivity.this, ScheduleEditActivity.class);
                 intent.putExtra(INTENT_MODE, MODE_SCHEDULE_INSERT);
-//                intent.putExtra(INTENT_SCHEDULE_DATA, (Serializable)ckHomeFragment.getCkSchedule());
                 startActivityForResult(intent ,INTENT_SCHEDULE);
                 fab.close(true);
             }
