@@ -88,7 +88,6 @@ public class SettingActivity extends AppCompatActivity {
                         getBaseContext().getResources().updateConfiguration(configuration, getBaseContext().getResources().getDisplayMetrics());
                         break;
                 }
-                finish();
             }
 
             @Override
