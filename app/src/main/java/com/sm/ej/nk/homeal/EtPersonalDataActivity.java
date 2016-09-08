@@ -29,10 +29,10 @@ public class EtPersonalDataActivity extends AppCompatActivity {
     @BindView(R.id.toolbar_et_toolbar)
     Toolbar toolbar;
 
-    @BindView(R.id.edit_et_name)
+    @BindView(R.id.edit_et_last_name)
     EditText nameEdit;
 
-    @BindView(R.id.edit_et_age)
+    @BindView(R.id.edit_et_first_name)
     EditText ageEdit;
 
     @BindView(R.id.edit_et_introduce)

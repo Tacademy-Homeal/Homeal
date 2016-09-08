@@ -110,16 +110,12 @@ public class EtHomeFragment extends Fragment implements EtHomeAdapter.OnReviewit
     }
 
     public static final String INTENT_CK_ID = "asd";
-    public static final String INTENT_ZZIM_ID = "asdf";
     @Override
     public void onViewClick(View view, int position) {
         Intent intent = new Intent(getActivity(), InfoCkDetailActivity.class);
 //        intent.putExtra(INTENT_CK_ID, );
         intent.putExtra(INTENT_CK_ID, datas.get(position));
         Log.e("ssong", datas.get(position).getId());
-        intent.putExtra(INTENT_ZZIM_ID, datas.get(position));
-        Log.e("eun", datas.get(position).getId());
-        startActivity(intent);
     }
 
     @Override

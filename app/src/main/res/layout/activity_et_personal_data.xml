@@ -57,7 +57,7 @@
         android:layout_toRightOf="@+id/image_et_picture">
 
         <EditText
-            android:id="@+id/edit_et_name"
+            android:id="@+id/edit_et_last_name"
             android:layout_width="@dimen/et_personal_box_width"
             android:layout_height="@dimen/et_personal_box_height"
             android:layout_marginLeft="@dimen/et_personal_between_margin"
@@ -65,12 +65,12 @@
             android:hint=" Name" />
 
         <EditText
-            android:id="@+id/edit_et_age"
+            android:id="@+id/edit_et_first_name"
             android:layout_width="@dimen/et_personal_box_width"
             android:layout_height="@dimen/et_personal_box_height"
             android:layout_marginLeft="@dimen/et_personal_between_margin"
             android:background="@drawable/edge"
-            android:hint=" Age" />
+            android:hint=" Name" />
     </LinearLayout>
 
     <TextView
@@ -160,11 +160,6 @@
             android:background="@drawable/edge"
             android:layout_weight="0.5"
             android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="42dp"
-                android:text=" Tel:"/>
 
             <Spinner
                 android:layout_width="wrap_content"
