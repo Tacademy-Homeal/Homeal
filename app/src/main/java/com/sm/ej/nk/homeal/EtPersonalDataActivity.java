@@ -14,10 +14,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 
+import com.bumptech.glide.Glide;
+import com.sm.ej.nk.homeal.data.NetworkResult;
 import com.sm.ej.nk.homeal.data.PersonalData;
 import com.sm.ej.nk.homeal.fragment.EtMyPageFragment;
+import com.sm.ej.nk.homeal.manager.NetworkManager;
+import com.sm.ej.nk.homeal.manager.NetworkRequest;
+import com.sm.ej.nk.homeal.request.EaterInfoRequest;
 
 import java.util.ArrayList;
 
@@ -26,6 +32,9 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class EtPersonalDataActivity extends AppCompatActivity {
+    @BindView(R.id.radioGroup)
+    RadioGroup radioGroup;
+
     @BindView(R.id.toolbar_et_toolbar)
     Toolbar toolbar;
 
@@ -71,10 +80,11 @@ public class EtPersonalDataActivity extends AppCompatActivity {
     ArrayAdapter<String> countryAdapter;
     ArrayAdapter<String> countryphoneAdapter;
 
-    private int GET_IMAGE=2;
+    private int GET_IMAGE = 2;
+    PersonalData data;
 
     @OnClick(R.id.image_et_picture)
-    public void onetGallery(){
+    public void onetGallery() {
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         intent.setType("image/*");
         startActivityForResult(intent, GET_IMAGE);
@@ -104,12 +114,35 @@ public class EtPersonalDataActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(getResources().getString(R.string.PersonaldataActivity_appbar));
 
+        EaterInfoRequest request = new EaterInfoRequest(this);
+        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<PersonalData>>() {
+            @Override
+            public void onSuccess(NetworkRequest<NetworkResult<PersonalData>> request, NetworkResult<PersonalData> result) {
+                data = result.getResult();
+                nameEdit.setText(data.getName());
+                introduceEdit.setText(data.getIntroduce());
+                phoneEdit.setText(data.getPhone());
+
+                if (data.getGender().equals("male")) {
+                    radioGroup.check(R.id.radio_ck_male);
+                } else {
+                    radioGroup.check(R.id.radio_ck_female);
+                }
+
+                Glide.with(etpictureView.getContext()).load(data.getImage()).into(etpictureView);
+            }
+
+            @Override
+            public void onFail(NetworkRequest<NetworkResult<PersonalData>> request, int errorCode, String errorMessage, Throwable e) {
+
+            }
+        });
         settingCalendar();
     }
 
 
     //setting
-    private void settingCalendar(){
+    private void settingCalendar() {
         countryAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.country));
         countryAdapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
         countrySpinner.setAdapter(countryAdapter);
@@ -157,7 +190,7 @@ public class EtPersonalDataActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case android.R.id.home:
                 this.finish();
                 return true;

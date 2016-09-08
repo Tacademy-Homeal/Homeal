@@ -181,7 +181,7 @@ public class CkPersonalDataActivity extends AppCompatActivity {
         addressText.setText(ckdata.getAddress());
         introduceEdit.setText(ckdata.getIntroduce());
         phoneEdit.setText(ckdata.getPhone());
-//        countrySpinner.setSelection(Integer.parseInt(ckdata.getCountry()));
+        countrySpinner.setSelection(11);
         Toast.makeText(CkPersonalDataActivity.this, ""+ckdata.getCountry(), Toast.LENGTH_SHORT).show();
 
 
