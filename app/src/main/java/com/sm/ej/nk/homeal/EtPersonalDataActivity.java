@@ -20,14 +20,17 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.sm.ej.nk.homeal.data.NetworkResult;
+import com.sm.ej.nk.homeal.data.NetworkResultTemp;
 import com.sm.ej.nk.homeal.data.PersonalData;
 import com.sm.ej.nk.homeal.fragment.EtMyPageFragment;
 import com.sm.ej.nk.homeal.manager.NetworkManager;
 import com.sm.ej.nk.homeal.manager.NetworkRequest;
 import com.sm.ej.nk.homeal.request.EaterInfoRequest;
+import com.sm.ej.nk.homeal.request.EtInfoupdateRequest;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -191,7 +194,7 @@ public class EtPersonalDataActivity extends AppCompatActivity {
     }
 
     @OnClick(R.id.text_et_birth)
-   public void onBirth() {
+    public void onBirth() {
         showDialog(DATE_DIALOG_ID);
     }
 
@@ -213,7 +216,7 @@ public class EtPersonalDataActivity extends AppCompatActivity {
                     iYear = year;
                     iMonth = monthOfYear;
                     iDay = dayOfMonth;
-                    birthText.setText(""+iYear+"-"+(iMonth+1)+"-"+iDay);
+                    birthText.setText("" + iYear + "-" + (iMonth + 1) + "-" + iDay);
                 }
             };
 
@@ -226,6 +229,23 @@ public class EtPersonalDataActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_et_changefinish)
     public void onChangefinish() {
+        String gender;
+        if (radioGroup.getCheckedRadioButtonId()==R.id.radio_ck_male){
+            gender = "Male";
+        }else{
+            gender = "Female";
+        }
+        EtInfoupdateRequest request = new EtInfoupdateRequest(EtPersonalDataActivity.this, nameEdit.getText().toString(), birthText.getText().toString(), phoneEdit.getText().toString(), introduceEdit.getText().toString(), gender);
+        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
+            @Override
+            public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
+            }
+
+            @Override
+            public void onFail(NetworkRequest<NetworkResultTemp> request, int errorCode, String errorMessage, Throwable e) {
+                Toast.makeText(EtPersonalDataActivity.this, "" + errorMessage, Toast.LENGTH_SHORT).show();
+            }
+        });
         isPersonalData(false);
         btnChangeFinish.setVisibility(View.GONE);
     }

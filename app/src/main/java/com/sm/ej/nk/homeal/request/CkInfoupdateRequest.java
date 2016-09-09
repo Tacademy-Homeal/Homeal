@@ -20,7 +20,7 @@ public class CkInfoupdateRequest extends AbstractRequest<NetworkResultTemp> {
     Request request;
     Context context;
 
-    public CkInfoupdateRequest(Context context, String name, String birth, String phone, String introduce, String address) {
+    public CkInfoupdateRequest(Context context, String name, String birth, String phone, String introduce, String address, String gender) {
 
         HttpUrl url = getBaseHttpsUrlBuilder()
                 .addPathSegment("cookers")
@@ -29,11 +29,11 @@ public class CkInfoupdateRequest extends AbstractRequest<NetworkResultTemp> {
 
         MultipartBody.Builder builder = new MultipartBody.Builder()
                 .addFormDataPart("name", name)
-//                .addFormDataPart("gender", gender)
                 .addFormDataPart("birth", birth)
                 .addFormDataPart("phone", phone)
                 .addFormDataPart("introduce", introduce)
-                .addFormDataPart("address", address);
+                .addFormDataPart("address", address)
+                .addFormDataPart("gender", gender);
 
 
         RequestBody body = builder.build();

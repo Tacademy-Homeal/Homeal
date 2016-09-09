@@ -203,7 +203,7 @@ public class CkPersonalDataActivity extends AppCompatActivity {
         phoneEdit.setText(ckdata.getPhone());
         countrySpinner.setSelection(ckdata.getCountry());
         birthText.setText(ckdata.getBirth());
-        Toast.makeText(CkPersonalDataActivity.this, "" + ckdata.getCountry(), Toast.LENGTH_SHORT).show();
+//        Toast.makeText(CkPersonalDataActivity.this, "" + ckdata.getCountry(), Toast.LENGTH_SHORT).show();
 
 
         if (ckdata.getGender().equals("Male")) {
@@ -260,7 +260,13 @@ public class CkPersonalDataActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_ck_changefinish)
     public void onChangefinish() {
-        CkInfoupdateRequest request = new CkInfoupdateRequest(CkPersonalDataActivity.this, nameEdit.getText().toString(), birthText.getText().toString(), phoneEdit.getText().toString(), introduceEdit.getText().toString(), addressText.getText().toString());
+        String gender;
+        if (radioGroup.getCheckedRadioButtonId()==R.id.radio_ck_male){
+             gender = "Male";
+        }else{
+            gender = "Female";
+        }
+        CkInfoupdateRequest request = new CkInfoupdateRequest(CkPersonalDataActivity.this, nameEdit.getText().toString(), birthText.getText().toString(), phoneEdit.getText().toString(), introduceEdit.getText().toString(), addressText.getText().toString(),gender);
         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
