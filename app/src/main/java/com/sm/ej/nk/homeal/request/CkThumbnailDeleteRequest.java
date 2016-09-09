@@ -1,6 +1,7 @@
 package com.sm.ej.nk.homeal.request;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.google.gson.reflect.TypeToken;
 import com.sm.ej.nk.homeal.data.NetworkResultTemp;
@@ -23,6 +24,7 @@ public class CkThumbnailDeleteRequest extends AbstractRequest<NetworkResultTemp>
                 .addPathSegment("photos")
                 .build();
 
+        Log.e("ssong thumbnailId", thumbnailId);
         RequestBody body = new FormBody.Builder()
                 .add("ids", thumbnailId)
                 .build();

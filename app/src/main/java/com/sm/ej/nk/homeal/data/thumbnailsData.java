@@ -7,7 +7,7 @@ import java.io.Serializable;
  */
 public class ThumbnailsData implements Serializable{
     private String image;
-    private String id;
+    private String pid;
     private boolean lastItem = false;
 
     public void setImage(String image) {
@@ -15,7 +15,7 @@ public class ThumbnailsData implements Serializable{
     }
 
     public void setId(String id) {
-        this.id = id;
+        this.pid = id;
     }
 
     public boolean isLastItem() {
@@ -31,6 +31,6 @@ public class ThumbnailsData implements Serializable{
     }
 
     public String getId() {
-        return id;
+        return pid;
     }
 }

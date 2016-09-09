@@ -1,10 +1,12 @@
 package com.sm.ej.nk.homeal.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +14,9 @@ import android.widget.Toast;
 
 import com.sm.ej.nk.homeal.CkMainActivity;
 import com.sm.ej.nk.homeal.R;
+import com.sm.ej.nk.homeal.ReviewInfoActivity;
 import com.sm.ej.nk.homeal.adapter.CkHomeAdapter;
+import com.sm.ej.nk.homeal.data.CkDetailData;
 import com.sm.ej.nk.homeal.data.CkDetailMenuData;
 import com.sm.ej.nk.homeal.data.CkInfoResult;
 import com.sm.ej.nk.homeal.data.CkScheduleData;
@@ -32,7 +36,7 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CkHomeFragment extends Fragment implements CkMainActivity.OnFabClickListener{
+public class CkHomeFragment extends Fragment implements CkMainActivity.OnFabClickListener, CkHomeAdapter.OnReviewCLickLIstener{
     @BindView(R.id.rv_ck_home)
     RecyclerView rv;
 
@@ -60,6 +64,7 @@ public class CkHomeFragment extends Fragment implements CkMainActivity.OnFabClic
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         rv.setLayoutManager(manager);
         mAdapter = new CkHomeAdapter(getContext());
+        mAdapter.setOnReviewClickListener(this);
 
         CkPageCheckRequest request = new CkPageCheckRequest(getContext(), "35");
         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<CkInfoResult>() {
@@ -74,7 +79,9 @@ public class CkHomeFragment extends Fragment implements CkMainActivity.OnFabClic
 
             @Override
             public void onFail(NetworkRequest<CkInfoResult> request, int errorCode, String errorMessage, Throwable e) {
-
+                Log.e("ssong", "error",e);
+                Log.e("ssong", errorMessage);
+                Log.e("ssong", errorCode+"");
             }
         });
         mAdapter.setOnHomeAdapterClickListner(new CkHomeAdapter.OnHomeAdapterClickListener() {
@@ -131,6 +138,13 @@ public class CkHomeFragment extends Fragment implements CkMainActivity.OnFabClic
         }else if(mode == parentActivity.MODE_OK){
             mAdapter.setinvisible();
         }
+    }
+
+    @Override
+    public void onReviewCLick(View view, CkDetailData data) {
+        Intent intent = new Intent(getContext(), ReviewInfoActivity.class);
+        intent.putExtra(ReviewInfoActivity.INTENT_COOKERNAME, data.uid);
+        startActivity(intent);
     }
 
     public interface OnHomeFragmentClickListener{

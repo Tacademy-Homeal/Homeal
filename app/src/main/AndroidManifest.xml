@@ -105,7 +105,8 @@
             android:exported="true" />
         <activity android:name=".ScheduleEditActivity" />
         <activity android:name=".GalleryActivity" />
-        <activity android:name=".ThumbnailEditActivity"></activity>
+        <activity android:name=".ThumbnailEditActivity" />
+        <activity android:name=".ReviewInfoActivity"></activity>
     </application>
 
 </manifest>

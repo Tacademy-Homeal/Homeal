@@ -1,8 +1,6 @@
 package com.sm.ej.nk.homeal.adapter;
 
 import android.content.Context;
-import android.content.DialogInterface;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -55,25 +53,11 @@ public class ThumbnailAdapter extends RecyclerView.Adapter<ThumbnailViewHolder> 
             holder.deleteImage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(final View view) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(HomealApplication.getContext());
-                    builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.dismiss();
-                            if(deleteListener != null){
-                                deleteListener.onDeleteClick(view, datas.get(position), position);
-                            }
-                        }
-                    });
-                    builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.dismiss();
-                        }
-                    });
-                    builder.setMessage(HomealApplication.getContext().getResources().getString(R.string.thumbnail_delete));
-                    builder.show();
+                    if(deleteListener != null){
+                        deleteListener.onDeleteClick(view, datas.get(position), position);
+                    }
                 }
+
             });
         }
 

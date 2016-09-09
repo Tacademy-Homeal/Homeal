@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.sm.ej.nk.homeal.GalleryActivity">
@@ -12,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     <android.support.v7.widget.Toolbar
-        android:id="@+id/toobar_ck_detail"
+        android:id="@+id/toobar_gallery"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         app:layout_scrollFlags="scroll|enterAlways" />
@@ -21,7 +20,17 @@
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/rv_gallery" />
+        android:id="@+id/rv_gallery"
+        android:layout_below="@+id/aopbar_ck_detail" />
+
+    <com.github.clans.fab.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/floating_gallery"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="@dimen/ck_detail_floating_rightmargin" />
 
 
-</LinearLayout>
+</RelativeLayout>

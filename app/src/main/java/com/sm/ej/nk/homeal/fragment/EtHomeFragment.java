@@ -3,7 +3,6 @@ package com.sm.ej.nk.homeal.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,14 +10,19 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.sm.ej.nk.homeal.InfoCkDetailActivity;
 import com.sm.ej.nk.homeal.R;
+import com.sm.ej.nk.homeal.ReviewInfoActivity;
 import com.sm.ej.nk.homeal.adapter.EtHomeAdapter;
 import com.sm.ej.nk.homeal.data.EtHomeData;
 import com.sm.ej.nk.homeal.data.NetworkResult;
+import com.sm.ej.nk.homeal.data.NetworkResultTemp;
 import com.sm.ej.nk.homeal.manager.NetworkManager;
 import com.sm.ej.nk.homeal.manager.NetworkRequest;
+import com.sm.ej.nk.homeal.request.CkJjimAddRequest;
+import com.sm.ej.nk.homeal.request.CkJjimDeleteRequest;
 import com.sm.ej.nk.homeal.request.CkPageListRequest;
 
 import java.util.List;
@@ -36,7 +40,7 @@ public class EtHomeFragment extends Fragment implements EtHomeAdapter.OnReviewit
 
     LinearLayoutManager manager;
     boolean isLastItem;
-    private static int PAGENO=1;
+    private static int PAGENO;
     private static String ROWCOUNT="7";
 
     EtHomeAdapter mAdapter;
@@ -58,6 +62,7 @@ public class EtHomeFragment extends Fragment implements EtHomeAdapter.OnReviewit
         // Inflate the layout for this fragment
         View v =  inflater.inflate(R.layout.fragment_et_home, container, false);
         ButterKnife.bind(this, v);
+        PAGENO = 1;
         manager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         mAdapter = new EtHomeAdapter();
         mAdapter.setOnJjimitemClickListener(this);
@@ -120,15 +125,52 @@ public class EtHomeFragment extends Fragment implements EtHomeAdapter.OnReviewit
     }
 
     @Override
-    public void onJjimitemClick(View view, int position) {
-        Snackbar.make(view,"이미지, 텍스트 변경", Snackbar.LENGTH_SHORT).show();
+    public void onJjimitemClick(View view, int position, final EtHomeData data) {
+        if(data.getIsBookmark() == 0){
+            CkJjimAddRequest request = new CkJjimAddRequest(getContext(), data.getId());
+            NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
+                @Override
+                public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
+                    Toast.makeText(getContext(), "찜 추가 완료", Toast.LENGTH_SHORT).show();
+                    data.setIsBookmark(1);
+                    data.setBookmarkCnt(data.getBookmarkCnt()+1);
+                    mAdapter.notifyDataSetChanged();
+
+                }
+
+                @Override
+                public void onFail(NetworkRequest<NetworkResultTemp> request, int errorCode, String errorMessage, Throwable e) {
+                    Toast.makeText(getContext(), "찜 추가 실패", Toast.LENGTH_SHORT).show();
+                    Log.e("ssong", errorMessage);
+                    Log.e("ssong", errorCode+"");
+                }
+            });
+        }else{
+            CkJjimDeleteRequest request = new CkJjimDeleteRequest(getContext(), data.getId());
+            NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
+                @Override
+                public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
+                    Toast.makeText(getContext(), "찜 삭제 완료", Toast.LENGTH_SHORT).show();
+                    data.setIsBookmark(0);
+                    data.setBookmarkCnt(data.getBookmarkCnt()-1);
+                    mAdapter.notifyDataSetChanged();
+                }
+
+                @Override
+                public void onFail(NetworkRequest<NetworkResultTemp> request, int errorCode, String errorMessage, Throwable e) {
+                    Toast.makeText(getContext(), "찜 삭제 실패", Toast.LENGTH_SHORT).show();
+                    Log.e("ssong", errorMessage);
+                    Log.e("ssong", errorCode+"");
+                }
+            });
+        }
+
     }
 
-    public static final int INTENT_SCROLL = 1;
     @Override
-    public void onReviewitemClick(View view, int position) {
-        Intent intent = new Intent(getActivity(), InfoCkDetailActivity.class);
-//        intent.putExtra(INTENT_SCROLL, );
+    public void onReviewitemClick(View view, int position, EtHomeData data) {
+        Intent intent = new Intent(getActivity(), ReviewInfoActivity.class);
+        intent.putExtra(ReviewInfoActivity.INTENT_COOKERNAME, data.getId());
 
         startActivity(intent);
     }

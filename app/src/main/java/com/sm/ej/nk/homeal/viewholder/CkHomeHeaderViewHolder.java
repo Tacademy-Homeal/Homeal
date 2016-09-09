@@ -6,6 +6,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -34,6 +35,7 @@ public class CkHomeHeaderViewHolder extends RecyclerView.ViewHolder implements V
     Context context;
     CalendarAdapter mAdapter;
     List<CalendarItem> calendarItems;
+    public LinearLayout reviewLinear;
 
     public CkHomeHeaderViewHolder(Context context, View view){
         super(view);
@@ -58,13 +60,15 @@ public class CkHomeHeaderViewHolder extends RecyclerView.ViewHolder implements V
         textLaunch = (TextView)view.findViewById(R.id.text_ck_home_launch);
         textDinner = (TextView)view.findViewById(R.id.text_ck_home_dinner);
         textPax = (TextView)view.findViewById(R.id.text_ck_home_reservecount);
+        reviewLinear = (LinearLayout)view.findViewById(R.id.linear_review_ck_home);
+        reviewLinear.setOnClickListener(this);
     }
 
     public void setData(CkDetailData data){
         Glide.with(HomealApplication.getContext()).load(data.image).into(userImage);
         userName.setText(data.name);
         userAddress.setText(data.address);
-        jjimCount.setText(data.jjimCnt);
+        jjimCount.setText(data.bookmarkCnt);
         reviewCount.setText(data.reviewCnt);
         progressKind.setProgress(data.kindness);
         progressClean.setProgress(data.cleanliness);
@@ -134,6 +138,12 @@ public class CkHomeHeaderViewHolder extends RecyclerView.ViewHolder implements V
                 textPax.setText("");
                 break;
             }
+            case R.id.linear_review_ck_home:{
+                if(reviewListener!=null){
+                    reviewListener.onReviewClick(view);
+                }
+                break;
+            }
         }
     }
 
@@ -170,5 +180,13 @@ public class CkHomeHeaderViewHolder extends RecyclerView.ViewHolder implements V
     OnCalendarClickLIsener listener;
     public void setOnCalendarCickListener(OnCalendarClickLIsener listener){
         this.listener  = listener;
+    }
+
+    public interface OnReviewClickListener{
+        public void onReviewClick(View view);
+    }
+    OnReviewClickListener reviewListener;
+    public void setOnReviewClickListener(OnReviewClickListener listener){
+        reviewListener = listener;
     }
 }

@@ -27,7 +27,7 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryItemView>{
 
     public List<GalleryItemData> getSlectedPhotoList(){
         List<GalleryItemData> selectPhotoList = new ArrayList<>();
-        for(int i=0; i> data.size(); i++){
+        for(int i=0; i< data.size(); i++){
             GalleryItemData item = data.get(i);
             if(item.isSelected()){
                 selectPhotoList.add(item);
