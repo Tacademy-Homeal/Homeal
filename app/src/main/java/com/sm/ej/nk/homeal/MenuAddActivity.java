@@ -87,7 +87,7 @@ public class MenuAddActivity extends AppCompatActivity implements View.OnClickLi
             setMenuData(data);
         }else if(MODE == CkMainActivity.MODE_MENU_INSERT){
             fab.show();
-
+//dddd
 
         }else if(MODE == CkMainActivity.MODE_MENU_SHOW){
             fab.hide();
