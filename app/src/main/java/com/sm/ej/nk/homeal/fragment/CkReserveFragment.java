@@ -16,11 +16,7 @@ import android.widget.Toast;
 import com.sm.ej.nk.homeal.DividerItemDecoration;
 import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.adapter.CkReserveAdapter;
-import com.sm.ej.nk.homeal.data.NetworkResult;
 import com.sm.ej.nk.homeal.data.ReserveData;
-import com.sm.ej.nk.homeal.manager.NetworkManager;
-import com.sm.ej.nk.homeal.manager.NetworkRequest;
-import com.sm.ej.nk.homeal.request.CkReserveRequest;
 
 import java.util.List;
 
@@ -107,20 +103,20 @@ public class CkReserveFragment extends Fragment {
     public void onStart() {
         super.onStart();
 
-        CkReserveRequest request = new CkReserveRequest(getContext());
-        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<List<ReserveData>>>() {
-            @Override
-            public void onSuccess(NetworkRequest<NetworkResult<List<ReserveData>>> request, NetworkResult<List<ReserveData>> result) {
-                datas = result.getResult();
-                mAdapter.clear();
-                mAdapter.addAll(datas);
-            }
-
-            @Override
-            public void onFail(NetworkRequest<NetworkResult<List<ReserveData>>> request, int errorCode, String errorMessage, Throwable e) {
-
-            }
-        });
+//        CkReserveRequest request = new CkReserveRequest(getContext());
+//        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<List<ReserveData>>>() {
+//            @Override
+//            public void onSuccess(NetworkRequest<NetworkResult<List<ReserveData>>> request, NetworkResult<List<ReserveData>> result) {
+//                datas = result.getResult();
+//                mAdapter.clear();
+//                mAdapter.addAll(datas);
+//            }
+//
+//            @Override
+//            public void onFail(NetworkRequest<NetworkResult<List<ReserveData>>> request, int errorCode, String errorMessage, Throwable e) {
+//
+//            }
+//        });
 
     }
 

@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.sm.ej.nk.homeal.CkMainActivity;
 import com.sm.ej.nk.homeal.R;
@@ -15,12 +16,14 @@ import com.sm.ej.nk.homeal.adapter.CkHomeAdapter;
 import com.sm.ej.nk.homeal.data.CkDetailMenuData;
 import com.sm.ej.nk.homeal.data.CkInfoResult;
 import com.sm.ej.nk.homeal.data.CkScheduleData;
+import com.sm.ej.nk.homeal.data.NetworkResultTemp;
+import com.sm.ej.nk.homeal.data.ThumbnailsData;
 import com.sm.ej.nk.homeal.manager.CalendarManager;
 import com.sm.ej.nk.homeal.manager.NetworkManager;
 import com.sm.ej.nk.homeal.manager.NetworkRequest;
+import com.sm.ej.nk.homeal.request.CkMenuDeleteRequest;
 import com.sm.ej.nk.homeal.request.CkPageCheckRequest;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -36,10 +39,14 @@ public class CkHomeFragment extends Fragment implements CkMainActivity.OnFabClic
     CkHomeAdapter mAdapter;
     CkMainActivity parentActivity;
     List<CkScheduleData> list;
+    List<ThumbnailsData> thumbnailsDatas;
 
     public List<CkScheduleData> getCkSchedule(){
         return this.list;
 }
+    public List<ThumbnailsData> getThumbnailsDatas() {
+        return this.thumbnailsDatas;
+    }
     public CkHomeFragment() {
     }
 
@@ -48,19 +55,19 @@ public class CkHomeFragment extends Fragment implements CkMainActivity.OnFabClic
                              Bundle savedInstanceState) {
         View view=  inflater.inflate(R.layout.fragment_ck_home, container, false);
         ButterKnife.bind(this, view);
-        list = new ArrayList<>();
 
         rv = (RecyclerView)view.findViewById(R.id.rv_ck_home);
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         rv.setLayoutManager(manager);
         mAdapter = new CkHomeAdapter(getContext());
 
-        CkPageCheckRequest request = new CkPageCheckRequest(getContext(), "2");
+        CkPageCheckRequest request = new CkPageCheckRequest(getContext(), "35");
         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<CkInfoResult>() {
             @Override
             public void onSuccess(NetworkRequest<CkInfoResult> request, CkInfoResult result) {
                 CalendarManager.clearInstance();
                 list = result.getCooker_schedule();
+                thumbnailsDatas = result.getCooker_thumbnail();
                 mAdapter.setResult(result);
                 rv.setAdapter(mAdapter);
             }
@@ -79,6 +86,23 @@ public class CkHomeFragment extends Fragment implements CkMainActivity.OnFabClic
             }
         });
 
+        mAdapter.setOnMenuDeleteClickListener(new CkHomeAdapter.OnMenuDeleteClickLIstener() {
+            @Override
+            public void onMenuDeleteClick(View view, CkDetailMenuData data) {
+                CkMenuDeleteRequest deleteRequest = new CkMenuDeleteRequest(getContext(), data.id);
+                NetworkManager.getInstance().getNetworkData(deleteRequest, new NetworkManager.OnResultListener<NetworkResultTemp>() {
+                    @Override
+                    public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
+                        Toast.makeText(getContext(), "메뉴 삭제 완료", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onFail(NetworkRequest<NetworkResultTemp> request, int errorCode, String errorMessage, Throwable e) {
+
+                    }
+                });
+            }
+        });
         mAdapter.setOnHomeViewClick(new CkHomeAdapter.OnHomeViewClickListener() {
             @Override
             public void onHomeViewClick(View view, int position, CkDetailMenuData data) {

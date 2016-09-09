@@ -16,6 +16,7 @@ import com.github.clans.fab.FloatingActionMenu;
 import com.sm.ej.nk.homeal.adapter.ViewPagerFragmentAdapter;
 import com.sm.ej.nk.homeal.data.CkDetailMenuData;
 import com.sm.ej.nk.homeal.data.CkScheduleData;
+import com.sm.ej.nk.homeal.data.ThumbnailsData;
 import com.sm.ej.nk.homeal.fragment.ChatListFragment;
 import com.sm.ej.nk.homeal.fragment.CkHomeFragment;
 import com.sm.ej.nk.homeal.fragment.CkMyPageFragment;
@@ -53,13 +54,21 @@ public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTab
     @BindView(R.id.fab_scheduleedit)
     FloatingActionButton fabSchedulrEdit;
 
+    @BindView(R.id.fab_thumbnail_edit)
+    FloatingActionButton fabThumbnailEdit;
+
+    @BindView(R.id.fab_thumbnail_insert)
+    FloatingActionButton fabThumbnailInsert;
+
     private CkHomeFragment ckHomeFragment;
 
     AlarmPopupWindow popupWindow;
     List<CkScheduleData> scheduleDatas;
+    List<ThumbnailsData> thumbnailsDatas;
 
     public static int INTENT_MENU =0;
     public static int INTENT_SCHEDULE = 1;
+    public static int INTENT_THUMBNAIL = 2;
 
     private static boolean isEditMode = false;
 
@@ -126,7 +135,6 @@ public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTab
             public void onClick(View view) {
                 Intent intent = new Intent(CkMainActivity.this, ScheduleEditActivity.class);
                 intent.putExtra(INTENT_MODE, MODE_SCHEDULE_INSERT);
-//                intent.putExtra(INTENT_SCHEDULE_DATA, (Serializable)ckHomeFragment.getCkSchedule());
                 startActivityForResult(intent ,INTENT_SCHEDULE);
                 fab.close(true);
             }
@@ -162,6 +170,28 @@ public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTab
                     intent.putExtra(INTENT_MENU_DATA, data);
                     startActivity(intent);
                 }
+            }
+        });
+
+        fabThumbnailEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CkMainActivity.this, ThumbnailEditActivity.class);
+                intent.putExtra(INTENT_MODE,MODE_THUMBNAIL_EDIT);
+                thumbnailsDatas = ckHomeFragment.getThumbnailsDatas();
+                intent.putExtra(INTENT_THUMBNAIL_DATA, (Serializable)thumbnailsDatas);
+                startActivityForResult(intent, INTENT_THUMBNAIL);
+            }
+        });
+
+        fabThumbnailInsert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CkMainActivity.this, ThumbnailEditActivity.class);
+                intent.putExtra(INTENT_MODE, MODE_THUMBNAIL_INSERT);
+                thumbnailsDatas = ckHomeFragment.getThumbnailsDatas();
+                intent.putExtra(INTENT_THUMBNAIL_DATA, (Serializable)thumbnailsDatas);
+                startActivityForResult(intent, INTENT_THUMBNAIL);
             }
         });
 
@@ -215,10 +245,12 @@ public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTab
     public void onTabSelected(TabLayout.Tab tab) {
         switch(tab.getPosition()){
             case 0:
+                fab.getMenuIconView().setImageResource(R.drawable.fab_add);
                 fab.showMenu(true);
                 break;
             default:
                 fab.hideMenu(true);
+                isEditMode=false;
                 break;
         }
     }
@@ -235,7 +267,9 @@ public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTab
 
     public static final String INTENT_MENU_DATA = "asdasd";
     public static final String INTENT_SCHEDULE_DATA = "qqqq";
+    public static final String INTENT_THUMBNAIL_DATA = "ssong";
     public static final String INTENT_MODE = "SchedulrMode";
+
     public static final int MODE_SCHEDULE_INSERT=2;
     public static final int MODE_SCHEDULR_EDIT = 3;
 
@@ -245,6 +279,9 @@ public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTab
     public static final int MODE_MENU_EDIT = 9;
     public static final int MODE_MENU_INSERT=10;
     public static final int MODE_MENU_SHOW=11;
+
+    public static final int MODE_THUMBNAIL_INSERT=55;
+    public static final int MODE_THUMBNAIL_EDIT=66;
 
     public interface OnFabClickListener{
         public void onFabClick(View view, int mode);

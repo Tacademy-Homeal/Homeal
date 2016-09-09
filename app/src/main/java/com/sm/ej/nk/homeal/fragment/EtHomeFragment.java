@@ -114,8 +114,9 @@ public class EtHomeFragment extends Fragment implements EtHomeAdapter.OnReviewit
     public void onViewClick(View view, int position) {
         Intent intent = new Intent(getActivity(), InfoCkDetailActivity.class);
 //        intent.putExtra(INTENT_CK_ID, );
-        intent.putExtra(INTENT_CK_ID, datas.get(position));
-        Log.e("ssong", datas.get(position).getId());
+        intent.putExtra(INTENT_CK_ID, mAdapter.getDataList().get(position));
+        Log.e("ssong", mAdapter.getDataList().get(position).getId());
+        startActivity(intent);
     }
 
     @Override

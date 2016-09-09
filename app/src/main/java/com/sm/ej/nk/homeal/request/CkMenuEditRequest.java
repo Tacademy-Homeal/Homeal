@@ -1,6 +1,7 @@
 package com.sm.ej.nk.homeal.request;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.google.gson.reflect.TypeToken;
 import com.sm.ej.nk.homeal.data.NetworkResultTemp;
@@ -28,21 +29,39 @@ public class CkMenuEditRequest extends AbstractRequest<NetworkResultTemp> {
                 .addPathSegment(menuId)
                 .build();
 
-        MultipartBody.Builder builder = new MultipartBody.Builder()
-                .addFormDataPart("name", name)
-                .addFormDataPart("price", price)
-                .addFormDataPart("introduce", introduce)
-                .addFormDataPart("currency", currency)
-                .addFormDataPart("activation", activation);
-
+        Log.e("ssong url", url.toString());
+        MultipartBody.Builder builder = new MultipartBody.Builder();
+        if(name!=null){
+            builder.addFormDataPart("name", name);
+            Log.e("ssong", name);
+        }
+        if(price!=null){
+            builder.addFormDataPart("price", price);
+            Log.e("ssong", price);
+        }
+        if(introduce!=null){
+            builder.addFormDataPart("introduce", introduce);
+            Log.e("ssong", introduce);
+        }
+        if(currency!=null){
+            builder.addFormDataPart("currency", currency);
+            Log.e("ssong", currency);
+        }
+        if(activation!=null){
+            builder.addFormDataPart("activation", activation);
+            Log.e("ssong", activation);
+        }
         if(image!=null){
             builder.addFormDataPart("image", image.getName(), RequestBody.create(jpeg, image));
+            Log.e("ssong", "imagedsdsds");
         }
 
         RequestBody body = builder.build();
+
+
         request = new Request.Builder()
                 .url(url)
-                .post(body)
+                .put(body)
                 .tag(context)
                 .build();
     }

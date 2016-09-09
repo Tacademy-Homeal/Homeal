@@ -124,6 +124,14 @@ public class CkHomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                     }
                 }
             });
+            itemholder.setOnMenuDeleteClickLIstener(new CkHomeItemViewHolder.OnMenuDeleteClickListener() {
+                @Override
+                public void onMenuDeleteClick(View view, CkDetailMenuData menuData) {
+                    if(deleteListener!=null){
+                        deleteListener.onMenuDeleteClick(view, menuData);
+                    }
+                }
+            });
             if(isVisible){
                 itemholder.visibleImage();
             }else{
@@ -161,5 +169,14 @@ public class CkHomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         if(data.isSelect){
             headerholder.showSchedule(data);
         }
+    }
+
+    public interface OnMenuDeleteClickLIstener{
+        public void onMenuDeleteClick(View view, CkDetailMenuData data);
+    }
+
+    OnMenuDeleteClickLIstener deleteListener;
+    public void setOnMenuDeleteClickListener(OnMenuDeleteClickLIstener listener){
+        deleteListener = listener;
     }
 }
