@@ -78,6 +78,7 @@ public class CkHomeFragment extends Fragment implements CkMainActivity.OnFabClic
                 CalendarManager.clearInstance();
                 list = result.getCooker_schedule();
                 thumbnailsDatas = result.getCooker_thumbnail();
+                Log.e("ssong", result.getCooker_info().uid);
                 cookerId = result.getCooker_info().uid;
                 mAdapter.setResult(result);
                 rv.setAdapter(mAdapter);

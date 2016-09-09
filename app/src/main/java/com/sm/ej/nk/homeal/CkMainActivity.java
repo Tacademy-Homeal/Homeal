@@ -54,9 +54,6 @@ public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTab
     @BindView(R.id.fab_scheduleedit)
     FloatingActionButton fabSchedulrEdit;
 
-    @BindView(R.id.fab_thumbnail_edit)
-    FloatingActionButton fabThumbnailEdit;
-
     @BindView(R.id.fab_thumbnail_insert)
     FloatingActionButton fabThumbnailInsert;
 
@@ -170,17 +167,6 @@ public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTab
                     intent.putExtra(INTENT_MENU_DATA, data);
                     startActivity(intent);
                 }
-            }
-        });
-
-        fabThumbnailEdit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(CkMainActivity.this, ThumbnailEditActivity.class);
-                intent.putExtra(INTENT_MODE,MODE_THUMBNAIL_EDIT);
-                thumbnailsDatas = ckHomeFragment.getThumbnailsDatas();
-                intent.putExtra(INTENT_THUMBNAIL_DATA, (Serializable)thumbnailsDatas);
-                startActivityForResult(intent, INTENT_THUMBNAIL);
             }
         });
 

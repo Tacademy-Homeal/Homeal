@@ -68,7 +68,6 @@ public class ThumbnailEditActivity extends AppCompatActivity {
         NetworkManager.getInstance().getNetworkData(listRequest, new NetworkManager.OnResultListener<NetworkResult<List<ThumbnailsData>>>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<List<ThumbnailsData>>> request, NetworkResult<List<ThumbnailsData>> result) {
-                thumbnailsDatas.clear();
                 thumbnailsDatas = result.getResult();
                 thumbnailsDatas.add(getLastThumbnail());
                 mAdapter = new ThumbnailAdapter(ThumbnailEditActivity.this, thumbnailsDatas);

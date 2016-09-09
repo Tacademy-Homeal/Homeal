@@ -1,6 +1,7 @@
 package com.sm.ej.nk.homeal;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -63,23 +64,28 @@ public class GalleryActivity extends AppCompatActivity implements GalleryAdapter
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                final ProgressDialog progressDialog;
+                progressDialog = ProgressDialog.show(GalleryActivity.this, "전송중", "잠시만 기달려주세요", true);
+                progressDialog.setCancelable(false);
+                progressDialog.show();
                 CkThumbnailInsertRequest request = new CkThumbnailInsertRequest(GalleryActivity.this, mAadapter.getSlectedPhotoList());
                 NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
                     @Override
                     public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
+                        progressDialog.dismiss();
                         Toast.makeText(GalleryActivity.this, "추가 완료", Toast.LENGTH_SHORT).show();
+                        setResult(Activity.RESULT_OK);
+                        finish();
                     }
 
                     @Override
                     public void onFail(NetworkRequest<NetworkResultTemp> request, int errorCode, String errorMessage, Throwable e) {
+                        progressDialog.dismiss();
                         Toast.makeText(GalleryActivity.this, "추가 실패", Toast.LENGTH_SHORT).show();
                         Log.e("sssong", errorMessage);
                         Log.e("ssong", errorCode+"");
                     }
                 });
-//
-//                Intent intent = new Intent();
-//                intent.putExtra(TO_THUMBNAIL,(Serializable)imagePathList);
                 setResult(Activity.RESULT_OK);
             }
         });
