@@ -8,16 +8,17 @@ import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Spinner;
+import android.widget.RadioGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.sm.ej.nk.homeal.LoginActivity;
 import com.sm.ej.nk.homeal.R;
 
-import java.util.ArrayList;
+import java.util.Calendar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,80 +28,85 @@ import butterknife.OnClick;
  * A simple {@link Fragment} subclass.
  */
 public class SignUpFragment extends Fragment {
-
+    private int iYear, iMonth, iDay;
+    static final int DATE_DIALOG_ID = 0;
 
     @BindView(R.id.sf_ok)
     Button sf_ok;
 
     @BindView(R.id.edit_frist_name)
-    EditText edit_frist_name;
+    EditText fristnameEdit;
 
     @BindView(R.id.edit_second_name)
-    EditText edit_second_name;
+    EditText secondnameEdit;
 
-    @BindView(R.id.singUp_spinner_ck_year)
-    Spinner spinner_year;
-
-    @BindView(R.id.singUp_spinner_ck_month)
-    Spinner spinner_month;
-
-    @BindView(R.id.singUp_spinner_ck_day)
-    Spinner spinner_day;
+    @BindView(R.id.text_signup_birth)
+    TextView birthText;
 
     @BindView(R.id.image_sign_up_person)
     ImageView personView;
 
-    @BindView(R.id.edit_singup_content)
-    EditText edit_content;
+    @BindView(R.id.edit_signup_intro)
+    EditText introText;
 
+    @BindView(R.id.edit_signup_phone)
+    EditText phoneEdit;
+
+    @BindView(R.id.radioGroup)
+    RadioGroup radioGroup;
 
 
     public SignUpFragment() {
-        // Required empty public constructor
     }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_sign_up, container, false);
+        View view = inflater.inflate(R.layout.fragment_sign_up, container, false);
         ButterKnife.bind(this, view);
-
-        ArrayList<String> monthList = new ArrayList<>();
-        for (int month = 1; month < 13; month++) {
-            monthList.add(String.valueOf(month));
-        }
-        ArrayAdapter<String> monthAdatper = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, monthList);
-        spinner_month.setAdapter(monthAdatper);
-
-        ArrayList<String> dayList = new ArrayList<>();
-        for (int day = 1; day < 32; day++) {
-            dayList.add(String.valueOf(day));
-        }
-        ArrayAdapter<String> dayAdatper = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, dayList);
-        spinner_day.setAdapter(dayAdatper);
-
-        ArrayList<String> yearList = new ArrayList<>();
-        for (int year = 1930; year < 2031; year++) {
-            yearList.add(String.valueOf(year));
-        }
-        ArrayAdapter<String> yearAdatper = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, yearList);
-        spinner_year.setAdapter(yearAdatper);
-
+        final Calendar objTime = Calendar.getInstance();
+        iYear = objTime.get(Calendar.YEAR);
+        iMonth = objTime.get(Calendar.MONTH);
+        iDay = objTime.get(Calendar.DAY_OF_MONTH);
         return view;
     }
 
     @OnClick(R.id.sf_ok)
-    public void onSingUpOk(){
-        ((LoginActivity)getActivity()).moveMainActivity();
-
+    public void onSingUpOk() {
 //        if(!TextUtils.isEmpty(editText.getText().toString())){
 //        }else{
 //            showDialog();
 //        }
+//        final String gender;
+//        if (radioGroup.getCheckedRadioButtonId() == R.id.radio_ck_male) {
+//            gender = "Male";
+//        } else {
+//            gender = "Female";
+//        }
+//        SignupRequest request = new SignupRequest(getContext(), fristnameEdit.getText().toString(), birthText.getText().toString(), phoneEdit.getText().toString(), introText.getText().toString(), gender);
+//        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
+//            @Override
+//            public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
+//                Toast.makeText(getContext(), "회원정보 성공", Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onFail(NetworkRequest<NetworkResultTemp> request, int errorCode, String errorMessage, Throwable e) {
+//                Toast.makeText(getContext(), "" + errorMessage, Toast.LENGTH_SHORT).show();
+//            }
+//        });
+
+        ((LoginActivity) getActivity()).moveMainActivity();
     }
-    private void showDialog(){
+
+    @OnClick(R.id.text_signup_birth)
+    public void onBirth() {
+        Toast.makeText(getContext(), "눌림", Toast.LENGTH_SHORT).show();
+
+    }
+
+    private void showDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
             @Override
@@ -113,7 +119,6 @@ public class SignUpFragment extends Fragment {
     }
 
     private static final int GET_IMAGE = 1;
-
 
 
 }
