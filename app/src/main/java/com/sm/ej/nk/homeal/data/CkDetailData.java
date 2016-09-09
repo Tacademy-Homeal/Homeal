@@ -9,7 +9,7 @@ public class CkDetailData implements Serializable{
     public String image;
     public String name;
     public String address;
-    public String taste;
+    public int taste;
     public String review;
     public double grade;
     public int kindness;

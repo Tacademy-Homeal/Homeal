@@ -28,9 +28,6 @@ public class CkHomeItemViewHolder extends RecyclerView.ViewHolder  implements Vi
         this.view = view;
         this.context = context;
         foodImage = (ImageView)view.findViewById(R.id.image_ck_home_item_food);
-//        userImage = (ImageView)view.findViewById(R.id.image_ck_home_item_user);
-//        userName = (TextView)view.findViewById(R.id.text_ck_home_item_username);
-//        userAdd = (TextView)view.findViewById(R.id.text_ck_home_item_useradd);
         foodPrice = (TextView)view.findViewById(R.id.text_ck_home_item_foodprice);
         foodName = (TextView)view.findViewById(R.id.text_ck_home_item_foodname);
         foodInfo = (TextView)view.findViewById(R.id.text_ck_home_item_foodinfo);

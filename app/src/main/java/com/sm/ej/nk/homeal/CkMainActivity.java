@@ -189,8 +189,7 @@ public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTab
             public void onClick(View view) {
                 Intent intent = new Intent(CkMainActivity.this, ThumbnailEditActivity.class);
                 intent.putExtra(INTENT_MODE, MODE_THUMBNAIL_INSERT);
-                thumbnailsDatas = ckHomeFragment.getThumbnailsDatas();
-                intent.putExtra(INTENT_THUMBNAIL_DATA, (Serializable)thumbnailsDatas);
+                intent.putExtra(INTENT_COOKER_ID, ckHomeFragment.getCookerId());
                 startActivityForResult(intent, INTENT_THUMBNAIL);
             }
         });
@@ -264,6 +263,8 @@ public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTab
     public void onTabReselected(TabLayout.Tab tab) {
 
     }
+
+    public static final String INTENT_COOKER_ID = "etet";
 
     public static final String INTENT_MENU_DATA = "asdasd";
     public static final String INTENT_SCHEDULE_DATA = "qqqq";

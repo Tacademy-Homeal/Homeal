@@ -44,6 +44,7 @@ public class CkHomeFragment extends Fragment implements CkMainActivity.OnFabClic
     CkMainActivity parentActivity;
     List<CkScheduleData> list;
     List<ThumbnailsData> thumbnailsDatas;
+    String cookerId;
 
     public List<CkScheduleData> getCkSchedule(){
         return this.list;
@@ -52,6 +53,10 @@ public class CkHomeFragment extends Fragment implements CkMainActivity.OnFabClic
         return this.thumbnailsDatas;
     }
     public CkHomeFragment() {
+    }
+
+    public String getCookerId(){
+        return cookerId;
     }
 
     @Override
@@ -73,6 +78,7 @@ public class CkHomeFragment extends Fragment implements CkMainActivity.OnFabClic
                 CalendarManager.clearInstance();
                 list = result.getCooker_schedule();
                 thumbnailsDatas = result.getCooker_thumbnail();
+                cookerId = result.getCooker_info().uid;
                 mAdapter.setResult(result);
                 rv.setAdapter(mAdapter);
             }

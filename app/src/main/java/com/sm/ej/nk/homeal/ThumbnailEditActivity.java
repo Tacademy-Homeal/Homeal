@@ -13,11 +13,13 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.sm.ej.nk.homeal.adapter.ThumbnailAdapter;
+import com.sm.ej.nk.homeal.data.NetworkResult;
 import com.sm.ej.nk.homeal.data.NetworkResultTemp;
 import com.sm.ej.nk.homeal.data.ThumbnailsData;
 import com.sm.ej.nk.homeal.manager.NetworkManager;
 import com.sm.ej.nk.homeal.manager.NetworkRequest;
 import com.sm.ej.nk.homeal.request.CkThumbnailDeleteRequest;
+import com.sm.ej.nk.homeal.request.ThumbnailListRequest;
 
 import java.util.List;
 
@@ -32,6 +34,7 @@ public class ThumbnailEditActivity extends AppCompatActivity {
     ThumbnailAdapter mAdapter;
     List<ThumbnailsData> thumbnailsDatas;
     List<String> imagePathList;
+    String cookerId;
 
     public static final int INTENT_GALLERY = 10;
 
@@ -44,13 +47,46 @@ public class ThumbnailEditActivity extends AppCompatActivity {
         Intent intent = getIntent();
 
         MODE = intent.getIntExtra(CkMainActivity.INTENT_MODE, -1);
-        thumbnailsDatas =(List<ThumbnailsData>)intent.getSerializableExtra(CkMainActivity.INTENT_THUMBNAIL_DATA);
+        cookerId = intent.getStringExtra(CkMainActivity.INTENT_COOKER_ID);
+        rv.setLayoutManager(new LinearLayoutManager(ThumbnailEditActivity.this));
 
-        thumbnailsDatas.add(getLastThumbnail());
-        mAdapter = new ThumbnailAdapter(ThumbnailEditActivity.this, thumbnailsDatas);
+        getThumbnailList();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == INTENT_GALLERY){
+            if(resultCode == Activity.RESULT_OK){
+                getThumbnailList();
+            }
+        }
+    }
+
+    private void getThumbnailList(){
+        ThumbnailListRequest listRequest = new ThumbnailListRequest(ThumbnailEditActivity.this, cookerId);
+        NetworkManager.getInstance().getNetworkData(listRequest, new NetworkManager.OnResultListener<NetworkResult<List<ThumbnailsData>>>() {
+            @Override
+            public void onSuccess(NetworkRequest<NetworkResult<List<ThumbnailsData>>> request, NetworkResult<List<ThumbnailsData>> result) {
+                thumbnailsDatas.clear();
+                thumbnailsDatas = result.getResult();
+                thumbnailsDatas.add(getLastThumbnail());
+                mAdapter = new ThumbnailAdapter(ThumbnailEditActivity.this, thumbnailsDatas);
+                setAdapter();
+                rv.setAdapter(mAdapter);
+            }
+
+            @Override
+            public void onFail(NetworkRequest<NetworkResult<List<ThumbnailsData>>> request, int errorCode, String errorMessage, Throwable e) {
+
+            }
+        });
+    }
+
+    private void setAdapter(){
         mAdapter.setOnDelteCLickListener(new ThumbnailAdapter.OnDeleteClickListener() {
             @Override
-            public void onDeleteClick(View view,final ThumbnailsData data, int position) {
+            public void onDeleteClick(View view, final ThumbnailsData data, int position) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(ThumbnailEditActivity.this);
                 builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
                     @Override
@@ -62,6 +98,7 @@ public class ThumbnailEditActivity extends AppCompatActivity {
                             @Override
                             public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
                                 Toast.makeText(ThumbnailEditActivity.this, "사진 삭제 완료", Toast.LENGTH_SHORT).show();
+                                mAdapter.deleteData(data);
                             }
 
                             @Override
@@ -92,18 +129,6 @@ public class ThumbnailEditActivity extends AppCompatActivity {
                 startActivityForResult(intent, INTENT_GALLERY);
             }
         });
-        rv.setLayoutManager(new LinearLayoutManager(ThumbnailEditActivity.this));
-        rv.setAdapter(mAdapter);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == INTENT_GALLERY){
-            if(resultCode == Activity.RESULT_OK){
-
-            }
-        }
     }
 
     private ThumbnailsData getLastThumbnail(){

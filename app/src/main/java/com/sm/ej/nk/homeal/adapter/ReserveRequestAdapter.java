@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.data.CalendarItem;
 import com.sm.ej.nk.homeal.data.CkDetailMenuData;
-import com.sm.ej.nk.homeal.viewholder.CkDetailItemViewHolder;
+import com.sm.ej.nk.homeal.viewholder.CkHomeItemViewHolder;
 import com.sm.ej.nk.homeal.viewholder.ReserveRequestBodyViewHolder;
 
 import java.util.List;
@@ -20,7 +20,7 @@ public class ReserveRequestAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     List<CkDetailMenuData> menuDatas;
     CalendarItem calendarItem;
-    CkDetailItemViewHolder itemViewHolder;
+    CkHomeItemViewHolder itemViewHolder;
     ReserveRequestBodyViewHolder headeritemViewHolder;
 
     private static final int BODY_VIEW=0;
@@ -46,8 +46,8 @@ public class ReserveRequestAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         switch (viewType){
             case MENU_VIEW:{
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_ck_detail_menu, parent, false);
-                return new CkDetailItemViewHolder(view);
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_ck_home_item, parent, false);
+                return new CkHomeItemViewHolder(view, parent.getContext());
             }
             case BODY_VIEW:{
                 View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_reserve_request_body, parent, false);
@@ -64,7 +64,7 @@ public class ReserveRequestAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             headeritemViewHolder = (ReserveRequestBodyViewHolder)holder;
             headeritemViewHolder.setCalendarData(calendarItem);
         }else{
-            itemViewHolder = (CkDetailItemViewHolder)holder;
+            itemViewHolder = (CkHomeItemViewHolder) holder;
             itemViewHolder.setData(menuDatas.get(position));
         }
     }

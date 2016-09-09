@@ -60,7 +60,7 @@ public class ReserveRequestActivity extends AppCompatActivity {
         cookerid = intent.getStringExtra(InfoCkDetailActivity.INTENT_RESERVE_CKID);
 
         calendarItem =(CalendarItem)intent.getSerializableExtra(InfoCkDetailActivity.INTENT_RESERVE_CALENDAR);
-        menuDataList = InfoCkDetailActivity.getSelectMenu();
+        menuDataList = (List<CkDetailMenuData>)intent.getSerializableExtra(InfoCkDetailActivity.INTENT_RESERVE_MENU);
         mAdapter = new ReserveRequestAdapter();
         mAdapter.setCalendar(calendarItem);
         mAdapter.setMenu(menuDataList);

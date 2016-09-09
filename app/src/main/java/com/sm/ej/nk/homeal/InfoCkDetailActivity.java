@@ -23,6 +23,7 @@ import com.sm.ej.nk.homeal.manager.NetworkManager;
 import com.sm.ej.nk.homeal.manager.NetworkRequest;
 import com.sm.ej.nk.homeal.request.CkPageCheckRequest;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -119,19 +120,20 @@ public class InfoCkDetailActivity extends AppCompatActivity implements CkDetailA
         fabSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                fab.close(true);
                 if(mAdapter.getSelectCalendarItem()==null){
                     Toast.makeText(InfoCkDetailActivity.this, "날짜를 선택해주세요", Toast.LENGTH_SHORT).show();
-                }else{
+                }else if(selectMenuList.size()==0){
+                   Toast.makeText(InfoCkDetailActivity.this, "매뉴를 선택해 주세요", Toast.LENGTH_SHORT).show();
+                } else{
                     Intent intent = new Intent(InfoCkDetailActivity.this, ReserveRequestActivity.class);
                     intent.putExtra(INTENT_RESERVE_CALENDAR, mAdapter.getSelectCalendarItem());
                     intent.putExtra(INTENT_RESERVE_CKID, resultDara.getCooker_info().uid);
+                    intent.putExtra(INTENT_RESERVE_MENU,(Serializable) selectMenuList);
                     startActivity(intent);
                 }
             }
         });
-    }
-    public static List<CkDetailMenuData> getSelectMenu(){
-        return selectMenuList;
     }
 
     public static final String INTENT_RESERVE_MENU = "rrrr";

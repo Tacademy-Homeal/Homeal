@@ -118,7 +118,7 @@ public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder implements
 
 
         progressTotal.setProgress((int)data.grade);
-//        progressTaste.setProgress(Integer.parseInt(data.taste));
+        progressTaste.setProgress(data.taste);
         progressPrice.setProgress(data.price);
         progressClean.setProgress(data.cleanliness);
         progresskind.setProgress(data.kindness);

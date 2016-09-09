@@ -25,6 +25,11 @@ public class ThumbnailAdapter extends RecyclerView.Adapter<ThumbnailViewHolder> 
         this.datas = datas;
     }
 
+    public void deleteData(ThumbnailsData data){
+        datas.remove(data);
+        notifyDataSetChanged();
+    }
+
     @Override
     public ThumbnailViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_thumbnail, parent, false);
