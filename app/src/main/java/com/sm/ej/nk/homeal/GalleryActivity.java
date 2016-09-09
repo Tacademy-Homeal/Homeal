@@ -76,7 +76,7 @@ public class GalleryActivity extends AppCompatActivity implements GalleryAdapter
                         Toast.makeText(GalleryActivity.this, "추가 완료", Toast.LENGTH_SHORT).show();
                         setResult(Activity.RESULT_OK);
                         finish();
-                    }
+                    }//dd
 
                     @Override
                     public void onFail(NetworkRequest<NetworkResultTemp> request, int errorCode, String errorMessage, Throwable e) {

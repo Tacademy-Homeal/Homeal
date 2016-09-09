@@ -72,7 +72,6 @@
             android:name=".EtZzimActivity"
             android:exported="true" />
         <activity android:name=".InfoCkDetailActivity" />
-        <activity android:name=".MenuDetailActivity" />
         <activity android:name=".ReserveRequestActivity" />
         <activity
             android:name=".EtMainActivity"
