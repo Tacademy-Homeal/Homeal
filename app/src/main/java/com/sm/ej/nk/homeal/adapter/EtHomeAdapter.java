@@ -71,11 +71,11 @@ public class EtHomeAdapter extends RecyclerView.Adapter<EtHomeViewHolder> implem
     @Override
     public void onJjimClick(View view, int position) {
         if(jjimitemClickListener!=null){
-            jjimitemClickListener.onJjimitemClick(view,position);
+            jjimitemClickListener.onJjimitemClick(view,position, list.get(position));
         }
     }
     public interface OnJjimitemClickListener{
-        public void onJjimitemClick(View view, int position);
+        public void onJjimitemClick(View view, int position, EtHomeData data);
     }
 
     OnJjimitemClickListener jjimitemClickListener;
@@ -87,12 +87,12 @@ public class EtHomeAdapter extends RecyclerView.Adapter<EtHomeViewHolder> implem
     @Override
     public void onReviewClick(View view, int position) {
         if(reviewitemClickListener!=null){
-            reviewitemClickListener.onReviewitemClick(view,position);
+            reviewitemClickListener.onReviewitemClick(view,position, list.get(position));
         }
     }
 
     public interface OnReviewitemClickListener{
-        public void onReviewitemClick(View view, int position);
+        public void onReviewitemClick(View view, int position, EtHomeData data);
     }
 
     OnReviewitemClickListener reviewitemClickListener;

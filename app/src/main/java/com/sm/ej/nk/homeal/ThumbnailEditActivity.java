@@ -1,10 +1,14 @@
 package com.sm.ej.nk.homeal;
 
+import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -27,6 +31,7 @@ public class ThumbnailEditActivity extends AppCompatActivity {
 
     ThumbnailAdapter mAdapter;
     List<ThumbnailsData> thumbnailsDatas;
+    List<String> imagePathList;
 
     public static final int INTENT_GALLERY = 10;
 
@@ -45,19 +50,39 @@ public class ThumbnailEditActivity extends AppCompatActivity {
         mAdapter = new ThumbnailAdapter(ThumbnailEditActivity.this, thumbnailsDatas);
         mAdapter.setOnDelteCLickListener(new ThumbnailAdapter.OnDeleteClickListener() {
             @Override
-            public void onDeleteClick(View view, ThumbnailsData data, int position) {
-                CkThumbnailDeleteRequest request = new CkThumbnailDeleteRequest(ThumbnailEditActivity.this, data.getId());
-                NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
+            public void onDeleteClick(View view,final ThumbnailsData data, int position) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(ThumbnailEditActivity.this);
+                builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
-                        Toast.makeText(ThumbnailEditActivity.this, "사진 삭제 완료", Toast.LENGTH_SHORT).show();
-                    }
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
 
-                    @Override
-                    public void onFail(NetworkRequest<NetworkResultTemp> request, int errorCode, String errorMessage, Throwable e) {
-                        Toast.makeText(ThumbnailEditActivity.this, "사진 삭제 실패", Toast.LENGTH_SHORT).show();
+                        CkThumbnailDeleteRequest request = new CkThumbnailDeleteRequest(ThumbnailEditActivity.this, data.getId());
+                        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
+                            @Override
+                            public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
+                                Toast.makeText(ThumbnailEditActivity.this, "사진 삭제 완료", Toast.LENGTH_SHORT).show();
+                            }
+
+                            @Override
+                            public void onFail(NetworkRequest<NetworkResultTemp> request, int errorCode, String errorMessage, Throwable e) {
+                                Toast.makeText(ThumbnailEditActivity.this, "사진 삭제 실패", Toast.LENGTH_SHORT).show();
+                                Log.e("ssong", "error", e);
+                                Log.e("ssong", errorMessage);
+                                Log.e("ssong", errorCode+"");
+                            }
+                        });
                     }
                 });
+                builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                });
+                builder.setMessage(ThumbnailEditActivity.this.getResources().getString(R.string.thumbnail_delete));
+                builder.show();
+
             }
         });
         mAdapter.setOnImageCLickListener(new ThumbnailAdapter.OnImageCLickListener() {
@@ -74,6 +99,11 @@ public class ThumbnailEditActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == INTENT_GALLERY){
+            if(resultCode == Activity.RESULT_OK){
+
+            }
+        }
     }
 
     private ThumbnailsData getLastThumbnail(){

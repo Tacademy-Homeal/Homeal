@@ -103,7 +103,9 @@ public class InfoCkDetailActivity extends AppCompatActivity implements CkDetailA
             }
             @Override
             public void onFail(NetworkRequest<CkInfoResult> request, int errorCode, String errorMessage, Throwable e) {
-                e.printStackTrace();
+                Log.e("ssong", "error", e);
+                Log.e("ssong", errorMessage);
+                Log.e("ssong", errorCode+"");
             }
         });
 

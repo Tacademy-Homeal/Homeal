@@ -22,7 +22,7 @@ import java.util.List;
 /**
  * Created by Tacademy on 2016-08-30.
  */
-public class CkHomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements CkHomeHeaderViewHolder.OnCalendarClickLIsener{
+public class CkHomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements CkHomeHeaderViewHolder.OnCalendarClickLIsener, CkHomeHeaderViewHolder.OnReviewClickListener{
 
     private static final int TYPE_HEADER=0;
     private static final int TYPE_ITEM=1;
@@ -98,6 +98,7 @@ public class CkHomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             headerholder.setData(headerData);
             headerholder.setCalendar(scheduleList);
             headerholder.setOnCalendarCickListener(this);
+            headerholder.setOnReviewClickListener(this);
             headerholder.userMap.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -178,5 +179,20 @@ public class CkHomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     OnMenuDeleteClickLIstener deleteListener;
     public void setOnMenuDeleteClickListener(OnMenuDeleteClickLIstener listener){
         deleteListener = listener;
+    }
+
+    @Override
+    public void onReviewClick(View view) {
+        if(reviewListener!=null){
+            reviewListener.onReviewCLick(view, headerData);
+        }
+    }
+
+    public interface OnReviewCLickLIstener{
+        public void onReviewCLick(View view, CkDetailData data);
+    }
+    OnReviewCLickLIstener reviewListener;
+    public void setOnReviewClickListener(OnReviewCLickLIstener listener){
+        this.reviewListener = listener;
     }
 }

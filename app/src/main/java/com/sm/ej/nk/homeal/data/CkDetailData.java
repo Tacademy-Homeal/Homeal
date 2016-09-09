@@ -18,7 +18,7 @@ public class CkDetailData implements Serializable{
     public String longitude;
     public String latitude;
     public int price;
-    public String jjimCnt;
+    public String bookmarkCnt;
     public String reviewCnt;
     public String uid;
 }

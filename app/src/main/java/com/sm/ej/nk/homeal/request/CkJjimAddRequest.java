@@ -1,7 +1,6 @@
 package com.sm.ej.nk.homeal.request;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.google.gson.reflect.TypeToken;
 import com.sm.ej.nk.homeal.data.NetworkResultTemp;
@@ -14,27 +13,26 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 
 /**
- * Created by Tacademy on 2016-09-08.
+ * Created by Tacademy on 2016-09-09.
  */
-public class CkThumbnailDeleteRequest extends AbstractRequest<NetworkResultTemp> {
+public class CkJjimAddRequest extends AbstractRequest<NetworkResultTemp> {
+
     Request request;
 
-    public CkThumbnailDeleteRequest(Context context, String thumbnailId){
+    public CkJjimAddRequest(Context context, String cookerId){
         HttpUrl url = getBaseHttpUrlBuilder()
-                .addPathSegment("photos")
+                .addPathSegment("bookmarks")
                 .build();
 
-        Log.e("ssong thumbnailId", thumbnailId);
         RequestBody body = new FormBody.Builder()
-                .add("ids", thumbnailId)
+                .add("cooker", cookerId)
                 .build();
 
         request = new Request.Builder()
                 .url(url)
-                .delete(body)
                 .tag(context)
+                .post(body)
                 .build();
-
     }
 
     @Override
