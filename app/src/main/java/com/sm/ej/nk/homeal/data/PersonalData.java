@@ -23,15 +23,6 @@ public class PersonalData implements Serializable {
         this.image = image;
     }
 
-//    public String getCountry() {
-//        return this.country;
-//    }
-//
-//    public void setCountry(String country) {
-//        this.country = country;
-//    }
-
-
     public int getCountry() {
         return country;
     }

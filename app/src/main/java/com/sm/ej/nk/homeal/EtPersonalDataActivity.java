@@ -1,6 +1,8 @@
 package com.sm.ej.nk.homeal;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -11,27 +13,33 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.sm.ej.nk.homeal.data.NetworkResult;
+import com.sm.ej.nk.homeal.data.NetworkResultTemp;
 import com.sm.ej.nk.homeal.data.PersonalData;
 import com.sm.ej.nk.homeal.fragment.EtMyPageFragment;
 import com.sm.ej.nk.homeal.manager.NetworkManager;
 import com.sm.ej.nk.homeal.manager.NetworkRequest;
 import com.sm.ej.nk.homeal.request.EaterInfoRequest;
-
-import java.util.ArrayList;
+import com.sm.ej.nk.homeal.request.EtInfoupdateRequest;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class EtPersonalDataActivity extends AppCompatActivity {
+    private int iYear, iMonth, iDay;
+    static final int DATE_DIALOG_ID = 0;
+
     @BindView(R.id.radioGroup)
     RadioGroup radioGroup;
 
@@ -47,20 +55,26 @@ public class EtPersonalDataActivity extends AppCompatActivity {
     @BindView(R.id.edit_et_introduce)
     EditText introduceEdit;
 
-    @BindView(R.id.spinner_et_country_phone)
-    Spinner countryphoneSpinner;
+//    @BindView(R.id.spinner_et_country_phone)
+//    Spinner countryphoneSpinner;
 
     @BindView(R.id.edit_et_phone)
     EditText phoneEdit;
 
-    @BindView(R.id.spinner_et_month)
-    Spinner monthSpinner;
+    @BindView(R.id.text_et_birth)
+    TextView birthText;
 
-    @BindView(R.id.spinner_et_day)
-    Spinner daySpinner;
+    @BindView(R.id.btn_personal_change)
+    Button btnChange;
 
-    @BindView(R.id.spinner_et_year)
-    Spinner yearSpinner;
+//    @BindView(R.id.spinner_et_month)
+//    Spinner monthSpinner;
+//
+//    @BindView(R.id.spinner_et_day)
+//    Spinner daySpinner;
+//
+//    @BindView(R.id.spinner_et_year)
+//    Spinner yearSpinner;
 
     @BindView(R.id.spinner_et_country)
     Spinner countrySpinner;
@@ -78,7 +92,7 @@ public class EtPersonalDataActivity extends AppCompatActivity {
     ImageView etpictureView;
 
     ArrayAdapter<String> countryAdapter;
-    ArrayAdapter<String> countryphoneAdapter;
+//    ArrayAdapter<String> countryphoneAdapter;
 
     private int GET_IMAGE = 2;
     PersonalData data;
@@ -122,11 +136,14 @@ public class EtPersonalDataActivity extends AppCompatActivity {
                 nameEdit.setText(data.getName());
                 introduceEdit.setText(data.getIntroduce());
                 phoneEdit.setText(data.getPhone());
+                birthText.setText(data.getBirth());
+                countrySpinner.setSelection(data.getCountry());
 
-                if (data.getGender().equals("male")) {
-                    radioGroup.check(R.id.radio_ck_male);
+
+                if (data.getGender().equals("Male")) {
+                    radioGroup.check(R.id.radio_et_male);
                 } else {
-                    radioGroup.check(R.id.radio_ck_female);
+                    radioGroup.check(R.id.radio_et_female);
                 }
 
                 Glide.with(etpictureView.getContext()).load(data.getImage()).into(etpictureView);
@@ -147,43 +164,88 @@ public class EtPersonalDataActivity extends AppCompatActivity {
         countryAdapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
         countrySpinner.setAdapter(countryAdapter);
 
-        countryphoneAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.country_phonenum));
-        countryphoneAdapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
-        countryphoneSpinner.setAdapter(countryphoneAdapter);
+//        countryphoneAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.country_phonenum));
+//        countryphoneAdapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
+//        countryphoneSpinner.setAdapter(countryphoneAdapter);
 
-        ArrayList<String> monthList = new ArrayList<>();
-        for (int month = 1; month < 13; month++) {
-            monthList.add(String.valueOf(month));
-        }
-        final ArrayAdapter<String> monthAdatper = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, monthList);
-        monthSpinner.setAdapter(monthAdatper);
-
-        ArrayList<String> dayList = new ArrayList<>();
-        for (int day = 1; day < 32; day++) {
-            dayList.add(String.valueOf(day));
-        }
-        ArrayAdapter<String> dayAdatper = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, dayList);
-        daySpinner.setAdapter(dayAdatper);
-
-        ArrayList<String> yearList = new ArrayList<>();
-        for (int year = 1930; year < 2031; year++) {
-            yearList.add(String.valueOf(year));
-        }
-        ArrayAdapter<String> yearAdatper = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, yearList);
-        yearSpinner.setAdapter(yearAdatper);
+//        ArrayList<String> monthList = new ArrayList<>();
+//        for (int month = 1; month < 13; month++) {
+//            monthList.add(String.valueOf(month));
+//        }
+//        final ArrayAdapter<String> monthAdatper = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, monthList);
+//        monthSpinner.setAdapter(monthAdatper);
+//
+//        ArrayList<String> dayList = new ArrayList<>();
+//        for (int day = 1; day < 32; day++) {
+//            dayList.add(String.valueOf(day));
+//        }
+//        ArrayAdapter<String> dayAdatper = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, dayList);
+//        daySpinner.setAdapter(dayAdatper);
+//
+//        ArrayList<String> yearList = new ArrayList<>();
+//        for (int year = 1930; year < 2031; year++) {
+//            yearList.add(String.valueOf(year));
+//        }
+//        ArrayAdapter<String> yearAdatper = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, yearList);
+//        yearSpinner.setAdapter(yearAdatper);
 
         isPersonalData(false);
         btnChangeFinish.setVisibility(View.GONE);
     }
 
+    @OnClick(R.id.text_et_birth)
+    public void onBirth() {
+        showDialog(DATE_DIALOG_ID);
+    }
+
+    protected Dialog onCreateDialog(int id) {
+        switch (id) {
+            case DATE_DIALOG_ID:
+                return new DatePickerDialog(this, mDateSetListener,
+                        iYear, iMonth, iDay);
+        }
+        return null;
+    }
+
+
+    private DatePickerDialog.OnDateSetListener mDateSetListener =
+            new DatePickerDialog.OnDateSetListener() {
+                public void onDateSet(DatePicker view, int year,
+                                      int monthOfYear, int dayOfMonth) {
+                    // TODO Auto-generated method stub
+                    iYear = year;
+                    iMonth = monthOfYear;
+                    iDay = dayOfMonth;
+                    birthText.setText("" + iYear + "-" + (iMonth + 1) + "-" + iDay);
+                }
+            };
+
     @OnClick(R.id.btn_personal_change)
     public void onPersonalChanged() {
         isPersonalData(true);
         btnChangeFinish.setVisibility(View.VISIBLE);
+        btnChange.setVisibility(View.GONE);
     }
 
     @OnClick(R.id.btn_et_changefinish)
     public void onChangefinish() {
+        String gender;
+        if (radioGroup.getCheckedRadioButtonId()==R.id.radio_ck_male){
+            gender = "Male";
+        }else{
+            gender = "Female";
+        }
+        EtInfoupdateRequest request = new EtInfoupdateRequest(EtPersonalDataActivity.this, nameEdit.getText().toString(), birthText.getText().toString(), phoneEdit.getText().toString(), introduceEdit.getText().toString(), gender);
+        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
+            @Override
+            public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
+            }
+
+            @Override
+            public void onFail(NetworkRequest<NetworkResultTemp> request, int errorCode, String errorMessage, Throwable e) {
+                Toast.makeText(EtPersonalDataActivity.this, "" + errorMessage, Toast.LENGTH_SHORT).show();
+            }
+        });
         isPersonalData(false);
         btnChangeFinish.setVisibility(View.GONE);
     }
@@ -203,14 +265,15 @@ public class EtPersonalDataActivity extends AppCompatActivity {
         ageEdit.setEnabled(s);
         introduceEdit.setEnabled(s);
         phoneEdit.setEnabled(s);
-        monthSpinner.setEnabled(s);
-        daySpinner.setEnabled(s);
-        yearSpinner.setEnabled(s);
+//        monthSpinner.setEnabled(s);
+//        daySpinner.setEnabled(s);
+//        yearSpinner.setEnabled(s);
+        birthText.setEnabled(s);
         countrySpinner.setEnabled(s);
         maleRadio.setEnabled(s);
         femaleRadio.setEnabled(s);
         etpictureView.setEnabled(s);
-        countryphoneSpinner.setEnabled(s);
+//        countryphoneSpinner.setEnabled(s);
     }
 
 }

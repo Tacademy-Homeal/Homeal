@@ -95,25 +95,13 @@
         android:layout_below="@+id/textView6"
         android:layout_centerVertical="true">
 
-        <Spinner
-            android:id="@+id/spinner_et_year"
-            android:layout_width="@dimen/et_personal_spinner_width"
-            android:layout_height="@dimen/et_personal_box_height"
-            android:background="@drawable/edge" />
-
-        <Spinner
-            android:id="@+id/spinner_et_month"
-            android:layout_width="@dimen/et_personal_spinner_width"
-            android:layout_height="@dimen/et_personal_box_height"
-            android:layout_marginLeft="@dimen/et_personal_between_margin"
-            android:background="@drawable/edge" />
-
-        <Spinner
-            android:id="@+id/spinner_et_day"
-            android:layout_width="@dimen/et_personal_spinner_width"
-            android:layout_height="@dimen/et_personal_box_height"
-            android:layout_marginLeft="@dimen/et_personal_between_margin"
-            android:background="@drawable/edge" />
+        <TextView
+            android:id="@+id/text_et_birth"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:background="@drawable/edge"
+            android:text="BirthDay"
+            android:gravity="center_vertical" />
     </LinearLayout>
 
     <RadioGroup
@@ -161,17 +149,13 @@
             android:layout_weight="0.5"
             android:orientation="horizontal">
 
-            <Spinner
-                android:layout_width="wrap_content"
-                android:layout_height="42dp"
-                android:id="@+id/spinner_et_country_phone"/>
-
             <EditText
                 android:id="@+id/edit_et_phone"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/et_personal_box_height"
                 android:background="@null"
                 android:ems="10"
+                android:text=" Phone"
                 android:inputType="phone" />
         </LinearLayout>
 
