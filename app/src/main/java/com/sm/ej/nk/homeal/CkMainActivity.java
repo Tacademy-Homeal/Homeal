@@ -152,6 +152,7 @@ public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTab
                 scheduleDatas = ckHomeFragment.getCkSchedule();
                 intent.putExtra(INTENT_SCHEDULE_DATA, (Serializable)scheduleDatas);
                 startActivityForResult(intent, INTENT_SCHEDULE);
+
             }
         });
 

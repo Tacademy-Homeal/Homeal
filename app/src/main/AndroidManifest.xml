@@ -37,8 +37,10 @@
 
         <activity
             android:name=".CkMainActivity"
-            android:exported="true" />
-        <activity android:name=".SplashActivity">
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".SplashActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -47,35 +49,49 @@
         </activity>
         <activity
             android:name=".LoginActivity"
-            android:exported="true" />
-        <activity android:name=".MapActivity" />
-        <activity android:name=".ChattingActivity" />
-        <activity android:name=".CkWriteReViewActivity" />
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".MapActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ChattingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".CkWriteReViewActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".CkPersonalDataActivity"
-            android:exported="true" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".SettingActivity"
-            android:exported="true" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".AdviceActivity"
-            android:exported="true" />
-        <activity android:name=".MenuAddActivity" />
-        <activity android:name=".SearchActivity" />
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".MenuAddActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SearchActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".EtWriteReviewActivity"
-            android:exported="true" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".EtPersonalDataActivity"
-            android:exported="true" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".EtZzimActivity"
-            android:exported="true" />
-        <activity android:name=".InfoCkDetailActivity" />
-        <activity android:name=".ReserveRequestActivity" />
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".InfoCkDetailActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ReserveRequestActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".EtMainActivity"
-            android:exported="true" />
+            android:screenOrientation="portrait"/>
 
         <receiver
             android:name="com.google.android.gms.gcm.GcmReceiver"
@@ -101,11 +117,19 @@
 
         <activity
             android:name=".AddressEditActivity"
-            android:exported="true" />
-        <activity android:name=".ScheduleEditActivity" />
-        <activity android:name=".GalleryActivity" />
-        <activity android:name=".ThumbnailEditActivity" />
-        <activity android:name=".ReviewInfoActivity"></activity>
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ScheduleEditActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".GalleryActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ThumbnailEditActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ReviewInfoActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
