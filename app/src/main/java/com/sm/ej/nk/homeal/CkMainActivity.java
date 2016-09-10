@@ -1,5 +1,6 @@
 package com.sm.ej.nk.homeal;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -10,17 +11,23 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 import com.sm.ej.nk.homeal.adapter.ViewPagerFragmentAdapter;
 import com.sm.ej.nk.homeal.data.CkDetailMenuData;
 import com.sm.ej.nk.homeal.data.CkScheduleData;
+import com.sm.ej.nk.homeal.data.NetworkResult;
 import com.sm.ej.nk.homeal.data.ThumbnailsData;
 import com.sm.ej.nk.homeal.fragment.ChatListFragment;
 import com.sm.ej.nk.homeal.fragment.CkHomeFragment;
 import com.sm.ej.nk.homeal.fragment.CkMyPageFragment;
 import com.sm.ej.nk.homeal.fragment.CkReserveFragment;
+import com.sm.ej.nk.homeal.manager.NetworkManager;
+import com.sm.ej.nk.homeal.manager.NetworkRequest;
+import com.sm.ej.nk.homeal.request.CkMenuListRequest;
+import com.sm.ej.nk.homeal.request.CkScheduleListRequest;
 import com.sm.ej.nk.homeal.view.AlarmPopupWindow;
 
 import java.io.Serializable;
@@ -207,6 +214,45 @@ public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTab
         pagerAdapter.addFragment(CkMyPageFragment.createInstance(), CK_MYPAGE);
         v.setAdapter(pagerAdapter);
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == INTENT_MENU){
+            if(resultCode == Activity.RESULT_OK){
+
+                CkMenuListRequest request = new CkMenuListRequest(CkMainActivity.this, ckHomeFragment.getCookerId());
+                NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<List<CkDetailMenuData>>>() {
+                    @Override
+                    public void onSuccess(NetworkRequest<NetworkResult<List<CkDetailMenuData>>> request, NetworkResult<List<CkDetailMenuData>> result) {
+                        ckHomeFragment.changeMenu(result.getResult());
+                    }
+
+                    @Override
+                    public void onFail(NetworkRequest<NetworkResult<List<CkDetailMenuData>>> request, int errorCode, String errorMessage, Throwable e) {
+                        Toast.makeText(CkMainActivity.this, "매뉴 리스트 불러오기 실패", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        }
+        if(requestCode==INTENT_SCHEDULE){
+            if(resultCode == Activity.RESULT_OK){
+                CkScheduleListRequest request = new CkScheduleListRequest(CkMainActivity.this, ckHomeFragment.getCookerId());
+                NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<List<CkScheduleData>>>() {
+                    @Override
+                    public void onSuccess(NetworkRequest<NetworkResult<List<CkScheduleData>>> request, NetworkResult<List<CkScheduleData>> result) {
+                        ckHomeFragment.changeSchedule(result.getResult());
+                    }
+
+                    @Override
+                    public void onFail(NetworkRequest<NetworkResult<List<CkScheduleData>>> request, int errorCode, String errorMessage, Throwable e) {
+                        Toast.makeText(CkMainActivity.this, "일정 리스트 불러오기 실패", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+            }
+        }
     }
 
     @Override
