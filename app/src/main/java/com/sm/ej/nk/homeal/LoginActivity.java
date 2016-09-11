@@ -79,7 +79,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public void changeSingUp(){
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.login_container, new SignUpFragment())
+                .replace(R.id.login_container,new SignUpFragment())
                 .addToBackStack("SingUp")
                 .commit();
     }

@@ -1,10 +1,14 @@
 [
     {
-        "merged": "C:\\Users\\Tacademy\\AndroidStudioProjects\\Homeal\\viewPagerIndicator\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\vpi__tab_indicator.xml",
-        "source": "C:\\Users\\Tacademy\\AndroidStudioProjects\\Homeal\\viewPagerIndicator\\build\\intermediates\\bundles\\debug\\res\\drawable\\vpi__tab_indicator.xml"
+        "merged": "/Users/kimnamgil/AndroidStudioProjects/Homeal/Homeal/C:\\Users\\Tacademy\\AndroidStudioProjects\\Homeal\\viewPagerIndicator\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\vpi__tab_indicator.xml",
+        "source": "/Users/kimnamgil/AndroidStudioProjects/Homeal/Homeal/C:\\Users\\Tacademy\\AndroidStudioProjects\\Homeal\\viewPagerIndicator\\build\\intermediates\\bundles\\debug\\res\\drawable\\vpi__tab_indicator.xml"
     },
     {
-        "merged": "C:\\ssong\\Android\\Homeal\\viewPagerIndicator\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\vpi__tab_indicator.xml",
-        "source": "C:\\ssong\\Android\\Homeal\\viewPagerIndicator\\build\\intermediates\\bundles\\debug\\res\\drawable\\vpi__tab_indicator.xml"
+        "merged": "/Users/kimnamgil/AndroidStudioProjects/Homeal/Homeal/viewPagerIndicator/build/intermediates/res/merged/androidTest/debug/drawable/vpi__tab_indicator.xml",
+        "source": "/Users/kimnamgil/AndroidStudioProjects/Homeal/Homeal/viewPagerIndicator/build/intermediates/bundles/debug/res/drawable/vpi__tab_indicator.xml"
+    },
+    {
+        "merged": "/Users/kimnamgil/AndroidStudioProjects/Homeal/Homeal/C:\\ssong\\Android\\Homeal\\viewPagerIndicator\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\vpi__tab_indicator.xml",
+        "source": "/Users/kimnamgil/AndroidStudioProjects/Homeal/Homeal/C:\\ssong\\Android\\Homeal\\viewPagerIndicator\\build\\intermediates\\bundles\\debug\\res\\drawable\\vpi__tab_indicator.xml"
     }
 ]

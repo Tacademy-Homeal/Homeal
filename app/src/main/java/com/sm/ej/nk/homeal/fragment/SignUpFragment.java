@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.sm.ej.nk.homeal.LoginActivity;
 import com.sm.ej.nk.homeal.R;
+import com.sm.ej.nk.homeal.data.FacebookUser;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -50,9 +51,22 @@ public class SignUpFragment extends Fragment {
     @BindView(R.id.radioGroup)
     RadioGroup radioGroup;
 
+    public static final String ARG_FACEBOOK_USER = "facebookUser";
+
+    public static SignUpFragment newInstance(FacebookUser user) {
+        SignUpFragment f = new SignUpFragment();
+        Bundle b = new Bundle();
+        b.putSerializable(ARG_FACEBOOK_USER, user);
+        f.setArguments(b);
+        return f;
+    }
+
 
     public SignUpFragment() {
+
+
     }
+
 
 
     @Override

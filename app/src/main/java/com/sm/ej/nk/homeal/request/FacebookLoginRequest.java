@@ -8,7 +8,10 @@ import com.sm.ej.nk.homeal.data.User;
 
 import java.lang.reflect.Type;
 
+import okhttp3.FormBody;
+import okhttp3.HttpUrl;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 
 /**
  * Created by Tacademy on 2016-08-29.
@@ -18,7 +21,7 @@ public class FacebookLoginRequest extends  AbstractRequest<NetworkResult<Object>
     Request mRequest;
 
     public FacebookLoginRequest(Context context, String token, String regId){
-      /*  HttpUrl url = getBaseUrlBuilder()
+        HttpUrl url = getBaseHttpUrlBuilder()
                 .addPathSegment("facebooksignin")
                 .build();
         RequestBody body = new FormBody.Builder()
@@ -29,7 +32,8 @@ public class FacebookLoginRequest extends  AbstractRequest<NetworkResult<Object>
         mRequest = new Request.Builder()
                 .url(url)
                 .post(body)
-                .tag(context)*/
+                .tag(context)
+                .build();
     }
 
     @Override
@@ -39,10 +43,11 @@ public class FacebookLoginRequest extends  AbstractRequest<NetworkResult<Object>
 
     @Override
     protected Type getType(int code) {
-      /*  if (code == 3) {
-            return new TypeToken<NetworkResult<FacebookUser>>(){}.getType();
-        }*/
+
+           // return new TypeToken<NetworkResult<FacebookUser>>(){}.getType();
+
         return null;
+
     }
 
     @Override

@@ -56,7 +56,7 @@ public class EtMainActivity extends AppCompatActivity {
         }
 
     }
-
+    public static final String EXTRA_TAB_INDEX = "tabindex";
     public static final String ET_HOME = "이터홈";
     public static final String ET_CHAT = "채팅 리스트";
     public static final String ET_RESERVE = "예약";

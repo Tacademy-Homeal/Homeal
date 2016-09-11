@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.sm.ej.nk.homeal.LoginActivity;
 import com.sm.ej.nk.homeal.R;
+import com.sm.ej.nk.homeal.data.FacebookUser;
 import com.sm.ej.nk.homeal.data.FontData;
 import com.sm.ej.nk.homeal.manager.FontManager;
 
@@ -24,6 +25,7 @@ import butterknife.OnClick;
  * A simple {@link Fragment} subclass.
  */
 public class TOSFragment extends Fragment {
+
 
 
     @BindView(R.id.text_tos_main)
