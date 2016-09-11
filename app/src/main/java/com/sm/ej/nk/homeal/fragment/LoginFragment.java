@@ -24,7 +24,10 @@ import com.sm.ej.nk.homeal.HomealApplication;
 import com.sm.ej.nk.homeal.LoginActivity;
 import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.data.FontData;
+import com.sm.ej.nk.homeal.data.NetworkResultTemp;
 import com.sm.ej.nk.homeal.manager.FontManager;
+import com.sm.ej.nk.homeal.manager.NetworkManager;
+import com.sm.ej.nk.homeal.manager.NetworkRequest;
 import com.sm.ej.nk.homeal.manager.PropertyManager;
 import com.sm.ej.nk.homeal.request.FacebookLoginRequest;
 import com.sm.ej.nk.homeal.request.TestRequest;
@@ -109,20 +112,20 @@ public class LoginFragment extends Fragment {
             }
         }
 
-        loginFacebook();
+      //  loginFacebook();
 
 
-//        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
-//            @Override
-//            public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
-//                ((LoginActivity) getActivity()).changeTos();
-//            }
-//
-//            @Override
-//            public void onFail(NetworkRequest<NetworkResultTemp> request, int errorCode, String errorMessage, Throwable e) {
-//                e.printStackTrace();
-//            }
-//        });
+        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
+            @Override
+            public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
+                ((LoginActivity) getActivity()).changeTos();
+            }
+
+            @Override
+            public void onFail(NetworkRequest<NetworkResultTemp> request, int errorCode, String errorMessage, Throwable e) {
+                e.printStackTrace();
+            }
+        });
 
     }
 
