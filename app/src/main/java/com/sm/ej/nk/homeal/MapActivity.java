@@ -1,6 +1,7 @@
 package com.sm.ej.nk.homeal;
 
 import android.content.Intent;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -14,6 +15,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.sm.ej.nk.homeal.data.CkDetailData;
 
 import butterknife.BindView;
@@ -75,8 +77,10 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         mMap.getUiSettings().setZoomControlsEnabled(true);
         mMap.setOnCameraMoveListener(this);
         mMap.setOnInfoWindowClickListener(this);
-        moveMap(data.latitude, data.longitude);
+        addMarker(data.latitude, data.longitude);
+
     }
+
     private void moveMap(double latitude, double longitude){
         if(mMap!=null){
             CameraPosition.Builder builder = new CameraPosition.Builder();
@@ -86,5 +90,16 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
             mMap.animateCamera(update);
         }
+    }
+
+    private void addMarker(double latitude, double  longitude) {
+
+        LatLng latLng = new LatLng(latitude, longitude);
+        Marker marker =mMap.addMarker(new MarkerOptions().position(latLng));
+        Location location = new Location("");
+        location.setLatitude(marker.getPosition().latitude);
+        location.setLongitude(marker.getPosition().longitude);
+        marker.showInfoWindow();
+        moveMap(latitude, longitude);
     }
 }

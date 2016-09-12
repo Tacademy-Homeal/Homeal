@@ -5,11 +5,9 @@ package com.sm.ej.nk.homeal.data;
  */
 public class GalleryItemData {
     private String imagePath;
-    private boolean selected = false;
 
-    public GalleryItemData(String imagePath, boolean selected){
+    public GalleryItemData(String imagePath){
         this.imagePath = imagePath;
-        this.selected = selected;
     }
 
     public String getImagePath() {
@@ -18,13 +16,5 @@ public class GalleryItemData {
 
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
-    }
-
-    public boolean isSelected() {
-        return selected;
-    }
-
-    public void setSelected(boolean selected) {
-        this.selected = selected;
     }
 }

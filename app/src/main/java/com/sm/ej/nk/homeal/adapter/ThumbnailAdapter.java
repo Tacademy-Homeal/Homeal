@@ -39,10 +39,17 @@ public class ThumbnailAdapter extends RecyclerView.Adapter<ThumbnailViewHolder> 
     @Override
     public void onBindViewHolder(ThumbnailViewHolder holder,final int position) {
 
-        Glide.with(HomealApplication.getContext())
-                .load(datas.get(position).getImage())
-                .centerCrop()
-                .into(holder.imageView);
+        if(position==(datas.size()-1)){
+            Glide.with(HomealApplication.getContext())
+                    .load(datas.get(position).getImage())
+                    .into(holder.imageView);
+        }else{
+            Glide.with(HomealApplication.getContext())
+                    .load(datas.get(position).getImage())
+                    .centerCrop()
+                    .into(holder.imageView);
+        }
+
         if(datas.get(position).isLastItem()){
             holder.deleteImage.setVisibility(View.INVISIBLE);
             holder.imageView.setOnClickListener(new View.OnClickListener() {
@@ -62,10 +69,8 @@ public class ThumbnailAdapter extends RecyclerView.Adapter<ThumbnailViewHolder> 
                         deleteListener.onDeleteClick(view, datas.get(position), position);
                     }
                 }
-
             });
         }
-
     }
 
     @Override
