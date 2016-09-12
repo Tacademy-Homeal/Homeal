@@ -3,7 +3,7 @@ package com.sm.ej.nk.homeal.request;
 import android.content.Context;
 
 import com.google.gson.reflect.TypeToken;
-import com.sm.ej.nk.homeal.data.EtHomeData;
+import com.sm.ej.nk.homeal.data.CkDetailMenuData;
 import com.sm.ej.nk.homeal.data.NetworkResult;
 
 import java.lang.reflect.Type;
@@ -13,16 +13,17 @@ import okhttp3.HttpUrl;
 import okhttp3.Request;
 
 /**
- * Created by Tacademy on 2016-09-05.
+ * Created by 송민 on 2016-09-10.
  */
-public class ZzimListRequest extends AbstractRequest<NetworkResult<List<EtHomeData>>> {
+public class CkMenuListRequest extends AbstractRequest<NetworkResult<List<CkDetailMenuData>>> {
 
-    Context context;
     Request request;
 
-    public ZzimListRequest(Context context) {
+    public CkMenuListRequest(Context context, String cookerId){
         HttpUrl url = getBaseHttpUrlBuilder()
-                .addPathSegment("bookmarks")
+                .addPathSegment("cookers")
+                .addPathSegment(cookerId)
+                .addPathSegment("menus")
                 .build();
 
         request = new Request.Builder()
@@ -33,8 +34,7 @@ public class ZzimListRequest extends AbstractRequest<NetworkResult<List<EtHomeDa
 
     @Override
     protected Type getType() {
-        return new TypeToken<NetworkResult<List<EtHomeData>>>() {
-        }.getType();
+        return new TypeToken<NetworkResult<List<CkDetailMenuData>>>(){}.getType();
     }
 
     @Override

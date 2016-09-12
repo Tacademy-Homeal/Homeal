@@ -59,6 +59,13 @@ public class CkHomeFragment extends Fragment implements CkMainActivity.OnFabClic
         return cookerId;
     }
 
+    public void changeMenu(List<CkDetailMenuData> data){
+        mAdapter.changeMenu(data);
+    }
+
+    public void changeSchedule(List<CkScheduleData> data){
+        mAdapter.changeSchedule(data);
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -102,12 +109,13 @@ public class CkHomeFragment extends Fragment implements CkMainActivity.OnFabClic
 
         mAdapter.setOnMenuDeleteClickListener(new CkHomeAdapter.OnMenuDeleteClickLIstener() {
             @Override
-            public void onMenuDeleteClick(View view, CkDetailMenuData data) {
+            public void onMenuDeleteClick(View view,final CkDetailMenuData data) {
                 CkMenuDeleteRequest deleteRequest = new CkMenuDeleteRequest(getContext(), data.id);
                 NetworkManager.getInstance().getNetworkData(deleteRequest, new NetworkManager.OnResultListener<NetworkResultTemp>() {
                     @Override
                     public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
                         Toast.makeText(getContext(), "메뉴 삭제 완료", Toast.LENGTH_SHORT).show();
+                        mAdapter.deleteMenu(data);
                     }
 
                     @Override

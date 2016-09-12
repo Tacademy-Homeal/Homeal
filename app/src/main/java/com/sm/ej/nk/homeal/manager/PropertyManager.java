@@ -71,11 +71,11 @@ public class PropertyManager {
     }
 
     private static final String FIELD_REGISTRATION_ID = "regid";
-    public void setRegistrationToken(String token) {
+    public void setRegistrationId(String token) {
         mEditor.putString(FIELD_REGISTRATION_ID, token);
         mEditor.commit();
     }
-    public String getRegistrationToken(){
+    public String getRegistartionId(){
         return mPrefs.getString(FIELD_REGISTRATION_ID, "");
     }
 }

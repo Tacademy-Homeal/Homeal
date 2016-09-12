@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.francescocervone.openratingview.RatingView;
 import com.sm.ej.nk.homeal.R;
-import com.sm.ej.nk.homeal.data.ZzimData;
+import com.sm.ej.nk.homeal.data.EtHomeData;
 
 /**
  * Created by Tacademy on 2016-09-01.
@@ -59,8 +59,8 @@ public class ZzimViewHolder extends RecyclerView.ViewHolder {
         zzimLinear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (zzimClickListener != null) {
-                    zzimClickListener.onZzimClick(view, getAdapterPosition());
+                if (jjimClickListener != null) {
+                    jjimClickListener.onJjimClick(view, getAdapterPosition());
                 }
             }
         });
@@ -68,8 +68,8 @@ public class ZzimViewHolder extends RecyclerView.ViewHolder {
         zzimreviewLinear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (zzimreviewClickListener != null) {
-                    zzimreviewClickListener.onReviewClick(view, getAdapterPosition());
+                if (reviewClickListener != null) {
+                    reviewClickListener.onReviewClick(view, getAdapterPosition());
                 }
             }
         });
@@ -83,45 +83,43 @@ public class ZzimViewHolder extends RecyclerView.ViewHolder {
         });
     }
 
-    public interface OnViewClickListener {
-        public void onViewClick(View view, int position);
+
+    public interface OnViewClickListener{
+        public void onViewClick(View view,int position);
     }
-
     OnViewClickListener listener;
-
-    public void setOnViewClickListner(OnViewClickListener listener) {
+    public void setOnViewClickListner(OnViewClickListener listener){
         this.listener = listener;
     }
 
-    public interface OnZzimClickListener {
-        public void onZzimClick(View view, int position);
+    public interface OnJjimClickListener{
+        public void onJjimClick(View view, int position);
     }
 
-    OnZzimClickListener zzimClickListener;
+    OnJjimClickListener jjimClickListener;
 
-    public void setOnZzimClickListener(OnZzimClickListener listener) {
-        this.zzimClickListener = listener;
+    public void setOnJjimClickListener(OnJjimClickListener listener){
+        this.jjimClickListener = listener;
     }
 
-    public interface OnReviewClickListener {
+    public interface OnReviewClickListener{
         public void onReviewClick(View view, int position);
     }
 
-    OnReviewClickListener zzimreviewClickListener;
+    OnReviewClickListener reviewClickListener;
 
-    public void setOnReviewClickListener(OnReviewClickListener listener) {
-        this.zzimreviewClickListener = listener;
+    public void setOnReviewClickListener(OnReviewClickListener listener){
+        this.reviewClickListener = listener;
     }
-
-    public void setData(ZzimData data) {
+    public void setData(EtHomeData data) {
         Glide.with(zzimuserImage.getContext()).load(data.getImage()).into(zzimuserImage);
-        Glide.with(zzimfoodImage.getContext()).load(data.getThumbnail()).into(zzimfoodImage);
+        Glide.with(zzimfoodImage.getContext()).load(data.getFoodImageUrl()).into(zzimfoodImage);
 
         zzimName.setText(data.getName());
         zzimAddress.setText(data.getAddress());
         zzimjjimCount.setText(""+data.getBookmarkCnt());
         zzimreviewCount.setText(""+data.getReviewCnt());
-        zzimstarCount.setRating(data.getGrade());
+        zzimstarCount.setRating((int)data.getGrade());
         if(data.getIsBookmark()==0){
             zzimjjimImage.setImageResource(R.drawable.homeal_heart);
         }else{

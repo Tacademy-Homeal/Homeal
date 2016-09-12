@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.sm.ej.nk.homeal.R;
-import com.sm.ej.nk.homeal.data.ZzimData;
+import com.sm.ej.nk.homeal.data.EtHomeData;
 import com.sm.ej.nk.homeal.viewholder.ZzimViewHolder;
 
 import java.util.ArrayList;
@@ -15,20 +15,20 @@ import java.util.List;
 /**
  * Created by Tacademy on 2016-09-01.
  */
-public class ZzimAdapter extends RecyclerView.Adapter<ZzimViewHolder> implements ZzimViewHolder.OnReviewClickListener, ZzimViewHolder.OnZzimClickListener, ZzimViewHolder.OnViewClickListener {
-    List<ZzimData> list = new ArrayList<>();
+public class ZzimAdapter extends RecyclerView.Adapter<ZzimViewHolder> implements ZzimViewHolder.OnViewClickListener, ZzimViewHolder.OnReviewClickListener, ZzimViewHolder.OnJjimClickListener {
+    List<EtHomeData> list = new ArrayList<>();
 
     public void clear() {
         list.clear();
         notifyDataSetChanged();
     }
 
-    public void add(ZzimData data){
+    public void add(EtHomeData data){
         this.list.add(data);
         notifyDataSetChanged();
     }
 
-    public void addList(List<ZzimData> list) {
+    public void addList(List<EtHomeData> list) {
         this.list.addAll(list);
         notifyDataSetChanged();
     }
@@ -45,7 +45,7 @@ public class ZzimAdapter extends RecyclerView.Adapter<ZzimViewHolder> implements
         holder.setData(list.get(position));
         holder.setOnViewClickListner(this);
         holder.setOnReviewClickListener(this);
-        holder.setOnZzimClickListener(this);
+        holder.setOnJjimClickListener(this);
     }
 
     @Override
@@ -54,50 +54,48 @@ public class ZzimAdapter extends RecyclerView.Adapter<ZzimViewHolder> implements
     }
 
     @Override
-    public void onReviewClick(View view, int position) {
-        if(reviewitemClickListener!=null){
-            reviewitemClickListener.onReviewitemClick(view,position);
-        }
-    }
-
-    public interface OnReviewitemClickListener{
-        public void onReviewitemClick(View view, int position);
-    }
-
-    OnReviewitemClickListener reviewitemClickListener;
-    public void setOnReviewClickListener(OnReviewitemClickListener listener){
-        this.reviewitemClickListener = listener;
-    }
-
-    @Override
     public void onViewClick(View view, int position) {
-        if (listener != null) {
+        if(listener!=null){
             listener.onViewClick(view, position);
         }
     }
-
-    public interface OnViewClickListener {
+    public interface OnViewClickListener{
         public void onViewClick(View view, int position);
     }
-
     OnViewClickListener listener;
-
-    public void setOnViewClickListener(OnViewClickListener listener) {
+    public void setOnViewClickListener(OnViewClickListener listener){
         this.listener = listener;
     }
 
     @Override
-    public void onZzimClick(View view, int position) {
-        if(zzimitemClickListener!=null){
-            zzimitemClickListener.onZzimitemClick(view,position);
+    public void onJjimClick(View view, int position) {
+        if(jjimitemClickListener!=null){
+            jjimitemClickListener.onJjimitemClick(view,position, list.get(position));
         }
     }
-    public interface OnZzimitemClickListener{
-        public void onZzimitemClick(View view, int position);
+    public interface OnJjimitemClickListener{
+        public void onJjimitemClick(View view, int position, EtHomeData data);
     }
 
-    OnZzimitemClickListener zzimitemClickListener;
-    public void setOnZzimitemClickListener(OnZzimitemClickListener listener){
-        this.zzimitemClickListener = listener;
+    OnJjimitemClickListener jjimitemClickListener;
+    public void setOnJjimitemClickListener(OnJjimitemClickListener listener){
+        this.jjimitemClickListener = listener;
+    }
+
+
+    @Override
+    public void onReviewClick(View view, int position) {
+        if(reviewitemClickListener!=null){
+            reviewitemClickListener.onReviewitemClick(view,position, list.get(position));
+        }
+    }
+
+    public interface OnReviewitemClickListener{
+        public void onReviewitemClick(View view, int position, EtHomeData data);
+    }
+
+    OnReviewitemClickListener reviewitemClickListener;
+    public void setOnReciewClickListener(OnReviewitemClickListener listener){
+        this.reviewitemClickListener = listener;
     }
 }

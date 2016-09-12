@@ -2,20 +2,23 @@ package com.sm.ej.nk.homeal;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
 import com.sm.ej.nk.homeal.adapter.ZzimAdapter;
+import com.sm.ej.nk.homeal.data.EtHomeData;
 import com.sm.ej.nk.homeal.data.NetworkResult;
-import com.sm.ej.nk.homeal.data.ZzimData;
+import com.sm.ej.nk.homeal.data.NetworkResultTemp;
 import com.sm.ej.nk.homeal.manager.NetworkManager;
 import com.sm.ej.nk.homeal.manager.NetworkRequest;
+import com.sm.ej.nk.homeal.request.CkJjimAddRequest;
+import com.sm.ej.nk.homeal.request.CkJjimDeleteRequest;
 import com.sm.ej.nk.homeal.request.ZzimListRequest;
 
 import java.util.List;
@@ -23,7 +26,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class EtZzimActivity extends AppCompatActivity implements ZzimAdapter.OnZzimitemClickListener, ZzimAdapter.OnViewClickListener, ZzimAdapter.OnReviewitemClickListener {
+public class EtZzimActivity extends AppCompatActivity implements ZzimAdapter.OnJjimitemClickListener, ZzimAdapter.OnViewClickListener, ZzimAdapter.OnReviewitemClickListener {
 
     @BindView(R.id.toolbar_et_toolbar)
     Toolbar toolbar;
@@ -33,9 +36,9 @@ public class EtZzimActivity extends AppCompatActivity implements ZzimAdapter.OnZ
 
     RecyclerView.LayoutManager layoutManager;
 
-  //  EtHomeAdapter mAdapter;
+    //  EtHomeAdapter mAdapter;
     ZzimAdapter mAdapter;
-    List<ZzimData> datas;
+    List<EtHomeData> datas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,29 +53,26 @@ public class EtZzimActivity extends AppCompatActivity implements ZzimAdapter.OnZ
         layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
 
         mAdapter = new ZzimAdapter();
-        mAdapter.setOnReviewClickListener(this);
         mAdapter.setOnViewClickListener(this);
-//        mAdapter.setOnViewClickListener(this);
-//        mAdapter.setOnReciewClickListener(this);
-//        mAdapter.setOnJjimitemClickListener(this);
-        mAdapter.setOnZzimitemClickListener(this);
+        mAdapter.setOnReciewClickListener(this);
+        mAdapter.setOnJjimitemClickListener(this);
 
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(mAdapter);
 //        initData();
 
         ZzimListRequest request = new ZzimListRequest(this);
-        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<List<ZzimData>>>() {
+        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<List<EtHomeData>>>() {
 
             @Override
-            public void onSuccess(NetworkRequest<NetworkResult<List<ZzimData>>> request, NetworkResult<List<ZzimData>> result) {
+            public void onSuccess(NetworkRequest<NetworkResult<List<EtHomeData>>> request, NetworkResult<List<EtHomeData>> result) {
                 datas = result.getResult();
                 mAdapter.clear();
                 mAdapter.addList(datas);
             }
 
             @Override
-            public void onFail(NetworkRequest<NetworkResult<List<ZzimData>>> request, int errorCode, String errorMessage, Throwable e) {
+            public void onFail(NetworkRequest<NetworkResult<List<EtHomeData>>> request, int errorCode, String errorMessage, Throwable e) {
                 Toast.makeText(EtZzimActivity.this, "" + errorMessage, Toast.LENGTH_SHORT).show();
             }
         });
@@ -88,36 +88,14 @@ public class EtZzimActivity extends AppCompatActivity implements ZzimAdapter.OnZ
         return super.onOptionsItemSelected(item);
     }
 
-//    private void initData() {
-//        datas = new ArrayList<>();
-//        for (int i = 0; i < 10; i++) {
-//            ZzimData data = new ZzimData();
-//            data.setAddress("주소" + i);
-//            data.setThumbnail("http://blog.jinbo.net/attach/615/200937431.jpg");
-//            data.setImage("https://pixabay.com/static/uploads/photo/2014/12/17/14/20/summer-anemone-571531_960_720.jpg");
-//            data.setFoodName("음식이름" + i);
-//            data.setBookmarkCnt("" + i);
-//            data.setGrade(i % 5 + 1);
-//            data.setReviewCnt("" + i);
-//            data.setName("이름" + i);
-//            datas.add(data);
-//        }
-//        mAdapter.addList(datas);
-//    }
-
-
     public static final int INTENT_SCROLL = 1;
     public static final String INTENT_CK_ID = "asd";
 
-
-//    @Override
-//    public void onJjimitemClick(View view, int position) {
-//        Snackbar.make(view, "이미지, 텍스트 변경", Snackbar.LENGTH_SHORT).show();
-//    }
-
     @Override
-    public void onReviewitemClick(View view, int position) {
-        Intent intent = new Intent(this, InfoCkDetailActivity.class);
+    public void onReviewitemClick(View view, int position, EtHomeData data) {
+        Intent intent = new Intent(EtZzimActivity.this, ReviewInfoActivity.class);
+        intent.putExtra(ReviewInfoActivity.INTENT_COOKERNAME, data.getId());
+
         startActivity(intent);
     }
 
@@ -129,28 +107,46 @@ public class EtZzimActivity extends AppCompatActivity implements ZzimAdapter.OnZ
     }
 
     @Override
-    public void onZzimitemClick(View view, int position) {
-        Snackbar.make(view, "이미지, 텍스트 변경", Snackbar.LENGTH_SHORT).show();
-    }
+    public void onJjimitemClick(View view, int position, final EtHomeData data) {
+        Toast.makeText(EtZzimActivity.this, ""+data.getIsBookmark(), Toast.LENGTH_SHORT).show();
+        if (data.getIsBookmark() == 0) {
+            CkJjimAddRequest request = new CkJjimAddRequest(this, data.getId());
+            NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
+                @Override
+                public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
+                    Toast.makeText(EtZzimActivity.this, "찜 추가 완료", Toast.LENGTH_SHORT).show();
+                    data.setIsBookmark(1);
+                    data.setBookmarkCnt(data.getBookmarkCnt() + 1);
+                    mAdapter.notifyDataSetChanged();
 
-//    @Override
-//    public void onReviewitemClick(View view, int position) {
-//        Intent intent = new Intent(this, InfoCkDetailActivity.class);
-//        startActivity(intent);
-//    }
-//
-////    public static final String INTENT_CK_ID = "asd";
-//    public static final String INTENT_ZZIM_ID="asdf";
-//
-//    @Override
-//    public void onViewClick(View view, int position) {
-//        Intent intent = new Intent(this, InfoCkDetailActivity.class);
-//        intent.putExtra(INTENT_ZZIM_ID, datas.get(position));
-//        startActivity(intent);
-//    }
-//
-//    @Override
-//    public void onZzimitemClick(View view, int position) {
-//        Snackbar.make(view, "이미지, 텍스트 변경", Snackbar.LENGTH_SHORT).show();
-//    }
+                }
+
+                @Override
+                public void onFail(NetworkRequest<NetworkResultTemp> request, int errorCode, String errorMessage, Throwable e) {
+                    Toast.makeText(EtZzimActivity.this, "찜 추가 실패", Toast.LENGTH_SHORT).show();
+                    Log.e("ssong", errorMessage);
+                    Log.e("ssong", errorCode + "");
+                }
+            });
+        } else {
+            CkJjimDeleteRequest request = new CkJjimDeleteRequest(this, data.getId());
+            NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
+                @Override
+                public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
+                    Toast.makeText(EtZzimActivity.this, "찜 삭제 완료", Toast.LENGTH_SHORT).show();
+                    data.setIsBookmark(0);
+                    data.setBookmarkCnt(data.getBookmarkCnt() - 1);
+                    mAdapter.notifyDataSetChanged();
+                }
+
+                @Override
+                public void onFail(NetworkRequest<NetworkResultTemp> request, int errorCode, String errorMessage, Throwable e) {
+                    Toast.makeText(EtZzimActivity.this, "찜 삭제 실패", Toast.LENGTH_SHORT).show();
+                    Log.e("ssong", errorMessage);
+                    Log.e("ssong", errorCode + "");
+                }
+            });
+        }
+
+    }
 }

@@ -35,7 +35,7 @@ public class RegistrationIntentService  extends IntentService {
             InstanceID instanceID = InstanceID.getInstance(this);
             String token = instanceID.getToken(getString(R.string.gcm_defaultSenderId),
                     GoogleCloudMessaging.INSTANCE_ID_SCOPE, null);
-            PropertyManager.getInstance().setRegistrationToken(token);
+            PropertyManager.getInstance().setRegistrationId(token);
             subscribeTopics(token);
         } catch (Exception e) {
             Log.d(TAG, "Failed to complete token refresh", e);

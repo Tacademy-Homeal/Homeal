@@ -38,6 +38,23 @@ public class CkHomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         this.scheduleList = result.getCooker_schedule();
     }
 
+    public void changeMenu(List<CkDetailMenuData> datas){
+        menuList.clear();
+        this.menuList = datas;
+        notifyDataSetChanged();
+    }
+
+    public void changeSchedule(List<CkScheduleData> datas){
+        scheduleList.clear();
+        this.scheduleList = datas;
+        notifyDataSetChanged();
+    }
+
+    public void deleteMenu(CkDetailMenuData data){
+        menuList.remove(data);
+        notifyDataSetChanged();
+    }
+
     public void setHeader(CkDetailData data){
         headerData = data;
         notifyDataSetChanged();

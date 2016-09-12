@@ -103,9 +103,6 @@ public class ScheduleEditActivity extends AppCompatActivity implements View.OnCl
         MODE = intent.getIntExtra(CkMainActivity.INTENT_MODE, -1);
         if(MODE  == CkMainActivity.MODE_SCHEDULR_EDIT){
             scheduleList = (List<CkScheduleData>)intent.getSerializableExtra(CkMainActivity.INTENT_SCHEDULE_DATA);
-            if(scheduleList==null){
-                Log.e("ssong", "schedule null");
-            }
             changeCalendarScheduleData(scheduleList);
             CalendarData calendarData = CalendarManager.getInstance().getSelectCalendarData(calendarItems);
 
@@ -184,6 +181,7 @@ public class ScheduleEditActivity extends AppCompatActivity implements View.OnCl
                             public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
                                 Toast.makeText(ScheduleEditActivity.this, "일정 생성 완료", Toast.LENGTH_SHORT).show();
                                 setResult(Activity.RESULT_OK);
+                                finish();
                             }
 
                             @Override
@@ -207,6 +205,7 @@ public class ScheduleEditActivity extends AppCompatActivity implements View.OnCl
                             public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
                                 Toast.makeText(ScheduleEditActivity.this, "일정 삭제 완료", Toast.LENGTH_SHORT).show();
                                 setResult(Activity.RESULT_OK);
+                                finish();
                             }
 
                             @Override

@@ -8,12 +8,8 @@ import java.io.Serializable;
 public class CkDetailMenuData implements Serializable{
     public String image;
     public String name;
-    public String foodAddress;
     public String foodTime;
-    public boolean isSoldOut;
     public String id;
-    public String numday;
-    public String day;
     public int activation;
     public int currency;
     public String price;
@@ -35,13 +31,6 @@ public class CkDetailMenuData implements Serializable{
         this.name = foodName;
     }
 
-    public String getFoodAddress() {
-        return foodAddress;
-    }
-
-    public void setFoodAddress(String foodAddress) {
-        this.foodAddress = foodAddress;
-    }
 
     public String getFoodTime() {
         return foodTime;
@@ -51,11 +40,4 @@ public class CkDetailMenuData implements Serializable{
         this.foodTime = foodTime;
     }
 
-    public boolean isSoldOut() {
-        return isSoldOut;
-    }
-
-    public void setSoldOut(boolean soldOut) {
-        isSoldOut = soldOut;
-    }
 }

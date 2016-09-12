@@ -150,6 +150,7 @@ public class MenuAddActivity extends AppCompatActivity implements View.OnClickLi
                     public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
                         Toast.makeText(MenuAddActivity.this, "매뉴 생성 완료", Toast.LENGTH_SHORT).show();
                         setResult(Activity.RESULT_OK);
+                        finish();
                     }
 
                     @Override
@@ -167,6 +168,7 @@ public class MenuAddActivity extends AppCompatActivity implements View.OnClickLi
                     public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
                         Toast.makeText(MenuAddActivity.this, "매뉴 편집 완료", Toast.LENGTH_SHORT).show();
                         setResult(Activity.RESULT_OK);
+                        finish();
                     }
 
                     @Override
@@ -177,8 +179,6 @@ public class MenuAddActivity extends AppCompatActivity implements View.OnClickLi
                         Log.e("ssong", errorCode+"");
                     }
                 });
-            }else{
-                finish();
             }
         }
     }
@@ -216,16 +216,19 @@ public class MenuAddActivity extends AppCompatActivity implements View.OnClickLi
         boolean isChange=false;
         if(TextUtils.isEmpty(editFoodName.getText().toString())){
             Toast.makeText(MenuAddActivity.this, "음식 이름을 입력해주세요", Toast.LENGTH_SHORT).show();
+            return false;
         }else{
             foodName = editFoodName.getText().toString();
         }
         if(TextUtils.isEmpty(editFoodInfo.getText().toString())){
             Toast.makeText(MenuAddActivity.this, "음식 설명을 입력해주세요", Toast.LENGTH_SHORT).show();
+            return false;
         }else{
             foodInfo = editFoodInfo.getText().toString();
         }
         if(TextUtils.isEmpty(editFoodPrice.getText().toString())){
             Toast.makeText(MenuAddActivity.this, "음식 가격을 입력해주세요", Toast.LENGTH_SHORT).show();
+            return false;
         }else{
             foodPrice = editFoodPrice.getText().toString();
         }
@@ -234,26 +237,31 @@ public class MenuAddActivity extends AppCompatActivity implements View.OnClickLi
 
         if(data.getFoodName().equals(foodName)){
             foodName = null;
+        }else{
             isChange = true;
         }
 
         if(data.introduce.equals(foodInfo)){
             foodInfo = null;
+        }else{
             isChange = true;
         }
 
         if(data.price.equals(foodPrice)){
             foodPrice = null;
+        }else{
             isChange = true;
         }
 
         if(data.activation == Integer.parseInt(activation)){
             activation = null;
+        }else{
             isChange = true;
         }
 
         if(data.currency == Integer.parseInt(currency)){
             currency = null;
+        }else{
             isChange = true;
         }
 

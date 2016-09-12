@@ -13,12 +13,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.sm.ej.nk.homeal.LoginActivity;
 import com.sm.ej.nk.homeal.R;
-
-import java.util.Calendar;
+import com.sm.ej.nk.homeal.data.FacebookUser;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,8 +26,6 @@ import butterknife.OnClick;
  * A simple {@link Fragment} subclass.
  */
 public class SignUpFragment extends Fragment {
-    private int iYear, iMonth, iDay;
-    static final int DATE_DIALOG_ID = 0;
 
     @BindView(R.id.sf_ok)
     Button sf_ok;
@@ -55,9 +51,22 @@ public class SignUpFragment extends Fragment {
     @BindView(R.id.radioGroup)
     RadioGroup radioGroup;
 
+    public static final String ARG_FACEBOOK_USER = "facebookUser";
+
+    public static SignUpFragment newInstance(FacebookUser user) {
+        SignUpFragment f = new SignUpFragment();
+        Bundle b = new Bundle();
+        b.putSerializable(ARG_FACEBOOK_USER, user);
+        f.setArguments(b);
+        return f;
+    }
+
 
     public SignUpFragment() {
+
+
     }
+
 
 
     @Override
@@ -65,10 +74,7 @@ public class SignUpFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_sign_up, container, false);
         ButterKnife.bind(this, view);
-        final Calendar objTime = Calendar.getInstance();
-        iYear = objTime.get(Calendar.YEAR);
-        iMonth = objTime.get(Calendar.MONTH);
-        iDay = objTime.get(Calendar.DAY_OF_MONTH);
+
         return view;
     }
 
@@ -85,6 +91,7 @@ public class SignUpFragment extends Fragment {
 //            gender = "Female";
 //        }
 //        SignupRequest request = new SignupRequest(getContext(), fristnameEdit.getText().toString(), birthText.getText().toString(), phoneEdit.getText().toString(), introText.getText().toString(), gender);
+//
 //        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
 //            @Override
 //            public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
@@ -94,6 +101,7 @@ public class SignUpFragment extends Fragment {
 //            @Override
 //            public void onFail(NetworkRequest<NetworkResultTemp> request, int errorCode, String errorMessage, Throwable e) {
 //                Toast.makeText(getContext(), "" + errorMessage, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getContext(), ""+fristnameEdit.getText().toString()+""+ birthText.getText().toString()+""+ phoneEdit.getText().toString()+""+introText.getText().toString()+""+gender,Toast.LENGTH_SHORT).show();
 //            }
 //        });
 
@@ -102,8 +110,9 @@ public class SignUpFragment extends Fragment {
 
     @OnClick(R.id.text_signup_birth)
     public void onBirth() {
-        Toast.makeText(getContext(), "눌림", Toast.LENGTH_SHORT).show();
-
+//        Toast.makeText(getContext(), "눌림", Toast.LENGTH_SHORT).show();
+        DatePickerFragment fragment = new DatePickerFragment();
+        fragment.show(getFragmentManager(), "datePicker");
     }
 
     private void showDialog() {
