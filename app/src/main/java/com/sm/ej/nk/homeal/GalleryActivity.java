@@ -26,7 +26,7 @@ import com.sm.ej.nk.homeal.request.CkThumbnailInsertRequest;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class GalleryActivity extends AppCompatActivity implements GalleryAdapter.OnPhotoClickListener{
+public class GalleryActivity extends AppCompatActivity implements GalleryAdapter.OnPhotoClickListener {
 
     @BindView(R.id.rv_gallery)
     RecyclerView rv;
@@ -42,11 +42,12 @@ public class GalleryActivity extends AppCompatActivity implements GalleryAdapter
     String imagePath;
 
 
-    public static final String INTENT_MODE="mode";
+    public static final String INTENT_MODE = "mode";
 
     public static final String IMAGE_PATH = "imageoath";
 
     private int mode;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,14 +55,14 @@ public class GalleryActivity extends AppCompatActivity implements GalleryAdapter
         ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("겔러리");
+        getSupportActionBar().setTitle("갤러리");
 
         Intent intent = getIntent();
         mode = intent.getIntExtra(INTENT_MODE, -1);
 
-        if(mode ==ThumbnailEditActivity.MODE_THUMBNAIL){
+        if (mode == ThumbnailEditActivity.MODE_THUMBNAIL) {
             mAadapter = new GalleryAdapter(GalleryActivity.this, GalleryManager.getInstance(GalleryActivity.this).getAllPhotoPathList(), GalleryAdapter.CHOICE_MODE_MULTIPLE);
-        }else{
+        } else {
             mAadapter = new GalleryAdapter(GalleryActivity.this, GalleryManager.getInstance(GalleryActivity.this).getAllPhotoPathList(), GalleryAdapter.CHOICE_MODE_SINGLE);
         }
         mAadapter.setOnPhotoClickListener(this);
@@ -77,8 +78,8 @@ public class GalleryActivity extends AppCompatActivity implements GalleryAdapter
                 progressDialog = ProgressDialog.show(GalleryActivity.this, "전송중", "잠시만 기달려주세요", true);
                 progressDialog.setCancelable(false);
                 progressDialog.show();
-                switch (mode){
-                    case ThumbnailEditActivity.MODE_THUMBNAIL:{
+                switch (mode) {
+                    case ThumbnailEditActivity.MODE_THUMBNAIL: {
                         CkThumbnailInsertRequest request = new CkThumbnailInsertRequest(GalleryActivity.this, mAadapter.getSlectedPhotoList());
                         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
                             @Override
@@ -88,38 +89,48 @@ public class GalleryActivity extends AppCompatActivity implements GalleryAdapter
                                 setResult(Activity.RESULT_OK);
                                 finish();
                             }
+
                             @Override
                             public void onFail(NetworkRequest<NetworkResultTemp> request, int errorCode, String errorMessage, Throwable e) {
                                 progressDialog.dismiss();
                                 Toast.makeText(GalleryActivity.this, "추가 실패", Toast.LENGTH_SHORT).show();
                                 Log.e("sssong", errorMessage);
-                                Log.e("ssong", errorCode+"");
+                                Log.e("ssong", errorCode + "");
                             }
                         });
                         break;
                     }
-                    case MenuAddActivity.MODE_MENU:{
+                    case MenuAddActivity.MODE_MENU: {
                         Intent intent = new Intent();
                         intent.putExtra(IMAGE_PATH, imagePath);
                         setResult(Activity.RESULT_OK, intent);
                         finish();
                     }
-
+                    case CkPersonalDataActivity.MODE_GET_IMAGE: {
+                        Intent intent = new Intent();
+                        intent.putExtra(IMAGE_PATH, imagePath);
+                        setResult(Activity.RESULT_OK, intent);
+                        finish();
+                    }
+                    case EtPersonalDataActivity.MODE_GET_IMAGE: {
+                        Intent intent = new Intent();
+                        intent.putExtra(IMAGE_PATH, imagePath);
+                        setResult(Activity.RESULT_OK, intent);
+                        finish();
+                    }
                 }
             }
         });
-
-
     }
 
     @Override
     public void onPhotoClick(View view, GalleryItemData data, int mode) {
-        if(mode == GalleryAdapter.CHOICE_MODE_SINGLE){
+        if (mode == GalleryAdapter.CHOICE_MODE_SINGLE) {
             imagePath = data.getImagePath();
-        }else{
-            if(data.isSelected()){
+        } else {
+            if (data.isSelected()) {
                 data.setSelected(false);
-            }else{
+            } else {
                 data.setSelected(true);
             }
         }

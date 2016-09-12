@@ -59,6 +59,7 @@ public class AddressEditActivity extends AppCompatActivity implements
     GoogleMap map;
     LocationManager mLM;
     String mProvider = LocationManager.NETWORK_PROVIDER;
+    double latitude, longitude;
 
 
     @BindView(R.id.edit_keyword)
@@ -178,10 +179,11 @@ public class AddressEditActivity extends AppCompatActivity implements
         options.anchor(0.5f, 1);
         options.title(poi.getName());
         options.snippet(poi.getUpperAddrName() + " " + poi.getMiddleAddrName() + " " + poi.getLowerAddrName());
-
         Marker marker = map.addMarker(options);
         markerResolver.put(poi, marker);
         poiResolver.put(marker, poi);
+        latitude = poi.getLatitude();
+        longitude = poi.getLongitude();
     }
 
 
@@ -278,6 +280,9 @@ public class AddressEditActivity extends AppCompatActivity implements
     public void onInfoWindowClick(Marker marker) {
         Intent intent = getIntent();
         intent.putExtra("address", marker.getSnippet() + " " + marker.getTitle());
+        intent.putExtra("latitude", latitude);
+        intent.putExtra("longitude", longitude);
+        Toast.makeText(AddressEditActivity.this, ""+latitude+","+longitude, Toast.LENGTH_SHORT).show();
         setResult(RESULT_OK, intent);
         map.snapshot(new GoogleMap.SnapshotReadyCallback() {
             @Override
@@ -295,6 +300,7 @@ public class AddressEditActivity extends AppCompatActivity implements
             }
         });
         checkPermission();
+//        startActivity(intent);
         finish();
     }
 

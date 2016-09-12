@@ -4,9 +4,7 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -31,6 +29,8 @@ import com.sm.ej.nk.homeal.manager.NetworkManager;
 import com.sm.ej.nk.homeal.manager.NetworkRequest;
 import com.sm.ej.nk.homeal.request.EaterInfoRequest;
 import com.sm.ej.nk.homeal.request.EtInfoupdateRequest;
+
+import java.io.File;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -67,15 +67,6 @@ public class EtPersonalDataActivity extends AppCompatActivity {
     @BindView(R.id.btn_personal_change)
     Button btnChange;
 
-//    @BindView(R.id.spinner_et_month)
-//    Spinner monthSpinner;
-//
-//    @BindView(R.id.spinner_et_day)
-//    Spinner daySpinner;
-//
-//    @BindView(R.id.spinner_et_year)
-//    Spinner yearSpinner;
-
     @BindView(R.id.spinner_et_country)
     Spinner countrySpinner;
 
@@ -94,25 +85,29 @@ public class EtPersonalDataActivity extends AppCompatActivity {
     ArrayAdapter<String> countryAdapter;
 //    ArrayAdapter<String> countryphoneAdapter;
 
-    private int GET_IMAGE = 2;
     PersonalData data;
+
+    public static final int MODE_GET_IMAGE = 5;
+    private static final int GET_IMAGE = 65;
+    private File imageFile = null;
 
     @OnClick(R.id.image_et_picture)
     public void onetGallery() {
-        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        intent.setType("image/*");
+        Intent intent = new Intent(EtPersonalDataActivity.this, GalleryActivity.class);
+        intent.putExtra(GalleryActivity.INTENT_MODE, MODE_GET_IMAGE);
         startActivityForResult(intent, GET_IMAGE);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        super.onActivityResult(requestCode, resultCode, intent);
         if (requestCode == GET_IMAGE) {
             if (resultCode == Activity.RESULT_OK) {
-                Uri uri = intent.getData();
-                etpictureView.setImageURI(uri);
+                String imagePath = intent.getStringExtra(GalleryActivity.IMAGE_PATH);
+                imageFile = new File(imagePath);
+                Glide.with(this).load(imageFile).into(etpictureView);
             }
         }
+        super.onActivityResult(requestCode, resultCode, intent);
     }
 
     @Override
@@ -235,7 +230,7 @@ public class EtPersonalDataActivity extends AppCompatActivity {
         }else{
             gender = "Female";
         }
-        EtInfoupdateRequest request = new EtInfoupdateRequest(EtPersonalDataActivity.this, nameEdit.getText().toString(), birthText.getText().toString(), phoneEdit.getText().toString(), introduceEdit.getText().toString(), gender);
+        EtInfoupdateRequest request = new EtInfoupdateRequest(EtPersonalDataActivity.this, nameEdit.getText().toString(), birthText.getText().toString(), phoneEdit.getText().toString(), introduceEdit.getText().toString(), gender, imageFile);
         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {

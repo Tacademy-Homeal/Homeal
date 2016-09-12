@@ -112,8 +112,8 @@ public class ZzimViewHolder extends RecyclerView.ViewHolder {
         this.reviewClickListener = listener;
     }
     public void setData(EtHomeData data) {
-        Glide.with(zzimuserImage.getContext()).load(data.getImage()).into(zzimuserImage);
-        Glide.with(zzimfoodImage.getContext()).load(data.getFoodImageUrl()).into(zzimfoodImage);
+        Glide.with(zzimuserImage.getContext()).load(data.getFoodImageUrl()).into(zzimuserImage);
+        Glide.with(zzimfoodImage.getContext()).load(data.getImage()).into(zzimfoodImage);
 
         zzimName.setText(data.getName());
         zzimAddress.setText(data.getAddress());

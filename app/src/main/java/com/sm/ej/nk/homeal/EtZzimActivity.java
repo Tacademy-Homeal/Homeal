@@ -108,7 +108,6 @@ public class EtZzimActivity extends AppCompatActivity implements ZzimAdapter.OnJ
 
     @Override
     public void onJjimitemClick(View view, int position, final EtHomeData data) {
-        Toast.makeText(EtZzimActivity.this, "" + data.getIsBookmark(), Toast.LENGTH_SHORT).show();
         if (data.getIsBookmark() == 0) {
             CkJjimAddRequest request = new CkJjimAddRequest(this, data.getId());
             NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
@@ -129,8 +128,6 @@ public class EtZzimActivity extends AppCompatActivity implements ZzimAdapter.OnJ
                 }
             });
         } else {
-//        data.setIsBookmark(1);
-//        if (data.getIsBookmark() == 1) {
             CkJjimDeleteRequest request = new CkJjimDeleteRequest(this, data.getId());
             NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
                 @Override
