@@ -294,7 +294,6 @@ public class AddressEditActivity extends AppCompatActivity implements
                 }
             }
         });
-        checkPermission();
         finish();
     }
 

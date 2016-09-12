@@ -35,16 +35,7 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryItemView>{
         return data;
     }
 
-    public List<GalleryItemData> getSlectedPhotoList(){
-        List<GalleryItemData> selectPhotoList = new ArrayList<>();
-        for(int i=0; i< data.size(); i++){
-            GalleryItemData item = data.get(i);
-            if(item.isSelected()){
-                selectPhotoList.add(item);
-            }
-        }
-        return selectPhotoList;
-    }
+
 
     public GalleryAdapter(Context context, List<GalleryItemData> data, int ChoiceMode){
         this.context = context;
@@ -62,11 +53,6 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryItemView>{
     public void onBindViewHolder(final GalleryItemView holder,final int position) {
         final GalleryItemData item = data.get(position);
         Glide.with(context).load(item.getImagePath()).centerCrop().crossFade().into(holder.imagePhoto);
-//        if(item.isSelected()){
-//            holder.layoutSelect.setVisibility(View.VISIBLE);
-//        }else{
-//            holder.layoutSelect.setVisibility(View.INVISIBLE);
-//        }
         if(mode == CHOICE_MODE_SINGLE){
             holder.setChecked(checkPosition == position);
         }else{
@@ -87,6 +73,15 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryItemView>{
                 }
             }
         });
+    }
+    public List<GalleryItemData> getCheckedItemPositions(){
+        List<GalleryItemData> selectPhotoList = new ArrayList<>();
+        for(int i=0; i<data.size(); i++){
+            if(itemSelected.get(i)){
+                selectPhotoList.add(data.get(i));
+            }
+        }
+        return selectPhotoList;
     }
 
     private void setItemChecked(int position, boolean isChecked){
