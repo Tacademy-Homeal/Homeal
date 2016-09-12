@@ -22,10 +22,6 @@ import com.sm.ej.nk.homeal.manager.GalleryManager;
 import com.sm.ej.nk.homeal.manager.NetworkManager;
 import com.sm.ej.nk.homeal.manager.NetworkRequest;
 import com.sm.ej.nk.homeal.request.CkThumbnailInsertRequest;
-import com.sm.ej.nk.homeal.view.GalleryItemView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -41,10 +37,14 @@ public class GalleryActivity extends AppCompatActivity implements GalleryAdapter
     @BindView(R.id.toobar_gallery)
     Toolbar toolbar;
 
-    List<String> imagePathList;
     GalleryAdapter mAadapter;
 
+    String imagePath;
+
+
     public static final String INTENT_MODE="mode";
+
+    public static final String IMAGE_PATH = "imageoath";
 
     private int mode;
     @Override
@@ -59,8 +59,11 @@ public class GalleryActivity extends AppCompatActivity implements GalleryAdapter
         Intent intent = getIntent();
         mode = intent.getIntExtra(INTENT_MODE, -1);
 
-        imagePathList = new ArrayList<>();
-        mAadapter = new GalleryAdapter(GalleryActivity.this, GalleryManager.getInstance(GalleryActivity.this).getAllPhotoPathList());
+        if(mode ==ThumbnailEditActivity.MODE_THUMBNAIL){
+            mAadapter = new GalleryAdapter(GalleryActivity.this, GalleryManager.getInstance(GalleryActivity.this).getAllPhotoPathList(), GalleryAdapter.CHOICE_MODE_MULTIPLE);
+        }else{
+            mAadapter = new GalleryAdapter(GalleryActivity.this, GalleryManager.getInstance(GalleryActivity.this).getAllPhotoPathList(), GalleryAdapter.CHOICE_MODE_SINGLE);
+        }
         mAadapter.setOnPhotoClickListener(this);
         rv.setLayoutManager(new GridLayoutManager(GalleryActivity.this, 4));
         rv.setAdapter(mAadapter);
@@ -84,8 +87,7 @@ public class GalleryActivity extends AppCompatActivity implements GalleryAdapter
                                 Toast.makeText(GalleryActivity.this, "추가 완료", Toast.LENGTH_SHORT).show();
                                 setResult(Activity.RESULT_OK);
                                 finish();
-                            }//dd
-
+                            }
                             @Override
                             public void onFail(NetworkRequest<NetworkResultTemp> request, int errorCode, String errorMessage, Throwable e) {
                                 progressDialog.dismiss();
@@ -94,8 +96,13 @@ public class GalleryActivity extends AppCompatActivity implements GalleryAdapter
                                 Log.e("ssong", errorCode+"");
                             }
                         });
-                        setResult(Activity.RESULT_OK);
                         break;
+                    }
+                    case MenuAddActivity.MODE_MENU:{
+                        Intent intent = new Intent();
+                        intent.putExtra(IMAGE_PATH, imagePath);
+                        setResult(Activity.RESULT_OK, intent);
+                        finish();
                     }
 
                 }
@@ -106,17 +113,15 @@ public class GalleryActivity extends AppCompatActivity implements GalleryAdapter
     }
 
     @Override
-    public void onPhotoClick(View view, GalleryItemView holder, int position) {
-        GalleryItemData itemData = mAadapter.getPhotoList().get(position);
-
-        if(itemData.isSelected()){
-            itemData.setSelected(false);
-            imagePathList.remove(itemData.getImagePath());
+    public void onPhotoClick(View view, GalleryItemData data, int mode) {
+        if(mode == GalleryAdapter.CHOICE_MODE_SINGLE){
+            imagePath = data.getImagePath();
         }else{
-            itemData.setSelected(true);
-            imagePathList.add(itemData.getImagePath());
+            if(data.isSelected()){
+                data.setSelected(false);
+            }else{
+                data.setSelected(true);
+            }
         }
-        mAadapter.getPhotoList().set(position, itemData);
-        mAadapter.notifyDataSetChanged();
     }
 }

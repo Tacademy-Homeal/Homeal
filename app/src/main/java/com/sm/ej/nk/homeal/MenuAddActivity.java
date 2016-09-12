@@ -2,10 +2,7 @@ package com.sm.ej.nk.homeal;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -63,6 +60,8 @@ public class MenuAddActivity extends AppCompatActivity implements View.OnClickLi
 
     private static final int GET_IMAGE = 35;
 
+    public static final int MODE_MENU=1;
+
     private CkDetailMenuData data;
     private String currency =null;
     private String activation= null;
@@ -87,7 +86,6 @@ public class MenuAddActivity extends AppCompatActivity implements View.OnClickLi
             setMenuData(data);
         }else if(MODE == CkMainActivity.MODE_MENU_INSERT){
             fab.show();
-//dddd
 
         }else if(MODE == CkMainActivity.MODE_MENU_SHOW){
             fab.hide();
@@ -102,8 +100,8 @@ public class MenuAddActivity extends AppCompatActivity implements View.OnClickLi
             @Override
             public void onClick(View view) {
                 if(MODE == CkMainActivity.MODE_MENU_INSERT || MODE == CkMainActivity.MODE_MENU_EDIT){
-                    Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                    intent.setType("image/*");
+                    Intent intent = new Intent(MenuAddActivity.this, GalleryActivity.class);
+                    intent.putExtra(GalleryActivity.INTENT_MODE, MODE_MENU);
                     startActivityForResult(intent, GET_IMAGE);
                 }
             }
@@ -111,7 +109,7 @@ public class MenuAddActivity extends AppCompatActivity implements View.OnClickLi
 
         fab.setOnClickListener(this);
 
-        mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.money));
+        mAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.money));
         mAdapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
         spinner.setAdapter(mAdapter);
 
@@ -121,13 +119,9 @@ public class MenuAddActivity extends AppCompatActivity implements View.OnClickLi
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == GET_IMAGE){
             if(resultCode == Activity.RESULT_OK){
-                Uri uri = data.getData();
-                Glide.with(this).load(uri).into(image);
-                Cursor c = getContentResolver().query(uri, new String[]{MediaStore.Images.Media.DATA}, null, null, null);
-                if(c.moveToNext()){
-                    String path = c.getString(c.getColumnIndex(MediaStore.Images.Media.DATA));
-                    imageFile = new File(path);
-                }
+                String imagePath = data.getStringExtra(GalleryActivity.IMAGE_PATH);
+                imageFile = new File(imagePath);
+                Glide.with(this).load(imageFile).into(image);
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
