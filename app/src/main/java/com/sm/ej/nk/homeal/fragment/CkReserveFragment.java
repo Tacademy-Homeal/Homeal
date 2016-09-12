@@ -16,7 +16,11 @@ import android.widget.Toast;
 import com.sm.ej.nk.homeal.DividerItemDecoration;
 import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.adapter.CkReserveAdapter;
+import com.sm.ej.nk.homeal.data.NetworkResult;
 import com.sm.ej.nk.homeal.data.ReserveData;
+import com.sm.ej.nk.homeal.manager.NetworkManager;
+import com.sm.ej.nk.homeal.manager.NetworkRequest;
+import com.sm.ej.nk.homeal.request.ReservationListRequest;
 
 import java.util.List;
 
@@ -40,6 +44,7 @@ public class CkReserveFragment extends Fragment {
     private static final int TYPE_END = 7;
 
     List<ReserveData> datas;
+
     public static CkReserveFragment createInstance() {
         final CkReserveFragment pageFragment = new CkReserveFragment();
         final Bundle bundle = new Bundle();
@@ -62,21 +67,36 @@ public class CkReserveFragment extends Fragment {
         CkReserveView.setAdapter(mAdapter);
         CkReserveView.setLayoutManager(manager);
 
+        ReservationListRequest request = new ReservationListRequest(getContext());
+        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<List<ReserveData>>>() {
+            @Override
+            public void onSuccess(NetworkRequest<NetworkResult<List<ReserveData>>> request, NetworkResult<List<ReserveData>> result) {
+                datas = result.getResult();
+                mAdapter.addAll(datas);
+            }
+
+            @Override
+            public void onFail(NetworkRequest<NetworkResult<List<ReserveData>>> request, int errorCode, String errorMessage, Throwable e) {
+                Toast.makeText(getContext(), "" + errorMessage, Toast.LENGTH_SHORT).show();
+            }
+        });
+
         setCookerButton();
         return view;
     }
-    private void setCookerButton(){
+
+    private void setCookerButton() {
         mAdapter.setOnAgreeButtonClickListener(new CkReserveAdapter.OnAagreeButtonClickLIstener() {
             @Override
             public void onAagreeButtonClick(View view, ReserveData data, int position) {
-                Toast.makeText(getContext(),"승인되었습니다",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "승인되었습니다", Toast.LENGTH_SHORT).show();
             }
         });
 
         mAdapter.setOnDisagreeButtonClickLIstener(new CkReserveAdapter.OnDisagreeButtonClickLIstener() {
             @Override
             public void onDisagreeButtonClick(View view, ReserveData data, int position) {
-                Toast.makeText(getContext(),"거절 되었습니다",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "거절 되었습니다", Toast.LENGTH_SHORT).show();
             }
         });
 //
@@ -102,25 +122,9 @@ public class CkReserveFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-
-//        CkReserveRequest request = new CkReserveRequest(getContext());
-//        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<List<ReserveData>>>() {
-//            @Override
-//            public void onSuccess(NetworkRequest<NetworkResult<List<ReserveData>>> request, NetworkResult<List<ReserveData>> result) {
-//                datas = result.getResult();
-//                mAdapter.clear();
-//                mAdapter.addAll(datas);
-//            }
-//
-//            @Override
-//            public void onFail(NetworkRequest<NetworkResult<List<ReserveData>>> request, int errorCode, String errorMessage, Throwable e) {
-//
-//            }
-//        });
-
     }
 
-    private void showDialog(){
+    private void showDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
             @Override
@@ -128,7 +132,7 @@ public class CkReserveFragment extends Fragment {
                 dialogInterface.dismiss();
             }
         });
-        builder.setNegativeButton("취소",new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.dismiss();

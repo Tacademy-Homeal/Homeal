@@ -239,6 +239,7 @@ public class EtPersonalDataActivity extends AppCompatActivity {
         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
+                Toast.makeText(EtPersonalDataActivity.this, "수정완료", Toast.LENGTH_SHORT).show();
             }
 
             @Override
