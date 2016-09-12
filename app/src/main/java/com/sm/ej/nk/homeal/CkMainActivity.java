@@ -206,7 +206,6 @@ public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTab
 
     private void setupTabViewPager(ViewPager v){
 
-
         final ViewPagerFragmentAdapter pagerAdapter = new ViewPagerFragmentAdapter(getSupportFragmentManager());
         Bundle bundle = new Bundle();
         bundle.putString("cooker",CK_NUM);

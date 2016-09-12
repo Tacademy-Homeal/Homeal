@@ -2,6 +2,7 @@ package com.sm.ej.nk.homeal;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -43,7 +44,9 @@ public class GalleryActivity extends AppCompatActivity implements GalleryAdapter
     List<String> imagePathList;
     GalleryAdapter mAadapter;
 
-    public static final String TO_THUMBNAIL="qqqq";
+    public static final String INTENT_MODE="mode";
+
+    private int mode;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +55,9 @@ public class GalleryActivity extends AppCompatActivity implements GalleryAdapter
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("겔러리");
+
+        Intent intent = getIntent();
+        mode = intent.getIntExtra(INTENT_MODE, -1);
 
         imagePathList = new ArrayList<>();
         mAadapter = new GalleryAdapter(GalleryActivity.this, GalleryManager.getInstance(GalleryActivity.this).getAllPhotoPathList());
@@ -68,25 +74,31 @@ public class GalleryActivity extends AppCompatActivity implements GalleryAdapter
                 progressDialog = ProgressDialog.show(GalleryActivity.this, "전송중", "잠시만 기달려주세요", true);
                 progressDialog.setCancelable(false);
                 progressDialog.show();
-                CkThumbnailInsertRequest request = new CkThumbnailInsertRequest(GalleryActivity.this, mAadapter.getSlectedPhotoList());
-                NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
-                    @Override
-                    public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
-                        progressDialog.dismiss();
-                        Toast.makeText(GalleryActivity.this, "추가 완료", Toast.LENGTH_SHORT).show();
-                        setResult(Activity.RESULT_OK);
-                        finish();
-                    }//dd
+                switch (mode){
+                    case ThumbnailEditActivity.MODE_THUMBNAIL:{
+                        CkThumbnailInsertRequest request = new CkThumbnailInsertRequest(GalleryActivity.this, mAadapter.getSlectedPhotoList());
+                        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
+                            @Override
+                            public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
+                                progressDialog.dismiss();
+                                Toast.makeText(GalleryActivity.this, "추가 완료", Toast.LENGTH_SHORT).show();
+                                setResult(Activity.RESULT_OK);
+                                finish();
+                            }//dd
 
-                    @Override
-                    public void onFail(NetworkRequest<NetworkResultTemp> request, int errorCode, String errorMessage, Throwable e) {
-                        progressDialog.dismiss();
-                        Toast.makeText(GalleryActivity.this, "추가 실패", Toast.LENGTH_SHORT).show();
-                        Log.e("sssong", errorMessage);
-                        Log.e("ssong", errorCode+"");
+                            @Override
+                            public void onFail(NetworkRequest<NetworkResultTemp> request, int errorCode, String errorMessage, Throwable e) {
+                                progressDialog.dismiss();
+                                Toast.makeText(GalleryActivity.this, "추가 실패", Toast.LENGTH_SHORT).show();
+                                Log.e("sssong", errorMessage);
+                                Log.e("ssong", errorCode+"");
+                            }
+                        });
+                        setResult(Activity.RESULT_OK);
+                        break;
                     }
-                });
-                setResult(Activity.RESULT_OK);
+
+                }
             }
         });
 
@@ -106,8 +118,5 @@ public class GalleryActivity extends AppCompatActivity implements GalleryAdapter
         }
         mAadapter.getPhotoList().set(position, itemData);
         mAadapter.notifyDataSetChanged();
-
     }
-
-
 }

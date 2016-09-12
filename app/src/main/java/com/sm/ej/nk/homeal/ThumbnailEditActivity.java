@@ -125,10 +125,13 @@ public class ThumbnailEditActivity extends AppCompatActivity {
             @Override
             public void onImageCLick(View view, ThumbnailsData data, int position) {
                 Intent intent = new Intent(ThumbnailEditActivity.this, GalleryActivity.class);
+                intent.putExtra(GalleryActivity.INTENT_MODE, MODE_THUMBNAIL);
                 startActivityForResult(intent, INTENT_GALLERY);
             }
         });
     }
+
+    public static final int MODE_THUMBNAIL=0;
 
     private ThumbnailsData getLastThumbnail(){
         ThumbnailsData lastData = new ThumbnailsData();

@@ -14,6 +14,7 @@ import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 import com.sm.ej.nk.homeal.adapter.CkDetailAdapter;
 import com.sm.ej.nk.homeal.data.CalendarItem;
+import com.sm.ej.nk.homeal.data.CkDetailData;
 import com.sm.ej.nk.homeal.data.CkDetailMenuData;
 import com.sm.ej.nk.homeal.data.CkInfoResult;
 import com.sm.ej.nk.homeal.data.EtHomeData;
@@ -30,7 +31,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class InfoCkDetailActivity extends AppCompatActivity implements CkDetailAdapter.OnDetailAdapterClickListener{
+public class InfoCkDetailActivity extends AppCompatActivity implements CkDetailAdapter.OnDetailAdapterClickListener, CkDetailAdapter.OnMapClickListener{
 
     @BindView(R.id.toobar_ck_detail)
     Toolbar toolbar;
@@ -46,7 +47,6 @@ public class InfoCkDetailActivity extends AppCompatActivity implements CkDetailA
 
     @BindView(R.id.fab_send)
     FloatingActionButton fabSend;
-
 
     EtHomeData etHomeData;
 
@@ -100,6 +100,7 @@ public class InfoCkDetailActivity extends AppCompatActivity implements CkDetailA
                 CalendarManager.clearInstance();
                 mAdapter.setResult(result);
                 mAdapter.setOnDetailAdapterClickListener(InfoCkDetailActivity.this);
+                mAdapter.setOnMapClickListener(InfoCkDetailActivity.this);
                 rv.setAdapter(mAdapter);
             }
             @Override
@@ -145,4 +146,10 @@ public class InfoCkDetailActivity extends AppCompatActivity implements CkDetailA
 
     }
 
+    @Override
+    public void onMapClick(View view, CkDetailData data) {
+        Intent intent = new Intent(InfoCkDetailActivity.this, MapActivity.class);
+        intent.putExtra(MapActivity.INTENT_MAP, data);
+        startActivity(intent);
+    }
 }

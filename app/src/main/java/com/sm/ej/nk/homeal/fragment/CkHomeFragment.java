@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.sm.ej.nk.homeal.CkMainActivity;
+import com.sm.ej.nk.homeal.MapActivity;
 import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.ReviewInfoActivity;
 import com.sm.ej.nk.homeal.adapter.CkHomeAdapter;
@@ -131,6 +132,14 @@ public class CkHomeFragment extends Fragment implements CkMainActivity.OnFabClic
                 if(viewListener!=null){
                     viewListener.onHomeViewClick(view, position, data);
                 }
+            }
+        });
+        mAdapter.setOnMapClickLIstner(new CkHomeAdapter.OnMapClickLIstener() {
+            @Override
+            public void onMapClick(View view, CkDetailData data) {
+                Intent intent = new Intent(getContext(), MapActivity.class);
+                intent.putExtra(MapActivity.INTENT_MAP, data);
+                getContext().startActivity(intent);
             }
         });
         parentActivity = (CkMainActivity)getActivity();
