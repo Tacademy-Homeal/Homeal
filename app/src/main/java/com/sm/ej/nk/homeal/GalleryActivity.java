@@ -104,7 +104,6 @@ public class GalleryActivity extends AppCompatActivity implements GalleryAdapter
                         setResult(Activity.RESULT_OK, intent);
                         finish();
                     }
-
                 }
             }
         });
