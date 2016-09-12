@@ -1,14 +1,14 @@
 package com.sm.ej.nk.homeal;
 
-import android.app.Application;
 import android.content.Context;
+import android.support.multidex.MultiDexApplication;
 
 import com.facebook.FacebookSdk;
 
 /**
  * Created by Tacademy on 2016-08-24.
  */
-public class HomealApplication extends Application {
+public class HomealApplication extends MultiDexApplication{
 
     private static Context context;
     private static Boolean isCooker =false;

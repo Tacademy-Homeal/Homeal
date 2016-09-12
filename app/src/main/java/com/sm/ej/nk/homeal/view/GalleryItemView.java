@@ -21,4 +21,19 @@ public class GalleryItemView extends RecyclerView.ViewHolder {
         imagePhoto = (ImageView)view.findViewById(R.id.image_gallery);
         layoutSelect = (RelativeLayout)view.findViewById(R.id.relativeSelect);
     }
+    boolean isChecked;
+    public void setChecked(boolean checked){
+        if(isChecked != checked){
+            isChecked = checked;
+            drawCheck();
+        }
+    }
+
+    private void drawCheck(){
+        if(isChecked){
+            layoutSelect.setVisibility(View.VISIBLE);
+        }else{
+            layoutSelect.setVisibility(View.INVISIBLE);
+        }
+    }
 }
