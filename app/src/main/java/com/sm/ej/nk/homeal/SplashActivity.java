@@ -19,12 +19,9 @@ import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
-import com.sm.ej.nk.homeal.data.NetworkResult;
 import com.sm.ej.nk.homeal.data.User;
 import com.sm.ej.nk.homeal.gcm.RegistrationIntentService;
 import com.sm.ej.nk.homeal.manager.CalendarManager;
-import com.sm.ej.nk.homeal.manager.NetworkManager;
-import com.sm.ej.nk.homeal.manager.NetworkRequest;
 import com.sm.ej.nk.homeal.manager.PropertyManager;
 import com.sm.ej.nk.homeal.request.FacebookLoginRequest;
 
@@ -53,7 +50,7 @@ public class SplashActivity extends AppCompatActivity {
 //            }
 //        };
 //
-//        setUpIfNeeded();
+         setUpIfNeeded();
 
           moveLoginActivity();
     }
@@ -68,7 +65,7 @@ public class SplashActivity extends AppCompatActivity {
                 startActivity(new Intent(SplashActivity.this, LoginActivity.class));
                 finish();
             }
-        }, 2000);
+        }, 1000);
     }
 
 
@@ -166,29 +163,29 @@ public class SplashActivity extends AppCompatActivity {
             resetFacebookAndMoveLoginActivity();
             return;
         }
-        if (accessToken != null) {
-            String token = accessToken.getToken();
-            String regId = PropertyManager.getInstance().getRegistartionId();
-            FacebookLoginRequest request = new FacebookLoginRequest(this, token, regId );
-            NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<Object>>() {
-                @Override
-                public void onSuccess(NetworkRequest<NetworkResult<Object>> request, NetworkResult<Object> result) {
-                    if (result.getCode() == 1) {
-                        moveMainActivity();
-                    } else {
-                        resetFacebookAndMoveLoginActivity();
-                    }
-                }
-
-                @Override
-                public void onFail(NetworkRequest<NetworkResult<Object>> request, int errorCode, String errorMessage, Throwable e) {
-                    loginManager.logOut();
-                    facebookLogin();
-                }
-            });
-        } else {
-            facebookLogin();
-        }
+//        if (accessToken != null) {
+//            String token = accessToken.getToken();
+//            String regId = PropertyManager.getInstance().getRegistartionId();
+//            FacebookLoginRequest request = new FacebookLoginRequest(this, token, regId );
+////            NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<Object>>() {
+////                @Override
+////                public void onSuccess(NetworkRequest<NetworkResult<Object>> request, NetworkResult<Object> result) {
+////                    if (result.getCode() == 1) {
+////                        moveMainActivity();
+////                    } else {
+////                        resetFacebookAndMoveLoginActivity();
+////                    }
+////                }
+////
+////                @Override
+////                public void onFail(NetworkRequest<NetworkResult<Object>> request, int errorCode, String errorMessage, Throwable e) {
+////                    loginManager.logOut();
+////                    facebookLogin();
+////                }
+////            });
+////        } else {
+////            facebookLogin();
+////        }
     }
 
     private void resetFacebookAndMoveLoginActivity() {
@@ -211,21 +208,21 @@ public class SplashActivity extends AppCompatActivity {
                 FacebookLoginRequest request = new FacebookLoginRequest(SplashActivity.this, accessToken.getToken(),
                         PropertyManager.getInstance().getRegistartionId());
 
-                NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<Object>>() {
-                    @Override
-                    public void onSuccess(NetworkRequest<NetworkResult<Object>> request, NetworkResult<Object> result) {
-                        if (result.getCode() == 1) {
-                            moveMainActivity();
-                        } else {
-                            resetFacebookAndMoveLoginActivity();
-                        }
-                    }
-
-                    @Override
-                    public void onFail(NetworkRequest<NetworkResult<Object>> request, int errorCode, String errorMessage, Throwable e) {
-                        resetFacebookAndMoveLoginActivity();
-                    }
-                });
+//                NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<Object>>() {
+//                    @Override
+//                    public void onSuccess(NetworkRequest<NetworkResult<Object>> request, NetworkResult<Object> result) {
+//                        if (result.getCode() == 1) {
+//                            moveMainActivity();
+//                        } else {
+//                            resetFacebookAndMoveLoginActivity();
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onFail(NetworkRequest<NetworkResult<Object>> request, int errorCode, String errorMessage, Throwable e) {
+//                        resetFacebookAndMoveLoginActivity();
+//                    }
+//                });
 
             }
 

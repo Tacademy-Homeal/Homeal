@@ -17,6 +17,7 @@ import com.sm.ej.nk.homeal.data.CalendarItem;
 import com.sm.ej.nk.homeal.data.CkDetailMenuData;
 import com.sm.ej.nk.homeal.data.CkInfoResult;
 import com.sm.ej.nk.homeal.data.EtHomeData;
+import com.sm.ej.nk.homeal.data.User;
 import com.sm.ej.nk.homeal.fragment.EtHomeFragment;
 import com.sm.ej.nk.homeal.manager.CalendarManager;
 import com.sm.ej.nk.homeal.manager.NetworkManager;
@@ -92,6 +93,8 @@ public class InfoCkDetailActivity extends AppCompatActivity implements CkDetailA
             }
         });
 
+
+
         CkPageCheckRequest request = new CkPageCheckRequest(this, etHomeData.getId());
         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<CkInfoResult>() {
             @Override
@@ -110,10 +113,17 @@ public class InfoCkDetailActivity extends AppCompatActivity implements CkDetailA
             }
         });
 
+
+
+
         fabChat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(InfoCkDetailActivity.this, ChattingActivity.class);
+                User user = new User();
+                user.setId(Long.parseLong(etHomeData.getId()));
+                intent.putExtra(EXTRA_USER,user);
+                startActivity(intent);
             }
         });
 
@@ -135,7 +145,7 @@ public class InfoCkDetailActivity extends AppCompatActivity implements CkDetailA
             }
         });
     }
-
+    public static final String EXTRA_USER = "user";
     public static final String INTENT_RESERVE_MENU = "rrrr";
     public static final String INTENT_RESERVE_CALENDAR= "www";
     public static final String INTENT_RESERVE_CKID = "eeee";
@@ -144,5 +154,7 @@ public class InfoCkDetailActivity extends AppCompatActivity implements CkDetailA
     public void onDetailAdapterClick(View view, CalendarItem data, int position) {
 
     }
+
+
 
 }
