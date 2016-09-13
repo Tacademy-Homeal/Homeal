@@ -120,7 +120,7 @@ public class LoginFragment extends Fragment {
 //
 //            @Override
 //            public void onFail(NetworkRequest<NetworkResultTemp> request, int errorCode, String errorMessage, Throwable e) {
-//
+////ddd
 //            }
 //        });
     }
