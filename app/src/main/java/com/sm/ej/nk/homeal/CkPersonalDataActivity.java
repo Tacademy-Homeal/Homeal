@@ -44,6 +44,7 @@ public class CkPersonalDataActivity extends AppCompatActivity {
     private int iYear, iMonth, iDay;
     static final int DATE_DIALOG_ID = 0;
     private File imageFile = null;
+    private File file;
     double latitude, longitude;
 
 
@@ -75,15 +76,6 @@ public class CkPersonalDataActivity extends AppCompatActivity {
 
     @BindView(R.id.text_ck_birth)
     TextView birthText;
-
-//    @BindView(R.id.spinner_ck_month)
-//    Spinner monthSpinner;
-//
-//    @BindView(R.id.spinner_ck_day)
-//    Spinner daySpinner;
-//
-//    @BindView(R.id.spinner_ck_year)
-//    Spinner yearSpinner;
 
     @BindView(R.id.spinner_ck_country)
     Spinner countrySpinner;
@@ -126,20 +118,6 @@ public class CkPersonalDataActivity extends AppCompatActivity {
 
 
         setUserImage(ckdata);
-//
-//        if (savedInstanceState != null) {
-//            String path = savedInstanceState.getString(FIELD_SAVE_FILE);
-//            if (!TextUtils.isEmpty(path)) {
-//                savedFile = new File(path);
-//            }
-//            path = savedInstanceState.getString(FIELD_UPLOAD_FILE);
-//            if (!TextUtils.isEmpty(path)) {
-//                uploadFile = new File(path);
-//                Glide.with(this)
-//                        .load(uploadFile)
-//                        .into(ckpictureView);
-//            }
-//        }
 
         final Calendar objTime = Calendar.getInstance();
         iYear = objTime.get(Calendar.YEAR);
@@ -170,12 +148,6 @@ public class CkPersonalDataActivity extends AppCompatActivity {
         startActivityForResult(intent, ADDRESS_SEARCH);
     }
 
-//    private static final String FIELD_SAVE_FILE = "savedfile";
-//    private static final String FIELD_UPLOAD_FILE = "uploadfile";
-//
-//    File savedFile = null;
-//    File uploadFile = null;
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         if (requestCode == ADDRESS_SEARCH) {
@@ -185,6 +157,7 @@ public class CkPersonalDataActivity extends AppCompatActivity {
 //                addressText.setText(address);
                 latitude = intent.getExtras().getDouble("latitude");
                 longitude = intent.getExtras().getDouble("longitude");
+                file = new File(intent.getExtras().getString("imageFile"));
             }
         }
         if (requestCode == GET_IMAGE) {
@@ -196,6 +169,18 @@ public class CkPersonalDataActivity extends AppCompatActivity {
         }
         super.onActivityResult(requestCode, resultCode, intent);
     }
+//
+//    public File getImageFile() {
+//        File picture = Environment.getExternalStoragePublicDirectory(
+//                Environment.DIRECTORY_PICTURES
+//        );
+//        File parent = new File(getFilesDir(), "my_image"); //내부저장소주소
+////        File parent = new File(picture, "my_image");
+//        if (!parent.exists()) {
+//            parent.mkdirs();
+//        }
+//        return new File(parent, System.currentTimeMillis() + ".png");
+//    }
 
     public void setTranslate(String translate) {
         addressText.setText(translate);
@@ -261,8 +246,9 @@ public class CkPersonalDataActivity extends AppCompatActivity {
         } else {
             gender = "Female";
         }
-
-        CkInfoupdateRequest request = new CkInfoupdateRequest(CkPersonalDataActivity.this, nameEdit.getText().toString(), birthText.getText().toString(), phoneEdit.getText().toString(), introduceEdit.getText().toString(), addressText.getText().toString(), gender, latitude, longitude, imageFile);
+//       file = getImageFile();
+//        Toast.makeText(CkPersonalDataActivity.this, ""+map.getName(), Toast.LENGTH_SHORT).show();
+        CkInfoupdateRequest request = new CkInfoupdateRequest(CkPersonalDataActivity.this, nameEdit.getText().toString(), birthText.getText().toString(), phoneEdit.getText().toString(), introduceEdit.getText().toString(), addressText.getText().toString(), gender, latitude, longitude, imageFile, file);
         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {

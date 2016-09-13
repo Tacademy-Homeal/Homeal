@@ -15,6 +15,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -60,7 +61,8 @@ public class AddressEditActivity extends AppCompatActivity implements
     LocationManager mLM;
     String mProvider = LocationManager.NETWORK_PROVIDER;
     double latitude, longitude;
-
+    public String filaName = ""+System.currentTimeMillis();
+    private File imageMap;
 
     @BindView(R.id.edit_keyword)
     EditText keywordView;
@@ -73,18 +75,16 @@ public class AddressEditActivity extends AppCompatActivity implements
     Map<Poi, Marker> markerResolver = new HashMap<>();
     Map<Marker, Poi> poiResolver = new HashMap<>();
 
-    private static final String FILE_NAME = System.currentTimeMillis() + ".png";
-
     public File getImageFile() {
         File picture = Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_PICTURES
         );
-//        File parent = new File(getFilesDir(), "my_image"); //내부저장소주소
-        File parent = new File(picture, "my_image");
+        File parent = new File(getFilesDir(), "my_image"); //내부저장소주소
+//        File parent = new File(picture, "my_image");
         if (!parent.exists()) {
             parent.mkdirs();
         }
-        return new File(parent, FILE_NAME);
+        return new File(parent, filaName + ".png");
     }
 
     @Override
@@ -278,20 +278,26 @@ public class AddressEditActivity extends AppCompatActivity implements
 
     @Override
     public void onInfoWindowClick(Marker marker) {
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
         intent.putExtra("address", marker.getSnippet() + " " + marker.getTitle());
         intent.putExtra("latitude", latitude);
         intent.putExtra("longitude", longitude);
-        Toast.makeText(AddressEditActivity.this, ""+latitude+","+longitude, Toast.LENGTH_SHORT).show();
-        setResult(RESULT_OK, intent);
         map.snapshot(new GoogleMap.SnapshotReadyCallback() {
             @Override
             public void onSnapshotReady(Bitmap bitmap) {
-                File file = getImageFile();
+                imageMap = getImageFile();
+                imageMap.getName();
+                Toast.makeText(AddressEditActivity.this, ""+imageMap.getName(), Toast.LENGTH_SHORT).show();
+//                intent.putExtra("map", map.getName());
                 try {
-                    FileOutputStream fos = new FileOutputStream(file);
+                    FileOutputStream fos = new FileOutputStream(imageMap);
                     bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos);
                     fos.close();
+                    checkPermission();
+                    intent.putExtra("imageFile", imageMap.toString());
+                    Log.d("error", imageMap.toString());
+                    setResult(RESULT_OK, intent);
+                    finish();
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 } catch (IOException e) {
@@ -299,9 +305,7 @@ public class AddressEditActivity extends AppCompatActivity implements
                 }
             }
         });
-        checkPermission();
-//        startActivity(intent);
-        finish();
+
     }
 
     private static final int RC_PERMISSION = 100;

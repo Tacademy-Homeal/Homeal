@@ -19,10 +19,11 @@ import okhttp3.RequestBody;
  */
 public class CkInfoupdateRequest extends AbstractRequest<NetworkResultTemp> {
     MediaType jpeg = MediaType.parse("image/jpeg");
+    MediaType png = MediaType.parse("map/png");
     Request request;
     Context context;
 
-    public CkInfoupdateRequest(Context context, String name, String birth, String phone, String introduce, String address, String gender, double latitude, double longitude, File image) {
+    public CkInfoupdateRequest(Context context, String name, String birth, String phone, String introduce, String address, String gender, double latitude, double longitude, File image, File map) {
 
         HttpUrl url = getBaseHttpsUrlBuilder()
                 .addPathSegment("cookers")
@@ -30,6 +31,7 @@ public class CkInfoupdateRequest extends AbstractRequest<NetworkResultTemp> {
                 .build();
 
         MultipartBody.Builder builder = new MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
                 .addFormDataPart("name", name)
                 .addFormDataPart("birth", birth)
                 .addFormDataPart("phone", phone)
@@ -43,7 +45,11 @@ public class CkInfoupdateRequest extends AbstractRequest<NetworkResultTemp> {
         if (image != null) {
             builder.addFormDataPart("image", image.getName(), RequestBody.create(jpeg, image));
         }
-
+//
+        if (map != null) {
+            builder.addFormDataPart("map", map.getName(), RequestBody.create(png, map));
+        }
+//
 
         RequestBody body = builder.build();
         request = new Request.Builder()
