@@ -23,7 +23,7 @@ public class CkInfoupdateRequest extends AbstractRequest<NetworkResultTemp> {
     Request request;
     Context context;
 
-    public CkInfoupdateRequest(Context context, String name, String birth, String phone, String introduce, String address, String gender, double latitude, double longitude, File image, File map) {
+    public CkInfoupdateRequest(Context context, String name, String birth, String phone, String introduce, String address, String gender, double latitude, double longitude, File image, File map, String country) {
 
         HttpUrl url = getBaseHttpsUrlBuilder()
                 .addPathSegment("cookers")
@@ -39,7 +39,8 @@ public class CkInfoupdateRequest extends AbstractRequest<NetworkResultTemp> {
                 .addFormDataPart("address", address)
                 .addFormDataPart("gender", gender)
                 .addFormDataPart("latitude", String.valueOf(latitude))
-                .addFormDataPart("longitude", String.valueOf(longitude));
+                .addFormDataPart("longitude", String.valueOf(longitude))
+                .addFormDataPart("country", country);
 
 
         if (image != null) {

@@ -16,7 +16,7 @@ import okhttp3.Request;
  * Created by Tacademy on 2016-08-31.
  */
 
-public class CkPageListRequest extends AbstractRequest<NetworkResult<List<EtHomeData>>>{
+public class  CkPageListRequest extends AbstractRequest<NetworkResult<List<EtHomeData>>>{
     Context context;
     Request request;
 

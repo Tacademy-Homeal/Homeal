@@ -10,18 +10,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.mukesh.countrypicker.fragments.CountryPicker;
+import com.mukesh.countrypicker.interfaces.CountryPickerListener;
 import com.sm.ej.nk.homeal.data.NetworkResultTemp;
 import com.sm.ej.nk.homeal.data.PersonalData;
 import com.sm.ej.nk.homeal.fragment.CkMyPageFragment;
@@ -39,13 +39,14 @@ import butterknife.OnClick;
 
 public class CkPersonalDataActivity extends AppCompatActivity {
 
-    ArrayAdapter<String> countryAdapter;
+//    ArrayAdapter<String> countryAdapter;
     //    ArrayAdapter<String> countryphoneAdapter;
     private int iYear, iMonth, iDay;
     static final int DATE_DIALOG_ID = 0;
     private File imageFile = null;
     private File file;
     double latitude, longitude;
+    private CountryPicker countryPicker;
 
 
     public static Context mContext;
@@ -77,8 +78,11 @@ public class CkPersonalDataActivity extends AppCompatActivity {
     @BindView(R.id.text_ck_birth)
     TextView birthText;
 
-    @BindView(R.id.spinner_ck_country)
-    Spinner countrySpinner;
+//    @BindView(R.id.spinner_ck_country)
+//    Spinner countrySpinner;
+
+    @BindView(R.id.text_ck_country)
+    TextView countryText;
 
     @BindView(R.id.radio_ck_male)
     RadioButton maleRadio;
@@ -108,26 +112,30 @@ public class CkPersonalDataActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(getResources().getString(R.string.PersonaldataActivity_appbar));
 
-        countryAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.country));
-        countryAdapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
-        countrySpinner.setAdapter(countryAdapter);
-
-//        countryphoneAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.country_phonenum));
-//        countryphoneAdapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
-//        countryphoneSpinner.setAdapter(countryphoneAdapter);
-
-
-        setUserImage(ckdata);
-
         final Calendar objTime = Calendar.getInstance();
         iYear = objTime.get(Calendar.YEAR);
         iMonth = objTime.get(Calendar.MONTH);
         iDay = objTime.get(Calendar.DAY_OF_MONTH);
-
+        countryPicker = CountryPicker.newInstance("나라를 선택하세요");
+        setListner();
         isPersonalData(false);
         btnChangeFinish.setVisibility(View.GONE);
-
         mContext = this;
+        setUserImage(ckdata);
+    }
+
+    private void setListner() {
+        countryPicker.setListener(new CountryPickerListener() {
+            @Override
+            public void onSelectCountry(String name, String code, String dialCode, int flagDrawableResID) {
+                countryText.setText(name);
+                countryPicker.dismiss();
+            }
+        });
+    }
+    @OnClick(R.id.text_ck_country)
+    public void onCountry(){
+        countryPicker.show(getSupportFragmentManager(), "COUNTRY_PICKER");
     }
 
     public static final int MODE_GET_IMAGE = 3;
@@ -192,7 +200,8 @@ public class CkPersonalDataActivity extends AppCompatActivity {
         addressText.setText(ckdata.getAddress());
         introduceEdit.setText(ckdata.getIntroduce());
         phoneEdit.setText(ckdata.getPhone());
-        countrySpinner.setSelection(ckdata.getCountry());
+//        countrySpinner.setSelection(ckdata.getCountry());
+        countryText.setText(ckdata.getCountry());
         birthText.setText(ckdata.getBirth());
         if (ckdata.getGender().equals("Male")) {
             radioGroup.check(R.id.radio_ck_male);
@@ -248,11 +257,11 @@ public class CkPersonalDataActivity extends AppCompatActivity {
         }
 //       file = getImageFile();
 //        Toast.makeText(CkPersonalDataActivity.this, ""+map.getName(), Toast.LENGTH_SHORT).show();
-        CkInfoupdateRequest request = new CkInfoupdateRequest(CkPersonalDataActivity.this, nameEdit.getText().toString(), birthText.getText().toString(), phoneEdit.getText().toString(), introduceEdit.getText().toString(), addressText.getText().toString(), gender, latitude, longitude, imageFile, file);
+        CkInfoupdateRequest request = new CkInfoupdateRequest(CkPersonalDataActivity.this, nameEdit.getText().toString(), birthText.getText().toString(), phoneEdit.getText().toString(), introduceEdit.getText().toString(), addressText.getText().toString(), gender, latitude, longitude, imageFile, file, countryText.getText().toString());
         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
-                Toast.makeText(CkPersonalDataActivity.this, "수정완료", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CkPersonalDataActivity.this, ""+countryText.getText().toString(), Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -282,7 +291,8 @@ public class CkPersonalDataActivity extends AppCompatActivity {
         introduceEdit.setEnabled(s);
         phoneEdit.setEnabled(s);
         birthText.setEnabled(s);
-        countrySpinner.setEnabled(s);
+//        countrySpinner.setEnabled(s);
+        countryText.setEnabled(s);
         maleRadio.setEnabled(s);
         femaleRadio.setEnabled(s);
         ckpictureView.setEnabled(s);

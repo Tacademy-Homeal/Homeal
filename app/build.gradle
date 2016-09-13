@@ -52,5 +52,6 @@ dependencies {
     compile 'com.tsengvn:Typekit:1.0.0'
     compile 'com.github.clans:fab:1.6.4'
     compile 'com.daimajia.swipelayout:library:1.2.0'
+    compile 'com.mukesh:countrypicker:1.1.5'
 }
 apply plugin: 'com.google.gms.google-services'

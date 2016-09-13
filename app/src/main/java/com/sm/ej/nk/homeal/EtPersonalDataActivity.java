@@ -132,7 +132,7 @@ public class EtPersonalDataActivity extends AppCompatActivity {
                 introduceEdit.setText(data.getIntroduce());
                 phoneEdit.setText(data.getPhone());
                 birthText.setText(data.getBirth());
-                countrySpinner.setSelection(data.getCountry());
+//                countryText.setSelection(data.getCountry());
 
 
                 if (data.getGender().equals("Male")) {
