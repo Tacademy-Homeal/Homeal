@@ -101,18 +101,16 @@ public class LoginFragment extends Fragment {
     public void onClickFacebook() {
 
         switch (radioGroup.getCheckedRadioButtonId()) {
-
             case R.id.radiobtn_login_ft_ck:{
                 HomealApplication.changeCooker();
-                request = new TestRequest(HomealApplication.getContext(), "cooker");
                 break;
             }
             case R.id.radiobtn_login_ft_eater:{
                 HomealApplication.changeEater();
-                request = new TestRequest(HomealApplication.getContext(), "eater");
                 break;
             }
         }
+
         loginFacebook();
     }
 
@@ -160,7 +158,13 @@ public class LoginFragment extends Fragment {
                         }else{
                             String facebookId = accessToken.getUserId();
                             PropertyManager.getInstance().setFacebookId(facebookId);
-                            ((LoginActivity) getActivity()).moveMainActivity();
+                            if(result.getResult().equals("cooker") && HomealApplication.isCooker() == true){
+                                ((LoginActivity) getActivity()).moveCkMainActivity();
+                            }else if(result.getResult().equals("eater") && HomealApplication.isCooker() == false){
+                                ((LoginActivity) getActivity()).moveEtMainAcivity();
+                            }else{
+                                Toast.makeText(getContext(),"해당 사항 없음",Toast.LENGTH_SHORT).show();
+                            }
                         }
                     } else if (result.getCode() == 2){
                         ((LoginActivity)getActivity()).changeTos();

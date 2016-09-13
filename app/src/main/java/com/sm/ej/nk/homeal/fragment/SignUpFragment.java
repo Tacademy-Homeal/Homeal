@@ -16,6 +16,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.sm.ej.nk.homeal.HomealApplication;
 import com.sm.ej.nk.homeal.LoginActivity;
 import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.data.FacebookUser;
@@ -94,11 +95,14 @@ public class SignUpFragment extends Fragment {
         } else {
             gender = "Female";
         }
+
         SignupRequest request = new SignupRequest(getContext(), fristnameEdit.getText().toString(), birthText.getText().toString(), phoneEdit.getText().toString(), introText.getText().toString(), gender);
         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
-                ((LoginActivity) getActivity()).moveMainActivity();
+
+                if(HomealApplication.isCooker() == true) ((LoginActivity) getActivity()).moveCkMainActivity();
+                else ((LoginActivity) getActivity()).moveEtMainAcivity();
             }
             @Override
             public void onFail(NetworkRequest<NetworkResultTemp> request, int errorCode, String errorMessage, Throwable e) {

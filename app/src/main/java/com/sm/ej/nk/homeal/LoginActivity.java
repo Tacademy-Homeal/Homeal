@@ -83,18 +83,18 @@ public class LoginActivity extends AppCompatActivity {
                 .commit();
     }
 
-    public void moveMainActivity(){
-        if(HomealApplication.isCooker())
-        {
-            Intent intent = new Intent(this, CkMainActivity.class);
-            startActivity(intent);
-            finish();
-        }else{
-            Intent intent = new Intent(this, EtMainActivity.class);
-            startActivity(intent);
-            finish();
-        }
+    public void moveCkMainActivity(){
+        Intent intent = new Intent(this, CkMainActivity.class);
+        startActivity(intent);
+        finish();
     }
+
+    public void moveEtMainAcivity(){
+        Intent intent = new Intent(this, EtMainActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
 
     private void showDialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
