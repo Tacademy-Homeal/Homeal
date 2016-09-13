@@ -110,7 +110,9 @@ public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder implements
 
 //        circleIndicator.setViewPager(viewPager);
         Glide.with(context).load(data.image).into(userImage);
-        Glide.with(context).load(data.mapImage).into(mapImage);
+        Glide.with(context).load("http://m1.daumcdn.net/cfile213/R400x0/206C6B505098D2D32B68D1").into(mapImage);
+//        Glide.with(context).load(data.mapImage).into(mapImage);
+        mapImage.setOnClickListener(this);
         userName.setText(data.name);
         userAddress.setText(data.address);
         backImage.setOnClickListener(this);
@@ -166,6 +168,14 @@ public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder implements
         this.listener = listener;
     }
 
+    public interface OnMapClickListener{
+        public void onMapClick(View view, CkDetailData data);
+    }
+    OnMapClickListener mapListener;
+    public void setOnMapClickListener(OnMapClickListener listener){
+        this.mapListener = listener;
+    }
+
     @Override
     public void onClick(View view) {
         switch (view.getId()){
@@ -191,6 +201,12 @@ public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder implements
                 dinner.setBackgroundColor(Color.WHITE);
                 sharingImage.setBackgroundColor(Color.WHITE);
                 pax.setText("");
+                break;
+            }
+            case R.id.image_ck_detail_map:{
+                if(mapListener!=null){
+                    mapListener.onMapClick(view, data);
+                }
                 break;
             }
         }

@@ -2,6 +2,7 @@ package com.sm.ej.nk.homeal.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,25 +21,26 @@ import java.util.List;
 public class GalleryAdapter extends RecyclerView.Adapter<GalleryItemView>{
     Context context;
     List<GalleryItemData> data;
+    SparseBooleanArray itemSelected = new SparseBooleanArray();
+
+    int checkPosition = INVALID_POSITION;
+
+    public static final int INVALID_POSITION = -1;
+    public static final int CHOICE_MODE_SINGLE = 1;
+    public static final int CHOICE_MODE_MULTIPLE = 2;
+
+    private int mode;
 
     public List<GalleryItemData> getPhotoList() {
         return data;
     }
 
-    public List<GalleryItemData> getSlectedPhotoList(){
-        List<GalleryItemData> selectPhotoList = new ArrayList<>();
-        for(int i=0; i< data.size(); i++){
-            GalleryItemData item = data.get(i);
-            if(item.isSelected()){
-                selectPhotoList.add(item);
-            }
-        }
-        return selectPhotoList;
-    }
 
-    public GalleryAdapter(Context context, List<GalleryItemData> data){
+
+    public GalleryAdapter(Context context, List<GalleryItemData> data, int ChoiceMode){
         this.context = context;
         this.data = data;
+        mode = ChoiceMode;
     }
 
     @Override
@@ -49,22 +51,63 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryItemView>{
 
     @Override
     public void onBindViewHolder(final GalleryItemView holder,final int position) {
-        GalleryItemData item = data.get(position);
+        final GalleryItemData item = data.get(position);
         Glide.with(context).load(item.getImagePath()).centerCrop().crossFade().into(holder.imagePhoto);
-        if(item.isSelected()){
-            holder.layoutSelect.setVisibility(View.VISIBLE);
+        if(mode == CHOICE_MODE_SINGLE){
+            holder.setChecked(checkPosition == position);
         }else{
-            holder.layoutSelect.setVisibility(View.INVISIBLE);
+            holder.setChecked(itemSelected.get(position));
         }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(listener !=null){
-                    listener.onPhotoClick(view, holder, position);
+                    listener.onPhotoClick(view, item, mode);
+                }
+                if(mode ==CHOICE_MODE_SINGLE){
+                    setItemChecked(position, true);
+                }else{
+                    boolean checked = itemSelected.get(position);
+                    setItemChecked(position, !checked);
                 }
             }
         });
+    }
+    public List<GalleryItemData> getCheckedItemPositions(){
+        List<GalleryItemData> selectPhotoList = new ArrayList<>();
+        for(int i=0; i<data.size(); i++){
+            if(itemSelected.get(i)){
+                selectPhotoList.add(data.get(i));
+            }
+        }
+        return selectPhotoList;
+    }
+
+    private void setItemChecked(int position, boolean isChecked){
+        if(mode == CHOICE_MODE_SINGLE){
+            if(checkPosition != position){
+                if(isChecked){
+                    checkPosition = position;
+                    notifyDataSetChanged();
+                }
+            }else{
+                if(!isChecked){
+                    checkPosition = INVALID_POSITION;
+                    notifyDataSetChanged();
+                }
+            }
+        }else{
+            boolean checked = itemSelected.get(position);
+            if(checked != isChecked){
+                itemSelected.put(position, isChecked);
+                notifyDataSetChanged();
+            }
+        }
+    }
+
+    public void clearCheked(){
+        itemSelected.clear();
     }
 
     @Override
@@ -73,7 +116,7 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryItemView>{
     }
 
     public interface OnPhotoClickListener{
-        public void onPhotoClick(View view, GalleryItemView holder, int position);
+        public void onPhotoClick(View view, GalleryItemData data, int mode);
     }
     OnPhotoClickListener listener;
     public void setOnPhotoClickListener(OnPhotoClickListener listener){

@@ -5,9 +5,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -32,6 +30,7 @@ import com.sm.ej.nk.homeal.manager.NetworkRequest;
 import com.sm.ej.nk.homeal.manager.TranslateManager;
 import com.sm.ej.nk.homeal.request.CkInfoupdateRequest;
 
+import java.io.File;
 import java.util.Calendar;
 
 import butterknife.BindView;
@@ -44,6 +43,9 @@ public class CkPersonalDataActivity extends AppCompatActivity {
     //    ArrayAdapter<String> countryphoneAdapter;
     private int iYear, iMonth, iDay;
     static final int DATE_DIALOG_ID = 0;
+    private File imageFile = null;
+    double latitude, longitude;
+
 
     public static Context mContext;
 
@@ -101,46 +103,6 @@ public class CkPersonalDataActivity extends AppCompatActivity {
     @BindView(R.id.image_ck_picture)
     ImageView ckpictureView;
 
-    private int GET_IMAGE = 2;
-
-    @OnClick(R.id.image_ck_picture)
-    public void onckGallery() {
-        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        intent.setType("image/*");
-        startActivityForResult(intent, GET_IMAGE);
-    }
-
-    static final int ADDRESS_SEARCH = 1;
-
-    @OnClick(R.id.text_ck_address)
-    public void onAddressEdit() {
-        Intent intent = new Intent(CkPersonalDataActivity.this, AddressEditActivity.class);
-        startActivityForResult(intent, ADDRESS_SEARCH);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        super.onActivityResult(requestCode, resultCode, intent);
-        if (requestCode == ADDRESS_SEARCH) {
-            if (resultCode == RESULT_OK) {
-                String address = intent.getStringExtra("address");
-                TranslateManager.getInstance().translateKoreantoEng(address);
-//                addressText.setText(address);
-            }
-        }
-        if (requestCode == GET_IMAGE) {
-            if (resultCode == Activity.RESULT_OK) {
-                Uri uri = intent.getData();
-                ckpictureView.setImageURI(uri);
-            }
-        }
-
-    }
-
-    public void setTranslate(String translate) {
-        addressText.setText(translate);
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -161,40 +123,84 @@ public class CkPersonalDataActivity extends AppCompatActivity {
 //        countryphoneAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.country_phonenum));
 //        countryphoneAdapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
 //        countryphoneSpinner.setAdapter(countryphoneAdapter);
+
+
         setUserImage(ckdata);
+//
+//        if (savedInstanceState != null) {
+//            String path = savedInstanceState.getString(FIELD_SAVE_FILE);
+//            if (!TextUtils.isEmpty(path)) {
+//                savedFile = new File(path);
+//            }
+//            path = savedInstanceState.getString(FIELD_UPLOAD_FILE);
+//            if (!TextUtils.isEmpty(path)) {
+//                uploadFile = new File(path);
+//                Glide.with(this)
+//                        .load(uploadFile)
+//                        .into(ckpictureView);
+//            }
+//        }
 
         final Calendar objTime = Calendar.getInstance();
         iYear = objTime.get(Calendar.YEAR);
         iMonth = objTime.get(Calendar.MONTH);
         iDay = objTime.get(Calendar.DAY_OF_MONTH);
 
-
-//        ArrayList<String> monthList = new ArrayList<>();
-//        for (int month = 1; month < 13; month++) {
-//            monthList.add(String.valueOf(month));
-//        }
-//        ArrayAdapter<String> monthAdatper = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, monthList);
-//        monthSpinner.setAdapter(monthAdatper);
-//
-//        ArrayList<String> dayList = new ArrayList<>();
-//        for (int day = 1; day < 32; day++) {
-//            dayList.add(String.valueOf(day));
-//        }
-//        ArrayAdapter<String> dayAdatper = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, dayList);
-//        daySpinner.setAdapter(dayAdatper);
-//
-//        ArrayList<String> yearList = new ArrayList<>();
-//        for (int year = 1930; year < 2031; year++) {
-//            yearList.add(String.valueOf(year));
-//        }
-//        ArrayAdapter<String> yearAdatper = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, yearList);
-//        yearSpinner.setAdapter(yearAdatper);
-
         isPersonalData(false);
         btnChangeFinish.setVisibility(View.GONE);
 
         mContext = this;
     }
+
+    public static final int MODE_GET_IMAGE = 3;
+    private static final int GET_IMAGE = 35;
+
+    @OnClick(R.id.image_ck_picture)
+    public void onckGallery() {
+        Intent intent = new Intent(CkPersonalDataActivity.this, GalleryActivity.class);
+        intent.putExtra(GalleryActivity.INTENT_MODE, MODE_GET_IMAGE);
+        startActivityForResult(intent, GET_IMAGE);
+    }
+
+    static final int ADDRESS_SEARCH = 1;
+
+    @OnClick(R.id.text_ck_address)
+    public void onAddressEdit() {
+        Intent intent = new Intent(CkPersonalDataActivity.this, AddressEditActivity.class);
+        startActivityForResult(intent, ADDRESS_SEARCH);
+    }
+
+//    private static final String FIELD_SAVE_FILE = "savedfile";
+//    private static final String FIELD_UPLOAD_FILE = "uploadfile";
+//
+//    File savedFile = null;
+//    File uploadFile = null;
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        if (requestCode == ADDRESS_SEARCH) {
+            if (resultCode == RESULT_OK) {
+                String address = intent.getStringExtra("address");
+                TranslateManager.getInstance().translateKoreantoEng(address);
+//                addressText.setText(address);
+                latitude = intent.getExtras().getDouble("latitude");
+                longitude = intent.getExtras().getDouble("longitude");
+            }
+        }
+        if (requestCode == GET_IMAGE) {
+            if (resultCode == Activity.RESULT_OK) {
+                String imagePath = intent.getStringExtra(GalleryActivity.IMAGE_PATH);
+                imageFile = new File(imagePath);
+                Glide.with(this).load(imageFile).into(ckpictureView);
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, intent);
+    }
+
+    public void setTranslate(String translate) {
+        addressText.setText(translate);
+    }
+
 
     public void setUserImage(PersonalData ckdata) {
         nameEdit.setText(ckdata.getName());
@@ -203,9 +209,6 @@ public class CkPersonalDataActivity extends AppCompatActivity {
         phoneEdit.setText(ckdata.getPhone());
         countrySpinner.setSelection(ckdata.getCountry());
         birthText.setText(ckdata.getBirth());
-//        Toast.makeText(CkPersonalDataActivity.this, "" + ckdata.getCountry(), Toast.LENGTH_SHORT).show();
-
-
         if (ckdata.getGender().equals("Male")) {
             radioGroup.check(R.id.radio_ck_male);
         } else {
@@ -213,14 +216,6 @@ public class CkPersonalDataActivity extends AppCompatActivity {
         }
 
         Glide.with(ckpictureView.getContext()).load(ckdata.getImage()).into(ckpictureView);
-
-
-//        ageEdit.setEnabled(s);
-//        monthSpinner.setEnabled(s);
-//        daySpinner.setEnabled(s);
-//        yearSpinner.setEnabled(s);
-//        countrySpinner.setEnabled(s);
-//        ckpictureView.setEnabled(s);
     }
 
     @OnClick(R.id.text_ck_birth)
@@ -261,25 +256,27 @@ public class CkPersonalDataActivity extends AppCompatActivity {
     @OnClick(R.id.btn_ck_changefinish)
     public void onChangefinish() {
         String gender;
-        if (radioGroup.getCheckedRadioButtonId()==R.id.radio_ck_male){
-             gender = "Male";
-        }else{
+        if (radioGroup.getCheckedRadioButtonId() == R.id.radio_ck_male) {
+            gender = "Male";
+        } else {
             gender = "Female";
         }
-        CkInfoupdateRequest request = new CkInfoupdateRequest(CkPersonalDataActivity.this, nameEdit.getText().toString(), birthText.getText().toString(), phoneEdit.getText().toString(), introduceEdit.getText().toString(), addressText.getText().toString(),gender);
+
+        CkInfoupdateRequest request = new CkInfoupdateRequest(CkPersonalDataActivity.this, nameEdit.getText().toString(), birthText.getText().toString(), phoneEdit.getText().toString(), introduceEdit.getText().toString(), addressText.getText().toString(), gender, latitude, longitude, imageFile);
         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
-                Toast.makeText(CkPersonalDataActivity.this, "수정성공", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CkPersonalDataActivity.this, "수정완료", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onFail(NetworkRequest<NetworkResultTemp> request, int errorCode, String errorMessage, Throwable e) {
-                Toast.makeText(CkPersonalDataActivity.this, ""+errorMessage, Toast.LENGTH_SHORT).show();
+                Toast.makeText(CkPersonalDataActivity.this, "" + errorMessage, Toast.LENGTH_SHORT).show();
             }
         });
         isPersonalData(false);
         btnChangeFinish.setVisibility(View.GONE);
+        btnChange.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -298,9 +295,6 @@ public class CkPersonalDataActivity extends AppCompatActivity {
         addressText.setEnabled(s);
         introduceEdit.setEnabled(s);
         phoneEdit.setEnabled(s);
-//        monthSpinner.setEnabled(s);
-//        daySpinner.setEnabled(s);
-//        yearSpinner.setEnabled(s);
         birthText.setEnabled(s);
         countrySpinner.setEnabled(s);
         maleRadio.setEnabled(s);

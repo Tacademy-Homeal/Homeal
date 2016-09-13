@@ -5,9 +5,11 @@ import android.content.Context;
 import com.google.gson.reflect.TypeToken;
 import com.sm.ej.nk.homeal.data.NetworkResultTemp;
 
+import java.io.File;
 import java.lang.reflect.Type;
 
 import okhttp3.HttpUrl;
+import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -16,11 +18,11 @@ import okhttp3.RequestBody;
  * Created by Tacademy on 2016-09-09.
  */
 public class CkInfoupdateRequest extends AbstractRequest<NetworkResultTemp> {
-
+    MediaType jpeg = MediaType.parse("image/jpeg");
     Request request;
     Context context;
 
-    public CkInfoupdateRequest(Context context, String name, String birth, String phone, String introduce, String address, String gender) {
+    public CkInfoupdateRequest(Context context, String name, String birth, String phone, String introduce, String address, String gender, double latitude, double longitude, File image) {
 
         HttpUrl url = getBaseHttpsUrlBuilder()
                 .addPathSegment("cookers")
@@ -33,7 +35,14 @@ public class CkInfoupdateRequest extends AbstractRequest<NetworkResultTemp> {
                 .addFormDataPart("phone", phone)
                 .addFormDataPart("introduce", introduce)
                 .addFormDataPart("address", address)
-                .addFormDataPart("gender", gender);
+                .addFormDataPart("gender", gender)
+                .addFormDataPart("latitude", String.valueOf(latitude))
+                .addFormDataPart("longitude", String.valueOf(longitude));
+
+
+        if (image != null) {
+            builder.addFormDataPart("image", image.getName(), RequestBody.create(jpeg, image));
+        }
 
 
         RequestBody body = builder.build();
@@ -42,11 +51,13 @@ public class CkInfoupdateRequest extends AbstractRequest<NetworkResultTemp> {
                 .put(body)
                 .tag(context)
                 .build();
+
     }
 
     @Override
     protected Type getType() {
-        return new TypeToken<NetworkResultTemp>(){}.getType();
+        return new TypeToken<NetworkResultTemp>() {
+        }.getType();
     }
 
     @Override

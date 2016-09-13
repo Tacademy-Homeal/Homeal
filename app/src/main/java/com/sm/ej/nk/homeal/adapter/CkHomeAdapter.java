@@ -119,9 +119,9 @@ public class CkHomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             headerholder.userMap.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(context, MapActivity.class);
-                    intent.putExtra(MapActivity.INTENT_MAP, headerData);
-                    context.startActivity(intent);
+                    if(mapListener!=null){
+                        mapListener.onMapClick(view, headerData);
+                    }
                 }
             });
         }else{
@@ -211,5 +211,13 @@ public class CkHomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     OnReviewCLickLIstener reviewListener;
     public void setOnReviewClickListener(OnReviewCLickLIstener listener){
         this.reviewListener = listener;
+    }
+
+    public interface OnMapClickLIstener{
+        public void onMapClick(View view, CkDetailData data);
+    }
+    OnMapClickLIstener mapListener;
+    public void setOnMapClickLIstner(OnMapClickLIstener listener){
+        this.mapListener = listener;
     }
 }

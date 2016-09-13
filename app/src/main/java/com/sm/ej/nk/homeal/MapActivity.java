@@ -1,15 +1,22 @@
 package com.sm.ej.nk.homeal;
 
 import android.content.Intent;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.sm.ej.nk.homeal.data.CkDetailData;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -20,7 +27,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     public static final String CK_HOME = "header";
     public static final String CK_DETAIL = "detail";
 
-    GoogleMap map;
+    GoogleMap mMap;
+    CkDetailData data;
 
     @BindView(R.id.toolbar_map)
     Toolbar toolbar;
@@ -29,7 +37,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
-
         ButterKnife.bind(this);
 
         //set Toolbar
@@ -41,6 +48,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         fragment.getMapAsync(this);
 
         Intent intent = getIntent();
+        data = (CkDetailData)intent.getSerializableExtra(INTENT_MAP);
 
         toolbar.setNavigationIcon(R.drawable.ic_action_name);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -63,11 +71,35 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        map = googleMap;
-        map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-        map.getUiSettings().setCompassEnabled(true);
-        map.getUiSettings().setZoomControlsEnabled(true);
-        map.setOnCameraMoveListener(this);
-        map.setOnInfoWindowClickListener(this);
+        mMap = googleMap;
+        mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+        mMap.getUiSettings().setCompassEnabled(true);
+        mMap.getUiSettings().setZoomControlsEnabled(true);
+        mMap.setOnCameraMoveListener(this);
+        mMap.setOnInfoWindowClickListener(this);
+        addMarker(data.latitude, data.longitude);
+
+    }
+
+    private void moveMap(double latitude, double longitude){
+        if(mMap!=null){
+            CameraPosition.Builder builder = new CameraPosition.Builder();
+            builder.target(new LatLng(latitude, longitude));
+            builder.zoom(15.5f);
+            CameraUpdate update = CameraUpdateFactory.newCameraPosition(builder.build());
+
+            mMap.animateCamera(update);
+        }
+    }
+
+    private void addMarker(double latitude, double  longitude) {
+
+        LatLng latLng = new LatLng(latitude, longitude);
+        Marker marker =mMap.addMarker(new MarkerOptions().position(latLng));
+        Location location = new Location("");
+        location.setLatitude(marker.getPosition().latitude);
+        location.setLongitude(marker.getPosition().longitude);
+        marker.showInfoWindow();
+        moveMap(latitude, longitude);
     }
 }

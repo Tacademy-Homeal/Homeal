@@ -14,10 +14,10 @@ import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 import com.sm.ej.nk.homeal.adapter.CkDetailAdapter;
 import com.sm.ej.nk.homeal.data.CalendarItem;
+import com.sm.ej.nk.homeal.data.CkDetailData;
 import com.sm.ej.nk.homeal.data.CkDetailMenuData;
 import com.sm.ej.nk.homeal.data.CkInfoResult;
 import com.sm.ej.nk.homeal.data.EtHomeData;
-import com.sm.ej.nk.homeal.data.User;
 import com.sm.ej.nk.homeal.fragment.EtHomeFragment;
 import com.sm.ej.nk.homeal.manager.CalendarManager;
 import com.sm.ej.nk.homeal.manager.NetworkManager;
@@ -31,7 +31,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class InfoCkDetailActivity extends AppCompatActivity implements CkDetailAdapter.OnDetailAdapterClickListener{
+public class InfoCkDetailActivity extends AppCompatActivity implements CkDetailAdapter.OnDetailAdapterClickListener, CkDetailAdapter.OnMapClickListener{
 
     @BindView(R.id.toobar_ck_detail)
     Toolbar toolbar;
@@ -47,7 +47,6 @@ public class InfoCkDetailActivity extends AppCompatActivity implements CkDetailA
 
     @BindView(R.id.fab_send)
     FloatingActionButton fabSend;
-
 
     EtHomeData etHomeData;
 
@@ -93,8 +92,6 @@ public class InfoCkDetailActivity extends AppCompatActivity implements CkDetailA
             }
         });
 
-
-
         CkPageCheckRequest request = new CkPageCheckRequest(this, etHomeData.getId());
         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<CkInfoResult>() {
             @Override
@@ -103,6 +100,7 @@ public class InfoCkDetailActivity extends AppCompatActivity implements CkDetailA
                 CalendarManager.clearInstance();
                 mAdapter.setResult(result);
                 mAdapter.setOnDetailAdapterClickListener(InfoCkDetailActivity.this);
+                mAdapter.setOnMapClickListener(InfoCkDetailActivity.this);
                 rv.setAdapter(mAdapter);
             }
             @Override
@@ -113,17 +111,10 @@ public class InfoCkDetailActivity extends AppCompatActivity implements CkDetailA
             }
         });
 
-
-
-
         fabChat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(InfoCkDetailActivity.this, ChattingActivity.class);
-                User user = new User();
-                user.setId(Long.parseLong(etHomeData.getId()));
-                intent.putExtra(EXTRA_USER,user);
-                startActivity(intent);
+
             }
         });
 
@@ -145,7 +136,7 @@ public class InfoCkDetailActivity extends AppCompatActivity implements CkDetailA
             }
         });
     }
-    public static final String EXTRA_USER = "user";
+
     public static final String INTENT_RESERVE_MENU = "rrrr";
     public static final String INTENT_RESERVE_CALENDAR= "www";
     public static final String INTENT_RESERVE_CKID = "eeee";
@@ -155,6 +146,10 @@ public class InfoCkDetailActivity extends AppCompatActivity implements CkDetailA
 
     }
 
-
-
+    @Override
+    public void onMapClick(View view, CkDetailData data) {
+        Intent intent = new Intent(InfoCkDetailActivity.this, MapActivity.class);
+        intent.putExtra(MapActivity.INTENT_MAP, data);
+        startActivity(intent);
+    }
 }

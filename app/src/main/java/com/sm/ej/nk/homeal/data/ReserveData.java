@@ -13,6 +13,24 @@ public class ReserveData {
     private String uimage;//eater image
     private String mname;// memu name
     private int sid;// cooker id
+    private int grade;
+    private int rid; // reservation id
+
+    public int getGrade() {
+        return grade;
+    }
+
+    public void setGrade(int grade) {
+        this.grade = grade;
+    }
+
+    public int getRid() {
+        return rid;
+    }
+
+    public void setRid(int rid) {
+        this.rid = rid;
+    }
 
     public int getRpax() {
         return this.rpax;

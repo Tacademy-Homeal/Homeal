@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.sm.ej.nk.homeal.adapter.ViewPagerFragmentAdapter;
 import com.sm.ej.nk.homeal.fragment.ChatListFragment;
@@ -86,19 +85,22 @@ public class EtMainActivity extends AppCompatActivity {
                 break;
             }
             case R.id.btn_et_main_search: {
-                searchpopupWindow = SearchPopupWindow.getInstance(this);
-                searchpopupWindow.setOnSearchPopupClickListener(new SearchPopupWindow.OnSearchPopupClickListener() {
-                    @Override
-                    public void onSearchPopupClick(View view) {
-                        viewPager.setCurrentItem(0);
-                        tabLayout.setupWithViewPager(viewPager);
-                        for(int i = 0; i < icon.length; i++){
-                            tabLayout.getTabAt(i).setIcon(icon[i]);
-                        }
-                    }
-                });
+//                searchpopupWindow = SearchPopupWindow.getInstance(this);
+//                searchpopupWindow.setOnSearchPopupClickListener(new SearchPopupWindow.OnSearchPopupClickListener() {
+//                    @Override
+//                    public void onSearchPopupClick(View view) {
+//                        viewPager.setCurrentItem(0);
+//                        tabLayout.setupWithViewPager(viewPager);
+//                        for(int i = 0; i < icon.length; i++){
+//                            tabLayout.getTabAt(i).setIcon(icon[i]);
+//                        }
+//                    }
+//                });
+//
+//                searchpopupWindow.showAsDropDown(toolbar);
+                Intent intent = new Intent(EtMainActivity.this, SearchActivity.class);
+                startActivity(intent);
 
-                searchpopupWindow.showAsDropDown(toolbar);
                 break;
             }
         }

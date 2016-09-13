@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.sm.ej.nk.homeal.DividerItemDecoration;
 import com.sm.ej.nk.homeal.R;
@@ -20,6 +21,7 @@ import com.sm.ej.nk.homeal.data.ReserveData;
 import com.sm.ej.nk.homeal.manager.NetworkManager;
 import com.sm.ej.nk.homeal.manager.NetworkRequest;
 import com.sm.ej.nk.homeal.request.EtReserveRequest;
+import com.sm.ej.nk.homeal.request.ReservationListRequest;
 
 import java.util.List;
 
@@ -45,7 +47,6 @@ public class EtReserveFragment extends Fragment {
     private static final int TYPE_END = 7;
 
 
-
     public static EtReserveFragment createInstance() {
         final EtReserveFragment pageFragment = new EtReserveFragment();
         final Bundle bundle = new Bundle();
@@ -69,6 +70,20 @@ public class EtReserveFragment extends Fragment {
 
         EtReserveView.setAdapter(mAdapter);
         EtReserveView.setLayoutManager(manager);
+
+        ReservationListRequest request = new ReservationListRequest(getContext());
+        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<List<ReserveData>>>() {
+            @Override
+            public void onSuccess(NetworkRequest<NetworkResult<List<ReserveData>>> request, NetworkResult<List<ReserveData>> result) {
+                datas = result.getResult();
+                mAdapter.addAll(datas);
+            }
+
+            @Override
+            public void onFail(NetworkRequest<NetworkResult<List<ReserveData>>> request, int errorCode, String errorMessage, Throwable e) {
+                Toast.makeText(getContext(), "" + errorMessage, Toast.LENGTH_SHORT).show();
+            }
+        });
 
 
 //
@@ -117,7 +132,7 @@ public class EtReserveFragment extends Fragment {
 
     }
 
-    private void showDialog(){
+    private void showDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
             @Override
@@ -125,7 +140,7 @@ public class EtReserveFragment extends Fragment {
                 dialogInterface.dismiss();
             }
         });
-        builder.setNegativeButton("취소",new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.dismiss();

@@ -38,10 +38,10 @@ public class EtMyPageFragment extends Fragment {
 
     @BindView(R.id.text_et_type)
     TextView ettypeView;
-
-    @BindView(R.id.text_et_point)
-    TextView etpointView;
-
+//
+//    @BindView(R.id.text_et_point)
+//    TextView etpointView;
+//
 
     PersonalData data;
     public static final String ET_DATA = "eater_data";

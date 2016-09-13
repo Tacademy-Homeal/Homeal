@@ -38,7 +38,7 @@ public class GalleryManager {
         Cursor cursor = context.getContentResolver().query(uri, projection, null, null, sort);
         int columIndexData = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA);
         while (cursor.moveToNext()){
-            GalleryItemData itemData = new GalleryItemData(cursor.getString(columIndexData), false);
+            GalleryItemData itemData = new GalleryItemData(cursor.getString(columIndexData));
             photoList.add(itemData);
         }
         cursor.close();

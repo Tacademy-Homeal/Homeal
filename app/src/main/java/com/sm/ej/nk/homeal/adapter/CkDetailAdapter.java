@@ -22,7 +22,7 @@ import java.util.List;
 /**
  * Created by Tacademy on 2016-08-29.
  */
-public class CkDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements CkDetailHeaderViewHolder.OnCalendarHeaderViewClickListener, CkDetailItemViewHolder.OnMenuSwipeClickLIstener{
+public class CkDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements CkDetailHeaderViewHolder.OnCalendarHeaderViewClickListener, CkDetailItemViewHolder.OnMenuSwipeClickLIstener, CkDetailHeaderViewHolder.OnMapClickListener{
     CkDetailData datas;
     CkDetailItemViewHolder menuholder;
     CkDetailHeaderViewHolder headerholder;
@@ -104,6 +104,7 @@ public class CkDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             headerholder.setData(datas);
             headerholder.setSchedule(scheduleList);
             headerholder.setOnCalendarHeaderViewClickListener(this);
+            headerholder.setOnMapClickListener(this);
         }else{
             menuholder = (CkDetailItemViewHolder)holder;
             menuholder.setData(menuList.get(position-1));
@@ -118,6 +119,13 @@ public class CkDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             size=menuList.size()+1;
         }
         return size;
+    }
+
+    @Override
+    public void onMapClick(View view, CkDetailData data) {
+        if(mapListener!=null){
+            mapListener.onMapClick(view, data);
+        }
     }
 
     @Override
@@ -144,6 +152,14 @@ public class CkDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         if(menuListener!=null){
             menuListener.onMenuSwipeClick(view, data, position, select);
         }
+    }
+
+    public interface OnMapClickListener{
+        public void onMapClick(View view, CkDetailData data);
+    }
+    OnMapClickListener mapListener;
+    public void setOnMapClickListener(OnMapClickListener listener){
+        this.mapListener = listener;
     }
 
     public interface OnDetailAdapterClickListener{

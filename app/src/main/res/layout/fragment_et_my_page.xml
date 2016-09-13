@@ -103,17 +103,4 @@
             android:textSize="12dp" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/text_et_point"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/text_et_name"
-        android:layout_marginLeft="37dp"
-        android:layout_marginStart="37dp"
-        android:layout_toEndOf="@+id/text_et_name"
-        android:layout_toRightOf="@+id/text_et_name"
-        android:gravity="center_horizontal"
-        android:text="Large Text"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
 </RelativeLayout>

@@ -16,7 +16,8 @@
             <TextView
                 android:id="@+id/text_ck_reserve_number"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:text="resnumber"/>
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/image_ck_reserve_picture"
@@ -76,6 +77,8 @@
                     style="@style/styleRatingBar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
+
+
             </LinearLayout>
 
             <LinearLayout
