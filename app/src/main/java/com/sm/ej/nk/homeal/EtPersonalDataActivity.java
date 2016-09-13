@@ -9,18 +9,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.mukesh.countrypicker.fragments.CountryPicker;
+import com.mukesh.countrypicker.interfaces.CountryPickerListener;
 import com.sm.ej.nk.homeal.data.NetworkResult;
 import com.sm.ej.nk.homeal.data.NetworkResultTemp;
 import com.sm.ej.nk.homeal.data.PersonalData;
@@ -39,6 +39,11 @@ import butterknife.OnClick;
 public class EtPersonalDataActivity extends AppCompatActivity {
     private int iYear, iMonth, iDay;
     static final int DATE_DIALOG_ID = 0;
+    PersonalData data;
+    public static final int MODE_GET_IMAGE = 5;
+    private static final int GET_IMAGE = 65;
+    private File imageFile = null;
+    private CountryPicker countryPicker;
 
     @BindView(R.id.radioGroup)
     RadioGroup radioGroup;
@@ -49,14 +54,8 @@ public class EtPersonalDataActivity extends AppCompatActivity {
     @BindView(R.id.edit_et_last_name)
     EditText nameEdit;
 
-    @BindView(R.id.edit_et_first_name)
-    EditText ageEdit;
-
     @BindView(R.id.edit_et_introduce)
     EditText introduceEdit;
-
-//    @BindView(R.id.spinner_et_country_phone)
-//    Spinner countryphoneSpinner;
 
     @BindView(R.id.edit_et_phone)
     EditText phoneEdit;
@@ -67,8 +66,8 @@ public class EtPersonalDataActivity extends AppCompatActivity {
     @BindView(R.id.btn_personal_change)
     Button btnChange;
 
-    @BindView(R.id.spinner_et_country)
-    Spinner countrySpinner;
+    @BindView(R.id.text_et_country)
+    TextView countryText;
 
     @BindView(R.id.radio_et_male)
     RadioButton maleRadio;
@@ -81,15 +80,6 @@ public class EtPersonalDataActivity extends AppCompatActivity {
 
     @BindView(R.id.image_et_picture)
     ImageView etpictureView;
-
-    ArrayAdapter<String> countryAdapter;
-//    ArrayAdapter<String> countryphoneAdapter;
-
-    PersonalData data;
-
-    public static final int MODE_GET_IMAGE = 5;
-    private static final int GET_IMAGE = 65;
-    private File imageFile = null;
 
     @OnClick(R.id.image_et_picture)
     public void onetGallery() {
@@ -132,67 +122,44 @@ public class EtPersonalDataActivity extends AppCompatActivity {
                 introduceEdit.setText(data.getIntroduce());
                 phoneEdit.setText(data.getPhone());
                 birthText.setText(data.getBirth());
-                countrySpinner.setSelection(data.getCountry());
-
+                countryText.setText(data.getCountry());
 
                 if (data.getGender().equals("Male")) {
                     radioGroup.check(R.id.radio_et_male);
                 } else {
                     radioGroup.check(R.id.radio_et_female);
                 }
-
                 Glide.with(etpictureView.getContext()).load(data.getImage()).into(etpictureView);
             }
-
             @Override
             public void onFail(NetworkRequest<NetworkResult<PersonalData>> request, int errorCode, String errorMessage, Throwable e) {
-
             }
         });
-        settingCalendar();
-    }
-
-
-    //setting
-    private void settingCalendar() {
-        countryAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.country));
-        countryAdapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
-        countrySpinner.setAdapter(countryAdapter);
-
-//        countryphoneAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.country_phonenum));
-//        countryphoneAdapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
-//        countryphoneSpinner.setAdapter(countryphoneAdapter);
-
-//        ArrayList<String> monthList = new ArrayList<>();
-//        for (int month = 1; month < 13; month++) {
-//            monthList.add(String.valueOf(month));
-//        }
-//        final ArrayAdapter<String> monthAdatper = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, monthList);
-//        monthSpinner.setAdapter(monthAdatper);
-//
-//        ArrayList<String> dayList = new ArrayList<>();
-//        for (int day = 1; day < 32; day++) {
-//            dayList.add(String.valueOf(day));
-//        }
-//        ArrayAdapter<String> dayAdatper = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, dayList);
-//        daySpinner.setAdapter(dayAdatper);
-//
-//        ArrayList<String> yearList = new ArrayList<>();
-//        for (int year = 1930; year < 2031; year++) {
-//            yearList.add(String.valueOf(year));
-//        }
-//        ArrayAdapter<String> yearAdatper = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, yearList);
-//        yearSpinner.setAdapter(yearAdatper);
-
+        countryPicker = CountryPicker.newInstance(getString(R.string.select_country));
+        setListner();
         isPersonalData(false);
         btnChangeFinish.setVisibility(View.GONE);
+    }
+
+    private void setListner() {
+        countryPicker.setListener(new CountryPickerListener() {
+            @Override
+            public void onSelectCountry(String name, String code, String dialCode, int flagDrawableResID) {
+                countryText.setText(name);
+                countryPicker.dismiss();
+            }
+        });
+    }
+
+    @OnClick(R.id.text_et_country)
+    public void onCountry(){
+        countryPicker.show(getSupportFragmentManager(), "COUNTRY_PICKER");
     }
 
     @OnClick(R.id.text_et_birth)
     public void onBirth() {
         showDialog(DATE_DIALOG_ID);
     }
-
     protected Dialog onCreateDialog(int id) {
         switch (id) {
             case DATE_DIALOG_ID:
@@ -201,7 +168,6 @@ public class EtPersonalDataActivity extends AppCompatActivity {
         }
         return null;
     }
-
 
     private DatePickerDialog.OnDateSetListener mDateSetListener =
             new DatePickerDialog.OnDateSetListener() {
@@ -225,18 +191,17 @@ public class EtPersonalDataActivity extends AppCompatActivity {
     @OnClick(R.id.btn_et_changefinish)
     public void onChangefinish() {
         String gender;
-        if (radioGroup.getCheckedRadioButtonId()==R.id.radio_ck_male){
+        if (radioGroup.getCheckedRadioButtonId() == R.id.radio_ck_male) {
             gender = "Male";
-        }else{
+        } else {
             gender = "Female";
         }
-        EtInfoupdateRequest request = new EtInfoupdateRequest(EtPersonalDataActivity.this, nameEdit.getText().toString(), birthText.getText().toString(), phoneEdit.getText().toString(), introduceEdit.getText().toString(), gender, imageFile);
+        EtInfoupdateRequest request = new EtInfoupdateRequest(EtPersonalDataActivity.this, nameEdit.getText().toString(), birthText.getText().toString(), phoneEdit.getText().toString(), introduceEdit.getText().toString(), gender, imageFile, countryText.getText().toString());
         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
                 Toast.makeText(EtPersonalDataActivity.this, "수정완료", Toast.LENGTH_SHORT).show();
             }
-
             @Override
             public void onFail(NetworkRequest<NetworkResultTemp> request, int errorCode, String errorMessage, Throwable e) {
                 Toast.makeText(EtPersonalDataActivity.this, "" + errorMessage, Toast.LENGTH_SHORT).show();
@@ -258,18 +223,12 @@ public class EtPersonalDataActivity extends AppCompatActivity {
 
     public void isPersonalData(boolean s) {
         nameEdit.setEnabled(s);
-        ageEdit.setEnabled(s);
         introduceEdit.setEnabled(s);
         phoneEdit.setEnabled(s);
-//        monthSpinner.setEnabled(s);
-//        daySpinner.setEnabled(s);
-//        yearSpinner.setEnabled(s);
         birthText.setEnabled(s);
-        countrySpinner.setEnabled(s);
+        countryText.setEnabled(s);
         maleRadio.setEnabled(s);
         femaleRadio.setEnabled(s);
         etpictureView.setEnabled(s);
-//        countryphoneSpinner.setEnabled(s);
     }
-
 }

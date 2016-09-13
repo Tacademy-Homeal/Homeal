@@ -3,6 +3,7 @@ package com.sm.ej.nk.homeal.request;
 import android.content.Context;
 
 import com.google.gson.reflect.TypeToken;
+import com.sm.ej.nk.homeal.HomealApplication;
 import com.sm.ej.nk.homeal.data.NetworkResultTemp;
 
 import java.lang.reflect.Type;
@@ -19,20 +20,31 @@ public class SignupRequest extends AbstractRequest<NetworkResultTemp> {
 
     Request request;
 
-    public SignupRequest(Context context, String name, String birth, String phone, String introduce, String gender) {
+    public SignupRequest(Context context, String name, String birth, String phone, String introduce, String gender, String country) {
         HttpUrl url = getBaseHttpsUrlBuilder()
                 .addPathSegment("users")
                 .build();
 
-
+        boolean iscooker = HomealApplication.isCooker();
         FormBody.Builder builder = new FormBody.Builder();
-                builder.add("birth", birth)
-                .add("introduce",introduce)
-                .add("gender",gender)
-                .add("country","korea")
-                .add("phone",phone)
-                .add("type","cooker")
-                .build();
+
+        if(iscooker == true){
+            builder.add("birth", birth)
+                    .add("introduce",introduce)
+                    .add("gender",gender)
+                    .add("country", country)
+                    .add("phone",phone)
+                    .add("type","cooker")
+                    .build();
+        }else{
+            builder.add("birth", birth)
+                    .add("introduce",introduce)
+                    .add("gender",gender)
+                    .add("country","korea")
+                    .add("phone",phone)
+                    .add("type","eater")
+                    .build();
+        }
 
         RequestBody body = builder.build();
 

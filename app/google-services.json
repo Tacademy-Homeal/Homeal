@@ -1,20 +1,35 @@
 {
   "project_info": {
-    "project_number": "136681481213",
-    "project_id": "homeal-141109"
+    "project_number": "183028635865",
+    "firebase_url": "https://homeal-846e3.firebaseio.com",
+    "project_id": "homeal-846e3",
+    "storage_bucket": "homeal-846e3.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:136681481213:android:4224e9ffce0d8263",
+        "mobilesdk_app_id": "1:183028635865:android:4224e9ffce0d8263",
         "android_client_info": {
           "package_name": "com.sm.ej.nk.homeal"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "183028635865-6fou9aafsksummaa8bmegbjjcev3ruks.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sm.ej.nk.homeal",
+            "certificate_hash": "77E346B1F07B82378C6BAE4FA6C09D5AFE8905A6"
+          }
+        },
+        {
+          "client_id": "183028635865-v67mmb2e8qo94j2j6nfn6ghvki2ecdq5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
-          "current_key": "AIzaSyA_aKILZ6wfKY3JNdvD1Sjv-wZMlVUKJC0"
+          "current_key": "AIzaSyAVZ4Bq_iTVZ8DMmzWv9FsjcE399LJ6fi0"
         }
       ],
       "services": {
@@ -22,11 +37,16 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "183028635865-v67mmb2e8qo94j2j6nfn6ghvki2ecdq5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
-          "status": 1
+          "status": 2
         }
       }
     }

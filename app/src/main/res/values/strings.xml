@@ -148,4 +148,5 @@
     <string name="radio_morning">아침</string>
     <string name="radio_launch">점심</string>
     <string name="radio_dinner">저녁</string>
+    <string name="select_country">나라를 선택하세요.</string>
 </resources>

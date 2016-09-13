@@ -41,26 +41,18 @@
         android:layout_below="@+id/textView2"
         android:layout_alignTop="@+id/image_sign_up_person"
         android:layout_marginLeft="11dp"
+        android:layout_marginRight="16dp"
         android:layout_toRightOf="@+id/image_sign_up_person">
 
         <EditText
             android:id="@+id/edit_frist_name"
-            android:layout_width="84dp"
+            android:layout_width="match_parent"
             android:layout_height="32dp"
             android:background="@drawable/edittext_bg"
             android:hint=" Name"
             android:textColorHint="@color/white"
             android:textColor="@color/white" />
 
-        <EditText
-            android:id="@+id/edit_second_name"
-            android:layout_width="84dp"
-            android:textColorHint="@color/white"
-            android:layout_height="32dp"
-            android:layout_marginLeft="11dp"
-            android:background="@drawable/edittext_bg"
-            android:hint=" Name"
-            android:textColor="@color/white" />
     </LinearLayout>
 
 
@@ -139,12 +131,13 @@
             android:hint=" Phone"
             android:inputType="phone" />
 
-        <Spinner
-            android:id="@+id/spinner_singup_country"
+        <TextView
+            android:id="@+id/text_signup_country"
             android:layout_width="0dp"
             android:layout_height="32dp"
             android:layout_weight="0.5"
             android:layout_marginLeft="11dp"
+            android:text=" Country"
             android:background="@drawable/edittext_bg"
             android:textColor="@color/white" />
     </LinearLayout>
