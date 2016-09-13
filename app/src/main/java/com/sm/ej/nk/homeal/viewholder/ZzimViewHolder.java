@@ -123,7 +123,7 @@ public class ZzimViewHolder extends RecyclerView.ViewHolder {
         if(data.getIsBookmark()==0){
             zzimjjimImage.setImageResource(R.drawable.homeal_heart);
         }else{
-            zzimjjimImage.setImageResource(R.drawable.homeal_heart_fill);
+            zzimjjimImage.setImageResource(R.drawable.ic_favorite_red);
         }
     }
 }

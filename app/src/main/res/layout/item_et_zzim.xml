@@ -135,12 +135,14 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/image_et_zzim_review" />
+                        android:id="@+id/image_et_zzim_review"
+                        android:src="@drawable/homeal_review"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/text_et_zzim_reviewcount" />
+                        android:id="@+id/text_et_zzim_reviewcount"
+                        />
                 </LinearLayout>
 
             </LinearLayout>

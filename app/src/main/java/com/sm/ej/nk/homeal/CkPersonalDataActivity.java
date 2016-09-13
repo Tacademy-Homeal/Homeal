@@ -230,7 +230,7 @@ public class CkPersonalDataActivity extends AppCompatActivity {
         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
-                Toast.makeText(CkPersonalDataActivity.this, "수정완료", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CkPersonalDataActivity.this, ""+longitude, Toast.LENGTH_SHORT).show();
             }
 
             @Override

@@ -59,7 +59,6 @@ public class EtZzimActivity extends AppCompatActivity implements ZzimAdapter.OnJ
 
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(mAdapter);
-//        initData();
 
         ZzimListRequest request = new ZzimListRequest(this);
         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<List<EtHomeData>>>() {

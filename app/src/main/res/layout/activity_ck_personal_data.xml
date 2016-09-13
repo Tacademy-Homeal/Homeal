@@ -21,12 +21,14 @@
     <Button
         android:id="@+id/btn_personal_change"
         style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginRight="16dp"
         android:layout_alignEnd="@+id/appbar_ck_main"
         android:layout_alignRight="@+id/appbar_ck_main"
         android:layout_below="@+id/appbar_ck_main"
-        android:text="@string/change" />
+        android:background="@drawable/btn_edit" />
 
     <TextView
         android:id="@+id/text_profile"
