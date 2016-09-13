@@ -51,7 +51,7 @@ public class CalendarManager {
         for(int i=0; i<data.size(); i++){
             Object o = data.get(i);
             if(!(o instanceof CalendarComparable)){
-                throw  new NoComparableObjectException("asdadasd");
+                throw  new NoComparableObjectException("Object not implements CalendarComparable");
             }
         }
         mData.clear();
@@ -100,7 +100,7 @@ public class CalendarManager {
 
         mCalendar.set(Calendar.DAY_OF_MONTH, 1);
         int datOfWeek = mCalendar.get(Calendar.DAY_OF_WEEK);
-        int thisMonthLastDay = mCalendar.getActualMaximum(Calendar.DAY_OF_MONTH); // 마지막 일31일
+        int thisMonthLastDay = mCalendar.getActualMaximum(Calendar.DAY_OF_MONTH);
 
         mCalendar.add(Calendar.MONTH, -1);
         int lastMonthLastDay = mCalendar.getActualMaximum(Calendar.DAY_OF_MONTH);
