@@ -67,15 +67,10 @@ public class EtMainActivity extends AppCompatActivity {
         pagerAdapter.addFragment(ChatListFragment.createInstance(), ET_CHAT);
         pagerAdapter.addFragment(EtReserveFragment.createInstance(), ET_RESERVE);
         pagerAdapter.addFragment(EtMyPageFragment.createInstance(), ET_MYPAGE);
-
-
         v.setAdapter(pagerAdapter);
-
-
     }
 
     public void moveChattigActivity() {
-
         Intent intent = new Intent(this, ChattingActivity.class);
         startActivity(intent);
     }

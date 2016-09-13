@@ -1,8 +1,10 @@
 package com.sm.ej.nk.homeal.fragment;
 
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +13,7 @@ import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -24,7 +27,7 @@ import com.sm.ej.nk.homeal.HomealApplication;
 import com.sm.ej.nk.homeal.LoginActivity;
 import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.data.FontData;
-import com.sm.ej.nk.homeal.data.NetworkResultTemp;
+import com.sm.ej.nk.homeal.data.NetworkResult;
 import com.sm.ej.nk.homeal.manager.FontManager;
 import com.sm.ej.nk.homeal.manager.NetworkManager;
 import com.sm.ej.nk.homeal.manager.NetworkRequest;
@@ -42,8 +45,6 @@ import butterknife.OnClick;
  * A simple {@link Fragment} subclass.
  */
 public class LoginFragment extends Fragment {
-
-
     @BindView(R.id.radio_group_login)
     RadioGroup radioGroup;
 
@@ -68,6 +69,16 @@ public class LoginFragment extends Fragment {
         // Required empty public constructor
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        callbackManager = CallbackManager.Factory.create();
+        AccessToken token = AccessToken.getCurrentAccessToken();
+        if (token != null) {
+            LoginManager.getInstance().logOut();
+        }
+        PropertyManager.getInstance().setFacebookId("");
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -75,12 +86,8 @@ public class LoginFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_login, container, false);
         ButterKnife.bind(this, view);
-        callbackManager = CallbackManager.Factory.create();
         mLoginManager = LoginManager.getInstance();
-
         imageSet();
-
-
         return view;
     }
     private void imageSet(){
@@ -89,11 +96,6 @@ public class LoginFragment extends Fragment {
         radio_eater.setTypeface(typeface);
         radio_cooker.setTypeface(typeface);
     }
-/*
-    @OnClick(R.id.btn_login_ft_ok)
-    public void onLoginOkBtn() {
-
-    }*/
 
     @OnClick(R.id.btn_login_facebook)
     public void onClickFacebook() {
@@ -111,37 +113,26 @@ public class LoginFragment extends Fragment {
                 break;
             }
         }
-
-      //  loginFacebook();
-
-
-        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
-            @Override
-            public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
-                ((LoginActivity) getActivity()).changeTos();
-            }
-
-            @Override
-            public void onFail(NetworkRequest<NetworkResultTemp> request, int errorCode, String errorMessage, Throwable e) {
-                e.printStackTrace();
-            }
-        });
-
+        loginFacebook();
     }
 
     private void loginFacebook() {
+        AccessToken token = AccessToken.getCurrentAccessToken();
+        if (token != null) {
+            return;
+        }
         mLoginManager.setDefaultAudience(DefaultAudience.FRIENDS);
         mLoginManager.setLoginBehavior(LoginBehavior.NATIVE_WITH_FALLBACK);
         mLoginManager.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                processAfterFacebookLogin();
-            }
+                @Override
+                public void onSuccess(LoginResult loginResult) {
+                    processAfterFacebookLogin();
+                }
 
-            @Override
-            public void onCancel() {
+                @Override
+                public void onCancel() {
 
-            }
+                }
 
             @Override
             public void onError(FacebookException error) {
@@ -158,28 +149,35 @@ public class LoginFragment extends Fragment {
             String token = accessToken.getToken();
             String regid = PropertyManager.getInstance().getRegistartionId();
             FacebookLoginRequest request = new FacebookLoginRequest(getContext(), token, regid);
-            ((LoginActivity)getActivity()).changeTos();
 
+            NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<String>>() {
 
-//            NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<Object>>() {
-//
-//                @Override
-//                public void onSuccess(NetworkRequest<NetworkResult<Object>> request, NetworkResult<Object> result) {
-//                    if (result.getCode() == 1) {
-//                        String facebookId = accessToken.getUserId();
-//                        PropertyManager.getInstance().setFacebookId(facebookId);
-//                        ((LoginActivity) getActivity()).moveMainActivity();
-//                    } else if (result.getCode() == 3){
-//                        FacebookUser user = (FacebookUser)result.getResult();
-//                        ((LoginActivity)getActivity()).changeTos();
-//                    }
-//                }
-//
-//                @Override
-//                public void onFail(NetworkRequest<NetworkResult<Object>> request, int errorCode, String errorMessage, Throwable e) {
-//                    Toast.makeText(getContext(), "login fail", Toast.LENGTH_SHORT).show();
-//                }
-//            });
+                @Override
+                public void onSuccess(NetworkRequest<NetworkResult<String>> request, NetworkResult<String> result) {
+                    if (result.getCode() == 1) {
+                        if(result.getResult().equals("empty")){
+                            ((LoginActivity)getActivity()).changeTos();
+                        }else{
+                            String facebookId = accessToken.getUserId();
+                            PropertyManager.getInstance().setFacebookId(facebookId);
+                            ((LoginActivity) getActivity()).moveMainActivity();
+                        }
+                    } else if (result.getCode() == 2){
+                        ((LoginActivity)getActivity()).changeTos();
+                    }
+                }
+
+                @Override
+                public void onFail(NetworkRequest<NetworkResult<String>> request, int errorCode, String errorMessage, Throwable e) {
+                    Toast.makeText(getContext(), "login fail", Toast.LENGTH_SHORT).show();
+                }
+            });
         }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 }

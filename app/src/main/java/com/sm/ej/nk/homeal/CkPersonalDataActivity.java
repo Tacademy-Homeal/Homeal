@@ -5,13 +5,9 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -47,7 +43,8 @@ public class CkPersonalDataActivity extends AppCompatActivity {
     //    ArrayAdapter<String> countryphoneAdapter;
     private int iYear, iMonth, iDay;
     static final int DATE_DIALOG_ID = 0;
-    private File imageFile;
+    private File imageFile = null;
+    double latitude, longitude;
 
 
     public static Context mContext;
@@ -127,21 +124,22 @@ public class CkPersonalDataActivity extends AppCompatActivity {
 //        countryphoneAdapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
 //        countryphoneSpinner.setAdapter(countryphoneAdapter);
 
-        setUserImage(ckdata);
 
-        if (savedInstanceState != null) {
-            String path = savedInstanceState.getString(FIELD_SAVE_FILE);
-            if (!TextUtils.isEmpty(path)) {
-                savedFile = new File(path);
-            }
-            path = savedInstanceState.getString(FIELD_UPLOAD_FILE);
-            if (!TextUtils.isEmpty(path)) {
-                uploadFile = new File(path);
-                Glide.with(this)
-                        .load(uploadFile)
-                        .into(ckpictureView);
-            }
-        }
+        setUserImage(ckdata);
+//
+//        if (savedInstanceState != null) {
+//            String path = savedInstanceState.getString(FIELD_SAVE_FILE);
+//            if (!TextUtils.isEmpty(path)) {
+//                savedFile = new File(path);
+//            }
+//            path = savedInstanceState.getString(FIELD_UPLOAD_FILE);
+//            if (!TextUtils.isEmpty(path)) {
+//                uploadFile = new File(path);
+//                Glide.with(this)
+//                        .load(uploadFile)
+//                        .into(ckpictureView);
+//            }
+//        }
 
         final Calendar objTime = Calendar.getInstance();
         iYear = objTime.get(Calendar.YEAR);
@@ -154,18 +152,14 @@ public class CkPersonalDataActivity extends AppCompatActivity {
         mContext = this;
     }
 
-    public static final int MODE_GET_IMAGE=0;
-    public static final int INTENT_GALLERY = 10;
+    public static final int MODE_GET_IMAGE = 3;
+    private static final int GET_IMAGE = 35;
 
     @OnClick(R.id.image_ck_picture)
     public void onckGallery() {
-//        Intent intent = new Intent(CkPersonalDataActivity.this, GalleryActivity.class);
-//        intent.putExtra(GalleryActivity.INTENT_MODE, MODE_GET_IMAGE);
-//        startActivityForResult(intent, INTENT_GALLERY);
-
-        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        intent.setType("image/*");
-        startActivityForResult(intent, MODE_GET_IMAGE);
+        Intent intent = new Intent(CkPersonalDataActivity.this, GalleryActivity.class);
+        intent.putExtra(GalleryActivity.INTENT_MODE, MODE_GET_IMAGE);
+        startActivityForResult(intent, GET_IMAGE);
     }
 
     static final int ADDRESS_SEARCH = 1;
@@ -176,22 +170,11 @@ public class CkPersonalDataActivity extends AppCompatActivity {
         startActivityForResult(intent, ADDRESS_SEARCH);
     }
 
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        if (savedFile != null) {
-            outState.putString(FIELD_SAVE_FILE, savedFile.getAbsolutePath());
-        }
-        if (uploadFile != null) {
-            outState.putString(FIELD_UPLOAD_FILE, uploadFile.getAbsolutePath());
-        }
-    }
-
-    private static final String FIELD_SAVE_FILE = "savedfile";
-    private static final String FIELD_UPLOAD_FILE = "uploadfile";
-
-    File savedFile=null;
-    File uploadFile=null;
+//    private static final String FIELD_SAVE_FILE = "savedfile";
+//    private static final String FIELD_UPLOAD_FILE = "uploadfile";
+//
+//    File savedFile = null;
+//    File uploadFile = null;
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
@@ -200,19 +183,15 @@ public class CkPersonalDataActivity extends AppCompatActivity {
                 String address = intent.getStringExtra("address");
                 TranslateManager.getInstance().translateKoreantoEng(address);
 //                addressText.setText(address);
+                latitude = intent.getExtras().getDouble("latitude");
+                longitude = intent.getExtras().getDouble("longitude");
             }
         }
-        if (requestCode == MODE_GET_IMAGE) {
+        if (requestCode == GET_IMAGE) {
             if (resultCode == Activity.RESULT_OK) {
-                Uri uri = intent.getData();
-//                ckpictureView.setImageURI(uri);
-//                Glide.with(this).load(uri).into(ckpictureView);
-                Cursor c = getContentResolver().query(uri, new String[]{MediaStore.Images.Media.DATA}, null, null, null);
-                if (c.moveToNext()) {
-                    String path = c.getString(c.getColumnIndex(MediaStore.Images.Media.DATA));
-                    imageFile = new File(path);
-                    Glide.with(this).load(imageFile).into(ckpictureView);
-                }
+                String imagePath = intent.getStringExtra(GalleryActivity.IMAGE_PATH);
+                imageFile = new File(imagePath);
+                Glide.with(this).load(imageFile).into(ckpictureView);
             }
         }
         super.onActivityResult(requestCode, resultCode, intent);
@@ -282,11 +261,12 @@ public class CkPersonalDataActivity extends AppCompatActivity {
         } else {
             gender = "Female";
         }
-        CkInfoupdateRequest request = new CkInfoupdateRequest(CkPersonalDataActivity.this, nameEdit.getText().toString(), birthText.getText().toString(), phoneEdit.getText().toString(), introduceEdit.getText().toString(), addressText.getText().toString(), gender, imageFile);
+
+        CkInfoupdateRequest request = new CkInfoupdateRequest(CkPersonalDataActivity.this, nameEdit.getText().toString(), birthText.getText().toString(), phoneEdit.getText().toString(), introduceEdit.getText().toString(), addressText.getText().toString(), gender, latitude, longitude, imageFile);
         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
-                Toast.makeText(CkPersonalDataActivity.this, "수정성공", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CkPersonalDataActivity.this, "수정완료", Toast.LENGTH_SHORT).show();
             }
 
             @Override

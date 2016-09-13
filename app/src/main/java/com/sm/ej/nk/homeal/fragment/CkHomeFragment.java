@@ -79,7 +79,7 @@ public class CkHomeFragment extends Fragment implements CkMainActivity.OnFabClic
         mAdapter = new CkHomeAdapter(getContext());
         mAdapter.setOnReviewClickListener(this);
 
-        CkPageCheckRequest request = new CkPageCheckRequest(getContext(), "35");
+        CkPageCheckRequest request = new CkPageCheckRequest(getContext(),"35");
         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<CkInfoResult>() {
             @Override
             public void onSuccess(NetworkRequest<CkInfoResult> request, CkInfoResult result) {

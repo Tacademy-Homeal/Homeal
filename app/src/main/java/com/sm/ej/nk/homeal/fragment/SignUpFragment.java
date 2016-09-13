@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,10 +14,15 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.sm.ej.nk.homeal.LoginActivity;
 import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.data.FacebookUser;
+import com.sm.ej.nk.homeal.data.NetworkResultTemp;
+import com.sm.ej.nk.homeal.manager.NetworkManager;
+import com.sm.ej.nk.homeal.manager.NetworkRequest;
+import com.sm.ej.nk.homeal.request.SignupRequest;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -67,8 +73,6 @@ public class SignUpFragment extends Fragment {
 
     }
 
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -80,32 +84,27 @@ public class SignUpFragment extends Fragment {
 
     @OnClick(R.id.sf_ok)
     public void onSingUpOk() {
-//        if(!TextUtils.isEmpty(editText.getText().toString())){
-//        }else{
-//            showDialog();
-//        }
-//        final String gender;
-//        if (radioGroup.getCheckedRadioButtonId() == R.id.radio_ck_male) {
-//            gender = "Male";
-//        } else {
-//            gender = "Female";
-//        }
-//        SignupRequest request = new SignupRequest(getContext(), fristnameEdit.getText().toString(), birthText.getText().toString(), phoneEdit.getText().toString(), introText.getText().toString(), gender);
-//
-//        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
-//            @Override
-//            public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
-//                Toast.makeText(getContext(), "회원정보 성공", Toast.LENGTH_SHORT).show();
-//            }
-//
-//            @Override
-//            public void onFail(NetworkRequest<NetworkResultTemp> request, int errorCode, String errorMessage, Throwable e) {
-//                Toast.makeText(getContext(), "" + errorMessage, Toast.LENGTH_SHORT).show();
-//                Toast.makeText(getContext(), ""+fristnameEdit.getText().toString()+""+ birthText.getText().toString()+""+ phoneEdit.getText().toString()+""+introText.getText().toString()+""+gender,Toast.LENGTH_SHORT).show();
-//            }
-//        });
-
-        ((LoginActivity) getActivity()).moveMainActivity();
+        if(!TextUtils.isEmpty(fristnameEdit.getText().toString())){
+        }else{
+            showDialog();
+        }
+        final String gender;
+        if (radioGroup.getCheckedRadioButtonId() == R.id.radio_ck_male) {
+            gender = "Male";
+        } else {
+            gender = "Female";
+        }
+        SignupRequest request = new SignupRequest(getContext(), fristnameEdit.getText().toString(), birthText.getText().toString(), phoneEdit.getText().toString(), introText.getText().toString(), gender);
+        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
+            @Override
+            public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
+                ((LoginActivity) getActivity()).moveMainActivity();
+            }
+            @Override
+            public void onFail(NetworkRequest<NetworkResultTemp> request, int errorCode, String errorMessage, Throwable e) {
+                Toast.makeText(getContext(), "" + errorMessage, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @OnClick(R.id.text_signup_birth)
@@ -126,8 +125,5 @@ public class SignUpFragment extends Fragment {
         builder.setMessage(getResources().getString(R.string.sign_up));
         builder.show();
     }
-
     private static final int GET_IMAGE = 1;
-
-
 }

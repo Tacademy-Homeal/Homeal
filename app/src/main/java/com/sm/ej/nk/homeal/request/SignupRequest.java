@@ -7,8 +7,8 @@ import com.sm.ej.nk.homeal.data.NetworkResultTemp;
 
 import java.lang.reflect.Type;
 
+import okhttp3.FormBody;
 import okhttp3.HttpUrl;
-import okhttp3.MultipartBody;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 
@@ -17,7 +17,6 @@ import okhttp3.RequestBody;
  */
 public class SignupRequest extends AbstractRequest<NetworkResultTemp> {
 
-    Context context;
     Request request;
 
     public SignupRequest(Context context, String name, String birth, String phone, String introduce, String gender) {
@@ -25,15 +24,18 @@ public class SignupRequest extends AbstractRequest<NetworkResultTemp> {
                 .addPathSegment("users")
                 .build();
 
-        MultipartBody.Builder builder = new MultipartBody.Builder()
-                .addFormDataPart("name", name)
-                .addFormDataPart("birth", birth)
-                .addFormDataPart("phone", phone)
-                .addFormDataPart("introduce", introduce)
-                .addFormDataPart("gender", gender);
 
+        FormBody.Builder builder = new FormBody.Builder();
+                builder.add("birth", birth)
+                .add("introduce",introduce)
+                .add("gender",gender)
+                .add("country","korea")
+                .add("phone",phone)
+                .add("type","cooker")
+                .build();
 
         RequestBody body = builder.build();
+
         request = new Request.Builder()
                 .url(url)
                 .post(body)

@@ -21,7 +21,7 @@ public class MessageSendRequest extends AbstractRequest<NetworkResult<String>> {
 
     public MessageSendRequest(Context context, User user, String message){
         HttpUrl url = getBaseHttpUrlBuilder()
-                .addPathSegment("sendmessage") //After setting
+                .addPathSegment("chatting")
                 .build();
 
         RequestBody body = new FormBody.Builder()

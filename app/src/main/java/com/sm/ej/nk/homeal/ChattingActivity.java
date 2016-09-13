@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -69,23 +70,24 @@ public class ChattingActivity extends AppCompatActivity {
         rv_chatting.setAdapter(mAdapter);
         rv_chatting.setLayoutManager(new LinearLayoutManager(this));
         mLBM = LocalBroadcastManager.getInstance(this);
-
     }
 
     @OnClick(R.id.btn_send)
     public void onSend(View view){
         final String message = inputView.getText().toString();
         MessageSendRequest request = new MessageSendRequest(this, user, message);
-
         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<String>>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<String>> request, NetworkResult<String> result) {
+                Log.d("namgilsucess","sucess");
                 ChattingDBManager.getInstance().addMessage(user, ChatContract.ChatMessage.TYPE_SEND, message);
                 updateMessage();
             }
 
             @Override
             public void onFail(NetworkRequest<NetworkResult<String>> request, int errorCode, String errorMessage, Throwable e) {
+                Log.d("namgilsucess","fail");
+
             }
         });
     }

@@ -17,7 +17,7 @@ public class CkPageCheckRequest extends AbstractRequest<CkInfoResult>{
     Context context;
     Request request;
 
-    public CkPageCheckRequest(Context context, String ckId){
+    public CkPageCheckRequest(Context context,String ckId){
         HttpUrl url = getBaseHttpUrlBuilder()
                 .addPathSegment("cookers")
                 .addPathSegment(ckId)
