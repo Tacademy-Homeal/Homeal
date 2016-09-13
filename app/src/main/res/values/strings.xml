@@ -143,4 +143,5 @@
     <string name="fab_thumbnail_insert">섬네일 편집</string>
     <string name="fab_thumbnail_edit">섬네일 삭제</string>
     <string name="thumbnail_delete">대표사진을 삭제하시겠습니까?</string>
+    <string name="select_country">나라를 선택하세요.</string>
 </resources>

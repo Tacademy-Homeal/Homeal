@@ -22,7 +22,7 @@ public class EtInfoupdateRequest extends AbstractRequest<NetworkResultTemp> {
     Context context;
     Request request;
 
-    public EtInfoupdateRequest(Context context, String name, String birth, String phone, String introduce, String gender, File image) {
+    public EtInfoupdateRequest(Context context, String name, String birth, String phone, String introduce, String gender, File image, String country) {
         HttpUrl url = getBaseHttpsUrlBuilder()
                 .addPathSegment("eaters")
                 .addPathSegment("me")
@@ -33,7 +33,8 @@ public class EtInfoupdateRequest extends AbstractRequest<NetworkResultTemp> {
                 .addFormDataPart("birth", birth)
                 .addFormDataPart("phone", phone)
                 .addFormDataPart("introduce", introduce)
-                .addFormDataPart("gender", gender);
+                .addFormDataPart("gender", gender)
+                .addFormDataPart("country", country);
 
         if (image != null) {
             builder.addFormDataPart("image", image.getName(), RequestBody.create(jpeg, image));

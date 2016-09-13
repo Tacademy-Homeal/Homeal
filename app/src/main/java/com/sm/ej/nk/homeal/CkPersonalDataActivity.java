@@ -39,16 +39,12 @@ import butterknife.OnClick;
 
 public class CkPersonalDataActivity extends AppCompatActivity {
 
-//    ArrayAdapter<String> countryAdapter;
-    //    ArrayAdapter<String> countryphoneAdapter;
     private int iYear, iMonth, iDay;
     static final int DATE_DIALOG_ID = 0;
     private File imageFile = null;
     private File file;
     double latitude, longitude;
     private CountryPicker countryPicker;
-
-
     public static Context mContext;
 
     @BindView(R.id.radioGroup)
@@ -60,26 +56,17 @@ public class CkPersonalDataActivity extends AppCompatActivity {
     @BindView(R.id.edit_ck_name_last)
     EditText nameEdit;
 
-    @BindView(R.id.edit_ck_name_first)
-    EditText ageEdit;
-
     @BindView(R.id.text_ck_address)
     TextView addressText;
 
     @BindView(R.id.edit_ck_introduce)
     EditText introduceEdit;
 
-//    @BindView(R.id.spinner_ck_country_phone)
-//    Spinner countryphoneSpinner;
-
     @BindView(R.id.edit_ck_phone)
     EditText phoneEdit;
 
     @BindView(R.id.text_ck_birth)
     TextView birthText;
-
-//    @BindView(R.id.spinner_ck_country)
-//    Spinner countrySpinner;
 
     @BindView(R.id.text_ck_country)
     TextView countryText;
@@ -116,7 +103,7 @@ public class CkPersonalDataActivity extends AppCompatActivity {
         iYear = objTime.get(Calendar.YEAR);
         iMonth = objTime.get(Calendar.MONTH);
         iDay = objTime.get(Calendar.DAY_OF_MONTH);
-        countryPicker = CountryPicker.newInstance("나라를 선택하세요");
+        countryPicker = CountryPicker.newInstance(getString(R.string.select_country));
         setListner();
         isPersonalData(false);
         btnChangeFinish.setVisibility(View.GONE);
@@ -162,7 +149,6 @@ public class CkPersonalDataActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 String address = intent.getStringExtra("address");
                 TranslateManager.getInstance().translateKoreantoEng(address);
-//                addressText.setText(address);
                 latitude = intent.getExtras().getDouble("latitude");
                 longitude = intent.getExtras().getDouble("longitude");
                 file = new File(intent.getExtras().getString("imageFile"));
@@ -177,18 +163,6 @@ public class CkPersonalDataActivity extends AppCompatActivity {
         }
         super.onActivityResult(requestCode, resultCode, intent);
     }
-//
-//    public File getImageFile() {
-//        File picture = Environment.getExternalStoragePublicDirectory(
-//                Environment.DIRECTORY_PICTURES
-//        );
-//        File parent = new File(getFilesDir(), "my_image"); //내부저장소주소
-////        File parent = new File(picture, "my_image");
-//        if (!parent.exists()) {
-//            parent.mkdirs();
-//        }
-//        return new File(parent, System.currentTimeMillis() + ".png");
-//    }
 
     public void setTranslate(String translate) {
         addressText.setText(translate);
@@ -200,7 +174,6 @@ public class CkPersonalDataActivity extends AppCompatActivity {
         addressText.setText(ckdata.getAddress());
         introduceEdit.setText(ckdata.getIntroduce());
         phoneEdit.setText(ckdata.getPhone());
-//        countrySpinner.setSelection(ckdata.getCountry());
         countryText.setText(ckdata.getCountry());
         birthText.setText(ckdata.getBirth());
         if (ckdata.getGender().equals("Male")) {
@@ -226,7 +199,6 @@ public class CkPersonalDataActivity extends AppCompatActivity {
         return null;
     }
 
-
     private DatePickerDialog.OnDateSetListener mDateSetListener =
             new DatePickerDialog.OnDateSetListener() {
                 public void onDateSet(DatePicker view, int year,
@@ -238,7 +210,6 @@ public class CkPersonalDataActivity extends AppCompatActivity {
                     birthText.setText("" + iYear + "-" + (iMonth + 1) + "-" + iDay);
                 }
             };
-
 
     @OnClick(R.id.btn_personal_change)
     public void onPersonalChanged() {
@@ -255,13 +226,11 @@ public class CkPersonalDataActivity extends AppCompatActivity {
         } else {
             gender = "Female";
         }
-//       file = getImageFile();
-//        Toast.makeText(CkPersonalDataActivity.this, ""+map.getName(), Toast.LENGTH_SHORT).show();
         CkInfoupdateRequest request = new CkInfoupdateRequest(CkPersonalDataActivity.this, nameEdit.getText().toString(), birthText.getText().toString(), phoneEdit.getText().toString(), introduceEdit.getText().toString(), addressText.getText().toString(), gender, latitude, longitude, imageFile, file, countryText.getText().toString());
         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
-                Toast.makeText(CkPersonalDataActivity.this, ""+countryText.getText().toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(CkPersonalDataActivity.this, "수정완료", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -286,16 +255,13 @@ public class CkPersonalDataActivity extends AppCompatActivity {
 
     public void isPersonalData(boolean s) {
         nameEdit.setEnabled(s);
-        ageEdit.setEnabled(s);
         addressText.setEnabled(s);
         introduceEdit.setEnabled(s);
         phoneEdit.setEnabled(s);
         birthText.setEnabled(s);
-//        countrySpinner.setEnabled(s);
         countryText.setEnabled(s);
         maleRadio.setEnabled(s);
         femaleRadio.setEnabled(s);
         ckpictureView.setEnabled(s);
-//        countryphoneSpinner.setEnabled(s);
     }
 }

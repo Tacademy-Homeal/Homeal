@@ -16,6 +16,8 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.mukesh.countrypicker.fragments.CountryPicker;
+import com.mukesh.countrypicker.interfaces.CountryPickerListener;
 import com.sm.ej.nk.homeal.HomealApplication;
 import com.sm.ej.nk.homeal.LoginActivity;
 import com.sm.ej.nk.homeal.R;
@@ -33,15 +35,13 @@ import butterknife.OnClick;
  * A simple {@link Fragment} subclass.
  */
 public class SignUpFragment extends Fragment {
+    private CountryPicker countryPicker;
 
     @BindView(R.id.sf_ok)
     Button sf_ok;
 
     @BindView(R.id.edit_frist_name)
     EditText fristnameEdit;
-
-    @BindView(R.id.edit_second_name)
-    EditText secondnameEdit;
 
     @BindView(R.id.text_signup_birth)
     TextView birthText;
@@ -57,6 +57,9 @@ public class SignUpFragment extends Fragment {
 
     @BindView(R.id.radioGroup)
     RadioGroup radioGroup;
+
+    @BindView(R.id.text_signup_country)
+    TextView countryText;
 
     public static final String ARG_FACEBOOK_USER = "facebookUser";
 
@@ -79,14 +82,25 @@ public class SignUpFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_sign_up, container, false);
         ButterKnife.bind(this, view);
-
+        countryPicker = CountryPicker.newInstance(getString(R.string.select_country));
+        setListener();
         return view;
+    }
+
+    private void setListener() {
+        countryPicker.setListener(new CountryPickerListener() {
+            @Override
+            public void onSelectCountry(String name, String code, String dialCode, int flagDrawableResID) {
+                countryText.setText("" + name);
+                countryPicker.dismiss();
+            }
+        });
     }
 
     @OnClick(R.id.sf_ok)
     public void onSingUpOk() {
-        if(!TextUtils.isEmpty(fristnameEdit.getText().toString())){
-        }else{
+        if (!TextUtils.isEmpty(fristnameEdit.getText().toString())) {
+        } else {
             showDialog();
         }
         final String gender;
@@ -96,14 +110,16 @@ public class SignUpFragment extends Fragment {
             gender = "Female";
         }
 
-        SignupRequest request = new SignupRequest(getContext(), fristnameEdit.getText().toString(), birthText.getText().toString(), phoneEdit.getText().toString(), introText.getText().toString(), gender);
+        SignupRequest request = new SignupRequest(getContext(), fristnameEdit.getText().toString(), birthText.getText().toString(), phoneEdit.getText().toString(), introText.getText().toString(), gender, countryText.getText().toString());
         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
 
-                if(HomealApplication.isCooker() == true) ((LoginActivity) getActivity()).moveCkMainActivity();
+                if (HomealApplication.isCooker() == true)
+                    ((LoginActivity) getActivity()).moveCkMainActivity();
                 else ((LoginActivity) getActivity()).moveEtMainAcivity();
             }
+
             @Override
             public void onFail(NetworkRequest<NetworkResultTemp> request, int errorCode, String errorMessage, Throwable e) {
                 Toast.makeText(getContext(), "" + errorMessage, Toast.LENGTH_SHORT).show();
@@ -111,9 +127,13 @@ public class SignUpFragment extends Fragment {
         });
     }
 
+    @OnClick(R.id.text_signup_country)
+    public void onCountry() {
+        countryPicker.show(getFragmentManager(), "COUNTRY_PICKER");
+    }
+
     @OnClick(R.id.text_signup_birth)
     public void onBirth() {
-//        Toast.makeText(getContext(), "눌림", Toast.LENGTH_SHORT).show();
         DatePickerFragment fragment = new DatePickerFragment();
         fragment.show(getFragmentManager(), "datePicker");
     }
@@ -129,5 +149,4 @@ public class SignUpFragment extends Fragment {
         builder.setMessage(getResources().getString(R.string.sign_up));
         builder.show();
     }
-    private static final int GET_IMAGE = 1;
 }

@@ -51,29 +51,21 @@
 
     <LinearLayout
         android:id="@+id/linear_ck_name"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/image_ck_picture"
         android:layout_below="@+id/text_profile"
+        android:layout_marginRight="16dp"
         android:layout_toRightOf="@+id/image_ck_picture">
 
         <EditText
             android:id="@+id/edit_ck_name_last"
-            android:layout_width="84dp"
+            android:layout_width="match_parent"
             android:layout_height="42dp"
             android:layout_above="@+id/textView6"
             android:layout_alignTop="@+id/edit_ck_name_first"
             android:layout_marginLeft="11dp"
             android:layout_toRightOf="@+id/image_ck_picture"
-            android:background="@drawable/edge"
-            android:hint=" Name" />
-
-        <EditText
-            android:id="@+id/edit_ck_name_first"
-            android:layout_width="84dp"
-            android:layout_height="42dp"
-            android:layout_alignTop="@+id/edit_ck_name_last"
-            android:layout_marginLeft="11dp"
             android:background="@drawable/edge"
             android:hint=" Name" />
     </LinearLayout>
@@ -106,7 +98,7 @@
             android:layout_width="match_parent"
             android:layout_height="42dp"
             android:background="@drawable/edge"
-            android:text="BirthDay"
+            android:text=" BirthDay"
             android:gravity="center_vertical" />
     </LinearLayout>
 
@@ -172,14 +164,15 @@
             android:id="@+id/text_ck_country"
             android:layout_width="0dp"
             android:layout_height="42dp"
-            android:text="Country"
+            android:text=" Country"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/radioGroup"
             android:layout_marginLeft="11dp"
             android:layout_alignTop="@+id/edit_ck_phone"
             android:layout_weight="0.5"
-            android:background="@drawable/edge" />
+            android:background="@drawable/edge"
+            android:gravity="center_vertical" />
     </LinearLayout>
 
     <TextView
