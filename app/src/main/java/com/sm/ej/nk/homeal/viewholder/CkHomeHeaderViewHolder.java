@@ -29,7 +29,7 @@ import java.util.List;
 public class CkHomeHeaderViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
     public View view;
     public ImageView userImage, nextCalendar, backCalendar, userMap, imageShare;
-    public TextView userName, userAddress, jjimCount, reviewCount, textDate, textMorning, textLaunch, textDinner, textPax;
+    public TextView userName, userAddress, jjimCount, reviewCount, textDate, textMorning, textLaunch, textDinner, textPax, totalScore, tasteScore, kindScore, cleanScore, priceScore;
     public ProgressBar progressTotal, progressTaste, progressKind, progressClean, progressPrice;
     public RecyclerView rvCalendar;
     Context context;
@@ -62,6 +62,12 @@ public class CkHomeHeaderViewHolder extends RecyclerView.ViewHolder implements V
         textPax = (TextView)view.findViewById(R.id.text_ck_home_reservecount);
         reviewLinear = (LinearLayout)view.findViewById(R.id.linear_review_ck_home);
         reviewLinear.setOnClickListener(this);
+
+        totalScore = (TextView)view.findViewById(R.id.text_ck_home_total);
+        tasteScore = (TextView)view.findViewById(R.id.text_ck_home_taste);
+        kindScore = (TextView)view.findViewById(R.id.text_ck_home_kind);
+        cleanScore = (TextView)view.findViewById(R.id.text_ck_home_clean);
+        priceScore = (TextView)view.findViewById(R.id.text_ck_home_price);
     }
 
     public void setData(CkDetailData data){
@@ -72,12 +78,19 @@ public class CkHomeHeaderViewHolder extends RecyclerView.ViewHolder implements V
         reviewCount.setText(data.reviewCnt);
         progressKind.setProgress(data.kindness);
         progressClean.setProgress(data.cleanliness);
-//        progressTaste.setProgress(data.taste);
+        progressTaste.setProgress(data.taste);
         progressPrice.setProgress(data.price);
         progressTotal.setProgress((int)data.grade);
+
+        totalScore.setText(""+data.grade);
+        kindScore.setText(""+data.kindness);
+        cleanScore.setText(""+data.cleanliness);
+        tasteScore.setText(""+data.taste);
+        priceScore.setText(""+data.price);
+
         nextCalendar.setOnClickListener(this);
         backCalendar.setOnClickListener(this);
-        Glide.with(HomealApplication.getContext()).load("http://fimg2.pann.com/new/download.jsp?FileID=28115067").into(userMap);
+        Glide.with(HomealApplication.getContext()).load(data.map).into(userMap);
     }
 
     public void setCalendar(List<CkScheduleData> items){

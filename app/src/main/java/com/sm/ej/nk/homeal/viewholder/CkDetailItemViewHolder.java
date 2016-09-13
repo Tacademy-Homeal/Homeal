@@ -17,8 +17,8 @@ import com.sm.ej.nk.homeal.data.CkDetailMenuData;
  */
 public class CkDetailItemViewHolder extends RecyclerView.ViewHolder{
     public View view;
-    public TextView daynum, day, foodname, foodadd, time, foodintro, foodprice;
-    public ImageView image, imageButton;
+    public TextView foodname, time, foodintro, foodprice;
+    public ImageView image;
     public Button swipebtn;
     public CkDetailMenuData datas;
     public SwipeLayout swipeLayout;
@@ -32,7 +32,8 @@ public class CkDetailItemViewHolder extends RecyclerView.ViewHolder{
         foodprice = (TextView)view.findViewById(R.id.text_item_ck_detail_price);
         swipeLayout = (SwipeLayout)view.findViewById(R.id.swipe_ck_detail);
         swipeLayout.setShowMode(SwipeLayout.ShowMode.PullOut);
-        swipebtn =(Button)swipeLayout.findViewById(R.id.btn_ck_detail_swipe);
+//        swipebtn =(Button)swipeLayout.findViewById(R.id.btn_ck_detail_swipe);
+        swipebtn = (Button)view.findViewById(R.id.btn_ck_detail_swipe);
         swipeLayout.addDrag(SwipeLayout.DragEdge.Right, swipeLayout.findViewById(R.id.right_ck_detail));
         isSelect = false;
     }
@@ -43,11 +44,11 @@ public class CkDetailItemViewHolder extends RecyclerView.ViewHolder{
         foodintro.setText(datas.introduce);
         foodprice.setText(datas.price);
         Glide.with(HomealApplication.getContext()).load(datas.image).into(image);
+
         swipebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(listener!=null){
-
                     if(isSelect){
                         swipebtn.setBackgroundResource(R.drawable.imgres2);
                         isSelect = false;
@@ -55,10 +56,8 @@ public class CkDetailItemViewHolder extends RecyclerView.ViewHolder{
                     }else{
                         swipebtn.setBackgroundResource(R.drawable.imgres);
                         isSelect = true;
-                        swipeLayout.open(false, true);
                     }
                     listener.onMenuSwipeClick(view, datas, getAdapterPosition()-1, isSelect);
-
                 }
             }
         });

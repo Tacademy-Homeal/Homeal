@@ -3,6 +3,12 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView13"
+        android:src="@drawable/mypage_line" />
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -22,6 +28,12 @@
             android:id="@+id/text_item_reserve_request_date" />
     </LinearLayout>
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView12"
+        android:src="@drawable/mypage_line" />
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -38,9 +50,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/edit_reserve_request_reserveperson"
-            android:background="@null" />
+            android:background="@null"
+            android:inputType="number"/>
 
     </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView14"
+        android:src="@drawable/mypage_line" />
 
     <LinearLayout
         android:orientation="horizontal"
@@ -55,10 +74,36 @@
             android:text="@string/reserve_time"
             android:id="@+id/textView12" />
 
-        <EditText
+        <RadioGroup
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/editText3"
-            android:background="@null" />
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/radiogroup_reserve">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/radio_morning"
+                android:id="@+id/radio_morning"
+                android:checked="false" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/radio_launch"
+                android:id="@+id/radio_launch"
+                android:checked="false"
+                android:layout_marginLeft="10dp" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/radio_dinner"
+                android:id="@+id/radio_dinner"
+                android:checked="false"
+                android:layout_marginLeft="10dp" />
+        </RadioGroup>
+
     </LinearLayout>
 </LinearLayout>

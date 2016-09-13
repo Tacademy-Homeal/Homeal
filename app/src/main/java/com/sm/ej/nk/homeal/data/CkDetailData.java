@@ -21,4 +21,5 @@ public class CkDetailData implements Serializable{
     public String bookmarkCnt;
     public String reviewCnt;
     public String uid;
+    public String map;
 }

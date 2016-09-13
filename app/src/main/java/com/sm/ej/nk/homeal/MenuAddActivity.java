@@ -5,13 +5,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,14 +46,14 @@ public class MenuAddActivity extends AppCompatActivity implements View.OnClickLi
     @BindView(R.id.edit_menu_add_foodprice)
     EditText editFoodPrice;
 
-    @BindView(R.id.spinner_menu_add)
-    Spinner spinner;
-
-    @BindView(R.id.text_menu_add_money)
-    TextView textView;
-
     @BindView(R.id.fab_menu_add_ok)
     android.support.design.widget.FloatingActionButton fab;
+
+    @BindView(R.id.image_menu_add_activation)
+    ImageView imageActivation;
+
+    @BindView(R.id.text_menu_add_price)
+    TextView textPrice;
 
     ArrayAdapter<String> mAdapter;
 
@@ -70,6 +71,7 @@ public class MenuAddActivity extends AppCompatActivity implements View.OnClickLi
     private String foodInfo= null;
     private File imageFile = null;
 
+    private boolean isActivation;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,12 +80,14 @@ public class MenuAddActivity extends AppCompatActivity implements View.OnClickLi
 
         setSupportActionBar(toolbar);
 
+        Glide.with(MenuAddActivity.this).load("https://pixabay.com/static/uploads/photo/2016/03/21/05/05/plus-1270001_960_720.png").into(image);
         Intent intent = getIntent();
         MODE = intent.getIntExtra(CkMainActivity.INTENT_MODE,-1);
         if(MODE == CkMainActivity.MODE_MENU_EDIT){
             fab.show();
             data = (CkDetailMenuData)intent.getSerializableExtra(CkMainActivity.INTENT_MENU_DATA);
             setMenuData(data);
+
         }else if(MODE == CkMainActivity.MODE_MENU_INSERT){
             fab.show();
 
@@ -94,6 +98,7 @@ public class MenuAddActivity extends AppCompatActivity implements View.OnClickLi
             editFoodName.setEnabled(false);
             editFoodPrice.setEnabled(false);
             editFoodInfo.setEnabled(false);
+
         }
 
         image.setOnClickListener(new View.OnClickListener() {
@@ -107,11 +112,40 @@ public class MenuAddActivity extends AppCompatActivity implements View.OnClickLi
             }
         });
 
-        fab.setOnClickListener(this);
+        imageActivation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(MODE == CkMainActivity.MODE_MENU_INSERT || MODE == CkMainActivity.MODE_MENU_EDIT){
+                    if(isActivation){
+                        imageActivation.setImageResource(R.drawable.homeal_off_btn);
+                        isActivation=false;
+                    }else{
+                        imageActivation.setImageResource(R.drawable.homeal_on_button);
+                        isActivation = true;
+                    }
+                }
+            }
+        });
+        editFoodPrice.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
 
-        mAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.money));
-        mAdapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
-        spinner.setAdapter(mAdapter);
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if(TextUtils.isEmpty(charSequence)){
+                    textPrice.setVisibility(View.INVISIBLE);
+                }else{
+                    textPrice.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+            }
+        });
+
+        fab.setOnClickListener(this);
 
     }
 
@@ -132,6 +166,13 @@ public class MenuAddActivity extends AppCompatActivity implements View.OnClickLi
         editFoodInfo.setText(data.introduce);
         editFoodName.setText(data.name);
         editFoodPrice.setText(""+data.price);
+        if(data.activation==1){
+            isActivation = true;
+            imageActivation.setImageResource(R.drawable.homeal_on_button);
+        }else{
+            isActivation = false;
+            imageActivation.setImageResource(R.drawable.homeal_off_btn);
+        }
     }
 
     @Override
@@ -196,7 +237,12 @@ public class MenuAddActivity extends AppCompatActivity implements View.OnClickLi
         }else{
             foodPrice = editFoodPrice.getText().toString();
         }
-        currency = "1";
+        if(isActivation){
+            activation = "1";
+        }else{
+            activation="0";
+        }
+
         activation = "1";
 
         if(imageFile==null){
@@ -226,8 +272,12 @@ public class MenuAddActivity extends AppCompatActivity implements View.OnClickLi
         }else{
             foodPrice = editFoodPrice.getText().toString();
         }
+        if(isActivation){
+            activation = "1";
+        }else{
+            activation="0";
+        }
         currency = "1";
-        activation = "1";
 
         if(data.getFoodName().equals(foodName)){
             foodName = null;

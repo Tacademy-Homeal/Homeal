@@ -32,7 +32,7 @@ public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder implements
     View view;
     ViewPager viewPager;
     ImageView userImage, mapImage, backImage, nextImage, sharingImage;
-    TextView userName, userAddress, foodPrice, foodName, calendarDate, morning, launch, dinner, pax;
+    TextView userName, userAddress, foodPrice, foodName, calendarDate, morning, launch, dinner, pax, totalScore, tasteScore, kindScore, cleanScore, priceScore;
     RecyclerView calendar;
     CkDetailData data;
     ViewPagerAdapter pagerAdapter;
@@ -44,6 +44,7 @@ public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder implements
     CirclePageIndicator circleIndicator;
     List<CkScheduleData> list;
     List<CalendarItem> calendarItems;
+    CalendarData calendarData;
 
     public CkDetailHeaderViewHolder(Context context,View view){
         super(view);
@@ -66,6 +67,11 @@ public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder implements
         backImage = (ImageView)view.findViewById(R.id.image_ck_detail_back);
         nextImage = (ImageView)view.findViewById(R.id.image_ck_detail_next);
         circleIndicator = (CirclePageIndicator)view.findViewById(R.id.indicator_ck_detail);
+        totalScore = (TextView)view.findViewById(R.id.text_ck_detail_total_score);
+        priceScore = (TextView)view.findViewById(R.id.text_ck_detail_price_score);
+        tasteScore = (TextView)view.findViewById(R.id.text_ck_detail_taste_score);
+        kindScore = (TextView)view.findViewById(R.id.text_ck_detail_kind_score);
+        cleanScore = (TextView)view.findViewById(R.id.text_ck_detail_clean_score);
 
         sharingImage = (ImageView)view.findViewById(R.id.image_ck_detail_share);
         morning = (TextView)view.findViewById(R.id.text_ck_detail_morning);
@@ -76,27 +82,27 @@ public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder implements
 
     public void showSchedule(CalendarItem item){
         if(item.sharing==1){
-            sharingImage.setBackgroundColor(Color.BLUE);
+            sharingImage.setImageResource(R.drawable.homeal_sharing_ok);
         }else{
-            sharingImage.setBackgroundColor(Color.RED);
+            sharingImage.setImageResource(R.drawable.homeal_sharing_no);
         }
 
         if(item.isMorning){
-            morning.setBackgroundColor(Color.RED);
+            morning.setTextColor(Color.BLACK);
         }else{
-            morning.setBackgroundColor(Color.WHITE);
+            morning.setTextColor(Color.GRAY);
         }
 
         if(item.isLaunch){
-            launch.setBackgroundColor(Color.RED);
+            launch.setTextColor(Color.BLACK);
         }else{
-            launch.setBackgroundColor(Color.WHITE);
+            launch.setTextColor(Color.GRAY);
         }
 
         if(item.isDinner){
-            dinner.setBackgroundColor(Color.RED);
+            dinner.setTextColor(Color.BLACK);
         }else{
-            dinner.setBackgroundColor(Color.WHITE);
+            dinner.setTextColor(Color.GRAY);
         }
         pax.setText(item.pax);
     }
@@ -110,14 +116,18 @@ public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder implements
 
 //        circleIndicator.setViewPager(viewPager);
         Glide.with(context).load(data.image).into(userImage);
-        Glide.with(context).load("http://m1.daumcdn.net/cfile213/R400x0/206C6B505098D2D32B68D1").into(mapImage);
-//        Glide.with(context).load(data.mapImage).into(mapImage);
+        Glide.with(context).load(data.map).into(mapImage);
         mapImage.setOnClickListener(this);
         userName.setText(data.name);
         userAddress.setText(data.address);
         backImage.setOnClickListener(this);
         nextImage.setOnClickListener(this);
 
+        totalScore.setText(""+data.grade);
+        tasteScore.setText(""+data.taste);
+        priceScore.setText(""+data.price);
+        cleanScore.setText(""+data.cleanliness);
+        kindScore.setText(""+data.kindness);
 
         progressTotal.setProgress((int)data.grade);
         progressTaste.setProgress(data.taste);
@@ -132,7 +142,7 @@ public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder implements
         cm = CalendarManager.getInstance();
         GridLayoutManager manager = new GridLayoutManager(context, 7);
         calendar.setLayoutManager(manager);
-        final CalendarData calendarData = cm.getSelectCalendarData(calendarItems);
+        calendarData = cm.getSelectCalendarData(calendarItems);
 
         calendarAdapter = new CalendarAdapter(context, calendarData, true);
         calendarAdapter.setOnCalendarAdpaterClickListener(new CalendarAdapter.OnCalendarAdapterClickListener() {
@@ -148,6 +158,10 @@ public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder implements
         });
         calendar.setAdapter(calendarAdapter);
         calendarDate.setText(calendarData.year+"년 "+(calendarData.month+1)+"월");
+    }
+
+    public CalendarData getCalendarData(){
+        return calendarData;
     }
 
     public void changeCalendarScheduleData(List<CkScheduleData> list){

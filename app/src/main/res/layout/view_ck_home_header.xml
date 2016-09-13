@@ -83,21 +83,33 @@
             android:layout_height="wrap_content"
             android:layout_weight="1">
 
-            <ProgressBar
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:id="@+id/progress_ck_home_total"
-                android:indeterminate="false"
-                android:progressDrawable="@drawable/circular_progress_bar"
-                android:background="@drawable/circle_shape"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:max="5"/>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ProgressBar
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/progress_ck_home_total"
+                    android:indeterminate="false"
+                    android:progressDrawable="@drawable/circular_progress_bar"
+                    android:background="@drawable/circle_shape"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:max="5"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/text_ck_home_total"
+                    android:layout_gravity="center" />
+            </FrameLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/ck_detail_total"
                 android:id="@+id/textView19" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -106,21 +118,33 @@
             android:layout_height="wrap_content"
             android:layout_weight="1">
 
-            <ProgressBar
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:id="@+id/progress_ck_home_taste"
-                android:indeterminate="false"
-                android:progressDrawable="@drawable/circular_progress_bar"
-                android:background="@drawable/circle_shape"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:max="5"/>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ProgressBar
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/progress_ck_home_taste"
+                    android:indeterminate="false"
+                    android:progressDrawable="@drawable/circular_progress_bar"
+                    android:background="@drawable/circle_shape"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:max="5"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/text_ck_home_taste"
+                    android:layout_gravity="center" />
+            </FrameLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/ck_detail_taste"
                 android:id="@+id/textView25" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -129,21 +153,33 @@
             android:layout_height="wrap_content"
             android:layout_weight="1">
 
-            <ProgressBar
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:id="@+id/progress_ck_home_price"
-                android:indeterminate="false"
-                android:progressDrawable="@drawable/circular_progress_bar"
-                android:background="@drawable/circle_shape"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:max="5"/>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ProgressBar
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/progress_ck_home_price"
+                    android:indeterminate="false"
+                    android:progressDrawable="@drawable/circular_progress_bar"
+                    android:background="@drawable/circle_shape"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:max="5"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/text_ck_home_price"
+                    android:layout_gravity="center" />
+            </FrameLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/ck_detail_price"
                 android:id="@+id/textView27" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -152,21 +188,33 @@
             android:layout_height="wrap_content"
             android:layout_weight="1">
 
-            <ProgressBar
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:id="@+id/progress_ck_home_kind"
-                android:indeterminate="false"
-                android:progressDrawable="@drawable/circular_progress_bar"
-                android:background="@drawable/circle_shape"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:max="5"/>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ProgressBar
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/progress_ck_home_kind"
+                    android:indeterminate="false"
+                    android:progressDrawable="@drawable/circular_progress_bar"
+                    android:background="@drawable/circle_shape"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:max="5"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/text_ck_home_kind"
+                    android:layout_gravity="center" />
+            </FrameLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/ck_detail_kind"
                 android:id="@+id/textView26" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -175,21 +223,33 @@
             android:layout_height="wrap_content"
             android:layout_weight="1">
 
-            <ProgressBar
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:id="@+id/progress_ck_home_clean"
-                android:indeterminate="false"
-                android:progressDrawable="@drawable/circular_progress_bar"
-                android:background="@drawable/circle_shape"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:max="5"/>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ProgressBar
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/progress_ck_home_clean"
+                    android:indeterminate="false"
+                    android:progressDrawable="@drawable/circular_progress_bar"
+                    android:background="@drawable/circle_shape"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:max="5"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/text_ck_home_clean"
+                    android:layout_gravity="center" />
+            </FrameLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/ck_detail_clean"
                 android:id="@+id/textView28" />
+
         </LinearLayout>
 
     </LinearLayout>

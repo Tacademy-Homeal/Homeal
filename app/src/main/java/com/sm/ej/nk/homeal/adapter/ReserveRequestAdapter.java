@@ -1,6 +1,7 @@
 package com.sm.ej.nk.homeal.adapter;
 
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,9 +69,33 @@ public class ReserveRequestAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             itemViewHolder.setData(menuDatas.get(position));
         }
     }
-
+    public String time;
     public String getEidtText(){
         return headeritemViewHolder.reservePaerson.getText().toString();
+    }
+    public String getGroup(){
+        switch (headeritemViewHolder.group.getCheckedRadioButtonId()){
+            case R.id.radio_morning:
+                time = "Morning";
+                break;
+            case R.id.radio_launch:
+                time = "Launch";
+                break;
+            case R.id.radio_dinner:
+                time = "Dinner";
+                break;
+        }
+        return time;
+    }
+    public boolean checkValue(){
+        if(TextUtils.isEmpty(headeritemViewHolder.reservePaerson.getText().toString())){
+            return false;
+        }
+
+        if(headeritemViewHolder.group.getCheckedRadioButtonId()==-1){
+            return false;
+        }
+        return true;
     }
 
     @Override

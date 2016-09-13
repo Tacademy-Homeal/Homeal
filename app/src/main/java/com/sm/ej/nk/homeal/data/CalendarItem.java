@@ -4,6 +4,7 @@ import android.util.Log;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by Tacademy on 2016-08-26.
@@ -20,6 +21,7 @@ public class CalendarItem implements Serializable{
     public boolean isDinner;
     public String pax;
     public int sharing;
+    public HashMap<String, String> idMap;
     public String id;
 
     public CalendarItem(){

@@ -28,6 +28,7 @@ import com.sm.ej.nk.homeal.LoginActivity;
 import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.data.FontData;
 import com.sm.ej.nk.homeal.data.NetworkResult;
+import com.sm.ej.nk.homeal.data.NetworkResultTemp;
 import com.sm.ej.nk.homeal.manager.FontManager;
 import com.sm.ej.nk.homeal.manager.NetworkManager;
 import com.sm.ej.nk.homeal.manager.NetworkRequest;
@@ -113,7 +114,18 @@ public class LoginFragment extends Fragment {
                 break;
             }
         }
-        loginFacebook();
+//        loginFacebook();
+        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
+            @Override
+            public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
+                ((LoginActivity) getActivity()).moveMainActivity();
+            }
+
+            @Override
+            public void onFail(NetworkRequest<NetworkResultTemp> request, int errorCode, String errorMessage, Throwable e) {
+
+            }
+        });
     }
 
     private void loginFacebook() {

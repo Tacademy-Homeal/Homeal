@@ -105,6 +105,7 @@ public class ScheduleEditActivity extends AppCompatActivity implements View.OnCl
             scheduleList = (List<CkScheduleData>)intent.getSerializableExtra(CkMainActivity.INTENT_SCHEDULE_DATA);
             changeCalendarScheduleData(scheduleList);
             CalendarData calendarData = CalendarManager.getInstance().getSelectCalendarData(calendarItems);
+            editReserve.setEnabled(true);
 
             mAdapter = new CalendarAdapter(this, calendarData, true);
             mAdapter.setOnCalendarAdpaterClickListener(new CalendarAdapter.OnCalendarAdapterClickListener() {
@@ -113,11 +114,14 @@ public class ScheduleEditActivity extends AppCompatActivity implements View.OnCl
                     if(data.isSelect){
                         textCalendar.setText(""+(data.month+1)+"월" +data.dayOfMonth+"일");
                         calendarItem = data;
+                        editReserve.setText(""+data.pax);
                     }
                 }
             });
         }else if(MODE == CkMainActivity.MODE_SCHEDULE_INSERT){
             calendarItem = null;
+            editReserve.setEnabled(true);
+
             CalendarData calendarData = CalendarManager.getInstance().getCalendarData();
             textCalendar.setText(calendarData.year+"년 "+(calendarData.month+1)+"월");
             mAdapter = new CalendarAdapter(this, calendarData, false);
@@ -170,6 +174,7 @@ public class ScheduleEditActivity extends AppCompatActivity implements View.OnCl
                 break;
             }
             case R.id.image_schedule_edit_share:{
+
                 break;
             }
             case R.id.fab_schedule_edit:{
@@ -194,7 +199,7 @@ public class ScheduleEditActivity extends AppCompatActivity implements View.OnCl
                         });
                     }
                 }else if(MODE == CkMainActivity.MODE_SCHEDULR_EDIT){
-                    if(valueCheck()){
+                    if(deletevalueCheck()){
                         Log.e("ssong", ""+calendarItem.dayOfMonth);
                         Log.e("ssong", ""+calendarItem.year);
                         Log.e("ssong", ""+calendarItem.month);
@@ -226,6 +231,14 @@ public class ScheduleEditActivity extends AppCompatActivity implements View.OnCl
         }
         if(TextUtils.isEmpty(editReserve.getText().toString())){
             Toast.makeText(ScheduleEditActivity.this, "입력해주세요", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+    }
+
+    private boolean deletevalueCheck(){
+        if(calendarItem==null){
+            Toast.makeText(ScheduleEditActivity.this, "날짜를 선택해 주세요", Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;

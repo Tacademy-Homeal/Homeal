@@ -1,11 +1,11 @@
 package com.sm.ej.nk.homeal.adapter;
 
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.daimajia.swipe.adapters.RecyclerSwipeAdapter;
 import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.data.CalendarItem;
 import com.sm.ej.nk.homeal.data.CkDetailData;
@@ -22,7 +22,7 @@ import java.util.List;
 /**
  * Created by Tacademy on 2016-08-29.
  */
-public class CkDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements CkDetailHeaderViewHolder.OnCalendarHeaderViewClickListener, CkDetailItemViewHolder.OnMenuSwipeClickLIstener, CkDetailHeaderViewHolder.OnMapClickListener{
+public class CkDetailAdapter extends RecyclerSwipeAdapter<RecyclerView.ViewHolder> implements CkDetailHeaderViewHolder.OnCalendarHeaderViewClickListener, CkDetailItemViewHolder.OnMenuSwipeClickLIstener, CkDetailHeaderViewHolder.OnMapClickListener{
     CkDetailData datas;
     CkDetailItemViewHolder menuholder;
     CkDetailHeaderViewHolder headerholder;
@@ -32,8 +32,8 @@ public class CkDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     CalendarItem calendarItem;
 
     public CkDetailAdapter(){
-
     }
+
     public void setResult(CkInfoResult result){
         this.menuList = result.getCooker_menu();
         this.scheduleList = result.getCooker_schedule();
@@ -109,6 +109,7 @@ public class CkDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             menuholder = (CkDetailItemViewHolder)holder;
             menuholder.setData(menuList.get(position-1));
             menuholder.setOnMEnuSwipeClickListener(this);
+            mItemManger.bindView(menuholder.itemView, position-1);
         }
     }
 
@@ -119,6 +120,11 @@ public class CkDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             size=menuList.size()+1;
         }
         return size;
+    }
+
+    @Override
+    public int getSwipeLayoutResourceId(int position) {
+        return R.id.swipe_ck_detail;
     }
 
     @Override
@@ -136,7 +142,6 @@ public class CkDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         if(data.isSelect){
             headerholder.showSchedule(data);
             calendarItem = data;
-            Log.e("ssong", calendarItem.id);
         }
     }
 

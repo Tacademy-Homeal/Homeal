@@ -41,6 +41,7 @@ public class ReserveRequestActivity extends AppCompatActivity {
     ReserveRequestAdapter mAdapter;
     String cookerid;
     String personCount;
+    String time;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,22 +73,28 @@ public class ReserveRequestActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                personCount = mAdapter.getEidtText();
-                ReserveSendRequest request = new ReserveSendRequest(ReserveRequestActivity.this, cookerid, calendarItem.id, menuDataList, personCount);
-                NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
-                    @Override
-                    public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
-                        Toast.makeText(ReserveRequestActivity.this, "예약 요청 완료", Toast.LENGTH_SHORT).show();
-                        finish();
-                    }
+                if(mAdapter.checkValue()){
+                    personCount = mAdapter.getEidtText();
+                    Log.e("ssong", calendarItem.idMap.get(mAdapter.getGroup()));
+                    ReserveSendRequest request = new ReserveSendRequest(ReserveRequestActivity.this, cookerid, calendarItem.idMap.get(mAdapter.getGroup()), menuDataList, personCount);
+                    NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
+                        @Override
+                        public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
+                            Toast.makeText(ReserveRequestActivity.this, "예약 요청 완료", Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
 
-                    @Override
-                    public void onFail(NetworkRequest<NetworkResultTemp> request, int errorCode, String errorMessage, Throwable e) {
-                        Toast.makeText(ReserveRequestActivity.this, "예약 요청 실패", Toast.LENGTH_SHORT).show();
-                        Log.e("ssong", errorMessage);
-                        Log.e("ssong", errorCode+"");
-                    }
-                });
+                        @Override
+                        public void onFail(NetworkRequest<NetworkResultTemp> request, int errorCode, String errorMessage, Throwable e) {
+                            Toast.makeText(ReserveRequestActivity.this, "예약 요청 실패", Toast.LENGTH_SHORT).show();
+                            Log.e("ssong", errorMessage);
+                            Log.e("ssong", errorCode+"");
+                        }
+                    });
+                }else{
+                    Toast.makeText(ReserveRequestActivity.this, "값을 제대로 입력해주세요", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
     }

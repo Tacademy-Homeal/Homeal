@@ -1,5 +1,7 @@
 package com.sm.ej.nk.homeal.manager;
 
+import android.util.Log;
+
 import com.sm.ej.nk.homeal.data.CalendarData;
 import com.sm.ej.nk.homeal.data.CalendarItem;
 
@@ -7,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -170,18 +173,24 @@ public class CalendarManager {
         this.item = item;
         CalendarData data = getCalendarData();
         for(int i=0; i<data.days.size(); i++){
+            data.days.get(i).idMap = new HashMap<>();
             for(int j=0; j<item.size(); j++){
                 if(data.days.get(i).year == item.get(j).year && data.days.get(i).month == item.get(j).month && data.days.get(i).dayOfMonth == item.get(j).dayOfMonth){
                     if(item.get(j).isDinner){
                         data.days.get(i).isDinner = true;
-                    }
-                    if(item.get(j).isMorning){
-                        data.days.get(i).isMorning = true;
+                        data.days.get(i).idMap.put("Dinner", item.get(j).id);
                     }
                     if(item.get(j).isLaunch){
                         data.days.get(i).isLaunch = true;
+                        data.days.get(i).idMap.put("Launch", item.get(j).id);
                     }
 
+                    if(item.get(j).isMorning){
+                        data.days.get(i).isMorning = true;
+                        data.days.get(i).idMap.put("Morning", item.get(j).id);
+                    }
+
+                    Log.e("ssong", item.get(j).id+"dd");
                     data.days.get(i).isSelect = true;
                     data.days.get(i).sharing = item.get(j).sharing;
                     data.days.get(i).id = item.get(j).id;
