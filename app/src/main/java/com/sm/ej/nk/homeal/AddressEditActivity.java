@@ -17,6 +17,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -120,6 +121,8 @@ public class AddressEditActivity extends AppCompatActivity implements
 
     @OnClick(R.id.btn_address_search)
     public void onAddressSearch() {
+        InputMethodManager mInputMethodManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        mInputMethodManager.hideSoftInputFromWindow(keywordView.getWindowToken(), 0);
         String keyword = keywordView.getText().toString();
         if (!TextUtils.isEmpty(keyword)) {
             POISearchRequest request = new POISearchRequest(AddressEditActivity.this, keyword);
