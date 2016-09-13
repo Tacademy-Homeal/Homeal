@@ -80,7 +80,7 @@ public class GalleryActivity extends AppCompatActivity implements GalleryAdapter
                 progressDialog.show();
                 switch (mode) {
                     case ThumbnailEditActivity.MODE_THUMBNAIL: {
-                        CkThumbnailInsertRequest request = new CkThumbnailInsertRequest(GalleryActivity.this, mAadapter.getSlectedPhotoList());
+                        CkThumbnailInsertRequest request = new CkThumbnailInsertRequest(GalleryActivity.this, mAadapter.getCheckedItemPositions());
                         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
                             @Override
                             public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
@@ -128,11 +128,7 @@ public class GalleryActivity extends AppCompatActivity implements GalleryAdapter
         if (mode == GalleryAdapter.CHOICE_MODE_SINGLE) {
             imagePath = data.getImagePath();
         } else {
-            if (data.isSelected()) {
-                data.setSelected(false);
-            } else {
-                data.setSelected(true);
-            }
+
         }
     }
 }

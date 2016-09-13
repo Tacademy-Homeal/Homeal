@@ -29,7 +29,7 @@ public class ReserveSendRequest extends AbstractRequest<NetworkResultTemp>{
                 .add("schedule", scheduleid)
                 .add("pax", pax);
         for(int i=0; i<menus.size(); i++){
-            builder.add("menu",menus.get(i).id);
+            builder.add("menus",menus.get(i).id);
         }
         RequestBody body = builder.build();
 
@@ -39,7 +39,6 @@ public class ReserveSendRequest extends AbstractRequest<NetworkResultTemp>{
                 .tag(context)
                 .build();
     }
-
 
     @Override
     protected Type getType() {
