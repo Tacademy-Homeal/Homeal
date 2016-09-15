@@ -49,6 +49,7 @@ public class EtReserveFragment extends Fragment {
     private static final int TYPE_EATER_CANCLE = 5;
     private static final int TYPE_EAT_COMPLETE = 6;
     private static final int TYPE_END = 7;
+    public static final String USER="user";
 
 
     public static EtReserveFragment createInstance() {
@@ -78,6 +79,7 @@ public class EtReserveFragment extends Fragment {
             @Override
             public void onWriteAdapterClick(View view, ReserveData etReserveData, int position) {
                 Intent intent = new Intent(getContext(), EtWriteReviewActivity.class);
+                intent.putExtra(USER,etReserveData.getUid());
                 startActivity(intent);
             }
         });

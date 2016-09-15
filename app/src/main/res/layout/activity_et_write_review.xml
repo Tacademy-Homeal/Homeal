@@ -140,7 +140,7 @@
             android:numStars="5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/rating_total"/>
+            android:id="@+id/rating_attitude"/>
     </LinearLayout>
 
     <LinearLayout
@@ -159,7 +159,8 @@
             android:text="@string/review"/>
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:id="@+id/edit_after_write" />
 
     </LinearLayout>
     <Button
