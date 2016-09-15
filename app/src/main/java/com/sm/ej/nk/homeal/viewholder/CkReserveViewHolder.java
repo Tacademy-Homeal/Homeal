@@ -92,8 +92,8 @@ public class CkReserveViewHolder extends RecyclerView.ViewHolder {
         btn_reserve_write.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (rListener != null) {
-                    rListener.onReviewButtonClick(v, reserveData, getAdapterPosition());
+                if (cListener != null) {
+                    cListener.onCancelButtonClick(v, reserveData, getAdapterPosition());
                 }
             }
         });
@@ -164,14 +164,14 @@ public class CkReserveViewHolder extends RecyclerView.ViewHolder {
 
 
     //Review Button
-    public interface OnReviewButtonClickListener {
+    public interface OnCancelClickListener {
 
-        public void onReviewButtonClick(View view, ReserveData reserveData, int position);
+        public void onCancelButtonClick(View view, ReserveData reserveData, int position);
     }
 
-    OnReviewButtonClickListener rListener;
+    OnCancelClickListener cListener;
 
-    public void setOnReviewButtonClickListener(OnReviewButtonClickListener rListener) {
-        this.rListener = rListener;
+    public void setCancelButtonClickListener(OnCancelClickListener cListener) {
+        this.cListener = cListener;
     }
 }

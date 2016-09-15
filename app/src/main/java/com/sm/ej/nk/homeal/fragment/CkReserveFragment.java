@@ -67,57 +67,31 @@ public class CkReserveFragment extends Fragment {
         CkReserveView.setAdapter(mAdapter);
         CkReserveView.setLayoutManager(manager);
 
-        ReservationListRequest request = new ReservationListRequest(getContext());
-        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<List<ReserveData>>>() {
-            @Override
-            public void onSuccess(NetworkRequest<NetworkResult<List<ReserveData>>> request, NetworkResult<List<ReserveData>> result) {
-                datas = result.getResult();
-                mAdapter.addAll(datas);
-            }
-
-            @Override
-            public void onFail(NetworkRequest<NetworkResult<List<ReserveData>>> request, int errorCode, String errorMessage, Throwable e) {
-                Toast.makeText(getContext(), "" + errorMessage, Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        setCookerButton();
-        return view;
-    }
-
-    private void setCookerButton() {
         mAdapter.setOnAgreeButtonClickListener(new CkReserveAdapter.OnAagreeButtonClickLIstener() {
             @Override
             public void onAagreeButtonClick(View view, ReserveData data, int position) {
-                Toast.makeText(getContext(), "승인되었습니다", Toast.LENGTH_SHORT).show();
+
             }
         });
 
         mAdapter.setOnDisagreeButtonClickLIstener(new CkReserveAdapter.OnDisagreeButtonClickLIstener() {
             @Override
             public void onDisagreeButtonClick(View view, ReserveData data, int position) {
-                Toast.makeText(getContext(), "거절 되었습니다", Toast.LENGTH_SHORT).show();
+
             }
         });
-//
-//        mAdapter.setOnreviewAdapterItemClickListener(new CkReserveAdapter.OnreviewButtonClickLIstener() {
-//
-//            @Override
-//            public void onreviewAdapterItemClick(View view, ReserveData data, int position) {
-//
-//                int staus = Integer.parseInt(data.getStatus());
-//                switch (staus) {
-//                    case TYPE_REQUEST_COMPLETE:
-//                        showDialog();
-//                        break;
-//                    case TYPE_EAT_COMPLETE:
-//                        Intent intent = new Intent(getActivity(), CkWriteReViewActivity.class);
-//                        startActivity(intent);
-//                        break;
-//                }
-//            }
-//        });
+
+       mAdapter.setOnCancelAdapterItemClickListener(new CkReserveAdapter.OncancelButtonClickLIstener() {
+           @Override
+           public void oncancelAdapterItemClick(View view, ReserveData data, int position) {
+
+           }
+       });
+        return view;
     }
+
+
+
 
     @Override
     public void onStart() {
@@ -148,6 +122,20 @@ public class CkReserveFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         mAdapter = new CkReserveAdapter();
+
+        ReservationListRequest request = new ReservationListRequest(getContext());
+        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<List<ReserveData>>>() {
+            @Override
+            public void onSuccess(NetworkRequest<NetworkResult<List<ReserveData>>> request, NetworkResult<List<ReserveData>> result) {
+                datas = result.getResult();
+                mAdapter.addAll(datas);
+            }
+
+            @Override
+            public void onFail(NetworkRequest<NetworkResult<List<ReserveData>>> request, int errorCode, String errorMessage, Throwable e) {
+                Toast.makeText(getContext(), "" + errorMessage, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 }

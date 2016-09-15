@@ -16,7 +16,7 @@ import java.util.List;
  * Created by Tacademy on 2016-08-25.
  */
 public class CkReserveAdapter extends RecyclerView.Adapter<CkReserveViewHolder> implements CkReserveViewHolder.OnAgreeButtonClickListener,
-        CkReserveViewHolder.OnDisagreeButtonClickListener, CkReserveViewHolder.OnReviewButtonClickListener {
+        CkReserveViewHolder.OnDisagreeButtonClickListener, CkReserveViewHolder.OnCancelClickListener {
     List<ReserveData> items = new ArrayList<>();
 
     public void add(ReserveData data) {
@@ -39,7 +39,7 @@ public class CkReserveAdapter extends RecyclerView.Adapter<CkReserveViewHolder> 
         CkReserveViewHolder holder = new CkReserveViewHolder(view);
         holder.setOnAgreeButtonClickListener(this);
         holder.setOnDisagreeButtonClickListener(this);
-        holder.setOnReviewButtonClickListener(this);
+        holder.setCancelButtonClickListener(this);
         return holder;
     }
 
@@ -70,9 +70,9 @@ public class CkReserveAdapter extends RecyclerView.Adapter<CkReserveViewHolder> 
     }
 
     @Override
-    public void onReviewButtonClick(View view, ReserveData reserveData, int position) {
-        if (rListener != null) {
-            rListener.onreviewAdapterItemClick(view, reserveData, position);
+    public void onCancelButtonClick(View view, ReserveData reserveData, int position) {
+        if(cListener != null){
+            cListener.oncancelAdapterItemClick(view,reserveData,position);
         }
     }
 
@@ -100,14 +100,14 @@ public class CkReserveAdapter extends RecyclerView.Adapter<CkReserveViewHolder> 
 
 
     //Write button
-    public interface OnreviewButtonClickLIstener {
-        public void onreviewAdapterItemClick(View view, ReserveData data, int position);
+    public interface OncancelButtonClickLIstener {
+        public void oncancelAdapterItemClick(View view, ReserveData data, int position);
     }
 
-    OnreviewButtonClickLIstener rListener;
+    OncancelButtonClickLIstener cListener;
 
-    public void setOnreviewAdapterItemClickListener(OnreviewButtonClickLIstener rListener) {
-        this.rListener = rListener;
+    public void setOnCancelAdapterItemClickListener(OncancelButtonClickLIstener cListener) {
+        this.cListener = cListener;
     }
 
 
