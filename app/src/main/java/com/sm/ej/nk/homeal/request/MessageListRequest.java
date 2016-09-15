@@ -27,7 +27,6 @@ public class MessageListRequest extends AbstractRequest<NetworkResult<List<ChatM
                 .build();
 
 
-
     }
     @Override
     protected Type getType() {

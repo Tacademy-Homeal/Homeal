@@ -90,13 +90,20 @@
                     android:text="reservestate" />
 
                 <Button
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/et_reservation_cancle"
+                    android:id="@+id/btn_et_cancel" />
+
+                <Button
                     android:theme="@style/ReserveButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="100dp"
-                    android:text="@string/et_reservation_cancle"
+                    android:text="@string/et_reservation_write"
                     android:id="@+id/btn_et_review_write"
                     android:layout_weight="0.53" />
+
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

@@ -17,10 +17,12 @@ import com.sm.ej.nk.homeal.DividerItemDecoration;
 import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.adapter.CkReserveAdapter;
 import com.sm.ej.nk.homeal.data.NetworkResult;
+import com.sm.ej.nk.homeal.data.NetworkResultTemp;
 import com.sm.ej.nk.homeal.data.ReserveData;
 import com.sm.ej.nk.homeal.manager.NetworkManager;
 import com.sm.ej.nk.homeal.manager.NetworkRequest;
 import com.sm.ej.nk.homeal.request.ReservationListRequest;
+import com.sm.ej.nk.homeal.request.ReservationsChangeRequest;
 
 import java.util.List;
 
@@ -44,6 +46,7 @@ public class CkReserveFragment extends Fragment {
     private static final int TYPE_END = 7;
 
     List<ReserveData> datas;
+    ReservationsChangeRequest request;
 
     public static CkReserveFragment createInstance() {
         final CkReserveFragment pageFragment = new CkReserveFragment();
@@ -68,9 +71,24 @@ public class CkReserveFragment extends Fragment {
         CkReserveView.setLayoutManager(manager);
 
         mAdapter.setOnAgreeButtonClickListener(new CkReserveAdapter.OnAagreeButtonClickLIstener() {
+
+
             @Override
             public void onAagreeButtonClick(View view, ReserveData data, int position) {
+                request = new ReservationsChangeRequest(getContext(),data.getUid(),2);
 
+
+                NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
+                    @Override
+                    public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
+                        reFresh();
+                    }
+
+                    @Override
+                    public void onFail(NetworkRequest<NetworkResultTemp> request, int errorCode, String errorMessage, Throwable e) {
+
+                    }
+                });
             }
         });
 
@@ -78,6 +96,19 @@ public class CkReserveFragment extends Fragment {
             @Override
             public void onDisagreeButtonClick(View view, ReserveData data, int position) {
 
+                request = new ReservationsChangeRequest(getContext(),data.getUid(),3);
+
+                NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
+                    @Override
+                    public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
+                            reFresh();
+                    }
+
+                    @Override
+                    public void onFail(NetworkRequest<NetworkResultTemp> request, int errorCode, String errorMessage, Throwable e) {
+
+                    }
+                });
             }
         });
 
@@ -85,8 +116,22 @@ public class CkReserveFragment extends Fragment {
            @Override
            public void oncancelAdapterItemClick(View view, ReserveData data, int position) {
 
+               request = new ReservationsChangeRequest(getContext(), data.getUid(), 4);
+
+               NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
+                   @Override
+                   public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
+                            reFresh();
+                   }
+
+                   @Override
+                   public void onFail(NetworkRequest<NetworkResultTemp> request, int errorCode, String errorMessage, Throwable e) {
+
+                   }
+               });
            }
        });
+
         return view;
     }
 
@@ -114,6 +159,23 @@ public class CkReserveFragment extends Fragment {
         });
         builder.setMessage(getResources().getString(R.string.et_reservation_cancle));
         builder.show();
+    }
+
+    public void reFresh(){
+        ReservationListRequest request = new ReservationListRequest(getContext());
+        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<List<ReserveData>>>() {
+            @Override
+            public void onSuccess(NetworkRequest<NetworkResult<List<ReserveData>>> request, NetworkResult<List<ReserveData>> result) {
+                datas = result.getResult();
+                mAdapter.clear();
+                mAdapter.addAll(datas);
+            }
+
+            @Override
+            public void onFail(NetworkRequest<NetworkResult<List<ReserveData>>> request, int errorCode, String errorMessage, Throwable e) {
+                Toast.makeText(getContext(), "" + errorMessage, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 

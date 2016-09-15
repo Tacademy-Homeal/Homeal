@@ -104,15 +104,15 @@ public class CkReserveViewHolder extends RecyclerView.ViewHolder {
     public void setReserveData(ReserveData reserveData) {
         this.reserveData = reserveData;
 
-        Glide.with(pictureView.getContext()).load(reserveData.getUimage()).into(pictureView);
+        Glide.with(pictureView.getContext()).load(reserveData.getImage()).into(pictureView);
         foodNameView.setText(reserveData.getMname());
-        dateView.setText(reserveData.getSdate());
-        reservePersonView.setText(""+reserveData.getRpax());
+        dateView.setText(reserveData.getDate());
+        reservePersonView.setText(""+reserveData.getPax());
         etNameView.setText(reserveData.getUname());
 
         //btn
         btn_init();
-        switch (reserveData.getRstatus()){
+        switch (reserveData.getStatus()){
             case TYPE_REQUEST :
                 btn_reserve_agree.setVisibility(View.VISIBLE);
                 btn_reserve_disagree.setVisibility(View.VISIBLE);

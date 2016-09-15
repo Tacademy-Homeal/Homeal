@@ -2,6 +2,7 @@ package com.sm.ej.nk.homeal.fragment;
 
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,14 +15,16 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.sm.ej.nk.homeal.DividerItemDecoration;
+import com.sm.ej.nk.homeal.EtWriteReviewActivity;
 import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.adapter.EtReserveAdapter;
 import com.sm.ej.nk.homeal.data.NetworkResult;
+import com.sm.ej.nk.homeal.data.NetworkResultTemp;
 import com.sm.ej.nk.homeal.data.ReserveData;
 import com.sm.ej.nk.homeal.manager.NetworkManager;
 import com.sm.ej.nk.homeal.manager.NetworkRequest;
-import com.sm.ej.nk.homeal.request.EtReserveRequest;
 import com.sm.ej.nk.homeal.request.ReservationListRequest;
+import com.sm.ej.nk.homeal.request.ReservationsChangeRequest;
 
 import java.util.List;
 
@@ -37,6 +40,7 @@ public class EtReserveFragment extends Fragment {
     RecyclerView EtReserveView;
     EtReserveAdapter mAdapter;
     List<ReserveData> datas;
+    ReservationsChangeRequest request;
 
     private static final int TYPE_REQUEST = 1;
     private static final int TYPE_REQUEST_COMPLETE = 2;
@@ -67,55 +71,44 @@ public class EtReserveFragment extends Fragment {
         LinearLayoutManager manager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         //add ItemDecoration
         EtReserveView.addItemDecoration(new DividerItemDecoration(getActivity()));
-
         EtReserveView.setAdapter(mAdapter);
         EtReserveView.setLayoutManager(manager);
 
-        ReservationListRequest request = new ReservationListRequest(getContext());
-        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<List<ReserveData>>>() {
+        mAdapter.setWriteItemClickListener(new EtReserveAdapter.OnWriteAdapterClick() {
             @Override
-            public void onSuccess(NetworkRequest<NetworkResult<List<ReserveData>>> request, NetworkResult<List<ReserveData>> result) {
-                datas = result.getResult();
-                mAdapter.addAll(datas);
-            }
-
-            @Override
-            public void onFail(NetworkRequest<NetworkResult<List<ReserveData>>> request, int errorCode, String errorMessage, Throwable e) {
-                Toast.makeText(getContext(), "" + errorMessage, Toast.LENGTH_SHORT).show();
+            public void onWriteAdapterClick(View view, ReserveData etReserveData, int position) {
+                Intent intent = new Intent(getContext(), EtWriteReviewActivity.class);
+                startActivity(intent);
             }
         });
 
+        mAdapter.setCancelItemClickListener(new EtReserveAdapter.OnCancelAdapterClick() {
+            @Override
+            public void onCancelAdapterClick(View view, ReserveData data, int position) {
 
-//
-//                mAdapter.setOnReviewItemClickListener(new EtReserveAdapter.OnReserveAdapterClick() {
-//                    @Override
-//                    public void onReserveAdapterClick(View view, EtReserveData etReserveData, int position) {
-//
-//
-//                        switch (0) {
-//                            case TYPE_REQUEST:
-//                                showDialog();
-//                                break;
-//                            case TYPE_REQUEST_COMPLETE:
-//                                showDialog();
-//                                break;
-//                            case TYPE_EAT_COMPLETE:
-//                                Intent intent = new Intent(getActivity(), EtWriteReviewActivity.class);
-//                                startActivity(intent);
-//                                break;
-//                            case TYPE_END:
-//                                break;
-//                        }
-//                    }
-//                });
+
+                request = new ReservationsChangeRequest(getContext(),data.getUid(),5);
+
+                NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
+                    @Override
+                    public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
+                        reFresh();
+                    }
+
+                    @Override
+                    public void onFail(NetworkRequest<NetworkResultTemp> request, int errorCode, String errorMessage, Throwable e) {
+
+                    }
+                });
+            }
+        });
+
         return view;
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
 
-        EtReserveRequest request = new EtReserveRequest(getContext());
+    public void reFresh(){
+        ReservationListRequest request = new ReservationListRequest(getContext());
         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<List<ReserveData>>>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<List<ReserveData>>> request, NetworkResult<List<ReserveData>> result) {
@@ -126,11 +119,34 @@ public class EtReserveFragment extends Fragment {
 
             @Override
             public void onFail(NetworkRequest<NetworkResult<List<ReserveData>>> request, int errorCode, String errorMessage, Throwable e) {
-
+                Toast.makeText(getContext(), "" + errorMessage, Toast.LENGTH_SHORT).show();
             }
         });
-
     }
+
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        ReservationListRequest request = new ReservationListRequest(getContext());
+        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<List<ReserveData>>>() {
+            @Override
+            public void onSuccess(NetworkRequest<NetworkResult<List<ReserveData>>> request, NetworkResult<List<ReserveData>> result) {
+                datas = result.getResult();
+                mAdapter.clear();
+                mAdapter.addAll(datas);
+            }
+
+            @Override
+            public void onFail(NetworkRequest<NetworkResult<List<ReserveData>>> request, int errorCode, String errorMessage, Throwable e) {
+                Toast.makeText(getContext(), "" + errorMessage, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
+
 
     private void showDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -154,6 +170,7 @@ public class EtReserveFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mAdapter = new EtReserveAdapter();
-    }
 
+
+    }
 }
