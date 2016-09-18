@@ -12,5 +12,6 @@
     <color name="dialog_fg_bg">#fbdac6</color>
     <color name="white">#FFFFFFFF</color>
     <color name="color_singup">#5E6062</color>
+    <color name="yellow">#ffeb3b</color>
 
 </resources>

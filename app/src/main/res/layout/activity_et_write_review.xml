@@ -30,7 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/taste"
+        android:text="Taste"
         android:layout_gravity="center_vertical"/>
 
     <RatingBar
@@ -39,7 +39,7 @@
         android:stepSize="0.5"
         android:numStars="5"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:id="@+id/rating_taste"/>
 </LinearLayout>
 
@@ -55,11 +55,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/price"
+            android:text="Price"
             android:layout_gravity="center_vertical"/>
 
         <RatingBar
-            android:theme="@style/RatingBar"
+            style="@style/starRatingBar"
             android:rating="3.5"
             android:stepSize="0.5"
             android:numStars="5"
@@ -80,7 +80,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/clean"
+            android:text="Clean"
             android:layout_gravity="center_vertical"/>
 
         <RatingBar
@@ -90,7 +90,8 @@
             android:numStars="5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/rating_clean"/>
+            android:id="@+id/rating_clean"
+            style="?android:attr/ratingBarStyleSmall"/>
     </LinearLayout>
 
     <LinearLayout
@@ -105,7 +106,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/kindness"
+            android:text="Kindness"
             android:layout_gravity="center_vertical"/>
 
         <RatingBar
@@ -120,47 +121,21 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/linear_kindness"
-        android:orientation="horizontal"
-        android:id="@+id/linear_total"
-        android:gravity="center_horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/total"
-            android:layout_gravity="center_vertical"/>
-
-        <RatingBar
-            android:theme="@style/RatingBar"
-            android:rating="3.5"
-            android:stepSize="0.5"
-            android:numStars="5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/rating_attitude"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:layout_below="@+id/linear_total"
+        android:layout_below="@+id/linear_kindness"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="37dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="@string/review"/>
+
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/edit_after_write" />
+            android:layout_height="200dp"
+            android:id="@+id/edit_after_write"
+            android:background="@drawable/write_edittext_bg"
+            android:gravity="left|top"
+            android:hint="postscript"/>
 
     </LinearLayout>
     <Button

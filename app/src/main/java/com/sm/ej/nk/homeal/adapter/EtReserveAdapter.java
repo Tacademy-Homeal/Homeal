@@ -16,7 +16,7 @@ import java.util.List;
  * Created by Tacademy on 2016-08-26.
  */
 public class EtReserveAdapter extends RecyclerView.Adapter<EtReserveViewHolder>
-        implements EtReserveViewHolder.OnWriteButtonClick, EtReserveViewHolder.OnCacncelButtonClick{
+        implements EtReserveViewHolder.OnReserveButtonClick{
     List<ReserveData> items = new ArrayList<>();
 
     public void add(ReserveData data) {
@@ -38,8 +38,8 @@ public class EtReserveAdapter extends RecyclerView.Adapter<EtReserveViewHolder>
     public EtReserveViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_et_reserve_fragment, parent, false);
         EtReserveViewHolder holder = new EtReserveViewHolder(view);
-        holder.setWriteButtonClick(this);
-        holder.setCancelButtonClick(this);
+        holder.setReserveButtonClick(this);
+//        holder.setCancelButtonClick(this);
         return holder;
     }
 
@@ -57,42 +57,41 @@ public class EtReserveAdapter extends RecyclerView.Adapter<EtReserveViewHolder>
 
     //Review Button click evnet & cancle button
 
-    public interface OnWriteAdapterClick {
-        public void onWriteAdapterClick(View view, ReserveData etReserveData, int position);
+    public interface OnReserveAdapterClick {
+        public void onReserveAdapterClick(View view, ReserveData etReserveData, int position);
     }
 
-    OnWriteAdapterClick wListener;
+    OnReserveAdapterClick rListener;
 
-    public void setWriteItemClickListener(OnWriteAdapterClick wListener) {
-        this.wListener = wListener;
+    public void setReserveItemClickListener(OnReserveAdapterClick rListener) {
+        this.rListener = rListener;
     }
-
 
     @Override
-    public void onWriteButtonClick(View view, ReserveData etReserveData, int position) {
-        if(wListener != null){
-            wListener.onWriteAdapterClick(view,etReserveData,position);
+    public void onReserveButtonClick(View view, ReserveData etReserveData, int position) {
+        if(rListener != null){
+            rListener.onReserveAdapterClick(view,etReserveData,position);
         }
     }
 
 
-    //cancel button setting
-
-    public interface OnCancelAdapterClick{
-        public void onCancelAdapterClick(View view, ReserveData data, int position);
-    }
-
-    OnCancelAdapterClick cListener;
-
-    public void setCancelItemClickListener(OnCancelAdapterClick cListener){
-        this.cListener = cListener;
-    }
-
-    @Override
-    public void onCancelButtonClick(View view, ReserveData data, int position) {
-        if(cListener != null){
-            cListener.onCancelAdapterClick(view, data, position);
-        }
-
-    }
+//    //cancel button setting
+//
+//    public interface OnCancelAdapterClick{
+//        public void onCancelAdapterClick(View view, ReserveData data, int position);
+//    }
+//
+//    OnCancelAdapterClick cListener;
+//
+//    public void setCancelItemClickListener(OnCancelAdapterClick cListener){
+//        this.cListener = cListener;
+//    }
+//
+//    @Override
+//    public void onCancelButtonClick(View view, ReserveData data, int position) {
+//        if(cListener != null){
+//            cListener.onCancelAdapterClick(view, data, position);
+//        }
+//
+//    }
 }

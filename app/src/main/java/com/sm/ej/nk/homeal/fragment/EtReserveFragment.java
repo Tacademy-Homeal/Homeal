@@ -75,33 +75,30 @@ public class EtReserveFragment extends Fragment {
         EtReserveView.setAdapter(mAdapter);
         EtReserveView.setLayoutManager(manager);
 
-        mAdapter.setWriteItemClickListener(new EtReserveAdapter.OnWriteAdapterClick() {
+
+        mAdapter.setReserveItemClickListener(new EtReserveAdapter.OnReserveAdapterClick() {
             @Override
-            public void onWriteAdapterClick(View view, ReserveData etReserveData, int position) {
-                Intent intent = new Intent(getContext(), EtWriteReviewActivity.class);
-                intent.putExtra(USER,etReserveData.getUid());
-                startActivity(intent);
-            }
-        });
+            public void onReserveAdapterClick(View view, ReserveData data, int position) {
+                if(data.getStatus() == 1 || data.getStatus()  == 2){
 
-        mAdapter.setCancelItemClickListener(new EtReserveAdapter.OnCancelAdapterClick() {
-            @Override
-            public void onCancelAdapterClick(View view, ReserveData data, int position) {
+                    request = new ReservationsChangeRequest(getContext(),data.getRid(),5);
 
+                    NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
+                        @Override
+                        public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
+                            reFresh();
+                        }
 
-                request = new ReservationsChangeRequest(getContext(),data.getUid(),5);
+                        @Override
+                        public void onFail(NetworkRequest<NetworkResultTemp> request, int errorCode, String errorMessage, Throwable e) {
 
-                NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
-                    @Override
-                    public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
-                        reFresh();
-                    }
-
-                    @Override
-                    public void onFail(NetworkRequest<NetworkResultTemp> request, int errorCode, String errorMessage, Throwable e) {
-
-                    }
-                });
+                        }
+                    });
+                }else{
+                    Intent intent = new Intent(getContext(), EtWriteReviewActivity.class);
+                    intent.putExtra(USER,data.getUid());
+                    startActivity(intent);
+                }
             }
         });
 
@@ -147,6 +144,21 @@ public class EtReserveFragment extends Fragment {
         });
     }
 
+    private void CancelDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+            }
+        });
+        builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+            }
+        });
+        builder.setMessage(getResources().getString(R.string.et_reservation_cancle));
+        builder.show();
+    }
 
 
 

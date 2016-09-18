@@ -75,7 +75,7 @@ public class CkReserveFragment extends Fragment {
 
             @Override
             public void onAagreeButtonClick(View view, ReserveData data, int position) {
-                request = new ReservationsChangeRequest(getContext(),data.getUid(),2);
+                request = new ReservationsChangeRequest(getContext(),data.getRid(),2);
 
 
                 NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
@@ -96,7 +96,7 @@ public class CkReserveFragment extends Fragment {
             @Override
             public void onDisagreeButtonClick(View view, ReserveData data, int position) {
 
-                request = new ReservationsChangeRequest(getContext(),data.getUid(),3);
+                request = new ReservationsChangeRequest(getContext(),data.getRid(),3);
 
                 NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
                     @Override
@@ -116,7 +116,7 @@ public class CkReserveFragment extends Fragment {
            @Override
            public void oncancelAdapterItemClick(View view, ReserveData data, int position) {
 
-               request = new ReservationsChangeRequest(getContext(), data.getUid(), 4);
+               request = new ReservationsChangeRequest(getContext(), data.getRid(), 4);
 
                NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
                    @Override

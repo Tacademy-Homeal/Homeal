@@ -32,8 +32,8 @@ public class EtWriteReviewActivity extends AppCompatActivity {
     @BindView(R.id.rating_clean)
     RatingBar rating_clean;
 
-    @BindView(R.id.rating_attitude)
-    RatingBar rating_attitude;
+    @BindView(R.id.rating_kindness)
+    RatingBar rating_kindess;
 
     @BindView(R.id.edit_after_write)
     EditText editText;
@@ -69,10 +69,10 @@ public class EtWriteReviewActivity extends AppCompatActivity {
 
         int clean = rating_clean.getNumStars();
         int taste = rating_taste.getNumStars();
-        int attitude = rating_attitude.getNumStars();
+        int kindness = rating_kindess.getNumStars();
         int price = rating_price.getNumStars();
         String content = editText.getText().toString();
-        WriteReservationRequest request = new WriteReservationRequest(this,cookerId,content,taste,price,clean,attitude);
+        WriteReservationRequest request = new WriteReservationRequest(this,cookerId,content,taste,price,clean,kindness);
 
         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
             @Override

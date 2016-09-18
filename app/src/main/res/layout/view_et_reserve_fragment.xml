@@ -11,12 +11,26 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/image_et_reserve_picture"
-            android:layout_width="70dp"
-            android:layout_height="100dp" />
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/image_et_reserve_picture"
+                android:layout_width="70dp"
+                android:layout_height="75dp" />
 
+            <RatingBar
+                android:id="@+id/rating_et_reserve_ck"
+                android:rating="3.5"
+                android:stepSize="1"
+                android:numStars="5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/starRatingBar"
+                android:layout_marginLeft="10dp"/>
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -29,12 +43,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/text_et_reserve_foodname"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="15dp"
-                    android:text="foodname" />
 
                 <TextView
                     android:id="@+id/text_et_reserve_date"
@@ -44,17 +52,11 @@
                     android:text="reserve data" />
 
                 <TextView
-                    android:id="@+id/text_et_reserve_person"
+                    android:id="@+id/text_et_reserve_foodname"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="reserve person" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/linear_cooker_info"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                    android:layout_marginRight="15dp"
+                    android:text="foodname" />
 
                 <TextView
                     android:id="@+id/text_et_reserve_ckname"
@@ -64,14 +66,6 @@
                     android:layout_marginRight="15dp"
                     android:text="cookername" />
 
-                <RatingBar
-                    android:theme="@style/RatingBar"
-                    android:id="@+id/rating_et_reserve_ck"
-                    android:rating="3.5"
-                    android:stepSize="0.5"
-                    android:numStars="5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
             </LinearLayout>
 
             <LinearLayout
@@ -90,19 +84,12 @@
                     android:text="reservestate" />
 
                 <Button
-                    style="?android:attr/buttonStyleSmall"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/et_reservation_cancle"
-                    android:id="@+id/btn_et_cancel" />
-
-                <Button
                     android:theme="@style/ReserveButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/et_reservation_write"
-                    android:id="@+id/btn_et_review_write"
-                    android:layout_weight="0.53" />
+                    android:text="@string/et_reservation_cancle"
+                    android:textColor="@color/white"
+                    android:id="@+id/btn_et_reserve" />
 
             </LinearLayout>
         </LinearLayout>
