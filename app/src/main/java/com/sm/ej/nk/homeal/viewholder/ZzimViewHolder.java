@@ -120,6 +120,9 @@ public class ZzimViewHolder extends RecyclerView.ViewHolder {
         zzimjjimCount.setText(""+data.getBookmarkCnt());
         zzimreviewCount.setText(""+data.getReviewCnt());
         zzimstarCount.setRating((int)data.getGrade());
+//        if (data.getReviewCnt()==0){
+//            zzimreviewCount.setImage
+//        }
         if(data.getIsBookmark()==0){
             zzimjjimImage.setImageResource(R.drawable.homeal_heart);
         }else{
