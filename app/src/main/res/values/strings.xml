@@ -151,5 +151,6 @@
     <string name="select_country">나라를 선택하세요.</string>
     <string name="reserve_cancel">예약취소</string>
     <string name="after_write">후기작성</string>
-
+    <string name="et_reject">거절</string>
+    <string name="et_ok">예약승인</string>
 </resources>

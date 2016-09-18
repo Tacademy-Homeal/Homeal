@@ -39,7 +39,6 @@ public class EtReserveAdapter extends RecyclerView.Adapter<EtReserveViewHolder>
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_et_reserve_fragment, parent, false);
         EtReserveViewHolder holder = new EtReserveViewHolder(view);
         holder.setReserveButtonClick(this);
-//        holder.setCancelButtonClick(this);
         return holder;
     }
 
@@ -56,7 +55,6 @@ public class EtReserveAdapter extends RecyclerView.Adapter<EtReserveViewHolder>
 
 
     //Review Button click evnet & cancle button
-
     public interface OnReserveAdapterClick {
         public void onReserveAdapterClick(View view, ReserveData etReserveData, int position);
     }
@@ -73,25 +71,4 @@ public class EtReserveAdapter extends RecyclerView.Adapter<EtReserveViewHolder>
             rListener.onReserveAdapterClick(view,etReserveData,position);
         }
     }
-
-
-//    //cancel button setting
-//
-//    public interface OnCancelAdapterClick{
-//        public void onCancelAdapterClick(View view, ReserveData data, int position);
-//    }
-//
-//    OnCancelAdapterClick cListener;
-//
-//    public void setCancelItemClickListener(OnCancelAdapterClick cListener){
-//        this.cListener = cListener;
-//    }
-//
-//    @Override
-//    public void onCancelButtonClick(View view, ReserveData data, int position) {
-//        if(cListener != null){
-//            cListener.onCancelAdapterClick(view, data, position);
-//        }
-//
-//    }
 }

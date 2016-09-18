@@ -71,70 +71,30 @@ public class CkReserveFragment extends Fragment {
         CkReserveView.setLayoutManager(manager);
 
         mAdapter.setOnAgreeButtonClickListener(new CkReserveAdapter.OnAagreeButtonClickLIstener() {
-
-
             @Override
             public void onAagreeButtonClick(View view, ReserveData data, int position) {
-                request = new ReservationsChangeRequest(getContext(),data.getRid(),2);
-
-
-                NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
-                    @Override
-                    public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
-                        reFresh();
-                    }
-
-                    @Override
-                    public void onFail(NetworkRequest<NetworkResultTemp> request, int errorCode, String errorMessage, Throwable e) {
-
-                    }
-                });
+                request = new ReservationsChangeRequest(getContext(),data.getRid(),TYPE_REQUEST_COMPLETE);
+                cancelDialog(request,TYPE_REQUEST_COMPLETE);
             }
         });
 
         mAdapter.setOnDisagreeButtonClickLIstener(new CkReserveAdapter.OnDisagreeButtonClickLIstener() {
             @Override
             public void onDisagreeButtonClick(View view, ReserveData data, int position) {
-
-                request = new ReservationsChangeRequest(getContext(),data.getRid(),3);
-
-                NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
-                    @Override
-                    public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
-                            reFresh();
-                    }
-
-                    @Override
-                    public void onFail(NetworkRequest<NetworkResultTemp> request, int errorCode, String errorMessage, Throwable e) {
-
-                    }
-                });
+                request = new ReservationsChangeRequest(getContext(),data.getRid(),TYPE_REQUEST_REJECT);
+                cancelDialog(request,TYPE_REQUEST_REJECT);
             }
         });
 
        mAdapter.setOnCancelAdapterItemClickListener(new CkReserveAdapter.OncancelButtonClickLIstener() {
            @Override
            public void oncancelAdapterItemClick(View view, ReserveData data, int position) {
-
-               request = new ReservationsChangeRequest(getContext(), data.getRid(), 4);
-
-               NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
-                   @Override
-                   public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
-                            reFresh();
-                   }
-
-                   @Override
-                   public void onFail(NetworkRequest<NetworkResultTemp> request, int errorCode, String errorMessage, Throwable e) {
-
-                   }
-               });
-           }
+               request = new ReservationsChangeRequest(getContext(), data.getRid(),TYPE_COOKER_CANCLE);
+               cancelDialog(request,TYPE_COOKER_CANCLE);
+            }
        });
-
         return view;
     }
-
 
 
 
@@ -157,6 +117,7 @@ public class CkReserveFragment extends Fragment {
                 dialogInterface.dismiss();
             }
         });
+
         builder.setMessage(getResources().getString(R.string.et_reservation_cancle));
         builder.show();
     }
@@ -176,6 +137,47 @@ public class CkReserveFragment extends Fragment {
                 Toast.makeText(getContext(), "" + errorMessage, Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+
+    private void cancelDialog(final ReservationsChangeRequest request,int type) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
+                    @Override
+                    public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
+                        reFresh();
+                    }
+
+                    @Override
+                    public void onFail(NetworkRequest<NetworkResultTemp> request, int errorCode, String errorMessage, Throwable e) {
+
+                    }
+                });
+            }
+        });
+        builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+            }
+        });
+
+        switch (type){
+            case TYPE_REQUEST_COMPLETE:
+                builder.setMessage(getResources().getString(R.string.et_ok));
+                break;
+            case TYPE_REQUEST_REJECT:
+                builder.setMessage(getResources().getString(R.string.et_reject));
+                break;
+            case TYPE_COOKER_CANCLE:
+                builder.setMessage(getResources().getString(R.string.et_reservation_cancle));
+                break;
+        }
+        builder.show();
+
     }
 
 

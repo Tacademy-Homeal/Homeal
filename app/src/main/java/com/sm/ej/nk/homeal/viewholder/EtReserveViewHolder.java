@@ -49,7 +49,6 @@ public class EtReserveViewHolder extends RecyclerView.ViewHolder {
     private static final int TYPE_EATER_CANCLE = 5;
     private static final int TYPE_EAT_COMPLETE = 6;
     private static final int TYPE_END = 7;
-    //    @OnClick(R.id.btn_et_reserve_state)
 //    Button reservestate
     public EtReserveViewHolder(View itemView) {
         super(itemView);
@@ -63,15 +62,6 @@ public class EtReserveViewHolder extends RecyclerView.ViewHolder {
                 }
             }
         });
-
-//        btn_cancel.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if(cListender != null){
-//                    cListender.onCancelButtonClick(view,etReserveData,getAdapterPosition());
-//                }
-//            }
-//        });
     }
 
     ReserveData etReserveData;
@@ -81,9 +71,10 @@ public class EtReserveViewHolder extends RecyclerView.ViewHolder {
 
         //Url to image
         Glide.with(pictureView.getContext()).load(etReserveData.getImage()).into(pictureView);
-        ckNameView.setText(etReserveData.getUname());
-        foodNameView.setText(etReserveData.getMname());
+        ckNameView.setText("Cooker/"+etReserveData.getUname());
+        foodNameView.setText("Menu/"+etReserveData.getMname());
         dateView.setText(etReserveData.getDate());
+        ckRatingView.setRating(etReserveData.getGrade());
 
         switch (etReserveData.getStatus()){
             case TYPE_REQUEST :
@@ -107,19 +98,18 @@ public class EtReserveViewHolder extends RecyclerView.ViewHolder {
                 btn_reserve.setVisibility(View.GONE);
                 break;
             case TYPE_EAT_COMPLETE:
-                reserveStateView.setText("식사 완료");
+                reserveStateView.setText("식사완료");
                 btn_reserve.setVisibility(View.VISIBLE);
                 btn_reserve.setText(R.string.after_write);
                 break;
             case TYPE_END:
-                reserveStateView.setText("식사 완료");
+                reserveStateView.setText("식사완료");
                 btn_reserve.setVisibility(View.GONE);
         }
 
     }
 
-
-    //WRITE Button
+    //Reseve Button
     public interface OnReserveButtonClick {
         public void onReserveButtonClick(View view, ReserveData etReserveData, int position);
     }
@@ -129,19 +119,6 @@ public class EtReserveViewHolder extends RecyclerView.ViewHolder {
     public void setReserveButtonClick(OnReserveButtonClick rListener) {
         this.rListener = rListener;
     }
-
-//    //Cancel button
-//    public interface OnCacncelButtonClick{
-//        public void onCancelButtonClick(View view, ReserveData data,int position);
-//    }
-//
-//    OnCacncelButtonClick cListender;
-//
-//    public void setCancelButtonClick(OnCacncelButtonClick cListender){
-//        this.cListender = cListender;
-//    }
-
-
 }
 
 
