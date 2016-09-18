@@ -75,33 +75,17 @@ public class EtReserveFragment extends Fragment {
         EtReserveView.setAdapter(mAdapter);
         EtReserveView.setLayoutManager(manager);
 
-        mAdapter.setWriteItemClickListener(new EtReserveAdapter.OnWriteAdapterClick() {
+        mAdapter.setReserveItemClickListener(new EtReserveAdapter.OnReserveAdapterClick() {
             @Override
-            public void onWriteAdapterClick(View view, ReserveData etReserveData, int position) {
-                Intent intent = new Intent(getContext(), EtWriteReviewActivity.class);
-                intent.putExtra(USER,etReserveData.getUid());
-                startActivity(intent);
-            }
-        });
-
-        mAdapter.setCancelItemClickListener(new EtReserveAdapter.OnCancelAdapterClick() {
-            @Override
-            public void onCancelAdapterClick(View view, ReserveData data, int position) {
-
-
-                request = new ReservationsChangeRequest(getContext(),data.getUid(),5);
-
-                NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
-                    @Override
-                    public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
-                        reFresh();
-                    }
-
-                    @Override
-                    public void onFail(NetworkRequest<NetworkResultTemp> request, int errorCode, String errorMessage, Throwable e) {
-
-                    }
-                });
+            public void onReserveAdapterClick(View view, ReserveData data, int position) {
+                if(data.getStatus() == 1 || data.getStatus()  == 2){
+                    request = new ReservationsChangeRequest(getContext(),data.getRid(),5);
+                    cancelDialog(request);
+                }else{
+                    Intent intent = new Intent(getContext(), EtWriteReviewActivity.class);
+                    intent.putExtra(USER,data.getUid());
+                    startActivity(intent);
+                }
             }
         });
 
@@ -138,6 +122,18 @@ public class EtReserveFragment extends Fragment {
                 datas = result.getResult();
                 mAdapter.clear();
                 mAdapter.addAll(datas);
+
+                ReserveData data = new ReserveData();
+                data.setDate("2016/09/14 12:00");
+                data.setGrade(5);
+                data.setImage("https://graph.facebook.com/v2.6/10209214021861179/picture?ty");
+                data.setMname("김치찌개");
+                data.setPax(3);
+                data.setRid(55);
+                data.setUname("namgil");
+                data.setUid("75");
+                data.setStatus(TYPE_EAT_COMPLETE);
+                mAdapter.add(data);
             }
 
             @Override
@@ -147,6 +143,33 @@ public class EtReserveFragment extends Fragment {
         });
     }
 
+    private void cancelDialog(final ReservationsChangeRequest request) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
+                    @Override
+                    public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
+                        reFresh();
+                    }
+
+                    @Override
+                    public void onFail(NetworkRequest<NetworkResultTemp> request, int errorCode, String errorMessage, Throwable e) {
+
+                    }
+                });
+            }
+        });
+        builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+            }
+        });
+        builder.setMessage(getResources().getString(R.string.et_reservation_cancle));
+        builder.show();
+    }
 
 
 
@@ -155,7 +178,7 @@ public class EtReserveFragment extends Fragment {
         builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.dismiss();
+
             }
         });
         builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {

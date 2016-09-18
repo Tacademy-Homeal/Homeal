@@ -4,7 +4,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -27,12 +26,6 @@ public class CkReserveViewHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.text_ck_reserve_person)
     TextView reservePersonView;
 
-    @BindView(R.id.text_ck_reserve_etname)
-    TextView etNameView;
-
-    @BindView(R.id.rating_ck_reserve_et)
-    RatingBar etRatingView;
-
     @BindView(R.id.text_ck_reserve_state)
     TextView reserveStateView;
 
@@ -48,8 +41,6 @@ public class CkReserveViewHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.btn_ck_review_write)
     Button btn_reserve_write;
 
-    @BindView(R.id.text_ck_reserve_number)
-    TextView reserve_numberView;
 
     ReserveData reserveData;
 
@@ -65,9 +56,6 @@ public class CkReserveViewHolder extends RecyclerView.ViewHolder {
         super(itemView);
         ButterKnife.bind(this, itemView);
         //Unealbe rating state
-        etRatingView.setEnabled(false);
-
-        buttonSst();
     }
 
     //Button set
@@ -105,39 +93,55 @@ public class CkReserveViewHolder extends RecyclerView.ViewHolder {
         this.reserveData = reserveData;
 
         Glide.with(pictureView.getContext()).load(reserveData.getImage()).into(pictureView);
-        foodNameView.setText(reserveData.getMname());
+        foodNameView.setText("Menu/"+reserveData.getMname());
         dateView.setText(reserveData.getDate());
-        reservePersonView.setText(""+reserveData.getPax());
-        etNameView.setText(reserveData.getUname());
+        reservePersonView.setText("Eater/"+reserveData.getUname());
 
         //btn
-        btn_init();
         switch (reserveData.getStatus()){
             case TYPE_REQUEST :
-                btn_reserve_agree.setVisibility(View.VISIBLE);
-                btn_reserve_disagree.setVisibility(View.VISIBLE);
+                btn_reserve_write.setVisibility(View.GONE);
                 reserveStateView.setText(R.string.text_ck_reserve_request);
                 break;
+
             case TYPE_REQUEST_COMPLETE :
-                btn_reserve_write.setVisibility(View.VISIBLE);
+                btn_reserve_write.setVisibility(View.GONE);
                 reserveStateView.setText(R.string.text_ck_reserve_request_complete);
                 break;
+
+            case TYPE_REQUEST_REJECT:
+                btn_reserve_agree.setVisibility(View.GONE);
+                btn_reserve_disagree.setVisibility(View.GONE);
+                btn_reserve_write.setVisibility(View.GONE);
+                reserveStateView.setText("거절승인");
+                break;
+            case TYPE_COOKER_CANCLE:
+                btn_reserve_agree.setVisibility(View.GONE);
+                btn_reserve_disagree.setVisibility(View.GONE);
+                btn_reserve_write.setVisibility(View.GONE);
+                reserveStateView.setText("거절승인");
+                break;
+            case TYPE_EATER_CANCLE:
+                btn_reserve_agree.setVisibility(View.GONE);
+                btn_reserve_disagree.setVisibility(View.GONE);
+                btn_reserve_write.setVisibility(View.GONE);
+                reserveStateView.setText("이터거절");
+                break;
+
             case TYPE_EAT_COMPLETE :
+                btn_reserve_agree.setVisibility(View.GONE);
+                btn_reserve_disagree.setVisibility(View.GONE);
+                btn_reserve_write.setVisibility(View.GONE);
                 btn_reserve_write.setVisibility(View.VISIBLE);
                 reserveStateView.setText(R.string.text_ck_reserve_eat_end);
                 break;
             case TYPE_END :
-                reserveStateView.setText("");
+                reserveStateView.setText("식사종료");
                 break;
         }
     }
 
-    public void btn_init(){
-        btn_reserve_agree.setVisibility(View.INVISIBLE);
-        btn_reserve_disagree.setVisibility(View.INVISIBLE);
-        btn_reserve_write.setVisibility(View.INVISIBLE);
 
-    }
 
     //Agree Button
     public interface OnAgreeButtonClickListener {

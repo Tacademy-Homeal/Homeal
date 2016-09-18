@@ -19,27 +19,30 @@
     </android.support.design.widget.AppBarLayout>
 
 <LinearLayout
+    android:layout_marginTop="20dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_below="@+id/appbar_et_main"
     android:orientation="horizontal"
     android:id="@+id/linear_taste"
-    android:gravity="center_horizontal">
+    >
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/taste"
-        android:layout_gravity="center_vertical"/>
+        android:text="Taste"
+        />
 
     <RatingBar
-        android:theme="@style/RatingBar"
+        style="@style/bigstartRaingBar"
+        android:layout_marginLeft="15dp"
         android:rating="3.5"
         android:stepSize="0.5"
+        android:layout_marginTop="5dp"
         android:numStars="5"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:id="@+id/rating_taste"/>
 </LinearLayout>
 
@@ -49,20 +52,22 @@
         android:layout_below="@+id/linear_taste"
         android:orientation="horizontal"
         android:id="@+id/linear_price"
-        android:gravity="center_horizontal">
+       >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/price"
-            android:layout_gravity="center_vertical"/>
+            android:text="Price"
+          />
 
         <RatingBar
-            android:theme="@style/RatingBar"
+            style="@style/bigstartRaingBar"
+            android:layout_marginLeft="15dp"
             android:rating="3.5"
             android:stepSize="0.5"
             android:numStars="5"
+            android:layout_marginTop="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/rating_price"/>
@@ -74,23 +79,27 @@
         android:layout_below="@+id/linear_price"
         android:orientation="horizontal"
         android:id="@+id/linear_clean"
-        android:gravity="center_horizontal">
+      >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/clean"
-            android:layout_gravity="center_vertical"/>
+            android:text="Clean"
+        />
 
         <RatingBar
-            android:theme="@style/RatingBar"
+            style="@style/bigstartRaingBar"
+            android:id="@+id/rating_clean"
+            android:layout_marginLeft="15dp"
             android:rating="3.5"
             android:stepSize="0.5"
             android:numStars="5"
+            android:layout_marginTop="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/rating_clean"/>
+
+           />
     </LinearLayout>
 
     <LinearLayout
@@ -99,20 +108,22 @@
         android:layout_below="@+id/linear_clean"
         android:orientation="horizontal"
         android:id="@+id/linear_kindness"
-        android:gravity="center_horizontal">
+    >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/kindness"
-            android:layout_gravity="center_vertical"/>
+            android:text="Kindness"
+         />
 
         <RatingBar
-            android:theme="@style/RatingBar"
+            style="@style/bigstartRaingBar"
             android:rating="3.5"
+            android:layout_marginLeft="15dp"
             android:stepSize="0.5"
             android:numStars="5"
+            android:layout_marginTop="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/rating_kindness"/>
@@ -120,47 +131,21 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/linear_kindness"
-        android:orientation="horizontal"
-        android:id="@+id/linear_total"
-        android:gravity="center_horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/total"
-            android:layout_gravity="center_vertical"/>
-
-        <RatingBar
-            android:theme="@style/RatingBar"
-            android:rating="3.5"
-            android:stepSize="0.5"
-            android:numStars="5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/rating_attitude"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:layout_below="@+id/linear_total"
+        android:layout_below="@+id/linear_kindness"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="37dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="@string/review"/>
+
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/edit_after_write" />
+            android:layout_height="200dp"
+            android:id="@+id/edit_after_write"
+            android:background="@drawable/write_edittext_bg"
+            android:gravity="left|top"
+            android:hint="postscript"/>
 
     </LinearLayout>
     <Button
@@ -172,5 +157,16 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:text="@string/review_finish"/>
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New CheckBox"
+        android:id="@+id/checkBox"
+        android:layout_below="@+id/linear_clean"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="603dp"
+        android:layout_marginStart="603dp" />
 
 </RelativeLayout>
