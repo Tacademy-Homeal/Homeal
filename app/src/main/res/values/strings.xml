@@ -11,6 +11,7 @@
     <string name="Leave_Membership">회 원 탈 퇴</string>
     <string name="SettingActivity_appbar">환 경 설 정</string>
     <string name="PersonaldataActivity_appbar">개 인 정 보</string>
+    <string name="search">검색</string>
     <string name="EtZzimActivity_appbar">찜 목 록</string>
     <string name="Logout">로 그 아 웃</string>
     <string name="taste">맛</string>
@@ -264,4 +265,5 @@ COOKER가 서비스와 관련하여 촬영한 사진 또는 영상 등을 당사
 제24조(기타사항)\n
 특수한 상황으로 정당한 사유가 있는 경우 이 약관의 내용과 달리 정할 수 있습니다.\n
 </string>
+    <string name="review_check">후기보기</string>
 </resources>
