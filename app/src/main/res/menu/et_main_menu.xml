@@ -4,11 +4,11 @@
 
     <item android:id = "@+id/btn_et_main_search"
         android:title = "Search"
-        android:icon="@drawable/btn_comments_ok"
+        android:icon="@drawable/ic_search_white_48dp"
         app:showAsAction="always"/>
 
     <item android:id = "@+id/btn_et_main_alarm"
         android:title="Alarm"
-        android:icon="@drawable/btn_filter"
+        android:icon="@drawable/ic_notifications_none_white_48dp"
         app:showAsAction="always"/>
 </menu>

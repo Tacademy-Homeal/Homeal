@@ -130,4 +130,5 @@
         \nYou can also add rules by including them in the description of your meal.</string>
     <string name="select_country">Select Country</string>
     <string name="review_check">Review</string>
+    <string name="search">Search</string>
 </resources>

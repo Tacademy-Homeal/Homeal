@@ -1,54 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.sm.ej.nk.homeal.MapActivity"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    tools:context="com.sm.ej.nk.homeal.MapActivity">
 
     <android.support.design.widget.AppBarLayout
+        android:id="@+id/view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/view">
+        android:layout_height="wrap_content">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar_setting"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:layout_scrollFlags="scroll|enterAlways" >
+            app:layout_scrollFlags="scroll|enterAlways">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/search_edge"
                 android:orientation="horizontal">
-                <EditText
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/edit_search"
-                    android:layout_weight="1"
-                    android:inputType="text"
-                    android:imeOptions="actionSend"/>
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="match_parent"
-                    android:id = "@+id/image_search"
-                    android:src="@drawable/homeal_search_delete" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/search_gray" />
 
+                <com.sm.ej.nk.homeal.view.ClearEditText
+                    android:id="@+id/edit_search"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:hint="Search"
+                    android:imeOptions="actionSend"
+                    android:inputType="text"
+                    android:textColorHint="#e0e0e0"
+                    android:textSize="15dp" />
             </LinearLayout>
-
-
         </android.support.v7.widget.Toolbar>
-
-
-
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.v7.widget.RecyclerView
+    <RelativeLayout
+        android:id="@+id/view2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/rv_search"
-        android:layout_below="@+id/view"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/view">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:src="@drawable/search_none" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Please typing name or address for searching cook"
+                android:textSize="15dp" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/view_rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/view">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_search"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
 
 </RelativeLayout>
