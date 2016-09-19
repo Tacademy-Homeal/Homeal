@@ -16,23 +16,26 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="50dp">
+                android:layout_height="56dp">
 
                 <FrameLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
 
                     <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_marginTop="3dp"
                         android:layout_width="@dimen/et_home_userimagesize"
                         android:layout_height="@dimen/et_home_userimagesize"
                         android:id="@+id/image_et_home_user"
-                        android:layout_marginLeft="@dimen/et_home_userimage_leftmargin" />
+                        android:layout_marginLeft="5dp" />
                 </FrameLayout>
 
                 <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="10dp"
                     android:layout_weight="1">
 
                     <TextView
@@ -71,11 +74,11 @@
 
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="168dp">
 
                 <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/et_home_foodimageheight"
+                    android:layout_height="168dp"
                     android:id="@+id/image_et_home_food"
                     android:scaleType="centerCrop"/>
             </FrameLayout>
@@ -83,7 +86,7 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="48dp">
 
                 <LinearLayout
                     android:orientation="horizontal"
@@ -93,37 +96,52 @@
 
                     <com.francescocervone.openratingview.RatingView
                         android:layout_width="@dimen/et_home_rating_width"
-                        android:layout_height="@dimen/et_home_rating_height"
+                        android:layout_height="48dp"
                         android:id="@+id/rating_et_home"
                         app:orv_star_color="black"
                         android:clickable="false"
                         android:orientation="horizontal"
-                        android:background="#ff0000"
+                        android:background="#f1bb34"
                         android:contextClickable="false"
                         android:focusable="false"
                         android:focusableInTouchMode="false"></com.francescocervone.openratingview.RatingView>
                 </LinearLayout>
 
+                <ImageView
+                    android:layout_width="2dp"
+                    android:layout_height="24dp"
+                    android:background="#E0E0E0"
+                    android:layout_gravity="center" />
+
                 <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:id="@+id/linear_et_home_jjim">
+                    android:id="@+id/linear_et_home_jjim"
+                    android:weightSum="1">
 
                     <ImageView
                         android:layout_width="35dp"
                         android:layout_height="35dp"
                         android:id="@+id/image_et_home_jjim"
-                        android:src="@drawable/homeal_heart" />
+                        android:src="@drawable/homeal_heart"
+                        android:layout_weight="0.5"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:id="@+id/text_et_home_jjimcount" />
+                        android:id="@+id/text_et_home_jjimcount"
+                        android:layout_weight="0.5"/>
                 </LinearLayout>
+
+                <ImageView
+                    android:layout_width="2dp"
+                    android:layout_height="24dp"
+                    android:background="#E0E0E0"
+                    android:layout_gravity="center" />
 
                 <LinearLayout
                     android:orientation="horizontal"
@@ -131,18 +149,21 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:id="@+id/linear_et_home_review">
+                    android:id="@+id/linear_et_home_review"
+                    android:weightSum="1">
 
                     <ImageView
                         android:layout_width="35dp"
                         android:layout_height="35dp"
                         android:id="@+id/image_et_home_review"
-                        android:src="@drawable/homeal_review"/>
+                        android:src="@drawable/homeal_review"
+                        android:layout_weight="0.5"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/text_et_home_reviewcount" />
+                        android:id="@+id/text_et_home_reviewcount"
+                        android:layout_weight="0.5"/>
                 </LinearLayout>
 
             </LinearLayout>

@@ -8,7 +8,7 @@ public class ReviewData {
     private String image;
     private String name;
     private String date;
-    private String review;
+    private String content;
 
     public int getEid() {
         return eid;
@@ -43,10 +43,10 @@ public class ReviewData {
     }
 
     public String getReview() {
-        return review;
+        return content;
     }
 
     public void setReview(String review) {
-        this.review = review;
+        this.content = review;
     }
 }

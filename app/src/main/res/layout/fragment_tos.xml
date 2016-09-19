@@ -9,17 +9,17 @@
         android:id="@+id/tos_main_logo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="50dp"
         android:src="@drawable/tos_logo_xxhdpi" />
 
     <LinearLayout
         android:id="@+id/linear_tos_top"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="165dp"
-        android:orientation="vertical"
+        android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginLeft="16dp">
+        android:layout_marginTop="145dp"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/text_tos_main"
@@ -32,21 +32,29 @@
         <ScrollView
             android:id="@+id/scrollView"
             android:layout_width="match_parent"
-            android:layout_height="280dp"
+            android:layout_height="320dp"
             android:layout_above="@+id/linear_tos_btn"
             android:layout_alignLeft="@+id/text_tos_main"
             android:layout_alignStart="@+id/text_tos_main"
             android:layout_marginTop="8dp"
             android:background="@drawable/edittext_bg">
 
-            <TextView
-                android:id="@+id/textView13"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_above="@+id/scrollView"
-                android:layout_gravity="left|top"
-                android:text="@string/tos_content"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:layout_margin="10dp">
+
+                <TextView
+                    android:id="@+id/textView13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/scrollView"
+                    android:layout_gravity="left|top"
+                    android:text="@string/tos_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/white"
+                    android:textSize="12dp" />
+            </LinearLayout>
         </ScrollView>
     </LinearLayout>
 
@@ -55,9 +63,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/linear_tos_top"
+        android:layout_marginBottom="30dp"
         android:layout_marginLeft="43dp"
         android:layout_marginRight="43dp"
-        android:layout_marginBottom="44dp"
         android:layout_marginTop="8dp"
         android:orientation="horizontal">
 

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 
 import com.sm.ej.nk.homeal.adapter.ReviewAdapter;
@@ -24,6 +25,9 @@ public class ReviewInfoActivity extends AppCompatActivity {
     @BindView(R.id.rv_review)
     RecyclerView rv;
 
+    @BindView(R.id.toobar_review)
+    Toolbar toolbar;
+
     ReviewAdapter mAdapter;
 
     public static final String INTENT_COOKERNAME = "hhh";
@@ -33,9 +37,14 @@ public class ReviewInfoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_review_info);
         ButterKnife.bind(this);
 
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("후기보기");
+
         rv.setLayoutManager(new LinearLayoutManager(ReviewInfoActivity.this));
         Intent intent = getIntent();
         String cookerId = intent.getStringExtra(INTENT_COOKERNAME);
+
         CkReviewListRequest request = new CkReviewListRequest(ReviewInfoActivity.this, cookerId);
         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<List<ReviewData>>>() {
             @Override
