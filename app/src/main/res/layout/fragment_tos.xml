@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:layout_above="@+id/scrollView"
                 android:layout_gravity="left|top"
-                android:text="@string/tos_info"
+                android:text="@string/tos_content"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
         </ScrollView>
     </LinearLayout>
