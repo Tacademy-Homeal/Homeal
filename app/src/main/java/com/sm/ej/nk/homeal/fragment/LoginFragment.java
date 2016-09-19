@@ -138,7 +138,6 @@ public class LoginFragment extends Fragment {
 
             }
         });
-
         mLoginManager.logInWithReadPermissions(this, Arrays.asList("email"));
     }
 

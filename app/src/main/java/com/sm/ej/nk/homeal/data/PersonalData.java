@@ -10,7 +10,7 @@ public class PersonalData implements Serializable {
     private String gender;
     private String phone;
     private String introduce;
-    private int grade;
+    private float grade;
 
     public String getCountry() {
         return country;
@@ -73,11 +73,11 @@ public class PersonalData implements Serializable {
         this.introduce = introduce;
     }
 
-    public int getGrade() {
+    public float getGrade() {
         return this.grade;
     }
 
-    public void setGrade(int grade) {
+    public void setGrade(float grade) {
         this.grade = grade;
     }
 

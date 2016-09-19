@@ -11,7 +11,6 @@ public class CkDetailMenuData implements Serializable{
     public String foodTime;
     public String id;
     public int activation;
-    public int currency;
     public String price;
     public String introduce;
 

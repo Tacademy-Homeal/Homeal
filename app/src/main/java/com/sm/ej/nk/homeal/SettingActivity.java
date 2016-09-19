@@ -16,6 +16,11 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.sm.ej.nk.homeal.data.NetworkResultTemp;
+import com.sm.ej.nk.homeal.manager.NetworkManager;
+import com.sm.ej.nk.homeal.manager.NetworkRequest;
+import com.sm.ej.nk.homeal.request.LogOutRequest;
+
 import java.util.Locale;
 
 import butterknife.BindView;
@@ -97,18 +102,7 @@ public class SettingActivity extends AppCompatActivity {
         });
     }
 
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//        SharedPreferences sharedPreferences = this.getSharedPreferences("Language", Context.MODE_PRIVATE);
-//        String pine = sharedPreferences.getString("language", "");
-//        String languageToLoad = pine;
-//        Locale locale = new Locale(languageToLoad);//Set Selected Locale
-//        Locale.setDefault(locale);//set new locale as default
-//        Configuration config = new Configuration();//get Configuration
-//        config.locale = locale;//set config locale as selected locale
-//        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
-//    }
+
 
     @OnClick(R.id.linear_top)
     public void onSettingFaq() {
@@ -123,11 +117,28 @@ public class SettingActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_ck_logout)
     public void onLogout() {
-        Intent intent = new Intent(SettingActivity.this, LoginActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
+
+
+        LogOutRequest request = new LogOutRequest(this);
+
+        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
+            @Override
+            public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
+                Intent intent = new Intent(SettingActivity.this, LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onFail(NetworkRequest<NetworkResultTemp> request, int errorCode, String errorMessage, Throwable e) {
+                Toast.makeText(getBaseContext(),"LogOut fail",Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -157,4 +168,5 @@ public class SettingActivity extends AppCompatActivity {
         builder.setMessage(getResources().getString(R.string.leavemembership_dialog));
         builder.show();
     }
+
 }

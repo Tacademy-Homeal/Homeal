@@ -123,17 +123,6 @@ public class EtReserveFragment extends Fragment {
                 mAdapter.clear();
                 mAdapter.addAll(datas);
 
-                ReserveData data = new ReserveData();
-                data.setDate("2016/09/14 12:00");
-                data.setGrade(5);
-                data.setImage("https://graph.facebook.com/v2.6/10209214021861179/picture?ty");
-                data.setMname("김치찌개");
-                data.setPax(3);
-                data.setRid(55);
-                data.setUname("namgil");
-                data.setUid("75");
-                data.setStatus(TYPE_EAT_COMPLETE);
-                mAdapter.add(data);
             }
 
             @Override

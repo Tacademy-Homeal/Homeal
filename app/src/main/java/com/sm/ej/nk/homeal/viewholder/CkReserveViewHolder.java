@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.sm.ej.nk.homeal.R;
-import com.sm.ej.nk.homeal.data.ReserveData;
+import com.sm.ej.nk.homeal.data.CkReseveData;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -42,7 +42,7 @@ public class CkReserveViewHolder extends RecyclerView.ViewHolder {
     Button btn_reserve_write;
 
 
-    ReserveData reserveData;
+    CkReseveData reserveData;
 
     private static final int TYPE_REQUEST = 1;
     private static final int TYPE_REQUEST_COMPLETE = 2;
@@ -89,7 +89,7 @@ public class CkReserveViewHolder extends RecyclerView.ViewHolder {
 
 
     //set Data
-    public void setReserveData(ReserveData reserveData) {
+    public void setReserveData(CkReseveData reserveData) {
         this.reserveData = reserveData;
 
         Glide.with(pictureView.getContext()).load(reserveData.getImage()).into(pictureView);
@@ -146,7 +146,7 @@ public class CkReserveViewHolder extends RecyclerView.ViewHolder {
     //Agree Button
     public interface OnAgreeButtonClickListener {
 
-        public void onAgreeButtonClick(View view, ReserveData reserveData, int position);
+        public void onAgreeButtonClick(View view, CkReseveData reserveData, int position);
     }
 
     OnAgreeButtonClickListener aListener;
@@ -157,7 +157,7 @@ public class CkReserveViewHolder extends RecyclerView.ViewHolder {
 
     //DisAgreen Button
     public interface OnDisagreeButtonClickListener {
-        public void onDisagreeButtonClick(View view, ReserveData reserveData, int position);
+        public void onDisagreeButtonClick(View view, CkReseveData reserveData, int position);
     }
 
     OnDisagreeButtonClickListener dListener;
@@ -170,7 +170,7 @@ public class CkReserveViewHolder extends RecyclerView.ViewHolder {
     //Review Button
     public interface OnCancelClickListener {
 
-        public void onCancelButtonClick(View view, ReserveData reserveData, int position);
+        public void onCancelButtonClick(View view, CkReseveData reserveData, int position);
     }
 
     OnCancelClickListener cListener;

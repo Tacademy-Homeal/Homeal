@@ -17,7 +17,6 @@ import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.adapter.ChattingListAdapter;
 import com.sm.ej.nk.homeal.data.ChatContract;
 import com.sm.ej.nk.homeal.data.User;
-import com.sm.ej.nk.homeal.manager.ChattingDBManager;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -73,8 +72,8 @@ public class ChatListFragment extends Fragment  implements ChattingListAdapter.O
     @Override
     public void onStart() {
         super.onStart();
-        Cursor c = ChattingDBManager.getInstance().getChatUser();
-        mAdapter.changeCursor(c);
+//        Cursor c = ChattingDBManager.getInstance().getChatUser();
+//        mAdapter.changeCursor(c);
     }
 
     @Override
@@ -89,7 +88,6 @@ public class ChatListFragment extends Fragment  implements ChattingListAdapter.O
         Cursor cursor = mAdapter.getCursor(position);
         User user = new User();
         user.setId(cursor.getLong(cursor.getColumnIndex(ChatContract.ChatUser.COLUMN_SERVER_ID)));
-        user.setEmail(cursor.getString(cursor.getColumnIndex(ChatContract.ChatUser.COLUMN_EMAIL)));
         user.setName(cursor.getString(cursor.getColumnIndex(ChatContract.ChatUser.COLUMN_NAME)));
         Intent intent = new Intent(getContext(),ChattingActivity.class);
         intent.putExtra(ChattingActivity.EXTRA_USER, user);

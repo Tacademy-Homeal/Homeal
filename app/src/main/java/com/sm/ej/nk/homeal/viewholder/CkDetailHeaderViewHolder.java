@@ -130,10 +130,10 @@ public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder implements
         kindScore.setText(""+data.kindness);
 
         progressTotal.setProgress((int)data.grade);
-        progressTaste.setProgress(data.taste);
-        progressPrice.setProgress(data.price);
-        progressClean.setProgress(data.cleanliness);
-        progresskind.setProgress(data.kindness);
+        progressTaste.setProgress((int)data.taste);
+        progressPrice.setProgress((int)data.price);
+        progressClean.setProgress((int)data.cleanliness);
+        progresskind.setProgress((int)data.kindness);
     }
 
     public void setSchedule(List<CkScheduleData> list){

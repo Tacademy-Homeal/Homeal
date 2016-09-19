@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.sm.ej.nk.homeal.R;
-import com.sm.ej.nk.homeal.data.ReserveData;
+import com.sm.ej.nk.homeal.data.CkReseveData;
 import com.sm.ej.nk.homeal.viewholder.CkReserveViewHolder;
 
 import java.util.ArrayList;
@@ -17,9 +17,9 @@ import java.util.List;
  */
 public class CkReserveAdapter extends RecyclerView.Adapter<CkReserveViewHolder> implements CkReserveViewHolder.OnAgreeButtonClickListener,
         CkReserveViewHolder.OnDisagreeButtonClickListener, CkReserveViewHolder.OnCancelClickListener {
-    List<ReserveData> items = new ArrayList<>();
+    List<CkReseveData> items = new ArrayList<>();
 
-    public void add(ReserveData data) {
+    public void add(CkReseveData data) {
         items.add(data);
         notifyDataSetChanged();
     }
@@ -29,7 +29,7 @@ public class CkReserveAdapter extends RecyclerView.Adapter<CkReserveViewHolder> 
         notifyDataSetChanged();
     }
 
-    public void addAll(List<ReserveData> items) {
+    public void addAll(List<CkReseveData> items) {
         this.items.addAll(items);
         notifyDataSetChanged();
     }
@@ -56,21 +56,21 @@ public class CkReserveAdapter extends RecyclerView.Adapter<CkReserveViewHolder> 
 
     //Observer
     @Override
-    public void onAgreeButtonClick(View view, ReserveData reserveData, int position) {
+    public void onAgreeButtonClick(View view, CkReseveData reserveData, int position) {
         if (listener != null) {
             listener.onAagreeButtonClick(view, reserveData, position);
         }
     }
 
     @Override
-    public void onDisagreeButtonClick(View view, ReserveData reserveData, int position) {
+    public void onDisagreeButtonClick(View view, CkReseveData reserveData, int position) {
         if (dListener != null) {
             dListener.onDisagreeButtonClick(view, reserveData, position);
         }
     }
 
     @Override
-    public void onCancelButtonClick(View view, ReserveData reserveData, int position) {
+    public void onCancelButtonClick(View view, CkReseveData reserveData, int position) {
         if(cListener != null){
             cListener.oncancelAdapterItemClick(view,reserveData,position);
         }
@@ -78,7 +78,7 @@ public class CkReserveAdapter extends RecyclerView.Adapter<CkReserveViewHolder> 
 
     //Agree button
     public interface OnAagreeButtonClickLIstener {
-        public void onAagreeButtonClick(View view, ReserveData data, int position);
+        public void onAagreeButtonClick(View view, CkReseveData data, int position);
     }
 
     OnAagreeButtonClickLIstener listener;
@@ -89,7 +89,7 @@ public class CkReserveAdapter extends RecyclerView.Adapter<CkReserveViewHolder> 
 
     //DisAgree button
     public interface OnDisagreeButtonClickLIstener {
-        public void onDisagreeButtonClick(View view, ReserveData data, int position);
+        public void onDisagreeButtonClick(View view, CkReseveData data, int position);
     }
 
     OnDisagreeButtonClickLIstener dListener;
@@ -101,7 +101,7 @@ public class CkReserveAdapter extends RecyclerView.Adapter<CkReserveViewHolder> 
 
     //Write button
     public interface OncancelButtonClickLIstener {
-        public void oncancelAdapterItemClick(View view, ReserveData data, int position);
+        public void oncancelAdapterItemClick(View view, CkReseveData data, int position);
     }
 
     OncancelButtonClickLIstener cListener;

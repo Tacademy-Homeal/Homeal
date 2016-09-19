@@ -303,12 +303,6 @@ public class MenuAddActivity extends AppCompatActivity implements View.OnClickLi
             isChange = true;
         }
 
-        if(data.currency == Integer.parseInt(currency)){
-            currency = null;
-        }else{
-            isChange = true;
-        }
-
         return isChange;
     }
 }

@@ -19,13 +19,13 @@ public class WriteReservationRequest extends AbstractRequest<NetworkResultTemp> 
     Request request;
     public WriteReservationRequest(Context context, String id,String aftercontext,
                                    int taste,int price,int cleanliness,int kindness){
-        HttpUrl url = getBaseHttpsUrlBuilder()
+        HttpUrl url = getBaseHttpUrlBuilder()
                 .addPathSegment("reviews")
                 .build();
 
         RequestBody body = new FormBody.Builder()
                 .add("cooker", id)
-                .add("review", aftercontext)
+                .add("content", aftercontext)
                 .add("taste", ""+taste)
                 .add("price",""+price)
                 .add("cleanliness",""+cleanliness)

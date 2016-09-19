@@ -3,7 +3,7 @@ package com.sm.ej.nk.homeal.request;
 import android.content.Context;
 
 import com.google.gson.reflect.TypeToken;
-import com.sm.ej.nk.homeal.data.ChatMessage;
+import com.sm.ej.nk.homeal.data.CkReseveData;
 import com.sm.ej.nk.homeal.data.NetworkResult;
 
 import java.lang.reflect.Type;
@@ -13,28 +13,30 @@ import okhttp3.HttpUrl;
 import okhttp3.Request;
 
 /**
- * Created by Tacademy on 2016-08-29.
+ * Created by Tacademy on 2016-09-19.
  */
-public class MessageListRequest extends AbstractRequest<NetworkResult<List<ChatMessage>>> {
-    Request mRequest;
-    public MessageListRequest(Context context) {
+public class CkReserveListRequest extends AbstractRequest<NetworkResult<List<CkReseveData>>> {
 
+    Context context;
+    Request request;
+
+    public CkReserveListRequest(Context context){
         HttpUrl url = getBaseHttpUrlBuilder()
-                .addPathSegment("chatting")
+                .addPathSegment("reservations")
                 .build();
 
-        mRequest = new Request.Builder()
+        request = new Request.Builder()
                 .url(url)
                 .tag(context)
                 .build();
     }
     @Override
     protected Type getType() {
-        return new TypeToken<NetworkResult<List<ChatMessage>>>(){}.getType();
+        return new TypeToken<NetworkResult<List<CkReseveData>>>(){}.getType();
     }
-
     @Override
     public Request getRequest() {
-        return mRequest;
+        return request;
     }
 }
+

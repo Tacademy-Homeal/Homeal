@@ -16,12 +16,12 @@ import android.widget.Toast;
 import com.sm.ej.nk.homeal.DividerItemDecoration;
 import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.adapter.CkReserveAdapter;
+import com.sm.ej.nk.homeal.data.CkReseveData;
 import com.sm.ej.nk.homeal.data.NetworkResult;
 import com.sm.ej.nk.homeal.data.NetworkResultTemp;
-import com.sm.ej.nk.homeal.data.ReserveData;
 import com.sm.ej.nk.homeal.manager.NetworkManager;
 import com.sm.ej.nk.homeal.manager.NetworkRequest;
-import com.sm.ej.nk.homeal.request.ReservationListRequest;
+import com.sm.ej.nk.homeal.request.CkReserveListRequest;
 import com.sm.ej.nk.homeal.request.ReservationsChangeRequest;
 
 import java.util.List;
@@ -45,7 +45,7 @@ public class CkReserveFragment extends Fragment {
     private static final int TYPE_EAT_COMPLETE = 6;
     private static final int TYPE_END = 7;
 
-    List<ReserveData> datas;
+    List<CkReseveData> datas;
     ReservationsChangeRequest request;
 
     public static CkReserveFragment createInstance() {
@@ -72,7 +72,7 @@ public class CkReserveFragment extends Fragment {
 
         mAdapter.setOnAgreeButtonClickListener(new CkReserveAdapter.OnAagreeButtonClickLIstener() {
             @Override
-            public void onAagreeButtonClick(View view, ReserveData data, int position) {
+            public void onAagreeButtonClick(View view, CkReseveData data, int position) {
                 request = new ReservationsChangeRequest(getContext(),data.getRid(),TYPE_REQUEST_COMPLETE);
                 cancelDialog(request,TYPE_REQUEST_COMPLETE);
             }
@@ -80,7 +80,7 @@ public class CkReserveFragment extends Fragment {
 
         mAdapter.setOnDisagreeButtonClickLIstener(new CkReserveAdapter.OnDisagreeButtonClickLIstener() {
             @Override
-            public void onDisagreeButtonClick(View view, ReserveData data, int position) {
+            public void onDisagreeButtonClick(View view, CkReseveData data, int position) {
                 request = new ReservationsChangeRequest(getContext(),data.getRid(),TYPE_REQUEST_REJECT);
                 cancelDialog(request,TYPE_REQUEST_REJECT);
             }
@@ -88,7 +88,7 @@ public class CkReserveFragment extends Fragment {
 
        mAdapter.setOnCancelAdapterItemClickListener(new CkReserveAdapter.OncancelButtonClickLIstener() {
            @Override
-           public void oncancelAdapterItemClick(View view, ReserveData data, int position) {
+           public void oncancelAdapterItemClick(View view, CkReseveData data, int position) {
                request = new ReservationsChangeRequest(getContext(), data.getRid(),TYPE_COOKER_CANCLE);
                cancelDialog(request,TYPE_COOKER_CANCLE);
             }
@@ -123,17 +123,17 @@ public class CkReserveFragment extends Fragment {
     }
 
     public void reFresh(){
-        ReservationListRequest request = new ReservationListRequest(getContext());
-        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<List<ReserveData>>>() {
+        CkReserveListRequest request = new CkReserveListRequest(getContext());
+        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<List<CkReseveData>>>() {
             @Override
-            public void onSuccess(NetworkRequest<NetworkResult<List<ReserveData>>> request, NetworkResult<List<ReserveData>> result) {
+            public void onSuccess(NetworkRequest<NetworkResult<List<CkReseveData>>> request, NetworkResult<List<CkReseveData>> result) {
                 datas = result.getResult();
                 mAdapter.clear();
                 mAdapter.addAll(datas);
             }
 
             @Override
-            public void onFail(NetworkRequest<NetworkResult<List<ReserveData>>> request, int errorCode, String errorMessage, Throwable e) {
+            public void onFail(NetworkRequest<NetworkResult<List<CkReseveData>>> request, int errorCode, String errorMessage, Throwable e) {
                 Toast.makeText(getContext(), "" + errorMessage, Toast.LENGTH_SHORT).show();
             }
         });
@@ -187,16 +187,17 @@ public class CkReserveFragment extends Fragment {
 
         mAdapter = new CkReserveAdapter();
 
-        ReservationListRequest request = new ReservationListRequest(getContext());
-        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<List<ReserveData>>>() {
+        CkReserveListRequest request = new CkReserveListRequest(getContext());
+        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<List<CkReseveData>>>() {
             @Override
-            public void onSuccess(NetworkRequest<NetworkResult<List<ReserveData>>> request, NetworkResult<List<ReserveData>> result) {
+            public void onSuccess(NetworkRequest<NetworkResult<List<CkReseveData>>> request, NetworkResult<List<CkReseveData>> result) {
                 datas = result.getResult();
+                mAdapter.clear();
                 mAdapter.addAll(datas);
             }
 
             @Override
-            public void onFail(NetworkRequest<NetworkResult<List<ReserveData>>> request, int errorCode, String errorMessage, Throwable e) {
+            public void onFail(NetworkRequest<NetworkResult<List<CkReseveData>>> request, int errorCode, String errorMessage, Throwable e) {
                 Toast.makeText(getContext(), "" + errorMessage, Toast.LENGTH_SHORT).show();
             }
         });

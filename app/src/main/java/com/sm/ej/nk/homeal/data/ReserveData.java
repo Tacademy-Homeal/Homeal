@@ -8,7 +8,7 @@ public class ReserveData {
     private String uid;
     private String uname;
     private String image;
-    private int grade;
+    private float grade;
     private int rid;
     private String date;
     private int pax;
@@ -39,11 +39,11 @@ public class ReserveData {
         this.image = image;
     }
 
-    public int getGrade() {
+    public float getGrade() {
         return grade;
     }
 
-    public void setGrade(int grade) {
+    public void setGrade(float grade) {
         this.grade = grade;
     }
 

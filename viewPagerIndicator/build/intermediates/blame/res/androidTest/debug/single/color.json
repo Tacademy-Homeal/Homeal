@@ -4,6 +4,10 @@
         "source": "C:\\Users\\Administrator\\AndroidStudioProjects\\Homeal\\viewPagerIndicator\\build\\intermediates\\bundles\\debug\\res\\color\\vpi__light_theme.xml"
     },
     {
+        "merged": "C:\\Users\\Tacademy\\AndroidStudioProjects\\Homeal\\viewPagerIndicator\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\vpi__dark_theme.xml",
+        "source": "C:\\Users\\Tacademy\\AndroidStudioProjects\\Homeal\\viewPagerIndicator\\build\\intermediates\\bundles\\debug\\res\\color\\vpi__dark_theme.xml"
+    },
+    {
         "merged": "C:\\Users\\kimnamgil\\AndroidStudioProjects\\Homeal\\Homeal\\C:\\Users\\Tacademy\\AndroidStudioProjects\\Homeal\\viewPagerIndicator\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\vpi__light_theme.xml",
         "source": "C:\\Users\\kimnamgil\\AndroidStudioProjects\\Homeal\\Homeal\\C:\\Users\\Tacademy\\AndroidStudioProjects\\Homeal\\viewPagerIndicator\\build\\intermediates\\bundles\\debug\\res\\color\\vpi__light_theme.xml"
     },
@@ -12,8 +16,16 @@
         "source": "C:\\Users\\kimnamgil\\AndroidStudioProjects\\Homeal\\Homeal\\C:\\ssong\\Android\\Homeal\\viewPagerIndicator\\build\\intermediates\\bundles\\debug\\res\\color\\vpi__light_theme.xml"
     },
     {
-        "merged": "C:\\Users\\kimnamgil\\AndroidStudioProjects\\Homeal\\Homeal\\viewPagerIndicator\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\vpi__light_theme.xml",
-        "source": "C:\\Users\\kimnamgil\\AndroidStudioProjects\\Homeal\\Homeal\\viewPagerIndicator\\build\\intermediates\\bundles\\debug\\res\\color\\vpi__light_theme.xml"
+        "merged": "C:\\Users\\kimnamgil\\AndroidStudioProjects\\Homeal\\Homeal\\C:\\ssong\\Android\\Homeal\\viewPagerIndicator\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\vpi__dark_theme.xml",
+        "source": "C:\\Users\\kimnamgil\\AndroidStudioProjects\\Homeal\\Homeal\\C:\\ssong\\Android\\Homeal\\viewPagerIndicator\\build\\intermediates\\bundles\\debug\\res\\color\\vpi__dark_theme.xml"
+    },
+    {
+        "merged": "C:\\Users\\Tacademy\\AndroidStudioProjects\\Homeal\\viewPagerIndicator\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\vpi__light_theme.xml",
+        "source": "C:\\Users\\Tacademy\\AndroidStudioProjects\\Homeal\\viewPagerIndicator\\build\\intermediates\\bundles\\debug\\res\\color\\vpi__light_theme.xml"
+    },
+    {
+        "merged": "C:\\Users\\Administrator\\AndroidStudioProjects\\Homeal\\viewPagerIndicator\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\vpi__dark_theme.xml",
+        "source": "C:\\Users\\Administrator\\AndroidStudioProjects\\Homeal\\viewPagerIndicator\\build\\intermediates\\bundles\\debug\\res\\color\\vpi__dark_theme.xml"
     },
     {
         "merged": "C:\\Users\\kimnamgil\\AndroidStudioProjects\\Homeal\\Homeal\\viewPagerIndicator\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\vpi__dark_theme.xml",
@@ -24,11 +36,7 @@
         "source": "C:\\Users\\kimnamgil\\AndroidStudioProjects\\Homeal\\Homeal\\C:\\Users\\Tacademy\\AndroidStudioProjects\\Homeal\\viewPagerIndicator\\build\\intermediates\\bundles\\debug\\res\\color\\vpi__dark_theme.xml"
     },
     {
-        "merged": "C:\\Users\\Administrator\\AndroidStudioProjects\\Homeal\\viewPagerIndicator\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\vpi__dark_theme.xml",
-        "source": "C:\\Users\\Administrator\\AndroidStudioProjects\\Homeal\\viewPagerIndicator\\build\\intermediates\\bundles\\debug\\res\\color\\vpi__dark_theme.xml"
-    },
-    {
-        "merged": "C:\\Users\\kimnamgil\\AndroidStudioProjects\\Homeal\\Homeal\\C:\\ssong\\Android\\Homeal\\viewPagerIndicator\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\vpi__dark_theme.xml",
-        "source": "C:\\Users\\kimnamgil\\AndroidStudioProjects\\Homeal\\Homeal\\C:\\ssong\\Android\\Homeal\\viewPagerIndicator\\build\\intermediates\\bundles\\debug\\res\\color\\vpi__dark_theme.xml"
+        "merged": "C:\\Users\\kimnamgil\\AndroidStudioProjects\\Homeal\\Homeal\\viewPagerIndicator\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\vpi__light_theme.xml",
+        "source": "C:\\Users\\kimnamgil\\AndroidStudioProjects\\Homeal\\Homeal\\viewPagerIndicator\\build\\intermediates\\bundles\\debug\\res\\color\\vpi__light_theme.xml"
     }
 ]

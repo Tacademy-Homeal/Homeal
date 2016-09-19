@@ -64,15 +64,16 @@ public class CkMyPageFragment extends Fragment {
                     data = result.getResult();
                     cknameView.setText(data.getName());
                     cktypeView.setText(data.getType());
-                    cktotalView.setProgress(data.getGrade());
+                    cktotalView.setProgress((int)data.getGrade());
                     Glide.with(ckpictureView.getContext()).load(data.getImage()).into(ckpictureView);
-
             }
 
             @Override
             public void onFail(NetworkRequest<NetworkResult<PersonalData>> request, int errorCode, String errorMessage, Throwable e) {
             }
         });
+
+
         return view;
     }
 
