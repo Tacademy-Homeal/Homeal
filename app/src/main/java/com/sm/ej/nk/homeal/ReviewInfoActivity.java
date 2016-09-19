@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 
 import com.sm.ej.nk.homeal.adapter.ReviewAdapter;
 import com.sm.ej.nk.homeal.data.NetworkResult;
@@ -59,5 +60,15 @@ public class ReviewInfoActivity extends AppCompatActivity {
                 Log.e("ssong", errorCode+"");
             }
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
