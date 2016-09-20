@@ -6,10 +6,10 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.francescocervone.openratingview.RatingView;
 import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.data.EtHomeData;
 
@@ -20,7 +20,7 @@ public class ZzimViewHolder extends RecyclerView.ViewHolder {
     private View zzimView;
     private ImageView zzimuserImage, zzimfoodImage, zzimjjimImage;
     private TextView zzimName, zzimAddress, zzimMenu, zzimjjimCount, zzimreviewCount, zzimPrice;
-    private RatingView zzimstarCount;
+    private RatingBar zzimstarCount;
     private LinearLayout zzimLinear, zzimreviewLinear;
 
     public ZzimViewHolder(View itemView) {
@@ -35,7 +35,7 @@ public class ZzimViewHolder extends RecyclerView.ViewHolder {
         zzimreviewCount = (TextView) itemView.findViewById(R.id.text_et_zzim_reviewcount);
         zzimPrice = (TextView) itemView.findViewById(R.id.text_et_zzim_foodprice);
 
-        zzimstarCount = (RatingView) itemView.findViewById(R.id.rating_et_zzim);
+        zzimstarCount = (RatingBar) itemView.findViewById(R.id.rating_et_zzim);
 
         zzimstarCount.setOnDragListener(new View.OnDragListener() {
             @Override

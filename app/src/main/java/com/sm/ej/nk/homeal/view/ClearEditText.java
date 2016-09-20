@@ -113,7 +113,7 @@ public class ClearEditText extends AppCompatEditText implements TextWatcher, Vie
     }
 
 
-    private void setClearIconVisible(boolean visible) {
+    public void setClearIconVisible(boolean visible) {
         clearDrawable.setVisible(visible, false);
         setCompoundDrawables(null, null, visible ? clearDrawable : null, null);
     }

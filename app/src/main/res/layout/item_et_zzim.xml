@@ -95,18 +95,15 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1">
 
-                    <com.francescocervone.openratingview.RatingView
-                        android:layout_width="@dimen/et_zzim_rating_width"
-                        android:layout_height="48dp"
+                    <RatingBar
                         android:id="@+id/rating_et_zzim"
-                        app:orv_star_color="black"
-                        android:clickable="false"
-                        android:orientation="horizontal"
-                        android:background="#f1bb34"
-                        android:contextClickable="false"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:progressDrawable="@drawable/custom_ratingbar_full"
+                        android:numStars="5"
                         android:focusable="false"
-                        android:focusableInTouchMode="false">
-                    </com.francescocervone.openratingview.RatingView>
+                        android:focusableInTouchMode="false"
+                        android:layout_gravity="center_vertical|center" />
                 </LinearLayout>
 
                 <ImageView

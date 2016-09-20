@@ -56,8 +56,8 @@ public class ReviewInfoActivity extends AppCompatActivity {
 
             @Override
             public void onFail(NetworkRequest<NetworkResult<List<ReviewData>>> request, int errorCode, String errorMessage, Throwable e) {
-                Log.e("ssong", errorMessage);
-                Log.e("ssong", errorCode+"");
+//                Log.e("ssong", errorMessage);
+                Log.e("ssong", "errorCode"+errorCode);
             }
         });
     }

@@ -38,13 +38,15 @@ public class EtHomeFragment extends Fragment implements EtHomeAdapter.OnReviewit
     @BindView(R.id.rv_et_home_ft)
     RecyclerView recyclerView;
 
-    LinearLayoutManager manager;
+
     boolean isLastItem;
     private static int PAGENO;
     private static String ROWCOUNT="7";
 
     EtHomeAdapter mAdapter;
     List<EtHomeData> datas;
+
+    LinearLayoutManager manager;
 
     public static EtHomeFragment createInstance(){
         final EtHomeFragment pageFragment = new EtHomeFragment();
@@ -104,7 +106,7 @@ public class EtHomeFragment extends Fragment implements EtHomeAdapter.OnReviewit
             public void onSuccess(NetworkRequest<NetworkResult<List<EtHomeData>>> request, NetworkResult<List<EtHomeData>> result) {
                 datas = result.getResult();
                 mAdapter.addList(datas);
-                PAGENO+=1;
+                PAGENO+=1;//khkhkhkh
             }
 
             @Override

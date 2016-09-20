@@ -164,10 +164,6 @@ public class AddressEditActivity extends AppCompatActivity implements
     public void onMapReady(GoogleMap googleMap) {
         map = googleMap;
         map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            return;
-        }
-
         map.getUiSettings().setCompassEnabled(true);
         map.getUiSettings().setZoomControlsEnabled(true);
         map.setOnCameraMoveListener(this);
@@ -281,7 +277,7 @@ public class AddressEditActivity extends AppCompatActivity implements
 
     @Override
     public void onInfoWindowClick(Marker marker) {
-        final Intent intent = getIntent();
+        final Intent intent = new Intent();
         intent.putExtra("address", marker.getSnippet() + " " + marker.getTitle());
         intent.putExtra("latitude", latitude);
         intent.putExtra("longitude", longitude);
