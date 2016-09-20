@@ -109,7 +109,6 @@ public class EtMainActivity extends AppCompatActivity {
                             return true;
                         }
                     });
-//                    viewPager.requestDisallowInterceptTouchEvent(true);
                 } else {
                     alertLayout.setVisibility(View.INVISIBLE);
                     blurLayout.setVisibility(View.INVISIBLE);

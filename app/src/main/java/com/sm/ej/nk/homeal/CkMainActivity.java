@@ -10,7 +10,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.github.clans.fab.FloatingActionButton;
@@ -28,7 +30,6 @@ import com.sm.ej.nk.homeal.manager.NetworkManager;
 import com.sm.ej.nk.homeal.manager.NetworkRequest;
 import com.sm.ej.nk.homeal.request.CkMenuListRequest;
 import com.sm.ej.nk.homeal.request.CkScheduleListRequest;
-import com.sm.ej.nk.homeal.view.AlarmPopupWindow;
 
 import java.io.Serializable;
 import java.util.List;
@@ -36,7 +37,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener{
+public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
     @BindView(R.id.tablayout_ck_main)
     TabLayout tabLayout;
 
@@ -64,20 +65,28 @@ public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTab
     @BindView(R.id.fab_thumbnail_insert)
     FloatingActionButton fabThumbnailInsert;
 
+    @BindView(R.id.layout_alert)
+    RelativeLayout alertLayout;
+
+    @BindView(R.id.layout_blur)
+    RelativeLayout blurLayout;
+
     private CkHomeFragment ckHomeFragment;
 
-    AlarmPopupWindow popupWindow;
+//    AlarmPopupWindow popupWindow;
+
     List<CkScheduleData> scheduleDatas;
     List<ThumbnailsData> thumbnailsDatas;
 
-    public static int INTENT_MENU =0;
+    public static int INTENT_MENU = 0;
     public static int INTENT_SCHEDULE = 1;
     public static int INTENT_THUMBNAIL = 2;
 
     private static boolean isEditMode = false;
 
     private int[] icon = {R.drawable.ic_home_white_48dp, R.drawable.ic_chat_white_48dp,
-                                R.drawable.ic_access_time_white_48dp, R.drawable.ic_person_white_48dp};
+            R.drawable.ic_access_time_white_48dp, R.drawable.ic_person_white_48dp};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,7 +96,7 @@ public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTab
         setSupportActionBar(toolbar);
 
         ckHomeFragment = CkHomeFragment.createInstance();
-        if(viewPager!=null){
+        if (viewPager != null) {
             setupTabViewPager(viewPager);
         }
 
@@ -96,16 +105,16 @@ public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTab
         fab.setOnMenuButtonClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(isEditMode){
+                if (isEditMode) {
                     fab.getMenuIconView().setImageResource(R.drawable.fab_add);
-                    if(listener!=null){
+                    if (listener != null) {
                         listener.onFabClick(view, MODE_OK);
                     }
                     isEditMode = false;
-                }else{
-                    if(fab.isOpened()){
+                } else {
+                    if (fab.isOpened()) {
                         fab.close(true);
-                    }else{
+                    } else {
                         fab.open(true);
                     }
                 }
@@ -115,7 +124,7 @@ public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTab
         fabEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(listener!=null){
+                if (listener != null) {
                     listener.onFabClick(view, MODE_EDIT);
                 }
                 fab.getMenuIconView().setImageResource(R.drawable.ic_star);
@@ -139,7 +148,7 @@ public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTab
             public void onClick(View view) {
                 Intent intent = new Intent(CkMainActivity.this, ScheduleEditActivity.class);
                 intent.putExtra(INTENT_MODE, MODE_SCHEDULE_INSERT);
-                startActivityForResult(intent ,INTENT_SCHEDULE);
+                startActivityForResult(intent, INTENT_SCHEDULE);
                 fab.close(true);
             }
         });
@@ -150,7 +159,7 @@ public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTab
                 Intent intent = new Intent(CkMainActivity.this, ScheduleEditActivity.class);
                 intent.putExtra(INTENT_MODE, MODE_SCHEDULR_EDIT);
                 scheduleDatas = ckHomeFragment.getCkSchedule();
-                intent.putExtra(INTENT_SCHEDULE_DATA, (Serializable)scheduleDatas);
+                intent.putExtra(INTENT_SCHEDULE_DATA, (Serializable) scheduleDatas);
                 startActivityForResult(intent, INTENT_SCHEDULE);
 
             }
@@ -169,7 +178,7 @@ public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTab
         ckHomeFragment.setOnHomeViewClickListener(new CkHomeFragment.OnHomeViewClickLIstener() {
             @Override
             public void onHomeViewClick(View view, int position, CkDetailMenuData data) {
-                if(!isEditMode){
+                if (!isEditMode) {
                     Intent intent = new Intent(CkMainActivity.this, MenuAddActivity.class);
                     intent.putExtra(INTENT_MODE, MODE_MENU_SHOW);
                     intent.putExtra(INTENT_MENU_DATA, data);
@@ -193,10 +202,14 @@ public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTab
         tabLayout.addOnTabSelectedListener(this);
 
         //image set
-        for(int i = 0; i < 4; i++){
+        for (int i = 0; i < 4; i++) {
             tabLayout.getTabAt(i).setIcon(icon[i]);
         }
+
+        alertLayout.setVisibility(View.INVISIBLE);
+        blurLayout.setVisibility(View.INVISIBLE);
     }
+
     public static final String EXTRA_TAB_INDEX = "tabindex";
     private static final String CK_HOME = "쿠커홈";
     private static final String CK_CHAT_LIST = "채팅리스트";
@@ -204,12 +217,12 @@ public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTab
     private static final String CK_MYPAGE = "내정보";
     private static final String CK_NUM = "쿠커";
 
-    private void setupTabViewPager(ViewPager v){
+    private void setupTabViewPager(ViewPager v) {
 
         final ViewPagerFragmentAdapter pagerAdapter = new ViewPagerFragmentAdapter(getSupportFragmentManager());
         Bundle bundle = new Bundle();
-        bundle.putString("cooker",CK_NUM);
-        pagerAdapter.addFragment(ckHomeFragment,CK_HOME);
+        bundle.putString("cooker", CK_NUM);
+        pagerAdapter.addFragment(ckHomeFragment, CK_HOME);
         pagerAdapter.addFragment(ChatListFragment.createInstance(), CK_CHAT_LIST);
         pagerAdapter.addFragment(CkReserveFragment.createInstance(), CK_RESERVE);
         pagerAdapter.addFragment(CkMyPageFragment.createInstance(), CK_MYPAGE);
@@ -220,8 +233,8 @@ public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTab
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == INTENT_MENU){
-            if(resultCode == Activity.RESULT_OK){
+        if (requestCode == INTENT_MENU) {
+            if (resultCode == Activity.RESULT_OK) {
 
                 CkMenuListRequest request = new CkMenuListRequest(CkMainActivity.this, ckHomeFragment.getCookerId());
                 NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<List<CkDetailMenuData>>>() {
@@ -237,8 +250,8 @@ public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTab
                 });
             }
         }
-        if(requestCode==INTENT_SCHEDULE){
-            if(resultCode == Activity.RESULT_OK){
+        if (requestCode == INTENT_SCHEDULE) {
+            if (resultCode == Activity.RESULT_OK) {
                 CkScheduleListRequest request = new CkScheduleListRequest(CkMainActivity.this, ckHomeFragment.getCookerId());
                 NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<List<CkScheduleData>>>() {
                     @Override
@@ -264,25 +277,51 @@ public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTab
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.btn_et_main_alarm:
+        switch (item.getItemId()) {
+            case R.id.btn_ck_main_alarm:
 //                popupWindow = AlarmPopupWindow.getinstance(this);
 //                popupWindow.showAsDropDown(toolbar);
+                if (alertLayout.getVisibility() == View.INVISIBLE) {
+                    alertLayout.setVisibility(View.VISIBLE);
+                    blurLayout.setVisibility(View.VISIBLE);
+                    alertLayout.setOnTouchListener(new View.OnTouchListener() {
+                        @Override
+                        public boolean onTouch(View view, MotionEvent motionEvent) {
+                            return true;
+                        }
+                    });
+                } else {
+                    alertLayout.setVisibility(View.INVISIBLE);
+                    blurLayout.setVisibility(View.INVISIBLE);
+                }
+//                displayPopupWindow();
+//                return true;
                 break;
         }
         return super.onOptionsItemSelected(item);
     }
 
+//    private PopupWindow popupWindow;
+
+//    private void displayPopupWindow() {
+//
+////        LayoutInflater inflater= (LayoutInflater)CkMainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//        View layout = getLayoutInflater().inflate(R.layout.view_alert_popup, null);
+//        popupWindow.setContentView(layout);
+//        popupWindow = new PopupWindow(layout, 350, 350, true);
+//        popupWindow.showAtLocation(layout, Gravity.CENTER, 0, 0);
+//    }
+
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
-        switch(tab.getPosition()){
+        switch (tab.getPosition()) {
             case 0:
                 fab.getMenuIconView().setImageResource(R.drawable.fab_add);
                 fab.showMenu(true);
                 break;
             default:
                 fab.hideMenu(true);
-                isEditMode=false;
+                isEditMode = false;
                 break;
         }
     }
@@ -304,25 +343,26 @@ public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTab
     public static final String INTENT_THUMBNAIL_DATA = "ssong";
     public static final String INTENT_MODE = "SchedulrMode";
 
-    public static final int MODE_SCHEDULE_INSERT=2;
+    public static final int MODE_SCHEDULE_INSERT = 2;
     public static final int MODE_SCHEDULR_EDIT = 3;
 
     public static final int MODE_EDIT = 0;
     public static final int MODE_OK = 1;
 
     public static final int MODE_MENU_EDIT = 9;
-    public static final int MODE_MENU_INSERT=10;
-    public static final int MODE_MENU_SHOW=11;
+    public static final int MODE_MENU_INSERT = 10;
+    public static final int MODE_MENU_SHOW = 11;
 
-    public static final int MODE_THUMBNAIL_INSERT=55;
-    public static final int MODE_THUMBNAIL_EDIT=66;
+    public static final int MODE_THUMBNAIL_INSERT = 55;
+    public static final int MODE_THUMBNAIL_EDIT = 66;
 
-    public interface OnFabClickListener{
+    public interface OnFabClickListener {
         public void onFabClick(View view, int mode);
     }
+
     OnFabClickListener listener;
 
-    public void setOnFabClickListener(OnFabClickListener listener){
+    public void setOnFabClickListener(OnFabClickListener listener) {
         this.listener = listener;
     }
 
