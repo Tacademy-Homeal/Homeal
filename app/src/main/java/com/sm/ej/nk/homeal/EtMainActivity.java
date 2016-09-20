@@ -29,7 +29,6 @@ public class EtMainActivity extends AppCompatActivity {
     SearchPopupWindow searchpopupWindow;
     AlarmPopupWindow alarmPopupWindow;
 
-
     @BindView(R.id.toolbar_et_toolbar)
     Toolbar toolbar;
 
@@ -71,6 +70,7 @@ public class EtMainActivity extends AppCompatActivity {
 
         alertLayout.setVisibility(View.INVISIBLE);
         blurLayout.setVisibility(View.INVISIBLE);
+
     }
 
     public static final String EXTRA_TAB_INDEX = "tabindex";
@@ -113,6 +113,10 @@ public class EtMainActivity extends AppCompatActivity {
                     alertLayout.setVisibility(View.INVISIBLE);
                     blurLayout.setVisibility(View.INVISIBLE);
                 }
+//                final View alertView = getLayoutInflater().inflate(R.layout.view_alert_popup, null);
+//                new AlertDialog.Builder(this).setView(alertView).show();
+//                Dialog dialog = new Dialog(this);
+//                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 break;
             }
             case R.id.btn_et_main_search: {
