@@ -80,7 +80,8 @@ public class ChattingActivity extends AppCompatActivity {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<String>> request, NetworkResult<String> result) {
                 Log.d("namgilsucess","sucess");
-                ChattingDBManager.getInstance().addMessage(user, ChatContract.ChatMessage.TYPE_SEND, message);
+                //public long addMessage(String name,String image,Long senderid, String message,int type)
+                ChattingDBManager.getInstance().addMessage(user.getName(),user.getImage(),user.getId(),message,ChatContract.ChatMessage.TYPE_SEND);
                 updateMessage();
             }
 

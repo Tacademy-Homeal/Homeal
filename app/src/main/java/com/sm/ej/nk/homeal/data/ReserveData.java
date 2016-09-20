@@ -5,22 +5,45 @@ package com.sm.ej.nk.homeal.data;
  */
 public class ReserveData {
 
-    private int rpax; //reserve person number
-    private int rstatus; //reserve stauts
-    private int uid;// eater id
-    private String sdate;//resserve date
-    private String uname;//eater name
-    private String uimage;//eater image
-    private String mname;// memu name
-    private int sid;// cooker id
-    private int grade;
-    private int rid; // reservation id
+    private String uid;
+    private String uname;
+    private String image;
+    private float grade;
+    private int rid;
+    private String date;
+    private int pax;
+    private int status;
+    private String mname;
 
-    public int getGrade() {
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
+    public String getUname() {
+        return uname;
+    }
+
+    public void setUname(String uname) {
+        this.uname = uname;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public float getGrade() {
         return grade;
     }
 
-    public void setGrade(int grade) {
+    public void setGrade(float grade) {
         this.grade = grade;
     }
 
@@ -32,67 +55,35 @@ public class ReserveData {
         this.rid = rid;
     }
 
-    public int getRpax() {
-        return this.rpax;
+    public String getDate() {
+        return date;
     }
 
-    public void setRpax(int rpax) {
-        this.rpax = rpax;
+    public void setDate(String date) {
+        this.date = date;
     }
 
-    public int getRstatus() {
-        return this.rstatus;
+    public int getPax() {
+        return pax;
     }
 
-    public void setRstatus(int rstatus) {
-        this.rstatus = rstatus;
+    public void setPax(int pax) {
+        this.pax = pax;
     }
 
-    public int getUid() {
-        return this.uid;
+    public int getStatus() {
+        return status;
     }
 
-    public void setUid(int uid) {
-        this.uid = uid;
-    }
-
-    public String getSdate() {
-        return this.sdate;
-    }
-
-    public void setSdate(String sdate) {
-        this.sdate = sdate;
-    }
-
-    public String getUname() {
-        return this.uname;
-    }
-
-    public void setUname(String uname) {
-        this.uname = uname;
-    }
-
-    public String getUimage() {
-        return this.uimage;
-    }
-
-    public void setUimage(String uimage) {
-        this.uimage = uimage;
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     public String getMname() {
-        return this.mname;
+        return mname;
     }
 
     public void setMname(String mname) {
         this.mname = mname;
-    }
-
-    public int getSid() {
-        return this.sid;
-    }
-
-    public void setSid(int sid) {
-        this.sid = sid;
     }
 }

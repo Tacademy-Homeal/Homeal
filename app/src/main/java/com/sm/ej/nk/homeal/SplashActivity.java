@@ -1,15 +1,13 @@
 package com.sm.ej.nk.homeal;
 
-import android.app.Dialog;
 import android.content.BroadcastReceiver;
-import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -17,10 +15,8 @@ import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GoogleApiAvailability;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.sm.ej.nk.homeal.data.User;
-import com.sm.ej.nk.homeal.gcm.RegistrationIntentService;
 import com.sm.ej.nk.homeal.manager.CalendarManager;
 import com.sm.ej.nk.homeal.manager.PropertyManager;
 import com.sm.ej.nk.homeal.request.FacebookLoginRequest;
@@ -51,8 +47,6 @@ public class SplashActivity extends AppCompatActivity {
 //        };
 //
          setUpIfNeeded();
-
-          moveLoginActivity();
     }
 
 
@@ -69,19 +63,30 @@ public class SplashActivity extends AppCompatActivity {
     }
 
 
-    private void setUpIfNeeded(){
-        if(checkPlayServices()){
-            String regId = PropertyManager.getInstance().getRegistartionId();
-            if(!regId.equals("")){
-                doRealStart();
-            }else{
-                Intent intent = new Intent(this, RegistrationIntentService.class);
-                startService(intent);
-            }
+    private void setUpIfNeeded() {
+        String regId = PropertyManager.getInstance().getRegistartionId();
+        if (!regId.equals("")) {
+            doRealStart();
+        } else {
+            new AsyncTask<Void,Void,Void>() {
+                @Override
+                protected Void doInBackground(Void... voids) {
+                    String token = FirebaseInstanceId.getInstance().getToken();
+                    PropertyManager.getInstance().setRegistrationId(token);
+                    return null;
+                }
+
+                @Override
+                protected void onPostExecute(Void aVoid) {
+                    super.onPostExecute(aVoid);
+                    doRealStart();
+                }
+            }.execute();
         }
     }
     private void doRealStart(){
-        //what is doRealStart()????
+        moveLoginActivity();
+
 //        ProfileRequest request = new ProfileRequest(this);
 //        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<User>>() {
 //
@@ -101,28 +106,6 @@ public class SplashActivity extends AppCompatActivity {
 //                moveLoginActivity();
 //            }
 //        });
-    }
-
-    private boolean checkPlayServices() {
-        GoogleApiAvailability apiAvailability = GoogleApiAvailability.getInstance();
-        int resultCode = apiAvailability.isGooglePlayServicesAvailable(this);
-        if (resultCode != ConnectionResult.SUCCESS) {
-            if (apiAvailability.isUserResolvableError(resultCode)) {
-                Log.e("GCM_HOMEAL","SUCCESS");
-                Dialog dialog = apiAvailability.getErrorDialog(this, resultCode, PLAY_SERVICES_RESOLUTION_REQUEST);
-                dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                    @Override
-                    public void onCancel(DialogInterface dialog) {
-                        finish();
-                    }
-                });
-                dialog.show();
-            } else {
-                finish();
-            }
-            return false;
-        }
-        return true;
     }
 
     private void moveMainActivity(){

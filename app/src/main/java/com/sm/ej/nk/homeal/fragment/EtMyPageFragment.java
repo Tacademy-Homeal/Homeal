@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.sm.ej.nk.homeal.EtPersonalDataActivity;
@@ -38,10 +39,6 @@ public class EtMyPageFragment extends Fragment {
 
     @BindView(R.id.text_et_type)
     TextView ettypeView;
-//
-//    @BindView(R.id.text_et_point)
-//    TextView etpointView;
-//
 
     PersonalData data;
     public static final String ET_DATA = "eater_data";
@@ -72,14 +69,12 @@ public class EtMyPageFragment extends Fragment {
                 data = result.getResult();
                 etnameView.setText(data.getName());
                 ettypeView.setText(data.getType());
-               // etpointView.setProgress(data.getGrade());
                 Glide.with(etpictureView.getContext()).load(data.getImage()).into(etpictureView);
-
             }
 
             @Override
             public void onFail(NetworkRequest<NetworkResult<PersonalData>> request, int errorCode, String errorMessage, Throwable e) {
-
+                Toast.makeText(getContext(), ""+errorMessage, Toast.LENGTH_SHORT).show();
             }
         });
 

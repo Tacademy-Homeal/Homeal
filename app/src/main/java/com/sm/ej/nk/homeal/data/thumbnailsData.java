@@ -1,6 +1,6 @@
 package com.sm.ej.nk.homeal.data;
 
-import java.io.Serializable;
+        import java.io.Serializable;
 
 /**
  * Created by Tacademy on 2016-09-06.

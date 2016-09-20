@@ -4,9 +4,11 @@ package com.sm.ej.nk.homeal.data;
  * Created by Tacademy on 2016-08-29.
  */
 public class ChatMessage {
+
+    private String name;
+    private int sender;
+    private String image;
     private String date;
-    private User sender;
-    private long groupId;
     private String message;
 
     public String getDate() {
@@ -17,14 +19,6 @@ public class ChatMessage {
         this.date = date;
     }
 
-    public long getGroupId() {
-        return groupId;
-    }
-
-    public void setGroupId(long groupId) {
-        this.groupId = groupId;
-    }
-
     public String getMessage() {
         return message;
     }
@@ -33,11 +27,27 @@ public class ChatMessage {
         this.message = message;
     }
 
-    public User getSender() {
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getSender() {
         return sender;
     }
 
-    public void setSender(User sender) {
+    public void setSender(int sender) {
         this.sender = sender;
     }
 }

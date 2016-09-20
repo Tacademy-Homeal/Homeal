@@ -185,7 +185,7 @@ public class EtPersonalDataActivity extends AppCompatActivity {
     public void onPersonalChanged() {
         isPersonalData(true);
         btnChangeFinish.setVisibility(View.VISIBLE);
-        btnChange.setVisibility(View.GONE);
+        btnChange.setVisibility(View.INVISIBLE);
     }
 
     @OnClick(R.id.btn_et_changefinish)
@@ -209,6 +209,7 @@ public class EtPersonalDataActivity extends AppCompatActivity {
         });
         isPersonalData(false);
         btnChangeFinish.setVisibility(View.GONE);
+        btnChange.setVisibility(View.VISIBLE);
     }
 
     @Override

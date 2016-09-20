@@ -291,7 +291,6 @@ public class AddressEditActivity extends AppCompatActivity implements
                 imageMap = getImageFile();
                 imageMap.getName();
                 Toast.makeText(AddressEditActivity.this, ""+imageMap.getName(), Toast.LENGTH_SHORT).show();
-//                intent.putExtra("map", map.getName());
                 try {
                     FileOutputStream fos = new FileOutputStream(imageMap);
                     bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos);
@@ -308,7 +307,7 @@ public class AddressEditActivity extends AppCompatActivity implements
                 }
             }
         });
-
+        startActivity(new Intent(AddressEditActivity.this, CkPersonalDataActivity.class));
     }
 
     private static final int RC_PERMISSION = 100;
@@ -350,7 +349,6 @@ public class AddressEditActivity extends AppCompatActivity implements
                 builder.create().show();
                 return;
             }
-
             ActivityCompat.requestPermissions(this, perms, RC_PERMISSION);
         }
     }

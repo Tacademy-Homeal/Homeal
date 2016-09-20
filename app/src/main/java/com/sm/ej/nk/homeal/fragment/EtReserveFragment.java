@@ -2,6 +2,7 @@ package com.sm.ej.nk.homeal.fragment;
 
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,14 +15,16 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.sm.ej.nk.homeal.DividerItemDecoration;
+import com.sm.ej.nk.homeal.EtWriteReviewActivity;
 import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.adapter.EtReserveAdapter;
 import com.sm.ej.nk.homeal.data.NetworkResult;
+import com.sm.ej.nk.homeal.data.NetworkResultTemp;
 import com.sm.ej.nk.homeal.data.ReserveData;
 import com.sm.ej.nk.homeal.manager.NetworkManager;
 import com.sm.ej.nk.homeal.manager.NetworkRequest;
-import com.sm.ej.nk.homeal.request.EtReserveRequest;
 import com.sm.ej.nk.homeal.request.ReservationListRequest;
+import com.sm.ej.nk.homeal.request.ReservationsChangeRequest;
 
 import java.util.List;
 
@@ -37,6 +40,7 @@ public class EtReserveFragment extends Fragment {
     RecyclerView EtReserveView;
     EtReserveAdapter mAdapter;
     List<ReserveData> datas;
+    ReservationsChangeRequest request;
 
     private static final int TYPE_REQUEST = 1;
     private static final int TYPE_REQUEST_COMPLETE = 2;
@@ -45,6 +49,7 @@ public class EtReserveFragment extends Fragment {
     private static final int TYPE_EATER_CANCLE = 5;
     private static final int TYPE_EAT_COMPLETE = 6;
     private static final int TYPE_END = 7;
+    public static final String USER="user";
 
 
     public static EtReserveFragment createInstance() {
@@ -67,55 +72,29 @@ public class EtReserveFragment extends Fragment {
         LinearLayoutManager manager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         //add ItemDecoration
         EtReserveView.addItemDecoration(new DividerItemDecoration(getActivity()));
-
         EtReserveView.setAdapter(mAdapter);
         EtReserveView.setLayoutManager(manager);
 
-        ReservationListRequest request = new ReservationListRequest(getContext());
-        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<List<ReserveData>>>() {
+        mAdapter.setReserveItemClickListener(new EtReserveAdapter.OnReserveAdapterClick() {
             @Override
-            public void onSuccess(NetworkRequest<NetworkResult<List<ReserveData>>> request, NetworkResult<List<ReserveData>> result) {
-                datas = result.getResult();
-                mAdapter.addAll(datas);
-            }
-
-            @Override
-            public void onFail(NetworkRequest<NetworkResult<List<ReserveData>>> request, int errorCode, String errorMessage, Throwable e) {
-                Toast.makeText(getContext(), "" + errorMessage, Toast.LENGTH_SHORT).show();
+            public void onReserveAdapterClick(View view, ReserveData data, int position) {
+                if(data.getStatus() == 1 || data.getStatus()  == 2){
+                    request = new ReservationsChangeRequest(getContext(),data.getRid(),5);
+                    cancelDialog(request);
+                }else{
+                    Intent intent = new Intent(getContext(), EtWriteReviewActivity.class);
+                    intent.putExtra(USER,data.getUid());
+                    startActivity(intent);
+                }
             }
         });
 
-
-//
-//                mAdapter.setOnReviewItemClickListener(new EtReserveAdapter.OnReserveAdapterClick() {
-//                    @Override
-//                    public void onReserveAdapterClick(View view, EtReserveData etReserveData, int position) {
-//
-//
-//                        switch (0) {
-//                            case TYPE_REQUEST:
-//                                showDialog();
-//                                break;
-//                            case TYPE_REQUEST_COMPLETE:
-//                                showDialog();
-//                                break;
-//                            case TYPE_EAT_COMPLETE:
-//                                Intent intent = new Intent(getActivity(), EtWriteReviewActivity.class);
-//                                startActivity(intent);
-//                                break;
-//                            case TYPE_END:
-//                                break;
-//                        }
-//                    }
-//                });
         return view;
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
 
-        EtReserveRequest request = new EtReserveRequest(getContext());
+    public void reFresh(){
+        ReservationListRequest request = new ReservationListRequest(getContext());
         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<List<ReserveData>>>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<List<ReserveData>>> request, NetworkResult<List<ReserveData>> result) {
@@ -126,18 +105,69 @@ public class EtReserveFragment extends Fragment {
 
             @Override
             public void onFail(NetworkRequest<NetworkResult<List<ReserveData>>> request, int errorCode, String errorMessage, Throwable e) {
-
+                Toast.makeText(getContext(), "" + errorMessage, Toast.LENGTH_SHORT).show();
             }
         });
-
     }
+
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        ReservationListRequest request = new ReservationListRequest(getContext());
+        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<List<ReserveData>>>() {
+            @Override
+            public void onSuccess(NetworkRequest<NetworkResult<List<ReserveData>>> request, NetworkResult<List<ReserveData>> result) {
+                datas = result.getResult();
+                mAdapter.clear();
+                mAdapter.addAll(datas);
+
+            }
+
+            @Override
+            public void onFail(NetworkRequest<NetworkResult<List<ReserveData>>> request, int errorCode, String errorMessage, Throwable e) {
+                Toast.makeText(getContext(), "" + errorMessage, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void cancelDialog(final ReservationsChangeRequest request) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
+                    @Override
+                    public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
+                        reFresh();
+                    }
+
+                    @Override
+                    public void onFail(NetworkRequest<NetworkResultTemp> request, int errorCode, String errorMessage, Throwable e) {
+
+                    }
+                });
+            }
+        });
+        builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+            }
+        });
+        builder.setMessage(getResources().getString(R.string.et_reservation_cancle));
+        builder.show();
+    }
+
+
 
     private void showDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.dismiss();
+
             }
         });
         builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
@@ -154,6 +184,7 @@ public class EtReserveFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mAdapter = new EtReserveAdapter();
-    }
 
+
+    }
 }

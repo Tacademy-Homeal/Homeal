@@ -53,17 +53,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/text_profile"
+        android:layout_marginLeft="11dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="@dimen/et_personal_marginleft"
-        android:layout_toRightOf="@+id/image_et_picture">
+        android:layout_toRightOf="@+id/image_et_picture"
+        android:background="@drawable/edge">
 
         <EditText
             android:id="@+id/edit_et_last_name"
             android:layout_width="match_parent"
             android:layout_height="@dimen/et_personal_box_height"
-            android:layout_marginLeft="@dimen/et_personal_between_margin"
-            android:background="@drawable/edge"
-            android:hint=" Name" />
+            android:layout_marginLeft="10dp"
+            android:background="@null"
+            android:hint="Name" />
     </LinearLayout>
 
     <TextView
@@ -73,7 +75,6 @@
         android:layout_alignLeft="@+id/linear_et_name_age"
         android:layout_alignStart="@+id/linear_et_name_age"
         android:layout_below="@+id/linear_et_name_age"
-        android:layout_marginLeft="@dimen/et_personal_between_margin"
         android:layout_marginTop="@dimen/et_personal_between_margin"
         android:text="Birthday"
         android:textAppearance="?android:attr/textAppearanceSmall"
@@ -87,15 +88,17 @@
         android:layout_alignStart="@+id/textView6"
         android:layout_below="@+id/textView6"
         android:layout_centerVertical="true"
-        android:layout_marginRight="16dp">
+        android:layout_marginRight="16dp"
+        android:background="@drawable/edge">
 
         <TextView
             android:id="@+id/text_et_birth"
             android:layout_width="match_parent"
             android:layout_height="42dp"
-            android:background="@drawable/edge"
-            android:text=" BirthDay"
-            android:gravity="center_vertical" />
+            android:layout_marginLeft="10dp"
+            android:background="@null"
+            android:gravity="center_vertical"
+            android:text="BirthDay" />
     </LinearLayout>
 
     <RadioGroup
@@ -127,9 +130,8 @@
         android:id="@+id/linear_phone_country"
         android:layout_width="match_parent"
         android:layout_height="@dimen/et_personal_box_height"
-        android:layout_alignParentLeft="true"
         android:layout_below="@+id/radioGroup"
-        android:layout_marginLeft="@dimen/et_personal_marginleft"
+        android:layout_alignLeft="@+id/image_et_picture"
         android:layout_marginRight="@dimen/et_personal_marginleft"
         android:layout_marginTop="@dimen/et_personal_between_margin"
         android:orientation="horizontal"
@@ -139,55 +141,69 @@
             android:id="@+id/linear_phone"
             android:layout_width="0dp"
             android:layout_height="42dp"
-            android:background="@drawable/edge"
             android:layout_weight="0.5"
+            android:background="@drawable/edge"
             android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/edit_et_phone"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="@dimen/et_personal_box_height"
+                android:layout_marginLeft="10dp"
                 android:background="@null"
                 android:ems="10"
-                android:text=" Phone"
-                android:inputType="phone" />
+                android:inputType="phone"
+                android:text=" Phone" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/text_et_country"
-            android:textAppearance="?android:attr/textAppearanceSmall"
+        <LinearLayout
+            android:id="@+id/linear_country"
             android:layout_width="0dp"
-            android:layout_height="@dimen/et_personal_box_height"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/radioGroup"
-            android:layout_marginLeft="@dimen/et_personal_between_margin"
+            android:layout_height="42dp"
+            android:layout_marginLeft="11dp"
             android:layout_weight="0.5"
-            android:text=" Text"
             android:background="@drawable/edge"
-            android:gravity="center_vertical" />
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/text_et_country"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/et_personal_box_height"
+                android:layout_below="@+id/radioGroup"
+                android:layout_marginLeft="@dimen/et_personal_between_margin"
+                android:gravity="center_vertical"
+                android:text="Country"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:singleLine="true"/>
+        </LinearLayout>
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/edit_et_introduce"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="128dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:layout_marginRight="16dp"
         android:layout_below="@+id/linear_phone_country"
-        android:layout_marginLeft="@dimen/et_personal_marginleft"
-        android:layout_marginTop="@dimen/et_personal_between_margin"
+        android:id="@+id/linear_intro"
         android:background="@drawable/edge"
-        android:hint=" Introduce" />
+        android:layout_alignLeft="@+id/image_et_picture"
+        android:layout_marginTop="@dimen/et_personal_between_margin"        >
+
+        <EditText
+            android:id="@+id/edit_et_introduce"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+          android:background="@null"
+            android:layout_marginLeft="10dp"
+            android:hint=" Introduce" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/btn_et_changefinish"
         android:layout_width="match_parent"
-        android:layout_marginRight="16dp"
         android:layout_height="45dp"
-        android:layout_below="@+id/edit_et_introduce"
+        android:layout_below="@+id/linear_intro"
         android:layout_marginLeft="@dimen/et_personal_marginleft"
+        android:layout_marginRight="16dp"
         android:layout_marginTop="@dimen/et_personal_marginleft"
         android:background="#E0E0E0"
         android:text="@string/change_finish" />

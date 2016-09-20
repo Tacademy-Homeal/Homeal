@@ -161,6 +161,11 @@ public class NetworkManager {
         return request.processSync(client);
     }
 
+    public <T> T getNetworkDataSync(NetworkRequest<T> request) throws IOException {
+        return request.processSync(client);
+    }
+
+
     public void cancelAll() {
         client.dispatcher().cancelAll();
     }

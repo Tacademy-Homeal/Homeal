@@ -2,6 +2,7 @@ package com.sm.ej.nk.homeal.viewholder;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -60,6 +61,9 @@ public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder implements
         calendar = (RecyclerView)view.findViewById(R.id.rv_ck_detail_calendar);
         calendarDate = (TextView)view.findViewById(R.id.text_ck_detail_date);
         progressTotal = (ProgressBar) view.findViewById(R.id.progress_total);
+//        if (progressTotal != null) {
+//            progressTotal.getIndeterminateDrawable().setColorFilter(, android.graphics.PorterDuff.Mode.MULTIPLY);
+//        }
         progressPrice = (ProgressBar)view.findViewById(R.id.progress_price);
         progressTaste = (ProgressBar)view.findViewById(R.id.progress_taste);
         progresskind = (ProgressBar)view.findViewById(R.id.progress_kind);
@@ -130,10 +134,10 @@ public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder implements
         kindScore.setText(""+data.kindness);
 
         progressTotal.setProgress((int)data.grade);
-        progressTaste.setProgress(data.taste);
-        progressPrice.setProgress(data.price);
-        progressClean.setProgress(data.cleanliness);
-        progresskind.setProgress(data.kindness);
+        progressTaste.setProgress((int)data.taste);
+        progressPrice.setProgress((int)data.price);
+        progressClean.setProgress((int)data.cleanliness);
+        progresskind.setProgress((int)data.kindness);
     }
 
     public void setSchedule(List<CkScheduleData> list){

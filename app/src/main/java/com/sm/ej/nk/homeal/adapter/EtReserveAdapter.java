@@ -15,7 +15,8 @@ import java.util.List;
 /**
  * Created by Tacademy on 2016-08-26.
  */
-public class EtReserveAdapter extends RecyclerView.Adapter<EtReserveViewHolder> implements EtReserveViewHolder.OnReserveButtonClick{
+public class EtReserveAdapter extends RecyclerView.Adapter<EtReserveViewHolder>
+        implements EtReserveViewHolder.OnReserveButtonClick{
     List<ReserveData> items = new ArrayList<>();
 
     public void add(ReserveData data) {
@@ -37,7 +38,7 @@ public class EtReserveAdapter extends RecyclerView.Adapter<EtReserveViewHolder> 
     public EtReserveViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_et_reserve_fragment, parent, false);
         EtReserveViewHolder holder = new EtReserveViewHolder(view);
-        holder.setOnResrveButtonClick(this);
+        holder.setReserveButtonClick(this);
         return holder;
     }
 
@@ -54,23 +55,20 @@ public class EtReserveAdapter extends RecyclerView.Adapter<EtReserveViewHolder> 
 
 
     //Review Button click evnet & cancle button
-
     public interface OnReserveAdapterClick {
         public void onReserveAdapterClick(View view, ReserveData etReserveData, int position);
     }
 
     OnReserveAdapterClick rListener;
 
-    public void setOnReviewItemClickListener(OnReserveAdapterClick rListener) {
+    public void setReserveItemClickListener(OnReserveAdapterClick rListener) {
         this.rListener = rListener;
     }
 
     @Override
     public void onReserveButtonClick(View view, ReserveData etReserveData, int position) {
-        if (rListener != null) {
-            rListener.onReserveAdapterClick(view, etReserveData, position);
+        if(rListener != null){
+            rListener.onReserveAdapterClick(view,etReserveData,position);
         }
     }
-
-
 }

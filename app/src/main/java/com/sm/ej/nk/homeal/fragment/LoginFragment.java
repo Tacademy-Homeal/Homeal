@@ -112,17 +112,7 @@ public class LoginFragment extends Fragment {
         }
 
         loginFacebook();
-//        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
-//            @Override
-//            public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
-//                ((LoginActivity) getActivity()).moveMainActivity();
-//            }
-//
-//            @Override
-//            public void onFail(NetworkRequest<NetworkResultTemp> request, int errorCode, String errorMessage, Throwable e) {
-////ddd
-//            }
-//        });
+
     }
 
     private void loginFacebook() {
@@ -148,7 +138,6 @@ public class LoginFragment extends Fragment {
 
             }
         });
-
         mLoginManager.logInWithReadPermissions(this, Arrays.asList("email"));
     }
 
@@ -180,6 +169,8 @@ public class LoginFragment extends Fragment {
                     } else if (result.getCode() == 2){
                         ((LoginActivity)getActivity()).changeTos();
                     }
+
+
                 }
 
                 @Override

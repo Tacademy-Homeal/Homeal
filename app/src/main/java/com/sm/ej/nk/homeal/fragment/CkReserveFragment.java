@@ -16,11 +16,13 @@ import android.widget.Toast;
 import com.sm.ej.nk.homeal.DividerItemDecoration;
 import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.adapter.CkReserveAdapter;
+import com.sm.ej.nk.homeal.data.CkReseveData;
 import com.sm.ej.nk.homeal.data.NetworkResult;
-import com.sm.ej.nk.homeal.data.ReserveData;
+import com.sm.ej.nk.homeal.data.NetworkResultTemp;
 import com.sm.ej.nk.homeal.manager.NetworkManager;
 import com.sm.ej.nk.homeal.manager.NetworkRequest;
-import com.sm.ej.nk.homeal.request.ReservationListRequest;
+import com.sm.ej.nk.homeal.request.CkReserveListRequest;
+import com.sm.ej.nk.homeal.request.ReservationsChangeRequest;
 
 import java.util.List;
 
@@ -43,7 +45,8 @@ public class CkReserveFragment extends Fragment {
     private static final int TYPE_EAT_COMPLETE = 6;
     private static final int TYPE_END = 7;
 
-    List<ReserveData> datas;
+    List<CkReseveData> datas;
+    ReservationsChangeRequest request;
 
     public static CkReserveFragment createInstance() {
         final CkReserveFragment pageFragment = new CkReserveFragment();
@@ -67,57 +70,33 @@ public class CkReserveFragment extends Fragment {
         CkReserveView.setAdapter(mAdapter);
         CkReserveView.setLayoutManager(manager);
 
-        ReservationListRequest request = new ReservationListRequest(getContext());
-        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<List<ReserveData>>>() {
-            @Override
-            public void onSuccess(NetworkRequest<NetworkResult<List<ReserveData>>> request, NetworkResult<List<ReserveData>> result) {
-                datas = result.getResult();
-                mAdapter.addAll(datas);
-            }
-
-            @Override
-            public void onFail(NetworkRequest<NetworkResult<List<ReserveData>>> request, int errorCode, String errorMessage, Throwable e) {
-                Toast.makeText(getContext(), "" + errorMessage, Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        setCookerButton();
-        return view;
-    }
-
-    private void setCookerButton() {
         mAdapter.setOnAgreeButtonClickListener(new CkReserveAdapter.OnAagreeButtonClickLIstener() {
             @Override
-            public void onAagreeButtonClick(View view, ReserveData data, int position) {
-                Toast.makeText(getContext(), "승인되었습니다", Toast.LENGTH_SHORT).show();
+            public void onAagreeButtonClick(View view, CkReseveData data, int position) {
+                request = new ReservationsChangeRequest(getContext(),data.getRid(),TYPE_REQUEST_COMPLETE);
+                cancelDialog(request,TYPE_REQUEST_COMPLETE);
             }
         });
 
         mAdapter.setOnDisagreeButtonClickLIstener(new CkReserveAdapter.OnDisagreeButtonClickLIstener() {
             @Override
-            public void onDisagreeButtonClick(View view, ReserveData data, int position) {
-                Toast.makeText(getContext(), "거절 되었습니다", Toast.LENGTH_SHORT).show();
+            public void onDisagreeButtonClick(View view, CkReseveData data, int position) {
+                request = new ReservationsChangeRequest(getContext(),data.getRid(),TYPE_REQUEST_REJECT);
+                cancelDialog(request,TYPE_REQUEST_REJECT);
             }
         });
-//
-//        mAdapter.setOnreviewAdapterItemClickListener(new CkReserveAdapter.OnreviewButtonClickLIstener() {
-//
-//            @Override
-//            public void onreviewAdapterItemClick(View view, ReserveData data, int position) {
-//
-//                int staus = Integer.parseInt(data.getStatus());
-//                switch (staus) {
-//                    case TYPE_REQUEST_COMPLETE:
-//                        showDialog();
-//                        break;
-//                    case TYPE_EAT_COMPLETE:
-//                        Intent intent = new Intent(getActivity(), CkWriteReViewActivity.class);
-//                        startActivity(intent);
-//                        break;
-//                }
-//            }
-//        });
+
+       mAdapter.setOnCancelAdapterItemClickListener(new CkReserveAdapter.OncancelButtonClickLIstener() {
+           @Override
+           public void oncancelAdapterItemClick(View view, CkReseveData data, int position) {
+               request = new ReservationsChangeRequest(getContext(), data.getRid(),TYPE_COOKER_CANCLE);
+               cancelDialog(request,TYPE_COOKER_CANCLE);
+            }
+       });
+        return view;
     }
+
+
 
     @Override
     public void onStart() {
@@ -138,8 +117,67 @@ public class CkReserveFragment extends Fragment {
                 dialogInterface.dismiss();
             }
         });
+
         builder.setMessage(getResources().getString(R.string.et_reservation_cancle));
         builder.show();
+    }
+
+    public void reFresh(){
+        CkReserveListRequest request = new CkReserveListRequest(getContext());
+        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<List<CkReseveData>>>() {
+            @Override
+            public void onSuccess(NetworkRequest<NetworkResult<List<CkReseveData>>> request, NetworkResult<List<CkReseveData>> result) {
+                datas = result.getResult();
+                mAdapter.clear();
+                mAdapter.addAll(datas);
+            }
+
+            @Override
+            public void onFail(NetworkRequest<NetworkResult<List<CkReseveData>>> request, int errorCode, String errorMessage, Throwable e) {
+                Toast.makeText(getContext(), "" + errorMessage, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
+    private void cancelDialog(final ReservationsChangeRequest request,int type) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
+                    @Override
+                    public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
+                        reFresh();
+                    }
+
+                    @Override
+                    public void onFail(NetworkRequest<NetworkResultTemp> request, int errorCode, String errorMessage, Throwable e) {
+
+                    }
+                });
+            }
+        });
+        builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+            }
+        });
+
+        switch (type){
+            case TYPE_REQUEST_COMPLETE:
+                builder.setMessage(getResources().getString(R.string.et_ok));
+                break;
+            case TYPE_REQUEST_REJECT:
+                builder.setMessage(getResources().getString(R.string.et_reject));
+                break;
+            case TYPE_COOKER_CANCLE:
+                builder.setMessage(getResources().getString(R.string.et_reservation_cancle));
+                break;
+        }
+        builder.show();
+
     }
 
 
@@ -148,6 +186,21 @@ public class CkReserveFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         mAdapter = new CkReserveAdapter();
+
+        CkReserveListRequest request = new CkReserveListRequest(getContext());
+        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<List<CkReseveData>>>() {
+            @Override
+            public void onSuccess(NetworkRequest<NetworkResult<List<CkReseveData>>> request, NetworkResult<List<CkReseveData>> result) {
+                datas = result.getResult();
+                mAdapter.clear();
+                mAdapter.addAll(datas);
+            }
+
+            @Override
+            public void onFail(NetworkRequest<NetworkResult<List<CkReseveData>>> request, int errorCode, String errorMessage, Throwable e) {
+                Toast.makeText(getContext(), "" + errorMessage, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 }

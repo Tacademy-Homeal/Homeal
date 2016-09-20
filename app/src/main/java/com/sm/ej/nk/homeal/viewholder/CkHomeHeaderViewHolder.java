@@ -76,10 +76,10 @@ public class CkHomeHeaderViewHolder extends RecyclerView.ViewHolder implements V
         userAddress.setText(data.address);
         jjimCount.setText(data.bookmarkCnt);
         reviewCount.setText(data.reviewCnt);
-        progressKind.setProgress(data.kindness);
-        progressClean.setProgress(data.cleanliness);
-        progressTaste.setProgress(data.taste);
-        progressPrice.setProgress(data.price);
+        progressKind.setProgress((int)data.kindness);
+        progressClean.setProgress((int)data.cleanliness);
+        progressTaste.setProgress((int)data.taste);
+        progressPrice.setProgress((int)data.price);
         progressTotal.setProgress((int)data.grade);
 
         totalScore.setText(""+data.grade);

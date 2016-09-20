@@ -7,7 +7,6 @@ import com.sm.ej.nk.homeal.data.ChatMessage;
 import com.sm.ej.nk.homeal.data.NetworkResult;
 
 import java.lang.reflect.Type;
-import java.util.Date;
 import java.util.List;
 
 import okhttp3.HttpUrl;
@@ -18,16 +17,16 @@ import okhttp3.Request;
  */
 public class MessageListRequest extends AbstractRequest<NetworkResult<List<ChatMessage>>> {
     Request mRequest;
-    public MessageListRequest(Context context, Date date) {
-        String dateString = com.sm.ej.nk.homeal.Utils.convertTimeToString(date);
+    public MessageListRequest(Context context) {
 
         HttpUrl url = getBaseHttpUrlBuilder()
-                .addPathSegment("messagelist")
-                .addQueryParameter("lastDate",dateString)
+                .addPathSegment("chatting")
                 .build();
 
-
-
+        mRequest = new Request.Builder()
+                .url(url)
+                .tag(context)
+                .build();
     }
     @Override
     protected Type getType() {

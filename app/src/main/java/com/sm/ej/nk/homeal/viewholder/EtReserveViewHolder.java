@@ -25,9 +25,6 @@ public class EtReserveViewHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.text_et_reserve_date)
     TextView dateView;
 
-    @BindView(R.id.text_et_reserve_person)
-    TextView reservePersonView;
-
     @BindView(R.id.text_et_reserve_ckname)
     TextView ckNameView;
 
@@ -40,15 +37,18 @@ public class EtReserveViewHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.text_et_reserve_foodname)
     TextView foodNameView;
 
-    @BindView(R.id.btn_et_review_write)
+    @BindView(R.id.btn_et_reserve)
     Button btn_reserve;
 
 
-    private static final int TYPE_REQUEST = 0;
-    private static final int TYPE_REQUEST_COMPLETE = 1;
-    private static final int TYPE_DISH_COMPLETE = 2;
-    private static final int TYPE_END = 4;
-    //    @OnClick(R.id.btn_et_reserve_state)
+
+    private static final int TYPE_REQUEST = 1;
+    private static final int TYPE_REQUEST_COMPLETE = 2;
+    private static final int TYPE_REQUEST_REJECT = 3;
+    private static final int TYPE_COOKER_CANCLE = 4;
+    private static final int TYPE_EATER_CANCLE = 5;
+    private static final int TYPE_EAT_COMPLETE = 6;
+    private static final int TYPE_END = 7;
 //    Button reservestate
     public EtReserveViewHolder(View itemView) {
         super(itemView);
@@ -57,8 +57,8 @@ public class EtReserveViewHolder extends RecyclerView.ViewHolder {
         btn_reserve.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(cListener != null){
-                    cListener.onReserveButtonClick(view,etReserveData,getAdapterPosition());
+                if(rListener != null){
+                    rListener.onReserveButtonClick(view,etReserveData,getAdapterPosition());
                 }
             }
         });
@@ -70,46 +70,55 @@ public class EtReserveViewHolder extends RecyclerView.ViewHolder {
         this.etReserveData = etReserveData;
 
         //Url to image
-        Glide.with(pictureView.getContext()).load(etReserveData.getUimage()).into(pictureView);
-        ckNameView.setText(etReserveData.getUname());
-        foodNameView.setText(etReserveData.getMname());
-        reservePersonView.setText(etReserveData.getUname());
-        dateView.setText(etReserveData.getSdate());
+        Glide.with(pictureView.getContext()).load(etReserveData.getImage()).into(pictureView);
+        ckNameView.setText("Cooker/"+etReserveData.getUname());
+        foodNameView.setText("Menu/"+etReserveData.getMname());
+        dateView.setText(etReserveData.getDate());
+        ckRatingView.setRating(etReserveData.getGrade());
 
-        //btn setting
-        switch (etReserveData.getRstatus()){
+        switch (etReserveData.getStatus()){
             case TYPE_REQUEST :
+                reserveStateView.setText("예약진행");
                 btn_reserve.setText(R.string.et_reservation_cancle);
-                reserveStateView.setText(R.string.et_text_reservation_request);
                 break;
             case TYPE_REQUEST_COMPLETE :
-                btn_reserve.setText(R.string.et_reservation_cancle);
                 reserveStateView.setText(R.string.et_text_reservation_complete);
+                btn_reserve.setText(R.string.et_reservation_cancle);
                 break;
-            case TYPE_DISH_COMPLETE :
-                btn_reserve.setText(R.string.et_reservation_write);
-                reserveStateView.setText(R.string.et_text_reservation_end);
+            case TYPE_REQUEST_REJECT :
+                reserveStateView.setText("쿠커거절");
+                btn_reserve.setVisibility(View.GONE);
                 break;
-            case TYPE_END :
-                btn_reserve.setText(R.string.et_reservation_end);
-                reserveStateView.setText("");
+            case TYPE_COOKER_CANCLE :
+                reserveStateView.setText("쿠커취소");
+                btn_reserve.setVisibility(View.GONE);
                 break;
+            case TYPE_EATER_CANCLE :
+                reserveStateView.setText("예약취소");
+                btn_reserve.setVisibility(View.GONE);
+                break;
+            case TYPE_EAT_COMPLETE:
+                reserveStateView.setText("식사완료");
+                btn_reserve.setVisibility(View.VISIBLE);
+                btn_reserve.setText(R.string.after_write);
+                break;
+            case TYPE_END:
+                reserveStateView.setText("식사완료");
+                btn_reserve.setVisibility(View.GONE);
         }
+
     }
 
-
-    //Observer Button
+    //Reseve Button
     public interface OnReserveButtonClick {
         public void onReserveButtonClick(View view, ReserveData etReserveData, int position);
     }
 
-    OnReserveButtonClick cListener;
+    OnReserveButtonClick rListener;
 
-    public void setOnResrveButtonClick(OnReserveButtonClick cListener) {
-        this.cListener = cListener;
+    public void setReserveButtonClick(OnReserveButtonClick rListener) {
+        this.rListener = rListener;
     }
-
-
 }
 
 
