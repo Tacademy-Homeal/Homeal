@@ -26,8 +26,8 @@ import com.sm.ej.nk.homeal.data.ThumbnailsData;
 import com.sm.ej.nk.homeal.manager.CalendarManager;
 import com.sm.ej.nk.homeal.manager.NetworkManager;
 import com.sm.ej.nk.homeal.manager.NetworkRequest;
+import com.sm.ej.nk.homeal.request.CkHomeRequest;
 import com.sm.ej.nk.homeal.request.CkMenuDeleteRequest;
-import com.sm.ej.nk.homeal.request.CkPageCheckRequest;
 
 import java.util.List;
 
@@ -79,7 +79,7 @@ public class CkHomeFragment extends Fragment implements CkMainActivity.OnFabClic
         mAdapter = new CkHomeAdapter(getContext());
         mAdapter.setOnReviewClickListener(this);
 
-        CkPageCheckRequest request = new CkPageCheckRequest(getContext(),"35");
+        CkHomeRequest request = new CkHomeRequest(getContext());
         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<CkInfoResult>() {
             @Override
             public void onSuccess(NetworkRequest<CkInfoResult> request, CkInfoResult result) {

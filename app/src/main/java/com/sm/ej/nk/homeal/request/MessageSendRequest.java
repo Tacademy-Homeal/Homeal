@@ -4,7 +4,6 @@ import android.content.Context;
 
 import com.google.gson.reflect.TypeToken;
 import com.sm.ej.nk.homeal.data.NetworkResult;
-import com.sm.ej.nk.homeal.data.User;
 
 import java.lang.reflect.Type;
 
@@ -19,13 +18,14 @@ import okhttp3.RequestBody;
 public class MessageSendRequest extends AbstractRequest<NetworkResult<String>> {
     Request request;
 
-    public MessageSendRequest(Context context, User user, String message){
+    public MessageSendRequest(Context context, Long userId, String message){
+        String id = userId.toString();
         HttpUrl url = getBaseHttpUrlBuilder()
                 .addPathSegment("chatting")
                 .build();
 
         RequestBody body = new FormBody.Builder()
-                .add("receiver","" + user.getId())//After setting
+                .add("receiver","" + id)//After setting
                 .add("message", message)//After setting
                 .build();
 

@@ -24,7 +24,7 @@ public class ChatContract {
         public static final String TABLE = "chatmessage";
         public static final String COLUMN_USER_ID = "uid";
         public static final String COLUMN_TYPE = "type";
-        public static final String COLUMN_IMAGE = "imageurl";
+        public static final String COLUM_IMAGEURL = "imageurl";
         public static final String COLUMN_MESSAGE = "message";
         public static final String COLUMN_CREATED = "created";
     }

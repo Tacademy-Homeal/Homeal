@@ -42,11 +42,11 @@ public class ChattingActivity extends AppCompatActivity {
     @BindView(R.id.toobar_chatting)
     Toolbar toolbar;
 
-    public static final String EXTRA_USER = "user";
+    public static final String EXTRA_USER = "userinfo";
     User user;//current user
-    User oUser;//opposite user
 
     LocalBroadcastManager mLBM;
+    Long id;
 
 
     @Override
@@ -65,8 +65,7 @@ public class ChattingActivity extends AppCompatActivity {
             }
         });
 
-        oUser = (User) getIntent().getSerializableExtra(EXTRA_USER);
-
+        id = (Long) getIntent().getSerializableExtra(EXTRA_USER);
 
         mAdapter = new ChattingAdapter();
         rv_chatting.setAdapter(mAdapter);
@@ -78,12 +77,13 @@ public class ChattingActivity extends AppCompatActivity {
     @OnClick(R.id.btn_send)
     public void onSend(View view){
         final String message = inputView.getText().toString();
-        MessageSendRequest request = new MessageSendRequest(this, oUser, message);
+        MessageSendRequest request = new MessageSendRequest(this, id, message);
         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<String>>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<String>> request, NetworkResult<String> result) {
-                Log.d("Chatting sucess","sucess");
-                ChattingDBManager.getInstance().addMessage(user, ChatContract.ChatMessage.TYPE_SEND, message);
+                User user = new User();
+                user.setId(id);
+                ChattingDBManager.getInstance().addMessage(user, ChatContract.ChatMessage.TYPE_SEND, message,user.getImage());
                 updateMessage();
             }
 
@@ -95,7 +95,7 @@ public class ChattingActivity extends AppCompatActivity {
     }
 
     private void updateMessage() {
-        Cursor c = ChattingDBManager.getInstance().getChatMessage(user);
+        Cursor c = ChattingDBManager.getInstance().getChatMessage(id);
         mAdapter.changeCursor(c);
     }
 
