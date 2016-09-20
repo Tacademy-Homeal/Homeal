@@ -76,6 +76,8 @@ public class EtReserveViewHolder extends RecyclerView.ViewHolder {
         dateView.setText(etReserveData.getDate());
         ckRatingView.setRating(etReserveData.getGrade());
 
+        btn_reserve.setVisibility(View.VISIBLE);
+
         switch (etReserveData.getStatus()){
             case TYPE_REQUEST :
                 reserveStateView.setText("예약진행");

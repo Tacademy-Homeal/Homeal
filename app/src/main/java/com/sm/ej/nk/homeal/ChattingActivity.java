@@ -43,7 +43,8 @@ public class ChattingActivity extends AppCompatActivity {
     Toolbar toolbar;
 
     public static final String EXTRA_USER = "user";
-    User user;
+    User user;//current user
+    User oUser;//opposite user
 
     LocalBroadcastManager mLBM;
 
@@ -64,7 +65,8 @@ public class ChattingActivity extends AppCompatActivity {
             }
         });
 
-        user = (User) getIntent().getSerializableExtra(EXTRA_USER);
+        oUser = (User) getIntent().getSerializableExtra(EXTRA_USER);
+
 
         mAdapter = new ChattingAdapter();
         rv_chatting.setAdapter(mAdapter);
@@ -72,23 +74,22 @@ public class ChattingActivity extends AppCompatActivity {
         mLBM = LocalBroadcastManager.getInstance(this);
     }
 
+
     @OnClick(R.id.btn_send)
     public void onSend(View view){
         final String message = inputView.getText().toString();
-        MessageSendRequest request = new MessageSendRequest(this, user, message);
+        MessageSendRequest request = new MessageSendRequest(this, oUser, message);
         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<String>>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<String>> request, NetworkResult<String> result) {
-                Log.d("namgilsucess","sucess");
-                //public long addMessage(String name,String image,Long senderid, String message,int type)
-                ChattingDBManager.getInstance().addMessage(user.getName(),user.getImage(),user.getId(),message,ChatContract.ChatMessage.TYPE_SEND);
+                Log.d("Chatting sucess","sucess");
+                ChattingDBManager.getInstance().addMessage(user, ChatContract.ChatMessage.TYPE_SEND, message);
                 updateMessage();
             }
 
             @Override
             public void onFail(NetworkRequest<NetworkResult<String>> request, int errorCode, String errorMessage, Throwable e) {
-                Log.d("namgilsucess","fail");
-
+                Log.d("Chatting fail","fail");
             }
         });
     }
