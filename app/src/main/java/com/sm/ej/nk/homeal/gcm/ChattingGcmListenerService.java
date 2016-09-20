@@ -5,7 +5,6 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.media.RingtoneManager;
-import android.net.ParseException;
 import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.LocalBroadcastManager;
@@ -19,6 +18,7 @@ import com.sm.ej.nk.homeal.EtMainActivity;
 import com.sm.ej.nk.homeal.HomealApplication;
 import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.SplashActivity;
+import com.sm.ej.nk.homeal.Utils;
 import com.sm.ej.nk.homeal.data.ChatContract;
 import com.sm.ej.nk.homeal.data.ChatMessage;
 import com.sm.ej.nk.homeal.data.NetworkResult;
@@ -27,6 +27,7 @@ import com.sm.ej.nk.homeal.manager.NetworkManager;
 import com.sm.ej.nk.homeal.request.MessageListRequest;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
 
@@ -85,9 +86,8 @@ public class ChattingGcmListenerService extends FirebaseMessagingService {
                 try {
 
                     //   addMessage(String name, String image, Long senderid, String message, Date date,int type)
-                    ChattingDBManager.getInstance().addMessage(m.getName(),m.getImage(),Long.parseLong(String.valueOf(m.getSender())),m.getMessage(),m.getDate().toString()
-                     ,ChatContract.ChatMessage.TYPE_RECEIVE);
-
+                    ChattingDBManager.getInstance().addMessage(m.getSender(), ChatContract.ChatMessage.TYPE_RECEIVE, m.getMessage(),
+                            Utils.convertStringToTime(m.getDate()));
                     Intent i = new Intent(ACTION_CHAT);
                     i.putExtra(EXTRA_CHAT_USER, m.getSender());
                     mLBM.sendBroadcastSync(i);

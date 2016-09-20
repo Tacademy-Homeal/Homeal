@@ -17,6 +17,7 @@ import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.adapter.ChattingListAdapter;
 import com.sm.ej.nk.homeal.data.ChatContract;
 import com.sm.ej.nk.homeal.data.User;
+import com.sm.ej.nk.homeal.manager.ChattingDBManager;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -72,8 +73,8 @@ public class ChatListFragment extends Fragment  implements ChattingListAdapter.O
     @Override
     public void onStart() {
         super.onStart();
-//        Cursor c = ChattingDBManager.getInstance().getChatUser();
-//        mAdapter.changeCursor(c);
+        Cursor c = ChattingDBManager.getInstance().getChatUser();
+        if(c != null) mAdapter.changeCursor(c);
     }
 
     @Override

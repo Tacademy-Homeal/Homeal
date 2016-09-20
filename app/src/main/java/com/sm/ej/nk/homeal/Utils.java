@@ -9,12 +9,17 @@ import java.util.Date;
  */
 public class Utils {
     static SimpleDateFormat sdf = new SimpleDateFormat();
+    static SimpleDateFormat adf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
     public static String convertTimeToString(Date date) {
         return sdf.format(date);
     }
 
     public static Date convertStringToTime(String text) throws ParseException {
         return sdf.parse(text);
+    }
+
+    public static Date  convertStringToTimea_df(String text) throws ParseException {
+        return adf.parse(text);
     }
 }
 
