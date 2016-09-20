@@ -6,10 +6,10 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.francescocervone.openratingview.RatingView;
 import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.data.EtHomeData;
 
@@ -20,7 +20,7 @@ public class EtHomeViewHolder extends RecyclerView.ViewHolder {
     private View view;
     private ImageView userimage, foodimage, jjimimage;
     private TextView name, address, menu, jjimCount, reviewCount, price;
-    private RatingView starCount;
+    private RatingBar starCount;
     private LinearLayout jjimLinear, reviewLinear;
 
     public EtHomeViewHolder(View view){
@@ -36,7 +36,7 @@ public class EtHomeViewHolder extends RecyclerView.ViewHolder {
         reviewCount = (TextView)view.findViewById(R.id.text_et_home_reviewcount);
         price = (TextView)view.findViewById(R.id.text_et_home_foodprice);
 
-        starCount = (RatingView)view.findViewById(R.id.rating_et_home);
+        starCount = (RatingBar)view.findViewById(R.id.rating_et_home);
         starCount.setOnDragListener(new View.OnDragListener() {
             @Override
             public boolean onDrag(View view, DragEvent dragEvent) {

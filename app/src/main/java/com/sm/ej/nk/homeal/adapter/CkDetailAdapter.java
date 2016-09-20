@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.daimajia.swipe.adapters.RecyclerSwipeAdapter;
+import com.daimajia.swipe.util.Attributes;
 import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.data.CalendarItem;
 import com.sm.ej.nk.homeal.data.CkDetailData;
@@ -109,6 +110,7 @@ public class CkDetailAdapter extends RecyclerSwipeAdapter<RecyclerView.ViewHolde
             menuholder = (CkDetailItemViewHolder)holder;
             menuholder.setData(menuList.get(position-1));
             menuholder.setOnMEnuSwipeClickListener(this);
+            mItemManger.setMode(Attributes.Mode.Multiple);
             mItemManger.bindView(menuholder.itemView, position-1);
         }
     }
