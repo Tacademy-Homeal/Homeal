@@ -2,7 +2,6 @@ package com.sm.ej.nk.homeal.viewholder;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -46,6 +45,7 @@ public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder implements
     List<CkScheduleData> list;
     List<CalendarItem> calendarItems;
     CalendarData calendarData;
+
 
     public CkDetailHeaderViewHolder(Context context,View view){
         super(view);
@@ -118,7 +118,7 @@ public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder implements
     public void setData(CkDetailData data){
         this.data = data;
 
-//        circleIndicator.setViewPager(viewPager);
+        circleIndicator.setViewPager(viewPager);
         Glide.with(context).load(data.image).into(userImage);
         Glide.with(context).load(data.map).into(mapImage);
         mapImage.setOnClickListener(this);

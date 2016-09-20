@@ -74,12 +74,13 @@ public class GalleryActivity extends AppCompatActivity implements GalleryAdapter
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final ProgressDialog progressDialog;
-                progressDialog = ProgressDialog.show(GalleryActivity.this, "전송중", "잠시만 기달려주세요", true);
-                progressDialog.setCancelable(false);
-                progressDialog.show();
+
                 switch (mode) {
                     case ThumbnailEditActivity.MODE_THUMBNAIL: {
+                        final ProgressDialog progressDialog;
+                        progressDialog = ProgressDialog.show(GalleryActivity.this, "전송중", "잠시만 기달려주세요", true);
+                        progressDialog.setCancelable(false);
+                        progressDialog.show();
                         CkThumbnailInsertRequest request = new CkThumbnailInsertRequest(GalleryActivity.this, mAadapter.getCheckedItemPositions());
                         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
                             @Override

@@ -31,7 +31,6 @@ public class CkMenuInsertRequest extends AbstractRequest<NetworkResultTemp> {
                 addFormDataPart("name", name)
                 .addFormDataPart("price", price)
                 .addFormDataPart("introduce", introduce)
-                .addFormDataPart("currency", currency)
                 .addFormDataPart("activation", activation);
         if(image!=null){
             builder.addFormDataPart("image",image.getName(), RequestBody.create(jpeg, image));

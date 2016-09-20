@@ -87,7 +87,7 @@ public class ReserveRequestActivity extends AppCompatActivity {
                         @Override
                         public void onFail(NetworkRequest<NetworkResultTemp> request, int errorCode, String errorMessage, Throwable e) {
                             Toast.makeText(ReserveRequestActivity.this, "예약 요청 실패", Toast.LENGTH_SHORT).show();
-                            Log.e("ssong", errorMessage);
+//                            Log.e("ssong", errorMessage);
                             Log.e("ssong", errorCode+"");
                         }
                     });

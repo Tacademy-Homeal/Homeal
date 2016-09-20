@@ -162,27 +162,27 @@ public class CkHomeHeaderViewHolder extends RecyclerView.ViewHolder implements V
 
     public void showSchedule(CalendarItem item){
         if(item.sharing==1){
-            imageShare.setBackgroundColor(Color.BLUE);
+            imageShare.setImageResource(R.drawable.homeal_sharing_ok);
         }else{
-            imageShare.setBackgroundColor(Color.RED);
+            imageShare.setImageResource(R.drawable.homeal_sharing_no);
         }
 
         if(item.isMorning){
-            textMorning.setBackgroundColor(Color.RED);
+            textMorning.setTextColor(Color.BLACK);
         }else{
-            textMorning.setBackgroundColor(Color.WHITE);
+            textMorning.setTextColor(Color.GRAY);
         }
 
         if(item.isLaunch){
-            textLaunch.setBackgroundColor(Color.RED);
+            textLaunch.setTextColor(Color.BLACK);
         }else{
-            textLaunch.setBackgroundColor(Color.WHITE);
+            textLaunch.setTextColor(Color.GRAY);
         }
 
         if(item.isDinner){
-            textDinner.setBackgroundColor(Color.RED);
+            textDinner.setTextColor(Color.BLACK);
         }else{
-            textDinner.setBackgroundColor(Color.WHITE);
+            textDinner.setTextColor(Color.GRAY);
         }
         textPax.setText(item.pax);
     }

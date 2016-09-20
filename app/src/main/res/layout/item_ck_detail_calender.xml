@@ -6,15 +6,16 @@
     android:gravity="center_horizontal">
 
     <FrameLayout
-        android:layout_width="50dp"
-        android:layout_height="50dp">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:id="@+id/image_calendar_reservecheck"
             android:layout_gravity="center"
-            android:src="@drawable/reservation_check_date_xxhdpi"
+            android:scaleType="fitXY"
+            android:src="@drawable/homeal_calendar_empyt"
             android:visibility="invisible" />
 
         <TextView

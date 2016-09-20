@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content">
-
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -38,15 +37,15 @@
             android:layout_weight="1">
 
             <ImageView
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/imageView4"
-                android:src="@drawable/homeal_heart_fill" />
+                android:src="@drawable/homeal_heart_fill"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="New Text"
                 android:id="@+id/text_ck_home_jjimcount" />
         </LinearLayout>
 
@@ -336,8 +335,8 @@
             android:layout_weight="1" />
 
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="20dp"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
             android:id="@+id/image_ck_home_share" />
     </LinearLayout>
 

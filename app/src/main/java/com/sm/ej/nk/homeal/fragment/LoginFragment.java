@@ -110,7 +110,6 @@ public class LoginFragment extends Fragment {
                 break;
             }
         }
-
         loginFacebook();
 
     }

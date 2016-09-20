@@ -13,6 +13,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,15 +44,6 @@ public class ScheduleEditActivity extends AppCompatActivity implements View.OnCl
     @BindView(R.id.text_schedule_edit_calendar)
     TextView textCalendar;
 
-    @BindView(R.id.text_schedule_edit_mornig)
-    TextView textMornig;
-
-    @BindView(R.id.text_schedule_edit_launch)
-    TextView textLaunch;
-
-    @BindView(R.id.text_schedule_edit_dinner)
-    TextView textDinner;
-
     @BindView(R.id.edit_schedule_edit_reservecount)
     EditText editReserve;
 
@@ -69,11 +62,24 @@ public class ScheduleEditActivity extends AppCompatActivity implements View.OnCl
     @BindView(R.id.fab_schedule_edit)
     FloatingActionButton fab;
 
+    @BindView(R.id.radiogroup_schedule)
+    RadioGroup radioGroup;
+
+    @BindView(R.id.radio_schedule_launch)
+    RadioButton launchRadio;
+
+    @BindView(R.id.radio_schedule_dinner)
+    RadioButton dinnerRadio;
+
     List<CkScheduleData> scheduleList;
     List<CalendarItem> calendarItems;
     CalendarAdapter mAdapter;
     ArrayList<CalendarItemData> mItemdata = new ArrayList<>();
     CalendarItem calendarItem;
+    boolean isSharing= true;
+    int time;
+    String sharing;
+    String deleteTime;
 
     private static int MODE;
 
@@ -92,10 +98,6 @@ public class ScheduleEditActivity extends AppCompatActivity implements View.OnCl
 
         backImage.setOnClickListener(this);
         nextImage.setOnClickListener(this);
-        textMornig.setOnClickListener(this);
-        textLaunch.setOnClickListener(this);
-        textDinner.setOnClickListener(this);
-        shareImage.setOnClickListener(this);
 
         setSupportActionBar(toolbar);
 
@@ -105,16 +107,36 @@ public class ScheduleEditActivity extends AppCompatActivity implements View.OnCl
             scheduleList = (List<CkScheduleData>)intent.getSerializableExtra(CkMainActivity.INTENT_SCHEDULE_DATA);
             changeCalendarScheduleData(scheduleList);
             CalendarData calendarData = CalendarManager.getInstance().getSelectCalendarData(calendarItems);
-            editReserve.setEnabled(true);
+            editReserve.setEnabled(false);
 
             mAdapter = new CalendarAdapter(this, calendarData, true);
             mAdapter.setOnCalendarAdpaterClickListener(new CalendarAdapter.OnCalendarAdapterClickListener() {
                 @Override
                 public void onCalendarAdapterClick(View view, int position, CalendarItem data) {
                     if(data.isSelect){
+                        launchRadio.setChecked(false);
+                        dinnerRadio.setChecked(false);
                         textCalendar.setText(""+(data.month+1)+"월" +data.dayOfMonth+"일");
                         calendarItem = data;
                         editReserve.setText(""+data.pax);
+                        if(data.sharing==1){
+                            shareImage.setImageResource(R.drawable.homeal_sharing_ok);
+                        }else{
+                            shareImage.setImageResource(R.drawable.homeal_sharing_no);
+                        }
+                        editReserve.setEnabled(false);
+
+                        if(data.isLaunch){
+                            launchRadio.setEnabled(true);
+                        }else{
+                            launchRadio.setEnabled(false);
+                        }
+                        if(data.isDinner){
+                            dinnerRadio.setEnabled(true);
+                        }else{
+                            dinnerRadio.setEnabled(false);
+                        }
+
                     }
                 }
             });
@@ -132,6 +154,7 @@ public class ScheduleEditActivity extends AppCompatActivity implements View.OnCl
                     calendarItem = data;
                 }
             });
+            shareImage.setOnClickListener(this);
         }
         rv.setLayoutManager(new GridLayoutManager(this, 7));
         rv.setAdapter(mAdapter);
@@ -164,23 +187,33 @@ public class ScheduleEditActivity extends AppCompatActivity implements View.OnCl
                 mAdapter.cleanChecked();
                 break;
             }
-            case R.id.text_schedule_edit_mornig:{
-                break;
-            }
-            case R.id.text_schedule_edit_launch:{
-                break;
-            }
-            case R.id.text_schedule_edit_dinner:{
-                break;
-            }
             case R.id.image_schedule_edit_share:{
-
+                if(isSharing){
+                    shareImage.setImageResource(R.drawable.homeal_sharing_no);
+                    isSharing = false;
+                }else{
+                    shareImage.setImageResource(R.drawable.homeal_sharing_ok);
+                    isSharing = true;
+                }
                 break;
             }
             case R.id.fab_schedule_edit:{
                 if(MODE == CkMainActivity.MODE_SCHEDULE_INSERT){
+                    switch (radioGroup.getCheckedRadioButtonId()){
+                        case R.id.radio_schedule_launch:
+                            time = 2;
+                            break;
+                        case R.id.radio_schedule_dinner:
+                            time = 3;
+                            break;
+                    }
+                    if(isSharing){
+                        sharing = "1";
+                    }else{
+                        sharing = "0";
+                    }
                     if(valueCheck()){
-                        CkScheduleInsertRequest request = new CkScheduleInsertRequest(ScheduleEditActivity.this, calendarItem.getDate(2).toString(), editReserve.getText().toString(), "1");
+                        CkScheduleInsertRequest request = new CkScheduleInsertRequest(ScheduleEditActivity.this, calendarItem.getDate(time).toString(), editReserve.getText().toString(), sharing);
                         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
                             @Override
                             public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
@@ -204,7 +237,15 @@ public class ScheduleEditActivity extends AppCompatActivity implements View.OnCl
                         Log.e("ssong", ""+calendarItem.year);
                         Log.e("ssong", ""+calendarItem.month);
                         Log.e("ssong", ""+calendarItem.id);
-                        CkScheduleEditRequest request = new CkScheduleEditRequest(ScheduleEditActivity.this, calendarItem.id);
+                        switch (radioGroup.getCheckedRadioButtonId()){
+                            case R.id.radio_schedule_launch:
+                                deleteTime = "Launch";
+                                break;
+                            case R.id.radio_schedule_dinner:
+                                deleteTime = "Dinner";
+                                break;
+                        }
+                        CkScheduleEditRequest request = new CkScheduleEditRequest(ScheduleEditActivity.this, calendarItem.idMap.get(deleteTime));
                         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
                             @Override
                             public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
@@ -215,7 +256,7 @@ public class ScheduleEditActivity extends AppCompatActivity implements View.OnCl
 
                             @Override
                             public void onFail(NetworkRequest<NetworkResultTemp> request, int errorCode, String errorMessage, Throwable e) {
-                                Toast.makeText(ScheduleEditActivity.this, "일정 생성 실패", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ScheduleEditActivity.this, "일정 삭제 실패", Toast.LENGTH_SHORT).show();
                                 Log.e("ssong", "error",e);
                             }
                         });

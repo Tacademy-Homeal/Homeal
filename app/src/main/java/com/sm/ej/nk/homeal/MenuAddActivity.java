@@ -1,6 +1,7 @@
 package com.sm.ej.nk.homeal;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -177,6 +178,10 @@ public class MenuAddActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View view) {
+        final ProgressDialog progressDialog;
+        progressDialog = ProgressDialog.show(MenuAddActivity.this, "전송중", "잠시만 기달려주세요", true);
+        progressDialog.setCancelable(false);
+        progressDialog.show();
         if(MODE==CkMainActivity.MODE_MENU_INSERT){
             if(valueCheck()){
                 CkMenuInsertRequest request = new CkMenuInsertRequest(MenuAddActivity.this, foodName, imageFile, foodPrice, foodInfo, currency, activation);
@@ -185,7 +190,9 @@ public class MenuAddActivity extends AppCompatActivity implements View.OnClickLi
                     public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
                         Toast.makeText(MenuAddActivity.this, "매뉴 생성 완료", Toast.LENGTH_SHORT).show();
                         setResult(Activity.RESULT_OK);
+                        progressDialog.dismiss();
                         finish();
+
                     }
 
                     @Override
@@ -203,6 +210,7 @@ public class MenuAddActivity extends AppCompatActivity implements View.OnClickLi
                     public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
                         Toast.makeText(MenuAddActivity.this, "매뉴 편집 완료", Toast.LENGTH_SHORT).show();
                         setResult(Activity.RESULT_OK);
+                        progressDialog.dismiss();
                         finish();
                     }
 

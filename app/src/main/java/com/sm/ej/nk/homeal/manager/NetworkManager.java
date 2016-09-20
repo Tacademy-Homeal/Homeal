@@ -165,7 +165,6 @@ public class NetworkManager {
         return request.processSync(client);
     }
 
-
     public void cancelAll() {
         client.dispatcher().cancelAll();
     }
