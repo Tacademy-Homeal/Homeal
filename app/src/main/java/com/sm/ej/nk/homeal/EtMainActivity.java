@@ -8,6 +8,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.Button;
+import android.widget.RelativeLayout;
 
 import com.sm.ej.nk.homeal.adapter.ViewPagerFragmentAdapter;
 import com.sm.ej.nk.homeal.fragment.ChatListFragment;
@@ -19,10 +23,12 @@ import com.sm.ej.nk.homeal.view.SearchPopupWindow;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class EtMainActivity extends AppCompatActivity {
     SearchPopupWindow searchpopupWindow;
     AlarmPopupWindow alarmPopupWindow;
+
 
     @BindView(R.id.toolbar_et_toolbar)
     Toolbar toolbar;
@@ -30,8 +36,17 @@ public class EtMainActivity extends AppCompatActivity {
     @BindView(R.id.tablayout_et_main)
     TabLayout tabLayout;
 
+    @BindView(R.id.layout_alert)
+    RelativeLayout alertLayout;
+
+    @BindView(R.id.layout_blur)
+    RelativeLayout blurLayout;
+
     @BindView(R.id.viewpager_et_main)
     ViewPager viewPager;
+
+    @BindView(R.id.btn_alert_erase)
+    Button btnErase;
 
     private static int[] icon = {R.drawable.ic_home_white_48dp, R.drawable.ic_chat_white_48dp,
             R.drawable.ic_access_time_white_48dp, R.drawable.ic_person_white_48dp};
@@ -44,24 +59,27 @@ public class EtMainActivity extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
 
-        if(viewPager!=null){
+        if (viewPager != null) {
             setupTabViewPager(viewPager);
         }
         tabLayout.setupWithViewPager(viewPager);
 
         //image set
-        for(int i = 0; i < icon.length; i++){
+        for (int i = 0; i < icon.length; i++) {
             tabLayout.getTabAt(i).setIcon(icon[i]);
         }
 
+        alertLayout.setVisibility(View.INVISIBLE);
+        blurLayout.setVisibility(View.INVISIBLE);
     }
+
     public static final String EXTRA_TAB_INDEX = "tabindex";
     public static final String ET_HOME = "이터홈";
     public static final String ET_CHAT = "채팅 리스트";
     public static final String ET_RESERVE = "예약";
     public static final String ET_MYPAGE = "내정보";
 
-    private void setupTabViewPager(ViewPager v){
+    private void setupTabViewPager(ViewPager v) {
         final ViewPagerFragmentAdapter pagerAdapter = new ViewPagerFragmentAdapter(getSupportFragmentManager());
         pagerAdapter.addFragment(EtHomeFragment.createInstance(), ET_HOME);
         pagerAdapter.addFragment(ChatListFragment.createInstance(), ET_CHAT);
@@ -78,10 +96,24 @@ public class EtMainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.btn_et_main_alarm: {
-//                alarmPopupWindow = AlarmPopupWindow.getinstance(this);
-//                alarmPopupWindow.showAsDropDown(toolbar);
+//                alarmpopupWindow = AlarmPopupWindow.getinstance(this);
+//                alarmpopupWindow.showAsDropDown(toolbar);
+                if (alertLayout.getVisibility() == View.INVISIBLE) {
+                    alertLayout.setVisibility(View.VISIBLE);
+                    blurLayout.setVisibility(View.VISIBLE);
+                    alertLayout.setOnTouchListener(new View.OnTouchListener() {
+                        @Override
+                        public boolean onTouch(View view, MotionEvent motionEvent) {
+                            return true;
+                        }
+                    });
+//                    viewPager.requestDisallowInterceptTouchEvent(true);
+                } else {
+                    alertLayout.setVisibility(View.INVISIBLE);
+                    blurLayout.setVisibility(View.INVISIBLE);
+                }
                 break;
             }
             case R.id.btn_et_main_search: {
@@ -111,5 +143,10 @@ public class EtMainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.et_main_menu, menu);
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @OnClick(R.id.btn_alert_erase)
+    public void onErase(){
+
     }
 }
