@@ -18,7 +18,6 @@ import com.sm.ej.nk.homeal.data.CkDetailData;
 import com.sm.ej.nk.homeal.data.CkDetailMenuData;
 import com.sm.ej.nk.homeal.data.CkInfoResult;
 import com.sm.ej.nk.homeal.data.EtHomeData;
-import com.sm.ej.nk.homeal.data.User;
 import com.sm.ej.nk.homeal.fragment.EtHomeFragment;
 import com.sm.ej.nk.homeal.manager.CalendarManager;
 import com.sm.ej.nk.homeal.manager.NetworkManager;
@@ -55,6 +54,7 @@ public class InfoCkDetailActivity extends AppCompatActivity implements CkDetailA
     CkInfoResult resultDara;
     static List<CkDetailMenuData> selectMenuList;
     public static final String EXTRA_USER = "user";
+    public static final String EXTRA_OPPOSITE_USER = "opposisteuser";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,10 +116,10 @@ public class InfoCkDetailActivity extends AppCompatActivity implements CkDetailA
         fabChat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String id = etHomeData.getId();
+                Long userid = Long.parseLong(id);
                 Intent intent = new Intent(InfoCkDetailActivity.this,ChattingActivity.class);
-                User user = new User();
-                user.setId(Long.parseLong(etHomeData.getId()));
-                intent.putExtra(EXTRA_USER,user);
+                intent.putExtra(ChattingActivity.EXTRA_USER,userid);
                 startActivity(intent);
             }
         });

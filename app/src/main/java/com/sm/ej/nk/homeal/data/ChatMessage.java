@@ -4,40 +4,49 @@ package com.sm.ej.nk.homeal.data;
  * Created by Tacademy on 2016-08-29.
  */
 public class ChatMessage {
-    private String date;
-    private User sender;
-    private long groupId;
+    private int sender;
+    private String name;
+    private String image;
     private String message;
+    private String date;
 
     public String getDate() {
-        return this.date;
+        return date;
     }
 
     public void setDate(String date) {
         this.date = date;
     }
 
-    public User getSender() {
-        return this.sender;
+    public String getImage() {
+        return image;
     }
 
-    public void setSender(User sender) {
-        this.sender = sender;
-    }
-
-    public long getGroupId() {
-        return this.groupId;
-    }
-
-    public void setGroupId(long groupId) {
-        this.groupId = groupId;
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getMessage() {
-        return this.message;
+        return message;
     }
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getSender() {
+        return sender;
+    }
+
+    public void setSender(int sender) {
+        this.sender = sender;
     }
 }

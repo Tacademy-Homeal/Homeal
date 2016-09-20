@@ -22,9 +22,10 @@ import com.sm.ej.nk.homeal.Utils;
 import com.sm.ej.nk.homeal.data.ChatContract;
 import com.sm.ej.nk.homeal.data.ChatMessage;
 import com.sm.ej.nk.homeal.data.NetworkResult;
+import com.sm.ej.nk.homeal.data.User;
 import com.sm.ej.nk.homeal.manager.ChattingDBManager;
 import com.sm.ej.nk.homeal.manager.NetworkManager;
-import com.sm.ej.nk.homeal.request.MessageListRequest;
+import com.sm.ej.nk.homeal.request.ReceiveMessageRequest;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -76,18 +77,18 @@ public class ChattingGcmListenerService extends FirebaseMessagingService {
     }
 
     private void chatting() {
-        long lastTime = ChattingDBManager.getInstance().getLastReceiveDate();
 
-        MessageListRequest request = new MessageListRequest(this);
+        ReceiveMessageRequest request = new ReceiveMessageRequest(this);
         try {
             NetworkResult<List<ChatMessage>> result = NetworkManager.getInstance().getNetworkDataSync(request);
             List<ChatMessage> list = result.getResult();
             for (ChatMessage m : list) {
                 try {
-
-                    //   addMessage(String name, String image, Long senderid, String message, Date date,int type)
-                    ChattingDBManager.getInstance().addMessage(m.getSender(), ChatContract.ChatMessage.TYPE_RECEIVE, m.getMessage(),
-                            Utils.convertStringToTime(m.getDate()));
+                    User user = new User();
+                    user.setId(m.getSender());//id  이다.
+                    //   addMessage(User user, int type, String message, Date date,String image)
+                    ChattingDBManager.getInstance().addMessage(user, ChatContract.ChatMessage.TYPE_RECEIVE, m.getMessage(),
+                            Utils.convertStringToTime(m.getDate()),m.getImage());
                     Intent i = new Intent(ACTION_CHAT);
                     i.putExtra(EXTRA_CHAT_USER, m.getSender());
                     mLBM.sendBroadcastSync(i);

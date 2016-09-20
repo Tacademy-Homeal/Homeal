@@ -11,7 +11,6 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,13 +24,14 @@ import com.sm.ej.nk.homeal.manager.NetworkRequest;
 import com.sm.ej.nk.homeal.request.CkJjimAddRequest;
 import com.sm.ej.nk.homeal.request.CkJjimDeleteRequest;
 import com.sm.ej.nk.homeal.request.CkSearchListRequest;
+import com.sm.ej.nk.homeal.view.ClearEditText;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class SearchActivity extends AppCompatActivity implements EtHomeAdapter.OnReviewitemClickListener, EtHomeAdapter.OnJjimitemClickListener, EtHomeAdapter.OnViewClickListener{
+public class SearchActivity extends AppCompatActivity implements EtHomeAdapter.OnReviewitemClickListener, EtHomeAdapter.OnJjimitemClickListener, EtHomeAdapter.OnViewClickListener {
     @BindView(R.id.rv_search)
     RecyclerView rv;
 
@@ -39,7 +39,7 @@ public class SearchActivity extends AppCompatActivity implements EtHomeAdapter.O
     Toolbar toolbar;
 
     @BindView(R.id.edit_search)
-    EditText editText;
+    ClearEditText editText;
 
     @BindView(R.id.view2)
     RelativeLayout noneLayout;
@@ -69,6 +69,7 @@ public class SearchActivity extends AppCompatActivity implements EtHomeAdapter.O
         rv.setLayoutManager(mManager);
         rv.setAdapter(mAdapter);
 
+
         editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int actionid, KeyEvent keyEvent) {
@@ -90,13 +91,12 @@ public class SearchActivity extends AppCompatActivity implements EtHomeAdapter.O
         });
     }
 
-
     private void addItem(String keyword, String pageNo, String rowCount) {
         CkSearchListRequest request = new CkSearchListRequest(SearchActivity.this, keyword, pageNo, rowCount);
         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<List<EtHomeData>>>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<List<EtHomeData>>> request, NetworkResult<List<EtHomeData>> result) {
-                Toast.makeText(SearchActivity.this, "검색 성공", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(SearchActivity.this, "검색 성공", Toast.LENGTH_SHORT).show();
                 mAdapter.addList(result.getResult());
                 PAGENO += 1;
                 setScrolled();
@@ -115,7 +115,6 @@ public class SearchActivity extends AppCompatActivity implements EtHomeAdapter.O
     @Override
     public void onViewClick(View view, int position) {
         Intent intent = new Intent(SearchActivity.this, InfoCkDetailActivity.class);
-//        intent.putExtra(INTENT_CK_ID, );
         intent.putExtra(INTENT_CK_ID, mAdapter.getDataList().get(position));
         Log.e("ssong", mAdapter.getDataList().get(position).getId());
         startActivity(intent);
@@ -205,28 +204,4 @@ public class SearchActivity extends AppCompatActivity implements EtHomeAdapter.O
         }
         return super.onOptionsItemSelected(item);
     }
-
-//    @Override
-//    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//            noneLayout.setVisibility(View.VISIBLE);
-//    }
-//
-//    @Override
-//    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//        noneLayout.setVisibility(View.GONE);
-//    }
-//
-//    @Override
-//    public void afterTextChanged(Editable editable) {
-//        if (!TextUtils.isEmpty(editText.getText().toString())) {
-//            noneLayout.setVisibility(View.GONE);
-//            rv.setVisibility(View.VISIBLE);
-//            Log.e("ssong", "ddddd");
-//            mAdapter.clear();
-//            keyword = editText.getText().toString();
-//            addItem(keyword, "" + PAGENO, ROWCOUNT);
-//        } else {
-//            noneLayout.setVisibility(View.VISIBLE);
-//        }
-//    }
 }

@@ -44,6 +44,7 @@ public class ChattingDBManager extends SQLiteOpenHelper {
         sql = "CREATE TABLE " + ChatContract.ChatMessage.TABLE + "(" +
                 ChatContract.ChatMessage._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 ChatContract.ChatMessage.COLUMN_USER_ID + " INTEGER," +
+                ChatContract.ChatMessage.COLUM_IMAGEURL + " TEXT," +
                 ChatContract.ChatMessage.COLUMN_TYPE + " INTEGER," +
                 ChatContract.ChatMessage.COLUMN_MESSAGE + " TEXT," +
                 ChatContract.ChatMessage.COLUMN_CREATED + " INTEGER);";
@@ -99,17 +100,16 @@ public class ChattingDBManager extends SQLiteOpenHelper {
             values.put(ChatContract.ChatUser.COLUMN_SERVER_ID, user.getId());
             values.put(ChatContract.ChatUser.COLUMN_NAME, user.getName());
             values.put(ChatContract.ChatUser.COLUMN_IMAGE,user.getImage());
-            values.put(ChatContract.ChatUser.COLUMN_EMAIL, user.getEmail());
             return db.insert(ChatContract.ChatUser.TABLE, null, values);
         }
         throw new IllegalArgumentException("aleady user added");
     }
 
     Map<Long, Long> resolveUserId = new HashMap<>();
-    public long addMessage(User user, int type, String message) {
-        return addMessage(user, type, message, new Date());
+    public long addMessage(User user, int type, String message,String image) {
+        return addMessage(user, type, message, new Date(),image);
     }
-    public long addMessage(User user, int type, String message, Date date) {
+    public long addMessage(User user, int type, String message, Date date,String image) {
         Long uid = resolveUserId.get(user.getId());
         if (uid == null) {
             long id = getUserId(user.getId());
@@ -119,13 +119,13 @@ public class ChattingDBManager extends SQLiteOpenHelper {
             resolveUserId.put(user.getId(), id);
             uid = id;
         }
-
-
         SQLiteDatabase db = getWritableDatabase();
         values.clear();
         values.put(ChatContract.ChatMessage.COLUMN_USER_ID, (long)uid);
         values.put(ChatContract.ChatMessage.COLUMN_TYPE, type);
         values.put(ChatContract.ChatMessage.COLUMN_MESSAGE, message);
+        values.put(ChatContract.ChatMessage.COLUM_IMAGEURL, image);
+
         long current = date.getTime();
         values.put(ChatContract.ChatMessage.COLUMN_CREATED, current);
         try {
@@ -159,22 +159,21 @@ public class ChattingDBManager extends SQLiteOpenHelper {
         return db.query(table, columns, null, null, null, null, sort);
     }
 
-    public Cursor getChatMessage(User user) {
+    public Cursor getChatMessage(Long customld) {
         long userid = -1;
-        Long uid = resolveUserId.get(user.getId());
+        Long uid = resolveUserId.get(customld);
         if (uid == null) {
-            long id = getUserId(user.getId());
+            long id = getUserId(customld);
             if (id != -1) {
-                resolveUserId.put(user.getId(), id);
+                resolveUserId.put(customld, id);
                 userid = id;
             }
         } else {
             userid = uid;
         }
-
         String[] columns = {ChatContract.ChatMessage._ID,
                 ChatContract.ChatMessage.COLUMN_TYPE,
-                ChatContract.ChatMessage.COLUMN_IMAGE,
+                ChatContract.ChatMessage.COLUM_IMAGEURL,
                 ChatContract.ChatMessage.COLUMN_MESSAGE,
                 ChatContract.ChatMessage.COLUMN_CREATED};
         String selection = ChatContract.ChatMessage.COLUMN_USER_ID + " = ?";

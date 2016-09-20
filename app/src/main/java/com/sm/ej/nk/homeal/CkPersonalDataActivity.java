@@ -22,12 +22,13 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.mukesh.countrypicker.fragments.CountryPicker;
 import com.mukesh.countrypicker.interfaces.CountryPickerListener;
+import com.sm.ej.nk.homeal.data.NetworkResult;
 import com.sm.ej.nk.homeal.data.NetworkResultTemp;
 import com.sm.ej.nk.homeal.data.PersonalData;
-import com.sm.ej.nk.homeal.fragment.CkMyPageFragment;
 import com.sm.ej.nk.homeal.manager.NetworkManager;
 import com.sm.ej.nk.homeal.manager.NetworkRequest;
 import com.sm.ej.nk.homeal.manager.TranslateManager;
+import com.sm.ej.nk.homeal.request.CkInfoRequest;
 import com.sm.ej.nk.homeal.request.CkInfoupdateRequest;
 
 import java.io.File;
@@ -46,6 +47,7 @@ public class CkPersonalDataActivity extends AppCompatActivity {
     double latitude, longitude;
     private CountryPicker countryPicker;
     public static Context mContext;
+    PersonalData ckdata;
 
     @BindView(R.id.radioGroup)
     RadioGroup radioGroup;
@@ -92,8 +94,8 @@ public class CkPersonalDataActivity extends AppCompatActivity {
         setContentView(R.layout.activity_ck_personal_data);
         ButterKnife.bind(this);
 
-        Intent intent = getIntent();
-        PersonalData ckdata = (PersonalData) intent.getSerializableExtra(CkMyPageFragment.CK_DATA);
+//        Intent intent = getIntent();
+//        PersonalData ckdata = (PersonalData) intent.getSerializableExtra(CkMyPageFragment.CK_DATA);
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -108,7 +110,32 @@ public class CkPersonalDataActivity extends AppCompatActivity {
         isPersonalData(false);
         btnChangeFinish.setVisibility(View.GONE);
         mContext = this;
-        setUserImage(ckdata);
+
+        CkInfoRequest request = new CkInfoRequest(this);
+        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<PersonalData>>() {
+            @Override
+            public void onSuccess(NetworkRequest<NetworkResult<PersonalData>> request, NetworkResult<PersonalData> result) {
+                ckdata = result.getResult();
+                nameEdit.setText(ckdata.getName());
+                addressText.setText(ckdata.getAddress());
+                introduceEdit.setText(ckdata.getIntroduce());
+                phoneEdit.setText(ckdata.getPhone());
+                countryText.setText(ckdata.getCountry());
+                birthText.setText(ckdata.getBirth());
+                if (ckdata.getGender().equals("Male")) {
+                    radioGroup.check(R.id.radio_ck_male);
+                } else {
+                    radioGroup.check(R.id.radio_ck_female);
+                }
+                Glide.with(ckpictureView.getContext()).load(ckdata.getImage()).into(ckpictureView);
+            }
+
+            @Override
+            public void onFail(NetworkRequest<NetworkResult<PersonalData>> request, int errorCode, String errorMessage, Throwable e) {
+
+            }
+        });
+//        setUserImage(ckdata);
     }
 
     private void setListner() {
@@ -168,22 +195,22 @@ public class CkPersonalDataActivity extends AppCompatActivity {
         addressText.setText(translate);
     }
 
-
-    public void setUserImage(PersonalData ckdata) {
-        nameEdit.setText(ckdata.getName());
-        addressText.setText(ckdata.getAddress());
-        introduceEdit.setText(ckdata.getIntroduce());
-        phoneEdit.setText(ckdata.getPhone());
-        countryText.setText(ckdata.getCountry());
-        birthText.setText(ckdata.getBirth());
-        if (ckdata.getGender().equals("Male")) {
-            radioGroup.check(R.id.radio_ck_male);
-        } else {
-            radioGroup.check(R.id.radio_ck_female);
-        }
-
-        Glide.with(ckpictureView.getContext()).load(ckdata.getImage()).into(ckpictureView);
-    }
+//
+//    public void setUserImage(PersonalData ckdata) {
+//        nameEdit.setText(ckdata.getName());
+//        addressText.setText(ckdata.getAddress());
+//        introduceEdit.setText(ckdata.getIntroduce());
+//        phoneEdit.setText(ckdata.getPhone());
+//        countryText.setText(ckdata.getCountry());
+//        birthText.setText(ckdata.getBirth());
+//        if (ckdata.getGender().equals("Male")) {
+//            radioGroup.check(R.id.radio_ck_male);
+//        } else {
+//            radioGroup.check(R.id.radio_ck_female);
+//        }
+//
+//        Glide.with(ckpictureView.getContext()).load(ckdata.getImage()).into(ckpictureView);
+//    }
 
     @OnClick(R.id.text_ck_birth)
     public void onBirth() {

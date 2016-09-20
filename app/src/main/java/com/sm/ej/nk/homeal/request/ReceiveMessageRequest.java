@@ -3,42 +3,36 @@ package com.sm.ej.nk.homeal.request;
 import android.content.Context;
 
 import com.google.gson.reflect.TypeToken;
+import com.sm.ej.nk.homeal.data.ChatMessage;
 import com.sm.ej.nk.homeal.data.NetworkResult;
 
 import java.lang.reflect.Type;
+import java.util.List;
 
-import okhttp3.FormBody;
 import okhttp3.HttpUrl;
 import okhttp3.Request;
-import okhttp3.RequestBody;
 
 /**
- * Created by Tacademy on 2016-08-29.
+ * Created by Tacademy on 2016-09-20.
  */
-public class MessageSendRequest extends AbstractRequest<NetworkResult<String>> {
+public class ReceiveMessageRequest  extends AbstractRequest<NetworkResult<List<ChatMessage>>> {
     Request request;
 
-    public MessageSendRequest(Context context, Long userId, String message){
-        String id = userId.toString();
+    public ReceiveMessageRequest(Context context){
         HttpUrl url = getBaseHttpUrlBuilder()
                 .addPathSegment("chatting")
                 .build();
 
-        RequestBody body = new FormBody.Builder()
-                .add("receiver","" + id)//After setting
-                .add("message", message)//After setting
-                .build();
 
         request = new Request.Builder()
                 .url(url)
-                .post(body)
                 .tag(context)
                 .build();
     }
 
     @Override
     protected Type getType() {
-        return new TypeToken<NetworkResult<String>>(){}.getType();
+        return new TypeToken<NetworkResult<List<ChatMessage>>>(){}.getType();
     }
 
     @Override
@@ -46,3 +40,4 @@ public class MessageSendRequest extends AbstractRequest<NetworkResult<String>> {
         return request;
     }
 }
+
