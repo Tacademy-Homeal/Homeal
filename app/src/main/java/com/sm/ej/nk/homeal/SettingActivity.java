@@ -117,10 +117,7 @@ public class SettingActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_ck_logout)
     public void onLogout() {
-
-
         LogOutRequest request = new LogOutRequest(this);
-
         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {

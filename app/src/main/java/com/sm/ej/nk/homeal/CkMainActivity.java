@@ -199,7 +199,7 @@ public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTab
     }
     public static final String EXTRA_TAB_INDEX = "tabindex";
     private static final String CK_HOME = "쿠커홈";
-    private static final String CK_CHAT_LIST = "채팅리스트";
+    public static final String CK_CHAT_LIST = "채팅리스트";
     private static final String CK_RESERVE = "예약";
     private static final String CK_MYPAGE = "내정보";
     private static final String CK_NUM = "쿠커";

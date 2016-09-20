@@ -119,7 +119,7 @@ public class InfoCkDetailActivity extends AppCompatActivity implements CkDetailA
                 String id = etHomeData.getId();
                 Long userid = Long.parseLong(id);
                 Intent intent = new Intent(InfoCkDetailActivity.this,ChattingActivity.class);
-                intent.putExtra(ChattingActivity.EXTRA_USER,userid);
+             //   intent.putExtra(ChattingActivity.EXTRA_USER,userid);
                 startActivity(intent);
             }
         });

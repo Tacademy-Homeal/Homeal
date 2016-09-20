@@ -18,7 +18,6 @@ import com.sm.ej.nk.homeal.EtMainActivity;
 import com.sm.ej.nk.homeal.HomealApplication;
 import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.SplashActivity;
-import com.sm.ej.nk.homeal.Utils;
 import com.sm.ej.nk.homeal.data.ChatContract;
 import com.sm.ej.nk.homeal.data.ChatMessage;
 import com.sm.ej.nk.homeal.data.NetworkResult;
@@ -31,6 +30,8 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
+
+import static com.sm.ej.nk.homeal.Utils.convertStringToTimea_df;
 
 
 /**
@@ -46,7 +47,6 @@ public class ChattingGcmListenerService extends FirebaseMessagingService {
     public static final int MESSAGE_ALARM = 2;
     public static final int MESSAGE_WRITE = 3;
     public static final int NETWORK_NOMAL = 1;
-
 
     LocalBroadcastManager mLBM;
     Intent intent;
@@ -88,7 +88,7 @@ public class ChattingGcmListenerService extends FirebaseMessagingService {
                     user.setId(m.getSender());//id  이다.
                     //   addMessage(User user, int type, String message, Date date,String image)
                     ChattingDBManager.getInstance().addMessage(user, ChatContract.ChatMessage.TYPE_RECEIVE, m.getMessage(),
-                            Utils.convertStringToTime(m.getDate()),m.getImage());
+                            convertStringToTimea_df(m.getDate()),m.getImage());
                     Intent i = new Intent(ACTION_CHAT);
                     i.putExtra(EXTRA_CHAT_USER, m.getSender());
                     mLBM.sendBroadcastSync(i);
@@ -108,7 +108,9 @@ public class ChattingGcmListenerService extends FirebaseMessagingService {
 
     private void sendNotification(ChatMessage m) {
         Intent intent = new Intent(this, SplashActivity.class);
-        intent.putExtra(ChattingActivity.EXTRA_USER, m.getSender());
+
+        Long userid = new Long(m.getSender());
+        intent.putExtra(ChattingActivity.EXTRA_USER, userid);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
