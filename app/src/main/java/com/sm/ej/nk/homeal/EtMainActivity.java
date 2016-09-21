@@ -113,10 +113,6 @@ public class EtMainActivity extends AppCompatActivity {
                     alertLayout.setVisibility(View.INVISIBLE);
                     blurLayout.setVisibility(View.INVISIBLE);
                 }
-//                final View alertView = getLayoutInflater().inflate(R.layout.view_alert_popup, null);
-//                new AlertDialog.Builder(this).setView(alertView).show();
-//                Dialog dialog = new Dialog(this);
-//                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 break;
             }
             case R.id.btn_et_main_search: {
