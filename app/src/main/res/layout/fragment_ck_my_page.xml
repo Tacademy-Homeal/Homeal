@@ -14,7 +14,6 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/linear_ck_header"
-        android:layout_marginTop="20dp"
         android:orientation="vertical">
 
         <ImageView
@@ -93,7 +92,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linear_et_faq"
+        android:id="@+id/linear_ck_faq"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/linear_ck_language"
@@ -136,7 +135,7 @@
         android:id="@+id/btn_ck_logout"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_below="@+id/linear_et_faq"
+        android:layout_below="@+id/linear_ck_faq"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="70dp"
         android:layout_marginRight="70dp"

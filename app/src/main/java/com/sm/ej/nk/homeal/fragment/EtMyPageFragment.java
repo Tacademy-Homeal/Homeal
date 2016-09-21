@@ -148,7 +148,6 @@ public class EtMyPageFragment extends Fragment {
         Intent intent = new Intent(getActivity(), EtPersonalDataActivity.class);
         intent.putExtra(ET_DATA, data);
         startActivity(intent);
-
     }
 
     @OnClick(R.id.linear_et_mapage_middle)
