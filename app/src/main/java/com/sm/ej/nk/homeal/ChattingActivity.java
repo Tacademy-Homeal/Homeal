@@ -65,7 +65,7 @@ public class ChattingActivity extends AppCompatActivity {
             }
         });
 
-        id = (Long) getIntent().getSerializableExtra(EXTRA_USER);
+        id = (Long) getIntent().getLongExtra(EXTRA_USER,-100);
 
         mAdapter = new ChattingAdapter();
         rv_chatting.setAdapter(mAdapter);

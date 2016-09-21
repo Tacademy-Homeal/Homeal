@@ -9,6 +9,10 @@
     <string name="Currency_Setting">화 폐 설 정</string>
     <string name="Language_Setting">언 어 설 정</string>
     <string name="Leave_Membership">회 원 탈 퇴</string>
+    <string name="Profile">개 인 정 보</string>
+    <string name="Bookmark">찜 목 록</string>
+    <string name="delete">지우기</string>
+    <string name="notice">알림</string>
     <string name="SettingActivity_appbar">환 경 설 정</string>
     <string name="PersonaldataActivity_appbar">개 인 정 보</string>
     <string name="search">검색</string>

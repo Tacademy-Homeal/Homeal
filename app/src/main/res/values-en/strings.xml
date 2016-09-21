@@ -6,7 +6,9 @@
     <string name="Language_Setting" translatable="false">Language Setting</string>
     <string name="Leave_Membership">Leave Membership</string>
     <string name="SettingActivity_appbar">Settings</string>
-    <string name="PersonaldataActivity_appbar">Personal Data</string>
+    <string name="PersonaldataActivity_appbar">Profile</string>
+    <string name="Profile">Profile</string>
+    <string name="Bookmark">Bookmark</string>
     <string name="EtZzimActivity_appbar">Like List</string>
     <string name="Logout">Logout</string>
     <string name="action_search"></string>
@@ -17,8 +19,10 @@
     <string name="ck_detail_food">Introduce My Food</string>
     <string name="ck_detail_kind">Kindness</string>
     <string name="ck_detail_price">Price</string>
+    <string name="delete">Delete</string>
+    <string name="notice">Notice</string>
     <string name="ck_detail_taste">Taste</string>
-    <string name="ck_detail_total">Total Grage</string>
+    <string name="ck_detail_total">Total Grade</string>
     <string name="ck_home_dinner">Dinner</string>
     <string name="ck_home_fabchat">Chatting</string>
     <string name="ck_home_fabedit">Edit menu</string>

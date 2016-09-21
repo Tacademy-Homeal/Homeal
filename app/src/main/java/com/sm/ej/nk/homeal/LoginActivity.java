@@ -26,6 +26,16 @@ public class LoginActivity extends AppCompatActivity {
                     .commit();
         }
 
+        int id = (int) getIntent().getLongExtra(SplashActivity.TYPE,-100);
+
+        if( id == -100){
+            if(id == 1){
+                moveCkMainActivity();
+            }else if(id == 2){
+                moveEtMainAcivity();
+            }
+        }
+
         checkPermission();
     }
     private void checkPermission(){
@@ -69,7 +79,6 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
     public void changeTos(){
-
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.login_container, new TOSFragment())
                 .addToBackStack("Tos")

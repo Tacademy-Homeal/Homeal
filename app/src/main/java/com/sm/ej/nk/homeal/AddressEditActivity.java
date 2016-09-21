@@ -164,7 +164,6 @@ public class AddressEditActivity extends AppCompatActivity implements
     public void onMapReady(GoogleMap googleMap) {
         map = googleMap;
         map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-
         map.getUiSettings().setCompassEnabled(true);
         map.getUiSettings().setZoomControlsEnabled(true);
         map.setOnCameraMoveListener(this);
@@ -304,7 +303,7 @@ public class AddressEditActivity extends AppCompatActivity implements
                 }
             }
         });
-        startActivity(new Intent(AddressEditActivity.this, CkPersonalDataActivity.class));
+//        startActivity(new Intent(AddressEditActivity.this, CkPersonalDataActivity.class));
     }
 
     private static final int RC_PERMISSION = 100;

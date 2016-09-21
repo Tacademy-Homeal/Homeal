@@ -1,12 +1,10 @@
 package com.sm.ej.nk.homeal;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -33,13 +31,9 @@ public class SettingActivity extends AppCompatActivity {
     @BindView(R.id.toolbar_ck_toolbar)
     Toolbar toolbar;
 
-    @BindView(R.id.spinner_currecy_setting)
-    Spinner currencySpinner;
-
     @BindView(R.id.spinner_language_setting)
     Spinner languageSpinner;
 
-    ArrayAdapter<String> currencyAdapter;
     ArrayAdapter<String> languageAdapter;
 
     @Override
@@ -50,10 +44,6 @@ public class SettingActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(getResources().getString(R.string.SettingActivity_appbar));
-
-        currencyAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.currency));
-        currencyAdapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
-        currencySpinner.setAdapter(currencyAdapter);
 
         languageAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.language));
         languageAdapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
@@ -102,25 +92,16 @@ public class SettingActivity extends AppCompatActivity {
         });
     }
 
-
-
-    @OnClick(R.id.linear_top)
+    @OnClick(R.id.linear_et_faq)
     public void onSettingFaq() {
         Intent intent = new Intent(SettingActivity.this, AdviceActivity.class);
         startActivity(intent);
     }
 
-    @OnClick(R.id.linear_bottom)
-    public void onLeavemembership() {
-        showDialog();
-    }
 
     @OnClick(R.id.btn_ck_logout)
     public void onLogout() {
-
-
         LogOutRequest request = new LogOutRequest(this);
-
         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
@@ -149,24 +130,4 @@ public class SettingActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
-    private void showDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setPositiveButton(""+getResources().getString(R.string.OK), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                Intent intent = new Intent(SettingActivity.this, LoginActivity.class);
-                startActivity(intent);
-            }
-        });
-        builder.setNegativeButton(""+getResources().getString(R.string.cancel), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.dismiss();
-            }
-        });
-        builder.setMessage(getResources().getString(R.string.leavemembership_dialog));
-        builder.show();
-    }
-
 }

@@ -1,61 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/appbar_et_main"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar_et_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:layout_marginBottom="5dp"
-            android:background="@color/color_homeal_toolbar"
-            app:layout_scrollFlags="scroll|enterAlways" />
-
-        <android.support.design.widget.TabLayout
-            android:id="@+id/tablayout_et_main"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fillViewport="false"
-            app:tabMode="fixed">
-
-        </android.support.design.widget.TabLayout>
-    </android.support.design.widget.AppBarLayout>
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewpager_et_main"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-
-    <RelativeLayout
-        android:id="@+id/layout_blur"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#50000000"
-        android:layout_below="@+id/alert_layout">
-    </RelativeLayout>
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
 
     <RelativeLayout
         android:id="@+id/layout_alert"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/appbar_et_main"
         android:layout_marginTop="34dp">
 
         <ImageView
+            android:id="@+id/alert_triangle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
             android:layout_marginRight="18dp"
-            android:id="@+id/alert_triangle"
             android:src="@drawable/ic_triangle" />
 
         <RelativeLayout
@@ -66,17 +29,17 @@
             android:background="@drawable/search_edge">
 
             <LinearLayout
+                android:id="@+id/alert_tap"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:id="@+id/alert_tap">
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="알림"
+                    android:layout_gravity="center_vertical"
                     android:padding="10dp"
-                    android:layout_gravity="center_vertical"/>
+                    android:text="알림" />
 
                 <View
                     android:layout_width="wrap_content"
@@ -105,16 +68,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:layout_below="@+id/alert_tap"
-                android:background="@drawable/search_edge"/>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#50000000"
-            android:layout_below="@+id/alert_layout">
+                android:background="@drawable/search_edge" />
         </RelativeLayout>
     </RelativeLayout>
 
-</android.support.design.widget.CoordinatorLayout>
 
+</RelativeLayout>
