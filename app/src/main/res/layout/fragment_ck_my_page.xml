@@ -6,127 +6,183 @@
     tools:context=".fragment.CkMyPageFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:id="@+id/linear_ck_header"
-        android:layout_marginTop="10dp">
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/image_ck_picture"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="15dp"
-            android:src="@drawable/basic_person"/>
-
-        <LinearLayout
-            android:id="@+id/linear_cooker"
-            android:layout_width="wrap_content"
-            android:layout_height="70dp"
-            android:layout_marginTop="10dp"
-            android:layout_toRightOf="@+id/image_ck_picture"
-            android:orientation="vertical"
-            android:weightSum="1">
-
-            <TextView
-                android:id="@+id/text_ck_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/appbar_ck_main"
-                android:layout_marginLeft="15dp"
-                android:layout_toEndOf="@+id/image_ck_picture"
-                android:layout_toRightOf="@+id/image_ck_picture"
-                android:layout_weight="0.5"
-                android:text="Large Text"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
-
-            <TextView
-                android:id="@+id/text_ck_type"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/text_ck_name"
-                android:layout_marginLeft="15dp"
-                android:layout_toEndOf="@+id/image_ck_picture"
-                android:layout_toRightOf="@+id/image_ck_picture"
-                android:layout_weight="0.5"
-                android:text="Medium Text"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/linear_cooker"
-            android:layout_marginLeft="120dp"
-            android:orientation="vertical">
-
-            <ProgressBar
-                android:id="@+id/progress_ck_mypage_total"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@drawable/circle_shape"
-                android:indeterminate="false"
-                android:max="5"
-                android:progressDrawable="@drawable/circular_progress_bar" />
-
-            <TextView
-                android:id="@+id/textView19"
-                android:layout_width="55dp"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:text="@string/ck_detail_total" />
-        </LinearLayout>
-    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linear_ck_mypage_top"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/ck_mypage_box_height"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_below="@+id/linear_ck_header"
-        android:layout_marginLeft="@dimen/setting_box_margin_left"
-        android:layout_marginRight="@dimen/setting_box_margin_left"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/edge">
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/text_ck_mypage_personal"
+        <ImageView
             android:layout_width="match_parent"
-            android:layout_height="@dimen/ck_mypage_box_height"
+            android:layout_height="1dp"
+            android:background="#eaeaea" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/linear_ck_mypage_top"
-            android:layout_marginLeft="@dimen/setting_box_text_margin"
+            android:layout_below="@+id/linear_ck_header"
+            android:background="@drawable/edge"
             android:gravity="center_vertical"
-            android:text="Profile"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/setting_box_text_margin"
+                android:text="@string/Profile"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/text_ck_mypage_personal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/setting_box_text_margin"
+                android:gravity="center_vertical"
+                android:text="Profile"
+                android:textColor="#d9d9d9"
+                android:textSize="12dp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/linear_ck_language"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/linear_ck_mypage_top"
+        android:background="@drawable/edge"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/setting_box_text_margin"
+                android:text="@string/Language_Setting"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/setting_box_text_margin"
+                android:text="Language Setting"
+                android:textColor="#d9d9d9"
+                android:textSize="12dp" />
+        </LinearLayout>
+
+        <Spinner
+            android:id="@+id/spinner_language_setting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:spinnerMode="dropdown" />
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linear_ck_mypage_bottom"
+        android:id="@+id/linear_et_faq"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/ck_mypage_box_height"
-        android:layout_below="@+id/linear_ck_mypage_top"
-        android:layout_marginLeft="@dimen/setting_box_margin_left"
-        android:layout_marginRight="@dimen/setting_box_margin_left"
-        android:layout_marginTop="@dimen/ck_mypage_box_margintop"
-        android:background="@drawable/edge">
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linear_ck_language"
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/text_ck_mypage_setting"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/ck_mypage_box_height"
+            android:layout_height="50dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_below="@+id/linear_ck_mypage_top"
-            android:layout_marginLeft="@dimen/setting_box_text_margin"
+            android:background="@drawable/edge"
             android:gravity="center_vertical"
-            android:text="Settings"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/setting_box_text_margin"
+                android:text="@string/FAQ"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/setting_box_text_margin"
+                android:text="FAQ"
+                android:textColor="#d9d9d9"
+                android:textSize="12dp" />
+        </LinearLayout>
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#eaeaea" />
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/btn_ck_logout"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/linear_et_faq"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="70dp"
+        android:layout_marginRight="70dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/logout_edge"
+        android:text="@string/Logout"
+        android:textColor="#5c5f61"
+        android:textSize="15dp" />
+
+    <LinearLayout
+        android:id="@+id/linear_ck_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/image_ck_picture"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/basic_person" />
+
+        <TextView
+            android:id="@+id/text_ck_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Name"
+            android:textSize="20dp" />
+
+        <RatingBar
+            android:id="@+id/rating_ck_mypage_total"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text_ck_name"
+            android:progressDrawable="@drawable/custom_ratingbar_full"
+            android:numStars="5"
+            android:focusable="false"
+            android:focusableInTouchMode="false"/>
     </LinearLayout>
 </RelativeLayout>

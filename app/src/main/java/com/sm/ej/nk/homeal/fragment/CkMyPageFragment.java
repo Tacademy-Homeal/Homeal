@@ -8,13 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.sm.ej.nk.homeal.CkPersonalDataActivity;
 import com.sm.ej.nk.homeal.R;
-import com.sm.ej.nk.homeal.SettingActivity;
 import com.sm.ej.nk.homeal.data.NetworkResult;
 import com.sm.ej.nk.homeal.data.PersonalData;
 import com.sm.ej.nk.homeal.manager.NetworkManager;
@@ -32,11 +30,9 @@ public class CkMyPageFragment extends Fragment {
     @BindView(R.id.text_ck_name)
     TextView cknameView;
 
-    @BindView(R.id.text_ck_type)
-    TextView cktypeView;
 
-    @BindView(R.id.progress_ck_mypage_total)
-    ProgressBar cktotalView;
+//    @BindView(R.id.progress_ck_mypage_total)
+//    ProgressBar cktotalView;
 
     PersonalData data;
     public static final String CK_DATA = "Ck_data";
@@ -63,8 +59,8 @@ public class CkMyPageFragment extends Fragment {
             public void onSuccess(NetworkRequest<NetworkResult<PersonalData>> request, NetworkResult<PersonalData> result) {
                     data = result.getResult();
                     cknameView.setText(data.getName());
-                    cktypeView.setText(data.getType());
-                    cktotalView.setProgress((int)data.getGrade());
+//                    cktypeView.setText(data.getType());
+//                    cktotalView.setProgress((int)data.getGrade());
                     Glide.with(ckpictureView.getContext()).load(data.getImage()).into(ckpictureView);
             }
 
@@ -84,10 +80,10 @@ public class CkMyPageFragment extends Fragment {
         startActivity(intent);
     }
 
-    @OnClick(R.id.text_ck_mypage_setting)
-    public void onCkMypageSetting() {
-        Intent intent = new Intent(getActivity(), SettingActivity.class);
-        startActivity(intent);
-    }
+//    @OnClick(R.id.text_ck_mypage_setting)
+//    public void onCkMypageSetting() {
+//        Intent intent = new Intent(getActivity(), SettingActivity.class);
+//        startActivity(intent);
+//    }
 
 }

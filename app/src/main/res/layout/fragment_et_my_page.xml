@@ -8,185 +8,15 @@
     <!-- TODO: Update blank fragment layout -->
 
     <LinearLayout
-        android:id="@+id/linear_et_mapage_middle"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_below="@+id/linear_et_mapage_top"
-        android:background="@drawable/edge"
-        android:gravity="center_vertical"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/textView15"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/setting_box_text_margin"
-            android:text="찜목록"
-            android:textSize="15dp" />
-
-        <TextView
-            android:id="@+id/text_et_mypage_zzim"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginLeft="@dimen/setting_box_text_margin"
-            android:gravity="center_vertical"
-            android:text="Bookmark"
-            android:textColor="#d9d9d9"
-            android:textSize="12dp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linear_et_language"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/linear_et_faq"
-        android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_alignParentLeft="true"
-            android:background="@drawable/edge"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/setting_box_text_margin"
-                    android:text="@string/Language_Setting"
-                    android:textSize="15dp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/setting_box_text_margin"
-                    android:text="Language Setting"
-                    android:textColor="#d9d9d9"
-                    android:textSize="12dp" />
-            </LinearLayout>
-
-            <Spinner
-                android:id="@+id/spinner_language_setting"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/linear_et_language"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true" />
-        </LinearLayout>
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#eaeaea" />
-
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/btn_ck_logout"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_below="@+id/linear_et_language"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="70dp"
-        android:layout_marginRight="70dp"
-        android:layout_marginTop="40dp"
-        android:textSize="15dp"
-        android:background="@drawable/logout_edge"
-        android:text="@string/Logout"
-        android:textColor="#5c5f61" />
-
-    <LinearLayout
-        android:id="@+id/linear_eater_header"
+        android:id="@+id/linear_et_mapage_top"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:gravity="center"
-        android:orientation="vertical">
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/image_et_picture"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_gravity="center"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginTop="20dp"
-            android:src="@drawable/basic_person" />
-
-        <LinearLayout
-            android:id="@+id/linear_eater"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_toRightOf="@+id/image_et_picture"
-            android:orientation="vertical"
-            android:weightSum="1">
-
-            <TextView
-                android:id="@+id/text_et_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:gravity="center"
-                android:text="Name"
-                android:textSize="20dp" />
-
-        </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linear_et_faq"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/linear_et_mapage_middle"
-
-        android:background="@drawable/edge"
-        android:gravity="center_vertical"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/setting_box_text_margin"
-            android:text="@string/FAQ"
-            android:textSize="15dp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/setting_box_text_margin"
-            android:text="FAQ"
-            android:textColor="#d9d9d9"
-            android:textSize="12dp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linear_et_mapage_top"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="20dp"
         android:layout_below="@+id/linear_eater_header"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
+
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -205,7 +35,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/setting_box_text_margin"
-                android:text="개인정보"
+                android:text="@string/Profile"
                 android:textSize="15dp" />
 
             <TextView
@@ -221,4 +51,158 @@
         </LinearLayout>
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/linear_et_mapage_middle"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/linear_et_mapage_top"
+        android:background="@drawable/edge"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/setting_box_text_margin"
+            android:text="@string/Bookmark"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/text_et_mypage_zzim"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="@dimen/setting_box_text_margin"
+            android:gravity="center_vertical"
+            android:text="Bookmark"
+            android:textColor="#d9d9d9"
+            android:textSize="12dp" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/linear_et_language"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/linear_et_mapage_middle"
+        android:background="@drawable/edge"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/setting_box_text_margin"
+                android:text="@string/Language_Setting"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/setting_box_text_margin"
+                android:text="Language Setting"
+                android:textColor="#d9d9d9"
+                android:textSize="12dp" />
+        </LinearLayout>
+
+        <Spinner
+            android:id="@+id/spinner_language_setting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:spinnerMode="dropdown"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/linear_et_faq"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linear_et_language"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/edge"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/setting_box_text_margin"
+                android:text="@string/FAQ"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/setting_box_text_margin"
+                android:text="FAQ"
+                android:textColor="#d9d9d9"
+                android:textSize="12dp" />
+        </LinearLayout>
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#eaeaea" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_et_logout"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/linear_et_faq"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="70dp"
+        android:layout_marginRight="70dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/logout_edge"
+        android:text="@string/Logout"
+        android:textColor="#5c5f61"
+        android:textSize="15dp" />
+
+    <LinearLayout
+        android:id="@+id/linear_eater_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/image_et_picture"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/basic_person" />
+
+            <TextView
+                android:id="@+id/text_et_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Name"
+                android:textSize="20dp" />
+
+        </LinearLayout>
 </RelativeLayout>

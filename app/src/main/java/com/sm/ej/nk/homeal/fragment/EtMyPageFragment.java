@@ -72,13 +72,12 @@ public class EtMyPageFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_et_my_page, container, false);
         ButterKnife.bind(this, view);
 
 
-        languageAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.language));
-        languageAdapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
+        languageAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.language));
+        languageAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         languageSpinner.setAdapter(languageAdapter);
         languageSpinner.setSelection(str);
 
@@ -164,7 +163,7 @@ public class EtMyPageFragment extends Fragment {
         startActivity(intent);
     }
 
-    @OnClick(R.id.btn_ck_logout)
+    @OnClick(R.id.btn_et_logout)
     public void onLogout() {
         LogOutRequest request = new LogOutRequest(getContext());
         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {

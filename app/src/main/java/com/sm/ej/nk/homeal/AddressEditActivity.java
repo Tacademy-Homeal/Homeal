@@ -303,7 +303,7 @@ public class AddressEditActivity extends AppCompatActivity implements
                 }
             }
         });
-        startActivity(new Intent(AddressEditActivity.this, CkPersonalDataActivity.class));
+//        startActivity(new Intent(AddressEditActivity.this, CkPersonalDataActivity.class));
     }
 
     private static final int RC_PERMISSION = 100;
