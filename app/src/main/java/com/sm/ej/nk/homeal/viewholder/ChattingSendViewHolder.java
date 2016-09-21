@@ -17,10 +17,13 @@ public class ChattingSendViewHolder  extends RecyclerView.ViewHolder {
     @BindView(R.id.text_message)
     TextView messageView;
 
+
+
     public ChattingSendViewHolder(View itemView) {
         super(itemView);
         ButterKnife.bind(this, itemView);
     }
+
 
     public void setMessage(String message) {
         messageView.setText(message);

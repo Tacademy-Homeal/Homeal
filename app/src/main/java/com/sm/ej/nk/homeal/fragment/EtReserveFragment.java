@@ -79,7 +79,7 @@ public class EtReserveFragment extends Fragment {
             @Override
             public void onReserveAdapterClick(View view, ReserveData data, int position) {
                 if(data.getStatus() == 1 || data.getStatus()  == 2){
-                    request = new ReservationsChangeRequest(getContext(),data.getRid(),5);
+                    request = new ReservationsChangeRequest(getContext(),data.getRid(),5,data.getUid());
                     cancelDialog(request);
                 }else{
                     Intent intent = new Intent(getContext(), EtWriteReviewActivity.class);

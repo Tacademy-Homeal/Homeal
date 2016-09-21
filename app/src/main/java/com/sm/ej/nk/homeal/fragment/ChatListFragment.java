@@ -32,11 +32,9 @@ public class ChatListFragment extends Fragment  implements ChattingListAdapter.O
     RecyclerView rv_chattinglist;
 
     RecyclerView.LayoutManager layoutManager;
-
     ChattingListAdapter mAdapter;
 
     public static final String EXTRA_USER = "user";
-
 
     public static ChatListFragment createInstance(){
         final ChatListFragment pageFragment = new ChatListFragment();
@@ -74,7 +72,12 @@ public class ChatListFragment extends Fragment  implements ChattingListAdapter.O
     public void onStart() {
         super.onStart();
         Cursor c = ChattingDBManager.getInstance().getChatUser();
-        if(c != null) mAdapter.changeCursor(c);
+        mAdapter.changeCursor(c);
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+
     }
 
     @Override
@@ -86,14 +89,15 @@ public class ChatListFragment extends Fragment  implements ChattingListAdapter.O
     @Override
     public void onViewClick(View view,int position) {
 
+
         Cursor cursor = mAdapter.getCursor(position);
         User user = new User();
-        user.setId(cursor.getLong(cursor.getColumnIndex(ChatContract.ChatUser.COLUMN_SERVER_ID)));
+         user.setId(cursor.getLong(cursor.getColumnIndex(ChatContract.ChatUser.COLUMN_SERVER_ID)));
+        long userid = user.getId();
         user.setName(cursor.getString(cursor.getColumnIndex(ChatContract.ChatUser.COLUMN_NAME)));
         Intent intent = new Intent(getContext(),ChattingActivity.class);
-        intent.putExtra(ChattingActivity.EXTRA_USER, user);
+        intent.putExtra(ChattingActivity.EXTRA_USER,userid);
         startActivity(intent);
-
     }
 
 }

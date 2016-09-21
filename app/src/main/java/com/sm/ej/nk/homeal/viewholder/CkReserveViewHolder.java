@@ -55,6 +55,7 @@ public class CkReserveViewHolder extends RecyclerView.ViewHolder {
     public CkReserveViewHolder(View itemView) {
         super(itemView);
         ButterKnife.bind(this, itemView);
+        buttonSst();
         //Unealbe rating state
     }
 
@@ -69,7 +70,7 @@ public class CkReserveViewHolder extends RecyclerView.ViewHolder {
             }
         });
 
-        btn_reserve_disagree.setOnClickListener(new View.OnClickListener() {
+                btn_reserve_disagree.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (dListener != null) {

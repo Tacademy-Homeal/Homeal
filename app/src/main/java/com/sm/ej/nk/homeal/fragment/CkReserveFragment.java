@@ -73,7 +73,7 @@ public class CkReserveFragment extends Fragment {
         mAdapter.setOnAgreeButtonClickListener(new CkReserveAdapter.OnAagreeButtonClickLIstener() {
             @Override
             public void onAagreeButtonClick(View view, CkReseveData data, int position) {
-                request = new ReservationsChangeRequest(getContext(),data.getRid(),TYPE_REQUEST_COMPLETE);
+                request = new ReservationsChangeRequest(getContext(),data.getRid(),TYPE_REQUEST_COMPLETE,data.getUid());
                 cancelDialog(request,TYPE_REQUEST_COMPLETE);
             }
         });
@@ -81,7 +81,7 @@ public class CkReserveFragment extends Fragment {
         mAdapter.setOnDisagreeButtonClickLIstener(new CkReserveAdapter.OnDisagreeButtonClickLIstener() {
             @Override
             public void onDisagreeButtonClick(View view, CkReseveData data, int position) {
-                request = new ReservationsChangeRequest(getContext(),data.getRid(),TYPE_REQUEST_REJECT);
+                request = new ReservationsChangeRequest(getContext(),data.getRid(),TYPE_REQUEST_REJECT,data.getUid());
                 cancelDialog(request,TYPE_REQUEST_REJECT);
             }
         });
@@ -89,7 +89,7 @@ public class CkReserveFragment extends Fragment {
        mAdapter.setOnCancelAdapterItemClickListener(new CkReserveAdapter.OncancelButtonClickLIstener() {
            @Override
            public void oncancelAdapterItemClick(View view, CkReseveData data, int position) {
-               request = new ReservationsChangeRequest(getContext(), data.getRid(),TYPE_COOKER_CANCLE);
+               request = new ReservationsChangeRequest(getContext(), data.getRid(),TYPE_COOKER_CANCLE,data.getUid());
                cancelDialog(request,TYPE_COOKER_CANCLE);
             }
        });
@@ -177,7 +177,6 @@ public class CkReserveFragment extends Fragment {
                 break;
         }
         builder.show();
-
     }
 
 
