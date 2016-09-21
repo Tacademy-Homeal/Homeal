@@ -283,7 +283,7 @@ public class ScheduleEditActivity extends AppCompatActivity implements View.OnCl
             Toast.makeText(ScheduleEditActivity.this, "시간을 선택해주세요", Toast.LENGTH_SHORT).show();
             return false;
         }
-        return true;//ddd
+        return true;
     }
 
     private boolean deletevalueCheck(){
