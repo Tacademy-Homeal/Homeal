@@ -283,7 +283,7 @@
         android:layout_marginTop="16dp"
         android:layout_width="match_parent"
         android:layout_height="8dp"
-        android:background="#e0e0e0" />
+        android:background="#eaeaea" />
 
     <ImageView
         android:id="@+id/image_ck_detail_map"
@@ -294,7 +294,7 @@
         android:id="@+id/imageView3"
         android:layout_width="match_parent"
         android:layout_height="8dp"
-        android:background="#e0e0e0" />
+        android:background="#eaeaea" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -333,26 +333,17 @@
         android:layout_height="match_parent"
         android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/text_ck_detail_morning"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/ck_home_mornig"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/homeal_launch_empty"
+            android:id="@+id/image_ck_detail_launch"/>
 
-        <TextView
-            android:id="@+id/text_ck_detail_launch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/ck_home_launch"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <TextView
-            android:id="@+id/text_ck_detail_dinner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/ck_home_dinner"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src = "@drawable/homeal_dinner_empty"
+            android:id="@+id/image_ck_detail_dinner"/>
 
         <TextView
             android:id="@+id/textView24"
@@ -385,6 +376,11 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium" />
     </LinearLayout>
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:background="#eaeaea" />
 
 </LinearLayout>
 

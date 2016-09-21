@@ -23,7 +23,7 @@ public class CkMenuEditRequest extends AbstractRequest<NetworkResultTemp> {
     Context context;
     MediaType jpeg = MediaType.parse("image/jpeg");
 
-    public CkMenuEditRequest(Context context, String menuId, String name, File image, String price, String introduce, String currency, String activation){
+    public CkMenuEditRequest(Context context, String menuId, String name, File image, String price, String introduce, String activation){
         HttpUrl url = getBaseHttpUrlBuilder()
                 .addPathSegment("menus")
                 .addPathSegment(menuId)
@@ -33,23 +33,19 @@ public class CkMenuEditRequest extends AbstractRequest<NetworkResultTemp> {
         MultipartBody.Builder builder = new MultipartBody.Builder();
         if(name!=null){
             builder.addFormDataPart("name", name);
-            Log.e("ssong", name);
+            Log.e("ssongName", name);
         }
         if(price!=null){
             builder.addFormDataPart("price", price);
-            Log.e("ssong", price);
+            Log.e("ssongPrice", price);
         }
         if(introduce!=null){
             builder.addFormDataPart("introduce", introduce);
-            Log.e("ssong", introduce);
-        }
-        if(currency!=null){
-            builder.addFormDataPart("currency", currency);
-            Log.e("ssong", currency);
+            Log.e("ssongIntro", introduce);
         }
         if(activation!=null){
             builder.addFormDataPart("activation", activation);
-            Log.e("ssong", activation);
+            Log.e("ssongAcvation", activation);
         }
         if(image!=null){
             builder.addFormDataPart("image", image.getName(), RequestBody.create(jpeg, image));

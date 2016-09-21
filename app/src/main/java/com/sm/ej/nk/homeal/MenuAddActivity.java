@@ -65,7 +65,6 @@ public class MenuAddActivity extends AppCompatActivity implements View.OnClickLi
     public static final int MODE_MENU=1;
 
     private CkDetailMenuData data;
-    private String currency =null;
     private String activation= null;
     private String foodName= null;
     private String foodPrice= null;
@@ -184,7 +183,9 @@ public class MenuAddActivity extends AppCompatActivity implements View.OnClickLi
         progressDialog.show();
         if(MODE==CkMainActivity.MODE_MENU_INSERT){
             if(valueCheck()){
-                CkMenuInsertRequest request = new CkMenuInsertRequest(MenuAddActivity.this, foodName, imageFile, foodPrice, foodInfo, currency, activation);
+
+                Log.e("ssongactivation", activation);
+                CkMenuInsertRequest request = new CkMenuInsertRequest(MenuAddActivity.this, foodName, imageFile, foodPrice, foodInfo, activation);
                 NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
                     @Override
                     public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
@@ -192,7 +193,6 @@ public class MenuAddActivity extends AppCompatActivity implements View.OnClickLi
                         setResult(Activity.RESULT_OK);
                         progressDialog.dismiss();
                         finish();
-
                     }
 
                     @Override
@@ -204,7 +204,8 @@ public class MenuAddActivity extends AppCompatActivity implements View.OnClickLi
         }
         if(MODE==CkMainActivity.MODE_MENU_EDIT){
             if(valueDifCheck()){
-                CkMenuEditRequest request = new CkMenuEditRequest(MenuAddActivity.this, data.id, foodName, imageFile, foodPrice, foodInfo, currency, activation);
+                Log.e("ssongactivation", activation);
+                CkMenuEditRequest request = new CkMenuEditRequest(MenuAddActivity.this, data.id, foodName, imageFile, foodPrice, foodInfo, activation);
                 NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
                     @Override
                     public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
@@ -251,8 +252,6 @@ public class MenuAddActivity extends AppCompatActivity implements View.OnClickLi
             activation="0";
         }
 
-        activation = "1";
-
         if(imageFile==null){
             Toast.makeText(MenuAddActivity.this, "사진을 업로드해주세요", Toast.LENGTH_SHORT).show();
             return false;
@@ -285,7 +284,6 @@ public class MenuAddActivity extends AppCompatActivity implements View.OnClickLi
         }else{
             activation="0";
         }
-        currency = "1";
 
         if(data.getFoodName().equals(foodName)){
             foodName = null;

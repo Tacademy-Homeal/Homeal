@@ -1,7 +1,6 @@
 package com.sm.ej.nk.homeal.viewholder;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -31,8 +30,8 @@ import java.util.List;
 public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
     View view;
     ViewPager viewPager;
-    ImageView userImage, mapImage, backImage, nextImage, sharingImage;
-    TextView userName, userAddress, foodPrice, foodName, calendarDate, morning, launch, dinner, pax, totalScore, tasteScore, kindScore, cleanScore, priceScore;
+    ImageView userImage, mapImage, backImage, nextImage, sharingImage, launch, dinner;
+    TextView userName, userAddress, foodPrice, foodName, calendarDate,pax, totalScore, tasteScore, kindScore, cleanScore, priceScore;
     RecyclerView calendar;
     CkDetailData data;
     ViewPagerAdapter pagerAdapter;
@@ -61,9 +60,6 @@ public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder implements
         calendar = (RecyclerView)view.findViewById(R.id.rv_ck_detail_calendar);
         calendarDate = (TextView)view.findViewById(R.id.text_ck_detail_date);
         progressTotal = (ProgressBar) view.findViewById(R.id.progress_total);
-//        if (progressTotal != null) {
-//            progressTotal.getIndeterminateDrawable().setColorFilter(, android.graphics.PorterDuff.Mode.MULTIPLY);
-//        }
         progressPrice = (ProgressBar)view.findViewById(R.id.progress_price);
         progressTaste = (ProgressBar)view.findViewById(R.id.progress_taste);
         progresskind = (ProgressBar)view.findViewById(R.id.progress_kind);
@@ -78,9 +74,8 @@ public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder implements
         cleanScore = (TextView)view.findViewById(R.id.text_ck_detail_clean_score);
 
         sharingImage = (ImageView)view.findViewById(R.id.image_ck_detail_share);
-        morning = (TextView)view.findViewById(R.id.text_ck_detail_morning);
-        launch = (TextView)view.findViewById(R.id.text_ck_detail_launch);
-        dinner = (TextView)view.findViewById(R.id.text_ck_detail_dinner);
+        launch = (ImageView)view.findViewById(R.id.image_ck_detail_launch);
+        dinner = (ImageView)view.findViewById(R.id.image_ck_detail_dinner);
         pax = (TextView)view.findViewById(R.id.text_ck_detail_reservecount);
     }
 
@@ -91,22 +86,16 @@ public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder implements
             sharingImage.setImageResource(R.drawable.homeal_sharing_no);
         }
 
-        if(item.isMorning){
-            morning.setTextColor(Color.BLACK);
-        }else{
-            morning.setTextColor(Color.GRAY);
-        }
-
         if(item.isLaunch){
-            launch.setTextColor(Color.BLACK);
+            launch.setImageResource(R.drawable.homeal_launch_fill);
         }else{
-            launch.setTextColor(Color.GRAY);
+            launch.setImageResource(R.drawable.homeal_launch_empty);
         }
 
         if(item.isDinner){
-            dinner.setTextColor(Color.BLACK);
+            dinner.setImageResource(R.drawable.homeal_dinner_fill);
         }else{
-            dinner.setTextColor(Color.GRAY);
+            dinner.setImageResource(R.drawable.homeal_dinner_empty);
         }
         pax.setText(item.pax);
     }
@@ -202,10 +191,8 @@ public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder implements
                 calendarDate.setText(data.year+"년 "+(data.month+1)+"월");
                 calendarAdapter.setCalendarData(data);
                 calendarAdapter.cleanChecked();
-                morning.setBackgroundColor(Color.WHITE);
-                launch.setBackgroundColor(Color.WHITE);
-                dinner.setBackgroundColor(Color.WHITE);
-                sharingImage.setBackgroundColor(Color.WHITE);
+                launch.setImageResource(R.drawable.homeal_launch_empty);
+                dinner.setImageResource(R.drawable.homeal_dinner_empty);
                 pax.setText("");
                 break;
             }
@@ -214,10 +201,8 @@ public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder implements
                 calendarDate.setText(data.year+"년 "+(data.month+1)+"월");
                 calendarAdapter.setCalendarData(data);
                 calendarAdapter.cleanChecked();
-                morning.setBackgroundColor(Color.WHITE);
-                launch.setBackgroundColor(Color.WHITE);
-                dinner.setBackgroundColor(Color.WHITE);
-                sharingImage.setBackgroundColor(Color.WHITE);
+                launch.setImageResource(R.drawable.homeal_launch_empty);
+                dinner.setImageResource(R.drawable.homeal_dinner_empty);
                 pax.setText("");
                 break;
             }
