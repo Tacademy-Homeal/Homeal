@@ -204,8 +204,6 @@
         android:id="@+id/linear_et_name_age"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/linear_phone_country"
-        android:layout_alignRight="@+id/linear_phone_country"
         android:layout_below="@+id/btn_personal_change"
         android:layout_marginLeft="11dp"
         android:layout_marginTop="11dp"
@@ -238,10 +236,11 @@
     <Button
         android:id="@+id/btn_personal_change"
         style="?android:attr/buttonStyleSmall"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginRight="16dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:layout_alignParentEnd="true"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/appbar_et_main"
         android:background="@drawable/personal_change" />

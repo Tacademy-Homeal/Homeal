@@ -118,7 +118,9 @@
             android:id="@+id/spinner_language_setting"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:spinnerMode="dropdown"/>
+            android:spinnerMode="dropdown"
+            android:focusable="false"
+            android:focusableInTouchMode="false"/>
     </LinearLayout>
 
 
@@ -198,6 +200,7 @@
 
             <TextView
                 android:id="@+id/text_et_name"
+                android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
