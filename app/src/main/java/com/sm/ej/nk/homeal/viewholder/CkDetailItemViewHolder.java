@@ -50,11 +50,11 @@ public class CkDetailItemViewHolder extends RecyclerView.ViewHolder{
             public void onClick(View view) {
                 if(listener!=null){
                     if(isSelect){
-                        swipebtn.setBackgroundResource(R.drawable.imgres2);
+                        swipebtn.setBackgroundResource(R.drawable.imgres);
                         isSelect = false;
 
                     }else{
-                        swipebtn.setBackgroundResource(R.drawable.imgres);
+                        swipebtn.setBackgroundResource(R.drawable.imgres2);
                         isSelect = true;
                     }
                     listener.onMenuSwipeClick(view, datas, getAdapterPosition()-1, isSelect);

@@ -267,4 +267,6 @@ COOKER가 서비스와 관련하여 촬영한 사진 또는 영상 등을 당사
 </string>
     <string name="review_check">후기보기</string>
     <string name="schedule_sharing">합석여부</string>
+    <string name = "ck_home_sharing_ok">합석</string>
+    <string name = "ck_home_sharing_no">불합석</string>
 </resources>

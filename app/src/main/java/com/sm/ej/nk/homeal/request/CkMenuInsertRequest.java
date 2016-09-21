@@ -22,7 +22,7 @@ public class CkMenuInsertRequest extends AbstractRequest<NetworkResultTemp> {
     Context context;
     MediaType jpeg = MediaType.parse("image/jpeg");
 
-    public CkMenuInsertRequest(Context context, String name, File image, String price, String introduce, String currency, String activation){
+    public CkMenuInsertRequest(Context context, String name, File image, String price, String introduce, String activation){
         HttpUrl url = getBaseHttpUrlBuilder()
                 .addPathSegment("menus")
                 .build();

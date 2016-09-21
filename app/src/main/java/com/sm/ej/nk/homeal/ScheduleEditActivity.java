@@ -56,9 +56,6 @@ public class ScheduleEditActivity extends AppCompatActivity implements View.OnCl
     @BindView(R.id.image_schedule_edit_next)
     ImageView nextImage;
 
-    @BindView(R.id.image_schedule_edit_share)
-    ImageView shareImage;
-
     @BindView(R.id.fab_schedule_edit)
     FloatingActionButton fab;
 
@@ -71,14 +68,22 @@ public class ScheduleEditActivity extends AppCompatActivity implements View.OnCl
     @BindView(R.id.radio_schedule_dinner)
     RadioButton dinnerRadio;
 
+    @BindView(R.id.radiogroup_schedule_sharing)
+    RadioGroup groupSharing;
+
+    @BindView(R.id.radio_schedule_sharing_ok)
+    RadioButton radioOk;
+
+    @BindView(R.id.radio_schedule_sharing_no)
+    RadioButton radioNo;
+
     List<CkScheduleData> scheduleList;
     List<CalendarItem> calendarItems;
     CalendarAdapter mAdapter;
     ArrayList<CalendarItemData> mItemdata = new ArrayList<>();
     CalendarItem calendarItem;
-    boolean isSharing= true;
-    int time;
-    String sharing;
+    int time= -1;
+    String sharing= null;
     String deleteTime;
 
     private static int MODE;
@@ -120,9 +125,13 @@ public class ScheduleEditActivity extends AppCompatActivity implements View.OnCl
                         calendarItem = data;
                         editReserve.setText(""+data.pax);
                         if(data.sharing==1){
-                            shareImage.setImageResource(R.drawable.homeal_sharing_ok);
+                            radioOk.setChecked(true);
+                            radioOk.setEnabled(false);
+                            radioNo.setEnabled(false);
                         }else{
-                            shareImage.setImageResource(R.drawable.homeal_sharing_no);
+                            radioNo.setChecked(true);
+                            radioOk.setEnabled(false);
+                            radioNo.setEnabled(false);
                         }
                         editReserve.setEnabled(false);
 
@@ -154,7 +163,6 @@ public class ScheduleEditActivity extends AppCompatActivity implements View.OnCl
                     calendarItem = data;
                 }
             });
-            shareImage.setOnClickListener(this);
         }
         rv.setLayoutManager(new GridLayoutManager(this, 7));
         rv.setAdapter(mAdapter);
@@ -187,16 +195,6 @@ public class ScheduleEditActivity extends AppCompatActivity implements View.OnCl
                 mAdapter.cleanChecked();
                 break;
             }
-            case R.id.image_schedule_edit_share:{
-                if(isSharing){
-                    shareImage.setImageResource(R.drawable.homeal_sharing_no);
-                    isSharing = false;
-                }else{
-                    shareImage.setImageResource(R.drawable.homeal_sharing_ok);
-                    isSharing = true;
-                }
-                break;
-            }
             case R.id.fab_schedule_edit:{
                 if(MODE == CkMainActivity.MODE_SCHEDULE_INSERT){
                     switch (radioGroup.getCheckedRadioButtonId()){
@@ -207,10 +205,13 @@ public class ScheduleEditActivity extends AppCompatActivity implements View.OnCl
                             time = 3;
                             break;
                     }
-                    if(isSharing){
-                        sharing = "1";
-                    }else{
-                        sharing = "0";
+                    switch (groupSharing.getCheckedRadioButtonId()){
+                        case R.id.radio_schedule_sharing_ok:
+                            sharing="1";
+                            break;
+                        case R.id.radio_schedule_sharing_no:
+                            sharing="0";
+                            break;
                     }
                     if(valueCheck()){
                         CkScheduleInsertRequest request = new CkScheduleInsertRequest(ScheduleEditActivity.this, calendarItem.getDate(time).toString(), editReserve.getText().toString(), sharing);
@@ -271,7 +272,15 @@ public class ScheduleEditActivity extends AppCompatActivity implements View.OnCl
             return false;
         }
         if(TextUtils.isEmpty(editReserve.getText().toString())){
-            Toast.makeText(ScheduleEditActivity.this, "입력해주세요", Toast.LENGTH_SHORT).show();
+            Toast.makeText(ScheduleEditActivity.this, "예약 인원을 입역해주세요", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if(sharing==null){
+            Toast.makeText(ScheduleEditActivity.this, "합석 여부를 선택해주세요", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if(time==-1){
+            Toast.makeText(ScheduleEditActivity.this, "시간을 선택해주세요", Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;

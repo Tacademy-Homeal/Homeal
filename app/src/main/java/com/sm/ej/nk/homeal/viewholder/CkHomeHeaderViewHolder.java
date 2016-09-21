@@ -28,8 +28,8 @@ import java.util.List;
  */
 public class CkHomeHeaderViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
     public View view;
-    public ImageView userImage, nextCalendar, backCalendar, userMap, imageShare;
-    public TextView userName, userAddress, jjimCount, reviewCount, textDate, textMorning, textLaunch, textDinner, textPax, totalScore, tasteScore, kindScore, cleanScore, priceScore;
+    public ImageView userImage, nextCalendar, backCalendar, userMap, launch, dinner;
+    public TextView userName, userAddress, jjimCount, reviewCount, textDate, textPax, totalScore, tasteScore, kindScore, cleanScore, priceScore, textSharingOk, textSharingNo;
     public ProgressBar progressTotal, progressTaste, progressKind, progressClean, progressPrice;
     public RecyclerView rvCalendar;
     Context context;
@@ -55,19 +55,18 @@ public class CkHomeHeaderViewHolder extends RecyclerView.ViewHolder implements V
         userMap = (ImageView)view.findViewById(R.id.image_ck_home_map);
         textDate = (TextView)view.findViewById(R.id.text_ck_home_calendar);
         rvCalendar = (RecyclerView)view.findViewById(R.id.rv_ck_home_calendar);
-        imageShare = (ImageView)view.findViewById(R.id.image_ck_home_share);
-        textMorning = (TextView)view.findViewById(R.id.text_ck_home_mornig);
-        textLaunch = (TextView)view.findViewById(R.id.text_ck_home_launch);
-        textDinner = (TextView)view.findViewById(R.id.text_ck_home_dinner);
         textPax = (TextView)view.findViewById(R.id.text_ck_home_reservecount);
         reviewLinear = (LinearLayout)view.findViewById(R.id.linear_review_ck_home);
         reviewLinear.setOnClickListener(this);
-
+        launch = (ImageView)view.findViewById(R.id.image_ck_home_launch);
+        dinner = (ImageView)view.findViewById(R.id.image_ck_home_dinner);
         totalScore = (TextView)view.findViewById(R.id.text_ck_home_total);
         tasteScore = (TextView)view.findViewById(R.id.text_ck_home_taste);
         kindScore = (TextView)view.findViewById(R.id.text_ck_home_kind);
         cleanScore = (TextView)view.findViewById(R.id.text_ck_home_clean);
         priceScore = (TextView)view.findViewById(R.id.text_ck_home_price);
+        textSharingOk = (TextView)view.findViewById(R.id.text_ck_home_sharing_ok);
+        textSharingNo = (TextView)view.findViewById(R.id.text_ck_home_sharing_no);
     }
 
     public void setData(CkDetailData data){
@@ -132,11 +131,11 @@ public class CkHomeHeaderViewHolder extends RecyclerView.ViewHolder implements V
                 textDate.setText(data.year+"년 "+(data.month+1)+"월");
                 mAdapter.setCalendarData(data);
                 mAdapter.cleanChecked();
-                textMorning.setBackgroundColor(Color.WHITE);
-                textLaunch.setBackgroundColor(Color.WHITE);
-                textDinner.setBackgroundColor(Color.WHITE);
-                imageShare.setBackgroundColor(Color.WHITE);
+                launch.setImageResource(R.drawable.homeal_launch_empty);
+                dinner.setImageResource(R.drawable.homeal_dinner_empty);
                 textPax.setText("");
+                textSharingNo.setTextColor(Color.GRAY);
+                textSharingOk.setTextColor(Color.GRAY);
                 break;
             }
             case R.id.image_ck_home_next:{
@@ -144,11 +143,11 @@ public class CkHomeHeaderViewHolder extends RecyclerView.ViewHolder implements V
                 textDate.setText(data.year+"년 "+(data.month+1)+"월");
                 mAdapter.setCalendarData(data);
                 mAdapter.cleanChecked();
-                textMorning.setBackgroundColor(Color.WHITE);
-                textLaunch.setBackgroundColor(Color.WHITE);
-                textDinner.setBackgroundColor(Color.WHITE);
-                imageShare.setBackgroundColor(Color.WHITE);
+                launch.setImageResource(R.drawable.homeal_launch_empty);
+                dinner.setImageResource(R.drawable.homeal_dinner_empty);
                 textPax.setText("");
+                textSharingNo.setTextColor(Color.GRAY);
+                textSharingOk.setTextColor(Color.GRAY);
                 break;
             }
             case R.id.linear_review_ck_home:{
@@ -162,27 +161,23 @@ public class CkHomeHeaderViewHolder extends RecyclerView.ViewHolder implements V
 
     public void showSchedule(CalendarItem item){
         if(item.sharing==1){
-            imageShare.setImageResource(R.drawable.homeal_sharing_ok);
+            textSharingOk.setTextColor(context.getResources().getColor(R.color.colorPrimary));
+            textSharingNo.setTextColor(Color.GRAY);
         }else{
-            imageShare.setImageResource(R.drawable.homeal_sharing_no);
-        }
-
-        if(item.isMorning){
-            textMorning.setTextColor(Color.BLACK);
-        }else{
-            textMorning.setTextColor(Color.GRAY);
+            textSharingNo.setTextColor(context.getResources().getColor(R.color.colorPrimary));
+            textSharingOk.setTextColor(Color.GRAY);
         }
 
         if(item.isLaunch){
-            textLaunch.setTextColor(Color.BLACK);
+            launch.setImageResource(R.drawable.homeal_launch_fill);
         }else{
-            textLaunch.setTextColor(Color.GRAY);
+            launch.setImageResource(R.drawable.homeal_launch_empty);
         }
 
         if(item.isDinner){
-            textDinner.setTextColor(Color.BLACK);
+            dinner.setImageResource(R.drawable.homeal_dinner_fill);
         }else{
-            textDinner.setTextColor(Color.GRAY);
+            dinner.setImageResource(R.drawable.homeal_dinner_empty);
         }
         textPax.setText(item.pax);
     }

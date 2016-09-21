@@ -37,11 +37,10 @@
             android:layout_weight="1">
 
             <ImageView
-                android:layout_height="wrap_content"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:id="@+id/imageView4"
-                android:src="@drawable/homeal_heart_fill"
-                android:layout_width="wrap_content"
-                android:layout_weight="1"/>
+                android:src="@drawable/homeal_heart_fill"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -57,15 +56,14 @@
             android:id="@+id/linear_review_ck_home">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:id="@+id/imageView5"
                 android:src="@drawable/homeal_review" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="New Text"
                 android:id="@+id/text_ck_home_reviewcount" />
         </LinearLayout>
 
@@ -94,7 +92,8 @@
                     android:progressDrawable="@drawable/circular_progress_bar"
                     android:background="@drawable/circle_shape"
                     style="?android:attr/progressBarStyleHorizontal"
-                    android:max="5"/>
+                    android:max="5"
+                    android:layout_gravity="center"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -107,7 +106,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/ck_detail_total"
-                android:id="@+id/textView19" />
+                android:id="@+id/textView19"
+                android:layout_gravity="center_horizontal"/>
 
         </LinearLayout>
 
@@ -129,7 +129,8 @@
                     android:progressDrawable="@drawable/circular_progress_bar"
                     android:background="@drawable/circle_shape"
                     style="?android:attr/progressBarStyleHorizontal"
-                    android:max="5"/>
+                    android:max="5"
+                    android:layout_gravity="center"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -142,7 +143,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/ck_detail_taste"
-                android:id="@+id/textView25" />
+                android:id="@+id/textView25"
+                android:layout_gravity="center_horizontal"/>
 
         </LinearLayout>
 
@@ -164,7 +166,8 @@
                     android:progressDrawable="@drawable/circular_progress_bar"
                     android:background="@drawable/circle_shape"
                     style="?android:attr/progressBarStyleHorizontal"
-                    android:max="5"/>
+                    android:max="5"
+                    android:layout_gravity="center_horizontal"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -177,7 +180,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/ck_detail_price"
-                android:id="@+id/textView27" />
+                android:id="@+id/textView27"
+                android:layout_gravity="center_horizontal"/>
 
         </LinearLayout>
 
@@ -199,7 +203,8 @@
                     android:progressDrawable="@drawable/circular_progress_bar"
                     android:background="@drawable/circle_shape"
                     style="?android:attr/progressBarStyleHorizontal"
-                    android:max="5"/>
+                    android:max="5"
+                    android:layout_gravity="center"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -212,7 +217,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/ck_detail_kind"
-                android:id="@+id/textView26" />
+                android:id="@+id/textView26"
+                android:layout_gravity="center_horizontal"/>
 
         </LinearLayout>
 
@@ -234,7 +240,8 @@
                     android:progressDrawable="@drawable/circular_progress_bar"
                     android:background="@drawable/circle_shape"
                     style="?android:attr/progressBarStyleHorizontal"
-                    android:max="5"/>
+                    android:max="5"
+                    android:layout_gravity="center"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -247,7 +254,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/ck_detail_clean"
-                android:id="@+id/textView28" />
+                android:id="@+id/textView28"
+                android:layout_gravity="center_horizontal"/>
 
         </LinearLayout>
 
@@ -304,28 +312,46 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:gravity="center_vertical">
 
-        <TextView
+        <LinearLayout
+            android:layout_marginLeft="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/ck_home_mornig"
-            android:id="@+id/text_ck_home_mornig" />
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/homeal_launch_empty"
+                android:id="@+id/image_ck_home_launch"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ck_home_launch"
+                android:textSize="10sp"/>
+        </LinearLayout>
 
-        <TextView
+        <LinearLayout
+            android:layout_marginLeft="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/ck_home_launch"
-            android:id="@+id/text_ck_home_launch" />
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/homeal_dinner_empty"
+                android:id="@+id/image_ck_home_dinner"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ck_home_dinner"
+                android:textSize="10sp"/>
+        </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/ck_home_dinner"
-            android:id="@+id/text_ck_home_dinner" />
+
 
         <TextView
             android:layout_width="0dp"
@@ -334,29 +360,38 @@
             android:id="@+id/textView36"
             android:layout_weight="1" />
 
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="30dp"
-            android:id="@+id/image_ck_home_share" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:id="@+id/text_ck_home_sharing_no"
+            android:text="@string/ck_home_sharing_no"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:textSize="15sp"
+            android:id="@+id/text_ck_home_sharing_ok"
+            android:text="@string/ck_home_sharing_ok"/>
     </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
+        
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/homeal_sharing"
+            android:layout_marginLeft="10dp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/ck_home_reservecount"
-            android:id="@+id/textView33" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:id="@+id/text_ck_home_reservecount" />
+            android:id="@+id/text_ck_home_reservecount"
+            android:textColor="#000000"/>
     </LinearLayout>
 
     <ImageView

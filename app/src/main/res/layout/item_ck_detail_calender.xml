@@ -10,8 +10,8 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:id="@+id/image_calendar_reservecheck"
             android:layout_gravity="center"
             android:scaleType="fitXY"
@@ -28,8 +28,8 @@
 
     <ImageView
         android:visibility="invisible"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="7dp"
+        android:layout_height="7dp"
         android:id="@+id/image_calendar_check"
         android:src="@drawable/today_date_check_xxhdpi"/>
 

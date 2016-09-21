@@ -48,9 +48,11 @@ public class CalendarView extends RecyclerView.ViewHolder implements Checkable{
         calendar = Calendar.getInstance();
         if(item.inMonth){
             if(item.dayOfMonth==calendar.get(Calendar.DAY_OF_MONTH) && item.month==calendar.get(Calendar.MONTH)&& item.year == calendar.get(Calendar.YEAR)){
-                reserveImage.setVisibility(View.VISIBLE);
+//                reserveImage.setVisibility(View.VISIBLE);
+                textView.setTextColor(view.getContext().getResources().getColor(R.color.colorPrimary));
             }else{
-                reserveImage.setVisibility(View.INVISIBLE);
+//                reserveImage.setVisibility(View.INVISIBLE);
+                textView.setTextColor(Color.BLACK);
             }
         }
         textView.setText(""+item.dayOfMonth);
@@ -75,10 +77,12 @@ public class CalendarView extends RecyclerView.ViewHolder implements Checkable{
         calendar = Calendar.getInstance();
         if(item.inMonth){
             if(item.dayOfMonth==calendar.get(Calendar.DAY_OF_MONTH) && item.month==calendar.get(Calendar.MONTH)&& item.year == calendar.get(Calendar.YEAR)){
-                reserveImage.setVisibility(View.VISIBLE);
+//                reserveImage.setVisibility(View.VISIBLE);
+                textView.setTextColor(view.getContext().getResources().getColor(R.color.colorPrimary));
             }else{
 //                imageView.setVisibility(View.INVISIBLE);
-                reserveImage.setVisibility(View.INVISIBLE);
+//                reserveImage.setVisibility(View.INVISIBLE);
+                textView.setTextColor(Color.BLACK);
             }
         }
         textView.setText(""+item.dayOfMonth);
@@ -99,10 +103,16 @@ public class CalendarView extends RecyclerView.ViewHolder implements Checkable{
 
     private void drawCheck(){
         if(isChecked){
-//            reserveImage.setImageResource(R.drawable.homeal_calendar_check);
-            textView.setBackgroundColor(Color.GREEN);
+            reserveImage.setVisibility(View.VISIBLE);
+            textView.setTextColor(Color.WHITE);
         }else{
-            textView.setBackgroundColor(Color.WHITE);
+            reserveImage.setVisibility(View.INVISIBLE);
+            if(item.dayOfMonth==calendar.get(Calendar.DAY_OF_MONTH) && item.month==calendar.get(Calendar.MONTH)&& item.year == calendar.get(Calendar.YEAR)){
+                textView.setTextColor(view.getContext().getResources().getColor(R.color.colorPrimary));
+            }else{
+                textView.setTextColor(Color.BLACK);
+            }
+
         }
     }
 

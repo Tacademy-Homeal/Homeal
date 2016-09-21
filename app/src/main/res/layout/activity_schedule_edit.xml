@@ -110,11 +110,25 @@
                 android:id="@+id/textView10"
                 android:text="@string/schedule_sharing" />
 
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="30dp"
-                android:id="@+id/image_schedule_edit_share"
-                android:src="@drawable/homeal_sharing_ok"/>
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/radiogroup_schedule_sharing">
+
+                <RadioButton
+                    android:text="@string/ck_home_sharing_no"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/radio_schedule_sharing_no"/>
+
+                <RadioButton
+                    android:text="@string/ck_home_sharing_ok"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/radio_schedule_sharing_ok" />
+            </RadioGroup>
+
         </LinearLayout>
 
         <LinearLayout
