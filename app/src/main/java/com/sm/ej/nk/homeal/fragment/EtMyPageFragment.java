@@ -76,7 +76,7 @@ public class EtMyPageFragment extends Fragment {
         ButterKnife.bind(this, view);
 
 
-        languageAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.language));
+        languageAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.language));
         languageAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         languageSpinner.setAdapter(languageAdapter);
         languageSpinner.setSelection(str);

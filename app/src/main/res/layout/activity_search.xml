@@ -56,19 +56,21 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center_vertical"
+            android:gravity="center"
             android:orientation="vertical">
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:src="@drawable/search_none" />
+                android:src="@drawable/search" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="Please typing name or address for searching cook"
+                android:layout_marginTop="10dp"
+                android:gravity="center_horizontal"
+                android:text="Please typing name or address for searching cook."
                 android:textSize="15dp" />
         </LinearLayout>
     </RelativeLayout>
@@ -83,7 +85,6 @@
             android:id="@+id/rv_search"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-
             android:layout_centerHorizontal="true" />
     </RelativeLayout>
 

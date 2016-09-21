@@ -23,85 +23,87 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:layout_marginTop="11dp"
-        android:layout_marginRight="16dp"
-        android:layout_alignEnd="@+id/appbar_ck_main"
-        android:layout_alignRight="@+id/appbar_ck_main"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:layout_below="@+id/appbar_ck_main"
-        android:background="@drawable/btn_edit" />
-
-    <TextView
-        android:id="@+id/text_profile"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_below="@+id/btn_personal_change"
-        android:layout_marginLeft="@dimen/et_personal_marginleft"
-        android:text="Profile"
-        android:textSize="25dp" />
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/personal_change" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/image_ck_picture"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_alignLeft="@+id/appbar_ck_main"
-        android:layout_alignStart="@+id/appbar_ck_main"
-        android:layout_below="@+id/text_profile"
+        android:layout_below="@+id/btn_personal_change"
         android:layout_marginLeft="@dimen/ck_personaldata_left"
-        android:layout_marginTop="@dimen/ck_personaldata_left"
+        android:layout_marginTop="11dp"
         android:src="@drawable/base_person_icon" />
 
     <LinearLayout
         android:id="@+id/linear_ck_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/image_ck_picture"
-        android:layout_below="@+id/text_profile"
-        android:layout_marginRight="16dp"
-        android:layout_toRightOf="@+id/image_ck_picture">
+        android:layout_below="@+id/btn_personal_change"
+        android:layout_marginLeft="11dp"
+        android:layout_marginTop="11dp"
+        android:layout_toRightOf="@+id/image_ck_picture"
+        android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/edit_ck_name_last"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            android:textSize="10dp" />
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="42dp"
-            android:layout_above="@+id/textView6"
-            android:layout_alignTop="@+id/edit_ck_name_first"
-            android:layout_marginLeft="11dp"
-            android:layout_toRightOf="@+id/image_ck_picture"
-            android:background="@drawable/edge"
-            android:hint=" Name" />
+            android:layout_height="wrap_content"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/edge">
+
+            <EditText
+                android:id="@+id/edit_ck_name_last"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/ck_personal_box_height"
+                android:layout_marginLeft="10dp"
+                android:background="@null"
+                android:hint="Name"
+                android:textSize="13dp" />
+        </LinearLayout>
     </LinearLayout>
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/textView44"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/linear_ck_name"
         android:layout_alignStart="@+id/linear_ck_name"
         android:layout_below="@+id/linear_ck_name"
-        android:layout_marginLeft="11dp"
         android:layout_marginTop="11dp"
         android:text="Birthday"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textSize="12dp" />
+        android:textSize="10dp" />
 
     <LinearLayout
         android:id="@+id/linear_birth"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView6"
-        android:layout_alignStart="@+id/textView6"
-        android:layout_below="@+id/textView6"
+        android:layout_alignLeft="@+id/textView44"
+        android:layout_alignStart="@+id/textView44"
+        android:layout_below="@+id/textView44"
+        android:layout_centerVertical="true"
         android:layout_marginRight="16dp"
-        android:layout_centerVertical="true">
+        android:background="@drawable/edge">
 
         <TextView
             android:id="@+id/text_ck_birth"
             android:layout_width="match_parent"
-            android:layout_height="42dp"
-            android:background="@drawable/edge"
-            android:text=" BirthDay"
-            android:gravity="center_vertical" />
+            android:layout_height="@dimen/ck_personal_box_height"
+            android:layout_marginLeft="10dp"
+            android:background="@null"
+            android:gravity="center_vertical"
+            android:text="BirthDay"
+            android:textSize="13dp" />
     </LinearLayout>
 
     <RadioGroup
@@ -130,87 +132,149 @@
             android:text="Female" />
     </RadioGroup>
 
+    <TextView
+        android:id="@+id/textView41"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/linear_ck_name"
+        android:layout_alignStart="@+id/linear_ck_name"
+        android:layout_below="@+id/radioGroup"
+        android:layout_marginTop="11dp"
+        android:text="Phone"
+        android:textSize="10dp" />
 
     <LinearLayout
-        android:id="@+id/linear_phone_country"
+        android:id="@+id/linear_phone"
         android:layout_width="match_parent"
-        android:layout_height="42dp"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/radioGroup"
-        android:layout_marginLeft="16dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/linear_ck_name"
+        android:layout_alignStart="@+id/linear_ck_name"
+        android:layout_below="@+id/textView41"
         android:layout_marginRight="16dp"
-        android:layout_marginTop="11dp"
-        android:orientation="horizontal"
-        android:weightSum="1">
+        android:background="@drawable/edge">
 
-        <LinearLayout
-            android:id="@+id/linear_phone"
-            android:layout_width="0dp"
-            android:layout_height="42dp"
-            android:layout_weight="0.5"
-            android:background="@drawable/edge"
-            android:orientation="horizontal">
-
-            <EditText
-                android:id="@+id/edit_ck_phone"
-                android:layout_width="wrap_content"
-                android:layout_height="42dp"
-                android:background="@null"
-                android:ems="10"
-                android:text=" Phone"
-                android:layout_alignTop="@+id/spinner_ck_country"
-                android:inputType="phone" />
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/text_ck_country"
-            android:layout_width="0dp"
-            android:layout_height="42dp"
-            android:text=" Country"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/radioGroup"
-            android:layout_marginLeft="11dp"
-            android:layout_alignTop="@+id/edit_ck_phone"
-            android:layout_weight="0.5"
-            android:background="@drawable/edge"
-            android:gravity="center_vertical" />
+        <EditText
+            android:id="@+id/edit_ck_phone"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ck_personal_box_height"
+            android:layout_marginLeft="10dp"
+            android:background="@null"
+            android:ems="10"
+            android:inputType="phone"
+            android:text="Phone"
+            android:textSize="13dp" />
     </LinearLayout>
 
     <TextView
-        android:id="@+id/text_ck_address"
-        android:layout_width="match_parent"
-        android:layout_height="42dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/linear_phone_country"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
+        android:id="@+id/textView42"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/linear_ck_name"
+        android:layout_alignStart="@+id/linear_ck_name"
+        android:layout_below="@+id/linear_phone"
         android:layout_marginTop="11dp"
-        android:background="@drawable/edge"
-        android:gravity="center_vertical"
-        android:text=" Address" />
+        android:text="Country"
+        android:textSize="10dp" />
 
-    <EditText
-        android:id="@+id/edit_ck_introduce"
+    <LinearLayout
+        android:id="@+id/linear_country"
         android:layout_width="match_parent"
-        android:layout_height="84dp"
-        android:layout_alignLeft="@+id/text_ck_address"
-        android:layout_alignStart="@+id/text_ck_address"
-        android:layout_below="@+id/text_ck_address"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/linear_ck_name"
+        android:layout_alignStart="@+id/linear_ck_name"
+        android:layout_below="@+id/textView42"
         android:layout_marginRight="16dp"
+        android:background="@drawable/edge">
+
+        <TextView
+            android:id="@+id/text_ck_country"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ck_personal_box_height"
+            android:layout_alignLeft="@+id/linear_ck_name"
+            android:layout_alignStart="@+id/linear_ck_name"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical"
+            android:text="Country"
+            android:textSize="13dp" />
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/textView45"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/linear_ck_name"
+        android:layout_alignStart="@+id/linear_ck_name"
+        android:layout_below="@+id/linear_country"
         android:layout_marginTop="11dp"
-        android:background="@drawable/edge"
-        android:hint=" Introduce" />
+        android:text="Address"
+        android:textSize="10dp" />
+
+    <LinearLayout
+        android:id="@+id/linear_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/linear_ck_name"
+        android:layout_alignStart="@+id/linear_ck_name"
+        android:layout_below="@+id/textView45"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/edge">
+
+        <TextView
+            android:id="@+id/text_ck_address"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ck_personal_box_height"
+            android:layout_below="@+id/textView45"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical"
+            android:text="Address"
+            android:textSize="13dp" />
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/textView46"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/linear_ck_name"
+        android:layout_alignStart="@+id/linear_ck_name"
+        android:layout_below="@+id/linear_address"
+        android:layout_marginTop="11dp"
+        android:text="Introduce"
+        android:textSize="10dp" />
+
+    <LinearLayout
+        android:id="@+id/linear_intro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/linear_ck_name"
+        android:layout_alignStart="@+id/linear_ck_name"
+        android:layout_below="@+id/textView46"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/edge">
+
+        <EditText
+            android:id="@+id/edit_ck_introduce"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_below="@+id/textView46"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="16dp"
+            android:background="@null"
+            android:hint="Introduce"
+            android:textSize="13dp" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/btn_ck_changefinish"
-        android:layout_width="324dp"
-        android:layout_height="45dp"
-        android:layout_below="@+id/edit_ck_introduce"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/linear_intro"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:background="#E0E0E0"
-        android:text="@string/change_finish" />
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="@dimen/et_personal_marginleft"
+        android:background="@drawable/logout_edge"
+        android:text="@string/change_finish"
+        android:textSize="15dp" />
 
 </RelativeLayout>

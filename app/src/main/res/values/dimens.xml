@@ -40,6 +40,7 @@
     <dimen name="et_personal_between_margin">11dp</dimen>
     <dimen name="et_personal_box_width">84dp</dimen>
     <dimen name="et_personal_box_height">38dp</dimen>
+    <dimen name="ck_personal_box_height">33dp</dimen>
     <dimen name="et_personal_spinner_width">80dp</dimen>
     <dimen name = "et_home_text">15sp</dimen>
 </resources>
