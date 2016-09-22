@@ -7,38 +7,33 @@
     tools:context="com.sm.ej.nk.homeal.fragment.LoginFragment">
 
     <RelativeLayout
+        android:id="@+id/linear_main_top"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <!-- TODO: Update blank fragment layout -->
 
-
-        <TextView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textview_login_select"
-            android:layout_above="@+id/radio_group_login"
-            android:layout_centerHorizontal="true"
-            android:text="Guest Host를 선택해주세요"
-            android:textSize="@dimen/size_homeal_login_second"
-            android:textColor="@color/color_loginframent_sub"/>
+            android:orientation="horizontal">
+
+        </LinearLayout>
 
         <RadioGroup
             android:id="@+id/radio_group_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/btn_login_facebook"
+            android:layout_below="@+id/linear_image"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="62dp"
             android:orientation="horizontal">
 
             <RadioButton
                 android:id="@+id/radiobtn_login_ft_eater"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:buttonTint="@color/color_loginframent_sub"
                 android:checked="true"
                 android:text="Eater"
-                android:textColor="@color/color_loginframent_sub"
-                android:buttonTint="@color/color_loginframent_sub"/>
+                android:textColor="@color/color_loginframent_sub" />
 
             <RadioButton
                 android:id="@+id/radiobtn_login_ft_ck"
@@ -47,10 +42,11 @@
                 android:layout_alignBottom="@+id/radio_group_login"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="@+id/btn_login_facebook"
+                android:layout_marginLeft="20dp"
+                android:buttonTint="@color/color_loginframent_sub"
                 android:checked="false"
                 android:text="Cooker"
-                android:textColor="@color/color_loginframent_sub"
-                android:buttonTint="@color/color_loginframent_sub"/>
+                android:textColor="@color/color_loginframent_sub" />
 
         </RadioGroup>
 
@@ -65,30 +61,59 @@
             android:layout_marginLeft="847dp"
             android:layout_marginStart="847dp" />
 
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/radio_group_login"
+            android:layout_alignRight="@+id/radio_group_login"
+            android:layout_marginTop="100dp"
+            android:src="@drawable/hoemal_icon" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/imageView2"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:id="@+id/linear_image">
+
+            <ImageView
+                android:id="@+id/imageView17"
+                android:layout_width="60dp"
+                android:layout_height="70dp"
+                android:layout_alignLeft="@+id/imageView2"
+                android:layout_alignStart="@+id/imageView2"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginStart="10dp"
+                android:src="@drawable/image_eater1" />
+
+            <ImageView
+                android:id="@+id/imageView18"
+                android:layout_width="50dp"
+                android:layout_height="70dp"
+                android:layout_marginLeft="30dp"
+                android:layout_alignEnd="@+id/radio_group_login"
+                android:layout_alignRight="@+id/radio_group_login"
+                android:layout_below="@+id/imageView2"
+                android:src="@drawable/image_cook1" />
+        </LinearLayout>
+
         <ImageButton
             android:id="@+id/btn_login_facebook"
-            android:src="@drawable/facebook_icon"
             style="?android:attr/buttonStyleSmall"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_marginBottom="83dp"
             android:background="@null"
             android:gravity="center_vertical|center_horizontal"
+            android:src="@drawable/facebook_icon"
             android:text="F"
             android:textColor="@color/color_homeal_background"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageView2"
-            android:src="@drawable/hoemal_icon"
-            android:layout_above="@+id/textview_login_select"
-            android:layout_alignRight="@+id/radio_group_login"
-            android:layout_alignEnd="@+id/radio_group_login" />
-
+            android:layout_marginTop="12dp"
+            android:layout_below="@+id/radio_group_login"
+            android:layout_centerHorizontal="true" />
 
     </RelativeLayout>
 

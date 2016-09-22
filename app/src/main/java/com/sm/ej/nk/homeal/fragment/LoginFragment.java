@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.AccessToken;
@@ -60,8 +59,8 @@ public class LoginFragment extends Fragment {
     CallbackManager callbackManager;
     LoginManager mLoginManager;
 
-    @BindView(R.id.textview_login_select)
-    TextView loginSelectView;
+//    @BindView(R.id.textview_login_select)
+//    TextView loginSelectView;
 
     TestRequest request;
 
@@ -94,7 +93,7 @@ public class LoginFragment extends Fragment {
     }
     private void imageSet(){
         Typeface typeface = FontManager.getInstance().getTypeface(getActivity(), FontData.NOTO_D);
-        loginSelectView.setTypeface(typeface);
+//        loginSelectView.setTypeface(typeface);
         radio_eater.setTypeface(typeface);
         radio_cooker.setTypeface(typeface);
     }

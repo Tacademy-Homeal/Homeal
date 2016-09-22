@@ -98,12 +98,16 @@
                     <RatingBar
                         android:id="@+id/rating_et_home"
                         android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        android:progressDrawable="@drawable/custom_ratingbar_full"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginLeft="3dp"
+                        style="@style/settingRatingBar"
                         android:numStars="5"
-                        android:focusable="false"
+                        android:clickable="false"
+                        android:isIndicator="true"
                         android:focusableInTouchMode="false"
-                        android:layout_gravity="center_vertical|center" />
+                        android:focusable="false"
+                        android:layout_gravity="center"/>
                 </LinearLayout>
 
                 <ImageView

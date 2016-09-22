@@ -70,7 +70,8 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
                 android:gravity="center_horizontal"
-                android:text="Please typing name or address for searching cook."
+                android:textColor="@color/black"
+                android:text="Please search for name or address of Cook."
                 android:textSize="15dp" />
         </LinearLayout>
     </RelativeLayout>
