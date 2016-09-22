@@ -68,6 +68,13 @@
             android:layout_height="wrap_content"
             android:id="@+id/rv_schedule_edit_calendar" />
 
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/mypage_line"
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="2dp"/>
+
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -98,6 +105,13 @@
                     android:id="@+id/radio_schedule_dinner" />
             </RadioGroup>
         </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/mypage_line"
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="2dp"/>
 
         <LinearLayout
             android:orientation="horizontal"
@@ -130,6 +144,13 @@
             </RadioGroup>
 
         </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/mypage_line"
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="2dp"/>
 
         <LinearLayout
             android:orientation="horizontal"

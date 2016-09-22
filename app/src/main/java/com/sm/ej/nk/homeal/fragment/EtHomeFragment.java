@@ -106,7 +106,7 @@ public class EtHomeFragment extends Fragment implements EtHomeAdapter.OnReviewit
             public void onSuccess(NetworkRequest<NetworkResult<List<EtHomeData>>> request, NetworkResult<List<EtHomeData>> result) {
                 datas = result.getResult();
                 mAdapter.addList(datas);
-                PAGENO+=1;//khkhkhkh
+                PAGENO+=1;
             }
 
             @Override

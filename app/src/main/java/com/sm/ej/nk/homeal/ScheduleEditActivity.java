@@ -85,6 +85,7 @@ public class ScheduleEditActivity extends AppCompatActivity implements View.OnCl
     int time= -1;
     String sharing= null;
     String deleteTime;
+    CalendarData calendarData;
 
     private static int MODE;
 
@@ -105,6 +106,13 @@ public class ScheduleEditActivity extends AppCompatActivity implements View.OnCl
         nextImage.setOnClickListener(this);
 
         setSupportActionBar(toolbar);
+        toolbar.setNavigationIcon(R.drawable.ic_action_name);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         Intent intent = getIntent();
         MODE = intent.getIntExtra(CkMainActivity.INTENT_MODE, -1);
@@ -153,8 +161,6 @@ public class ScheduleEditActivity extends AppCompatActivity implements View.OnCl
             calendarItem = null;
             editReserve.setEnabled(true);
 
-            CalendarData calendarData = CalendarManager.getInstance().getCalendarData();
-            textCalendar.setText(calendarData.year+"년 "+(calendarData.month+1)+"월");
             mAdapter = new CalendarAdapter(this, calendarData, false);
             mAdapter.setOnCalendarAdpaterClickListener(new CalendarAdapter.OnCalendarAdapterClickListener() {
                 @Override
@@ -164,6 +170,8 @@ public class ScheduleEditActivity extends AppCompatActivity implements View.OnCl
                 }
             });
         }
+        calendarData = CalendarManager.getInstance().getCalendarData();
+        textCalendar.setText(calendarData.year+"년 "+(calendarData.month+1)+"월");
         rv.setLayoutManager(new GridLayoutManager(this, 7));
         rv.setAdapter(mAdapter);
         fab.setOnClickListener(this);

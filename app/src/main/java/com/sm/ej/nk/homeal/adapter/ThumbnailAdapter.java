@@ -40,9 +40,7 @@ public class ThumbnailAdapter extends RecyclerView.Adapter<ThumbnailViewHolder> 
     public void onBindViewHolder(ThumbnailViewHolder holder,final int position) {
 
         if(position==(datas.size()-1)){
-            Glide.with(HomealApplication.getContext())
-                    .load(datas.get(position).getImage())
-                    .into(holder.imageView);
+            holder.imageView.setImageResource(R.drawable.homeal_gallery_plus);
         }else{
             Glide.with(HomealApplication.getContext())
                     .load(datas.get(position).getImage())

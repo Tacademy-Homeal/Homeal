@@ -93,6 +93,17 @@ public class InfoCkDetailActivity extends AppCompatActivity implements CkDetailA
 
             }
         });
+        rv.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if(dy>5){
+                    fab.hideMenu(false);
+                }else{
+                    fab.showMenu(false);
+                }
+            }
+        });
 
         CkPageCheckRequest request = new CkPageCheckRequest(this, etHomeData.getId());
         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<CkInfoResult>() {

@@ -30,55 +30,14 @@
         android:layout_marginTop="5dp"
         android:background="@drawable/personal_change" />
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/image_ck_picture"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_below="@+id/btn_personal_change"
-        android:layout_marginLeft="@dimen/ck_personaldata_left"
-        android:layout_marginTop="11dp"
-        android:src="@drawable/base_person_icon" />
-
-    <LinearLayout
-        android:id="@+id/linear_ck_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btn_personal_change"
-        android:layout_marginLeft="11dp"
-        android:layout_marginTop="11dp"
-        android:layout_toRightOf="@+id/image_ck_picture"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Name"
-            android:textSize="10dp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="16dp"
-            android:background="@drawable/edge">
-
-            <EditText
-                android:id="@+id/edit_ck_name_last"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/ck_personal_box_height"
-                android:layout_marginLeft="10dp"
-                android:background="@null"
-                android:hint="Name"
-                android:textSize="13dp" />
-        </LinearLayout>
-    </LinearLayout>
 
     <TextView
         android:id="@+id/textView44"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/linear_ck_name"
-        android:layout_alignStart="@+id/linear_ck_name"
-        android:layout_below="@+id/linear_ck_name"
+        android:layout_alignLeft="@+id/linear_ck_name_birth"
+        android:layout_alignStart="@+id/linear_ck_name_birth"
+        android:layout_below="@+id/linear_ck_name_birth"
         android:layout_marginTop="11dp"
         android:text="Birthday"
         android:textAppearance="?android:attr/textAppearanceSmall"
@@ -106,39 +65,13 @@
             android:textSize="13dp" />
     </LinearLayout>
 
-    <RadioGroup
-        android:id="@+id/radioGroup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/linear_birth"
-        android:layout_alignStart="@id/linear_birth"
-        android:layout_below="@+id/linear_birth"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="11dp"
-        android:orientation="horizontal">
-
-        <RadioButton
-            android:id="@+id/radio_ck_male"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Male" />
-
-        <RadioButton
-            android:id="@+id/radio_ck_female"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="11dp"
-            android:text="Female" />
-    </RadioGroup>
-
     <TextView
         android:id="@+id/textView41"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/linear_ck_name"
-        android:layout_alignStart="@+id/linear_ck_name"
-        android:layout_below="@+id/radioGroup"
+        android:layout_alignLeft="@+id/linear_ck_name_birth"
+        android:layout_alignStart="@+id/linear_ck_name_birth"
+        android:layout_below="@+id/linear_birth"
         android:layout_marginTop="11dp"
         android:text="Phone"
         android:textSize="10dp" />
@@ -147,8 +80,8 @@
         android:id="@+id/linear_phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/linear_ck_name"
-        android:layout_alignStart="@+id/linear_ck_name"
+        android:layout_alignLeft="@+id/linear_ck_name_birth"
+        android:layout_alignStart="@+id/linear_ck_name_birth"
         android:layout_below="@+id/textView41"
         android:layout_marginRight="16dp"
         android:background="@drawable/edge">
@@ -169,8 +102,8 @@
         android:id="@+id/textView42"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/linear_ck_name"
-        android:layout_alignStart="@+id/linear_ck_name"
+        android:layout_alignLeft="@+id/linear_ck_name_birth"
+        android:layout_alignStart="@+id/linear_ck_name_birth"
         android:layout_below="@+id/linear_phone"
         android:layout_marginTop="11dp"
         android:text="Country"
@@ -180,8 +113,8 @@
         android:id="@+id/linear_country"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/linear_ck_name"
-        android:layout_alignStart="@+id/linear_ck_name"
+        android:layout_alignLeft="@+id/linear_ck_name_birth"
+        android:layout_alignStart="@+id/linear_ck_name_birth"
         android:layout_below="@+id/textView42"
         android:layout_marginRight="16dp"
         android:background="@drawable/edge">
@@ -203,8 +136,8 @@
         android:id="@+id/textView45"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/linear_ck_name"
-        android:layout_alignStart="@+id/linear_ck_name"
+        android:layout_alignLeft="@+id/linear_ck_name_birth"
+        android:layout_alignStart="@+id/linear_ck_name_birth"
         android:layout_below="@+id/linear_country"
         android:layout_marginTop="11dp"
         android:text="Address"
@@ -214,8 +147,8 @@
         android:id="@+id/linear_address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/linear_ck_name"
-        android:layout_alignStart="@+id/linear_ck_name"
+        android:layout_alignLeft="@+id/linear_ck_name_birth"
+        android:layout_alignStart="@+id/linear_ck_name_birth"
         android:layout_below="@+id/textView45"
         android:layout_marginRight="16dp"
         android:background="@drawable/edge">
@@ -236,8 +169,8 @@
         android:id="@+id/textView46"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/linear_ck_name"
-        android:layout_alignStart="@+id/linear_ck_name"
+        android:layout_alignLeft="@+id/linear_ck_name_birth"
+        android:layout_alignStart="@+id/linear_ck_name_birth"
         android:layout_below="@+id/linear_address"
         android:layout_marginTop="11dp"
         android:text="Introduce"
@@ -247,8 +180,8 @@
         android:id="@+id/linear_intro"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/linear_ck_name"
-        android:layout_alignStart="@+id/linear_ck_name"
+        android:layout_alignLeft="@+id/linear_ck_name_birth"
+        android:layout_alignStart="@+id/linear_ck_name_birth"
         android:layout_below="@+id/textView46"
         android:layout_marginRight="16dp"
         android:background="@drawable/edge">
@@ -276,5 +209,78 @@
         android:background="@drawable/logout_edge"
         android:text="@string/change_finish"
         android:textSize="15dp" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/image_ck_picture"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignTop="@+id/btn_personal_change"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/base_person_icon" />
+
+    <LinearLayout
+        android:id="@+id/linear_ck_name_birth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="11dp"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:layout_below="@+id/image_ck_picture"
+        android:layout_alignLeft="@+id/btn_ck_changefinish"
+        android:layout_alignStart="@+id/btn_ck_changefinish">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name"
+                android:textSize="10dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
+                android:background="@drawable/edge">
+
+                <EditText
+                    android:id="@+id/edit_ck_name_last"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/ck_personal_box_height"
+                    android:layout_marginLeft="10dp"
+                    android:background="@null"
+                    android:hint="Name"
+                    android:textSize="13dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="33dp"
+            android:gravity="center_vertical"
+            android:layout_below="@+id/linear_ck_name_birth"
+            android:layout_marginTop="11dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radio_ck_male"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Male" />
+
+            <RadioButton
+                android:id="@+id/radio_ck_female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="Female" />
+        </RadioGroup>
+    </LinearLayout>
 
 </RelativeLayout>

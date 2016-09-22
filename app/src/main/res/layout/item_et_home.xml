@@ -42,6 +42,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/text_et_home_name"
+                        android:textColor="#000000"
                         android:textSize="@dimen/et_home_text"/>
 
                     <TextView
@@ -49,6 +50,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/text_et_home_address"
                         android:singleLine="true"
+                        android:textColor="#000000"
                         android:textSize="@dimen/et_home_text"/>
 
                 </LinearLayout>
@@ -128,6 +130,7 @@
                         android:layout_weight="0.5"/>
 
                     <TextView
+                        android:textColor="#000000"
                         android:textSize="15dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -159,6 +162,7 @@
                         android:layout_weight="0.5"/>
 
                     <TextView
+                        android:textColor="#000000"
                         android:textSize="15dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

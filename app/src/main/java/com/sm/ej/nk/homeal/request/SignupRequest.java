@@ -20,7 +20,7 @@ public class SignupRequest extends AbstractRequest<NetworkResultTemp> {
 
     Request request;
 
-    public SignupRequest(Context context, String name, String birth, String phone, String introduce, String gender, String country) {
+    public SignupRequest(Context context, String birth, String phone, String introduce, String gender, String country) {
         HttpUrl url = getBaseHttpsUrlBuilder()
                 .addPathSegment("users")
                 .build();
