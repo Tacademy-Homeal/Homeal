@@ -21,12 +21,15 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.sm.ej.nk.homeal.AdviceActivity;
 import com.sm.ej.nk.homeal.CkPersonalDataActivity;
+import com.sm.ej.nk.homeal.LoginActivity;
 import com.sm.ej.nk.homeal.R;
 import com.sm.ej.nk.homeal.data.NetworkResult;
+import com.sm.ej.nk.homeal.data.NetworkResultTemp;
 import com.sm.ej.nk.homeal.data.PersonalData;
 import com.sm.ej.nk.homeal.manager.NetworkManager;
 import com.sm.ej.nk.homeal.manager.NetworkRequest;
 import com.sm.ej.nk.homeal.request.CkInfoRequest;
+import com.sm.ej.nk.homeal.request.LogOutRequest;
 
 import java.util.Locale;
 
@@ -146,5 +149,26 @@ public class CkMyPageFragment extends Fragment {
     public void onSettingFaq() {
         Intent intent = new Intent(getActivity(), AdviceActivity.class);
         startActivity(intent);
+    }
+
+
+    @OnClick(R.id.btn_ck_logout)
+    public void onLogout() {
+        LogOutRequest request = new LogOutRequest(getContext());
+        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResultTemp>() {
+            @Override
+            public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
+                Intent intent = new Intent(getActivity(), LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onFail(NetworkRequest<NetworkResultTemp> request, int errorCode, String errorMessage, Throwable e) {
+                Toast.makeText(getContext(), "LogOut fail", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 }

@@ -15,6 +15,7 @@
     <string name="notice">알림</string>
     <string name="SettingActivity_appbar">환 경 설 정</string>
     <string name="PersonaldataActivity_appbar">개 인 정 보</string>
+    <string name="AddressaActivity_appbar">주 소 입 력</string>
     <string name="search">검색</string>
     <string name="EtZzimActivity_appbar">찜 목 록</string>
     <string name="Logout">로 그 아 웃</string>

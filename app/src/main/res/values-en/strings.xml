@@ -13,6 +13,7 @@
     <string name="Logout">Logout</string>
     <string name="action_search"></string>
     <string name="attitude">Attitude</string>
+    <string name="AddressaActivity_appbar">Edit Address</string>
     <string name="back_string"></string>
     <string name="change_finish">Finished update</string>
     <string name="ck_detail_clean">Clean</string>
