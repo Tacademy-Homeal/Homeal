@@ -20,22 +20,21 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/image_et_picture"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/btn_personal_change"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_below="@+id/appbar_et_main"
+        android:layout_centerHorizontal="true"
         android:layout_marginLeft="@dimen/et_personal_marginleft"
-        android:layout_marginTop="11dp"
+        android:layout_marginTop="20dp"
         android:src="@drawable/basic_person" />
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/linear_et_name_age"
-        android:layout_alignStart="@+id/linear_et_name_age"
-        android:layout_below="@+id/linear_et_name_age"
+        android:layout_alignLeft="@+id/linear_et_name_gender"
+        android:layout_alignStart="@+id/linear_et_name_gender"
+        android:layout_below="@+id/linear_et_name_gender"
         android:layout_marginTop="@dimen/et_personal_between_margin"
         android:text="Birthday"
         android:textAppearance="?android:attr/textAppearanceSmall"
@@ -57,36 +56,12 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/et_personal_box_height"
             android:layout_marginLeft="10dp"
-            android:textSize="15dp"
             android:background="@null"
             android:gravity="center_vertical"
-            android:text="BirthDay" />
+            android:text="BirthDay"
+            android:textSize="15dp" />
     </LinearLayout>
 
-    <RadioGroup
-        android:id="@+id/radioGroup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/linear_spinner_birth"
-        android:layout_alignStart="@id/linear_spinner_birth"
-        android:layout_below="@id/linear_spinner_birth"
-        android:layout_marginTop="@dimen/et_personal_between_margin"
-        android:orientation="horizontal">
-
-        <RadioButton
-            android:id="@+id/radio_et_male"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Male" />
-
-        <RadioButton
-            android:id="@+id/radio_et_female"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="@dimen/et_personal_between_margin"
-            android:text="Female" />
-    </RadioGroup>
 
     <TextView
         android:id="@+id/textView37"
@@ -94,7 +69,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@id/linear_spinner_birth"
         android:layout_alignStart="@id/linear_spinner_birth"
-        android:layout_below="@+id/radioGroup"
+        android:layout_below="@+id/linear_spinner_birth"
         android:layout_marginTop="11dp"
         android:text="Phone"
         android:textSize="12dp" />
@@ -106,17 +81,17 @@
         android:layout_alignLeft="@id/linear_spinner_birth"
         android:layout_alignStart="@id/linear_spinner_birth"
         android:layout_below="@id/textView37"
-        android:background="@drawable/edge"
         android:layout_marginRight="16dp"
+        android:background="@drawable/edge"
         android:orientation="horizontal">
 
         <EditText
             android:id="@+id/edit_et_phone"
             android:layout_width="match_parent"
             android:layout_height="@dimen/et_personal_box_height"
+            android:layout_marginLeft="10dp"
             android:background="@null"
             android:ems="10"
-            android:layout_marginLeft="10dp"
             android:inputType="phone"
             android:text="Phone"
             android:textSize="15dp" />
@@ -140,8 +115,8 @@
         android:layout_alignLeft="@id/linear_spinner_birth"
         android:layout_alignStart="@id/linear_spinner_birth"
         android:layout_below="@id/textView38"
-        android:background="@drawable/edge"
         android:layout_marginRight="16dp"
+        android:background="@drawable/edge"
         android:orientation="horizontal">
 
         <TextView
@@ -150,32 +125,32 @@
             android:layout_height="@dimen/et_personal_box_height"
             android:layout_below="@+id/radioGroup"
             android:layout_marginLeft="10dp"
-            android:textSize="15dp"
             android:gravity="center_vertical"
             android:singleLine="true"
             android:text="Country"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textSize="15dp" />
     </LinearLayout>
 
     <TextView
+        android:id="@+id/textView39"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="11dp"
-        android:text="Introduce"
-        android:id="@+id/textView39"
-        android:layout_below="@+id/linear_country"
         android:layout_alignLeft="@id/linear_spinner_birth"
         android:layout_alignStart="@id/linear_spinner_birth"
+        android:layout_below="@+id/linear_country"
+        android:layout_marginTop="11dp"
+        android:text="Introduce"
         android:textSize="12dp" />
 
     <LinearLayout
         android:id="@+id/linear_intro"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView39"
-        android:layout_marginRight="16dp"
         android:layout_alignLeft="@id/linear_spinner_birth"
         android:layout_alignStart="@id/linear_spinner_birth"
+        android:layout_below="@+id/textView39"
+        android:layout_marginRight="16dp"
         android:background="@drawable/edge">
 
         <EditText
@@ -184,8 +159,8 @@
             android:layout_height="100dp"
             android:layout_marginLeft="10dp"
             android:background="@null"
-            android:textSize="15dp"
-            android:hint="Introduce" />
+            android:hint="Introduce"
+            android:textSize="15dp" />
     </LinearLayout>
 
     <Button
@@ -193,45 +168,81 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_below="@+id/linear_intro"
-        android:textSize="15dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="@dimen/et_personal_marginleft"
         android:background="@drawable/logout_edge"
-        android:text="@string/change_finish" />
+        android:text="@string/change_finish"
+        android:textSize="15dp" />
 
     <LinearLayout
-        android:id="@+id/linear_et_name_age"
+        android:id="@+id/linear_et_name_gender"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btn_personal_change"
-        android:layout_marginLeft="11dp"
-        android:layout_marginTop="11dp"
-        android:layout_toRightOf="@+id/image_et_picture"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Name"
-            android:textSize="12dp" />
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_below="@+id/image_et_picture"
+        android:orientation="horizontal"
+        android:weightSum="1">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginRight="16dp"
-            android:background="@drawable/edge">
+            android:orientation="vertical"
+            android:layout_weight="0.5">
 
-            <EditText
-                android:id="@+id/edit_et_last_name"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name"
+                android:textSize="12dp" />
+
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/et_personal_box_height"
-                android:layout_marginLeft="10dp"
-                android:background="@null"
-                android:hint="Name"
-                android:textSize="15dp" />
+                android:layout_height="wrap_content"
+
+                android:background="@drawable/edge">
+
+                <EditText
+                    android:id="@+id/edit_et_last_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/et_personal_box_height"
+                    android:layout_marginLeft="10dp"
+                    android:background="@null"
+                    android:hint="Name"
+                    android:textSize="15dp" />
+            </LinearLayout>
         </LinearLayout>
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_weight="0.5"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:layout_alignLeft="@id/linear_spinner_birth"
+            android:layout_alignStart="@id/linear_spinner_birth"
+            android:layout_marginTop="@dimen/et_personal_between_margin"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <RadioButton
+                android:id="@+id/radio_et_male"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Male" />
+
+            <RadioButton
+                android:id="@+id/radio_et_female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/et_personal_between_margin"
+                android:text="Female" />
+        </RadioGroup>
+
     </LinearLayout>
+
 
     <Button
         android:id="@+id/btn_personal_change"
@@ -239,10 +250,10 @@
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_alignParentEnd="true"
-        android:layout_marginRight="5dp"
-        android:layout_marginTop="5dp"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/appbar_et_main"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
         android:background="@drawable/personal_change" />
 
 </RelativeLayout>
