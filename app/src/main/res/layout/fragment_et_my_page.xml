@@ -35,6 +35,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/setting_box_text_margin"
+                android:textColor="@color/black"
                 android:text="@string/Profile"
                 android:textSize="15dp" />
 
@@ -65,6 +66,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/setting_box_text_margin"
+            android:textColor="@color/black"
             android:text="@string/Bookmark"
             android:textSize="15dp" />
 
@@ -103,6 +105,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/setting_box_text_margin"
                 android:text="@string/Language_Setting"
+                android:textColor="@color/black"
                 android:textSize="15dp" />
 
             <TextView
@@ -143,6 +146,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/black"
                 android:layout_marginLeft="@dimen/setting_box_text_margin"
                 android:text="@string/FAQ"
                 android:textSize="15dp" />
@@ -151,6 +155,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/setting_box_text_margin"
+
                 android:text="FAQ"
                 android:textColor="#d9d9d9"
                 android:textSize="12dp" />
@@ -170,10 +175,10 @@
         android:layout_below="@+id/linear_et_faq"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="70dp"
+        android:textColor="@color/black"
         android:layout_marginRight="70dp"
         android:layout_marginTop="40dp"
         android:background="@drawable/logout_edge"
-        android:textColor="#5c5f61"
         android:textSize="15dp"
         android:text="@string/Logout"
       />
@@ -205,6 +210,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:textColor="@color/black"
                 android:text="Name"
                 android:textSize="20dp" />
 

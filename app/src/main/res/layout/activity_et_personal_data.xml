@@ -57,6 +57,7 @@
             android:layout_height="@dimen/et_personal_box_height"
             android:layout_marginLeft="10dp"
             android:background="@null"
+            android:textColor="@color/black"
             android:gravity="center_vertical"
             android:text="BirthDay"
             android:textSize="15dp" />
@@ -91,6 +92,7 @@
             android:layout_height="@dimen/et_personal_box_height"
             android:layout_marginLeft="10dp"
             android:background="@null"
+            android:textColor="@color/black"
             android:ems="10"
             android:inputType="phone"
             android:text="Phone"
@@ -125,6 +127,7 @@
             android:layout_height="@dimen/et_personal_box_height"
             android:layout_below="@+id/radioGroup"
             android:layout_marginLeft="10dp"
+            android:textColor="@color/black"
             android:gravity="center_vertical"
             android:singleLine="true"
             android:text="Country"
@@ -158,9 +161,12 @@
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_marginLeft="10dp"
+            android:textColor="@color/black"
             android:background="@null"
             android:hint="Introduce"
-            android:textSize="15dp" />
+            android:layout_marginTop="10dp"
+            android:textSize="15dp"
+            android:gravity="top" />
     </LinearLayout>
 
     <Button
@@ -210,6 +216,7 @@
                     android:layout_height="@dimen/et_personal_box_height"
                     android:layout_marginLeft="10dp"
                     android:background="@null"
+                    android:textColor="@color/black"
                     android:hint="Name"
                     android:textSize="15dp" />
             </LinearLayout>
@@ -223,12 +230,14 @@
             android:layout_alignLeft="@id/linear_spinner_birth"
             android:layout_alignStart="@id/linear_spinner_birth"
             android:layout_marginTop="@dimen/et_personal_between_margin"
+            android:layout_marginLeft="11dp"
             android:orientation="horizontal"
             android:gravity="center_vertical">
 
             <RadioButton
                 android:id="@+id/radio_et_male"
                 android:layout_width="wrap_content"
+                android:layout_marginTop="4dp"
                 android:layout_height="wrap_content"
                 android:text="Male" />
 
@@ -236,6 +245,7 @@
                 android:id="@+id/radio_et_female"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="@dimen/et_personal_between_margin"
                 android:text="Female" />

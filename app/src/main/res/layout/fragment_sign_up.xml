@@ -73,9 +73,8 @@
                 android:layout_marginRight="11dp"
                 android:buttonTint="@color/color_loginframent_sub"
                 android:checked="true"
-                android:textColor="@color/white"
                 android:text="Male"
-                android:textSize="10dp" />
+                android:textColor="@color/white"/>
 
             <RadioButton
                 android:id="@+id/radio_sinup_female"
@@ -83,8 +82,7 @@
                 android:layout_height="wrap_content"
                 android:buttonTint="@color/color_loginframent_sub"
                 android:text="Female"
-                android:textColor="@color/white"
-                android:textSize="10dp" />
+                android:textColor="@color/white" />
         </RadioGroup>
     </LinearLayout>
 

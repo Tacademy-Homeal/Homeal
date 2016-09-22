@@ -36,6 +36,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/setting_box_text_margin"
                 android:text="@string/Profile"
+                android:textColor="@color/black"
                 android:textSize="15dp" />
 
             <TextView
@@ -73,6 +74,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/setting_box_text_margin"
                 android:text="@string/Language_Setting"
+                android:textColor="@color/black"
                 android:textSize="15dp" />
 
             <TextView
@@ -112,6 +114,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/setting_box_text_margin"
                 android:text="@string/FAQ"
+                android:textColor="@color/black"
                 android:textSize="15dp" />
 
             <TextView
@@ -140,9 +143,9 @@
         android:layout_marginLeft="70dp"
         android:layout_marginRight="70dp"
         android:layout_marginTop="40dp"
+        android:textColor="@color/black"
         android:background="@drawable/logout_edge"
         android:text="@string/Logout"
-        android:textColor="#5c5f61"
         android:textSize="15dp" />
 
     <LinearLayout
@@ -173,6 +176,7 @@
             android:gravity="center"
             android:text="Name"
             android:layout_marginTop="5dp"
+            android:textColor="@android:color/black"
             android:textSize="20dp"
             android:layout_marginBottom="5dp"/>
 
