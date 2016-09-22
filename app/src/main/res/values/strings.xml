@@ -39,7 +39,7 @@
     <string name="ck_detail_kind">친절</string>
     <string name="ck_detail_clean">청결</string>
     <string name="facebook_app_id">1588148394819907</string>
-    <string name="ck_home_fabedit">매뉴편집</string>
+    <string name="ck_home_fabedit">메뉴편집</string>
     <string name="ck_home_fabinsert">메뉴추가</string>
     <string name="title_activity_maps">Map</string>
     <string name="et_reservation_cancle">취소</string>
@@ -274,4 +274,5 @@ COOKER가 서비스와 관련하여 촬영한 사진 또는 영상 등을 당사
     <string name="schedule_sharing">합석여부</string>
     <string name = "ck_home_sharing_ok">합석</string>
     <string name = "ck_home_sharing_no">비합석</string>
+    <string name="main_finish">앱을 종료하시겠습니까></string>
 </resources>

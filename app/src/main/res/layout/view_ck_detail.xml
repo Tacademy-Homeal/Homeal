@@ -17,7 +17,7 @@
         <com.viewpagerindicator.CirclePageIndicator
             android:id="@+id/indicator_ck_detail"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
             android:layout_gravity="center_horizontal|bottom" />
     </FrameLayout>
@@ -371,15 +371,15 @@
         </LinearLayout>
 
         <LinearLayout
+            android:layout_marginLeft="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:orientation="vertical">
 
             <ImageView
-                android:layout_marginLeft="10dp"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_gravity="center"
                 android:src="@drawable/homeal_sharing"/>
 
             <TextView
@@ -387,9 +387,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0"
-                android:textSize="15sp"
-                android:textColor="#000000"
-                android:layout_gravity="center" />
+                android:textSize="10sp"/>
 
         </LinearLayout>
 

@@ -78,7 +78,7 @@ public class GalleryActivity extends AppCompatActivity implements GalleryAdapter
                 switch (mode) {
                     case ThumbnailEditActivity.MODE_THUMBNAIL: {
                         final ProgressDialog progressDialog;
-                        progressDialog = ProgressDialog.show(GalleryActivity.this, "전송중", "잠시만 기달려주세요", true);
+                        progressDialog = ProgressDialog.show(GalleryActivity.this, "전송중", "잠시만 기다려주세요", true);
                         progressDialog.setCancelable(false);
                         progressDialog.show();
                         CkThumbnailInsertRequest request = new CkThumbnailInsertRequest(GalleryActivity.this, mAadapter.getCheckedItemPositions());
