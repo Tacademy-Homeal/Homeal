@@ -13,5 +13,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="color_singup">#5E6062</color>
     <color name="yellow">#ffeb3b</color>
+    <color name="black">#000000</color>
 
 </resources>

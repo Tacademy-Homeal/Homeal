@@ -82,17 +82,13 @@ public class CkReserveFragment extends Fragment {
             @Override
             public void onDisagreeButtonClick(View view, CkReseveData data, int position) {
                 request = new ReservationsChangeRequest(getContext(),data.getRid(),TYPE_REQUEST_REJECT,data.getUid());
-                cancelDialog(request,TYPE_REQUEST_REJECT);
+                if(data.getStatus() == TYPE_REQUEST){
+                    cancelDialog(request,TYPE_REQUEST_REJECT);
+                }else if(data.getStatus() == TYPE_REQUEST_COMPLETE){
+                    cancelDialog(request,TYPE_COOKER_CANCLE);
+                }
             }
         });
-
-       mAdapter.setOnCancelAdapterItemClickListener(new CkReserveAdapter.OncancelButtonClickLIstener() {
-           @Override
-           public void oncancelAdapterItemClick(View view, CkReseveData data, int position) {
-               request = new ReservationsChangeRequest(getContext(), data.getRid(),TYPE_COOKER_CANCLE,data.getUid());
-               cancelDialog(request,TYPE_COOKER_CANCLE);
-            }
-       });
         return view;
     }
 

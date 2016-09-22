@@ -38,10 +38,6 @@ public class CkReserveViewHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.btn_ck_reserve_state_agree)
     Button btn_reserve_agree;
 
-    @BindView(R.id.btn_ck_review_write)
-    Button btn_reserve_write;
-
-
     CkReseveData reserveData;
 
     private static final int TYPE_REQUEST = 1;
@@ -56,11 +52,12 @@ public class CkReserveViewHolder extends RecyclerView.ViewHolder {
         super(itemView);
         ButterKnife.bind(this, itemView);
         buttonSst();
-        //Unealbe rating state
     }
 
     //Button set
     public void buttonSst(){
+
+
         btn_reserve_agree.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,7 +67,7 @@ public class CkReserveViewHolder extends RecyclerView.ViewHolder {
             }
         });
 
-                btn_reserve_disagree.setOnClickListener(new View.OnClickListener() {
+        btn_reserve_disagree.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (dListener != null) {
@@ -78,71 +75,58 @@ public class CkReserveViewHolder extends RecyclerView.ViewHolder {
                 }
             }
         });
-        btn_reserve_write.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (cListener != null) {
-                    cListener.onCancelButtonClick(v, reserveData, getAdapterPosition());
-                }
-            }
-        });
     }
-
 
     //set Data
     public void setReserveData(CkReseveData reserveData) {
         this.reserveData = reserveData;
 
         Glide.with(pictureView.getContext()).load(reserveData.getImage()).into(pictureView);
-        foodNameView.setText("Menu/"+reserveData.getMname());
+        foodNameView.setText(reserveData.getMname());
         dateView.setText(reserveData.getDate());
-        reservePersonView.setText("Eater/"+reserveData.getUname());
+        reservePersonView.setText(reserveData.getUname());
+        btn_reserve_agree.setVisibility(View.VISIBLE);
+        btn_reserve_disagree.setVisibility(View.VISIBLE);
 
-        //btn
+        //Button setting && status setting
         switch (reserveData.getStatus()){
             case TYPE_REQUEST :
-                btn_reserve_write.setVisibility(View.GONE);
                 reserveStateView.setText(R.string.text_ck_reserve_request);
                 break;
 
             case TYPE_REQUEST_COMPLETE :
-                btn_reserve_write.setVisibility(View.GONE);
+                btn_reserve_agree.setVisibility(View.GONE);
+                btn_reserve_disagree.setText("취소");
                 reserveStateView.setText(R.string.text_ck_reserve_request_complete);
                 break;
 
             case TYPE_REQUEST_REJECT:
                 btn_reserve_agree.setVisibility(View.GONE);
                 btn_reserve_disagree.setVisibility(View.GONE);
-                btn_reserve_write.setVisibility(View.GONE);
                 reserveStateView.setText("거절승인");
                 break;
             case TYPE_COOKER_CANCLE:
                 btn_reserve_agree.setVisibility(View.GONE);
                 btn_reserve_disagree.setVisibility(View.GONE);
-                btn_reserve_write.setVisibility(View.GONE);
                 reserveStateView.setText("거절승인");
                 break;
             case TYPE_EATER_CANCLE:
                 btn_reserve_agree.setVisibility(View.GONE);
                 btn_reserve_disagree.setVisibility(View.GONE);
-                btn_reserve_write.setVisibility(View.GONE);
                 reserveStateView.setText("이터거절");
                 break;
-
             case TYPE_EAT_COMPLETE :
                 btn_reserve_agree.setVisibility(View.GONE);
                 btn_reserve_disagree.setVisibility(View.GONE);
-                btn_reserve_write.setVisibility(View.GONE);
-                btn_reserve_write.setVisibility(View.VISIBLE);
                 reserveStateView.setText(R.string.text_ck_reserve_eat_end);
                 break;
             case TYPE_END :
+                btn_reserve_agree.setVisibility(View.GONE);
+                btn_reserve_disagree.setVisibility(View.GONE);
                 reserveStateView.setText("식사종료");
                 break;
         }
     }
-
-
 
     //Agree Button
     public interface OnAgreeButtonClickListener {
@@ -167,16 +151,4 @@ public class CkReserveViewHolder extends RecyclerView.ViewHolder {
         this.dListener = dListener;
     }
 
-
-    //Review Button
-    public interface OnCancelClickListener {
-
-        public void onCancelButtonClick(View view, CkReseveData reserveData, int position);
-    }
-
-    OnCancelClickListener cListener;
-
-    public void setCancelButtonClickListener(OnCancelClickListener cListener) {
-        this.cListener = cListener;
-    }
 }

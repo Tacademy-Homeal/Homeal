@@ -173,9 +173,10 @@
         android:layout_marginRight="70dp"
         android:layout_marginTop="40dp"
         android:background="@drawable/logout_edge"
-        android:text="@string/Logout"
         android:textColor="#5c5f61"
-        android:textSize="15dp" />
+        android:textSize="15dp"
+        android:text="@string/Logout"
+      />
 
     <LinearLayout
         android:id="@+id/linear_eater_header"

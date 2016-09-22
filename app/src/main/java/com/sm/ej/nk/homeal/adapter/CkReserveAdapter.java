@@ -16,7 +16,7 @@ import java.util.List;
  * Created by Tacademy on 2016-08-25.
  */
 public class CkReserveAdapter extends RecyclerView.Adapter<CkReserveViewHolder> implements CkReserveViewHolder.OnAgreeButtonClickListener,
-        CkReserveViewHolder.OnDisagreeButtonClickListener, CkReserveViewHolder.OnCancelClickListener {
+        CkReserveViewHolder.OnDisagreeButtonClickListener{
     List<CkReseveData> items = new ArrayList<>();
 
     public void add(CkReseveData data) {
@@ -39,7 +39,6 @@ public class CkReserveAdapter extends RecyclerView.Adapter<CkReserveViewHolder> 
         CkReserveViewHolder holder = new CkReserveViewHolder(view);
         holder.setOnAgreeButtonClickListener(this);
         holder.setOnDisagreeButtonClickListener(this);
-        holder.setCancelButtonClickListener(this);
         return holder;
     }
 
@@ -69,13 +68,6 @@ public class CkReserveAdapter extends RecyclerView.Adapter<CkReserveViewHolder> 
         }
     }
 
-    @Override
-    public void onCancelButtonClick(View view, CkReseveData reserveData, int position) {
-        if(cListener != null){
-            cListener.oncancelAdapterItemClick(view,reserveData,position);
-        }
-    }
-
     //Agree button
     public interface OnAagreeButtonClickLIstener {
         public void onAagreeButtonClick(View view, CkReseveData data, int position);
@@ -97,20 +89,4 @@ public class CkReserveAdapter extends RecyclerView.Adapter<CkReserveViewHolder> 
     public void setOnDisagreeButtonClickLIstener(OnDisagreeButtonClickLIstener dListener) {
         this.dListener = dListener;
     }
-
-
-    //Write button
-    public interface OncancelButtonClickLIstener {
-        public void oncancelAdapterItemClick(View view, CkReseveData data, int position);
-    }
-
-    OncancelButtonClickLIstener cListener;
-
-    public void setOnCancelAdapterItemClickListener(OncancelButtonClickLIstener cListener) {
-        this.cListener = cListener;
-    }
-
-
-
-
 }
