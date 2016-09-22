@@ -32,7 +32,7 @@ public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder implements
     View view;
     ViewPager viewPager;
     ImageView userImage, mapImage, backImage, nextImage, launch, dinner;
-    TextView userName, userAddress, foodPrice, foodName, calendarDate,pax, totalScore, tasteScore, kindScore, cleanScore, priceScore, sharingOk, sharingNo;
+    TextView userName, userAddress, calendarDate,pax, totalScore, tasteScore, kindScore, cleanScore, priceScore, sharingOk, sharingNo;
     RecyclerView calendar;
     CkDetailData data;
     ViewPagerAdapter pagerAdapter;
@@ -56,8 +56,6 @@ public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder implements
         mapImage = (ImageView)view.findViewById(R.id.image_ck_detail_map);
         userName = (TextView)view.findViewById(R.id.text_ck_detail_name);
         userAddress = (TextView)view.findViewById(R.id.text_ck_detail_address);
-        foodPrice = (TextView)view.findViewById(R.id.text_ck_detail_price);
-        foodName = (TextView)view.findViewById(R.id.text_ck_detail_foodname);
         calendar = (RecyclerView)view.findViewById(R.id.rv_ck_detail_calendar);
         calendarDate = (TextView)view.findViewById(R.id.text_ck_detail_date);
         progressTotal = (ProgressBar) view.findViewById(R.id.progress_total);

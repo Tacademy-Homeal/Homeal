@@ -30,6 +30,9 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
+
+        app:menu_colorNormal="@color/colorPrimary"
+        app:menu_colorPressed="@color/colorPrimaryDark"
         android:layout_margin="@dimen/ck_detail_floating_bottommargin">
 
         <com.github.clans.fab.FloatingActionButton
@@ -37,6 +40,9 @@
             android:layout_height="wrap_content"
             android:id="@+id/fab_chat"
             fab:fab_label="@string/ck_home_fabchat"
+
+            app:fab_colorNormal="@color/colorPrimary"
+            app:fab_colorPressed="@color/colorPrimaryDark"
             fab:menu_labels_style="@style/MenuLabelsStyle"
             fab:fab_size="mini"/>
 
@@ -45,6 +51,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/fab_send"
             fab:fab_label="@string/ck_home_fabsend"
+            app:fab_colorNormal="@color/colorPrimary"
+            app:fab_colorPressed="@color/colorPrimaryDark"
             fab:menu_labels_style="@style/MenuLabelsStyle"
             fab:fab_size="mini"/>
 

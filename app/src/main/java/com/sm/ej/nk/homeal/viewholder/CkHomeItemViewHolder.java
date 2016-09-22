@@ -50,7 +50,7 @@ public class CkHomeItemViewHolder extends RecyclerView.ViewHolder  implements Vi
     public void setData(CkDetailMenuData data){
         this.data = data;
         Glide.with(HomealApplication.getContext()).load(data.getImage()).into(foodImage);
-        foodPrice.setText(""+data.price);
+        foodPrice.setText(data.price+"원");
         foodName.setText(data.name);
         foodInfo.setText(data.introduce);
     }

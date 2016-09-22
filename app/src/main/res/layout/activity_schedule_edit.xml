@@ -38,27 +38,30 @@
         </android.support.design.widget.AppBarLayout>
 
         <LinearLayout
+            android:layout_marginTop="5dp"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:id="@+id/image_schedule_edit_back"
                 android:src="@drawable/icon_back" />
 
             <TextView
+                android:gravity="center"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:id="@+id/text_schedule_edit_calendar"
                 android:layout_weight="1"
-                android:gravity="center_horizontal" />
+                android:textSize="20sp"
+                android:textColor="#000000" />
 
             <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:id="@+id/image_schedule_edit_next"
                 android:src="@drawable/icon_next" />
         </LinearLayout>
@@ -81,6 +84,8 @@
             android:layout_height="wrap_content">
 
             <TextView
+                android:textSize="15sp"
+                android:layout_gravity="center_vertical"
                 android:text="@string/reserve_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -93,12 +98,14 @@
                 android:id="@+id/radiogroup_schedule">
 
                 <RadioButton
+                    android:layout_marginLeft="15dp"
                     android:text="@string/radio_launch"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/radio_schedule_launch" />
 
                 <RadioButton
+                    android:layout_marginLeft="5dp"
                     android:text="@string/radio_dinner"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -107,6 +114,7 @@
         </LinearLayout>
 
         <ImageView
+            android:layout_gravity="center_vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/mypage_line"
@@ -119,6 +127,8 @@
             android:layout_height="wrap_content">
 
             <TextView
+                android:textSize="15sp"
+                android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView10"
@@ -131,12 +141,14 @@
                 android:id="@+id/radiogroup_schedule_sharing">
 
                 <RadioButton
+                    android:layout_marginLeft="15dp"
                     android:text="@string/ck_home_sharing_no"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/radio_schedule_sharing_no"/>
 
                 <RadioButton
+                    android:layout_marginLeft="5dp"
                     android:text="@string/ck_home_sharing_ok"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -158,15 +170,18 @@
             android:layout_height="wrap_content">
 
             <TextView
+                android:textSize="15sp"
+                android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="@string/ck_home_reservecount"
                 android:id="@+id/text_schedule_edit_reserve" />
 
             <EditText
+                android:layout_marginLeft="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="number"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:id="@+id/edit_schedule_edit_reservecount"
                 android:hint="@string/menu_add_hint"

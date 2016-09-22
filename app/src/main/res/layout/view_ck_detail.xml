@@ -17,7 +17,8 @@
         <com.viewpagerindicator.CirclePageIndicator
             android:id="@+id/indicator_ck_detail"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginBottom="5dp"
             android:layout_gravity="center_horizontal|bottom" />
     </FrameLayout>
 
@@ -53,8 +54,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
                     android:layout_marginLeft="10dp"
-                    android:text="Small Text"
-                    android:textAppearance="?android:attr/textAppearanceSmall" />
+                    android:textColor="#000000" />
 
                 <TextView
                     android:id="@+id/text_ck_detail_address"
@@ -62,8 +62,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
                     android:layout_marginLeft="10dp"
-                    android:text="Small Text"
-                    android:textAppearance="?android:attr/textAppearanceSmall" />
+                    android:textColor="#000000"/>
             </LinearLayout>
 
             <LinearLayout
@@ -71,17 +70,7 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/text_ck_detail_price"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall" />
 
-                <TextView
-                    android:id="@+id/text_ck_detail_foodname"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall" />
             </LinearLayout>
         </LinearLayout>
 
@@ -124,6 +113,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
+                    android:textColor="#000000"
                     android:text="@string/ck_detail_total" />
 
             </LinearLayout>
@@ -160,6 +150,7 @@
                     android:id="@+id/textView20"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="#000000"
                     android:layout_gravity="center_horizontal"
                     android:text="@string/ck_detail_taste" />
 
@@ -196,6 +187,7 @@
                 <TextView
                     android:id="@+id/textView21"
                     android:layout_width="wrap_content"
+                    android:textColor="#000000"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:text="@string/ck_detail_price" />
@@ -234,6 +226,7 @@
                     android:id="@+id/textView22"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="#000000"
                     android:layout_gravity="center_horizontal"
                     android:text="@string/ck_detail_kind" />
 
@@ -269,6 +262,7 @@
 
                 <TextView
                     android:id="@+id/textView23"
+                    android:textColor="#000000"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
@@ -291,6 +285,8 @@
         android:layout_height="wrap_content" />
 
     <ImageView
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:id="@+id/imageView3"
         android:layout_width="match_parent"
         android:layout_height="8dp"
@@ -303,8 +299,8 @@
 
         <ImageView
             android:id="@+id/image_ck_detail_back"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:src="@drawable/icon_back" />
 
         <TextView
@@ -313,12 +309,13 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center_vertical|center_horizontal"
+            android:textColor="#000000"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <ImageView
             android:id="@+id/image_ck_detail_next"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:src="@drawable/icon_next" />
 
     </LinearLayout>
@@ -373,22 +370,29 @@
 
         </LinearLayout>
 
-        <ImageView
-            android:layout_marginLeft="10dp"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/homeal_sharing"/>
-
-        <TextView
-            android:id="@+id/text_ck_detail_reservecount"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0"
-            android:textSize="15sp"
-            android:textColor="#000000"
-            android:layout_gravity="center_vertical"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_marginLeft="10dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:src="@drawable/homeal_sharing"/>
+
+            <TextView
+                android:id="@+id/text_ck_detail_reservecount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="15sp"
+                android:textColor="#000000"
+                android:layout_gravity="center" />
+
+        </LinearLayout>
+
 
         <TextView
             android:id="@+id/textView24"

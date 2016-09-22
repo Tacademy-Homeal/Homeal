@@ -130,11 +130,13 @@ public class CkHomeFragment extends Fragment implements CkMainActivity.OnFabClic
                     public void onSuccess(NetworkRequest<NetworkResultTemp> request, NetworkResultTemp result) {
                         Toast.makeText(getContext(), "메뉴 삭제 완료", Toast.LENGTH_SHORT).show();
                         mAdapter.deleteMenu(data);
+
                     }
 
                     @Override
                     public void onFail(NetworkRequest<NetworkResultTemp> request, int errorCode, String errorMessage, Throwable e) {
-
+                        Log.e("ssong", ""+errorCode);
+                        Log.e("ssong", errorMessage);
                     }
                 });
             }

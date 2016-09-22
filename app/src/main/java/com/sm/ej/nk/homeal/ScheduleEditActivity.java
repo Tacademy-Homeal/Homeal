@@ -114,6 +114,8 @@ public class ScheduleEditActivity extends AppCompatActivity implements View.OnCl
             }
         });
 
+        calendarData = CalendarManager.getInstance().getCalendarData();
+
         Intent intent = getIntent();
         MODE = intent.getIntExtra(CkMainActivity.INTENT_MODE, -1);
         if(MODE  == CkMainActivity.MODE_SCHEDULR_EDIT){
@@ -170,7 +172,6 @@ public class ScheduleEditActivity extends AppCompatActivity implements View.OnCl
                 }
             });
         }
-        calendarData = CalendarManager.getInstance().getCalendarData();
         textCalendar.setText(calendarData.year+"년 "+(calendarData.month+1)+"월");
         rv.setLayoutManager(new GridLayoutManager(this, 7));
         rv.setAdapter(mAdapter);

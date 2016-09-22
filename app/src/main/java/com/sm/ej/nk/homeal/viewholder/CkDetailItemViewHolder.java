@@ -42,7 +42,7 @@ public class CkDetailItemViewHolder extends RecyclerView.ViewHolder{
         this.datas = datas;
         foodname.setText(datas.getFoodName());
         foodintro.setText(datas.introduce);
-        foodprice.setText(datas.price);
+        foodprice.setText(datas.price+"원");
         Glide.with(HomealApplication.getContext()).load(datas.image).into(image);
 
         swipebtn.setOnClickListener(new View.OnClickListener() {

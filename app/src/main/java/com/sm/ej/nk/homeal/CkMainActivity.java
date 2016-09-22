@@ -200,7 +200,7 @@ public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTab
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.setTabTextColors(Color.BLACK, Color.BLACK);
         tabLayout.addOnTabSelectedListener(this);
-
+        tabLayout.setSelectedTabIndicatorColor(Color.WHITE);
         //image set
         for (int i = 0; i < 4; i++) {
             tabLayout.getTabAt(i).setIcon(icon[i]);

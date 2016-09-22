@@ -5,8 +5,9 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <de.hdodenhof.circleimageview.CircleImageView
@@ -30,6 +31,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
+                    android:textColor="#000000"
                     android:textSize="20sp"/>
 
                 <TextView
@@ -49,6 +51,7 @@
                     android:textSize="15sp"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:textColor="#000000"
                     android:gravity="center_vertical"
                     android:layout_marginRight="10dp"/>
 
@@ -70,6 +73,7 @@
                         android:layout_height="match_parent"
                         android:textSize="15sp"
                         android:gravity="center"
+                        android:textColor="#000000"
                         android:layout_marginRight="20dp"/>
                 </LinearLayout>
 
@@ -125,6 +129,7 @@
                 android:id="@+id/textView19"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="#000000"
                 android:text="@string/ck_detail_total"
                 android:layout_gravity="center_horizontal"/>
 
@@ -163,6 +168,7 @@
                 android:id="@+id/textView25"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="#000000"
                 android:text="@string/ck_detail_taste"
                 android:layout_gravity="center_horizontal"/>
 
@@ -200,6 +206,7 @@
             <TextView
                 android:id="@+id/textView27"
                 android:layout_width="wrap_content"
+                android:textColor="#000000"
                 android:layout_height="wrap_content"
                 android:text="@string/ck_detail_price"
                 android:layout_gravity="center_horizontal"/>
@@ -239,6 +246,7 @@
                 android:id="@+id/textView26"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="#000000"
                 android:text="@string/ck_detail_kind"
                 android:layout_gravity="center_horizontal"/>
 
@@ -277,6 +285,7 @@
                 android:id="@+id/textView28"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="#000000"
                 android:text="@string/ck_detail_clean"
                 android:layout_gravity="center_horizontal"/>
 
@@ -289,7 +298,7 @@
         android:layout_width="match_parent"
         android:layout_height="10dp"
         android:background="#e0e0e0"
-        android:layout_marginTop="3dp"/>
+        android:layout_marginTop="5dp"/>
 
     <ImageView
         android:id="@+id/image_ck_home_map"
@@ -297,6 +306,7 @@
         android:layout_height="wrap_content" />
 
     <ImageView
+        android:layout_marginBottom="5dp"
         android:id="@+id/imageView9"
         android:layout_width="match_parent"
         android:layout_height="10dp"
@@ -308,9 +318,10 @@
         android:orientation="horizontal">
 
         <ImageView
+            android:layout_marginLeft="10dp"
             android:id="@+id/image_ck_home_back"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:src="@drawable/icon_back" />
 
         <TextView
@@ -322,9 +333,10 @@
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <ImageView
+            android:layout_marginRight="10dp"
             android:id="@+id/image_ck_home_next"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:src="@drawable/icon_next" />
     </LinearLayout>
 
@@ -434,6 +446,8 @@
     </LinearLayout>
 
     <ImageView
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:id="@+id/imageView10"
         android:layout_width="match_parent"
         android:layout_height="10dp"
