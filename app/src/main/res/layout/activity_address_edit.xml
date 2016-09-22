@@ -23,17 +23,25 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <EditText
+        <com.sm.ej.nk.homeal.view.ClearEditText
             android:id="@+id/edit_keyword"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_height="36dp"
+            android:hint="주소를 입력해주세요."
+            android:textColor="@color/black"
+            android:textSize="12dp"
+            android:background="@drawable/logout_edge"
             android:layout_weight="1" />
 
         <Button
             android:id="@+id/btn_address_search"
             style="?android:attr/buttonStyleSmall"
+            android:background="@drawable/logout_edge"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:textSize="12dp"
+            android:layout_height="36dp"
             android:text="search" />
     </LinearLayout>
 

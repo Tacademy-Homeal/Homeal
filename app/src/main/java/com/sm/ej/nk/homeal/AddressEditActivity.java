@@ -14,13 +14,14 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -41,6 +42,7 @@ import com.sm.ej.nk.homeal.data.Poi;
 import com.sm.ej.nk.homeal.manager.NetworkManager;
 import com.sm.ej.nk.homeal.manager.NetworkRequest;
 import com.sm.ej.nk.homeal.request.POISearchRequest;
+import com.sm.ej.nk.homeal.view.ClearEditText;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -62,14 +64,17 @@ public class AddressEditActivity extends AppCompatActivity implements
     LocationManager mLM;
     String mProvider = LocationManager.NETWORK_PROVIDER;
     double latitude, longitude;
-    public String filaName = ""+System.currentTimeMillis();
+    public String filaName = "" + System.currentTimeMillis();
     private File imageMap;
 
     @BindView(R.id.edit_keyword)
-    EditText keywordView;
+    ClearEditText keywordView;
 
     @BindView(R.id.list_address_search)
     ListView addressSearchView;
+
+    @BindView(R.id.toolbar_ck_toolbar)
+    Toolbar toolbar;
 
     ArrayAdapter<Poi> mAdapter;
 
@@ -93,10 +98,15 @@ public class AddressEditActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_address_edit);
         ButterKnife.bind(this);
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(getResources().getString(R.string.AddressaActivity_appbar));
+
         addressSearchView = (ListView) findViewById(R.id.list_address_search);
         mAdapter = new ArrayAdapter<Poi>(this, android.R.layout.simple_list_item_1);
         addressSearchView.setAdapter(mAdapter);
-        keywordView = (EditText) findViewById(R.id.edit_keyword);
+        keywordView = (ClearEditText) findViewById(R.id.edit_keyword);
         mLM = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         SupportMapFragment fragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map_fragment);
@@ -121,7 +131,7 @@ public class AddressEditActivity extends AppCompatActivity implements
 
     @OnClick(R.id.btn_address_search)
     public void onAddressSearch() {
-        InputMethodManager mInputMethodManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        InputMethodManager mInputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         mInputMethodManager.hideSoftInputFromWindow(keywordView.getWindowToken(), 0);
         String keyword = keywordView.getText().toString();
         if (!TextUtils.isEmpty(keyword)) {
@@ -286,7 +296,7 @@ public class AddressEditActivity extends AppCompatActivity implements
             public void onSnapshotReady(Bitmap bitmap) {
                 imageMap = getImageFile();
                 imageMap.getName();
-                Toast.makeText(AddressEditActivity.this, ""+imageMap.getName(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(AddressEditActivity.this, ""+imageMap.getName(), Toast.LENGTH_SHORT).show();
                 try {
                     FileOutputStream fos = new FileOutputStream(imageMap);
                     bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos);
@@ -347,5 +357,15 @@ public class AddressEditActivity extends AppCompatActivity implements
             }
             ActivityCompat.requestPermissions(this, perms, RC_PERMISSION);
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
