@@ -360,6 +360,14 @@ public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTab
         public void onFabClick(View view, int mode);
     }
 
+    public void fabshow(boolean a){
+        if(a){
+            fab.showMenu(false);
+        }else{
+            fab.hideMenu(false);
+        }
+    }
+
     OnFabClickListener listener;
 
     public void setOnFabClickListener(OnFabClickListener listener) {

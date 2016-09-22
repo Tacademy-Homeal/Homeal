@@ -80,7 +80,7 @@ public class MenuAddActivity extends AppCompatActivity implements View.OnClickLi
 
         setSupportActionBar(toolbar);
 
-        Glide.with(MenuAddActivity.this).load("https://pixabay.com/static/uploads/photo/2016/03/21/05/05/plus-1270001_960_720.png").into(image);
+        image.setImageResource(R.drawable.homeal_gallery_plus);
         Intent intent = getIntent();
         MODE = intent.getIntExtra(CkMainActivity.INTENT_MODE,-1);
         if(MODE == CkMainActivity.MODE_MENU_EDIT){

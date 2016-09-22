@@ -1,6 +1,7 @@
 package com.sm.ej.nk.homeal.viewholder;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -30,8 +31,8 @@ import java.util.List;
 public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
     View view;
     ViewPager viewPager;
-    ImageView userImage, mapImage, backImage, nextImage, sharingImage, launch, dinner;
-    TextView userName, userAddress, foodPrice, foodName, calendarDate,pax, totalScore, tasteScore, kindScore, cleanScore, priceScore;
+    ImageView userImage, mapImage, backImage, nextImage, launch, dinner;
+    TextView userName, userAddress, foodPrice, foodName, calendarDate,pax, totalScore, tasteScore, kindScore, cleanScore, priceScore, sharingOk, sharingNo;
     RecyclerView calendar;
     CkDetailData data;
     ViewPagerAdapter pagerAdapter;
@@ -73,17 +74,21 @@ public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder implements
         kindScore = (TextView)view.findViewById(R.id.text_ck_detail_kind_score);
         cleanScore = (TextView)view.findViewById(R.id.text_ck_detail_clean_score);
 
-        sharingImage = (ImageView)view.findViewById(R.id.image_ck_detail_share);
         launch = (ImageView)view.findViewById(R.id.image_ck_detail_launch);
         dinner = (ImageView)view.findViewById(R.id.image_ck_detail_dinner);
         pax = (TextView)view.findViewById(R.id.text_ck_detail_reservecount);
+
+        sharingOk = (TextView)view.findViewById(R.id.text_ck_detail_sharing_ok);
+        sharingNo = (TextView)view.findViewById(R.id.text_ck_detail_sharing_no);
     }
 
     public void showSchedule(CalendarItem item){
         if(item.sharing==1){
-            sharingImage.setImageResource(R.drawable.homeal_sharing_ok);
+            sharingOk.setTextColor(context.getResources().getColor(R.color.colorPrimary));
+            sharingNo.setTextColor(Color.BLACK);
         }else{
-            sharingImage.setImageResource(R.drawable.homeal_sharing_no);
+            sharingNo.setTextColor(context.getResources().getColor(R.color.colorPrimary));
+            sharingOk.setTextColor(Color.BLACK);
         }
 
         if(item.isLaunch){
@@ -193,7 +198,9 @@ public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder implements
                 calendarAdapter.cleanChecked();
                 launch.setImageResource(R.drawable.homeal_launch_empty);
                 dinner.setImageResource(R.drawable.homeal_dinner_empty);
-                pax.setText("");
+                pax.setText("0");
+                sharingNo.setTextColor(Color.BLACK);
+                sharingOk.setTextColor(Color.BLACK);
                 break;
             }
             case R.id.image_ck_detail_next:{
@@ -203,7 +210,9 @@ public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder implements
                 calendarAdapter.cleanChecked();
                 launch.setImageResource(R.drawable.homeal_launch_empty);
                 dinner.setImageResource(R.drawable.homeal_dinner_empty);
-                pax.setText("");
+                pax.setText("0");
+                sharingNo.setTextColor(Color.BLACK);
+                sharingOk.setTextColor(Color.BLACK);
                 break;
             }
             case R.id.image_ck_detail_map:{
