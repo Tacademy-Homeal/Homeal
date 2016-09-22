@@ -41,11 +41,8 @@ public class ChattingActivity extends AppCompatActivity {
 
     @BindView(R.id.toobar_chatting)
     Toolbar toolbar;
-    public static final String EXTRA_CHAT_USER = "chatuser";
 
     public static final String EXTRA_USER = "userinfo";
-    User user;//current user
-
     LocalBroadcastManager mLBM;
     Long id;
 
@@ -56,6 +53,7 @@ public class ChattingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chatting);
         ButterKnife.bind(this);
 
+
         //set Toolbar
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_action_name);
@@ -65,7 +63,6 @@ public class ChattingActivity extends AppCompatActivity {
                 finish();
             }
         });
-
         id = (long) getIntent().getLongExtra(EXTRA_USER,-100);
         mAdapter = new ChattingAdapter();
         rv_chatting.setAdapter(mAdapter);
@@ -85,6 +82,7 @@ public class ChattingActivity extends AppCompatActivity {
                 user.setId(id);
                 ChattingDBManager.getInstance().addMessage(user, ChatContract.ChatMessage.TYPE_SEND, message,user.getImage());
                 updateMessage();
+                inputView.setText(null);
             }
 
             @Override

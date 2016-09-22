@@ -22,6 +22,9 @@ public class ChattingReceiveViewHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.image_recive)
     ImageView pictureView;
 
+    @BindView(R.id.chatting_date_receive)
+    TextView messageDate;
+
     public ChattingReceiveViewHolder(View itemView) {
         super(itemView);
         ButterKnife.bind(this, itemView);

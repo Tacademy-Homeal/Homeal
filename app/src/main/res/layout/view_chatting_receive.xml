@@ -11,15 +11,25 @@
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/image_recive"
             android:layout_width="70dp"
-            android:layout_height="75dp" />
+            android:layout_height="70dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/receive"
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:layout_margin="5dp"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Medium Text"
             android:id="@+id/text_message"
-            android:layout_marginRight="50dp" />
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/chatting_date_receive"
+            />
 
     </LinearLayout>
 
