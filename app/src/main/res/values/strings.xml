@@ -146,7 +146,7 @@
     <string name="reserve_count">예약인원</string>
     <string name="reserve_time">시간</string>
     <string name="tos">이용약관</string>
-    <string name="fab_thumbnail_insert">섬네일 편집</string>
+    <string name="fab_thumbnail_insert">사진편집</string>
     <string name="fab_thumbnail_edit">섬네일 삭제</string>
     <string name="thumbnail_delete">대표사진을 삭제하시겠습니까?</string>
     <string name="menu_add_activation">활성화</string>

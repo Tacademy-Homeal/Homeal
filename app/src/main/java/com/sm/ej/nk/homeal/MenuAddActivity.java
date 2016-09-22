@@ -79,6 +79,13 @@ public class MenuAddActivity extends AppCompatActivity implements View.OnClickLi
         ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);
+        toolbar.setNavigationIcon(R.drawable.ic_action_name);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         image.setImageResource(R.drawable.homeal_gallery_plus);
         Intent intent = getIntent();

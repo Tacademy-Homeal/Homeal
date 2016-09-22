@@ -40,12 +40,16 @@
         android:layout_height="match_parent"
         android:id="@+id/floating_ck_home"
         android:layout_gravity="end|bottom"
+        app:menu_colorNormal="@color/colorPrimary"
+        app:menu_colorPressed="@color/colorPrimaryDark"
         android:layout_margin="@dimen/ck_detail_floating_bottommargin">
 
         <com.github.clans.fab.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/fab_thumbnail_insert"
+            app:fab_colorNormal="@color/colorPrimary"
+            app:fab_colorPressed="@color/colorPrimaryDark"
             fab:fab_label="@string/fab_thumbnail_insert"
             fab:fab_size="mini"/>
 
@@ -53,6 +57,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/fab_insert"
+            app:fab_colorNormal="@color/colorPrimary"
+            app:fab_colorPressed="@color/colorPrimaryDark"
             fab:fab_label="@string/ck_home_fabinsert"
             fab:menu_labels_style="@style/MenuLabelsStyle"
             fab:fab_size="mini"/>
@@ -61,6 +67,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/fab_edit"
+            app:fab_colorNormal="@color/colorPrimary"
+            app:fab_colorPressed="@color/colorPrimaryDark"
             fab:fab_label="@string/ck_home_fabedit"
             fab:fab_size="mini"/>
 
@@ -68,6 +76,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/fab_schedulinsert"
+            app:fab_colorNormal="@color/colorPrimary"
+            app:fab_colorPressed="@color/colorPrimaryDark"
             fab:fab_label="@string/ck_home_fabscheduleinsert"
             fab:fab_size="mini"/>
 
@@ -75,6 +85,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/fab_scheduleedit"
+            app:fab_colorNormal="@color/colorPrimary"
+            app:fab_colorPressed="@color/colorPrimaryDark"
             fab:fab_label="@string/ck_home_fabschedule"
             fab:fab_size="mini"/>
     </com.github.clans.fab.FloatingActionMenu>
