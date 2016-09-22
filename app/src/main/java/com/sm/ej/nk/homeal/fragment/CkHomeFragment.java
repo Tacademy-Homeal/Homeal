@@ -76,6 +76,19 @@ public class CkHomeFragment extends Fragment implements CkMainActivity.OnFabClic
         rv = (RecyclerView)view.findViewById(R.id.rv_ck_home);
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         rv.setLayoutManager(manager);
+
+        rv.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if(dy>5){
+                    parentActivity.fabshow(true);
+                }else{
+                    parentActivity.fabshow(false);
+                }
+            }
+        });
+
         mAdapter = new CkHomeAdapter(getContext());
         mAdapter.setOnReviewClickListener(this);
 

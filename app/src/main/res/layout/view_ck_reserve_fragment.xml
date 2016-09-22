@@ -1,112 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+    android:layout_marginBottom="3dp">
+
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:layout_marginLeft="3dp"
             android:orientation="vertical">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/image_ck_reserve_picture"
                 android:layout_width="70dp"
-                android:layout_height="75dp" />
+                android:layout_height="70dp" />
+
+            <TextView
+                android:id="@+id/text_ck_reserve_person"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="cookername"
+                android:textColor="@color/black"
+                android:textSize="11dp" />
 
         </LinearLayout>
-
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="horizontal"
+            android:layout_gravity="center">
 
             <LinearLayout
-                android:id="@+id/linear_food_info"
-                android:layout_width="match_parent"
+                android:padding="5dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
-                <TextView
-                    android:layout_marginLeft="10dp"
-                    android:id="@+id/text_ck_reserve_person"
-                    android:layout_width="wrap_content"
-                    android:layout_marginRight="15dp"
-                    android:layout_height="wrap_content"
-                    android:text="reserve person" />
-
-                <TextView
-                    android:layout_marginLeft="10dp"
-                    android:id="@+id/text_ck_reserve_date"
+                <LinearLayout
+                    android:padding="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="15dp"
-                    android:text="reserve date" />
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="15dp"
+                    >
 
+                    <TextView
+                        android:id="@+id/text_ck_reserve_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:text="reserve data"
+                        android:textSize="15dp" />
 
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/linear_eater_info"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/text_ck_reserve_state"
+                        android:layout_width="wrap_content"
+                        android:textColor="@color/black"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:text="reservestate"
+                        android:textSize="15dp" />
+                </LinearLayout>
 
                 <TextView
-                    android:layout_marginLeft="10dp"
+                    android:padding="5dp"
                     android:id="@+id/text_ck_reserve_foodname"
                     android:layout_width="wrap_content"
+                    android:textColor="@color/black"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="15dp"
-                    android:text="foodname" />
-
-                <TextView
-                    android:layout_marginLeft="10dp"
-                    android:id="@+id/text_ck_reserve_state"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginRight="15dp"
-                    android:text="reservestate" />
+                    android:text="foodname"
+                    android:textSize="15dp" />
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/linear_reserve_info"
-                android:layout_width="match_parent"
+                android:padding="5dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <Button
-                    android:id="@+id/btn_ck_reserve_state_disagree"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:layout_weight="1"
-                    android:text="@string/text_btn_ck_reserve_disagree"
-                    android:theme="@style/ReserveButton" />
+                android:layout_gravity="center"
+                android:orientation="vertical">
 
                 <Button
                     android:id="@+id/btn_ck_reserve_state_agree"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:layout_weight="1"
-                    android:text="@string/text_btn_ck_reserve_request"
-                    android:theme="@style/ReserveButton" />
+                    android:layout_width="70dp"
+                    android:layout_height="35dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/logout_edge"
+                    android:text="@string/et_reservation_confire"
+                    android:textColor="@color/black"
+                    android:textSize="15dp" />
 
                 <Button
-                    android:id="@+id/btn_ck_review_write"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:layout_gravity="right"
-                    android:layout_weight="1"
-                    android:text="@string/reserve_cancel"
-                    android:theme="@style/ReserveButton" />
+                    android:id="@+id/btn_ck_reserve_state_disagree"
+                    android:layout_width="70dp"
+                    android:layout_height="35dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/logout_edge"
+                    android:text="@string/et_reservation_cancle"
+                    android:textColor="@color/black"
+                    android:textSize="15dp" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

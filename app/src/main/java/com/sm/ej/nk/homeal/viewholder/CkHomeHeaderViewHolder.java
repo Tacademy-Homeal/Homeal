@@ -133,7 +133,7 @@ public class CkHomeHeaderViewHolder extends RecyclerView.ViewHolder implements V
                 mAdapter.cleanChecked();
                 launch.setImageResource(R.drawable.homeal_launch_empty);
                 dinner.setImageResource(R.drawable.homeal_dinner_empty);
-                textPax.setText("");
+                textPax.setText("0");
                 textSharingNo.setTextColor(Color.GRAY);
                 textSharingOk.setTextColor(Color.GRAY);
                 break;
@@ -145,7 +145,7 @@ public class CkHomeHeaderViewHolder extends RecyclerView.ViewHolder implements V
                 mAdapter.cleanChecked();
                 launch.setImageResource(R.drawable.homeal_launch_empty);
                 dinner.setImageResource(R.drawable.homeal_dinner_empty);
-                textPax.setText("");
+                textPax.setText("0");
                 textSharingNo.setTextColor(Color.GRAY);
                 textSharingOk.setTextColor(Color.GRAY);
                 break;

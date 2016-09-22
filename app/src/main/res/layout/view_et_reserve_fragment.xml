@@ -2,105 +2,110 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:layout_marginBottom="1dp"
-    >
+    android:orientation="vertical">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <LinearLayout
+            android:layout_marginLeft="3dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
             android:orientation="vertical">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/image_et_reserve_picture"
                 android:layout_width="70dp"
-                android:layout_height="75dp" />
+                android:layout_height="70dp" />
+
+            <TextView
+                android:id="@+id/text_et_reserve_ckname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="cookername"
+                android:textColor="@color/black"
+                android:textSize="11dp" />
 
             <RatingBar
                 android:id="@+id/rating_et_reserve_ck"
-                android:stepSize="1"
+                style="@style/reseveRatingBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/starRatingBar"
-                android:layout_marginLeft="10dp"/>
+                android:clickable="false"
+                android:isIndicator="true"
+                android:focusableInTouchMode="false"
+                android:focusable="false"
+                />
         </LinearLayout>
 
 
-            <LinearLayout
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="horizontal"
+            android:layout_gravity="center">
 
             <LinearLayout
-                android:id="@+id/linear_food_info"
-                android:layout_width="match_parent"
+                android:padding="5dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_marginLeft="10dp"
-                    android:id="@+id/text_et_reserve_ckname"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginRight="15dp"
-                    android:text="cookername" />
-
-                <TextView
-                    android:layout_marginLeft="10dp"
-                    android:id="@+id/text_et_reserve_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="15dp"
-                    android:text="reserve data" />
-
-            </LinearLayout>
-
+                android:orientation="vertical">
 
                 <LinearLayout
-                    android:id="@+id/third_floor"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_marginLeft="10dp"
-                        android:id="@+id/text_et_reserve_foodname"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="15dp"
-                        android:text="foodname" />
-
-                    <TextView
-                        android:layout_marginLeft="26dp"
-                        android:id="@+id/text_et_reserve_state"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginRight="15dp"
-                        android:text="reservestate" />
-                </LinearLayout>
-
-
-            <LinearLayout
-                android:id="@+id/linear_reserve_info"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
-                <Button
-                    android:theme="@style/ReserveButton"
+                    android:padding="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="15dp"
+                    >
 
+                    <TextView
+                        android:id="@+id/text_et_reserve_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:text="reserve data"
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:id="@+id/text_et_reserve_state"
+                        android:layout_width="wrap_content"
+                        android:textColor="@color/black"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:text="reservestate"
+                        android:textSize="15dp" />
+                </LinearLayout>
+
+                <TextView
+                    android:padding="5dp"
+                    android:id="@+id/text_et_reserve_foodname"
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_height="wrap_content"
+                    android:text="foodname"
+                    android:textSize="15dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:padding="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+                <Button
+                    android:id="@+id/btn_et_reserve"
+                    android:layout_width="70dp"
+                    android:layout_height="35dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/logout_edge"
                     android:text="@string/et_reservation_cancle"
-                    android:textColor="@color/white"
-                    android:id="@+id/btn_et_reserve" />
+                    android:textColor="@color/black"
+                    android:textSize="15dp" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

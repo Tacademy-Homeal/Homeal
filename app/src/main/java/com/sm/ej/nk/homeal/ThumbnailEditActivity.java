@@ -8,6 +8,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -31,6 +32,9 @@ public class ThumbnailEditActivity extends AppCompatActivity {
     @BindView(R.id.rv_thumbnail_edit)
     RecyclerView rv;
 
+    @BindView(R.id.toobar_thumbnail)
+    Toolbar toolbar;
+
     ThumbnailAdapter mAdapter;
     List<ThumbnailsData> thumbnailsDatas;
     List<String> imagePathList;
@@ -44,8 +48,16 @@ public class ThumbnailEditActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thumbnail_edit);
         ButterKnife.bind(this);
-        Intent intent = getIntent();
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationIcon(R.drawable.ic_action_name);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
+        Intent intent = getIntent();
         MODE = intent.getIntExtra(CkMainActivity.INTENT_MODE, -1);
         cookerId = intent.getStringExtra(CkMainActivity.INTENT_COOKER_ID);
         rv.setLayoutManager(new LinearLayoutManager(ThumbnailEditActivity.this));

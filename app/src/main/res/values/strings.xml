@@ -42,7 +42,8 @@
     <string name="ck_home_fabedit">매뉴편집</string>
     <string name="ck_home_fabinsert">메뉴추가</string>
     <string name="title_activity_maps">Map</string>
-    <string name="et_reservation_cancle">예약취소</string>
+    <string name="et_reservation_cancle">취소</string>
+    <string name="et_reservation_confire">승인</string>
     <string name="et_reservation_write">후기쓰기</string>
     <string name="et_reservation_end">종료</string>
     <string name="ck_home_fabschedule">일정삭제</string>
@@ -145,7 +146,7 @@
     <string name="reserve_count">예약인원</string>
     <string name="reserve_time">시간</string>
     <string name="tos">이용약관</string>
-    <string name="fab_thumbnail_insert">섬네일 편집</string>
+    <string name="fab_thumbnail_insert">사진편집</string>
     <string name="fab_thumbnail_edit">섬네일 삭제</string>
     <string name="thumbnail_delete">대표사진을 삭제하시겠습니까?</string>
     <string name="menu_add_activation">활성화</string>
@@ -155,7 +156,7 @@
     <string name="radio_dinner">저녁</string>
     <string name="select_country">나라를 선택하세요.</string>
     <string name="reserve_cancel">예약취소</string>
-    <string name="after_write">후기작성</string>
+    <string name="after_write">후기</string>
     <string name="et_reject">거절</string>
     <string name="et_ok">예약승인</string>
     <string name="tos_content" formatted="false">
@@ -272,5 +273,5 @@ COOKER가 서비스와 관련하여 촬영한 사진 또는 영상 등을 당사
     <string name="review_check">후기보기</string>
     <string name="schedule_sharing">합석여부</string>
     <string name = "ck_home_sharing_ok">합석</string>
-    <string name = "ck_home_sharing_no">불합석</string>
+    <string name = "ck_home_sharing_no">비합석</string>
 </resources>

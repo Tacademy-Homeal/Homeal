@@ -36,6 +36,13 @@
                     android:layout_height="200dp"
                     android:id="@+id/image_menu_add" />
 
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/mypage_line"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginTop="2dp"/>
+
                 <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
@@ -60,8 +67,9 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageView7"
-                    android:src="@drawable/mypage_line" />
+                    android:src="@drawable/mypage_line"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginTop="2dp"/>
 
                 <LinearLayout
                     android:orientation="horizontal"
@@ -92,6 +100,13 @@
                         android:visibility="invisible" />
 
                 </LinearLayout>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/mypage_line"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginTop="2dp"/>
 
                 <ImageView
                     android:layout_width="match_parent"
@@ -131,8 +146,13 @@
                         android:id="@+id/image_menu_add_activation"
                         android:src="@drawable/homeal_on_button" />
 
-
                 </LinearLayout>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/mypage_line"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginTop="2dp"/>
 
                 <EditText
                     android:layout_width="match_parent"
