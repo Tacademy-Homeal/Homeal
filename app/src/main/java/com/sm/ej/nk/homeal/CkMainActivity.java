@@ -350,10 +350,12 @@ public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTab
     }
 
     public void fabshow(boolean a){
-        if(a){;
-            fab.hideMenu(false);
-        }else{
-            fab.showMenu(false);
+        if(tabLayout.getSelectedTabPosition()==0){
+            if(a){
+                fab.hideMenu(false);
+            }else{
+                fab.showMenu(false);
+            }
         }
     }
 
