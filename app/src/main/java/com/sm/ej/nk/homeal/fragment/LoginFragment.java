@@ -89,6 +89,8 @@ public class LoginFragment extends Fragment {
         mLoginManager = LoginManager.getInstance();
         imageSet();
         return view;
+
+
     }
     private void imageSet(){
         Typeface typeface = FontManager.getInstance().getTypeface(getActivity(), FontData.NOTO_D);
@@ -99,7 +101,6 @@ public class LoginFragment extends Fragment {
 
     @OnClick(R.id.btn_login_facebook)
     public void onClickFacebook() {
-
         switch (radioGroup.getCheckedRadioButtonId()) {
             case R.id.radiobtn_login_ft_ck:{
                 HomealApplication.changeCooker();
@@ -110,7 +111,6 @@ public class LoginFragment extends Fragment {
                 break;
             }
         }
-
         loginFacebook();
 
     }
@@ -142,6 +142,8 @@ public class LoginFragment extends Fragment {
     }
 
     private void processAfterFacebookLogin() {
+
+
         final AccessToken accessToken = AccessToken.getCurrentAccessToken();
         if (accessToken != null) {
             String token = accessToken.getToken();
@@ -169,8 +171,6 @@ public class LoginFragment extends Fragment {
                     } else if (result.getCode() == 2){
                         ((LoginActivity)getActivity()).changeTos();
                     }
-
-
                 }
 
                 @Override

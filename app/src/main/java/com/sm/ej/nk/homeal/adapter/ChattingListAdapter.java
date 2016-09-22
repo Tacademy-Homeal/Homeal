@@ -45,16 +45,13 @@ public  class ChattingListAdapter extends RecyclerView.Adapter<ChattingListViewH
 
     @Override
     public void onBindViewHolder(ChattingListViewHolder holder, int position) {
-
         cursor.moveToPosition(position);
-
-        String chatting = cursor.getString(cursor.getColumnIndex(ChatContract.ChatUser.COLUMN_NAME));
+        String chatting = cursor.getString(cursor.getColumnIndex(ChatContract.ChatUser.COLUMN_IMAGE));
         String serverId = cursor.getString(cursor.getColumnIndex(ChatContract.ChatUser.COLUMN_SERVER_ID));
-        holder.setChattingListView(serverId);
-        holder.setServerId(chatting);
+        holder.setChattingListView(chatting);
+        holder.setServerId(serverId);
         holder.setOnItemClickListener(this);
     }
-
     //interface function
     @Override
     public void onItemClick(View view, int position) {
@@ -62,7 +59,6 @@ public  class ChattingListAdapter extends RecyclerView.Adapter<ChattingListViewH
             listener.onViewClick(view,position);
         }
     }
-
     public interface OnViewClickListener{
         public void onViewClick(View view,int position);
     }

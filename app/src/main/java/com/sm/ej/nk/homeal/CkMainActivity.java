@@ -294,23 +294,10 @@ public class CkMainActivity extends AppCompatActivity implements TabLayout.OnTab
                     alertLayout.setVisibility(View.INVISIBLE);
                     blurLayout.setVisibility(View.INVISIBLE);
                 }
-//                displayPopupWindow();
-//                return true;
                 break;
         }
         return super.onOptionsItemSelected(item);
     }
-
-//    private PopupWindow popupWindow;
-
-//    private void displayPopupWindow() {
-//
-////        LayoutInflater inflater= (LayoutInflater)CkMainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//        View layout = getLayoutInflater().inflate(R.layout.view_alert_popup, null);
-//        popupWindow.setContentView(layout);
-//        popupWindow = new PopupWindow(layout, 350, 350, true);
-//        popupWindow.showAtLocation(layout, Gravity.CENTER, 0, 0);
-//    }
 
     @Override
     public void onTabSelected(TabLayout.Tab tab) {

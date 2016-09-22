@@ -71,11 +71,10 @@ public class EtReserveViewHolder extends RecyclerView.ViewHolder {
 
         //Url to image
         Glide.with(pictureView.getContext()).load(etReserveData.getImage()).into(pictureView);
-        ckNameView.setText("Cooker/"+etReserveData.getUname());
-        foodNameView.setText("Menu/"+etReserveData.getMname());
+        ckNameView.setText(etReserveData.getUname());
+        foodNameView.setText(etReserveData.getMname());
         dateView.setText(etReserveData.getDate());
         ckRatingView.setRating(etReserveData.getGrade());
-
         btn_reserve.setVisibility(View.VISIBLE);
 
         switch (etReserveData.getStatus()){

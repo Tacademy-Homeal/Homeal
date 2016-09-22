@@ -80,7 +80,9 @@ public class ChattingAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             case VIEW_TYPE_RECEIVE : {
                 ChattingReceiveViewHolder rvh = (ChattingReceiveViewHolder)holder;
                 String message = cursor.getString(cursor.getColumnIndex(ChatContract.ChatMessage.COLUMN_MESSAGE));
+                String image = cursor.getString(cursor.getColumnIndex(ChatContract.ChatMessage.COLUM_IMAGEURL));
                 rvh.setMessage(message);
+                rvh.setImage(image);
                 break;
             }
         }

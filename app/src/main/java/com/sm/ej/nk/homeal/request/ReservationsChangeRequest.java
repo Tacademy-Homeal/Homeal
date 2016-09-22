@@ -18,7 +18,7 @@ import okhttp3.RequestBody;
 public class ReservationsChangeRequest extends AbstractRequest<NetworkResultTemp> {
     Request request;
 
-    public ReservationsChangeRequest(Context context,int id, int status) {
+    public ReservationsChangeRequest(Context context,int id, int status,String uld) {
 
         HttpUrl url = getBaseHttpUrlBuilder()
                 .addPathSegment("reservations")
@@ -27,6 +27,7 @@ public class ReservationsChangeRequest extends AbstractRequest<NetworkResultTemp
 
         RequestBody body = new FormBody.Builder()
                 .add("status", "" + status)
+                .add("receiver",uld)
                 .build();
 
         request = new Request.Builder()

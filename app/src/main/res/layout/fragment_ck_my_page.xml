@@ -173,16 +173,20 @@
             android:gravity="center"
             android:text="Name"
             android:layout_marginTop="5dp"
-            android:textSize="20dp" />
+            android:textSize="20dp"
+            android:layout_marginBottom="5dp"/>
 
         <RatingBar
             android:id="@+id/rating_ck_mypage_total"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/settingRatingBar"
             android:layout_below="@+id/text_ck_name"
-            android:progressDrawable="@drawable/custom_ratingbar_full"
             android:numStars="5"
+            android:clickable="false"
+            android:isIndicator="true"
+            android:focusableInTouchMode="false"
             android:focusable="false"
-            android:focusableInTouchMode="false"/>
+            />
     </LinearLayout>
 </RelativeLayout>

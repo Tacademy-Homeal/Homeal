@@ -132,7 +132,6 @@ public class CkMyPageFragment extends Fragment {
                 Toast.makeText(getContext(), "언어를 설정해주세요.", Toast.LENGTH_SHORT).show();
             }
         });
-
         return view;
     }
 

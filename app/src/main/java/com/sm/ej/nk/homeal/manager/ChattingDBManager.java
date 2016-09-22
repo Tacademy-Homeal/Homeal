@@ -36,8 +36,8 @@ public class ChattingDBManager extends SQLiteOpenHelper {
         String sql = "CREATE TABLE " + ChatContract.ChatUser.TABLE + "(" +
                 ChatContract.ChatUser._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 ChatContract.ChatUser.COLUMN_SERVER_ID + " INTEGER," +
+                ChatContract.ChatUser.COLUMN_IMAGE + " TEXT," +
                 ChatContract.ChatUser.COLUMN_NAME + " TEXT," +
-                ChatContract.ChatUser.COLUMN_EMAIL + " TEXT NOT NULL," +
                 ChatContract.ChatUser.COLUMN_LAST_MESSAGE_ID + " INTEGER);";
         db.execSQL(sql);
 
@@ -112,16 +112,17 @@ public class ChattingDBManager extends SQLiteOpenHelper {
     public long addMessage(User user, int type, String message, Date date,String image) {
         Long uid = resolveUserId.get(user.getId());
         if (uid == null) {
-            long id = getUserId(user.getId());
-            if (id == -1) {
-                id = addUser(user);
+            long flag = getUserId(user.getId());
+            if (flag == -1) {
+                user.setImage(image);
+                addUser(user);
             }
-            resolveUserId.put(user.getId(), id);
-            uid = id;
+            resolveUserId.put(user.getId(), user.getId());
+            uid = user.getId();
         }
         SQLiteDatabase db = getWritableDatabase();
         values.clear();
-        values.put(ChatContract.ChatMessage.COLUMN_USER_ID, (long)uid);
+        values.put(ChatContract.ChatMessage.COLUMN_USER_ID, uid);
         values.put(ChatContract.ChatMessage.COLUMN_TYPE, type);
         values.put(ChatContract.ChatMessage.COLUMN_MESSAGE, message);
         values.put(ChatContract.ChatMessage.COLUM_IMAGEURL, image);
@@ -135,6 +136,7 @@ public class ChattingDBManager extends SQLiteOpenHelper {
             values.clear();
             values.put(ChatContract.ChatUser.COLUMN_LAST_MESSAGE_ID, mid);
             String selection = ChatContract.ChatUser._ID + " = ?";
+
             String[] args = {"" + uid};
             db.update(ChatContract.ChatUser.TABLE, values, selection, args);
             db.setTransactionSuccessful();
@@ -147,15 +149,16 @@ public class ChattingDBManager extends SQLiteOpenHelper {
     public Cursor getChatUser() {
         String table = ChatContract.ChatUser.TABLE + " INNER JOIN " +
                 ChatContract.ChatMessage.TABLE + " ON " +
-                ChatContract.ChatUser.TABLE + "." + ChatContract.ChatUser.COLUMN_LAST_MESSAGE_ID + " = " +
+                ChatContract.ChatUser.TABLE + "." + ChatContract.ChatUser._ID + " = " +
                 ChatContract.ChatMessage.TABLE + "." + ChatContract.ChatMessage._ID;
         String[] columns = {ChatContract.ChatUser.TABLE + "." + ChatContract.ChatUser._ID,
                 ChatContract.ChatUser.COLUMN_SERVER_ID,
-                ChatContract.ChatUser.COLUMN_EMAIL,
                 ChatContract.ChatUser.COLUMN_NAME,
+                ChatContract.ChatUser.COLUMN_IMAGE,
                 ChatContract.ChatMessage.COLUMN_MESSAGE};
-        String sort = ChatContract.ChatUser.COLUMN_NAME + " COLLATE LOCALIZED ASC";
+        String sort = ChatContract.ChatUser.COLUMN_NAME  + " COLLATE LOCALIZED ASC";
         SQLiteDatabase db = getReadableDatabase();
+
         return db.query(table, columns, null, null, null, null, sort);
     }
 

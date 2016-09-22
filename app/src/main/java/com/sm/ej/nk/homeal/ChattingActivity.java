@@ -41,6 +41,7 @@ public class ChattingActivity extends AppCompatActivity {
 
     @BindView(R.id.toobar_chatting)
     Toolbar toolbar;
+    public static final String EXTRA_CHAT_USER = "chatuser";
 
     public static final String EXTRA_USER = "userinfo";
     User user;//current user
@@ -65,8 +66,7 @@ public class ChattingActivity extends AppCompatActivity {
             }
         });
 
-        id = (Long) getIntent().getLongExtra(EXTRA_USER,-100);
-
+        id = (long) getIntent().getLongExtra(EXTRA_USER,-100);
         mAdapter = new ChattingAdapter();
         rv_chatting.setAdapter(mAdapter);
         rv_chatting.setLayoutManager(new LinearLayoutManager(this));
@@ -109,8 +109,8 @@ public class ChattingActivity extends AppCompatActivity {
     BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            User u = (User) intent.getSerializableExtra(ChattingGcmListenerService.EXTRA_CHAT_USER);
-            if (u.getId() == user.getId()) {
+            id = (long) intent.getLongExtra(ChattingGcmListenerService.EXTRA_CHAT_USER,-100);
+            if (id != 100) {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {

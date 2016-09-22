@@ -136,7 +136,8 @@ public class SplashActivity extends AppCompatActivity {
             }
 
             Intent chatIntent = new Intent(this,ChattingActivity.class);
-            chatIntent.putExtra(ChattingActivity.EXTRA_USER,10);
+
+            chatIntent.putExtra(ChattingActivity.EXTRA_USER,userid);
             Intent[] intents = {mainIntent, chatIntent};
             startActivities(intents);
         }
@@ -206,7 +207,6 @@ public class SplashActivity extends AppCompatActivity {
                         resetFacebookAndMoveLoginActivity();
                     }
                 }
-
                 @Override
                 public void onFail(NetworkRequest<NetworkResult<String>> request, int errorCode, String errorMessage, Throwable e) {
                     loginManager.logOut();
