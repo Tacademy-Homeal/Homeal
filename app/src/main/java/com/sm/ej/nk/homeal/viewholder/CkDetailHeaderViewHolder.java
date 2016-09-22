@@ -31,7 +31,7 @@ import java.util.List;
 public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
     View view;
     ViewPager viewPager;
-    ImageView userImage, mapImage, backImage, nextImage, launch, dinner;
+    ImageView userImage, mapImage, backImage, nextImage, launch, dinner, sharingImage;
     TextView userName, userAddress, calendarDate,pax, totalScore, tasteScore, kindScore, cleanScore, priceScore, sharingOk, sharingNo;
     RecyclerView calendar;
     CkDetailData data;
@@ -71,6 +71,7 @@ public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder implements
         tasteScore = (TextView)view.findViewById(R.id.text_ck_detail_taste_score);
         kindScore = (TextView)view.findViewById(R.id.text_ck_detail_kind_score);
         cleanScore = (TextView)view.findViewById(R.id.text_ck_detail_clean_score);
+        sharingImage = (ImageView)view.findViewById(R.id.image_ck_detail_sharing);
 
         launch = (ImageView)view.findViewById(R.id.image_ck_detail_launch);
         dinner = (ImageView)view.findViewById(R.id.image_ck_detail_dinner);
@@ -88,6 +89,7 @@ public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder implements
             sharingNo.setTextColor(context.getResources().getColor(R.color.colorPrimary));
             sharingOk.setTextColor(Color.BLACK);
         }
+        sharingImage.setImageResource(R.drawable.homeal_sharing);
 
         if(item.isLaunch){
             launch.setImageResource(R.drawable.homeal_launch_fill);
@@ -196,6 +198,7 @@ public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder implements
                 calendarAdapter.cleanChecked();
                 launch.setImageResource(R.drawable.homeal_launch_empty);
                 dinner.setImageResource(R.drawable.homeal_dinner_empty);
+                sharingImage.setImageResource(R.drawable.homeal_sharing_empty);
                 pax.setText("0");
                 sharingNo.setTextColor(Color.BLACK);
                 sharingOk.setTextColor(Color.BLACK);
@@ -208,6 +211,7 @@ public class CkDetailHeaderViewHolder extends RecyclerView.ViewHolder implements
                 calendarAdapter.cleanChecked();
                 launch.setImageResource(R.drawable.homeal_launch_empty);
                 dinner.setImageResource(R.drawable.homeal_dinner_empty);
+                sharingImage.setImageResource(R.drawable.homeal_sharing_empty);
                 pax.setText("0");
                 sharingNo.setTextColor(Color.BLACK);
                 sharingOk.setTextColor(Color.BLACK);

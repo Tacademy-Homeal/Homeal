@@ -28,7 +28,7 @@ import java.util.List;
  */
 public class CkHomeHeaderViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
     public View view;
-    public ImageView userImage, nextCalendar, backCalendar, userMap, launch, dinner;
+    public ImageView userImage, nextCalendar, backCalendar, userMap, launch, dinner, sharingImage;
     public TextView userName, userAddress, jjimCount, reviewCount, textDate, textPax, totalScore, tasteScore, kindScore, cleanScore, priceScore, textSharingOk, textSharingNo;
     public ProgressBar progressTotal, progressTaste, progressKind, progressClean, progressPrice;
     public RecyclerView rvCalendar;
@@ -67,6 +67,7 @@ public class CkHomeHeaderViewHolder extends RecyclerView.ViewHolder implements V
         priceScore = (TextView)view.findViewById(R.id.text_ck_home_price);
         textSharingOk = (TextView)view.findViewById(R.id.text_ck_home_sharing_ok);
         textSharingNo = (TextView)view.findViewById(R.id.text_ck_home_sharing_no);
+        sharingImage = (ImageView)view.findViewById(R.id.image_ck_home_sharing);
     }
 
     public void setData(CkDetailData data){
@@ -136,6 +137,7 @@ public class CkHomeHeaderViewHolder extends RecyclerView.ViewHolder implements V
                 textPax.setText("0");
                 textSharingNo.setTextColor(Color.GRAY);
                 textSharingOk.setTextColor(Color.GRAY);
+                sharingImage.setImageResource(R.drawable.homeal_sharing_empty);
                 break;
             }
             case R.id.image_ck_home_next:{
@@ -148,6 +150,7 @@ public class CkHomeHeaderViewHolder extends RecyclerView.ViewHolder implements V
                 textPax.setText("0");
                 textSharingNo.setTextColor(Color.GRAY);
                 textSharingOk.setTextColor(Color.GRAY);
+                sharingImage.setImageResource(R.drawable.homeal_sharing_empty);
                 break;
             }
             case R.id.linear_review_ck_home:{
@@ -168,6 +171,7 @@ public class CkHomeHeaderViewHolder extends RecyclerView.ViewHolder implements V
             textSharingOk.setTextColor(Color.GRAY);
         }
 
+        sharingImage.setImageResource(R.drawable.homeal_sharing);
         if(item.isLaunch){
             launch.setImageResource(R.drawable.homeal_launch_fill);
         }else{
